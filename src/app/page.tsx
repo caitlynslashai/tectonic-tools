@@ -134,7 +134,7 @@ const PokemonDamageCalculator: NextPage = () => {
                                                 {damageResult.minDamage} - {damageResult.maxDamage}
                                             </p>
                                             <p className="text-gray-400">
-                                                ({damageResult.percentage} of opponent's HP)
+                                                ({damageResult.percentage} of opponent&apos;s HP)
                                             </p>
                                         </div>
                                     </div>
@@ -144,7 +144,7 @@ const PokemonDamageCalculator: NextPage = () => {
                             {/* Opponent's Pokemon Section - Dark Red */}
                             <div className="flex-1 p-6 bg-gray-800 border-t md:border-t-0 md:border-l border-gray-700">
                                 <h2 className="text-xl font-semibold mb-4 text-red-400 text-center">
-                                    Opponent's Pokémon
+                                    Opponent&apos;s Pokémon
                                 </h2>
 
                                 <div className="space-y-4 max-w-xs mx-auto">
