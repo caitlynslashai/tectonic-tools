@@ -33,9 +33,9 @@ export interface StylePoints {
 }
 
 export const defaultStylePoints: StylePoints = {
-    hp: 0,
-    attacks: 0,
-    defense: 0,
-    spdef: 0,
-    speed: 0,
+    hp: 10,
+    attacks: 10,
+    defense: 10,
+    spdef: 10,
+    speed: 10,
 };
