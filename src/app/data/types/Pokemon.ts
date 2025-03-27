@@ -1,4 +1,5 @@
 import { PokemonType } from "./BasicData";
+import { Move } from "./Move";
 
 export interface Stats {
     hp: number;
@@ -24,4 +25,5 @@ export interface Pokemon {
     type1: PokemonType;
     type2: PokemonType;
     stats: Stats;
+    moves: Move[];
 }

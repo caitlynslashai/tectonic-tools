@@ -2,11 +2,13 @@
 
 import type { NextPage } from "next";
 import { useState } from "react";
+import { moves, nullMove } from "./data/moves";
 import { nullPokemon, pokemon } from "./data/pokemon";
 import { blankStylePoints, StylePoints } from "./data/types/BasicData";
+import { Move } from "./data/types/Move";
 import { blankStats, Pokemon, Stats } from "./data/types/Pokemon";
 
-function isNull(o: Pokemon | Pokemon | undefined): boolean {
+function isNull(o: Pokemon | Pokemon | Move | undefined): boolean {
     return !o || o.id === "";
 }
 
@@ -21,6 +23,7 @@ function safeKeys<T extends object>(o: T): Array<keyof T> {
 
 const PokemonDamageCalculator: NextPage = () => {
     const [playerPokemon, setPlayerPokemon] = useState<Pokemon>(nullPokemon);
+    const [playerMove, setPlayerMove] = useState<Move>(nullMove);
     const [playerLevel, setPlayerLevel] = useState<number>(70);
     const [playerStylePoints, setPlayerStylePoints] = useState<StylePoints>(blankStylePoints);
     const [playerCalculatedStats, setPlayerCalculatedStats] = useState<Stats>(blankStats);
@@ -259,6 +262,47 @@ const PokemonDamageCalculator: NextPage = () => {
                                 <div className="space-y-4 max-w-xs mx-auto">
                                     {pokemonSelect("player")}
                                     {pokemonStats("player")}
+                                    {!isNull(playerPokemon) && (
+                                        <>
+                                            <div className="text-center">
+                                                <label className="block text-sm font-medium text-gray-300 mb-1">
+                                                    Move
+                                                </label>
+                                            </div>
+                                            <select
+                                                className="w-full px-4 py-2 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
+                                                value={playerMove.id}
+                                                onChange={(e) => setPlayerMove(moves[e.target.value] || nullPokemon)}
+                                            >
+                                                <option value="" className="bg-gray-800">
+                                                    Select Move
+                                                </option>
+                                                {Object.values(moves).map((p) => (
+                                                    <option key={p.id} value={p.id} className="bg-gray-800">
+                                                        {p.name}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </>
+                                    )}
+                                    {!isNull(playerMove) && (
+                                        <div className="mt-4">
+                                            <h3 className="text-sm font-medium text-gray-300 mb-2 text-center">
+                                                Move Details
+                                            </h3>
+                                            <div className="text-center text-gray-200">
+                                                <p>
+                                                    <strong>Name:</strong> {playerMove.name}
+                                                </p>
+                                                <p>
+                                                    <strong>Type:</strong> {playerMove.type}
+                                                </p>
+                                                <p>
+                                                    <strong>BP:</strong> {playerMove.bp}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
 

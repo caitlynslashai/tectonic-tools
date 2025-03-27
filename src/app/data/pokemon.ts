@@ -1,3 +1,4 @@
+import { moves } from "./moves";
 import { Pokemon } from "./types/Pokemon";
 
 export const pokemon: Record<string, Pokemon> = {
@@ -14,6 +15,7 @@ export const pokemon: Record<string, Pokemon> = {
             spatk: 100,
             spdef: 100,
         },
+        moves: [moves["testmove"]],
     },
 };
 
@@ -30,4 +32,5 @@ export const nullPokemon: Pokemon = {
         spatk: 0,
         spdef: 0,
     },
+    moves: [],
 };
