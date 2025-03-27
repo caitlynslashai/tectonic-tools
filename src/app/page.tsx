@@ -4,7 +4,8 @@ import type { NextPage } from "next";
 import { useState } from "react";
 import { moves, nullMove } from "./data/moves";
 import { nullPokemon, pokemon } from "./data/pokemon";
-import { blankStylePoints, StylePoints } from "./data/types/BasicData";
+import { typeChart } from "./data/typeChart";
+import { blankStylePoints, PokemonType, StylePoints } from "./data/types/BasicData";
 import { Move } from "./data/types/Move";
 import { blankStats, Pokemon, Stats } from "./data/types/Pokemon";
 
@@ -164,22 +165,32 @@ const PokemonDamageCalculator: NextPage = () => {
         return stat;
     }
 
-    // This would be replaced with your actual damage calculation logic
-    const calculateDamage = () => {
+    function calculateTypeEffect(attackType: PokemonType, defendType1: PokemonType, defendType2?: PokemonType) {
+        let mult = typeChart[attackType][defendType1];
+        if (defendType2) {
+            mult *= typeChart[attackType][defendType2];
+        }
+        return mult;
+    }
+
+    function calculateDamage() {
         const attackingStat = playerMove.category === "Physical" ? "attack" : "spatk";
         const defendingStat = playerMove.category === "Physical" ? "defense" : "spdef";
         const pseudoLevel = 15 + playerLevel / 2;
         const levelMultiplier = 2 + 0.4 * pseudoLevel;
-        const damage =
+        let damage =
             2 +
             Math.floor(
                 (levelMultiplier * playerMove.bp * playerCalculatedStats[attackingStat]) /
                     opponentCalculatedStats[defendingStat] /
                     50
             );
+        // this isn't fully accurate, but it will do in the meantime
+        const typeEffectMult = calculateTypeEffect(playerMove.type, opponentPokemon.type1, opponentPokemon.type2);
+        damage *= typeEffectMult;
         const percentage = damage / opponentCalculatedStats.hp;
-        return { damage, percentage };
-    };
+        return { damage, percentage, typeEffectMult };
+    }
 
     const damageResult = calculateDamage();
 
@@ -210,6 +221,13 @@ const PokemonDamageCalculator: NextPage = () => {
     function pokemonStats(side: Side) {
         return !isNull(getPokemon[side]) ? (
             <div className="space-y-6">
+                {/* Pokemon type */}
+                <p className="text-center">
+                    {getPokemon[side].type2
+                        ? getPokemon[side].type1 + " / " + getPokemon[side].type2
+                        : getPokemon[side].type1}
+                </p>
+
                 {/* Level input */}
                 <div className="text-center">
                     <label className="block text-sm font-medium text-gray-300 mb-2">Level</label>
@@ -348,6 +366,24 @@ const PokemonDamageCalculator: NextPage = () => {
                                                         {(damageResult.percentage * 100).toFixed(2)}% of opponent&apos;s
                                                         HP
                                                     </p>
+                                                    {/* Effectiveness message */}
+                                                    {damageResult.typeEffectMult === 4 && (
+                                                        <p className="text-pink-400 font-bold">Hyper Effective!</p>
+                                                    )}
+                                                    {damageResult.typeEffectMult === 2 && (
+                                                        <p className="text-green-400 font-bold">Super Effective!</p>
+                                                    )}
+                                                    {damageResult.typeEffectMult === 0.5 && (
+                                                        <p className="text-red-400 font-bold">Not Very Effective!</p>
+                                                    )}
+                                                    {damageResult.typeEffectMult === 0.25 && (
+                                                        <p className="text-gray-400 font-bold">Barely Effective!</p>
+                                                    )}
+                                                    {damageResult.typeEffectMult === 0 && (
+                                                        <p className="text-gray-500 font-bold shadow-md">
+                                                            Not Effective!
+                                                        </p>
+                                                    )}
                                                     {/* Fixed health bar */}
                                                     <div className="mt-4 relative">
                                                         <div className="h-4 bg-gray-600 rounded-full overflow-hidden relative">
