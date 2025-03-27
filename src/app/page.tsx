@@ -5,7 +5,7 @@ import { useState } from "react";
 import { moves, nullMove } from "./data/moves";
 import { nullPokemon, pokemon } from "./data/pokemon";
 import { typeChart } from "./data/typeChart";
-import { blankStylePoints, PokemonType, StylePoints } from "./data/types/BasicData";
+import { defaultStylePoints, PokemonType, StylePoints } from "./data/types/BasicData";
 import { Move } from "./data/types/Move";
 import { blankStats, Pokemon, Stats } from "./data/types/Pokemon";
 
@@ -26,12 +26,12 @@ const PokemonDamageCalculator: NextPage = () => {
     const [playerPokemon, setPlayerPokemon] = useState<Pokemon>(nullPokemon);
     const [playerMove, setPlayerMove] = useState<Move>(nullMove);
     const [playerLevel, setPlayerLevel] = useState<number>(70);
-    const [playerStylePoints, setPlayerStylePoints] = useState<StylePoints>(blankStylePoints);
+    const [playerStylePoints, setPlayerStylePoints] = useState<StylePoints>(defaultStylePoints);
     const [playerCalculatedStats, setPlayerCalculatedStats] = useState<Stats>(blankStats);
 
     const [opponentPokemon, setOpponentPokemon] = useState<Pokemon>(nullPokemon);
     const [opponentLevel, setOpponentLevel] = useState<number>(70);
-    const [opponentStylePoints, setOpponentStylePoints] = useState<StylePoints>(blankStylePoints);
+    const [opponentStylePoints, setOpponentStylePoints] = useState<StylePoints>(defaultStylePoints);
     const [opponentCalculatedStats, setOpponentCalculatedStats] = useState<Stats>(blankStats);
 
     const [multiBattle, setMultiBattle] = useState<boolean>(false);
@@ -78,15 +78,19 @@ const PokemonDamageCalculator: NextPage = () => {
         opponent: setOpponentCalculatedStats,
     };
 
-    const DEFAULT_LEVEL = 70;
+    const MIN_LEVEL = 1;
+    const MAX_LEVEL = 70;
+    const DEFAULT_LEVEL = MAX_LEVEL;
     const STYLE_POINT_CAP = 50;
+    const MIN_SP = 0;
+    const MAX_SP = 20;
 
     function handleLoadingPokemon(pokemon: Pokemon, side: Side) {
         if (!isNull(pokemon)) {
             setPokemon[side](pokemon);
             const baseStats = pokemon.stats;
             const level = DEFAULT_LEVEL;
-            const stylePoints = blankStylePoints;
+            const stylePoints = defaultStylePoints;
             const newStats: Stats = {
                 hp: calculateHP(baseStats.hp, level, stylePoints.hp),
                 attack: calculateStat(baseStats.attack, level, stylePoints.attacks),
@@ -126,6 +130,8 @@ const PokemonDamageCalculator: NextPage = () => {
     }
 
     function handleLevel(level: number, side: Side) {
+        level = Math.max(level, MIN_LEVEL);
+        level = Math.min(level, MAX_LEVEL);
         setLevel[side](level);
         const baseStats = getPokemon[side].stats;
         const stylePoints = getStylePoints[side];
@@ -140,7 +146,10 @@ const PokemonDamageCalculator: NextPage = () => {
         setCalculatedStats[side](newStats);
     }
 
-    function handleStylePoints(stylePoints: StylePoints, side: Side) {
+    function handleStylePoints(styleName: keyof StylePoints, stylePoint: number, side: Side) {
+        stylePoint = Math.max(stylePoint, MIN_SP);
+        stylePoint = Math.min(stylePoint, MAX_SP);
+        const stylePoints = { ...getStylePoints[side], [styleName]: stylePoint };
         const spSum = Object.values(stylePoints).reduce((total, sp) => total + sp, 0);
         if (spSum > STYLE_POINT_CAP) {
             alert("You can only have a maximum of 50 total style points!");
@@ -252,11 +261,11 @@ const PokemonDamageCalculator: NextPage = () => {
                     <label className="block text-sm font-medium text-gray-300 mb-2">Level</label>
                     <input
                         type="number"
-                        min="1"
-                        max="70"
+                        min={MIN_LEVEL}
+                        max={MAX_LEVEL}
                         className="w-full px-4 py-2 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
                         value={getLevel[side]}
-                        onChange={(e) => handleLevel(parseInt(e.target.value) || DEFAULT_LEVEL, side)}
+                        onChange={(e) => handleLevel(parseInt(e.target.value) || MIN_LEVEL, side)}
                     />
                 </div>
 
@@ -274,18 +283,12 @@ const PokemonDamageCalculator: NextPage = () => {
                                     </span>
                                     <input
                                         type="number"
-                                        min="0"
-                                        max="20"
+                                        min={MIN_SP}
+                                        max={MAX_SP}
                                         className="w-16 px-2 py-1 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
                                         value={getStylePoints[side][styleName]}
                                         onChange={(e) =>
-                                            handleStylePoints(
-                                                {
-                                                    ...getStylePoints[side],
-                                                    [styleName]: parseInt(e.target.value) || 0,
-                                                },
-                                                side
-                                            )
+                                            handleStylePoints(styleName, parseInt(e.target.value) || MIN_SP, side)
                                         }
                                     />
                                 </div>

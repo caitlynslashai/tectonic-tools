@@ -32,7 +32,7 @@ export interface StylePoints {
     speed: number;
 }
 
-export const blankStylePoints: StylePoints = {
+export const defaultStylePoints: StylePoints = {
     hp: 0,
     attacks: 0,
     defense: 0,
