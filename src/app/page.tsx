@@ -90,7 +90,7 @@ const PokemonDamageCalculator: NextPage = () => {
             setPokemon[side](pokemon);
             const baseStats = pokemon.stats;
             const level = DEFAULT_LEVEL;
-            const stylePoints = defaultStylePoints;
+            const stylePoints = getStylePoints[side];
             const newStats: Stats = {
                 hp: calculateHP(baseStats.hp, level, stylePoints.hp),
                 attack: calculateStat(baseStats.attack, level, stylePoints.attacks),
