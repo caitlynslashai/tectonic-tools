@@ -1,0 +1,7954 @@
+{
+    "AFTERYOU": {
+        "id": "AFTERYOU",
+        "name": "After You",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "ASSIST": {
+        "id": "ASSIST",
+        "name": "Assist",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "BELLYDRUM": {
+        "id": "BELLYDRUM",
+        "name": "Belly Drum",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "BESTOW": {
+        "id": "BESTOW",
+        "name": "Bestow",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "BIDE": {
+        "id": "BIDE",
+        "name": "Bide",
+        "type": "Normal",
+        "bp": 1,
+        "category": "Physical"
+    },
+    "BLOCK": {
+        "id": "BLOCK",
+        "name": "Block",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "BODYSLAM": {
+        "id": "BODYSLAM",
+        "name": "Body Slam",
+        "type": "Normal",
+        "bp": 85,
+        "category": "Physical"
+    },
+    "BOOMBURST": {
+        "id": "BOOMBURST",
+        "name": "Boomburst",
+        "type": "Normal",
+        "bp": 140,
+        "category": "Special"
+    },
+    "CONVERSION": {
+        "id": "CONVERSION",
+        "name": "Conversion",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "CONVERSION2": {
+        "id": "CONVERSION2",
+        "name": "Conversion 2",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "COVET": {
+        "id": "COVET",
+        "name": "Covet",
+        "type": "Normal",
+        "bp": 60,
+        "category": "Adaptive"
+    },
+    "DIZZYPUNCH": {
+        "id": "DIZZYPUNCH",
+        "name": "Dizzy Punch",
+        "type": "Normal",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "DOUBLEEDGE": {
+        "id": "DOUBLEEDGE",
+        "name": "Double-Edge",
+        "type": "Normal",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "DOUBLEHIT": {
+        "id": "DOUBLEHIT",
+        "name": "Double Hit",
+        "type": "Normal",
+        "bp": 35,
+        "category": "Physical"
+    },
+    "ECHOEDVOICE": {
+        "id": "ECHOEDVOICE",
+        "name": "Echoed Voice",
+        "type": "Normal",
+        "bp": 40,
+        "category": "Special"
+    },
+    "ENCORE": {
+        "id": "ENCORE",
+        "name": "Encore",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "ENDEAVOR": {
+        "id": "ENDEAVOR",
+        "name": "Endeavor",
+        "type": "Normal",
+        "bp": 1,
+        "category": "Physical"
+    },
+    "ENDURE": {
+        "id": "ENDURE",
+        "name": "Endure",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "ENTRAINMENT": {
+        "id": "ENTRAINMENT",
+        "name": "Entrainment",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "EXPLOSION": {
+        "id": "EXPLOSION",
+        "name": "Explosion",
+        "type": "Normal",
+        "bp": 350,
+        "category": "Adaptive"
+    },
+    "EXTREMESPEED": {
+        "id": "EXTREMESPEED",
+        "name": "Extreme Speed",
+        "type": "Normal",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "FACADE": {
+        "id": "FACADE",
+        "name": "Facade",
+        "type": "Normal",
+        "bp": 70,
+        "category": "Adaptive"
+    },
+    "FAKEOUT": {
+        "id": "FAKEOUT",
+        "name": "Fake Out",
+        "type": "Normal",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "FLAIL": {
+        "id": "FLAIL",
+        "name": "Flail",
+        "type": "Normal",
+        "bp": 1,
+        "category": "Physical"
+    },
+    "FOCUSENERGY": {
+        "id": "FOCUSENERGY",
+        "name": "Focus Energy",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "FOLLOWME": {
+        "id": "FOLLOWME",
+        "name": "Follow Me",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "FURYSWIPES": {
+        "id": "FURYSWIPES",
+        "name": "Fury Swipes",
+        "type": "Normal",
+        "bp": 25,
+        "category": "Physical"
+    },
+    "GIGAIMPACT": {
+        "id": "GIGAIMPACT",
+        "name": "Giga Impact",
+        "type": "Normal",
+        "bp": 200,
+        "category": "Physical"
+    },
+    "GLARE": {
+        "id": "GLARE",
+        "name": "Glare",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "GROWL": {
+        "id": "GROWL",
+        "name": "Growl",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "HARDEN": {
+        "id": "HARDEN",
+        "name": "Harden",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "HEADBUTT": {
+        "id": "HEADBUTT",
+        "name": "Headbutt",
+        "type": "Normal",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "HEALBELL": {
+        "id": "HEALBELL",
+        "name": "Heal Bell",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "HELPINGHAND": {
+        "id": "HELPINGHAND",
+        "name": "Helping Hand",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "HOLDBACK": {
+        "id": "HOLDBACK",
+        "name": "Hold Back",
+        "type": "Normal",
+        "bp": 40,
+        "category": "Adaptive"
+    },
+    "HYPERBEAM": {
+        "id": "HYPERBEAM",
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "bp": 200,
+        "category": "Special"
+    },
+    "HYPERFANG": {
+        "id": "HYPERFANG",
+        "name": "Hyper Fang",
+        "type": "Normal",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "HYPERVOICE": {
+        "id": "HYPERVOICE",
+        "name": "Hyper Voice",
+        "type": "Normal",
+        "bp": 100,
+        "category": "Special"
+    },
+    "JUDGMENT": {
+        "id": "JUDGMENT",
+        "name": "Judgment",
+        "type": "Normal",
+        "bp": 100,
+        "category": "Special"
+    },
+    "LASTRESORT": {
+        "id": "LASTRESORT",
+        "name": "Last Resort",
+        "type": "Normal",
+        "bp": 140,
+        "category": "Adaptive"
+    },
+    "LEER": {
+        "id": "LEER",
+        "name": "Leer",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "LUCKYCHANT": {
+        "id": "LUCKYCHANT",
+        "name": "Lucky Chant",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "MEFIRST": {
+        "id": "MEFIRST",
+        "name": "Me First",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "MEGAPUNCH": {
+        "id": "MEGAPUNCH",
+        "name": "Mega Punch",
+        "type": "Normal",
+        "bp": 100,
+        "category": "Physical"
+    },
+    "METRONOME": {
+        "id": "METRONOME",
+        "name": "Metronome",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "MILKDRINK": {
+        "id": "MILKDRINK",
+        "name": "Milk Drink",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "MULTIATTACK": {
+        "id": "MULTIATTACK",
+        "name": "Multi-Attack",
+        "type": "Normal",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "NATURALGIFT": {
+        "id": "NATURALGIFT",
+        "name": "Natural Gift",
+        "type": "Normal",
+        "bp": 120,
+        "category": "Adaptive"
+    },
+    "NATUREPOWER": {
+        "id": "NATUREPOWER",
+        "name": "Nature Power",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "NOBLEROAR": {
+        "id": "NOBLEROAR",
+        "name": "Noble Roar",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "PAYDAY": {
+        "id": "PAYDAY",
+        "name": "Pay Day",
+        "type": "Normal",
+        "bp": 50,
+        "category": "Adaptive"
+    },
+    "POUND": {
+        "id": "POUND",
+        "name": "Pound",
+        "type": "Normal",
+        "bp": 45,
+        "category": "Physical"
+    },
+    "PROTECT": {
+        "id": "PROTECT",
+        "name": "Protect",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "QUICKATTACK": {
+        "id": "QUICKATTACK",
+        "name": "Quick Attack",
+        "type": "Normal",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "RAPIDSPIN": {
+        "id": "RAPIDSPIN",
+        "name": "Rapid Spin",
+        "type": "Normal",
+        "bp": 65,
+        "category": "Physical"
+    },
+    "RECOVER": {
+        "id": "RECOVER",
+        "name": "Recover",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "RECYCLE": {
+        "id": "RECYCLE",
+        "name": "Recycle",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "REFLECTTYPE": {
+        "id": "REFLECTTYPE",
+        "name": "Reflect Type",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "REFRESH": {
+        "id": "REFRESH",
+        "name": "Refresh",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "RELICSONG": {
+        "id": "RELICSONG",
+        "name": "Relic Song",
+        "type": "Normal",
+        "bp": 75,
+        "category": "Special"
+    },
+    "RETALIATE": {
+        "id": "RETALIATE",
+        "name": "Retaliate",
+        "type": "Normal",
+        "bp": 70,
+        "category": "Adaptive"
+    },
+    "REVELATIONDANCE": {
+        "id": "REVELATIONDANCE",
+        "name": "Revelation Dance",
+        "type": "Normal",
+        "bp": 90,
+        "category": "Adaptive"
+    },
+    "ROAR": {
+        "id": "ROAR",
+        "name": "Roar",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "ROUND": {
+        "id": "ROUND",
+        "name": "Round",
+        "type": "Normal",
+        "bp": 60,
+        "category": "Special"
+    },
+    "SCRATCH": {
+        "id": "SCRATCH",
+        "name": "Scratch",
+        "type": "Normal",
+        "bp": 45,
+        "category": "Physical"
+    },
+    "SCREECH": {
+        "id": "SCREECH",
+        "name": "Screech",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SECRETPOWER": {
+        "id": "SECRETPOWER",
+        "name": "Secret Power",
+        "type": "Normal",
+        "bp": 70,
+        "category": "Adaptive"
+    },
+    "SELFDESTRUCT": {
+        "id": "SELFDESTRUCT",
+        "name": "Self-Destruct",
+        "type": "Normal",
+        "bp": 250,
+        "category": "Adaptive"
+    },
+    "SHARPEN": {
+        "id": "SHARPEN",
+        "name": "Sharpen",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SHOUT": {
+        "id": "SHOUT",
+        "name": "Shout",
+        "type": "Normal",
+        "bp": 40,
+        "category": "Special"
+    },
+    "SIMPLEBEAM": {
+        "id": "SIMPLEBEAM",
+        "name": "Simple Beam",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SKETCH": {
+        "id": "SKETCH",
+        "name": "Sketch",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SKULLBASH": {
+        "id": "SKULLBASH",
+        "name": "Skull Bash",
+        "type": "Normal",
+        "bp": 140,
+        "category": "Physical"
+    },
+    "SLACKOFF": {
+        "id": "SLACKOFF",
+        "name": "Slack Off",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SLASH": {
+        "id": "SLASH",
+        "name": "Slash",
+        "type": "Normal",
+        "bp": 70,
+        "category": "Physical"
+    },
+    "SLEEPTALK": {
+        "id": "SLEEPTALK",
+        "name": "Sleep Talk",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SMELLINGSALTS": {
+        "id": "SMELLINGSALTS",
+        "name": "Smelling Salts",
+        "type": "Normal",
+        "bp": 95,
+        "category": "Physical"
+    },
+    "SNORE": {
+        "id": "SNORE",
+        "name": "Snore",
+        "type": "Normal",
+        "bp": 90,
+        "category": "Adaptive"
+    },
+    "SOFTBOILED": {
+        "id": "SOFTBOILED",
+        "name": "Soft-Boiled",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SPITUP": {
+        "id": "SPITUP",
+        "name": "Spit Up",
+        "type": "Normal",
+        "bp": 1,
+        "category": "Adaptive"
+    },
+    "SPOTLIGHT": {
+        "id": "SPOTLIGHT",
+        "name": "Spotlight",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "STELLARATE": {
+        "id": "STELLARATE",
+        "name": "Stellarate",
+        "type": "Normal",
+        "bp": 25,
+        "category": "Special"
+    },
+    "STOCKPILE": {
+        "id": "STOCKPILE",
+        "name": "Stockpile",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "STRUGGLE": {
+        "id": "STRUGGLE",
+        "name": "Struggle",
+        "type": "Normal",
+        "bp": 50,
+        "category": "Adaptive"
+    },
+    "STUFFCHEEKS": {
+        "id": "STUFFCHEEKS",
+        "name": "Stuff Cheeks",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SUBSTITUTE": {
+        "id": "SUBSTITUTE",
+        "name": "Substitute",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SUPERFANG": {
+        "id": "SUPERFANG",
+        "name": "Super Fang",
+        "type": "Normal",
+        "bp": 1,
+        "category": "Physical"
+    },
+    "SUPERSONIC": {
+        "id": "SUPERSONIC",
+        "name": "Supersonic",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SWALLOW": {
+        "id": "SWALLOW",
+        "name": "Swallow",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SWIFT": {
+        "id": "SWIFT",
+        "name": "Swift",
+        "type": "Normal",
+        "bp": 65,
+        "category": "Special"
+    },
+    "TACKLE": {
+        "id": "TACKLE",
+        "name": "Tackle",
+        "type": "Normal",
+        "bp": 45,
+        "category": "Physical"
+    },
+    "TAKEDOWN": {
+        "id": "TAKEDOWN",
+        "name": "Take Down",
+        "type": "Normal",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "TEARFULLOOK": {
+        "id": "TEARFULLOOK",
+        "name": "Tearful Look",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "TEATIME": {
+        "id": "TEATIME",
+        "name": "Teatime",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "TECHNOBLAST": {
+        "id": "TECHNOBLAST",
+        "name": "Techno Blast",
+        "type": "Normal",
+        "bp": 120,
+        "category": "Special"
+    },
+    "TEETERDANCE": {
+        "id": "TEETERDANCE",
+        "name": "Teeter Dance",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "THRASH": {
+        "id": "THRASH",
+        "name": "Thrash",
+        "type": "Normal",
+        "bp": 130,
+        "category": "Physical"
+    },
+    "TICKLE": {
+        "id": "TICKLE",
+        "name": "Tickle",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "TRANSFORM": {
+        "id": "TRANSFORM",
+        "name": "Transform",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "TRIATTACK": {
+        "id": "TRIATTACK",
+        "name": "Tri Attack",
+        "type": "Normal",
+        "bp": 80,
+        "category": "Special"
+    },
+    "TRUMPCARD": {
+        "id": "TRUMPCARD",
+        "name": "Trump Card",
+        "type": "Normal",
+        "bp": 160,
+        "category": "Adaptive"
+    },
+    "UPROAR": {
+        "id": "UPROAR",
+        "name": "Uproar",
+        "type": "Normal",
+        "bp": 130,
+        "category": "Special"
+    },
+    "WISH": {
+        "id": "WISH",
+        "name": "Wish",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "WORKUP": {
+        "id": "WORKUP",
+        "name": "Work Up",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "YAWN": {
+        "id": "YAWN",
+        "name": "Yawn",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "ARMTHRUST": {
+        "id": "ARMTHRUST",
+        "name": "Arm Thrust",
+        "type": "Fighting",
+        "bp": 20,
+        "category": "Physical"
+    },
+    "AURASPHERE": {
+        "id": "AURASPHERE",
+        "name": "Aura Sphere",
+        "type": "Fighting",
+        "bp": 80,
+        "category": "Special"
+    },
+    "BODYPRESS": {
+        "id": "BODYPRESS",
+        "name": "Body Press",
+        "type": "Fighting",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "BRICKBREAK": {
+        "id": "BRICKBREAK",
+        "name": "Brick Break",
+        "type": "Fighting",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "BULKUP": {
+        "id": "BULKUP",
+        "name": "Bulk Up",
+        "type": "Fighting",
+        "bp": 0,
+        "category": "Status"
+    },
+    "CLOSECOMBAT": {
+        "id": "CLOSECOMBAT",
+        "name": "Close Combat",
+        "type": "Fighting",
+        "bp": 110,
+        "category": "Physical"
+    },
+    "COACHING": {
+        "id": "COACHING",
+        "name": "Coaching",
+        "type": "Fighting",
+        "bp": 0,
+        "category": "Status"
+    },
+    "COUNTER": {
+        "id": "COUNTER",
+        "name": "Counter",
+        "type": "Fighting",
+        "bp": 1,
+        "category": "Physical"
+    },
+    "CROSSCHOP": {
+        "id": "CROSSCHOP",
+        "name": "Cross Chop",
+        "type": "Fighting",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "DOUBLEKICK": {
+        "id": "DOUBLEKICK",
+        "name": "Double Kick",
+        "type": "Fighting",
+        "bp": 30,
+        "category": "Physical"
+    },
+    "DRAINPUNCH": {
+        "id": "DRAINPUNCH",
+        "name": "Drain Punch",
+        "type": "Fighting",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "DYNAMICPUNCH": {
+        "id": "DYNAMICPUNCH",
+        "name": "Dynamic Punch",
+        "type": "Fighting",
+        "bp": 100,
+        "category": "Physical"
+    },
+    "FINALGAMBIT": {
+        "id": "FINALGAMBIT",
+        "name": "Final Gambit",
+        "type": "Fighting",
+        "bp": 1,
+        "category": "Special"
+    },
+    "FLYINGPRESS": {
+        "id": "FLYINGPRESS",
+        "name": "Flying Press",
+        "type": "Fighting",
+        "bp": 100,
+        "category": "Physical"
+    },
+    "FOCUSBLAST": {
+        "id": "FOCUSBLAST",
+        "name": "Focus Blast",
+        "type": "Fighting",
+        "bp": 115,
+        "category": "Special"
+    },
+    "FOCUSPUNCH": {
+        "id": "FOCUSPUNCH",
+        "name": "Focus Punch",
+        "type": "Fighting",
+        "bp": 150,
+        "category": "Physical"
+    },
+    "FORCEPALM": {
+        "id": "FORCEPALM",
+        "name": "Force Palm",
+        "type": "Fighting",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "HIGHJUMPKICK": {
+        "id": "HIGHJUMPKICK",
+        "name": "High Jump Kick",
+        "type": "Fighting",
+        "bp": 130,
+        "category": "Physical"
+    },
+    "KARATECHOP": {
+        "id": "KARATECHOP",
+        "name": "Karate Chop",
+        "type": "Fighting",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "LOWKICK": {
+        "id": "LOWKICK",
+        "name": "Low Kick",
+        "type": "Fighting",
+        "bp": 1,
+        "category": "Physical"
+    },
+    "LOWSWEEP": {
+        "id": "LOWSWEEP",
+        "name": "Low Sweep",
+        "type": "Fighting",
+        "bp": 65,
+        "category": "Physical"
+    },
+    "MACHPUNCH": {
+        "id": "MACHPUNCH",
+        "name": "Mach Punch",
+        "type": "Fighting",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "MATBLOCK": {
+        "id": "MATBLOCK",
+        "name": "Mat Block",
+        "type": "Fighting",
+        "bp": 0,
+        "category": "Status"
+    },
+    "METEORASSAULT": {
+        "id": "METEORASSAULT",
+        "name": "Meteor Assault",
+        "type": "Fighting",
+        "bp": 170,
+        "category": "Physical"
+    },
+    "NORETREAT": {
+        "id": "NORETREAT",
+        "name": "No Retreat",
+        "type": "Fighting",
+        "bp": 0,
+        "category": "Status"
+    },
+    "OCTOLOCK": {
+        "id": "OCTOLOCK",
+        "name": "Octolock",
+        "type": "Fighting",
+        "bp": 0,
+        "category": "Status"
+    },
+    "POWERUPPUNCH": {
+        "id": "POWERUPPUNCH",
+        "name": "Power-Up Punch",
+        "type": "Fighting",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "QUICKGUARD": {
+        "id": "QUICKGUARD",
+        "name": "Quick Guard",
+        "type": "Fighting",
+        "bp": 0,
+        "category": "Status"
+    },
+    "REVENGE": {
+        "id": "REVENGE",
+        "name": "Revenge",
+        "type": "Fighting",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "REVERSAL": {
+        "id": "REVERSAL",
+        "name": "Reversal",
+        "type": "Fighting",
+        "bp": 1,
+        "category": "Physical"
+    },
+    "SACREDSWORD": {
+        "id": "SACREDSWORD",
+        "name": "Sacred Sword",
+        "type": "Fighting",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "SECRETSWORD": {
+        "id": "SECRETSWORD",
+        "name": "Secret Sword",
+        "type": "Fighting",
+        "bp": 85,
+        "category": "Special"
+    },
+    "SMASH": {
+        "id": "SMASH",
+        "name": "Smash",
+        "type": "Fighting",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "STORMTHROW": {
+        "id": "STORMTHROW",
+        "name": "Storm Throw",
+        "type": "Fighting",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "SUBMISSION": {
+        "id": "SUBMISSION",
+        "name": "Submission",
+        "type": "Fighting",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "SUPERPOWER": {
+        "id": "SUPERPOWER",
+        "name": "Superpower",
+        "type": "Fighting",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "THUNDEROUSKICK": {
+        "id": "THUNDEROUSKICK",
+        "name": "Thunderous Kick",
+        "type": "Fighting",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "VACUUMWAVE": {
+        "id": "VACUUMWAVE",
+        "name": "Vacuum Wave",
+        "type": "Fighting",
+        "bp": 40,
+        "category": "Special"
+    },
+    "WAKEUPSLAP": {
+        "id": "WAKEUPSLAP",
+        "name": "Wake-Up Slap",
+        "type": "Fighting",
+        "bp": 70,
+        "category": "Physical"
+    },
+    "ACROBATICS": {
+        "id": "ACROBATICS",
+        "name": "Acrobatics",
+        "type": "Flying",
+        "bp": 55,
+        "category": "Physical"
+    },
+    "AERIALACE": {
+        "id": "AERIALACE",
+        "name": "Aerial Ace",
+        "type": "Flying",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "AEROBLAST": {
+        "id": "AEROBLAST",
+        "name": "Aeroblast",
+        "type": "Flying",
+        "bp": 95,
+        "category": "Special"
+    },
+    "AIRSLASH": {
+        "id": "AIRSLASH",
+        "name": "Air Slash",
+        "type": "Flying",
+        "bp": 80,
+        "category": "Special"
+    },
+    "BEAKBLAST": {
+        "id": "BEAKBLAST",
+        "name": "Beak Blast",
+        "type": "Flying",
+        "bp": 100,
+        "category": "Physical"
+    },
+    "BLEAKWINDSTORM": {
+        "id": "BLEAKWINDSTORM",
+        "name": "Bleakwind Storm",
+        "type": "Flying",
+        "bp": 110,
+        "category": "Special"
+    },
+    "BOUNCE": {
+        "id": "BOUNCE",
+        "name": "Bounce",
+        "type": "Flying",
+        "bp": 85,
+        "category": "Physical"
+    },
+    "BRAVEBIRD": {
+        "id": "BRAVEBIRD",
+        "name": "Brave Bird",
+        "type": "Flying",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "CHATTER": {
+        "id": "CHATTER",
+        "name": "Chatter",
+        "type": "Flying",
+        "bp": 65,
+        "category": "Special"
+    },
+    "DEFOG": {
+        "id": "DEFOG",
+        "name": "Defog",
+        "type": "Flying",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DRAGONASCENT": {
+        "id": "DRAGONASCENT",
+        "name": "Dragon Ascent",
+        "type": "Flying",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "DRILLPECK": {
+        "id": "DRILLPECK",
+        "name": "Drill Peck",
+        "type": "Flying",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "DUALWINGBEAT": {
+        "id": "DUALWINGBEAT",
+        "name": "Dual Wingbeat",
+        "type": "Flying",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "FEATHERDANCE": {
+        "id": "FEATHERDANCE",
+        "name": "Feather Dance",
+        "type": "Flying",
+        "bp": 0,
+        "category": "Status"
+    },
+    "FLY": {
+        "id": "FLY",
+        "name": "Fly",
+        "type": "Flying",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "GUST": {
+        "id": "GUST",
+        "name": "Gust",
+        "type": "Flying",
+        "bp": 45,
+        "category": "Special"
+    },
+    "OBLIVIONWING": {
+        "id": "OBLIVIONWING",
+        "name": "Oblivion Wing",
+        "type": "Flying",
+        "bp": 80,
+        "category": "Special"
+    },
+    "PECK": {
+        "id": "PECK",
+        "name": "Peck",
+        "type": "Flying",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "PLUCK": {
+        "id": "PLUCK",
+        "name": "Pluck",
+        "type": "Flying",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "ROOST": {
+        "id": "ROOST",
+        "name": "Roost",
+        "type": "Flying",
+        "bp": 0,
+        "category": "Status"
+    },
+    "TAILWIND": {
+        "id": "TAILWIND",
+        "name": "Tailwind",
+        "type": "Flying",
+        "bp": 0,
+        "category": "Status"
+    },
+    "WHIRLWIND": {
+        "id": "WHIRLWIND",
+        "name": "Whirlwind",
+        "type": "Flying",
+        "bp": 0,
+        "category": "Status"
+    },
+    "WINGCRASH": {
+        "id": "WINGCRASH",
+        "name": "Wing Crash",
+        "type": "Flying",
+        "bp": 55,
+        "category": "Physical"
+    },
+    "ACID": {
+        "id": "ACID",
+        "name": "Acid",
+        "type": "Poison",
+        "bp": 40,
+        "category": "Special"
+    },
+    "ACIDSPRAY": {
+        "id": "ACIDSPRAY",
+        "name": "Acid Spray",
+        "type": "Poison",
+        "bp": 40,
+        "category": "Special"
+    },
+    "BELCH": {
+        "id": "BELCH",
+        "name": "Belch",
+        "type": "Poison",
+        "bp": 60,
+        "category": "Special"
+    },
+    "CLEARSMOG": {
+        "id": "CLEARSMOG",
+        "name": "Clear Smog",
+        "type": "Poison",
+        "bp": 60,
+        "category": "Special"
+    },
+    "COIL": {
+        "id": "COIL",
+        "name": "Coil",
+        "type": "Poison",
+        "bp": 0,
+        "category": "Status"
+    },
+    "CROSSPOISON": {
+        "id": "CROSSPOISON",
+        "name": "Cross Poison",
+        "type": "Poison",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "GUNKSHOT": {
+        "id": "GUNKSHOT",
+        "name": "Gunk Shot",
+        "type": "Poison",
+        "bp": 115,
+        "category": "Physical"
+    },
+    "POISONFANG": {
+        "id": "POISONFANG",
+        "name": "Poison Fang",
+        "type": "Poison",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "POISONGAS": {
+        "id": "POISONGAS",
+        "name": "Poison Gas",
+        "type": "Poison",
+        "bp": 0,
+        "category": "Status"
+    },
+    "POISONJAB": {
+        "id": "POISONJAB",
+        "name": "Poison Jab",
+        "type": "Poison",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "POISONSTING": {
+        "id": "POISONSTING",
+        "name": "Poison Sting",
+        "type": "Poison",
+        "bp": 30,
+        "category": "Physical"
+    },
+    "POISONTAIL": {
+        "id": "POISONTAIL",
+        "name": "Poison Tail",
+        "type": "Poison",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "PURIFY": {
+        "id": "PURIFY",
+        "name": "Purify",
+        "type": "Poison",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SHELLSIDEARM": {
+        "id": "SHELLSIDEARM",
+        "name": "Shell Side Arm",
+        "type": "Poison",
+        "bp": 90,
+        "category": "Special"
+    },
+    "SLUDGE": {
+        "id": "SLUDGE",
+        "name": "Sludge",
+        "type": "Poison",
+        "bp": 65,
+        "category": "Special"
+    },
+    "SLUDGEBOMB": {
+        "id": "SLUDGEBOMB",
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "bp": 80,
+        "category": "Special"
+    },
+    "SLUDGEWAVE": {
+        "id": "SLUDGEWAVE",
+        "name": "Sludge Wave",
+        "type": "Poison",
+        "bp": 95,
+        "category": "Special"
+    },
+    "SMOG": {
+        "id": "SMOG",
+        "name": "Smog",
+        "type": "Poison",
+        "bp": 30,
+        "category": "Special"
+    },
+    "TOXICTHREAD": {
+        "id": "TOXICTHREAD",
+        "name": "Toxic Thread",
+        "type": "Poison",
+        "bp": 0,
+        "category": "Status"
+    },
+    "VENOMDRENCH": {
+        "id": "VENOMDRENCH",
+        "name": "Venom Drench",
+        "type": "Poison",
+        "bp": 0,
+        "category": "Status"
+    },
+    "VENOSHOCK": {
+        "id": "VENOSHOCK",
+        "name": "Venoshock",
+        "type": "Poison",
+        "bp": 70,
+        "category": "Special"
+    },
+    "BONEMERANG": {
+        "id": "BONEMERANG",
+        "name": "Bonemerang",
+        "type": "Ground",
+        "bp": 50,
+        "category": "Physical"
+    },
+    "BONERUSH": {
+        "id": "BONERUSH",
+        "name": "Bone Rush",
+        "type": "Ground",
+        "bp": 25,
+        "category": "Physical"
+    },
+    "BULLDOZE": {
+        "id": "BULLDOZE",
+        "name": "Bulldoze",
+        "type": "Ground",
+        "bp": 65,
+        "category": "Physical"
+    },
+    "DIG": {
+        "id": "DIG",
+        "name": "Dig",
+        "type": "Ground",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "DRILLRUN": {
+        "id": "DRILLRUN",
+        "name": "Drill Run",
+        "type": "Ground",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "EARTHPOWER": {
+        "id": "EARTHPOWER",
+        "name": "Earth Power",
+        "type": "Ground",
+        "bp": 90,
+        "category": "Special"
+    },
+    "EARTHQUAKE": {
+        "id": "EARTHQUAKE",
+        "name": "Earthquake",
+        "type": "Ground",
+        "bp": 95,
+        "category": "Physical"
+    },
+    "GRAVITY": {
+        "id": "GRAVITY",
+        "name": "Gravity",
+        "type": "Ground",
+        "bp": 0,
+        "category": "Status"
+    },
+    "LANDSWRATH": {
+        "id": "LANDSWRATH",
+        "name": "Land's Wrath",
+        "type": "Ground",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "MUDSHOT": {
+        "id": "MUDSHOT",
+        "name": "Mud Shot",
+        "type": "Ground",
+        "bp": 55,
+        "category": "Special"
+    },
+    "PRECIPICEBLADES": {
+        "id": "PRECIPICEBLADES",
+        "name": "Precipice Blades",
+        "type": "Ground",
+        "bp": 140,
+        "category": "Physical"
+    },
+    "SANDSEARSTORM": {
+        "id": "SANDSEARSTORM",
+        "name": "Sandsear Storm",
+        "type": "Ground",
+        "bp": 110,
+        "category": "Special"
+    },
+    "SCORCHINGSANDS": {
+        "id": "SCORCHINGSANDS",
+        "name": "Scorching Sands",
+        "type": "Ground",
+        "bp": 90,
+        "category": "Special"
+    },
+    "SHOREUP": {
+        "id": "SHOREUP",
+        "name": "Shore Up",
+        "type": "Ground",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SPIKES": {
+        "id": "SPIKES",
+        "name": "Spikes",
+        "type": "Ground",
+        "bp": 0,
+        "category": "Status"
+    },
+    "STOMPINGTANTRUM": {
+        "id": "STOMPINGTANTRUM",
+        "name": "Stomping Tantrum",
+        "type": "Ground",
+        "bp": 85,
+        "category": "Physical"
+    },
+    "THOUSANDARROWS": {
+        "id": "THOUSANDARROWS",
+        "name": "Thousand Arrows",
+        "type": "Ground",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "THOUSANDWAVES": {
+        "id": "THOUSANDWAVES",
+        "name": "Thousand Waves",
+        "type": "Ground",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "ACCELEROCK": {
+        "id": "ACCELEROCK",
+        "name": "Accelerock",
+        "type": "Rock",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "ANCIENTPOWER": {
+        "id": "ANCIENTPOWER",
+        "name": "Ancient Power",
+        "type": "Rock",
+        "bp": 60,
+        "category": "Special"
+    },
+    "DIAMONDSTORM": {
+        "id": "DIAMONDSTORM",
+        "name": "Diamond Storm",
+        "type": "Rock",
+        "bp": 100,
+        "category": "Physical"
+    },
+    "HEADSMASH": {
+        "id": "HEADSMASH",
+        "name": "Head Smash",
+        "type": "Rock",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "METEORBEAM": {
+        "id": "METEORBEAM",
+        "name": "Meteor Beam",
+        "type": "Rock",
+        "bp": 120,
+        "category": "Special"
+    },
+    "POWERGEM": {
+        "id": "POWERGEM",
+        "name": "Power Gem",
+        "type": "Rock",
+        "bp": 90,
+        "category": "Special"
+    },
+    "ROCKBLAST": {
+        "id": "ROCKBLAST",
+        "name": "Rock Blast",
+        "type": "Rock",
+        "bp": 25,
+        "category": "Physical"
+    },
+    "ROCKPOLISH": {
+        "id": "ROCKPOLISH",
+        "name": "Rock Polish",
+        "type": "Rock",
+        "bp": 0,
+        "category": "Status"
+    },
+    "ROCKROLL": {
+        "id": "ROCKROLL",
+        "name": "Rock Roll",
+        "type": "Rock",
+        "bp": 30,
+        "category": "Physical"
+    },
+    "ROCKTHROW": {
+        "id": "ROCKTHROW",
+        "name": "Rock Throw",
+        "type": "Rock",
+        "bp": 45,
+        "category": "Physical"
+    },
+    "ROCKTOMB": {
+        "id": "ROCKTOMB",
+        "name": "Rock Tomb",
+        "type": "Rock",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "ROCKWRECKER": {
+        "id": "ROCKWRECKER",
+        "name": "Rock Wrecker",
+        "type": "Rock",
+        "bp": 170,
+        "category": "Physical"
+    },
+    "SANDSTORM": {
+        "id": "SANDSTORM",
+        "name": "Sandstorm",
+        "type": "Rock",
+        "bp": 0,
+        "category": "Status"
+    },
+    "STEALTHROCK": {
+        "id": "STEALTHROCK",
+        "name": "Stealth Rock",
+        "type": "Rock",
+        "bp": 0,
+        "category": "Status"
+    },
+    "STONEAXE": {
+        "id": "STONEAXE",
+        "name": "Stone Axe",
+        "type": "Rock",
+        "bp": 55,
+        "category": "Physical"
+    },
+    "STONEEDGE": {
+        "id": "STONEEDGE",
+        "name": "Stone Edge",
+        "type": "Rock",
+        "bp": 115,
+        "category": "Physical"
+    },
+    "TARSHOT": {
+        "id": "TARSHOT",
+        "name": "Tar Shot",
+        "type": "Rock",
+        "bp": 0,
+        "category": "Status"
+    },
+    "WIDEGUARD": {
+        "id": "WIDEGUARD",
+        "name": "Wide Guard",
+        "type": "Rock",
+        "bp": 0,
+        "category": "Status"
+    },
+    "BUGBITE": {
+        "id": "BUGBITE",
+        "name": "Bug Bite",
+        "type": "Bug",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "BUGBUZZ": {
+        "id": "BUGBUZZ",
+        "name": "Bug Buzz",
+        "type": "Bug",
+        "bp": 90,
+        "category": "Special"
+    },
+    "DEFENDORDER": {
+        "id": "DEFENDORDER",
+        "name": "Defend Order",
+        "type": "Bug",
+        "bp": 0,
+        "category": "Status"
+    },
+    "FELLSTINGER": {
+        "id": "FELLSTINGER",
+        "name": "Fell Stinger",
+        "type": "Bug",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "FIRSTIMPRESSION": {
+        "id": "FIRSTIMPRESSION",
+        "name": "First Impression",
+        "type": "Bug",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "FURYCUTTER": {
+        "id": "FURYCUTTER",
+        "name": "Fury Cutter",
+        "type": "Bug",
+        "bp": 30,
+        "category": "Physical"
+    },
+    "HEALORDER": {
+        "id": "HEALORDER",
+        "name": "Heal Order",
+        "type": "Bug",
+        "bp": 0,
+        "category": "Status"
+    },
+    "INFESTATION": {
+        "id": "INFESTATION",
+        "name": "Infestation",
+        "type": "Bug",
+        "bp": 50,
+        "category": "Special"
+    },
+    "LEECHLIFE": {
+        "id": "LEECHLIFE",
+        "name": "Leech Life",
+        "type": "Bug",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "LUNGE": {
+        "id": "LUNGE",
+        "name": "Lunge",
+        "type": "Bug",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "MEGAHORN": {
+        "id": "MEGAHORN",
+        "name": "Megahorn",
+        "type": "Bug",
+        "bp": 115,
+        "category": "Physical"
+    },
+    "PINMISSILE": {
+        "id": "PINMISSILE",
+        "name": "Pin Missile",
+        "type": "Bug",
+        "bp": 25,
+        "category": "Physical"
+    },
+    "POLLENPUFF": {
+        "id": "POLLENPUFF",
+        "name": "Pollen Puff",
+        "type": "Bug",
+        "bp": 90,
+        "category": "Special"
+    },
+    "QUIVERDANCE": {
+        "id": "QUIVERDANCE",
+        "name": "Quiver Dance",
+        "type": "Bug",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SIGNALBEAM": {
+        "id": "SIGNALBEAM",
+        "name": "Signal Beam",
+        "type": "Bug",
+        "bp": 65,
+        "category": "Special"
+    },
+    "SILVERWIND": {
+        "id": "SILVERWIND",
+        "name": "Silver Wind",
+        "type": "Bug",
+        "bp": 60,
+        "category": "Special"
+    },
+    "STEAMROLLER": {
+        "id": "STEAMROLLER",
+        "name": "Steamroller",
+        "type": "Bug",
+        "bp": 65,
+        "category": "Physical"
+    },
+    "STICKYWEB": {
+        "id": "STICKYWEB",
+        "name": "Sticky Web",
+        "type": "Bug",
+        "bp": 0,
+        "category": "Status"
+    },
+    "STRINGSHOT": {
+        "id": "STRINGSHOT",
+        "name": "String Shot",
+        "type": "Bug",
+        "bp": 0,
+        "category": "Status"
+    },
+    "STRUGGLEBUG": {
+        "id": "STRUGGLEBUG",
+        "name": "Struggle Bug",
+        "type": "Bug",
+        "bp": 50,
+        "category": "Special"
+    },
+    "TAILGLOW": {
+        "id": "TAILGLOW",
+        "name": "Tail Glow",
+        "type": "Bug",
+        "bp": 0,
+        "category": "Status"
+    },
+    "UTURN": {
+        "id": "UTURN",
+        "name": "U-turn",
+        "type": "Bug",
+        "bp": 70,
+        "category": "Physical"
+    },
+    "XSCISSOR": {
+        "id": "XSCISSOR",
+        "name": "X-Scissor",
+        "type": "Bug",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "ASTONISH": {
+        "id": "ASTONISH",
+        "name": "Astonish",
+        "type": "Ghost",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "ASTRALBARRAGE": {
+        "id": "ASTRALBARRAGE",
+        "name": "Astral Barrage",
+        "type": "Ghost",
+        "bp": 120,
+        "category": "Special"
+    },
+    "CONFUSERAY": {
+        "id": "CONFUSERAY",
+        "name": "Confuse Ray",
+        "type": "Ghost",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DESTINYBOND": {
+        "id": "DESTINYBOND",
+        "name": "Destiny Bond",
+        "type": "Ghost",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DISABLE": {
+        "id": "DISABLE",
+        "name": "Disable",
+        "type": "Ghost",
+        "bp": 0,
+        "category": "Status"
+    },
+    "HEX": {
+        "id": "HEX",
+        "name": "Hex",
+        "type": "Ghost",
+        "bp": 65,
+        "category": "Special"
+    },
+    "LICK": {
+        "id": "LICK",
+        "name": "Lick",
+        "type": "Ghost",
+        "bp": 30,
+        "category": "Physical"
+    },
+    "MOONGEISTBEAM": {
+        "id": "MOONGEISTBEAM",
+        "name": "Moongeist Beam",
+        "type": "Ghost",
+        "bp": 100,
+        "category": "Special"
+    },
+    "NIGHTMARE": {
+        "id": "NIGHTMARE",
+        "name": "Nightmare",
+        "type": "Ghost",
+        "bp": 0,
+        "category": "Status"
+    },
+    "OMINOUSWIND": {
+        "id": "OMINOUSWIND",
+        "name": "Ominous Wind",
+        "type": "Ghost",
+        "bp": 60,
+        "category": "Special"
+    },
+    "PAINSPLIT": {
+        "id": "PAINSPLIT",
+        "name": "Pain Split",
+        "type": "Ghost",
+        "bp": 0,
+        "category": "Status"
+    },
+    "PERISHSONG": {
+        "id": "PERISHSONG",
+        "name": "Perish Song",
+        "type": "Ghost",
+        "bp": 0,
+        "category": "Status"
+    },
+    "PHANTOMFORCE": {
+        "id": "PHANTOMFORCE",
+        "name": "Phantom Force",
+        "type": "Ghost",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "SCARYFACE": {
+        "id": "SCARYFACE",
+        "name": "Scary Face",
+        "type": "Ghost",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SHADOWBALL": {
+        "id": "SHADOWBALL",
+        "name": "Shadow Ball",
+        "type": "Ghost",
+        "bp": 90,
+        "category": "Special"
+    },
+    "SHADOWBONE": {
+        "id": "SHADOWBONE",
+        "name": "Shadow Bone",
+        "type": "Ghost",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "SHADOWCLAW": {
+        "id": "SHADOWCLAW",
+        "name": "Shadow Claw",
+        "type": "Ghost",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "SHADOWFORCE": {
+        "id": "SHADOWFORCE",
+        "name": "Shadow Force",
+        "type": "Ghost",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "SHADOWPUNCH": {
+        "id": "SHADOWPUNCH",
+        "name": "Shadow Punch",
+        "type": "Ghost",
+        "bp": 75,
+        "category": "Physical"
+    },
+    "SHADOWSNEAK": {
+        "id": "SHADOWSNEAK",
+        "name": "Shadow Sneak",
+        "type": "Ghost",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "SPECTRALTHIEF": {
+        "id": "SPECTRALTHIEF",
+        "name": "Spectral Thief",
+        "type": "Ghost",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "SPIRITSHACKLE": {
+        "id": "SPIRITSHACKLE",
+        "name": "Spirit Shackle",
+        "type": "Ghost",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "TRICKORTREAT": {
+        "id": "TRICKORTREAT",
+        "name": "Trick-or-Treat",
+        "type": "Ghost",
+        "bp": 0,
+        "category": "Status"
+    },
+    "WILLOWISP": {
+        "id": "WILLOWISP",
+        "name": "Will-O-Wisp",
+        "type": "Ghost",
+        "bp": 0,
+        "category": "Status"
+    },
+    "AUTOTOMIZE": {
+        "id": "AUTOTOMIZE",
+        "name": "Autotomize",
+        "type": "Steel",
+        "bp": 0,
+        "category": "Status"
+    },
+    "BEHEMOTHBASH": {
+        "id": "BEHEMOTHBASH",
+        "name": "Behemoth Bash",
+        "type": "Steel",
+        "bp": 100,
+        "category": "Physical"
+    },
+    "BEHEMOTHBLADE": {
+        "id": "BEHEMOTHBLADE",
+        "name": "Behemoth Blade",
+        "type": "Steel",
+        "bp": 100,
+        "category": "Physical"
+    },
+    "BULLETPUNCH": {
+        "id": "BULLETPUNCH",
+        "name": "Bullet Punch",
+        "type": "Steel",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "DOOMDESIRE": {
+        "id": "DOOMDESIRE",
+        "name": "Doom Desire",
+        "type": "Steel",
+        "bp": 140,
+        "category": "Special"
+    },
+    "DOUBLEIRONBASH": {
+        "id": "DOUBLEIRONBASH",
+        "name": "Double Iron Bash",
+        "type": "Steel",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "FLASHCANNON": {
+        "id": "FLASHCANNON",
+        "name": "Flash Cannon",
+        "type": "Steel",
+        "bp": 90,
+        "category": "Special"
+    },
+    "GEARGRIND": {
+        "id": "GEARGRIND",
+        "name": "Gear Grind",
+        "type": "Steel",
+        "bp": 45,
+        "category": "Physical"
+    },
+    "GYROBALL": {
+        "id": "GYROBALL",
+        "name": "Gyro Ball",
+        "type": "Steel",
+        "bp": 1,
+        "category": "Physical"
+    },
+    "HEAVYSLAM": {
+        "id": "HEAVYSLAM",
+        "name": "Heavy Slam",
+        "type": "Steel",
+        "bp": 1,
+        "category": "Physical"
+    },
+    "IRONDEFENSE": {
+        "id": "IRONDEFENSE",
+        "name": "Iron Defense",
+        "type": "Steel",
+        "bp": 0,
+        "category": "Status"
+    },
+    "IRONHEAD": {
+        "id": "IRONHEAD",
+        "name": "Iron Head",
+        "type": "Steel",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "IRONTAIL": {
+        "id": "IRONTAIL",
+        "name": "Iron Tail",
+        "type": "Steel",
+        "bp": 115,
+        "category": "Physical"
+    },
+    "KINGSSHIELD": {
+        "id": "KINGSSHIELD",
+        "name": "King's Shield",
+        "type": "Steel",
+        "bp": 0,
+        "category": "Status"
+    },
+    "LASERFOCUS": {
+        "id": "LASERFOCUS",
+        "name": "Laser Focus",
+        "type": "Steel",
+        "bp": 0,
+        "category": "Status"
+    },
+    "METALBURST": {
+        "id": "METALBURST",
+        "name": "Metal Burst",
+        "type": "Steel",
+        "bp": 1,
+        "category": "Physical"
+    },
+    "METALCLAW": {
+        "id": "METALCLAW",
+        "name": "Metal Claw",
+        "type": "Steel",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "METALSOUND": {
+        "id": "METALSOUND",
+        "name": "Metal Sound",
+        "type": "Steel",
+        "bp": 0,
+        "category": "Status"
+    },
+    "METEORMASH": {
+        "id": "METEORMASH",
+        "name": "Meteor Mash",
+        "type": "Steel",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "SHIFTGEAR": {
+        "id": "SHIFTGEAR",
+        "name": "Shift Gear",
+        "type": "Steel",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SMARTHORN": {
+        "id": "SMARTHORN",
+        "name": "Smart Horn",
+        "type": "Steel",
+        "bp": 70,
+        "category": "Physical"
+    },
+    "SPIKECANNON": {
+        "id": "SPIKECANNON",
+        "name": "Spike Cannon",
+        "type": "Steel",
+        "bp": 25,
+        "category": "Physical"
+    },
+    "STEELBEAM": {
+        "id": "STEELBEAM",
+        "name": "Steel Beam",
+        "type": "Steel",
+        "bp": 140,
+        "category": "Special"
+    },
+    "STEELWING": {
+        "id": "STEELWING",
+        "name": "Steel Wing",
+        "type": "Steel",
+        "bp": 70,
+        "category": "Physical"
+    },
+    "SUNSTEELSTRIKE": {
+        "id": "SUNSTEELSTRIKE",
+        "name": "Sunsteel Strike",
+        "type": "Steel",
+        "bp": 100,
+        "category": "Physical"
+    },
+    "SWORDSDANCE": {
+        "id": "SWORDSDANCE",
+        "name": "Swords Dance",
+        "type": "Steel",
+        "bp": 0,
+        "category": "Status"
+    },
+    "BLASTBURN": {
+        "id": "BLASTBURN",
+        "name": "Blast Burn",
+        "type": "Fire",
+        "bp": 170,
+        "category": "Special"
+    },
+    "BLAZEKICK": {
+        "id": "BLAZEKICK",
+        "name": "Blaze Kick",
+        "type": "Fire",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "BLUEFLARE": {
+        "id": "BLUEFLARE",
+        "name": "Blue Flare",
+        "type": "Fire",
+        "bp": 130,
+        "category": "Special"
+    },
+    "BURNINGJEALOUSY": {
+        "id": "BURNINGJEALOUSY",
+        "name": "Burning Jealousy",
+        "type": "Fire",
+        "bp": 70,
+        "category": "Adaptive"
+    },
+    "BURNUP": {
+        "id": "BURNUP",
+        "name": "Burn Up",
+        "type": "Fire",
+        "bp": 130,
+        "category": "Special"
+    },
+    "EMBER": {
+        "id": "EMBER",
+        "name": "Ember",
+        "type": "Fire",
+        "bp": 40,
+        "category": "Special"
+    },
+    "ERUPTION": {
+        "id": "ERUPTION",
+        "name": "Eruption",
+        "type": "Fire",
+        "bp": 130,
+        "category": "Special"
+    },
+    "FIREBLAST": {
+        "id": "FIREBLAST",
+        "name": "Fire Blast",
+        "type": "Fire",
+        "bp": 115,
+        "category": "Special"
+    },
+    "FIREFANG": {
+        "id": "FIREFANG",
+        "name": "Fire Fang",
+        "type": "Fire",
+        "bp": 65,
+        "category": "Physical"
+    },
+    "FIRELASH": {
+        "id": "FIRELASH",
+        "name": "Fire Lash",
+        "type": "Fire",
+        "bp": 70,
+        "category": "Physical"
+    },
+    "FIREPLEDGE": {
+        "id": "FIREPLEDGE",
+        "name": "Fire Pledge",
+        "type": "Fire",
+        "bp": 80,
+        "category": "Special"
+    },
+    "FIREPUNCH": {
+        "id": "FIREPUNCH",
+        "name": "Fire Punch",
+        "type": "Fire",
+        "bp": 75,
+        "category": "Physical"
+    },
+    "FIRESPIN": {
+        "id": "FIRESPIN",
+        "name": "Fire Spin",
+        "type": "Fire",
+        "bp": 50,
+        "category": "Special"
+    },
+    "FLAMECHARGE": {
+        "id": "FLAMECHARGE",
+        "name": "Flame Charge",
+        "type": "Fire",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "FLAMETHROWER": {
+        "id": "FLAMETHROWER",
+        "name": "Flamethrower",
+        "type": "Fire",
+        "bp": 90,
+        "category": "Special"
+    },
+    "FLAMEWHEEL": {
+        "id": "FLAMEWHEEL",
+        "name": "Flame Wheel",
+        "type": "Fire",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "FLAREBLITZ": {
+        "id": "FLAREBLITZ",
+        "name": "Flare Blitz",
+        "type": "Fire",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "FUSIONFLARE": {
+        "id": "FUSIONFLARE",
+        "name": "Fusion Flare",
+        "type": "Fire",
+        "bp": 100,
+        "category": "Special"
+    },
+    "HEATCRASH": {
+        "id": "HEATCRASH",
+        "name": "Heat Crash",
+        "type": "Fire",
+        "bp": 1,
+        "category": "Physical"
+    },
+    "HEATWAVE": {
+        "id": "HEATWAVE",
+        "name": "Heat Wave",
+        "type": "Fire",
+        "bp": 80,
+        "category": "Special"
+    },
+    "INCINERATE": {
+        "id": "INCINERATE",
+        "name": "Incinerate",
+        "type": "Fire",
+        "bp": 60,
+        "category": "Special"
+    },
+    "INFERNO": {
+        "id": "INFERNO",
+        "name": "Inferno",
+        "type": "Fire",
+        "bp": 100,
+        "category": "Special"
+    },
+    "MAGMASTORM": {
+        "id": "MAGMASTORM",
+        "name": "Magma Storm",
+        "type": "Fire",
+        "bp": 100,
+        "category": "Special"
+    },
+    "MINDBLOWN": {
+        "id": "MINDBLOWN",
+        "name": "Mind Blown",
+        "type": "Fire",
+        "bp": 150,
+        "category": "Special"
+    },
+    "MYSTICALFIRE": {
+        "id": "MYSTICALFIRE",
+        "name": "Mystical Fire",
+        "type": "Fire",
+        "bp": 75,
+        "category": "Special"
+    },
+    "OVERHEAT": {
+        "id": "OVERHEAT",
+        "name": "Overheat",
+        "type": "Fire",
+        "bp": 130,
+        "category": "Special"
+    },
+    "PYROBALL": {
+        "id": "PYROBALL",
+        "name": "Pyro Ball",
+        "type": "Fire",
+        "bp": 125,
+        "category": "Physical"
+    },
+    "RAGINGFURY": {
+        "id": "RAGINGFURY",
+        "name": "Raging Fury",
+        "type": "Fire",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "SACREDFIRE": {
+        "id": "SACREDFIRE",
+        "name": "Sacred Fire",
+        "type": "Fire",
+        "bp": 70,
+        "category": "Physical"
+    },
+    "SEARINGSHOT": {
+        "id": "SEARINGSHOT",
+        "name": "Searing Shot",
+        "type": "Fire",
+        "bp": 100,
+        "category": "Special"
+    },
+    "SHELLTRAP": {
+        "id": "SHELLTRAP",
+        "name": "Shell Trap",
+        "type": "Fire",
+        "bp": 150,
+        "category": "Special"
+    },
+    "SUNSHINE": {
+        "id": "SUNSHINE",
+        "name": "Sunshine",
+        "type": "Fire",
+        "bp": 0,
+        "category": "Status"
+    },
+    "VCREATE": {
+        "id": "VCREATE",
+        "name": "V-create",
+        "type": "Fire",
+        "bp": 180,
+        "category": "Physical"
+    },
+    "AQUAJET": {
+        "id": "AQUAJET",
+        "name": "Aqua Jet",
+        "type": "Water",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "BRINE": {
+        "id": "BRINE",
+        "name": "Brine",
+        "type": "Water",
+        "bp": 65,
+        "category": "Special"
+    },
+    "BUBBLE": {
+        "id": "BUBBLE",
+        "name": "Bubble",
+        "type": "Water",
+        "bp": 40,
+        "category": "Special"
+    },
+    "BUBBLEBEAM": {
+        "id": "BUBBLEBEAM",
+        "name": "Bubble Beam",
+        "type": "Water",
+        "bp": 60,
+        "category": "Special"
+    },
+    "CLAMP": {
+        "id": "CLAMP",
+        "name": "Clamp",
+        "type": "Water",
+        "bp": 50,
+        "category": "Physical"
+    },
+    "CRABHAMMER": {
+        "id": "CRABHAMMER",
+        "name": "Crabhammer",
+        "type": "Water",
+        "bp": 95,
+        "category": "Physical"
+    },
+    "DIVE": {
+        "id": "DIVE",
+        "name": "Dive",
+        "type": "Water",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "FISHIOUSREND": {
+        "id": "FISHIOUSREND",
+        "name": "Fishious Rend",
+        "type": "Water",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "FLIPTURN": {
+        "id": "FLIPTURN",
+        "name": "Flip Turn",
+        "type": "Water",
+        "bp": 70,
+        "category": "Physical"
+    },
+    "HYDROCANNON": {
+        "id": "HYDROCANNON",
+        "name": "Hydro Cannon",
+        "type": "Water",
+        "bp": 170,
+        "category": "Special"
+    },
+    "HYDROPUMP": {
+        "id": "HYDROPUMP",
+        "name": "Hydro Pump",
+        "type": "Water",
+        "bp": 115,
+        "category": "Special"
+    },
+    "LIFEDEW": {
+        "id": "LIFEDEW",
+        "name": "Life Dew",
+        "type": "Water",
+        "bp": 0,
+        "category": "Status"
+    },
+    "LIQUIDATION": {
+        "id": "LIQUIDATION",
+        "name": "Liquidation",
+        "type": "Water",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "ORIGINPULSE": {
+        "id": "ORIGINPULSE",
+        "name": "Origin Pulse",
+        "type": "Water",
+        "bp": 140,
+        "category": "Special"
+    },
+    "RAINSTORM": {
+        "id": "RAINSTORM",
+        "name": "Rainstorm",
+        "type": "Water",
+        "bp": 0,
+        "category": "Status"
+    },
+    "RAZORSHELL": {
+        "id": "RAZORSHELL",
+        "name": "Razor Shell",
+        "type": "Water",
+        "bp": 75,
+        "category": "Physical"
+    },
+    "SCALD": {
+        "id": "SCALD",
+        "name": "Scald",
+        "type": "Water",
+        "bp": 80,
+        "category": "Special"
+    },
+    "SHELLSMASH": {
+        "id": "SHELLSMASH",
+        "name": "Shell Smash",
+        "type": "Water",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SNIPESHOT": {
+        "id": "SNIPESHOT",
+        "name": "Snipe Shot",
+        "type": "Water",
+        "bp": 90,
+        "category": "Special"
+    },
+    "SPARKLINGARIA": {
+        "id": "SPARKLINGARIA",
+        "name": "Sparkling Aria",
+        "type": "Water",
+        "bp": 80,
+        "category": "Special"
+    },
+    "SPLASH": {
+        "id": "SPLASH",
+        "name": "Splash",
+        "type": "Water",
+        "bp": 0,
+        "category": "Status"
+    },
+    "STEAMERUPTION": {
+        "id": "STEAMERUPTION",
+        "name": "Steam Eruption",
+        "type": "Water",
+        "bp": 110,
+        "category": "Special"
+    },
+    "SURF": {
+        "id": "SURF",
+        "name": "Surf",
+        "type": "Water",
+        "bp": 90,
+        "category": "Special"
+    },
+    "SURGINGSTRIKES": {
+        "id": "SURGINGSTRIKES",
+        "name": "Surging Strikes",
+        "type": "Water",
+        "bp": 25,
+        "category": "Physical"
+    },
+    "WATERFALL": {
+        "id": "WATERFALL",
+        "name": "Waterfall",
+        "type": "Water",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "WATERGUN": {
+        "id": "WATERGUN",
+        "name": "Water Gun",
+        "type": "Water",
+        "bp": 40,
+        "category": "Special"
+    },
+    "WATERPLEDGE": {
+        "id": "WATERPLEDGE",
+        "name": "Water Pledge",
+        "type": "Water",
+        "bp": 80,
+        "category": "Special"
+    },
+    "WATERPULSE": {
+        "id": "WATERPULSE",
+        "name": "Water Pulse",
+        "type": "Water",
+        "bp": 65,
+        "category": "Special"
+    },
+    "WATERSHURIKEN": {
+        "id": "WATERSHURIKEN",
+        "name": "Water Shuriken",
+        "type": "Water",
+        "bp": 15,
+        "category": "Special"
+    },
+    "WATERSPOUT": {
+        "id": "WATERSPOUT",
+        "name": "Water Spout",
+        "type": "Water",
+        "bp": 130,
+        "category": "Special"
+    },
+    "WHIRLPOOL": {
+        "id": "WHIRLPOOL",
+        "name": "Whirlpool",
+        "type": "Water",
+        "bp": 50,
+        "category": "Special"
+    },
+    "ABSORB": {
+        "id": "ABSORB",
+        "name": "Absorb",
+        "type": "Grass",
+        "bp": 25,
+        "category": "Special"
+    },
+    "AROMATHERAPY": {
+        "id": "AROMATHERAPY",
+        "name": "Aromatherapy",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "BRANCHPOKE": {
+        "id": "BRANCHPOKE",
+        "name": "Branch Poke",
+        "type": "Grass",
+        "bp": 45,
+        "category": "Physical"
+    },
+    "BULLETSEED": {
+        "id": "BULLETSEED",
+        "name": "Bullet Seed",
+        "type": "Grass",
+        "bp": 25,
+        "category": "Physical"
+    },
+    "CHLOROBLAST": {
+        "id": "CHLOROBLAST",
+        "name": "Chloroblast",
+        "type": "Grass",
+        "bp": 150,
+        "category": "Special"
+    },
+    "COTTONGUARD": {
+        "id": "COTTONGUARD",
+        "name": "Cotton Guard",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "COTTONSPORE": {
+        "id": "COTTONSPORE",
+        "name": "Cotton Spore",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DRUMBEATING": {
+        "id": "DRUMBEATING",
+        "name": "Drum Beating",
+        "type": "Grass",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "FRENZYPLANT": {
+        "id": "FRENZYPLANT",
+        "name": "Frenzy Plant",
+        "type": "Grass",
+        "bp": 170,
+        "category": "Special"
+    },
+    "GIGADRAIN": {
+        "id": "GIGADRAIN",
+        "name": "Giga Drain",
+        "type": "Grass",
+        "bp": 75,
+        "category": "Special"
+    },
+    "GRASSKNOT": {
+        "id": "GRASSKNOT",
+        "name": "Grass Knot",
+        "type": "Grass",
+        "bp": 1,
+        "category": "Special"
+    },
+    "GRASSPLEDGE": {
+        "id": "GRASSPLEDGE",
+        "name": "Grass Pledge",
+        "type": "Grass",
+        "bp": 80,
+        "category": "Special"
+    },
+    "GROWTH": {
+        "id": "GROWTH",
+        "name": "Growth",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "INGRAIN": {
+        "id": "INGRAIN",
+        "name": "Ingrain",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "JUNGLEHEALING": {
+        "id": "JUNGLEHEALING",
+        "name": "Jungle Healing",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "LEAFAGE": {
+        "id": "LEAFAGE",
+        "name": "Leafage",
+        "type": "Grass",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "LEAFBLADE": {
+        "id": "LEAFBLADE",
+        "name": "Leaf Blade",
+        "type": "Grass",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "LEAFSTORM": {
+        "id": "LEAFSTORM",
+        "name": "Leaf Storm",
+        "type": "Grass",
+        "bp": 130,
+        "category": "Special"
+    },
+    "LEECHSEED": {
+        "id": "LEECHSEED",
+        "name": "Leech Seed",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "MAGICALLEAF": {
+        "id": "MAGICALLEAF",
+        "name": "Magical Leaf",
+        "type": "Grass",
+        "bp": 60,
+        "category": "Special"
+    },
+    "MEGADRAIN": {
+        "id": "MEGADRAIN",
+        "name": "Mega Drain",
+        "type": "Grass",
+        "bp": 40,
+        "category": "Special"
+    },
+    "PETALDANCE": {
+        "id": "PETALDANCE",
+        "name": "Petal Dance",
+        "type": "Grass",
+        "bp": 120,
+        "category": "Special"
+    },
+    "POWERWHIP": {
+        "id": "POWERWHIP",
+        "name": "Power Whip",
+        "type": "Grass",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "RAZORLEAF": {
+        "id": "RAZORLEAF",
+        "name": "Razor Leaf",
+        "type": "Grass",
+        "bp": 55,
+        "category": "Physical"
+    },
+    "SEEDBOMB": {
+        "id": "SEEDBOMB",
+        "name": "Seed Bomb",
+        "type": "Grass",
+        "bp": 70,
+        "category": "Physical"
+    },
+    "SEEDFLARE": {
+        "id": "SEEDFLARE",
+        "name": "Seed Flare",
+        "type": "Grass",
+        "bp": 100,
+        "category": "Special"
+    },
+    "SNAPTRAP": {
+        "id": "SNAPTRAP",
+        "name": "Snap Trap",
+        "type": "Grass",
+        "bp": 75,
+        "category": "Physical"
+    },
+    "SOLARBEAM": {
+        "id": "SOLARBEAM",
+        "name": "Solar Beam",
+        "type": "Grass",
+        "bp": 120,
+        "category": "Special"
+    },
+    "SOLARGLIDE": {
+        "id": "SOLARGLIDE",
+        "name": "Solar Glide",
+        "type": "Grass",
+        "bp": 70,
+        "category": "Physical"
+    },
+    "SPIKYSHIELD": {
+        "id": "SPIKYSHIELD",
+        "name": "Spiky Shield",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SPORE": {
+        "id": "SPORE",
+        "name": "Spore",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "STRENGTHSAP": {
+        "id": "STRENGTHSAP",
+        "name": "Strength Sap",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SYNTHESIS": {
+        "id": "SYNTHESIS",
+        "name": "Synthesis",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "TROPKICK": {
+        "id": "TROPKICK",
+        "name": "Trop Kick",
+        "type": "Grass",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "VINEWHIP": {
+        "id": "VINEWHIP",
+        "name": "Vine Whip",
+        "type": "Grass",
+        "bp": 45,
+        "category": "Physical"
+    },
+    "WOODHAMMER": {
+        "id": "WOODHAMMER",
+        "name": "Wood Hammer",
+        "type": "Grass",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "WORRYSEED": {
+        "id": "WORRYSEED",
+        "name": "Worry Seed",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "BOLTBEAK": {
+        "id": "BOLTBEAK",
+        "name": "Bolt Beak",
+        "type": "Electric",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "BOLTSTRIKE": {
+        "id": "BOLTSTRIKE",
+        "name": "Bolt Strike",
+        "type": "Electric",
+        "bp": 130,
+        "category": "Physical"
+    },
+    "CHARGE": {
+        "id": "CHARGE",
+        "name": "Charge",
+        "type": "Electric",
+        "bp": 0,
+        "category": "Status"
+    },
+    "CHARGEBEAM": {
+        "id": "CHARGEBEAM",
+        "name": "Charge Beam",
+        "type": "Electric",
+        "bp": 40,
+        "category": "Special"
+    },
+    "DISCHARGE": {
+        "id": "DISCHARGE",
+        "name": "Discharge",
+        "type": "Electric",
+        "bp": 80,
+        "category": "Special"
+    },
+    "EERIEIMPULSE": {
+        "id": "EERIEIMPULSE",
+        "name": "Eerie Impulse",
+        "type": "Electric",
+        "bp": 0,
+        "category": "Status"
+    },
+    "ELECTROBALL": {
+        "id": "ELECTROBALL",
+        "name": "Electro Ball",
+        "type": "Electric",
+        "bp": 1,
+        "category": "Special"
+    },
+    "ELECTROWEB": {
+        "id": "ELECTROWEB",
+        "name": "Electroweb",
+        "type": "Electric",
+        "bp": 55,
+        "category": "Special"
+    },
+    "FUSIONBOLT": {
+        "id": "FUSIONBOLT",
+        "name": "Fusion Bolt",
+        "type": "Electric",
+        "bp": 100,
+        "category": "Physical"
+    },
+    "MAGNETRISE": {
+        "id": "MAGNETRISE",
+        "name": "Magnet Rise",
+        "type": "Electric",
+        "bp": 0,
+        "category": "Status"
+    },
+    "NUZZLE": {
+        "id": "NUZZLE",
+        "name": "Nuzzle",
+        "type": "Electric",
+        "bp": 20,
+        "category": "Physical"
+    },
+    "PARABOLICCHARGE": {
+        "id": "PARABOLICCHARGE",
+        "name": "Parabolic Charge",
+        "type": "Electric",
+        "bp": 85,
+        "category": "Special"
+    },
+    "PLASMAFISTS": {
+        "id": "PLASMAFISTS",
+        "name": "Plasma Fists",
+        "type": "Electric",
+        "bp": 100,
+        "category": "Physical"
+    },
+    "SHOCKWAVE": {
+        "id": "SHOCKWAVE",
+        "name": "Shock Wave",
+        "type": "Electric",
+        "bp": 60,
+        "category": "Special"
+    },
+    "SPARK": {
+        "id": "SPARK",
+        "name": "Spark",
+        "type": "Electric",
+        "bp": 65,
+        "category": "Physical"
+    },
+    "THUNDER": {
+        "id": "THUNDER",
+        "name": "Thunder",
+        "type": "Electric",
+        "bp": 110,
+        "category": "Special"
+    },
+    "THUNDERBOLT": {
+        "id": "THUNDERBOLT",
+        "name": "Thunderbolt",
+        "type": "Electric",
+        "bp": 90,
+        "category": "Special"
+    },
+    "THUNDERCAGE": {
+        "id": "THUNDERCAGE",
+        "name": "Thunder Cage",
+        "type": "Electric",
+        "bp": 75,
+        "category": "Special"
+    },
+    "THUNDERFANG": {
+        "id": "THUNDERFANG",
+        "name": "Thunder Fang",
+        "type": "Electric",
+        "bp": 65,
+        "category": "Physical"
+    },
+    "THUNDERPUNCH": {
+        "id": "THUNDERPUNCH",
+        "name": "Thunder Punch",
+        "type": "Electric",
+        "bp": 75,
+        "category": "Physical"
+    },
+    "THUNDERSHOCK": {
+        "id": "THUNDERSHOCK",
+        "name": "Thunder Shock",
+        "type": "Electric",
+        "bp": 40,
+        "category": "Special"
+    },
+    "VOLTSWITCH": {
+        "id": "VOLTSWITCH",
+        "name": "Volt Switch",
+        "type": "Electric",
+        "bp": 70,
+        "category": "Special"
+    },
+    "VOLTTACKLE": {
+        "id": "VOLTTACKLE",
+        "name": "Volt Tackle",
+        "type": "Electric",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "WILDBOLTSTORM": {
+        "id": "WILDBOLTSTORM",
+        "name": "Wildbolt Storm",
+        "type": "Electric",
+        "bp": 110,
+        "category": "Special"
+    },
+    "WILDCHARGE": {
+        "id": "WILDCHARGE",
+        "name": "Wild Charge",
+        "type": "Electric",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "ZAPCANNON": {
+        "id": "ZAPCANNON",
+        "name": "Zap Cannon",
+        "type": "Electric",
+        "bp": 100,
+        "category": "Special"
+    },
+    "ZINGZAP": {
+        "id": "ZINGZAP",
+        "name": "Zing Zap",
+        "type": "Electric",
+        "bp": 80,
+        "category": "Special"
+    },
+    "AGILITY": {
+        "id": "AGILITY",
+        "name": "Agility",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "AMNESIA": {
+        "id": "AMNESIA",
+        "name": "Amnesia",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "CALMMIND": {
+        "id": "CALMMIND",
+        "name": "Calm Mind",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "COSMICPOWER": {
+        "id": "COSMICPOWER",
+        "name": "Cosmic Power",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DREAMABSORB": {
+        "id": "DREAMABSORB",
+        "name": "Dream Absorb",
+        "type": "Psychic",
+        "bp": 60,
+        "category": "Special"
+    },
+    "EERIESPELL": {
+        "id": "EERIESPELL",
+        "name": "Eerie Spell",
+        "type": "Psychic",
+        "bp": 70,
+        "category": "Special"
+    },
+    "ESPERDIVE": {
+        "id": "ESPERDIVE",
+        "name": "Esper Dive",
+        "type": "Psychic",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "FREEZINGGLARE": {
+        "id": "FREEZINGGLARE",
+        "name": "Freezing Glare",
+        "type": "Psychic",
+        "bp": 90,
+        "category": "Special"
+    },
+    "FUTURESIGHT": {
+        "id": "FUTURESIGHT",
+        "name": "Future Sight",
+        "type": "Psychic",
+        "bp": 140,
+        "category": "Special"
+    },
+    "GUARDSPLIT": {
+        "id": "GUARDSPLIT",
+        "name": "Guard Split",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "HEALINGWISH": {
+        "id": "HEALINGWISH",
+        "name": "Healing Wish",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "HEALPULSE": {
+        "id": "HEALPULSE",
+        "name": "Heal Pulse",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "HEARTSTAMP": {
+        "id": "HEARTSTAMP",
+        "name": "Heart Stamp",
+        "type": "Psychic",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "HEARTSWAP": {
+        "id": "HEARTSWAP",
+        "name": "Heart Swap",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "HYPERSPACEHOLE": {
+        "id": "HYPERSPACEHOLE",
+        "name": "Hyperspace Hole",
+        "type": "Psychic",
+        "bp": 80,
+        "category": "Special"
+    },
+    "INSTRUCT": {
+        "id": "INSTRUCT",
+        "name": "Instruct",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "LIGHTSCREEN": {
+        "id": "LIGHTSCREEN",
+        "name": "Light Screen",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "LUNARDANCE": {
+        "id": "LUNARDANCE",
+        "name": "Lunar Dance",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "LUSTERPURGE": {
+        "id": "LUSTERPURGE",
+        "name": "Luster Purge",
+        "type": "Psychic",
+        "bp": 70,
+        "category": "Special"
+    },
+    "MAGICCOAT": {
+        "id": "MAGICCOAT",
+        "name": "Magic Coat",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "MIRRORCOAT": {
+        "id": "MIRRORCOAT",
+        "name": "Mirror Coat",
+        "type": "Psychic",
+        "bp": 1,
+        "category": "Special"
+    },
+    "MISTBALL": {
+        "id": "MISTBALL",
+        "name": "Mist Ball",
+        "type": "Psychic",
+        "bp": 70,
+        "category": "Special"
+    },
+    "PHOTONGEYSER": {
+        "id": "PHOTONGEYSER",
+        "name": "Photon Geyser",
+        "type": "Psychic",
+        "bp": 100,
+        "category": "Adaptive"
+    },
+    "POWERSPLIT": {
+        "id": "POWERSPLIT",
+        "name": "Power Split",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "POWERTRICK": {
+        "id": "POWERTRICK",
+        "name": "Power Trick",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "PRISMATICLASER": {
+        "id": "PRISMATICLASER",
+        "name": "Prismatic Laser",
+        "type": "Psychic",
+        "bp": 170,
+        "category": "Special"
+    },
+    "PSYBEAM": {
+        "id": "PSYBEAM",
+        "name": "Psybeam",
+        "type": "Psychic",
+        "bp": 65,
+        "category": "Special"
+    },
+    "PSYCHIC": {
+        "id": "PSYCHIC",
+        "name": "Psychic",
+        "type": "Psychic",
+        "bp": 90,
+        "category": "Special"
+    },
+    "PSYCHICFANGS": {
+        "id": "PSYCHICFANGS",
+        "name": "Psychic Fang",
+        "type": "Psychic",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "PSYCHOBOOST": {
+        "id": "PSYCHOBOOST",
+        "name": "Psycho Boost",
+        "type": "Psychic",
+        "bp": 130,
+        "category": "Special"
+    },
+    "PSYCHOCUT": {
+        "id": "PSYCHOCUT",
+        "name": "Psycho Cut",
+        "type": "Psychic",
+        "bp": 70,
+        "category": "Physical"
+    },
+    "PSYCHOSHIFT": {
+        "id": "PSYCHOSHIFT",
+        "name": "Psycho Shift",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "PSYCHUP": {
+        "id": "PSYCHUP",
+        "name": "Psych Up",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "PSYSHIELDBASH": {
+        "id": "PSYSHIELDBASH",
+        "name": "Psyshield Bash",
+        "type": "Psychic",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "REFLECT": {
+        "id": "REFLECT",
+        "name": "Reflect",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "REST": {
+        "id": "REST",
+        "name": "Rest",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "ROLEPLAY": {
+        "id": "ROLEPLAY",
+        "name": "Role Play",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SKILLSWAP": {
+        "id": "SKILLSWAP",
+        "name": "Skill Swap",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "TRICK": {
+        "id": "TRICK",
+        "name": "Trick",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "ZENHEADBUTT": {
+        "id": "ZENHEADBUTT",
+        "name": "Zen Headbutt",
+        "type": "Psychic",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "AURORABEAM": {
+        "id": "AURORABEAM",
+        "name": "Aurora Beam",
+        "type": "Ice",
+        "bp": 65,
+        "category": "Special"
+    },
+    "AURORAVEIL": {
+        "id": "AURORAVEIL",
+        "name": "Aurora Veil",
+        "type": "Ice",
+        "bp": 0,
+        "category": "Status"
+    },
+    "AVALANCHE": {
+        "id": "AVALANCHE",
+        "name": "Avalanche",
+        "type": "Ice",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "BLIZZARD": {
+        "id": "BLIZZARD",
+        "name": "Blizzard",
+        "type": "Ice",
+        "bp": 110,
+        "category": "Special"
+    },
+    "FREEZESHOCK": {
+        "id": "FREEZESHOCK",
+        "name": "Freeze Shock",
+        "type": "Ice",
+        "bp": 140,
+        "category": "Physical"
+    },
+    "FROSTBREATH": {
+        "id": "FROSTBREATH",
+        "name": "Frost Breath",
+        "type": "Ice",
+        "bp": 60,
+        "category": "Special"
+    },
+    "GLACIALLANCE": {
+        "id": "GLACIALLANCE",
+        "name": "Glacial Lance",
+        "type": "Ice",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "GLACIATE": {
+        "id": "GLACIATE",
+        "name": "Glaciate",
+        "type": "Ice",
+        "bp": 65,
+        "category": "Special"
+    },
+    "HAIL": {
+        "id": "HAIL",
+        "name": "Hail",
+        "type": "Ice",
+        "bp": 0,
+        "category": "Status"
+    },
+    "ICEBEAM": {
+        "id": "ICEBEAM",
+        "name": "Ice Beam",
+        "type": "Ice",
+        "bp": 90,
+        "category": "Special"
+    },
+    "ICEBURN": {
+        "id": "ICEBURN",
+        "name": "Ice Burn",
+        "type": "Ice",
+        "bp": 140,
+        "category": "Special"
+    },
+    "ICEFANG": {
+        "id": "ICEFANG",
+        "name": "Ice Fang",
+        "type": "Ice",
+        "bp": 65,
+        "category": "Physical"
+    },
+    "ICEHAMMER": {
+        "id": "ICEHAMMER",
+        "name": "Ice Hammer",
+        "type": "Ice",
+        "bp": 100,
+        "category": "Physical"
+    },
+    "ICEPUNCH": {
+        "id": "ICEPUNCH",
+        "name": "Ice Punch",
+        "type": "Ice",
+        "bp": 75,
+        "category": "Physical"
+    },
+    "ICESHARD": {
+        "id": "ICESHARD",
+        "name": "Ice Shard",
+        "type": "Ice",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "ICICLESPEAR": {
+        "id": "ICICLESPEAR",
+        "name": "Icicle Spear",
+        "type": "Ice",
+        "bp": 25,
+        "category": "Physical"
+    },
+    "ICYWIND": {
+        "id": "ICYWIND",
+        "name": "Icy Wind",
+        "type": "Ice",
+        "bp": 55,
+        "category": "Special"
+    },
+    "POWDERSNOW": {
+        "id": "POWDERSNOW",
+        "name": "Powder Snow",
+        "type": "Ice",
+        "bp": 40,
+        "category": "Special"
+    },
+    "SNOWBALL": {
+        "id": "SNOWBALL",
+        "name": "Snowball",
+        "type": "Ice",
+        "bp": 30,
+        "category": "Physical"
+    },
+    "BREAKINGSWIPE": {
+        "id": "BREAKINGSWIPE",
+        "name": "Breaking Swipe",
+        "type": "Dragon",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "CLANGOROUSSOUL": {
+        "id": "CLANGOROUSSOUL",
+        "name": "Clangorous Soul",
+        "type": "Dragon",
+        "bp": 0,
+        "category": "Status"
+    },
+    "COREENFORCER": {
+        "id": "COREENFORCER",
+        "name": "Core Enforcer",
+        "type": "Dragon",
+        "bp": 100,
+        "category": "Special"
+    },
+    "DRACOMETEOR": {
+        "id": "DRACOMETEOR",
+        "name": "Draco Meteor",
+        "type": "Dragon",
+        "bp": 130,
+        "category": "Special"
+    },
+    "DRAGONBREATH": {
+        "id": "DRAGONBREATH",
+        "name": "Dragon Breath",
+        "type": "Dragon",
+        "bp": 60,
+        "category": "Special"
+    },
+    "DRAGONCLAW": {
+        "id": "DRAGONCLAW",
+        "name": "Dragon Claw",
+        "type": "Dragon",
+        "bp": 75,
+        "category": "Physical"
+    },
+    "DRAGONDANCE": {
+        "id": "DRAGONDANCE",
+        "name": "Dragon Dance",
+        "type": "Dragon",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DRAGONDARTS": {
+        "id": "DRAGONDARTS",
+        "name": "Dragon Darts",
+        "type": "Dragon",
+        "bp": 50,
+        "category": "Physical"
+    },
+    "DRAGONENERGY": {
+        "id": "DRAGONENERGY",
+        "name": "Dragon Energy",
+        "type": "Dragon",
+        "bp": 130,
+        "category": "Special"
+    },
+    "DRAGONHAMMER": {
+        "id": "DRAGONHAMMER",
+        "name": "Dragon Hammer",
+        "type": "Dragon",
+        "bp": 100,
+        "category": "Physical"
+    },
+    "DRAGONPULSE": {
+        "id": "DRAGONPULSE",
+        "name": "Dragon Pulse",
+        "type": "Dragon",
+        "bp": 95,
+        "category": "Special"
+    },
+    "DRAGONTAIL": {
+        "id": "DRAGONTAIL",
+        "name": "Dragon Tail",
+        "type": "Dragon",
+        "bp": 55,
+        "category": "Physical"
+    },
+    "DUALCHOP": {
+        "id": "DUALCHOP",
+        "name": "Dual Chop",
+        "type": "Dragon",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "DYNAMAXCANNON": {
+        "id": "DYNAMAXCANNON",
+        "name": "Dynamax Cannon",
+        "type": "Dragon",
+        "bp": 100,
+        "category": "Special"
+    },
+    "ETERNABEAM": {
+        "id": "ETERNABEAM",
+        "name": "Eternabeam",
+        "type": "Dragon",
+        "bp": 170,
+        "category": "Special"
+    },
+    "OUTRAGE": {
+        "id": "OUTRAGE",
+        "name": "Outrage",
+        "type": "Dragon",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "ROAROFTIME": {
+        "id": "ROAROFTIME",
+        "name": "Roar of Time",
+        "type": "Dragon",
+        "bp": 170,
+        "category": "Special"
+    },
+    "SPACIALREND": {
+        "id": "SPACIALREND",
+        "name": "Spacial Rend",
+        "type": "Dragon",
+        "bp": 100,
+        "category": "Special"
+    },
+    "TWISTER": {
+        "id": "TWISTER",
+        "name": "Twister",
+        "type": "Dragon",
+        "bp": 40,
+        "category": "Special"
+    },
+    "ASSURANCE": {
+        "id": "ASSURANCE",
+        "name": "Assurance",
+        "type": "Dark",
+        "bp": 60,
+        "category": "Adaptive"
+    },
+    "BEATUP": {
+        "id": "BEATUP",
+        "name": "Beat Up",
+        "type": "Dark",
+        "bp": 1,
+        "category": "Physical"
+    },
+    "BITE": {
+        "id": "BITE",
+        "name": "Bite",
+        "type": "Dark",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "BRUTALSWING": {
+        "id": "BRUTALSWING",
+        "name": "Brutal Swing",
+        "type": "Dark",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "CEASELESSEDGE": {
+        "id": "CEASELESSEDGE",
+        "name": "Ceaseless Edge",
+        "type": "Dark",
+        "bp": 65,
+        "category": "Physical"
+    },
+    "CONFIDE": {
+        "id": "CONFIDE",
+        "name": "Confide",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "CRUNCH": {
+        "id": "CRUNCH",
+        "name": "Crunch",
+        "type": "Dark",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "DARKESTLARIAT": {
+        "id": "DARKESTLARIAT",
+        "name": "Darkest Lariat",
+        "type": "Dark",
+        "bp": 85,
+        "category": "Physical"
+    },
+    "DARKPULSE": {
+        "id": "DARKPULSE",
+        "name": "Dark Pulse",
+        "type": "Dark",
+        "bp": 80,
+        "category": "Special"
+    },
+    "DARKVOID": {
+        "id": "DARKVOID",
+        "name": "Dark Void",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "FAKETEARS": {
+        "id": "FAKETEARS",
+        "name": "Fake Tears",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "FALSESURRENDER": {
+        "id": "FALSESURRENDER",
+        "name": "False Surrender",
+        "type": "Dark",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "FEINTATTACK": {
+        "id": "FEINTATTACK",
+        "name": "Feint Attack",
+        "type": "Dark",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "FIERYWRATH": {
+        "id": "FIERYWRATH",
+        "name": "Fiery Wrath",
+        "type": "Dark",
+        "bp": 90,
+        "category": "Special"
+    },
+    "FLING": {
+        "id": "FLING",
+        "name": "Fling",
+        "type": "Dark",
+        "bp": 75,
+        "category": "Adaptive"
+    },
+    "FOULPLAY": {
+        "id": "FOULPLAY",
+        "name": "Foul Play",
+        "type": "Dark",
+        "bp": 95,
+        "category": "Physical"
+    },
+    "HONECLAWS": {
+        "id": "HONECLAWS",
+        "name": "Hone Claws",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "HOWL": {
+        "id": "HOWL",
+        "name": "Howl",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "HYPERSPACEFURY": {
+        "id": "HYPERSPACEFURY",
+        "name": "Hyperspace Fury",
+        "type": "Dark",
+        "bp": 100,
+        "category": "Physical"
+    },
+    "JAWLOCK": {
+        "id": "JAWLOCK",
+        "name": "Jaw Lock",
+        "type": "Dark",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "KNOCKOFF": {
+        "id": "KNOCKOFF",
+        "name": "Knock Off",
+        "type": "Dark",
+        "bp": 75,
+        "category": "Physical"
+    },
+    "LASHOUT": {
+        "id": "LASHOUT",
+        "name": "Lash Out",
+        "type": "Dark",
+        "bp": 75,
+        "category": "Adaptive"
+    },
+    "MEANLOOK": {
+        "id": "MEANLOOK",
+        "name": "Mean Look",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "MEMENTO": {
+        "id": "MEMENTO",
+        "name": "Memento",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "NIGHTSLASH": {
+        "id": "NIGHTSLASH",
+        "name": "Night Slash",
+        "type": "Dark",
+        "bp": 70,
+        "category": "Physical"
+    },
+    "OBSTRUCT": {
+        "id": "OBSTRUCT",
+        "name": "Obstruct",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "PARTINGSHOT": {
+        "id": "PARTINGSHOT",
+        "name": "Parting Shot",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "PAYBACK": {
+        "id": "PAYBACK",
+        "name": "Payback",
+        "type": "Dark",
+        "bp": 50,
+        "category": "Physical"
+    },
+    "PURSUIT": {
+        "id": "PURSUIT",
+        "name": "Pursuit",
+        "type": "Dark",
+        "bp": 40,
+        "category": "Adaptive"
+    },
+    "QUASH": {
+        "id": "QUASH",
+        "name": "Quash",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SNARL": {
+        "id": "SNARL",
+        "name": "Snarl",
+        "type": "Dark",
+        "bp": 55,
+        "category": "Special"
+    },
+    "SNATCH": {
+        "id": "SNATCH",
+        "name": "Snatch",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SUCKERPUNCH": {
+        "id": "SUCKERPUNCH",
+        "name": "Sucker Punch",
+        "type": "Dark",
+        "bp": 70,
+        "category": "Physical"
+    },
+    "SWITCHEROO": {
+        "id": "SWITCHEROO",
+        "name": "Switcheroo",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "TAUNT": {
+        "id": "TAUNT",
+        "name": "Taunt",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "THIEF": {
+        "id": "THIEF",
+        "name": "Thief",
+        "type": "Dark",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "THROATCHOP": {
+        "id": "THROATCHOP",
+        "name": "Throat Chop",
+        "type": "Dark",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "TOPSYTURVY": {
+        "id": "TOPSYTURVY",
+        "name": "Topsy-Turvy",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "TORMENT": {
+        "id": "TORMENT",
+        "name": "Torment",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "WICKEDBLOW": {
+        "id": "WICKEDBLOW",
+        "name": "Wicked Blow",
+        "type": "Dark",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "AROMATICMIST": {
+        "id": "AROMATICMIST",
+        "name": "Aromatic Mist",
+        "type": "Fairy",
+        "bp": 0,
+        "category": "Status"
+    },
+    "BABYDOLLEYES": {
+        "id": "BABYDOLLEYES",
+        "name": "Baby-Doll Eyes",
+        "type": "Fairy",
+        "bp": 0,
+        "category": "Status"
+    },
+    "CHARM": {
+        "id": "CHARM",
+        "name": "Charm",
+        "type": "Fairy",
+        "bp": 0,
+        "category": "Status"
+    },
+    "CRAFTYSHIELD": {
+        "id": "CRAFTYSHIELD",
+        "name": "Crafty Shield",
+        "type": "Fairy",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DAZZLINGGLEAM": {
+        "id": "DAZZLINGGLEAM",
+        "name": "Dazzling Gleam",
+        "type": "Fairy",
+        "bp": 70,
+        "category": "Special"
+    },
+    "DECORATE": {
+        "id": "DECORATE",
+        "name": "Decorate",
+        "type": "Fairy",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DISARMINGVOICE": {
+        "id": "DISARMINGVOICE",
+        "name": "Disarming Voice",
+        "type": "Fairy",
+        "bp": 40,
+        "category": "Special"
+    },
+    "DRAININGKISS": {
+        "id": "DRAININGKISS",
+        "name": "Draining Kiss",
+        "type": "Fairy",
+        "bp": 50,
+        "category": "Special"
+    },
+    "FAIRYLOCK": {
+        "id": "FAIRYLOCK",
+        "name": "Fairy Lock",
+        "type": "Fairy",
+        "bp": 0,
+        "category": "Status"
+    },
+    "FAIRYWIND": {
+        "id": "FAIRYWIND",
+        "name": "Fairy Wind",
+        "type": "Fairy",
+        "bp": 45,
+        "category": "Special"
+    },
+    "FLEURCANNON": {
+        "id": "FLEURCANNON",
+        "name": "Fleur Cannon",
+        "type": "Fairy",
+        "bp": 130,
+        "category": "Special"
+    },
+    "GEOMANCY": {
+        "id": "GEOMANCY",
+        "name": "Geomancy",
+        "type": "Fairy",
+        "bp": 0,
+        "category": "Status"
+    },
+    "LIGHTOFRUIN": {
+        "id": "LIGHTOFRUIN",
+        "name": "Light of Ruin",
+        "type": "Fairy",
+        "bp": 130,
+        "category": "Special"
+    },
+    "MOONBLAST": {
+        "id": "MOONBLAST",
+        "name": "Moonblast",
+        "type": "Fairy",
+        "bp": 90,
+        "category": "Special"
+    },
+    "NATURESMADNESS": {
+        "id": "NATURESMADNESS",
+        "name": "Nature's Madness",
+        "type": "Fairy",
+        "bp": 1,
+        "category": "Special"
+    },
+    "PLAYROUGH": {
+        "id": "PLAYROUGH",
+        "name": "Play Rough",
+        "type": "Fairy",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "SPIRITBREAK": {
+        "id": "SPIRITBREAK",
+        "name": "Spirit Break",
+        "type": "Fairy",
+        "bp": 75,
+        "category": "Physical"
+    },
+    "SPRINGTIDESTORM": {
+        "id": "SPRINGTIDESTORM",
+        "name": "Springtide Storm",
+        "type": "Fairy",
+        "bp": 110,
+        "category": "Special"
+    },
+    "STRANGESTEAM": {
+        "id": "STRANGESTEAM",
+        "name": "Strange Steam",
+        "type": "Fairy",
+        "bp": 90,
+        "category": "Special"
+    },
+    "SWEETKISS": {
+        "id": "SWEETKISS",
+        "name": "Sweet Kiss",
+        "type": "Fairy",
+        "bp": 0,
+        "category": "Status"
+    },
+    "ACEDIANIMPACT": {
+        "id": "ACEDIANIMPACT",
+        "name": "Acedian Impact",
+        "type": "Normal",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "AIMTRUE": {
+        "id": "AIMTRUE",
+        "name": "Aim True",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "BEDFELLOWS": {
+        "id": "BEDFELLOWS",
+        "name": "Bedfellows",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "BUTTINGHEADS": {
+        "id": "BUTTINGHEADS",
+        "name": "Butting Heads",
+        "type": "Normal",
+        "bp": 95,
+        "category": "Physical"
+    },
+    "CENTER": {
+        "id": "CENTER",
+        "name": "Center",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "CHACHING": {
+        "id": "CHACHING",
+        "name": "Cha-ching",
+        "type": "Normal",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "CHAOSWHEEL": {
+        "id": "CHAOSWHEEL",
+        "name": "Chaos Wheel",
+        "type": "Normal",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "CLOUDBREAK": {
+        "id": "CLOUDBREAK",
+        "name": "Cloudbreak",
+        "type": "Normal",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "CONCENTRATE": {
+        "id": "CONCENTRATE",
+        "name": "Concentrate",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "CROSSEXAMINE": {
+        "id": "CROSSEXAMINE",
+        "name": "Cross Examine",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "CURLUP": {
+        "id": "CURLUP",
+        "name": "Curl Up",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DAZZLE": {
+        "id": "DAZZLE",
+        "name": "Dazzle",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DIFFUSEPULSE": {
+        "id": "DIFFUSEPULSE",
+        "name": "Diffuse Pulse",
+        "type": "Normal",
+        "bp": 50,
+        "category": "Special"
+    },
+    "DISSIPATION": {
+        "id": "DISSIPATION",
+        "name": "Dissipation",
+        "type": "Normal",
+        "bp": 90,
+        "category": "Special"
+    },
+    "DOUBLEDOWN": {
+        "id": "DOUBLEDOWN",
+        "name": "Double Down",
+        "type": "Normal",
+        "bp": 45,
+        "category": "Physical"
+    },
+    "ELEMENTALFANG": {
+        "id": "ELEMENTALFANG",
+        "name": "Elemental Fang",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "EVERNALIZE": {
+        "id": "EVERNALIZE",
+        "name": "Evernalize",
+        "type": "Normal",
+        "bp": 150,
+        "category": "Adaptive"
+    },
+    "EXTREMEEFFORT": {
+        "id": "EXTREMEEFFORT",
+        "name": "Extreme Effort",
+        "type": "Normal",
+        "bp": 150,
+        "category": "Physical"
+    },
+    "FIREFOREFFECT": {
+        "id": "FIREFOREFFECT",
+        "name": "Fire For Effect",
+        "type": "Normal",
+        "bp": 140,
+        "category": "Special"
+    },
+    "FRANTICFANG": {
+        "id": "FRANTICFANG",
+        "name": "Frantic Fang",
+        "type": "Normal",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "FRESHSTART": {
+        "id": "FRESHSTART",
+        "name": "Fresh Start",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "GREATERGLORIES": {
+        "id": "GREATERGLORIES",
+        "name": "Greater Glories",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "HAREHEROICS": {
+        "id": "HAREHEROICS",
+        "name": "Hare Heroics",
+        "type": "Normal",
+        "bp": 1,
+        "category": "Physical"
+    },
+    "HEAVENSEYES": {
+        "id": "HEAVENSEYES",
+        "name": "Heaven's Eyes",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "HONESIGHT": {
+        "id": "HONESIGHT",
+        "name": "Hone Sight",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "LATHER": {
+        "id": "LATHER",
+        "name": "Lather",
+        "type": "Normal",
+        "bp": 60,
+        "category": "Special"
+    },
+    "LAUNDER": {
+        "id": "LAUNDER",
+        "name": "Launder",
+        "type": "Normal",
+        "bp": 85,
+        "category": "Special"
+    },
+    "LONGSHOT": {
+        "id": "LONGSHOT",
+        "name": "Long Shot",
+        "type": "Normal",
+        "bp": 110,
+        "category": "Adaptive"
+    },
+    "LOUNGE": {
+        "id": "LOUNGE",
+        "name": "Lounge",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "LULLABY": {
+        "id": "LULLABY",
+        "name": "Lullaby",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "MULTISTRIKE": {
+        "id": "MULTISTRIKE",
+        "name": "Multi-strike",
+        "type": "Normal",
+        "bp": 15,
+        "category": "Adaptive"
+    },
+    "NULLPULSE": {
+        "id": "NULLPULSE",
+        "name": "Null Pulse",
+        "type": "Normal",
+        "bp": 90,
+        "category": "Special"
+    },
+    "PALEBLADE": {
+        "id": "PALEBLADE",
+        "name": "Pale Blade",
+        "type": "Normal",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "PARTICLEPULSE": {
+        "id": "PARTICLEPULSE",
+        "name": "Particle Pulse",
+        "type": "Normal",
+        "bp": 75,
+        "category": "Special"
+    },
+    "PRANK": {
+        "id": "PRANK",
+        "name": "Prank",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "PRISMATICPOWER": {
+        "id": "PRISMATICPOWER",
+        "name": "Prismatic Power",
+        "type": "Normal",
+        "bp": 100,
+        "category": "Adaptive"
+    },
+    "PULVERIZE": {
+        "id": "PULVERIZE",
+        "name": "Pulverize",
+        "type": "Normal",
+        "bp": 75,
+        "category": "Physical"
+    },
+    "PUMMEL": {
+        "id": "PUMMEL",
+        "name": "Pummel",
+        "type": "Normal",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "REGALIA": {
+        "id": "REGALIA",
+        "name": "Regalia",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "RETREAT": {
+        "id": "RETREAT",
+        "name": "Retreat",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "RISINGPOWER": {
+        "id": "RISINGPOWER",
+        "name": "Rising Power",
+        "type": "Normal",
+        "bp": 30,
+        "category": "Adaptive"
+    },
+    "ROUGHTUMBLE": {
+        "id": "ROUGHTUMBLE",
+        "name": "Rough & Tumble",
+        "type": "Normal",
+        "bp": 100,
+        "category": "Physical"
+    },
+    "RUIN": {
+        "id": "RUIN",
+        "name": "Ruin",
+        "type": "Normal",
+        "bp": 90,
+        "category": "Special"
+    },
+    "SCHEME": {
+        "id": "SCHEME",
+        "name": "Scheme",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SEASONSEND": {
+        "id": "SEASONSEND",
+        "name": "Season's End",
+        "type": "Normal",
+        "bp": 95,
+        "category": "Physical"
+    },
+    "SMIRK": {
+        "id": "SMIRK",
+        "name": "Smirk",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "THIEVINGSPREE": {
+        "id": "THIEVINGSPREE",
+        "name": "Thieving Spree",
+        "type": "Normal",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "VICIOUSCLEANING": {
+        "id": "VICIOUSCLEANING",
+        "name": "Vicious Cleaning",
+        "type": "Normal",
+        "bp": 80,
+        "category": "Special"
+    },
+    "WEATHERBURST": {
+        "id": "WEATHERBURST",
+        "name": "Weather Burst",
+        "type": "Normal",
+        "bp": 100,
+        "category": "Adaptive"
+    },
+    "YOUNGAGAIN": {
+        "id": "YOUNGAGAIN",
+        "name": "Young Again",
+        "type": "Normal",
+        "bp": 0,
+        "category": "Status"
+    },
+    "ADRENALASH": {
+        "id": "ADRENALASH",
+        "name": "Adrenalash",
+        "type": "Fighting",
+        "bp": 90,
+        "category": "Special"
+    },
+    "ARTOFWAR": {
+        "id": "ARTOFWAR",
+        "name": "Art of War",
+        "type": "Fighting",
+        "bp": 0,
+        "category": "Status"
+    },
+    "AURAFLUX": {
+        "id": "AURAFLUX",
+        "name": "Aura Flux",
+        "type": "Fighting",
+        "bp": 55,
+        "category": "Special"
+    },
+    "BAR": {
+        "id": "BAR",
+        "name": "Bar",
+        "type": "Fighting",
+        "bp": 0,
+        "category": "Status"
+    },
+    "BEARHUG": {
+        "id": "BEARHUG",
+        "name": "Bear Hug",
+        "type": "Fighting",
+        "bp": 85,
+        "category": "Physical"
+    },
+    "BREAKDANCE": {
+        "id": "BREAKDANCE",
+        "name": "Breakdance",
+        "type": "Fighting",
+        "bp": 0,
+        "category": "Status"
+    },
+    "BUILTDIFFERENT": {
+        "id": "BUILTDIFFERENT",
+        "name": "Built Different",
+        "type": "Fighting",
+        "bp": 0,
+        "category": "Status"
+    },
+    "BULWARK": {
+        "id": "BULWARK",
+        "name": "Bulwark",
+        "type": "Fighting",
+        "bp": 0,
+        "category": "Status"
+    },
+    "CAPOEIRA": {
+        "id": "CAPOEIRA",
+        "name": "Capoeira",
+        "type": "Fighting",
+        "bp": 50,
+        "category": "Physical"
+    },
+    "CONCUSS": {
+        "id": "CONCUSS",
+        "name": "Concuss",
+        "type": "Fighting",
+        "bp": 60,
+        "category": "Special"
+    },
+    "DEEPBREATHING": {
+        "id": "DEEPBREATHING",
+        "name": "Deep Breathing",
+        "type": "Fighting",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DETACHMENT": {
+        "id": "DETACHMENT",
+        "name": "Detachment",
+        "type": "Fighting",
+        "bp": 55,
+        "category": "Special"
+    },
+    "DISCOURAGE": {
+        "id": "DISCOURAGE",
+        "name": "Discourage",
+        "type": "Fighting",
+        "bp": 55,
+        "category": "Special"
+    },
+    "DROPKICK": {
+        "id": "DROPKICK",
+        "name": "Drop Kick",
+        "type": "Fighting",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "FIGHTFOREVER": {
+        "id": "FIGHTFOREVER",
+        "name": "Fight Forever",
+        "type": "Fighting",
+        "bp": 0,
+        "category": "Status"
+    },
+    "FOXTROTFINALE": {
+        "id": "FOXTROTFINALE",
+        "name": "Foxtrot Finale",
+        "type": "Fighting",
+        "bp": 0,
+        "category": "Status"
+    },
+    "NERVEBLOCK": {
+        "id": "NERVEBLOCK",
+        "name": "Nerve Block",
+        "type": "Fighting",
+        "bp": 0,
+        "category": "Status"
+    },
+    "RIGHTEOUSKICK": {
+        "id": "RIGHTEOUSKICK",
+        "name": "Righteous Kick",
+        "type": "Fighting",
+        "bp": 70,
+        "category": "Physical"
+    },
+    "SCUFFLE": {
+        "id": "SCUFFLE",
+        "name": "Scuffle",
+        "type": "Fighting",
+        "bp": 55,
+        "category": "Physical"
+    },
+    "SCYTHEKICK": {
+        "id": "SCYTHEKICK",
+        "name": "Scythe Kick",
+        "type": "Fighting",
+        "bp": 95,
+        "category": "Physical"
+    },
+    "SECRETTECHNIQUE": {
+        "id": "SECRETTECHNIQUE",
+        "name": "Secret Technique",
+        "type": "Fighting",
+        "bp": 130,
+        "category": "Special"
+    },
+    "STANDTOGETHER": {
+        "id": "STANDTOGETHER",
+        "name": "Stand Together",
+        "type": "Fighting",
+        "bp": 0,
+        "category": "Status"
+    },
+    "THREEFOLDVOLLEY": {
+        "id": "THREEFOLDVOLLEY",
+        "name": "Threefold Volley",
+        "type": "Fighting",
+        "bp": 30,
+        "category": "Special"
+    },
+    "VALORBOLT": {
+        "id": "VALORBOLT",
+        "name": "Valor Bolt",
+        "type": "Fighting",
+        "bp": 40,
+        "category": "Special"
+    },
+    "WHIPTRANCE": {
+        "id": "WHIPTRANCE",
+        "name": "Whip Trance",
+        "type": "Fighting",
+        "bp": 90,
+        "category": "Special"
+    },
+    "AIRSTRIKE": {
+        "id": "AIRSTRIKE",
+        "name": "Air Strike",
+        "type": "Flying",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "BLUSTER": {
+        "id": "BLUSTER",
+        "name": "Bluster",
+        "type": "Flying",
+        "bp": 40,
+        "category": "Special"
+    },
+    "BOREALWIND": {
+        "id": "BOREALWIND",
+        "name": "Boreal Wind",
+        "type": "Flying",
+        "bp": 60,
+        "category": "Special"
+    },
+    "COLDFRONT": {
+        "id": "COLDFRONT",
+        "name": "Cold Front",
+        "type": "Flying",
+        "bp": 90,
+        "category": "Special"
+    },
+    "DIVEBOMB": {
+        "id": "DIVEBOMB",
+        "name": "Dive Bomb",
+        "type": "Flying",
+        "bp": 125,
+        "category": "Physical"
+    },
+    "DRAFT": {
+        "id": "DRAFT",
+        "name": "Draft",
+        "type": "Flying",
+        "bp": 40,
+        "category": "Special"
+    },
+    "ECHOLOCATE": {
+        "id": "ECHOLOCATE",
+        "name": "Echolocate",
+        "type": "Flying",
+        "bp": 0,
+        "category": "Status"
+    },
+    "FURYPECKS": {
+        "id": "FURYPECKS",
+        "name": "Fury Pecks",
+        "type": "Flying",
+        "bp": 20,
+        "category": "Physical"
+    },
+    "HOP": {
+        "id": "HOP",
+        "name": "Hop",
+        "type": "Flying",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "HUNTDOWN": {
+        "id": "HUNTDOWN",
+        "name": "Hunt Down",
+        "type": "Flying",
+        "bp": 1,
+        "category": "Physical"
+    },
+    "JETSTREAM": {
+        "id": "JETSTREAM",
+        "name": "Jet Stream",
+        "type": "Flying",
+        "bp": 0,
+        "category": "Status"
+    },
+    "MACHFLIGHT": {
+        "id": "MACHFLIGHT",
+        "name": "Mach Flight",
+        "type": "Flying",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SKYFALL": {
+        "id": "SKYFALL",
+        "name": "Sky Fall",
+        "type": "Flying",
+        "bp": 130,
+        "category": "Special"
+    },
+    "SQUALLDART": {
+        "id": "SQUALLDART",
+        "name": "Squall Dart",
+        "type": "Flying",
+        "bp": 60,
+        "category": "Special"
+    },
+    "STRAFE": {
+        "id": "STRAFE",
+        "name": "Strafe",
+        "type": "Flying",
+        "bp": 95,
+        "category": "Physical"
+    },
+    "TEMPEST": {
+        "id": "TEMPEST",
+        "name": "Tempest",
+        "type": "Flying",
+        "bp": 100,
+        "category": "Special"
+    },
+    "VOLLEY": {
+        "id": "VOLLEY",
+        "name": "Volley",
+        "type": "Flying",
+        "bp": 1,
+        "category": "Special"
+    },
+    "WINDTUNNEL": {
+        "id": "WINDTUNNEL",
+        "name": "Wind Tunnel",
+        "type": "Flying",
+        "bp": 25,
+        "category": "Special"
+    },
+    "ACIDBATH": {
+        "id": "ACIDBATH",
+        "name": "Acid Bath",
+        "type": "Poison",
+        "bp": 110,
+        "category": "Special"
+    },
+    "BLIGHT": {
+        "id": "BLIGHT",
+        "name": "Blight",
+        "type": "Poison",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "CAUSTICPUNCH": {
+        "id": "CAUSTICPUNCH",
+        "name": "Caustic Punch",
+        "type": "Poison",
+        "bp": 65,
+        "category": "Physical"
+    },
+    "DEVOURWHOLE": {
+        "id": "DEVOURWHOLE",
+        "name": "Devour Whole",
+        "type": "Poison",
+        "bp": 130,
+        "category": "Physical"
+    },
+    "DISSOLUTION": {
+        "id": "DISSOLUTION",
+        "name": "Dissolution",
+        "type": "Poison",
+        "bp": 0,
+        "category": "Status"
+    },
+    "EXSANGUINATE": {
+        "id": "EXSANGUINATE",
+        "name": "Exsanguinate",
+        "type": "Poison",
+        "bp": 75,
+        "category": "Physical"
+    },
+    "GREYMIST": {
+        "id": "GREYMIST",
+        "name": "Grey Mist",
+        "type": "Poison",
+        "bp": 0,
+        "category": "Status"
+    },
+    "GRIMEGRAPPLE": {
+        "id": "GRIMEGRAPPLE",
+        "name": "Grime Grapple",
+        "type": "Poison",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "HONORLESSSTING": {
+        "id": "HONORLESSSTING",
+        "name": "Honorless Sting",
+        "type": "Poison",
+        "bp": 105,
+        "category": "Physical"
+    },
+    "MIASMA": {
+        "id": "MIASMA",
+        "name": "Miasma",
+        "type": "Poison",
+        "bp": 90,
+        "category": "Special"
+    },
+    "MURKYFOG": {
+        "id": "MURKYFOG",
+        "name": "Murky Fog",
+        "type": "Poison",
+        "bp": 85,
+        "category": "Special"
+    },
+    "NASTYNIP": {
+        "id": "NASTYNIP",
+        "name": "Nasty Nip",
+        "type": "Poison",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "POISONDART": {
+        "id": "POISONDART",
+        "name": "Poison Dart",
+        "type": "Poison",
+        "bp": 40,
+        "category": "Special"
+    },
+    "POISONSPIKES": {
+        "id": "POISONSPIKES",
+        "name": "Poison Spikes",
+        "type": "Poison",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SLIMEBALL": {
+        "id": "SLIMEBALL",
+        "name": "Slimeball",
+        "type": "Poison",
+        "bp": 85,
+        "category": "Special"
+    },
+    "SMOGSTORM": {
+        "id": "SMOGSTORM",
+        "name": "Smog Storm",
+        "type": "Poison",
+        "bp": 80,
+        "category": "Special"
+    },
+    "STINGINGJEALOUSY": {
+        "id": "STINGINGJEALOUSY",
+        "name": "Stinging Jealousy",
+        "type": "Poison",
+        "bp": 70,
+        "category": "Adaptive"
+    },
+    "STINKCLOUD": {
+        "id": "STINKCLOUD",
+        "name": "Stink Cloud",
+        "type": "Poison",
+        "bp": 65,
+        "category": "Special"
+    },
+    "STINKCOVER": {
+        "id": "STINKCOVER",
+        "name": "Stink Cover",
+        "type": "Poison",
+        "bp": 0,
+        "category": "Status"
+    },
+    "TOXICTASTE": {
+        "id": "TOXICTASTE",
+        "name": "Toxic Taste",
+        "type": "Poison",
+        "bp": 70,
+        "category": "Physical"
+    },
+    "TRASHTREASURE": {
+        "id": "TRASHTREASURE",
+        "name": "Trash Treasure",
+        "type": "Poison",
+        "bp": 0,
+        "category": "Status"
+    },
+    "VENOMGUARD": {
+        "id": "VENOMGUARD",
+        "name": "Venom Guard",
+        "type": "Poison",
+        "bp": 0,
+        "category": "Status"
+    },
+    "VENOMORTAR": {
+        "id": "VENOMORTAR",
+        "name": "Venomortar",
+        "type": "Poison",
+        "bp": 100,
+        "category": "Physical"
+    },
+    "VIPERSHOCK": {
+        "id": "VIPERSHOCK",
+        "name": "Vipershock",
+        "type": "Poison",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "DEVOURINGDUST": {
+        "id": "DEVOURINGDUST",
+        "name": "Devouring Dust",
+        "type": "Ground",
+        "bp": 110,
+        "category": "Special"
+    },
+    "DUSTDEVIL": {
+        "id": "DUSTDEVIL",
+        "name": "Dust Devil",
+        "type": "Ground",
+        "bp": 60,
+        "category": "Special"
+    },
+    "DUSTMACHPULSE": {
+        "id": "DUSTMACHPULSE",
+        "name": "Dustmach Pulse",
+        "type": "Ground",
+        "bp": 120,
+        "category": "Special"
+    },
+    "EARTHSPLITTER": {
+        "id": "EARTHSPLITTER",
+        "name": "Earthsplitter",
+        "type": "Ground",
+        "bp": 130,
+        "category": "Physical"
+    },
+    "ERODE": {
+        "id": "ERODE",
+        "name": "Erode",
+        "type": "Ground",
+        "bp": 70,
+        "category": "Special"
+    },
+    "LEYLINEBURST": {
+        "id": "LEYLINEBURST",
+        "name": "Leyline Burst",
+        "type": "Ground",
+        "bp": 110,
+        "category": "Special"
+    },
+    "MUDSLIDE": {
+        "id": "MUDSLIDE",
+        "name": "Mud Slide",
+        "type": "Ground",
+        "bp": 80,
+        "category": "Special"
+    },
+    "MUDSLING": {
+        "id": "MUDSLING",
+        "name": "Mud Sling",
+        "type": "Ground",
+        "bp": 40,
+        "category": "Special"
+    },
+    "ONAROLL": {
+        "id": "ONAROLL",
+        "name": "On A Roll",
+        "type": "Ground",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "PARADISIACA": {
+        "id": "PARADISIACA",
+        "name": "Paradisiaca",
+        "type": "Ground",
+        "bp": 0,
+        "category": "Status"
+    },
+    "PULVERIZERCHORD": {
+        "id": "PULVERIZERCHORD",
+        "name": "Pulverizer Chord",
+        "type": "Ground",
+        "bp": 115,
+        "category": "Special"
+    },
+    "ROTARYHEADBUTT": {
+        "id": "ROTARYHEADBUTT",
+        "name": "Rotary Headbutt",
+        "type": "Ground",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "RUMBLE": {
+        "id": "RUMBLE",
+        "name": "Rumble",
+        "type": "Ground",
+        "bp": 45,
+        "category": "Physical"
+    },
+    "SANDBLASTING": {
+        "id": "SANDBLASTING",
+        "name": "Sandblasting",
+        "type": "Ground",
+        "bp": 90,
+        "category": "Special"
+    },
+    "SANDTOSS": {
+        "id": "SANDTOSS",
+        "name": "Sand Toss",
+        "type": "Ground",
+        "bp": 40,
+        "category": "Special"
+    },
+    "SIROCCO": {
+        "id": "SIROCCO",
+        "name": "Sirocco",
+        "type": "Ground",
+        "bp": 50,
+        "category": "Special"
+    },
+    "STABILIZE": {
+        "id": "STABILIZE",
+        "name": "Stabilize",
+        "type": "Ground",
+        "bp": 0,
+        "category": "Status"
+    },
+    "STAMPDOWN": {
+        "id": "STAMPDOWN",
+        "name": "Stamp Down",
+        "type": "Ground",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "TRAMPLE": {
+        "id": "TRAMPLE",
+        "name": "Trample",
+        "type": "Ground",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "TREADON": {
+        "id": "TREADON",
+        "name": "Tread On",
+        "type": "Ground",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "TREMOR": {
+        "id": "TREMOR",
+        "name": "Tremor",
+        "type": "Ground",
+        "bp": 65,
+        "category": "Physical"
+    },
+    "UNDERMINE": {
+        "id": "UNDERMINE",
+        "name": "Undermine",
+        "type": "Ground",
+        "bp": 125,
+        "category": "Physical"
+    },
+    "ADAMANTINEPRESS": {
+        "id": "ADAMANTINEPRESS",
+        "name": "Adamantine Press",
+        "type": "Rock",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "BEDROCKBREAKER": {
+        "id": "BEDROCKBREAKER",
+        "name": "Bedrock Breaker",
+        "type": "Rock",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "BLUNTFORCE": {
+        "id": "BLUNTFORCE",
+        "name": "Blunt Force",
+        "type": "Rock",
+        "bp": 50,
+        "category": "Physical"
+    },
+    "CRANIALGUARD": {
+        "id": "CRANIALGUARD",
+        "name": "Cranial Guard",
+        "type": "Rock",
+        "bp": 0,
+        "category": "Status"
+    },
+    "CRYSTALGLEAM": {
+        "id": "CRYSTALGLEAM",
+        "name": "Crystal Gleam",
+        "type": "Rock",
+        "bp": 60,
+        "category": "Special"
+    },
+    "DIAMONDFIELD": {
+        "id": "DIAMONDFIELD",
+        "name": "Diamond Field",
+        "type": "Rock",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DIAMONDFORCE": {
+        "id": "DIAMONDFORCE",
+        "name": "Diamond Force",
+        "type": "Rock",
+        "bp": 85,
+        "category": "Special"
+    },
+    "EMBRITTLE": {
+        "id": "EMBRITTLE",
+        "name": "Embrittle",
+        "type": "Rock",
+        "bp": 0,
+        "category": "Status"
+    },
+    "GLIMMERPULSE": {
+        "id": "GLIMMERPULSE",
+        "name": "Glimmer Pulse",
+        "type": "Rock",
+        "bp": 60,
+        "category": "Special"
+    },
+    "GRANITEHEAD": {
+        "id": "GRANITEHEAD",
+        "name": "Granite Head",
+        "type": "Rock",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "GRINDSTONE": {
+        "id": "GRINDSTONE",
+        "name": "Grind Stone",
+        "type": "Rock",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "HARDPLACE": {
+        "id": "HARDPLACE",
+        "name": "Hard Place",
+        "type": "Rock",
+        "bp": 1,
+        "category": "Physical"
+    },
+    "HEADBANG": {
+        "id": "HEADBANG",
+        "name": "Headbang",
+        "type": "Rock",
+        "bp": 55,
+        "category": "Physical"
+    },
+    "ICEBREAKER": {
+        "id": "ICEBREAKER",
+        "name": "Icebreaker",
+        "type": "Rock",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "INVITESAND": {
+        "id": "INVITESAND",
+        "name": "Invite Sand",
+        "type": "Rock",
+        "bp": 0,
+        "category": "Status"
+    },
+    "MEGALITHRITE": {
+        "id": "MEGALITHRITE",
+        "name": "Megalith Rite",
+        "type": "Rock",
+        "bp": 0,
+        "category": "Status"
+    },
+    "MONOLITHDROP": {
+        "id": "MONOLITHDROP",
+        "name": "Monolith Drop",
+        "type": "Rock",
+        "bp": 100,
+        "category": "Physical"
+    },
+    "OMNISHELTER": {
+        "id": "OMNISHELTER",
+        "name": "Omnishelter",
+        "type": "Rock",
+        "bp": 0,
+        "category": "Status"
+    },
+    "PETRIFY": {
+        "id": "PETRIFY",
+        "name": "Petrify",
+        "type": "Rock",
+        "bp": 80,
+        "category": "Special"
+    },
+    "PLANETCRACKER": {
+        "id": "PLANETCRACKER",
+        "name": "Planetcracker",
+        "type": "Rock",
+        "bp": 200,
+        "category": "Physical"
+    },
+    "ROCKALANCHE": {
+        "id": "ROCKALANCHE",
+        "name": "Rockalanche",
+        "type": "Rock",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "ROCKAPULT": {
+        "id": "ROCKAPULT",
+        "name": "Rockapult",
+        "type": "Rock",
+        "bp": 170,
+        "category": "Special"
+    },
+    "ROCKOUT": {
+        "id": "ROCKOUT",
+        "name": "Rock Out",
+        "type": "Rock",
+        "bp": 50,
+        "category": "Physical"
+    },
+    "ROLLINGBOULDER": {
+        "id": "ROLLINGBOULDER",
+        "name": "Rolling Boulder",
+        "type": "Rock",
+        "bp": 140,
+        "category": "Physical"
+    },
+    "SHATTERSHOT": {
+        "id": "SHATTERSHOT",
+        "name": "Shatter Shot",
+        "type": "Rock",
+        "bp": 50,
+        "category": "Special"
+    },
+    "SIEGEBREAKER": {
+        "id": "SIEGEBREAKER",
+        "name": "Siege Breaker",
+        "type": "Rock",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "SINGINGSTONE": {
+        "id": "SINGINGSTONE",
+        "name": "Singing Stone",
+        "type": "Rock",
+        "bp": 85,
+        "category": "Special"
+    },
+    "SLINGSHOT": {
+        "id": "SLINGSHOT",
+        "name": "Sling Shot",
+        "type": "Rock",
+        "bp": 45,
+        "category": "Special"
+    },
+    "STARFALL": {
+        "id": "STARFALL",
+        "name": "Star Fall",
+        "type": "Rock",
+        "bp": 40,
+        "category": "Special"
+    },
+    "TERRAFORM": {
+        "id": "TERRAFORM",
+        "name": "Terraform",
+        "type": "Rock",
+        "bp": 70,
+        "category": "Special"
+    },
+    "WAVEOFJADE": {
+        "id": "WAVEOFJADE",
+        "name": "Wave of Jade",
+        "type": "Rock",
+        "bp": 70,
+        "category": "Special"
+    },
+    "AGONIZE": {
+        "id": "AGONIZE",
+        "name": "Agonize",
+        "type": "Bug",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "ALLERGY": {
+        "id": "ALLERGY",
+        "name": "Allergy",
+        "type": "Bug",
+        "bp": 75,
+        "category": "Special"
+    },
+    "BIOFLASH": {
+        "id": "BIOFLASH",
+        "name": "Bio Flash",
+        "type": "Bug",
+        "bp": 40,
+        "category": "Special"
+    },
+    "CARAPACECRUSH": {
+        "id": "CARAPACECRUSH",
+        "name": "Carapace Crush",
+        "type": "Bug",
+        "bp": 85,
+        "category": "Physical"
+    },
+    "CLACKACLACK": {
+        "id": "CLACKACLACK",
+        "name": "Clackaclack",
+        "type": "Bug",
+        "bp": 40,
+        "category": "Special"
+    },
+    "CREEPOUT": {
+        "id": "CREEPOUT",
+        "name": "Creep Out",
+        "type": "Bug",
+        "bp": 50,
+        "category": "Special"
+    },
+    "DRONING": {
+        "id": "DRONING",
+        "name": "Droning",
+        "type": "Bug",
+        "bp": 65,
+        "category": "Special"
+    },
+    "ENVENOM": {
+        "id": "ENVENOM",
+        "name": "Envenom",
+        "type": "Bug",
+        "bp": 0,
+        "category": "Status"
+    },
+    "FEEDON": {
+        "id": "FEEDON",
+        "name": "Feed On",
+        "type": "Bug",
+        "bp": 25,
+        "category": "Physical"
+    },
+    "GUIDINGAROMA": {
+        "id": "GUIDINGAROMA",
+        "name": "Guiding Aroma",
+        "type": "Bug",
+        "bp": 0,
+        "category": "Status"
+    },
+    "IRRITATE": {
+        "id": "IRRITATE",
+        "name": "Irritate",
+        "type": "Bug",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "LATCHON": {
+        "id": "LATCHON",
+        "name": "Latch On",
+        "type": "Bug",
+        "bp": 0,
+        "category": "Status"
+    },
+    "LIGHTSHOW": {
+        "id": "LIGHTSHOW",
+        "name": "Light Show",
+        "type": "Bug",
+        "bp": 40,
+        "category": "Special"
+    },
+    "LUMINBURST": {
+        "id": "LUMINBURST",
+        "name": "Lumin Burst",
+        "type": "Bug",
+        "bp": 80,
+        "category": "Special"
+    },
+    "MANYNEEDLE": {
+        "id": "MANYNEEDLE",
+        "name": "Manyneedle",
+        "type": "Bug",
+        "bp": 20,
+        "category": "Physical"
+    },
+    "NATURALPROTECTION": {
+        "id": "NATURALPROTECTION",
+        "name": "Natural Protection",
+        "type": "Bug",
+        "bp": 0,
+        "category": "Status"
+    },
+    "NOISEORDER": {
+        "id": "NOISEORDER",
+        "name": "Noise Order",
+        "type": "Bug",
+        "bp": 60,
+        "category": "Special"
+    },
+    "PATIENTBLADE": {
+        "id": "PATIENTBLADE",
+        "name": "Patient Blade",
+        "type": "Bug",
+        "bp": 0,
+        "category": "Status"
+    },
+    "RAKE": {
+        "id": "RAKE",
+        "name": "Rake",
+        "type": "Bug",
+        "bp": 65,
+        "category": "Physical"
+    },
+    "ROLLINGARSENAL": {
+        "id": "ROLLINGARSENAL",
+        "name": "Rolling Arsenal",
+        "type": "Bug",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "SCALESCATTER": {
+        "id": "SCALESCATTER",
+        "name": "Scale Scatter",
+        "type": "Bug",
+        "bp": 70,
+        "category": "Special"
+    },
+    "SCALESTORM": {
+        "id": "SCALESTORM",
+        "name": "Scale Storm",
+        "type": "Bug",
+        "bp": 110,
+        "category": "Special"
+    },
+    "SEDATINGDUST": {
+        "id": "SEDATINGDUST",
+        "name": "Sedating Dust",
+        "type": "Bug",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SKEWER": {
+        "id": "SKEWER",
+        "name": "Skewer",
+        "type": "Bug",
+        "bp": 130,
+        "category": "Physical"
+    },
+    "SMUSH": {
+        "id": "SMUSH",
+        "name": "Smush",
+        "type": "Bug",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "STINGINGJAB": {
+        "id": "STINGINGJAB",
+        "name": "Stinging Jab",
+        "type": "Bug",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "STUNNINGCURL": {
+        "id": "STUNNINGCURL",
+        "name": "Stunning Curl",
+        "type": "Bug",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SUCKBLOOD": {
+        "id": "SUCKBLOOD",
+        "name": "Suck Blood",
+        "type": "Bug",
+        "bp": 50,
+        "category": "Physical"
+    },
+    "SWARMBURST": {
+        "id": "SWARMBURST",
+        "name": "Swarm Burst",
+        "type": "Bug",
+        "bp": 350,
+        "category": "Physical"
+    },
+    "SWARMORDER": {
+        "id": "SWARMORDER",
+        "name": "Swarm Order",
+        "type": "Bug",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "TERRORSWARM": {
+        "id": "TERRORSWARM",
+        "name": "Terror Swarm",
+        "type": "Bug",
+        "bp": 75,
+        "category": "Special"
+    },
+    "TUNEUP": {
+        "id": "TUNEUP",
+        "name": "Tune Up",
+        "type": "Bug",
+        "bp": 0,
+        "category": "Status"
+    },
+    "BINDFATE": {
+        "id": "BINDFATE",
+        "name": "Bind Fate",
+        "type": "Ghost",
+        "bp": 0,
+        "category": "Status"
+    },
+    "COLDSHOULDER": {
+        "id": "COLDSHOULDER",
+        "name": "Cold Shoulder",
+        "type": "Ghost",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "CRITICALERROR": {
+        "id": "CRITICALERROR",
+        "name": "Critical Error",
+        "type": "Ghost",
+        "bp": 60,
+        "category": "Special"
+    },
+    "CURSEDOATH": {
+        "id": "CURSEDOATH",
+        "name": "Cursed Oath",
+        "type": "Ghost",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DEADEND": {
+        "id": "DEADEND",
+        "name": "Dead End",
+        "type": "Ghost",
+        "bp": 65,
+        "category": "Special"
+    },
+    "DEATHKNELL": {
+        "id": "DEATHKNELL",
+        "name": "Death Knell",
+        "type": "Ghost",
+        "bp": 90,
+        "category": "Special"
+    },
+    "DEATHMARK": {
+        "id": "DEATHMARK",
+        "name": "Death Mark",
+        "type": "Ghost",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DIRGE": {
+        "id": "DIRGE",
+        "name": "Dirge",
+        "type": "Ghost",
+        "bp": 40,
+        "category": "Special"
+    },
+    "DISTURB": {
+        "id": "DISTURB",
+        "name": "Disturb",
+        "type": "Ghost",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "DOLLSTITCH": {
+        "id": "DOLLSTITCH",
+        "name": "Doll Stitch",
+        "type": "Ghost",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DRIFTOFF": {
+        "id": "DRIFTOFF",
+        "name": "Drift Off",
+        "type": "Ghost",
+        "bp": 0,
+        "category": "Status"
+    },
+    "FROMBEYOND": {
+        "id": "FROMBEYOND",
+        "name": "From Beyond",
+        "type": "Ghost",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "GEMSEAL": {
+        "id": "GEMSEAL",
+        "name": "Gem Seal",
+        "type": "Ghost",
+        "bp": 0,
+        "category": "Status"
+    },
+    "HONEYSLATHER": {
+        "id": "HONEYSLATHER",
+        "name": "Honey Slather",
+        "type": "Ghost",
+        "bp": 0,
+        "category": "Status"
+    },
+    "MACHINATE": {
+        "id": "MACHINATE",
+        "name": "Machinate",
+        "type": "Ghost",
+        "bp": 90,
+        "category": "Special"
+    },
+    "MALEFACTION": {
+        "id": "MALEFACTION",
+        "name": "Malefaction",
+        "type": "Ghost",
+        "bp": 70,
+        "category": "Special"
+    },
+    "PHANTOMGATE": {
+        "id": "PHANTOMGATE",
+        "name": "Phantom Gate",
+        "type": "Ghost",
+        "bp": 120,
+        "category": "Special"
+    },
+    "SEANCE": {
+        "id": "SEANCE",
+        "name": "Seance",
+        "type": "Ghost",
+        "bp": 25,
+        "category": "Special"
+    },
+    "SHIVER": {
+        "id": "SHIVER",
+        "name": "Shiver",
+        "type": "Ghost",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SIXFEETUNDER": {
+        "id": "SIXFEETUNDER",
+        "name": "Six Feet Under",
+        "type": "Ghost",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "SOULEATER": {
+        "id": "SOULEATER",
+        "name": "Soul Eater",
+        "type": "Ghost",
+        "bp": 65,
+        "category": "Special"
+    },
+    "SPECTRALTONGUE": {
+        "id": "SPECTRALTONGUE",
+        "name": "Spectral Tongue",
+        "type": "Ghost",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SPITEFULCHANT": {
+        "id": "SPITEFULCHANT",
+        "name": "Spiteful Chant",
+        "type": "Ghost",
+        "bp": 70,
+        "category": "Special"
+    },
+    "STITCHUP": {
+        "id": "STITCHUP",
+        "name": "Stitch Up",
+        "type": "Ghost",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SUFFOCATE": {
+        "id": "SUFFOCATE",
+        "name": "Suffocate",
+        "type": "Ghost",
+        "bp": 90,
+        "category": "Special"
+    },
+    "SUNDERFATE": {
+        "id": "SUNDERFATE",
+        "name": "Sunder Fate",
+        "type": "Ghost",
+        "bp": 100,
+        "category": "Physical"
+    },
+    "THINAIR": {
+        "id": "THINAIR",
+        "name": "Thin Air",
+        "type": "Ghost",
+        "bp": 40,
+        "category": "Special"
+    },
+    "TONGUETWISTER": {
+        "id": "TONGUETWISTER",
+        "name": "Tongue Twister",
+        "type": "Ghost",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "UNDYINGRUSH": {
+        "id": "UNDYINGRUSH",
+        "name": "Undying Rush",
+        "type": "Ghost",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "VIMRIPPER": {
+        "id": "VIMRIPPER",
+        "name": "Vim Ripper",
+        "type": "Ghost",
+        "bp": 85,
+        "category": "Physical"
+    },
+    "WAILINGBLOW": {
+        "id": "WAILINGBLOW",
+        "name": "Wailing Blow",
+        "type": "Ghost",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "ALLFORONE": {
+        "id": "ALLFORONE",
+        "name": "All For One",
+        "type": "Steel",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "BULLETCHARGE": {
+        "id": "BULLETCHARGE",
+        "name": "Bullet Charge",
+        "type": "Steel",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "BULLETTRAIN": {
+        "id": "BULLETTRAIN",
+        "name": "Bullet Train",
+        "type": "Steel",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "CAVALRYCHARGE": {
+        "id": "CAVALRYCHARGE",
+        "name": "Cavalry Charge",
+        "type": "Steel",
+        "bp": 70,
+        "category": "Physical"
+    },
+    "EVERHONE": {
+        "id": "EVERHONE",
+        "name": "Everhone",
+        "type": "Steel",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "FARADAYCAGE": {
+        "id": "FARADAYCAGE",
+        "name": "Faraday Cage",
+        "type": "Steel",
+        "bp": 75,
+        "category": "Physical"
+    },
+    "FEATHERWARD": {
+        "id": "FEATHERWARD",
+        "name": "Feather Ward",
+        "type": "Steel",
+        "bp": 0,
+        "category": "Status"
+    },
+    "FRAGMENTATION": {
+        "id": "FRAGMENTATION",
+        "name": "Fragmentation",
+        "type": "Steel",
+        "bp": 110,
+        "category": "Special"
+    },
+    "HAIRCURL": {
+        "id": "HAIRCURL",
+        "name": "Hair Curl",
+        "type": "Steel",
+        "bp": 90,
+        "category": "Special"
+    },
+    "HELMBUTT": {
+        "id": "HELMBUTT",
+        "name": "Helmbutt",
+        "type": "Steel",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "IMPALINGSPIKE": {
+        "id": "IMPALINGSPIKE",
+        "name": "Impaling Spike",
+        "type": "Steel",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "IRONARROW": {
+        "id": "IRONARROW",
+        "name": "Iron Arrow",
+        "type": "Steel",
+        "bp": 40,
+        "category": "Special"
+    },
+    "JAVELIN": {
+        "id": "JAVELIN",
+        "name": "Javelin",
+        "type": "Steel",
+        "bp": 90,
+        "category": "Special"
+    },
+    "MAGNETIZE": {
+        "id": "MAGNETIZE",
+        "name": "Magnetize",
+        "type": "Steel",
+        "bp": 50,
+        "category": "Physical"
+    },
+    "MAGNETWAVE": {
+        "id": "MAGNETWAVE",
+        "name": "Magnet Wave",
+        "type": "Steel",
+        "bp": 40,
+        "category": "Special"
+    },
+    "MIRRORSHIELD": {
+        "id": "MIRRORSHIELD",
+        "name": "Mirror Shield",
+        "type": "Steel",
+        "bp": 0,
+        "category": "Status"
+    },
+    "PLUNDER": {
+        "id": "PLUNDER",
+        "name": "Plunder",
+        "type": "Steel",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "POLARIZEDROOM": {
+        "id": "POLARIZEDROOM",
+        "name": "Polarized Room",
+        "type": "Steel",
+        "bp": 0,
+        "category": "Status"
+    },
+    "RAILCANNON": {
+        "id": "RAILCANNON",
+        "name": "Rail Cannon",
+        "type": "Steel",
+        "bp": 170,
+        "category": "Physical"
+    },
+    "REFURBISH": {
+        "id": "REFURBISH",
+        "name": "Refurbish",
+        "type": "Steel",
+        "bp": 0,
+        "category": "Status"
+    },
+    "ROCKETPUNCH": {
+        "id": "ROCKETPUNCH",
+        "name": "Rocket Punch",
+        "type": "Steel",
+        "bp": 150,
+        "category": "Physical"
+    },
+    "SHATTERVISE": {
+        "id": "SHATTERVISE",
+        "name": "Shatter Vise",
+        "type": "Steel",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "SHINESHOT": {
+        "id": "SHINESHOT",
+        "name": "Shine Shot",
+        "type": "Steel",
+        "bp": 60,
+        "category": "Special"
+    },
+    "SHININGSHELL": {
+        "id": "SHININGSHELL",
+        "name": "Shining Shell",
+        "type": "Steel",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SHOTPUT": {
+        "id": "SHOTPUT",
+        "name": "Shotput",
+        "type": "Steel",
+        "bp": 45,
+        "category": "Physical"
+    },
+    "SHRAPNEL": {
+        "id": "SHRAPNEL",
+        "name": "Shrapnel",
+        "type": "Steel",
+        "bp": 80,
+        "category": "Special"
+    },
+    "SHREDSHOT": {
+        "id": "SHREDSHOT",
+        "name": "Shred Shot",
+        "type": "Steel",
+        "bp": 55,
+        "category": "Special"
+    },
+    "SLAG": {
+        "id": "SLAG",
+        "name": "Slag",
+        "type": "Steel",
+        "bp": 80,
+        "category": "Special"
+    },
+    "SLAY": {
+        "id": "SLAY",
+        "name": "Slay",
+        "type": "Steel",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "TAKESHELTER": {
+        "id": "TAKESHELTER",
+        "name": "Take Shelter",
+        "type": "Steel",
+        "bp": 0,
+        "category": "Status"
+    },
+    "VANGUARD": {
+        "id": "VANGUARD",
+        "name": "Vanguard",
+        "type": "Steel",
+        "bp": 0,
+        "category": "Status"
+    },
+    "VOLLEYSTANCE": {
+        "id": "VOLLEYSTANCE",
+        "name": "Volley Stance",
+        "type": "Steel",
+        "bp": 0,
+        "category": "Status"
+    },
+    "WEIGHANCHOR": {
+        "id": "WEIGHANCHOR",
+        "name": "Weigh Anchor",
+        "type": "Steel",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "WELD": {
+        "id": "WELD",
+        "name": "Weld",
+        "type": "Steel",
+        "bp": 0,
+        "category": "Status"
+    },
+    "ABSOLUTERADIANCE": {
+        "id": "ABSOLUTERADIANCE",
+        "name": "Absolute Radiance",
+        "type": "Fire",
+        "bp": 120,
+        "category": "Special"
+    },
+    "BLAZINGSPEED": {
+        "id": "BLAZINGSPEED",
+        "name": "Blazing Speed",
+        "type": "Fire",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "CRIMSONSTORM": {
+        "id": "CRIMSONSTORM",
+        "name": "Crimson Storm",
+        "type": "Fire",
+        "bp": 75,
+        "category": "Special"
+    },
+    "DRYHEAT": {
+        "id": "DRYHEAT",
+        "name": "Dry Heat",
+        "type": "Fire",
+        "bp": 90,
+        "category": "Special"
+    },
+    "FIREPULSE": {
+        "id": "FIREPULSE",
+        "name": "Fire Pulse",
+        "type": "Fire",
+        "bp": 60,
+        "category": "Special"
+    },
+    "FIREWORKS": {
+        "id": "FIREWORKS",
+        "name": "Fireworks",
+        "type": "Fire",
+        "bp": 25,
+        "category": "Special"
+    },
+    "FLAMESPIKES": {
+        "id": "FLAMESPIKES",
+        "name": "Flame Spikes",
+        "type": "Fire",
+        "bp": 0,
+        "category": "Status"
+    },
+    "FLAREUP": {
+        "id": "FLAREUP",
+        "name": "Flare Up",
+        "type": "Fire",
+        "bp": 70,
+        "category": "Physical"
+    },
+    "FLAREWITCH": {
+        "id": "FLAREWITCH",
+        "name": "Flare Witch",
+        "type": "Fire",
+        "bp": 0,
+        "category": "Status"
+    },
+    "HEARTHFIREHULA": {
+        "id": "HEARTHFIREHULA",
+        "name": "Hearthfire Hula",
+        "type": "Fire",
+        "bp": 80,
+        "category": "Special"
+    },
+    "HEATGYRE": {
+        "id": "HEATGYRE",
+        "name": "Heat Gyre",
+        "type": "Fire",
+        "bp": 75,
+        "category": "Physical"
+    },
+    "HOTSHOT": {
+        "id": "HOTSHOT",
+        "name": "Hot Shot",
+        "type": "Fire",
+        "bp": 40,
+        "category": "Special"
+    },
+    "IGNITE": {
+        "id": "IGNITE",
+        "name": "Ignite",
+        "type": "Fire",
+        "bp": 0,
+        "category": "Status"
+    },
+    "IMPURITYBLAZE": {
+        "id": "IMPURITYBLAZE",
+        "name": "Impurity Blaze",
+        "type": "Fire",
+        "bp": 80,
+        "category": "Special"
+    },
+    "INFERNOIMPACT": {
+        "id": "INFERNOIMPACT",
+        "name": "Inferno Impact",
+        "type": "Fire",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "INVITESUN": {
+        "id": "INVITESUN",
+        "name": "Invite Sun",
+        "type": "Fire",
+        "bp": 0,
+        "category": "Status"
+    },
+    "KINDLE": {
+        "id": "KINDLE",
+        "name": "Kindle",
+        "type": "Fire",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "LIFTOFF": {
+        "id": "LIFTOFF",
+        "name": "Liftoff",
+        "type": "Fire",
+        "bp": 160,
+        "category": "Physical"
+    },
+    "LIKEWILDFIRE": {
+        "id": "LIKEWILDFIRE",
+        "name": "Like Wildfire",
+        "type": "Fire",
+        "bp": 50,
+        "category": "Special"
+    },
+    "PROMINENCE": {
+        "id": "PROMINENCE",
+        "name": "Prominence",
+        "type": "Fire",
+        "bp": 80,
+        "category": "Special"
+    },
+    "PROPELLANT": {
+        "id": "PROPELLANT",
+        "name": "Propellant",
+        "type": "Fire",
+        "bp": 105,
+        "category": "Physical"
+    },
+    "REDHOTRETREAT": {
+        "id": "REDHOTRETREAT",
+        "name": "Red-Hot Retreat",
+        "type": "Fire",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SHIMMERINGHEAT": {
+        "id": "SHIMMERINGHEAT",
+        "name": "Shimmering Heat",
+        "type": "Fire",
+        "bp": 90,
+        "category": "Special"
+    },
+    "SMOLDERRAVE": {
+        "id": "SMOLDERRAVE",
+        "name": "Smolder Rave",
+        "type": "Fire",
+        "bp": 50,
+        "category": "Special"
+    },
+    "STOREFUEL": {
+        "id": "STOREFUEL",
+        "name": "Store Fuel",
+        "type": "Fire",
+        "bp": 0,
+        "category": "Status"
+    },
+    "TARVOLLEY": {
+        "id": "TARVOLLEY",
+        "name": "Tar Volley",
+        "type": "Fire",
+        "bp": 45,
+        "category": "Special"
+    },
+    "TEPHRACANNON": {
+        "id": "TEPHRACANNON",
+        "name": "Tephra Cannon",
+        "type": "Fire",
+        "bp": 30,
+        "category": "Special"
+    },
+    "UPINFLAMES": {
+        "id": "UPINFLAMES",
+        "name": "Up In Flames",
+        "type": "Fire",
+        "bp": 80,
+        "category": "Special"
+    },
+    "VAINGLORYFLAMES": {
+        "id": "VAINGLORYFLAMES",
+        "name": "Vainglory Flames",
+        "type": "Fire",
+        "bp": 90,
+        "category": "Special"
+    },
+    "WHITEFLAME": {
+        "id": "WHITEFLAME",
+        "name": "White Flame",
+        "type": "Fire",
+        "bp": 90,
+        "category": "Special"
+    },
+    "WILDFIREMELT": {
+        "id": "WILDFIREMELT",
+        "name": "Wildfire Melt",
+        "type": "Fire",
+        "bp": 90,
+        "category": "Special"
+    },
+    "ARCHEANDELUGE": {
+        "id": "ARCHEANDELUGE",
+        "name": "Archean Deluge",
+        "type": "Water",
+        "bp": 120,
+        "category": "Special"
+    },
+    "ASCRYSTAL": {
+        "id": "ASCRYSTAL",
+        "name": "As Crystal",
+        "type": "Water",
+        "bp": 50,
+        "category": "Special"
+    },
+    "BREACH": {
+        "id": "BREACH",
+        "name": "Breach",
+        "type": "Water",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "BUBBLEBARRAGE": {
+        "id": "BUBBLEBARRAGE",
+        "name": "Bubble Barrage",
+        "type": "Water",
+        "bp": 25,
+        "category": "Special"
+    },
+    "BUBBLEBARRIER": {
+        "id": "BUBBLEBARRIER",
+        "name": "Bubble Barrier",
+        "type": "Water",
+        "bp": 0,
+        "category": "Status"
+    },
+    "BUBBLEBLASTER": {
+        "id": "BUBBLEBLASTER",
+        "name": "Bubble Blaster",
+        "type": "Water",
+        "bp": 90,
+        "category": "Special"
+    },
+    "DEPTHCHARGE": {
+        "id": "DEPTHCHARGE",
+        "name": "Depth Charge",
+        "type": "Water",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "DRAGBENEATH": {
+        "id": "DRAGBENEATH",
+        "name": "Drag Beneath",
+        "type": "Water",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "EBBFLOW": {
+        "id": "EBBFLOW",
+        "name": "Ebb & Flow",
+        "type": "Water",
+        "bp": 60,
+        "category": "Special"
+    },
+    "ERODINGFOAM": {
+        "id": "ERODINGFOAM",
+        "name": "Eroding Foam",
+        "type": "Water",
+        "bp": 80,
+        "category": "Special"
+    },
+    "FLOWSTATE": {
+        "id": "FLOWSTATE",
+        "name": "Flow State",
+        "type": "Water",
+        "bp": 0,
+        "category": "Status"
+    },
+    "FUGUFRENZY": {
+        "id": "FUGUFRENZY",
+        "name": "Fugu Frenzy",
+        "type": "Water",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "GEYSER": {
+        "id": "GEYSER",
+        "name": "Geyser",
+        "type": "Water",
+        "bp": 120,
+        "category": "Special"
+    },
+    "HARBORBREAKER": {
+        "id": "HARBORBREAKER",
+        "name": "Harbor Breaker",
+        "type": "Water",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "HYPERJET": {
+        "id": "HYPERJET",
+        "name": "Hyper Jet",
+        "type": "Water",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "INVITERAIN": {
+        "id": "INVITERAIN",
+        "name": "Invite Rainstorm",
+        "type": "Water",
+        "bp": 0,
+        "category": "Status"
+    },
+    "MAELSTROM": {
+        "id": "MAELSTROM",
+        "name": "Maelstrom",
+        "type": "Water",
+        "bp": 75,
+        "category": "Special"
+    },
+    "MENDINGSPRING": {
+        "id": "MENDINGSPRING",
+        "name": "Mending Spring",
+        "type": "Water",
+        "bp": 40,
+        "category": "Special"
+    },
+    "PRESSUREBURST": {
+        "id": "PRESSUREBURST",
+        "name": "Pressure Burst",
+        "type": "Water",
+        "bp": 90,
+        "category": "Special"
+    },
+    "RAMMINGSPEED": {
+        "id": "RAMMINGSPEED",
+        "name": "Ramming Speed",
+        "type": "Water",
+        "bp": 125,
+        "category": "Physical"
+    },
+    "RIPTIDE": {
+        "id": "RIPTIDE",
+        "name": "Rip Tide",
+        "type": "Water",
+        "bp": 100,
+        "category": "Physical"
+    },
+    "RIPTURN": {
+        "id": "RIPTURN",
+        "name": "Rip Turn",
+        "type": "Water",
+        "bp": 70,
+        "category": "Physical"
+    },
+    "RISINGTIDE": {
+        "id": "RISINGTIDE",
+        "name": "Rising Tide",
+        "type": "Water",
+        "bp": 50,
+        "category": "Special"
+    },
+    "RIVERREST": {
+        "id": "RIVERREST",
+        "name": "River Rest",
+        "type": "Water",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SILTSURGE": {
+        "id": "SILTSURGE",
+        "name": "Silt Surge",
+        "type": "Water",
+        "bp": 110,
+        "category": "Special"
+    },
+    "SLAMSHUT": {
+        "id": "SLAMSHUT",
+        "name": "Slam Shut",
+        "type": "Water",
+        "bp": 75,
+        "category": "Physical"
+    },
+    "SNAP": {
+        "id": "SNAP",
+        "name": "Snap",
+        "type": "Water",
+        "bp": 65,
+        "category": "Physical"
+    },
+    "SPATTERINGRAM": {
+        "id": "SPATTERINGRAM",
+        "name": "Spattering Ram",
+        "type": "Water",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "TIDEPULL": {
+        "id": "TIDEPULL",
+        "name": "Tide Pull",
+        "type": "Water",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "TORRENTSCYTHE": {
+        "id": "TORRENTSCYTHE",
+        "name": "Torrent Scythe",
+        "type": "Water",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "WATERLOG": {
+        "id": "WATERLOG",
+        "name": "Waterlog",
+        "type": "Water",
+        "bp": 0,
+        "category": "Status"
+    },
+    "WAVEBREAK": {
+        "id": "WAVEBREAK",
+        "name": "Wavebreak",
+        "type": "Water",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "WETLANDWALTZ": {
+        "id": "WETLANDWALTZ",
+        "name": "Wetland Waltz",
+        "type": "Water",
+        "bp": 75,
+        "category": "Physical"
+    },
+    "WHALESONG": {
+        "id": "WHALESONG",
+        "name": "Whale Song",
+        "type": "Water",
+        "bp": 0,
+        "category": "Status"
+    },
+    "WHELM": {
+        "id": "WHELM",
+        "name": "Whelm",
+        "type": "Water",
+        "bp": 60,
+        "category": "Special"
+    },
+    "WIPEOUT": {
+        "id": "WIPEOUT",
+        "name": "Wipeout",
+        "type": "Water",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "ANESTHETIZE": {
+        "id": "ANESTHETIZE",
+        "name": "Anesthetize",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "AUTUMNBLAST": {
+        "id": "AUTUMNBLAST",
+        "name": "Autumn Blast",
+        "type": "Grass",
+        "bp": 75,
+        "category": "Special"
+    },
+    "BLADESOFGRASS": {
+        "id": "BLADESOFGRASS",
+        "name": "Blades of Grass",
+        "type": "Grass",
+        "bp": 25,
+        "category": "Physical"
+    },
+    "BLOSSOM": {
+        "id": "BLOSSOM",
+        "name": "Blossom",
+        "type": "Grass",
+        "bp": 40,
+        "category": "Special"
+    },
+    "BREATHELIFE": {
+        "id": "BREATHELIFE",
+        "name": "Breathe Life",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "CLASSICALPHYSICS": {
+        "id": "CLASSICALPHYSICS",
+        "name": "Classical Physics",
+        "type": "Grass",
+        "bp": 60,
+        "category": "Special"
+    },
+    "COCODROP": {
+        "id": "COCODROP",
+        "name": "Coco Drop",
+        "type": "Grass",
+        "bp": 1,
+        "category": "Physical"
+    },
+    "CRUELWHIPBLADE": {
+        "id": "CRUELWHIPBLADE",
+        "name": "Cruel Whipblade",
+        "type": "Grass",
+        "bp": 30,
+        "category": "Physical"
+    },
+    "ENERGYBALL": {
+        "id": "ENERGYBALL",
+        "name": "Energy Ball",
+        "type": "Grass",
+        "bp": 90,
+        "category": "Special"
+    },
+    "ESSENCEARROW": {
+        "id": "ESSENCEARROW",
+        "name": "Essence Arrow",
+        "type": "Grass",
+        "bp": 40,
+        "category": "Special"
+    },
+    "HEADTHROW": {
+        "id": "HEADTHROW",
+        "name": "Head Throw",
+        "type": "Grass",
+        "bp": 40,
+        "category": "Special"
+    },
+    "HOLLYCHARM": {
+        "id": "HOLLYCHARM",
+        "name": "Holly Charm",
+        "type": "Grass",
+        "bp": 90,
+        "category": "Special"
+    },
+    "MASQUERBLADE": {
+        "id": "MASQUERBLADE",
+        "name": "Masquerblade",
+        "type": "Grass",
+        "bp": 150,
+        "category": "Physical"
+    },
+    "MISTLETOE": {
+        "id": "MISTLETOE",
+        "name": "Mistletoe",
+        "type": "Grass",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "MULCHMEAL": {
+        "id": "MULCHMEAL",
+        "name": "Mulch Meal",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "MYSTERYSEED": {
+        "id": "MYSTERYSEED",
+        "name": "Mystery Seed",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "PETALTEMPEST": {
+        "id": "PETALTEMPEST",
+        "name": "Petal Tempest",
+        "type": "Grass",
+        "bp": 95,
+        "category": "Special"
+    },
+    "POISONIVY": {
+        "id": "POISONIVY",
+        "name": "Poison Ivy",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "PUFFBALL": {
+        "id": "PUFFBALL",
+        "name": "Puffball",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "RAZINGVINES": {
+        "id": "RAZINGVINES",
+        "name": "Razing Vines",
+        "type": "Grass",
+        "bp": 130,
+        "category": "Physical"
+    },
+    "ROOTDRIVER": {
+        "id": "ROOTDRIVER",
+        "name": "Root Driver",
+        "type": "Grass",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "ROOTSHELTER": {
+        "id": "ROOTSHELTER",
+        "name": "Root Shelter",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "ROOTSOFEVIL": {
+        "id": "ROOTSOFEVIL",
+        "name": "Roots of Evil",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "ROOTWRACK": {
+        "id": "ROOTWRACK",
+        "name": "Rootwrack",
+        "type": "Grass",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "SAPPINGJEALOUSY": {
+        "id": "SAPPINGJEALOUSY",
+        "name": "Sapping Jealousy",
+        "type": "Grass",
+        "bp": 70,
+        "category": "Adaptive"
+    },
+    "SAPPINGSEED": {
+        "id": "SAPPINGSEED",
+        "name": "Sapping Seed",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SHARINGSMILES": {
+        "id": "SHARINGSMILES",
+        "name": "Sharing Smiles",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SINISTERSPINES": {
+        "id": "SINISTERSPINES",
+        "name": "Sinister Spines",
+        "type": "Grass",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "SYMBIOSIS": {
+        "id": "SYMBIOSIS",
+        "name": "Symbiosis",
+        "type": "Grass",
+        "bp": 0,
+        "category": "Status"
+    },
+    "TERADRAIN": {
+        "id": "TERADRAIN",
+        "name": "Tera Drain",
+        "type": "Grass",
+        "bp": 100,
+        "category": "Special"
+    },
+    "THORNRATTLE": {
+        "id": "THORNRATTLE",
+        "name": "Thorn Rattle",
+        "type": "Grass",
+        "bp": 100,
+        "category": "Special"
+    },
+    "TRAPJAW": {
+        "id": "TRAPJAW",
+        "name": "Trap Jaw",
+        "type": "Grass",
+        "bp": 85,
+        "category": "Physical"
+    },
+    "VINEBIND": {
+        "id": "VINEBIND",
+        "name": "Vinebind",
+        "type": "Grass",
+        "bp": 50,
+        "category": "Physical"
+    },
+    "WHIPKICK": {
+        "id": "WHIPKICK",
+        "name": "Whip Kick",
+        "type": "Grass",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "AMPUP": {
+        "id": "AMPUP",
+        "name": "Amp Up",
+        "type": "Electric",
+        "bp": 0,
+        "category": "Status"
+    },
+    "BADENDING": {
+        "id": "BADENDING",
+        "name": "Bad Ending",
+        "type": "Electric",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "BEAMSTRUGGLE": {
+        "id": "BEAMSTRUGGLE",
+        "name": "Beam Struggle",
+        "type": "Electric",
+        "bp": 95,
+        "category": "Special"
+    },
+    "BROADCASTBLAST": {
+        "id": "BROADCASTBLAST",
+        "name": "Broadcast Blast",
+        "type": "Electric",
+        "bp": 0,
+        "category": "Status"
+    },
+    "CAPACITYBURST": {
+        "id": "CAPACITYBURST",
+        "name": "Capacity Burst",
+        "type": "Electric",
+        "bp": 110,
+        "category": "Special"
+    },
+    "CURRENTCRASH": {
+        "id": "CURRENTCRASH",
+        "name": "Current Crash",
+        "type": "Electric",
+        "bp": 55,
+        "category": "Physical"
+    },
+    "DEFIBRILLATE": {
+        "id": "DEFIBRILLATE",
+        "name": "Defibrillate",
+        "type": "Electric",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DIELECTRICBREAKDOWN": {
+        "id": "DIELECTRICBREAKDOWN",
+        "name": "Dielectric Breakdown",
+        "type": "Electric",
+        "bp": 130,
+        "category": "Special"
+    },
+    "ELECTROSLASH": {
+        "id": "ELECTROSLASH",
+        "name": "Electroslash",
+        "type": "Electric",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "FROMTHEBLUE": {
+        "id": "FROMTHEBLUE",
+        "name": "From the Blue",
+        "type": "Electric",
+        "bp": 60,
+        "category": "Special"
+    },
+    "GUTCHECK": {
+        "id": "GUTCHECK",
+        "name": "Gut Check",
+        "type": "Electric",
+        "bp": 55,
+        "category": "Physical"
+    },
+    "HEALTHYCHEER": {
+        "id": "HEALTHYCHEER",
+        "name": "Healthy Cheer",
+        "type": "Electric",
+        "bp": 0,
+        "category": "Status"
+    },
+    "INERTIASHOCK": {
+        "id": "INERTIASHOCK",
+        "name": "Inertia Shock",
+        "type": "Electric",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "JOKEJOLT": {
+        "id": "JOKEJOLT",
+        "name": "Joke Jolt",
+        "type": "Electric",
+        "bp": 60,
+        "category": "Special"
+    },
+    "JOLT": {
+        "id": "JOLT",
+        "name": "Jolt",
+        "type": "Electric",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "LIGHTNINGDANCE": {
+        "id": "LIGHTNINGDANCE",
+        "name": "Lightning Dance",
+        "type": "Electric",
+        "bp": 0,
+        "category": "Status"
+    },
+    "LIGHTNINGSLAM": {
+        "id": "LIGHTNINGSLAM",
+        "name": "Lightning Slam",
+        "type": "Electric",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "LIVEWIRE": {
+        "id": "LIVEWIRE",
+        "name": "Live Wire",
+        "type": "Electric",
+        "bp": 0,
+        "category": "Status"
+    },
+    "LUCKYCHEER": {
+        "id": "LUCKYCHEER",
+        "name": "Lucky Cheer",
+        "type": "Electric",
+        "bp": 0,
+        "category": "Status"
+    },
+    "LUMINOUSBURST": {
+        "id": "LUMINOUSBURST",
+        "name": "Luminous Burst",
+        "type": "Electric",
+        "bp": 80,
+        "category": "Special"
+    },
+    "METAFORM": {
+        "id": "METAFORM",
+        "name": "Metaform",
+        "type": "Electric",
+        "bp": 0,
+        "category": "Status"
+    },
+    "NUMB": {
+        "id": "NUMB",
+        "name": "Numb",
+        "type": "Electric",
+        "bp": 0,
+        "category": "Status"
+    },
+    "PHOTONEDGE": {
+        "id": "PHOTONEDGE",
+        "name": "Photon Edge",
+        "type": "Electric",
+        "bp": 85,
+        "category": "Physical"
+    },
+    "QUARANTINE": {
+        "id": "QUARANTINE",
+        "name": "Quarantine",
+        "type": "Electric",
+        "bp": 0,
+        "category": "Status"
+    },
+    "RAPIDHERTZ": {
+        "id": "RAPIDHERTZ",
+        "name": "Rapid Hertz",
+        "type": "Electric",
+        "bp": 20,
+        "category": "Special"
+    },
+    "REPULSIONFIELD": {
+        "id": "REPULSIONFIELD",
+        "name": "Repulsion Field",
+        "type": "Electric",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SHORTCIRCUIT": {
+        "id": "SHORTCIRCUIT",
+        "name": "Short Circuit",
+        "type": "Electric",
+        "bp": 95,
+        "category": "Special"
+    },
+    "SPLITTHESKY": {
+        "id": "SPLITTHESKY",
+        "name": "Split the Sky",
+        "type": "Electric",
+        "bp": 80,
+        "category": "Special"
+    },
+    "STORMDRIVE": {
+        "id": "STORMDRIVE",
+        "name": "Storm Drive",
+        "type": "Electric",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "SURGESNARE": {
+        "id": "SURGESNARE",
+        "name": "Surge Snare",
+        "type": "Electric",
+        "bp": 45,
+        "category": "Special"
+    },
+    "THUNDERBELLY": {
+        "id": "THUNDERBELLY",
+        "name": "Thunder Belly",
+        "type": "Electric",
+        "bp": 200,
+        "category": "Physical"
+    },
+    "VOLTSEEKERS": {
+        "id": "VOLTSEEKERS",
+        "name": "Volt Seekers",
+        "type": "Electric",
+        "bp": 90,
+        "category": "Special"
+    },
+    "ABERRANTMOTE": {
+        "id": "ABERRANTMOTE",
+        "name": "Aberrant Mote",
+        "type": "Psychic",
+        "bp": 85,
+        "category": "Special"
+    },
+    "ANATMAN": {
+        "id": "ANATMAN",
+        "name": "Anatman",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "BLINDSIDE": {
+        "id": "BLINDSIDE",
+        "name": "Blind Side",
+        "type": "Psychic",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "BRAINFREEZE": {
+        "id": "BRAINFREEZE",
+        "name": "Brain Freeze",
+        "type": "Psychic",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "CORECOLLAPSE": {
+        "id": "CORECOLLAPSE",
+        "name": "Core Collapse",
+        "type": "Psychic",
+        "bp": 100,
+        "category": "Special"
+    },
+    "DEMONSKISS": {
+        "id": "DEMONSKISS",
+        "name": "Demon's Kiss",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DISCOVEREDPOWER": {
+        "id": "DISCOVEREDPOWER",
+        "name": "Discovered Power",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DREAMFEAST": {
+        "id": "DREAMFEAST",
+        "name": "Dream Feast",
+        "type": "Psychic",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "ECLIPSE": {
+        "id": "ECLIPSE",
+        "name": "Eclipse",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "ENERGYTRICK": {
+        "id": "ENERGYTRICK",
+        "name": "Energy Trick",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "EXPLOIT": {
+        "id": "EXPLOIT",
+        "name": "Exploit",
+        "type": "Psychic",
+        "bp": 60,
+        "category": "Special"
+    },
+    "GENOTHEOSIS": {
+        "id": "GENOTHEOSIS",
+        "name": "Genotheosis",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "INVITEECLIPSE": {
+        "id": "INVITEECLIPSE",
+        "name": "Invite Eclipse",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "KICKSTART": {
+        "id": "KICKSTART",
+        "name": "Kickstart",
+        "type": "Psychic",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "KINETICGRIP": {
+        "id": "KINETICGRIP",
+        "name": "Kinetic Grip",
+        "type": "Psychic",
+        "bp": 75,
+        "category": "Physical"
+    },
+    "MAGEHAND": {
+        "id": "MAGEHAND",
+        "name": "Mage Hand",
+        "type": "Psychic",
+        "bp": 50,
+        "category": "Physical"
+    },
+    "MEMORYREMOVAL": {
+        "id": "MEMORYREMOVAL",
+        "name": "Memory Removal",
+        "type": "Psychic",
+        "bp": 70,
+        "category": "Special"
+    },
+    "MINDLINK": {
+        "id": "MINDLINK",
+        "name": "Mind Link",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "MINDWARP": {
+        "id": "MINDWARP",
+        "name": "Mind Warp",
+        "type": "Psychic",
+        "bp": 80,
+        "category": "Special"
+    },
+    "MINDWAVES": {
+        "id": "MINDWAVES",
+        "name": "Mind Waves",
+        "type": "Psychic",
+        "bp": 40,
+        "category": "Special"
+    },
+    "ODDROOM": {
+        "id": "ODDROOM",
+        "name": "Odd Room",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "OMNISCIENTBLOW": {
+        "id": "OMNISCIENTBLOW",
+        "name": "Omniscient Blow",
+        "type": "Psychic",
+        "bp": 110,
+        "category": "Physical"
+    },
+    "ONEIROMANCY": {
+        "id": "ONEIROMANCY",
+        "name": "Oneiromancy",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "PACIFY": {
+        "id": "PACIFY",
+        "name": "Pacify",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "PATTERNRELEASE": {
+        "id": "PATTERNRELEASE",
+        "name": "Pattern Release",
+        "type": "Psychic",
+        "bp": 35,
+        "category": "Physical"
+    },
+    "PENUMBRA": {
+        "id": "PENUMBRA",
+        "name": "Penumbra",
+        "type": "Psychic",
+        "bp": 50,
+        "category": "Special"
+    },
+    "PSYCHICOVERLOAD": {
+        "id": "PSYCHICOVERLOAD",
+        "name": "Psychic Overload",
+        "type": "Psychic",
+        "bp": 120,
+        "category": "Special"
+    },
+    "PSYCHOSCISSION": {
+        "id": "PSYCHOSCISSION",
+        "name": "Psychoscission",
+        "type": "Psychic",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "PSYPIERCE": {
+        "id": "PSYPIERCE",
+        "name": "Psypierce",
+        "type": "Psychic",
+        "bp": 70,
+        "category": "Special"
+    },
+    "PULSAR": {
+        "id": "PULSAR",
+        "name": "Pulsar",
+        "type": "Psychic",
+        "bp": 25,
+        "category": "Special"
+    },
+    "REVERBWARD": {
+        "id": "REVERBWARD",
+        "name": "Reverb Ward",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SCRUTINIZE": {
+        "id": "SCRUTINIZE",
+        "name": "Scrutinize",
+        "type": "Psychic",
+        "bp": 40,
+        "category": "Special"
+    },
+    "SEERSTRIKE": {
+        "id": "SEERSTRIKE",
+        "name": "Seer Strike",
+        "type": "Psychic",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "SELECTIVEMEMORY": {
+        "id": "SELECTIVEMEMORY",
+        "name": "Selective Memory",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "STARDANCE": {
+        "id": "STARDANCE",
+        "name": "Star Dance",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "TOTALCONTROL": {
+        "id": "TOTALCONTROL",
+        "name": "Total Control",
+        "type": "Psychic",
+        "bp": 90,
+        "category": "Special"
+    },
+    "TUTELAGE": {
+        "id": "TUTELAGE",
+        "name": "Tutelage",
+        "type": "Psychic",
+        "bp": 0,
+        "category": "Status"
+    },
+    "AURORAFLASH": {
+        "id": "AURORAFLASH",
+        "name": "Aurora Flash",
+        "type": "Ice",
+        "bp": 80,
+        "category": "Special"
+    },
+    "CHILL": {
+        "id": "CHILL",
+        "name": "Chill",
+        "type": "Ice",
+        "bp": 0,
+        "category": "Status"
+    },
+    "COLDEMBRACE": {
+        "id": "COLDEMBRACE",
+        "name": "Cold Embrace",
+        "type": "Ice",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "CRYOSLEEP": {
+        "id": "CRYOSLEEP",
+        "name": "Cryo Sleep",
+        "type": "Ice",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DIAMONDDUST": {
+        "id": "DIAMONDDUST",
+        "name": "Diamond Dust",
+        "type": "Ice",
+        "bp": 0,
+        "category": "Status"
+    },
+    "FRIGIDFLURRY": {
+        "id": "FRIGIDFLURRY",
+        "name": "Frigid Flurry",
+        "type": "Ice",
+        "bp": 80,
+        "category": "Special"
+    },
+    "FRIGIDJEALOUSY": {
+        "id": "FRIGIDJEALOUSY",
+        "name": "Frigid Jealousy",
+        "type": "Ice",
+        "bp": 70,
+        "category": "Adaptive"
+    },
+    "FROSTBARB": {
+        "id": "FROSTBARB",
+        "name": "Frost Barb",
+        "type": "Ice",
+        "bp": 65,
+        "category": "Physical"
+    },
+    "FROSTOVER": {
+        "id": "FROSTOVER",
+        "name": "Frost Over",
+        "type": "Ice",
+        "bp": 60,
+        "category": "Special"
+    },
+    "FROSTSPIKES": {
+        "id": "FROSTSPIKES",
+        "name": "Frost Spikes",
+        "type": "Ice",
+        "bp": 0,
+        "category": "Status"
+    },
+    "GLACIALRAM": {
+        "id": "GLACIALRAM",
+        "name": "Glacial Ram",
+        "type": "Ice",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "HALTINGCOLD": {
+        "id": "HALTINGCOLD",
+        "name": "Halting Cold",
+        "type": "Ice",
+        "bp": 75,
+        "category": "Special"
+    },
+    "HYPERFROST": {
+        "id": "HYPERFROST",
+        "name": "Hyperfrost",
+        "type": "Ice",
+        "bp": 70,
+        "category": "Special"
+    },
+    "HYPOTHERMIATE": {
+        "id": "HYPOTHERMIATE",
+        "name": "Hypothermiate",
+        "type": "Ice",
+        "bp": 80,
+        "category": "Special"
+    },
+    "ICEBERGBASH": {
+        "id": "ICEBERGBASH",
+        "name": "Iceberg Bash",
+        "type": "Ice",
+        "bp": 130,
+        "category": "Physical"
+    },
+    "ICECALIBUR": {
+        "id": "ICECALIBUR",
+        "name": "Icecalibur",
+        "type": "Ice",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "ICENINEWALL": {
+        "id": "ICENINEWALL",
+        "name": "Ice-Nine Wall",
+        "type": "Ice",
+        "bp": 0,
+        "category": "Status"
+    },
+    "ICEPICK": {
+        "id": "ICEPICK",
+        "name": "Ice Pick",
+        "type": "Ice",
+        "bp": 70,
+        "category": "Physical"
+    },
+    "ICICLEPIN": {
+        "id": "ICICLEPIN",
+        "name": "Icicle Pin",
+        "type": "Ice",
+        "bp": 0,
+        "category": "Status"
+    },
+    "ICYINJECTION": {
+        "id": "ICYINJECTION",
+        "name": "Icy Injection",
+        "type": "Ice",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "INURE": {
+        "id": "INURE",
+        "name": "Inure",
+        "type": "Ice",
+        "bp": 0,
+        "category": "Status"
+    },
+    "INVITEHAIL": {
+        "id": "INVITEHAIL",
+        "name": "Invite Hail",
+        "type": "Ice",
+        "bp": 0,
+        "category": "Status"
+    },
+    "LOOMINGWINTER": {
+        "id": "LOOMINGWINTER",
+        "name": "Looming Winter",
+        "type": "Ice",
+        "bp": 140,
+        "category": "Special"
+    },
+    "PACKAGE": {
+        "id": "PACKAGE",
+        "name": "Package",
+        "type": "Ice",
+        "bp": 90,
+        "category": "Special"
+    },
+    "SHEDCOAT": {
+        "id": "SHEDCOAT",
+        "name": "Shed Coat",
+        "type": "Ice",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SHIVERDANCE": {
+        "id": "SHIVERDANCE",
+        "name": "Shiver Dance",
+        "type": "Ice",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SHIVERSQUIRM": {
+        "id": "SHIVERSQUIRM",
+        "name": "Shiver Squirm",
+        "type": "Ice",
+        "bp": 1,
+        "category": "Physical"
+    },
+    "SNOWSPILL": {
+        "id": "SNOWSPILL",
+        "name": "Snow Spill",
+        "type": "Ice",
+        "bp": 50,
+        "category": "Physical"
+    },
+    "SNOWYSORROWS": {
+        "id": "SNOWYSORROWS",
+        "name": "Snowy Sorrows",
+        "type": "Ice",
+        "bp": 30,
+        "category": "Special"
+    },
+    "SUBLIMATE": {
+        "id": "SUBLIMATE",
+        "name": "Sublimate",
+        "type": "Ice",
+        "bp": 130,
+        "category": "Special"
+    },
+    "SUPERCOOL": {
+        "id": "SUPERCOOL",
+        "name": "Supercool",
+        "type": "Ice",
+        "bp": 100,
+        "category": "Special"
+    },
+    "THERMALDRAIN": {
+        "id": "THERMALDRAIN",
+        "name": "Thermal Drain",
+        "type": "Ice",
+        "bp": 80,
+        "category": "Special"
+    },
+    "WINTEROPS": {
+        "id": "WINTEROPS",
+        "name": "Winter Ops",
+        "type": "Ice",
+        "bp": 1,
+        "category": "Physical"
+    },
+    "ARCHMYTH": {
+        "id": "ARCHMYTH",
+        "name": "Archmyth",
+        "type": "Dragon",
+        "bp": 0,
+        "category": "Status"
+    },
+    "AXETOGRIND": {
+        "id": "AXETOGRIND",
+        "name": "Axe to Grind",
+        "type": "Dragon",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "CALAMITOUSSLASH": {
+        "id": "CALAMITOUSSLASH",
+        "name": "Calamitous Slash",
+        "type": "Dragon",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "CLASH": {
+        "id": "CLASH",
+        "name": "Clash",
+        "type": "Dragon",
+        "bp": 45,
+        "category": "Physical"
+    },
+    "CRUELTY": {
+        "id": "CRUELTY",
+        "name": "Cruelty",
+        "type": "Dragon",
+        "bp": 65,
+        "category": "Physical"
+    },
+    "DIAMETRICBREATH": {
+        "id": "DIAMETRICBREATH",
+        "name": "Diametric Breath",
+        "type": "Dragon",
+        "bp": 70,
+        "category": "Special"
+    },
+    "DRAGONRIDE": {
+        "id": "DRAGONRIDE",
+        "name": "Dragon Ride",
+        "type": "Dragon",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DREAD": {
+        "id": "DREAD",
+        "name": "Dread",
+        "type": "Dragon",
+        "bp": 40,
+        "category": "Special"
+    },
+    "GALLINGSPIT": {
+        "id": "GALLINGSPIT",
+        "name": "Galling Spit",
+        "type": "Dragon",
+        "bp": 80,
+        "category": "Special"
+    },
+    "GUTTURALROAR": {
+        "id": "GUTTURALROAR",
+        "name": "Guttural Roar",
+        "type": "Dragon",
+        "bp": 85,
+        "category": "Special"
+    },
+    "HELIOPAUSE": {
+        "id": "HELIOPAUSE",
+        "name": "Heliopause",
+        "type": "Dragon",
+        "bp": 0,
+        "category": "Status"
+    },
+    "LOOMOVER": {
+        "id": "LOOMOVER",
+        "name": "Loom Over",
+        "type": "Dragon",
+        "bp": 0,
+        "category": "Status"
+    },
+    "OCCULTATION": {
+        "id": "OCCULTATION",
+        "name": "Occultation",
+        "type": "Dragon",
+        "bp": 80,
+        "category": "Special"
+    },
+    "REND": {
+        "id": "REND",
+        "name": "Rend",
+        "type": "Dragon",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "SACREDLOTS": {
+        "id": "SACREDLOTS",
+        "name": "Sacred Lots",
+        "type": "Dragon",
+        "bp": 25,
+        "category": "Physical"
+    },
+    "SCALEGLINT": {
+        "id": "SCALEGLINT",
+        "name": "Scale Glint",
+        "type": "Dragon",
+        "bp": 40,
+        "category": "Special"
+    },
+    "SCOUR": {
+        "id": "SCOUR",
+        "name": "Scour",
+        "type": "Dragon",
+        "bp": 80,
+        "category": "Special"
+    },
+    "SHRED": {
+        "id": "SHRED",
+        "name": "Shred",
+        "type": "Dragon",
+        "bp": 55,
+        "category": "Physical"
+    },
+    "TRANSCENDENTENERGY": {
+        "id": "TRANSCENDENTENERGY",
+        "name": "Transcendent Energy",
+        "type": "Dragon",
+        "bp": 0,
+        "category": "Status"
+    },
+    "TRIPLETHREAT": {
+        "id": "TRIPLETHREAT",
+        "name": "Triple Threat",
+        "type": "Dragon",
+        "bp": 90,
+        "category": "Special"
+    },
+    "TYRANTSFIT": {
+        "id": "TYRANTSFIT",
+        "name": "Tyrant's Fit",
+        "type": "Dragon",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "WINGSPANECLIPSE": {
+        "id": "WINGSPANECLIPSE",
+        "name": "Wingspan Eclipse",
+        "type": "Dragon",
+        "bp": 0,
+        "category": "Status"
+    },
+    "WYRMWOUNDING": {
+        "id": "WYRMWOUNDING",
+        "name": "Wyrmwounding",
+        "type": "Dragon",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "ABYSSALMIST": {
+        "id": "ABYSSALMIST",
+        "name": "Abyssal Mist",
+        "type": "Dark",
+        "bp": 75,
+        "category": "Special"
+    },
+    "BACKHAND": {
+        "id": "BACKHAND",
+        "name": "Backhand",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "BLACKHOLE": {
+        "id": "BLACKHOLE",
+        "name": "Black Hole",
+        "type": "Dark",
+        "bp": 75,
+        "category": "Physical"
+    },
+    "BLACKOUT": {
+        "id": "BLACKOUT",
+        "name": "Blackout",
+        "type": "Dark",
+        "bp": 90,
+        "category": "Special"
+    },
+    "BULLY": {
+        "id": "BULLY",
+        "name": "Bully",
+        "type": "Dark",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "CALTROPARTS": {
+        "id": "CALTROPARTS",
+        "name": "Caltrop Arts",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "CHECKMATE": {
+        "id": "CHECKMATE",
+        "name": "Checkmate",
+        "type": "Dark",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "CULL": {
+        "id": "CULL",
+        "name": "Cull",
+        "type": "Dark",
+        "bp": 40,
+        "category": "Special"
+    },
+    "DARKALLURE": {
+        "id": "DARKALLURE",
+        "name": "Dark Allure",
+        "type": "Dark",
+        "bp": 90,
+        "category": "Special"
+    },
+    "DISARMINGSHOT": {
+        "id": "DISARMINGSHOT",
+        "name": "Disarming Shot",
+        "type": "Dark",
+        "bp": 80,
+        "category": "Special"
+    },
+    "DIVINATION": {
+        "id": "DIVINATION",
+        "name": "Divination",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DROWN": {
+        "id": "DROWN",
+        "name": "Drown",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "DUNK": {
+        "id": "DUNK",
+        "name": "Dunk",
+        "type": "Dark",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "FINALIZE": {
+        "id": "FINALIZE",
+        "name": "Finalize",
+        "type": "Dark",
+        "bp": 50,
+        "category": "Special"
+    },
+    "GLEEFULGRASP": {
+        "id": "GLEEFULGRASP",
+        "name": "Gleeful Grasp",
+        "type": "Dark",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "GLOAT": {
+        "id": "GLOAT",
+        "name": "Gloat",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "GRIMVISIONS": {
+        "id": "GRIMVISIONS",
+        "name": "Grim Visions",
+        "type": "Dark",
+        "bp": 90,
+        "category": "Special"
+    },
+    "HARSHVOICE": {
+        "id": "HARSHVOICE",
+        "name": "Harsh Voice",
+        "type": "Dark",
+        "bp": 40,
+        "category": "Special"
+    },
+    "HATEFULHAYMAKER": {
+        "id": "HATEFULHAYMAKER",
+        "name": "Hateful Haymaker",
+        "type": "Dark",
+        "bp": 65,
+        "category": "Physical"
+    },
+    "HEARTSTOPPER": {
+        "id": "HEARTSTOPPER",
+        "name": "Heartstopper",
+        "type": "Dark",
+        "bp": 90,
+        "category": "Special"
+    },
+    "INCISION": {
+        "id": "INCISION",
+        "name": "Incision",
+        "type": "Dark",
+        "bp": 50,
+        "category": "Physical"
+    },
+    "KEELHAUL": {
+        "id": "KEELHAUL",
+        "name": "Keelhaul",
+        "type": "Dark",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "MASSDESTRUCTION": {
+        "id": "MASSDESTRUCTION",
+        "name": "Mass Destruction",
+        "type": "Dark",
+        "bp": 130,
+        "category": "Special"
+    },
+    "MIDNIGHTHUNT": {
+        "id": "MIDNIGHTHUNT",
+        "name": "Midnight Hunt",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "MINDSAP": {
+        "id": "MINDSAP",
+        "name": "Mind Sap",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "MOUTHFUL": {
+        "id": "MOUTHFUL",
+        "name": "Mouthful",
+        "type": "Dark",
+        "bp": 1,
+        "category": "Physical"
+    },
+    "NIGHTCHILL": {
+        "id": "NIGHTCHILL",
+        "name": "Night Chill",
+        "type": "Dark",
+        "bp": 80,
+        "category": "Special"
+    },
+    "NIGHTFELLING": {
+        "id": "NIGHTFELLING",
+        "name": "Nightfelling",
+        "type": "Dark",
+        "bp": 110,
+        "category": "Physical"
+    },
+    "PILFER": {
+        "id": "PILFER",
+        "name": "Pilfer",
+        "type": "Dark",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "PLANTDOUBT": {
+        "id": "PLANTDOUBT",
+        "name": "Plant Doubt",
+        "type": "Dark",
+        "bp": 20,
+        "category": "Special"
+    },
+    "PROFANE": {
+        "id": "PROFANE",
+        "name": "Profane",
+        "type": "Dark",
+        "bp": 100,
+        "category": "Special"
+    },
+    "ROYALTRIBUTE": {
+        "id": "ROYALTRIBUTE",
+        "name": "Royal Tribute",
+        "type": "Dark",
+        "bp": 90,
+        "category": "Special"
+    },
+    "SCAM": {
+        "id": "SCAM",
+        "name": "Scam",
+        "type": "Dark",
+        "bp": 70,
+        "category": "Special"
+    },
+    "SCARRINGSWING": {
+        "id": "SCARRINGSWING",
+        "name": "Scarring Swing",
+        "type": "Dark",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "SEVER": {
+        "id": "SEVER",
+        "name": "Sever",
+        "type": "Dark",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "SPIKYBURST": {
+        "id": "SPIKYBURST",
+        "name": "Spiky Burst",
+        "type": "Dark",
+        "bp": 300,
+        "category": "Physical"
+    },
+    "SPOTTING": {
+        "id": "SPOTTING",
+        "name": "Spotting",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "STAREDOWN": {
+        "id": "STAREDOWN",
+        "name": "Stare Down",
+        "type": "Dark",
+        "bp": 100,
+        "category": "Special"
+    },
+    "SWEETSELENE": {
+        "id": "SWEETSELENE",
+        "name": "Sweet Selene",
+        "type": "Dark",
+        "bp": 0,
+        "category": "Status"
+    },
+    "TEASE": {
+        "id": "TEASE",
+        "name": "Tease",
+        "type": "Dark",
+        "bp": 60,
+        "category": "Special"
+    },
+    "VERMINCLOUD": {
+        "id": "VERMINCLOUD",
+        "name": "Vermin Cloud",
+        "type": "Dark",
+        "bp": 100,
+        "category": "Physical"
+    },
+    "WETWORK": {
+        "id": "WETWORK",
+        "name": "Wet Work",
+        "type": "Dark",
+        "bp": 90,
+        "category": "Physical"
+    },
+    "BALEFULBOP": {
+        "id": "BALEFULBOP",
+        "name": "Baleful Bop",
+        "type": "Fairy",
+        "bp": 65,
+        "category": "Special"
+    },
+    "BASHANDBORROW": {
+        "id": "BASHANDBORROW",
+        "name": "Bash and Borrow",
+        "type": "Fairy",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "BEDTIME": {
+        "id": "BEDTIME",
+        "name": "Bed Time",
+        "type": "Fairy",
+        "bp": 0,
+        "category": "Status"
+    },
+    "BUCKETDROP": {
+        "id": "BUCKETDROP",
+        "name": "Bucket Drop",
+        "type": "Fairy",
+        "bp": 70,
+        "category": "Physical"
+    },
+    "CRUELKISS": {
+        "id": "CRUELKISS",
+        "name": "Cruel Kiss",
+        "type": "Fairy",
+        "bp": 65,
+        "category": "Special"
+    },
+    "DREAMDANCE": {
+        "id": "DREAMDANCE",
+        "name": "Dream Dance",
+        "type": "Fairy",
+        "bp": 0,
+        "category": "Status"
+    },
+    "EAGERTICKLING": {
+        "id": "EAGERTICKLING",
+        "name": "Eager Tickling",
+        "type": "Fairy",
+        "bp": 40,
+        "category": "Physical"
+    },
+    "EMOTIONALDELUGE": {
+        "id": "EMOTIONALDELUGE",
+        "name": "Emotional Deluge",
+        "type": "Fairy",
+        "bp": 70,
+        "category": "Physical"
+    },
+    "ENCHANTEDARROW": {
+        "id": "ENCHANTEDARROW",
+        "name": "Enchanted Arrow",
+        "type": "Fairy",
+        "bp": 90,
+        "category": "Special"
+    },
+    "ENCHANTINGSONG": {
+        "id": "ENCHANTINGSONG",
+        "name": "Enchanting Song",
+        "type": "Fairy",
+        "bp": 80,
+        "category": "Special"
+    },
+    "FLORALGRAMARYE": {
+        "id": "FLORALGRAMARYE",
+        "name": "Floral Gramarye",
+        "type": "Fairy",
+        "bp": 0,
+        "category": "Status"
+    },
+    "FOOL": {
+        "id": "FOOL",
+        "name": "Fool",
+        "type": "Fairy",
+        "bp": 50,
+        "category": "Special"
+    },
+    "FROLIC": {
+        "id": "FROLIC",
+        "name": "Frolic",
+        "type": "Fairy",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "GLAMOURFLASH": {
+        "id": "GLAMOURFLASH",
+        "name": "Glamour Flash",
+        "type": "Fairy",
+        "bp": 40,
+        "category": "Special"
+    },
+    "GLITTERBOMB": {
+        "id": "GLITTERBOMB",
+        "name": "Glitter Bomb",
+        "type": "Fairy",
+        "bp": 45,
+        "category": "Physical"
+    },
+    "HEARTRHYTHM": {
+        "id": "HEARTRHYTHM",
+        "name": "Heart Rhythm",
+        "type": "Fairy",
+        "bp": 60,
+        "category": "Special"
+    },
+    "HUMBLE": {
+        "id": "HUMBLE",
+        "name": "Humble",
+        "type": "Fairy",
+        "bp": 85,
+        "category": "Physical"
+    },
+    "ILLWISHES": {
+        "id": "ILLWISHES",
+        "name": "Ill Wishes",
+        "type": "Fairy",
+        "bp": 0,
+        "category": "Status"
+    },
+    "INFINITEFORCE": {
+        "id": "INFINITEFORCE",
+        "name": "Infinite Force",
+        "type": "Fairy",
+        "bp": 130,
+        "category": "Physical"
+    },
+    "INNOCENTMASQUE": {
+        "id": "INNOCENTMASQUE",
+        "name": "Innocent Masque",
+        "type": "Fairy",
+        "bp": 0,
+        "category": "Status"
+    },
+    "INVITEMOONGLOW": {
+        "id": "INVITEMOONGLOW",
+        "name": "Invite Moonglow",
+        "type": "Fairy",
+        "bp": 0,
+        "category": "Status"
+    },
+    "MANYBLESSINGS": {
+        "id": "MANYBLESSINGS",
+        "name": "Many Blessings",
+        "type": "Fairy",
+        "bp": 0,
+        "category": "Status"
+    },
+    "MISADVENTURE": {
+        "id": "MISADVENTURE",
+        "name": "Misadventure",
+        "type": "Fairy",
+        "bp": 80,
+        "category": "Physical"
+    },
+    "MISHAP": {
+        "id": "MISHAP",
+        "name": "Mishap",
+        "type": "Fairy",
+        "bp": 50,
+        "category": "Physical"
+    },
+    "MISTBURST": {
+        "id": "MISTBURST",
+        "name": "Mist Burst",
+        "type": "Fairy",
+        "bp": 130,
+        "category": "Special"
+    },
+    "MOONGLOW": {
+        "id": "MOONGLOW",
+        "name": "Moonglow",
+        "type": "Fairy",
+        "bp": 0,
+        "category": "Status"
+    },
+    "MORNINGSTAR": {
+        "id": "MORNINGSTAR",
+        "name": "Morningstar",
+        "type": "Fairy",
+        "bp": 115,
+        "category": "Physical"
+    },
+    "PIXIEPUNCH": {
+        "id": "PIXIEPUNCH",
+        "name": "Pixie Punch",
+        "type": "Fairy",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "PLAYBITE": {
+        "id": "PLAYBITE",
+        "name": "Play Bite",
+        "type": "Fairy",
+        "bp": 60,
+        "category": "Physical"
+    },
+    "PUZZLEROOM": {
+        "id": "PUZZLEROOM",
+        "name": "Puzzle Room",
+        "type": "Fairy",
+        "bp": 0,
+        "category": "Status"
+    },
+    "SUGARBALL": {
+        "id": "SUGARBALL",
+        "name": "Sugar Ball",
+        "type": "Fairy",
+        "bp": 1,
+        "category": "Special"
+    },
+    "SUPERSTITION": {
+        "id": "SUPERSTITION",
+        "name": "Superstition",
+        "type": "Fairy",
+        "bp": 80,
+        "category": "Special"
+    },
+    "TANTRUM": {
+        "id": "TANTRUM",
+        "name": "Tantrum",
+        "type": "Fairy",
+        "bp": 120,
+        "category": "Physical"
+    },
+    "TRANQUILTUNE": {
+        "id": "TRANQUILTUNE",
+        "name": "Tranquil Tune",
+        "type": "Fairy",
+        "bp": 0,
+        "category": "Status"
+    },
+    "TRUENAME": {
+        "id": "TRUENAME",
+        "name": "True Name",
+        "type": "Fairy",
+        "bp": 100,
+        "category": "Special"
+    },
+    "WARDPRESS": {
+        "id": "WARDPRESS",
+        "name": "Ward Press",
+        "type": "Fairy",
+        "bp": 80,
+        "category": "Special"
+    },
+    "WAXINGLIGHT": {
+        "id": "WAXINGLIGHT",
+        "name": "Waxing Light",
+        "type": "Fairy",
+        "bp": 75,
+        "category": "Special"
+    },
+    "MUTATE": {
+        "id": "MUTATE",
+        "name": "Mutate",
+        "type": "Mutant",
+        "bp": 0,
+        "category": "Status"
+    }
+}

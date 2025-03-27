@@ -281,23 +281,29 @@ const PokemonDamageCalculator: NextPage = () => {
                                         {pokemonSelect("player")}
                                         {pokemonStats("player")}
                                         {/* Move selection */}
-                                        <div className="text-center">
-                                            <label className="block text-sm font-medium text-gray-300 mb-2">Move</label>
-                                            <select
-                                                className="w-full px-4 py-2 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
-                                                value={playerMove.id}
-                                                onChange={(e) => setPlayerMove(moves[e.target.value] || nullPokemon)}
-                                            >
-                                                <option value="" className="bg-gray-800">
-                                                    Select Move
-                                                </option>
-                                                {Object.values(moves).map((p) => (
-                                                    <option key={p.id} value={p.id} className="bg-gray-800">
-                                                        {p.name}
+                                        {!isNull(playerPokemon) && (
+                                            <div className="text-center">
+                                                <label className="block text-sm font-medium text-gray-300 mb-2">
+                                                    Move
+                                                </label>
+                                                <select
+                                                    className="w-full px-4 py-2 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
+                                                    value={playerMove.id}
+                                                    onChange={(e) =>
+                                                        setPlayerMove(moves[e.target.value] || nullPokemon)
+                                                    }
+                                                >
+                                                    <option value="" className="bg-gray-800">
+                                                        Select Move
                                                     </option>
-                                                ))}
-                                            </select>
-                                        </div>
+                                                    {playerPokemon.moves.map((p) => (
+                                                        <option key={p.id} value={p.id} className="bg-gray-800">
+                                                            {p.name}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                            </div>
+                                        )}
                                         {/* Move details */}
                                         {!isNull(playerMove) && (
                                             <div className="bg-gray-700 p-4 rounded-lg border border-gray-600">
