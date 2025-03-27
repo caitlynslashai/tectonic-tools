@@ -308,6 +308,9 @@ const PokemonDamageCalculator: NextPage = () => {
                                                 <p>
                                                     <strong>BP:</strong> {playerMove.bp}
                                                 </p>
+                                                <p>
+                                                    <strong>Category:</strong> {playerMove.category}
+                                                </p>
                                             </div>
                                         </div>
                                     )}
