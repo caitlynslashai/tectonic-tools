@@ -6,6 +6,7 @@ export const moves: Record<string, Move> = {
         name: "Test Move",
         type: "Normal",
         bp: 80,
+        category: "Physical",
     },
 };
 
@@ -14,4 +15,5 @@ export const nullMove: Move = {
     name: "",
     type: "Normal",
     bp: 0,
+    category: "Status",
 };

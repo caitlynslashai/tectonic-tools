@@ -33,12 +33,6 @@ const PokemonDamageCalculator: NextPage = () => {
     const [opponentStylePoints, setOpponentStylePoints] = useState<StylePoints>(blankStylePoints);
     const [opponentCalculatedStats, setOpponentCalculatedStats] = useState<Stats>(blankStats);
 
-    const [fieldEffects, setFieldEffects] = useState({
-        weather: "none",
-        terrain: "none",
-        otherModifiers: 1,
-    });
-
     type Side = "player" | "opponent";
 
     const getPokemon = {
@@ -120,6 +114,10 @@ const PokemonDamageCalculator: NextPage = () => {
         return Math.floor(((base * 2.0 + sv * styleValueMult(level) * stylishMult) * pseudoLevel) / 100.0 + 5.0);
     }
 
+    function isReadyToCalculate() {
+        return !isNull(playerPokemon) && !isNull(opponentPokemon) && !isNull(playerMove);
+    }
+
     function handleLevel(level: number, side: Side) {
         setLevel[side](level);
         const baseStats = getPokemon[side].stats;
@@ -159,8 +157,19 @@ const PokemonDamageCalculator: NextPage = () => {
 
     // This would be replaced with your actual damage calculation logic
     const calculateDamage = () => {
-        // Placeholder for your damage calculation
-        return { minDamage: 0, maxDamage: 0, percentage: "0%" };
+        const attackingStat = playerMove.category === "Physical" ? "attack" : "spatk";
+        const defendingStat = playerMove.category === "Physical" ? "defense" : "spdef";
+        const pseudoLevel = 15 + playerLevel / 2;
+        const levelMultiplier = 2 + 0.4 * pseudoLevel;
+        const damage =
+            2 +
+            Math.floor(
+                (levelMultiplier * playerMove.bp * playerCalculatedStats[attackingStat]) /
+                    opponentCalculatedStats[defendingStat] /
+                    50
+            );
+        const percentage = damage / opponentCalculatedStats.hp;
+        return { damage, percentage };
     };
 
     const damageResult = calculateDamage();
@@ -247,8 +256,7 @@ const PokemonDamageCalculator: NextPage = () => {
             <div className="max-w-7xl mx-auto px-4">
                 {/* Centered title with dark mode text */}
                 <div className="text-center mb-8">
-                    <h1 className="text-3xl font-bold text-blue-400">Pokémon Damage Calculator</h1>
-                    <p className="text-gray-400 mt-2">Calculate damage between Pokémon in various battle conditions</p>
+                    <h1 className="text-3xl font-bold text-blue-400">Pokémon Tectonic Damage Calculator</h1>
                 </div>
 
                 {/* Calculator container with dark background */}
@@ -313,45 +321,23 @@ const PokemonDamageCalculator: NextPage = () => {
                                 </h2>
 
                                 <div className="space-y-4 max-w-xs mx-auto">
-                                    <div className="text-center">
-                                        <label className="block text-sm font-medium text-gray-300 mb-1">Weather</label>
-                                        <select
-                                            className="w-full px-4 py-2 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-purple-500 focus:border-purple-500 text-center"
-                                            value={fieldEffects.weather}
-                                            onChange={(e) =>
-                                                setFieldEffects({ ...fieldEffects, weather: e.target.value })
-                                            }
-                                        >
-                                            <option value="none" className="bg-gray-800">
-                                                None
-                                            </option>
-                                            <option value="sun" className="bg-gray-800">
-                                                Harsh Sunlight
-                                            </option>
-                                            <option value="rain" className="bg-gray-800">
-                                                Rain
-                                            </option>
-                                            <option value="sand" className="bg-gray-800">
-                                                Sandstorm
-                                            </option>
-                                            <option value="hail" className="bg-gray-800">
-                                                Hail
-                                            </option>
-                                        </select>
-                                    </div>
+                                    <div className="text-center"></div>
 
                                     {/* Damage Results - Dark Card */}
-                                    <div className="mt-8 p-4 bg-gray-700 rounded-lg border border-gray-600 text-center">
-                                        <h3 className="font-medium text-lg text-white">Damage Results</h3>
-                                        <div className="mt-2">
-                                            <p className="text-2xl font-bold text-green-400">
-                                                {damageResult.minDamage} - {damageResult.maxDamage}
-                                            </p>
-                                            <p className="text-gray-400">
-                                                ({damageResult.percentage} of opponent&apos;s HP)
-                                            </p>
+                                    {isReadyToCalculate() && (
+                                        <div className="mt-8 p-4 bg-gray-700 rounded-lg border border-gray-600 text-center">
+                                            <h3 className="font-medium text-lg text-white">Damage Results</h3>
+                                            <div className="mt-2">
+                                                <p className="text-2xl font-bold text-green-400">
+                                                    {damageResult.damage}
+                                                </p>
+                                                <p className="text-gray-400">
+                                                    ({(damageResult.percentage * 100).toFixed(2) + "%"} of
+                                                    opponent&apos;s HP)
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
+                                    )}
                                 </div>
                             </div>
 
