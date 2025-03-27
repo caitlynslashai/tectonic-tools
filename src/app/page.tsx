@@ -207,7 +207,8 @@ const PokemonDamageCalculator: NextPage = () => {
             damage = 0;
         }
         const percentage = damage / opponentCalculatedStats.hp;
-        return { damage, percentage, typeEffectMult };
+        const hits = Math.ceil(1 / percentage);
+        return { damage, percentage, typeEffectMult, hits };
     }
 
     const damageResult = calculateDamage();
@@ -382,6 +383,7 @@ const PokemonDamageCalculator: NextPage = () => {
                                                         {(damageResult.percentage * 100).toFixed(2)}% of opponent&apos;s
                                                         HP
                                                     </p>
+                                                    <p className="text-gray-300">{damageResult.hits} hits to KO</p>
                                                     {/* Effectiveness message */}
                                                     {damageResult.typeEffectMult === 4 && (
                                                         <p className="text-pink-400 font-bold">Hyper Effective!</p>
