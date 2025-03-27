@@ -206,9 +206,10 @@ const PokemonDamageCalculator: NextPage = () => {
 
     function pokemonStats(side: Side) {
         return !isNull(getPokemon[side]) ? (
-            <>
+            <div className="space-y-6">
+                {/* Level input */}
                 <div className="text-center">
-                    <label className="block text-sm font-medium text-gray-300 mb-1">Level</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">Level</label>
                     <input
                         type="number"
                         min="1"
@@ -219,39 +220,40 @@ const PokemonDamageCalculator: NextPage = () => {
                     />
                 </div>
 
-                <div className="mt-4">
-                    <h3 className="text-sm font-medium text-gray-300 mb-2 text-center">Stats</h3>
-                    <div className="grid grid-cols-2 gap-4">
+                {/* Stats with perfect alignment */}
+                <div>
+                    <h3 className="text-sm font-medium text-gray-300 mb-3 text-center">Stats</h3>
+                    <div className="space-y-3">
                         {safeKeys(getPokemon[side].stats).map((statName) => {
                             const styleName = styleFromStat(statName);
                             return (
-                                <div key={statName} className="flex justify-between items-center">
-                                    <span className="text-gray-300">{statName.toUpperCase()}</span>
-                                    <div className="flex items-center space-x-2">
-                                        <span className="text-gray-400">{getCalculatedStats[side][statName]}</span>
-                                        <input
-                                            type="number"
-                                            min="0"
-                                            max="20"
-                                            className="w-16 px-2 py-1 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
-                                            value={getStylePoints[side][styleName]}
-                                            onChange={(e) =>
-                                                handleStylePoints(
-                                                    {
-                                                        ...getStylePoints[side],
-                                                        [styleName]: parseInt(e.target.value) || 0,
-                                                    },
-                                                    side
-                                                )
-                                            }
-                                        />
-                                    </div>
+                                <div key={statName} className="flex items-center justify-between px-2">
+                                    <span className="text-gray-300 w-16 text-right">{statName.toUpperCase()}</span>
+                                    <span className="text-gray-400 w-12 text-center">
+                                        {getCalculatedStats[side][statName]}
+                                    </span>
+                                    <input
+                                        type="number"
+                                        min="0"
+                                        max="20"
+                                        className="w-16 px-2 py-1 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
+                                        value={getStylePoints[side][styleName]}
+                                        onChange={(e) =>
+                                            handleStylePoints(
+                                                {
+                                                    ...getStylePoints[side],
+                                                    [styleName]: parseInt(e.target.value) || 0,
+                                                },
+                                                side
+                                            )
+                                        }
+                                    />
                                 </div>
                             );
                         })}
                     </div>
                 </div>
-            </>
+            </div>
         ) : (
             ""
         );
@@ -260,29 +262,27 @@ const PokemonDamageCalculator: NextPage = () => {
     return (
         <div className="min-h-screen bg-gray-900 py-8">
             <div className="max-w-7xl mx-auto px-4">
-                {/* Centered title with dark mode text */}
-                <div className="text-center mb-8">
-                    <h1 className="text-3xl font-bold text-blue-400">Pokémon Tectonic Damage Calculator</h1>
+                {/* Centered title */}
+                <div className="text-center mb-10">
+                    <h1 className="text-3xl font-bold text-blue-400 mb-2">Pokémon Tectonic Damage Calculator</h1>
                 </div>
 
-                {/* Calculator container with dark background */}
+                {/* Calculator container */}
                 <div className="flex justify-center">
-                    <div className="w-full max-w-5xl bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700">
+                    <div className="w-full max-w-6xl bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700">
                         <div className="flex flex-col md:flex-row">
-                            {/* Player's Pokemon Section - Dark Blue */}
+                            {/* Player's Pokemon Section - Perfectly centered */}
                             <div className="flex-1 p-6 bg-gray-800 border-b md:border-b-0 md:border-r border-gray-700">
-                                <h2 className="text-xl font-semibold mb-4 text-blue-400 text-center">Your Pokémon</h2>
-
-                                <div className="space-y-4 max-w-xs mx-auto">
-                                    {pokemonSelect("player")}
-                                    {pokemonStats("player")}
-                                    {!isNull(playerPokemon) && (
-                                        <>
-                                            <div className="text-center">
-                                                <label className="block text-sm font-medium text-gray-300 mb-1">
-                                                    Move
-                                                </label>
-                                            </div>
+                                <div className="flex flex-col items-center">
+                                    {" "}
+                                    {/* Added centering container */}
+                                    <h2 className="text-xl font-semibold mb-6 text-blue-400">Your Pokémon</h2>
+                                    <div className="w-full max-w-xs space-y-6">
+                                        {pokemonSelect("player")}
+                                        {pokemonStats("player")}
+                                        {/* Move selection */}
+                                        <div className="text-center">
+                                            <label className="block text-sm font-medium text-gray-300 mb-2">Move</label>
                                             <select
                                                 className="w-full px-4 py-2 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
                                                 value={playerMove.id}
@@ -297,68 +297,85 @@ const PokemonDamageCalculator: NextPage = () => {
                                                     </option>
                                                 ))}
                                             </select>
-                                        </>
-                                    )}
-                                    {!isNull(playerMove) && (
-                                        <div className="mt-4">
-                                            <h3 className="text-sm font-medium text-gray-300 mb-2 text-center">
-                                                Move Details
-                                            </h3>
-                                            <div className="text-center text-gray-200">
-                                                <p>
-                                                    <strong>Name:</strong> {playerMove.name}
-                                                </p>
-                                                <p>
-                                                    <strong>Type:</strong> {playerMove.type}
-                                                </p>
-                                                <p>
-                                                    <strong>BP:</strong> {playerMove.bp}
-                                                </p>
-                                                <p>
-                                                    <strong>Category:</strong> {playerMove.category}
-                                                </p>
-                                            </div>
                                         </div>
-                                    )}
+                                        {/* Move details */}
+                                        {!isNull(playerMove) && (
+                                            <div className="bg-gray-700 p-4 rounded-lg border border-gray-600">
+                                                <h3 className="text-sm font-medium text-gray-300 mb-3 text-center">
+                                                    Move Details
+                                                </h3>
+                                                <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                                                    <div className="text-right text-gray-400">Name:</div>
+                                                    <div className="text-left text-gray-200">{playerMove.name}</div>
+                                                    <div className="text-right text-gray-400">Type:</div>
+                                                    <div className="text-left text-gray-200">{playerMove.type}</div>
+                                                    <div className="text-right text-gray-400">BP:</div>
+                                                    <div className="text-left text-gray-200">{playerMove.bp}</div>
+                                                    <div className="text-right text-gray-400">Category:</div>
+                                                    <div className="text-left text-gray-200">{playerMove.category}</div>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
 
-                            {/* Field Effects Section - Dark Gray */}
+                            {/* Results Section */}
                             <div className="flex-1 p-6 bg-gray-800 border-b md:border-b-0 md:border-x border-gray-700">
-                                <h2 className="text-xl font-semibold mb-4 text-purple-400 text-center">
-                                    Field Effects
-                                </h2>
+                                <div className="h-full flex flex-col items-center justify-center">
+                                    <h2 className="text-xl font-semibold mb-6 text-purple-400">Battle Results</h2>
 
-                                <div className="space-y-4 max-w-xs mx-auto">
-                                    <div className="text-center"></div>
-
-                                    {/* Damage Results - Dark Card */}
-                                    {isReadyToCalculate() && (
-                                        <div className="mt-8 p-4 bg-gray-700 rounded-lg border border-gray-600 text-center">
-                                            <h3 className="font-medium text-lg text-white">Damage Results</h3>
-                                            <div className="mt-2">
-                                                <p className="text-2xl font-bold text-green-400">
-                                                    {damageResult.damage}
-                                                </p>
-                                                <p className="text-gray-400">
-                                                    ({(damageResult.percentage * 100).toFixed(2) + "%"} of
-                                                    opponent&apos;s HP)
-                                                </p>
+                                    {isReadyToCalculate() ? (
+                                        <div className="w-full max-w-xs">
+                                            <div className="bg-gray-700 p-6 rounded-lg border border-gray-600 text-center">
+                                                <h3 className="font-medium text-lg text-white mb-4">
+                                                    Damage Calculation
+                                                </h3>
+                                                <div className="space-y-4">
+                                                    <p className="text-3xl font-bold text-green-400">
+                                                        {damageResult.damage}
+                                                    </p>
+                                                    <p className="text-gray-300">
+                                                        {(damageResult.percentage * 100).toFixed(2)}% of opponent&apos;s
+                                                        HP
+                                                    </p>
+                                                    {/* Fixed health bar */}
+                                                    <div className="mt-4 relative">
+                                                        <div className="h-4 bg-gray-600 rounded-full overflow-hidden relative">
+                                                            <div className="absolute inset-0 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500"></div>
+                                                            <div
+                                                                className="absolute inset-0 bg-gray-800 rounded-left transition-all duration-300"
+                                                                style={{
+                                                                    left: `${
+                                                                        100 -
+                                                                        Math.min(100, damageResult.percentage * 100)
+                                                                    }%`,
+                                                                }}
+                                                            ></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
+                                        </div>
+                                    ) : (
+                                        <div className="text-center text-gray-500 p-8">
+                                            <p>Select Pokémon and moves to see damage calculation</p>
                                         </div>
                                     )}
                                 </div>
                             </div>
 
-                            {/* Opponent's Pokemon Section - Dark Red */}
+                            {/* Opponent's Pokemon Section - Perfectly centered */}
                             <div className="flex-1 p-6 bg-gray-800 border-t md:border-t-0 md:border-l border-gray-700">
-                                <h2 className="text-xl font-semibold mb-4 text-red-400 text-center">
-                                    Opponent&apos;s Pokémon
-                                </h2>
+                                <div className="flex flex-col items-center">
+                                    {" "}
+                                    {/* Added centering container */}
+                                    <h2 className="text-xl font-semibold mb-6 text-red-400">Opponent&apos;s Pokémon</h2>
+                                    <div className="w-full max-w-xs space-y-6">
+                                        {pokemonSelect("opponent")}
 
-                                <div className="space-y-4 max-w-xs mx-auto">
-                                    {pokemonSelect("opponent")}
-                                    {pokemonStats("opponent")}
+                                        {pokemonStats("opponent")}
+                                    </div>
                                 </div>
                             </div>
                         </div>
