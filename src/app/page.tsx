@@ -76,6 +76,7 @@ const PokemonDamageCalculator: NextPage = () => {
     };
 
     const DEFAULT_LEVEL = 70;
+    const STYLE_POINT_CAP = 50;
 
     function handleLoadingPokemon(pokemon: Pokemon, side: Side) {
         if (!isNull(pokemon)) {
@@ -134,6 +135,11 @@ const PokemonDamageCalculator: NextPage = () => {
     }
 
     function handleStylePoints(stylePoints: StylePoints, side: Side) {
+        const spSum = Object.values(stylePoints).reduce((total, sp) => total + sp, 0);
+        if (spSum > STYLE_POINT_CAP) {
+            alert("You can only have a maximum of 50 total style points!");
+            return;
+        }
         setStylePoints[side](stylePoints);
         const baseStats = getPokemon[side].stats;
         const level = getLevel[side];
