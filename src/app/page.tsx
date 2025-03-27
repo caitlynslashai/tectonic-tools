@@ -93,6 +93,9 @@ const PokemonDamageCalculator: NextPage = () => {
                 speed: calculateStat(baseStats.speed, level, stylePoints.speed),
             };
             setCalculatedStats[side](newStats);
+            if (side === "player") {
+                setPlayerMove(nullMove);
+            }
         }
     }
 
