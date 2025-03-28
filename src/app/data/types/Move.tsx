@@ -1,3 +1,4 @@
+import { Dispatch, ReactNode, SetStateAction } from "react";
 import { MoveCategory, PokemonType } from "./BasicData";
 import { Pokemon } from "./Pokemon";
 
@@ -10,6 +11,7 @@ export interface LoadedMove {
     target: string;
     minHits?: number;
     maxHits?: number;
+    flag?: string;
 }
 
 export type MoveTarget =
@@ -58,5 +60,11 @@ export class Move {
     public getPower(): number {
         // TODO: Implement BP variance for relevant moves
         return this.bp;
+    }
+
+    // to be extended by subclasses
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    public getInput(_: number, __: Dispatch<SetStateAction<number>>): ReactNode {
+        return <></>;
     }
 }
