@@ -1,8 +1,8 @@
 "use client";
 
 import type { NextPage } from "next";
-import { useState } from "react";
-import { CalcPokemon, calculateDamage } from "./damageCalc";
+import { ReactNode, useState } from "react";
+import { CalcPokemon, calculateDamage, DamageResult } from "./damageCalc";
 import { moves, nullMove } from "./data/moves";
 import { nullPokemon, pokemon } from "./data/pokemon";
 import { defaultStylePoints, StylePoints } from "./data/types/BasicData";
@@ -80,7 +80,6 @@ const PokemonDamageCalculator: NextPage = () => {
 
     const MIN_LEVEL = 1;
     const MAX_LEVEL = 70;
-    const DEFAULT_LEVEL = MAX_LEVEL;
     const STYLE_POINT_CAP = 50;
     const MIN_SP = 0;
     const MAX_SP = 20;
@@ -89,7 +88,7 @@ const PokemonDamageCalculator: NextPage = () => {
         if (!isNull(pokemon)) {
             setPokemon[side](pokemon);
             const baseStats = pokemon.stats;
-            const level = DEFAULT_LEVEL;
+            const level = getLevel[side];
             const stylePoints = getStylePoints[side];
             const newStats: Stats = {
                 hp: calculateHP(baseStats.hp, level, stylePoints.hp),
@@ -265,6 +264,61 @@ const PokemonDamageCalculator: NextPage = () => {
         );
     }
 
+    function printDamageNumbers(damageResult: DamageResult): ReactNode {
+        // multi-hit moves
+        if (damageResult.minTotal && damageResult.minPercentage) {
+            if (damageResult.maxTotal === damageResult.minTotal) {
+                return (
+                    <>
+                        <p className="text-3xl font-bold text-green-400">{damageResult.minTotal}</p>
+                        <p className="text-gray-300">({damageResult.damage} per hit)</p>
+                        <p className="text-gray-300">
+                            {(damageResult.minPercentage * 100).toFixed(2)}% of opponent&apos;s HP
+                        </p>
+                    </>
+                );
+            }
+            if (damageResult.maxTotal && damageResult.maxPercentage) {
+                return (
+                    <>
+                        <p className="text-3xl font-bold text-green-400">
+                            {damageResult.minTotal}-{damageResult.maxTotal}
+                        </p>
+                        <p className="text-gray-300">({damageResult.damage} per hit)</p>
+                        <p className="text-gray-300">
+                            {(damageResult.minPercentage * 100).toFixed(2)}%-
+                            {(damageResult.maxPercentage * 100).toFixed(2)}% of opponent&apos;s HP
+                        </p>
+                    </>
+                );
+            }
+        }
+        return (
+            <>
+                <p className="text-3xl font-bold text-green-400">{damageResult.damage}</p>
+                <p className="text-gray-300">{(damageResult.percentage * 100).toFixed(2)}% of opponent&apos;s HP</p>
+            </>
+        );
+    }
+
+    function printHPBar(damageResult: DamageResult): ReactNode {
+        // TODO: support variable range
+        const percentage = damageResult.minPercentage || damageResult.percentage;
+        return (
+            <div className="mt-4 relative">
+                <div className="h-4 bg-gray-600 rounded-full overflow-hidden relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500"></div>
+                    <div
+                        className="absolute inset-0 bg-gray-800 rounded-left transition-all duration-300"
+                        style={{
+                            left: `${100 - Math.min(100, percentage * 100)}%`,
+                        }}
+                    ></div>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="min-h-screen bg-gray-900 py-8">
             <div className="max-w-7xl mx-auto px-4">
@@ -352,13 +406,7 @@ const PokemonDamageCalculator: NextPage = () => {
                                                     Damage Calculation
                                                 </h3>
                                                 <div className="space-y-4">
-                                                    <p className="text-3xl font-bold text-green-400">
-                                                        {damageResult.damage}
-                                                    </p>
-                                                    <p className="text-gray-300">
-                                                        {(damageResult.percentage * 100).toFixed(2)}% of opponent&apos;s
-                                                        HP
-                                                    </p>
+                                                    {printDamageNumbers(damageResult)}
                                                     <p className="text-gray-300">{damageResult.hits} hits to KO</p>
                                                     {/* Effectiveness message */}
                                                     {damageResult.typeEffectMult === 4 && (
@@ -379,20 +427,7 @@ const PokemonDamageCalculator: NextPage = () => {
                                                         </p>
                                                     )}
                                                     {/* Fixed health bar */}
-                                                    <div className="mt-4 relative">
-                                                        <div className="h-4 bg-gray-600 rounded-full overflow-hidden relative">
-                                                            <div className="absolute inset-0 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500"></div>
-                                                            <div
-                                                                className="absolute inset-0 bg-gray-800 rounded-left transition-all duration-300"
-                                                                style={{
-                                                                    left: `${
-                                                                        100 -
-                                                                        Math.min(100, damageResult.percentage * 100)
-                                                                    }%`,
-                                                                }}
-                                                            ></div>
-                                                        </div>
-                                                    </div>
+                                                    {printHPBar(damageResult)}
                                                 </div>
                                             </div>
                                         </div>
