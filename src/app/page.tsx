@@ -2,10 +2,10 @@
 
 import type { NextPage } from "next";
 import { useState } from "react";
+import { CalcPokemon, calculateDamage } from "./damageCalc";
 import { moves, nullMove } from "./data/moves";
 import { nullPokemon, pokemon } from "./data/pokemon";
-import { typeChart } from "./data/typeChart";
-import { defaultStylePoints, PokemonType, StylePoints } from "./data/types/BasicData";
+import { defaultStylePoints, StylePoints } from "./data/types/BasicData";
 import { Move } from "./data/types/Move";
 import { blankStats, Pokemon, Stats } from "./data/types/Pokemon";
 
@@ -176,54 +176,14 @@ const PokemonDamageCalculator: NextPage = () => {
         return stat;
     }
 
-    function calculateTypeEffect(attackType: PokemonType, defendType1: PokemonType, defendType2?: PokemonType) {
-        let mult = typeChart[attackType][defendType1];
-        if (defendType2) {
-            mult *= typeChart[attackType][defendType2];
-        }
-        return mult;
-    }
+    const playerPokemonWithStats: CalcPokemon = { ...playerPokemon, stats: playerCalculatedStats, level: playerLevel };
+    const opponentPokemonWithStats: CalcPokemon = {
+        ...opponentPokemon,
+        stats: opponentCalculatedStats,
+        level: opponentLevel,
+    };
 
-    function calculateDamage() {
-        const attackingStat = playerMove.category === "Physical" ? "attack" : "spatk";
-        const defendingStat = playerMove.category === "Physical" ? "defense" : "spdef";
-
-        // calculate multipliers
-        const bpMult = 1;
-        const atkMult = 1;
-        const defMult = 1;
-        let finalMult = 1;
-        if (playerMove.isSpread() && multiBattle) {
-            finalMult *= 0.75;
-        }
-        if (playerMove.isSTAB(playerPokemon)) {
-            finalMult *= 1.5;
-        }
-        const typeEffectMult = calculateTypeEffect(playerMove.type, opponentPokemon.type1, opponentPokemon.type2);
-        finalMult *= typeEffectMult;
-
-        // stat multipliers
-        const bp = playerMove.bp * bpMult;
-        const attack = Math.max(Math.round(playerCalculatedStats[attackingStat] * atkMult), 1);
-        const defense = Math.max(Math.round(opponentCalculatedStats[defendingStat] * defMult), 1);
-
-        // basic damage
-        const pseudoLevel = 15 + playerLevel / 2;
-        const levelMultiplier = 2 + 0.4 * pseudoLevel;
-        let damage = 2 + Math.floor((levelMultiplier * bp * attack) / defense / 50);
-
-        // final multiplier
-        damage = Math.max(Math.round(damage * finalMult), 1);
-
-        if (typeEffectMult === 0) {
-            damage = 0;
-        }
-        const percentage = damage / opponentCalculatedStats.hp;
-        const hits = Math.ceil(1 / percentage);
-        return { damage, percentage, typeEffectMult, hits };
-    }
-
-    const damageResult = calculateDamage();
+    const damageResult = calculateDamage(playerMove, playerPokemonWithStats, opponentPokemonWithStats, multiBattle);
 
     function pokemonSelect(side: Side) {
         return (

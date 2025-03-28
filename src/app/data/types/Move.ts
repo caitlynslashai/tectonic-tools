@@ -52,4 +52,9 @@ export class Move {
     public isSTAB(mon: Pokemon): boolean {
         return mon.type1 === this.type || mon.type2 === this.type;
     }
+
+    public getPower(): number {
+        // TODO: Implement BP variance for relevant moves
+        return this.bp;
+    }
 }
