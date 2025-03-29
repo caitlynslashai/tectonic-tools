@@ -1,16 +1,19 @@
 "use client";
 
 import type { NextPage } from "next";
+import Image from "next/image";
 import { ReactNode, useState } from "react";
 import { CalcPokemon, calculateDamage, DamageResult } from "./damageCalc";
 import { moves, nullMove } from "./data/moves";
 import { nullPokemon, pokemon } from "./data/pokemon";
+import { nullTrainer, trainers } from "./data/trainers";
 import { defaultStylePoints, StylePoints } from "./data/types/BasicData";
 import { Move } from "./data/types/Move";
 import { blankStats, Pokemon, Stats } from "./data/types/Pokemon";
+import { Trainer } from "./data/types/Trainer";
 
-function isNull(o: Pokemon | Pokemon | Move | undefined): boolean {
-    return !o || o.id === "";
+function isNull(o: Pokemon | Pokemon | Move | Trainer | undefined): boolean {
+    return !o || o.name === "";
 }
 
 function isKey<T extends object>(k: string | number | symbol, o: T): k is keyof T {
@@ -34,6 +37,8 @@ const PokemonDamageCalculator: NextPage = () => {
     const [opponentLevel, setOpponentLevel] = useState<number>(70);
     const [opponentStylePoints, setOpponentStylePoints] = useState<StylePoints>(defaultStylePoints);
     const [opponentCalculatedStats, setOpponentCalculatedStats] = useState<Stats>(blankStats);
+
+    const [opposingTrainer, setOpposingTrainer] = useState<Trainer>(nullTrainer);
 
     const [multiBattle, setMultiBattle] = useState<boolean>(false);
 
@@ -85,25 +90,47 @@ const PokemonDamageCalculator: NextPage = () => {
     const MIN_SP = 0;
     const MAX_SP = 20;
 
+    function recalculateStats(baseStats: Stats, level: number, stylePoints: StylePoints, side: Side) {
+        const newStats: Stats = {
+            hp: calculateHP(baseStats.hp, level, stylePoints.hp),
+            attack: calculateStat(baseStats.attack, level, stylePoints.attacks),
+            defense: calculateStat(baseStats.defense, level, stylePoints.defense),
+            spatk: calculateStat(baseStats.spatk, level, stylePoints.attacks),
+            spdef: calculateStat(baseStats.spdef, level, stylePoints.spdef),
+            speed: calculateStat(baseStats.speed, level, stylePoints.speed),
+        };
+        setCalculatedStats[side](newStats);
+    }
+
     function handleLoadingPokemon(pokemon: Pokemon, side: Side) {
         if (!isNull(pokemon)) {
             setPokemon[side](pokemon);
             const baseStats = pokemon.stats;
             const level = getLevel[side];
             const stylePoints = getStylePoints[side];
-            const newStats: Stats = {
-                hp: calculateHP(baseStats.hp, level, stylePoints.hp),
-                attack: calculateStat(baseStats.attack, level, stylePoints.attacks),
-                defense: calculateStat(baseStats.defense, level, stylePoints.defense),
-                spatk: calculateStat(baseStats.spatk, level, stylePoints.attacks),
-                spdef: calculateStat(baseStats.spdef, level, stylePoints.spdef),
-                speed: calculateStat(baseStats.speed, level, stylePoints.speed),
-            };
-            setCalculatedStats[side](newStats);
+            recalculateStats(baseStats, level, stylePoints, side);
             if (side === "player") {
                 setPlayerMove(nullMove);
             }
         }
+    }
+
+    function handleLoadingTrainer(trainer_key: string) {
+        const trainer = trainers[trainer_key] || nullTrainer;
+        if (!isNull(trainer)) {
+            setOpposingTrainer(trainer);
+        }
+    }
+
+    function handleLoadingTrainerPokemon(index: number) {
+        if (index < 0) {
+            return;
+        }
+        const pokemon = opposingTrainer.pokemon[index];
+        setPokemon["opponent"](pokemon.pokemon);
+        setLevel["opponent"](pokemon.level);
+        setStylePoints["opponent"](pokemon.sp);
+        recalculateStats(pokemon.pokemon.stats, pokemon.level, pokemon.sp, "opponent");
     }
 
     function styleValueMult(level: number): number {
@@ -135,15 +162,7 @@ const PokemonDamageCalculator: NextPage = () => {
         setLevel[side](level);
         const baseStats = getPokemon[side].stats;
         const stylePoints = getStylePoints[side];
-        const newStats: Stats = {
-            hp: calculateHP(baseStats.hp, level, stylePoints.hp),
-            attack: calculateStat(baseStats.attack, level, stylePoints.attacks),
-            defense: calculateStat(baseStats.defense, level, stylePoints.defense),
-            spatk: calculateStat(baseStats.spatk, level, stylePoints.attacks),
-            spdef: calculateStat(baseStats.spdef, level, stylePoints.spdef),
-            speed: calculateStat(baseStats.speed, level, stylePoints.speed),
-        };
-        setCalculatedStats[side](newStats);
+        recalculateStats(baseStats, level, stylePoints, side);
     }
 
     function handleStylePoints(styleName: keyof StylePoints, stylePoint: number, side: Side) {
@@ -158,15 +177,7 @@ const PokemonDamageCalculator: NextPage = () => {
         setStylePoints[side](stylePoints);
         const baseStats = getPokemon[side].stats;
         const level = getLevel[side];
-        const newStats: Stats = {
-            hp: calculateHP(baseStats.hp, level, stylePoints.hp),
-            attack: calculateStat(baseStats.attack, level, stylePoints.attacks),
-            defense: calculateStat(baseStats.defense, level, stylePoints.defense),
-            spatk: calculateStat(baseStats.spatk, level, stylePoints.attacks),
-            spdef: calculateStat(baseStats.spdef, level, stylePoints.spdef),
-            speed: calculateStat(baseStats.speed, level, stylePoints.speed),
-        };
-        setCalculatedStats[side](newStats);
+        recalculateStats(baseStats, level, stylePoints, side);
     }
 
     function styleFromStat(stat: keyof Stats): keyof StylePoints {
@@ -188,6 +199,30 @@ const PokemonDamageCalculator: NextPage = () => {
     function pokemonSelect(side: Side) {
         return (
             <>
+                {!isNull(getPokemon[side]) && (
+                    <div className="flex justify-center mb-4">
+                        {
+                            // this is a stupid solution but it iddn't work if i had the ternary in the className
+                            side === "player" ? (
+                                <Image
+                                    src={"/Pokemon/" + getPokemon[side].id + ".png"}
+                                    alt={getPokemon[side].name}
+                                    height="160"
+                                    width="160"
+                                    className="w-24 h-24 scale-x-[-1]"
+                                />
+                            ) : (
+                                <Image
+                                    src={"/Pokemon/" + getPokemon[side].id + ".png"}
+                                    alt={getPokemon[side].name}
+                                    height="160"
+                                    width="160"
+                                    className="w-24 h-24"
+                                />
+                            )
+                        }
+                    </div>
+                )}
                 <div className="text-center">
                     <label className="block text-sm font-medium text-gray-300 mb-1">Pokémon</label>
                 </div>
@@ -463,6 +498,81 @@ const PokemonDamageCalculator: NextPage = () => {
                                         {pokemonSelect("opponent")}
 
                                         {pokemonStats("opponent")}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Trainer Pokemon Section - Perfectly centered */}
+                            <div className="flex-1 p-6 bg-gray-800 border-t md:border-t-0 md:border-l border-gray-700">
+                                <div className="flex flex-col items-center">
+                                    {" "}
+                                    {/* Added centering container */}
+                                    <h2 className="text-xl font-semibold mb-6 text-red-400">Trainer Pokémon</h2>
+                                    <div className="w-full max-w-xs space-y-6">
+                                        {!isNull(opposingTrainer) && (
+                                            <div className="flex justify-center mb-4">
+                                                <Image
+                                                    src={"/Trainers/" + opposingTrainer.class + ".png"}
+                                                    alt={opposingTrainer.displayName()}
+                                                    height="160"
+                                                    width="160"
+                                                    className="w-24 h-24"
+                                                />
+                                            </div>
+                                        )}
+                                        <div className="text-center">
+                                            <label className="block text-sm font-medium text-gray-300 mb-1">
+                                                Trainer
+                                            </label>
+                                        </div>
+                                        <select
+                                            className="w-full px-4 py-2 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
+                                            value={opposingTrainer.key()}
+                                            onChange={(e) => handleLoadingTrainer(e.target.value)}
+                                        >
+                                            <option value="" className="bg-gray-800">
+                                                Select Trainer
+                                            </option>
+                                            {Object.values(trainers).map((t) => (
+                                                <option key={t.key()} value={t.key()} className="bg-gray-800">
+                                                    {t.displayName()}
+                                                </option>
+                                            ))}
+                                        </select>
+                                        {!isNull(opposingTrainer) && (
+                                            <>
+                                                <div className="text-center">
+                                                    <label className="block text-sm font-medium text-gray-300 mb-1">
+                                                        Trainer Pokémon
+                                                    </label>
+                                                </div>
+                                                <div className="space-y-4">
+                                                    {opposingTrainer.pokemon.map((p, i) => (
+                                                        <div
+                                                            key={i}
+                                                            className="bg-gray-700 p-4 rounded-lg border border-gray-600 flex justify-between items-center"
+                                                        >
+                                                            <div>
+                                                                <p className="text-gray-200 font-medium">
+                                                                    {p.nickname
+                                                                        ? p.nickname + " (" + p.pokemon.name + ")"
+                                                                        : p.pokemon.name}
+                                                                </p>
+                                                                <p className="text-gray-400 text-sm">
+                                                                    Level: {p.level}
+                                                                </p>
+                                                            </div>
+                                                            <button
+                                                                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 focus:ring-2 focus:ring-blue-400"
+                                                                onClick={() => handleLoadingTrainerPokemon(i)}
+                                                            >
+                                                                Set Active
+                                                            </button>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </>
+                                        )}
                                     </div>
                                 </div>
                             </div>
