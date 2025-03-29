@@ -365,7 +365,7 @@ const PokemonDamageCalculator: NextPage = () => {
 
                 {/* Calculator container */}
                 <div className="flex justify-center">
-                    <div className="w-full max-w-6xl bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700">
+                    <div className="w-full max-w-8xl bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700">
                         <div className="flex flex-col md:flex-row">
                             {/* Player's Pokemon Section - Perfectly centered */}
                             <div className="flex-1 p-6 bg-gray-800 border-b md:border-b-0 md:border-r border-gray-700">
