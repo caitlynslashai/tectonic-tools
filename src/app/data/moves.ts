@@ -1,4 +1,5 @@
 import loadedMoves from "public/data/moves.json";
+import { DesperationMove, desperationMoves } from "./moves/DesperationMove";
 import { FacadeMove, facadeMoves } from "./moves/FacadeMove";
 import { MultiHitMove, multiHitMoves } from "./moves/MultiHitMove";
 import { StackingMove, stackingMoves } from "./moves/StackingMove";
@@ -14,6 +15,9 @@ function loadMove(move: LoadedMove): Move {
     }
     if (facadeMoves.includes(move.id)) {
         return new FacadeMove(move);
+    }
+    if (desperationMoves.includes(move.id)) {
+        return new DesperationMove(move);
     }
     return new Move(move);
 }
