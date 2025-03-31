@@ -5,6 +5,10 @@ export const multiHitMoves = {
         minHits: 2,
         maxHits: 2,
     },
+    FURYSWIPES: {
+        minHits: 2,
+        maxHits: 5,
+    },
 };
 
 interface LoadedMultiHitMove extends LoadedMove {

@@ -423,8 +423,28 @@ const PokemonDamageCalculator: NextPage = () => {
     }
 
     function printHPBar(damageResult: DamageResult): ReactNode {
-        // TODO: support variable range
         const percentage = damageResult.minPercentage || damageResult.percentage;
+        if (damageResult.maxPercentage && damageResult.maxPercentage !== damageResult.minPercentage) {
+            return (
+                <div className="mt-4 relative">
+                    <div className="h-4 bg-gray-600 rounded-full overflow-hidden relative">
+                        <div className="absolute inset-0 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500"></div>
+                        <div
+                            className="absolute inset-0 bg-gray-800 rounded-left transition-all duration-300"
+                            style={{
+                                left: `${100 - Math.min(100, percentage * 100)}%`,
+                            }}
+                        ></div>
+                        <div
+                            className="absolute inset-0 bg-gray-800 rounded-left transition-all duration-300 opacity-80"
+                            style={{
+                                left: `${100 - Math.min(100, damageResult.maxPercentage * 100)}%`,
+                            }}
+                        ></div>
+                    </div>
+                </div>
+            );
+        }
         return (
             <div className="mt-4 relative">
                 <div className="h-4 bg-gray-600 rounded-full overflow-hidden relative">
