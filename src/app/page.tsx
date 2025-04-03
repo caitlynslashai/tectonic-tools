@@ -3,6 +3,12 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import { ReactNode, useState } from "react";
+import Checkbox from "./components/Checkbox";
+import Column from "./components/Column";
+import ColumnBody from "./components/ColumnBody";
+import ColumnHeader from "./components/ColumnHeader";
+import Dropdown from "./components/DropDown";
+import InputLabel from "./components/InputLabel";
 import { CalcPokemon, calculateDamage, DamageResult } from "./damageCalc";
 import { defaultStylePoints, StylePoints } from "./data/basicData";
 import { moves, nullMove } from "./data/moves";
@@ -268,7 +274,7 @@ const PokemonDamageCalculator: NextPage = () => {
                 {!isNull(getPokemon[side]) && (
                     <div className="flex justify-center mb-4">
                         {
-                            // this is a stupid solution but it iddn't work if i had the ternary in the className
+                            // this is a stupid solution but it didn't work if i had the ternary in the className
                             side === "player" ? (
                                 <Image
                                     src={"/Pokemon/" + getPokemon[side].id + ".png"}
@@ -290,10 +296,9 @@ const PokemonDamageCalculator: NextPage = () => {
                     </div>
                 )}
                 <div className="text-center">
-                    <label className="block text-sm font-medium text-gray-300 mb-1">Pokémon</label>
+                    <InputLabel>Pokémon</InputLabel>
                 </div>
-                <select
-                    className="w-full px-4 py-2 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
+                <Dropdown
                     value={getPokemon[side].id}
                     onChange={(e) => handleLoadingPokemon(pokemon[e.target.value] || nullPokemon, side)}
                 >
@@ -305,7 +310,7 @@ const PokemonDamageCalculator: NextPage = () => {
                             {p.name}
                         </option>
                     ))}
-                </select>
+                </Dropdown>
             </>
         );
     }
@@ -322,7 +327,7 @@ const PokemonDamageCalculator: NextPage = () => {
 
                 {/* Level input */}
                 <div className="text-center">
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Level</label>
+                    <InputLabel>Level</InputLabel>
                     <input
                         type="number"
                         min={MIN_LEVEL}
@@ -335,9 +340,8 @@ const PokemonDamageCalculator: NextPage = () => {
 
                 {/* Status input */}
                 <div className="text-center">
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Status Effect</label>
-                    <select
-                        className="w-full px-4 py-2 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
+                    <InputLabel>Status Effect</InputLabel>
+                    <Dropdown
                         value={getStatusEffect[side]}
                         onChange={(e) => handleStatusEffect(e.target.value as StatusEffect, side)}
                     >
@@ -349,10 +353,10 @@ const PokemonDamageCalculator: NextPage = () => {
                                 {s}
                             </option>
                         ))}
-                    </select>
+                    </Dropdown>
                 </div>
 
-                {/* Stats with perfect alignment */}
+                {/* Stats */}
                 <div>
                     <h3 className="text-sm font-medium text-gray-300 mb-3 text-center">Stats</h3>
                     <div className="space-y-3">
@@ -472,227 +476,186 @@ const PokemonDamageCalculator: NextPage = () => {
                 <div className="flex justify-center">
                     <div className="w-full max-w-8xl bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700">
                         <div className="flex flex-col md:flex-row">
-                            {/* Player's Pokemon Section - Perfectly centered */}
-                            <div className="flex-1 p-6 bg-gray-800 border-b md:border-b-0 md:border-r border-gray-700">
-                                <div className="flex flex-col items-center">
-                                    {" "}
-                                    {/* Added centering container */}
-                                    <h2 className="text-xl font-semibold mb-6 text-blue-400">Your Pokémon</h2>
-                                    <div className="w-full max-w-xs space-y-6">
-                                        {pokemonSelect("player")}
-                                        {pokemonStats("player")}
-                                        {/* Move selection */}
-                                        {!isNull(playerPokemon) && (
-                                            <div className="text-center">
-                                                <label className="block text-sm font-medium text-gray-300 mb-2">
-                                                    Move
-                                                </label>
-                                                <select
-                                                    className="w-full px-4 py-2 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
-                                                    value={playerMove.id}
-                                                    onChange={(e) =>
-                                                        setPlayerMove(moves[e.target.value] || nullPokemon)
-                                                    }
-                                                >
-                                                    <option value="" className="bg-gray-800">
-                                                        Select Move
-                                                    </option>
-                                                    {playerPokemon.moves
-                                                        .filter((m) => m.bp > 0)
-                                                        .map((m) => (
-                                                            <option
-                                                                key={m.id}
-                                                                value={m.id}
-                                                                className={`bg-gray-800 ${
-                                                                    m.isSTAB(playerPokemon)
-                                                                        ? "font-bold text-blue-400"
-                                                                        : ""
-                                                                }`}
-                                                            >
-                                                                {m.name}
-                                                            </option>
-                                                        ))}
-                                                </select>
-                                            </div>
-                                        )}
-                                        {/* Move details */}
-                                        {!isNull(playerMove) && (
-                                            <div className="bg-gray-700 p-4 rounded-lg border border-gray-600">
-                                                {playerMove.getInput(customMoveVar, setCustomMoveVar)}
-                                                <label className="flex items-center justify-center space-x-3">
-                                                    <input
-                                                        type="checkbox"
-                                                        checked={criticalHit}
-                                                        className="form-checkbox h-5 w-5 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500"
-                                                        disabled={getStatusEffect["opponent"] === "Jinx"}
-                                                        onChange={() => handleCriticalHit(!criticalHit)}
-                                                    />
-                                                    <span className="text-gray-300">Critical Hit</span>
-                                                </label>
-                                                <h3 className="text-sm font-medium text-gray-300 mb-3 text-center">
-                                                    Move Details
-                                                </h3>
-                                                <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-                                                    <div className="text-right text-gray-400">Type:</div>
-                                                    <div className="text-left text-gray-200">{playerMove.type}</div>
-                                                    <div className="text-right text-gray-400">Power:</div>
-                                                    <div className="text-left text-gray-200">
-                                                        {playerMove.getPower(playerPokemonWithStats)}
-                                                    </div>
-                                                    <div className="text-right text-gray-400">Category:</div>
-                                                    <div className="text-left text-gray-200">
-                                                        {getMoveCategory(playerMove)}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Results Section */}
-                            <div className="flex-1 p-6 bg-gray-800 border-b md:border-b-0 md:border-x border-gray-700">
-                                <div className="h-full flex flex-col items-center justify-center">
-                                    {isReadyToCalculate() ? (
-                                        <div className="w-full max-w-xs">
-                                            <div className="bg-gray-700 p-6 rounded-lg border border-gray-600 text-center">
-                                                <h3 className="font-medium text-lg text-white mb-4">
-                                                    Damage Calculation
-                                                </h3>
-                                                <div className="space-y-4">
-                                                    {printDamageNumbers(damageResult)}
-                                                    <p className="text-gray-300">{damageResult.hits} hits to KO</p>
-                                                    {/* Effectiveness message */}
-                                                    {damageResult.typeEffectMult === 4 && (
-                                                        <p className="text-pink-400 font-bold">Hyper Effective!</p>
-                                                    )}
-                                                    {damageResult.typeEffectMult === 2 && (
-                                                        <p className="text-green-400 font-bold">Super Effective!</p>
-                                                    )}
-                                                    {damageResult.typeEffectMult === 0.5 && (
-                                                        <p className="text-red-400 font-bold">Not Very Effective!</p>
-                                                    )}
-                                                    {damageResult.typeEffectMult === 0.25 && (
-                                                        <p className="text-gray-400 font-bold">Barely Effective!</p>
-                                                    )}
-                                                    {damageResult.typeEffectMult === 0 && (
-                                                        <p className="text-gray-500 font-bold shadow-md">
-                                                            Not Effective!
-                                                        </p>
-                                                    )}
-                                                    {/* Fixed health bar */}
-                                                    {printHPBar(damageResult)}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ) : (
-                                        <div className="text-center text-gray-500 p-8">
-                                            <p>Select Pokémon and moves to see damage calculation</p>
+                            {/* Player's Pokemon Section */}
+                            <Column>
+                                <ColumnHeader colour="text-blue-400">Your Pokémon</ColumnHeader>
+                                <ColumnBody>
+                                    {pokemonSelect("player")}
+                                    {pokemonStats("player")}
+                                    {/* Move selection */}
+                                    {!isNull(playerPokemon) && (
+                                        <div className="text-center">
+                                            <InputLabel>Move</InputLabel>
+                                            <Dropdown
+                                                value={playerMove.id}
+                                                onChange={(e) => setPlayerMove(moves[e.target.value] || nullPokemon)}
+                                            >
+                                                <option value="" className="bg-gray-800">
+                                                    Select Move
+                                                </option>
+                                                {playerPokemon.moves
+                                                    .filter((m) => m.bp > 0)
+                                                    .map((m) => (
+                                                        <option
+                                                            key={m.id}
+                                                            value={m.id}
+                                                            className={`bg-gray-800 ${
+                                                                m.isSTAB(playerPokemon) ? "font-bold text-blue-400" : ""
+                                                            }`}
+                                                        >
+                                                            {m.name}
+                                                        </option>
+                                                    ))}
+                                            </Dropdown>
                                         </div>
                                     )}
-                                    <h2 className="text-xl font-semibold mb-6 text-purple-400">Field Status</h2>
-                                    <div className="mt-6">
-                                        <label className="flex items-center space-x-3">
-                                            <input
-                                                type="checkbox"
-                                                checked={multiBattle}
-                                                className="form-checkbox h-5 w-5 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500"
-                                                onChange={() => setMultiBattle(!multiBattle)}
-                                            />
-                                            <span className="text-gray-300">Multi Battle</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Opponent's Pokemon Section - Perfectly centered */}
-                            <div className="flex-1 p-6 bg-gray-800 border-t md:border-t-0 md:border-l border-gray-700">
-                                <div className="flex flex-col items-center">
-                                    {" "}
-                                    {/* Added centering container */}
-                                    <h2 className="text-xl font-semibold mb-6 text-red-400">Opponent&apos;s Pokémon</h2>
-                                    <div className="w-full max-w-xs space-y-6">
-                                        {pokemonSelect("opponent")}
-
-                                        {pokemonStats("opponent")}
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Trainer Pokemon Section - Perfectly centered */}
-                            <div className="flex-1 p-6 bg-gray-800 border-t md:border-t-0 md:border-l border-gray-700">
-                                <div className="flex flex-col items-center">
-                                    {" "}
-                                    {/* Added centering container */}
-                                    <h2 className="text-xl font-semibold mb-6 text-red-400">Trainer Pokémon</h2>
-                                    <div className="w-full max-w-xs space-y-6">
-                                        {!isNull(opposingTrainer) && (
-                                            <div className="flex justify-center mb-4">
-                                                <Image
-                                                    src={"/Trainers/" + opposingTrainer.class + ".png"}
-                                                    alt={opposingTrainer.displayName()}
-                                                    height="160"
-                                                    width="160"
-                                                    className="w-24 h-24"
-                                                />
+                                    {/* Move details */}
+                                    {!isNull(playerMove) && (
+                                        <div className="bg-gray-700 p-4 rounded-lg border border-gray-600">
+                                            {playerMove.getInput(customMoveVar, setCustomMoveVar)}
+                                            <Checkbox
+                                                checked={criticalHit}
+                                                disabled={getStatusEffect["opponent"] === "Jinx"}
+                                                onChange={() => handleCriticalHit(!criticalHit)}
+                                            >
+                                                Critical Hit
+                                            </Checkbox>
+                                            <h3 className="text-sm font-medium text-gray-300 mb-3 text-center">
+                                                Move Details
+                                            </h3>
+                                            <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                                                <div className="text-right text-gray-400">Type:</div>
+                                                <div className="text-left text-gray-200">{playerMove.type}</div>
+                                                <div className="text-right text-gray-400">Power:</div>
+                                                <div className="text-left text-gray-200">
+                                                    {playerMove.getPower(playerPokemonWithStats)}
+                                                </div>
+                                                <div className="text-right text-gray-400">Category:</div>
+                                                <div className="text-left text-gray-200">
+                                                    {getMoveCategory(playerMove)}
+                                                </div>
                                             </div>
-                                        )}
-                                        <div className="text-center">
-                                            <label className="block text-sm font-medium text-gray-300 mb-1">
-                                                Trainer
-                                            </label>
                                         </div>
-                                        <select
-                                            className="w-full px-4 py-2 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
-                                            value={opposingTrainer.key()}
-                                            onChange={(e) => handleLoadingTrainer(e.target.value)}
-                                        >
-                                            <option value="" className="bg-gray-800">
-                                                Select Trainer
-                                            </option>
-                                            {Object.values(trainers).map((t) => (
-                                                <option key={t.key()} value={t.key()} className="bg-gray-800">
-                                                    {t.displayName()}
-                                                </option>
-                                            ))}
-                                        </select>
-                                        {!isNull(opposingTrainer) && (
-                                            <>
-                                                <div className="text-center">
-                                                    <label className="block text-sm font-medium text-gray-300 mb-1">
-                                                        Trainer Pokémon
-                                                    </label>
-                                                </div>
-                                                <div className="space-y-4">
-                                                    {opposingTrainer.pokemon.map((p, i) => (
-                                                        <div
-                                                            key={i}
-                                                            className="bg-gray-700 p-4 rounded-lg border border-gray-600 flex justify-between items-center"
-                                                        >
-                                                            <div>
-                                                                <p className="text-gray-200 font-medium">
-                                                                    {p.nickname
-                                                                        ? p.nickname + " (" + p.pokemon.name + ")"
-                                                                        : p.pokemon.name}
-                                                                </p>
-                                                                <p className="text-gray-400 text-sm">
-                                                                    Level: {p.level}
-                                                                </p>
-                                                            </div>
-                                                            <button
-                                                                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 focus:ring-2 focus:ring-blue-400"
-                                                                onClick={() => handleLoadingTrainerPokemon(i)}
-                                                            >
-                                                                Set Active
-                                                            </button>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </>
-                                        )}
+                                    )}
+                                </ColumnBody>
+                            </Column>
+
+                            {/* Results Section */}
+                            <Column>
+                                {isReadyToCalculate() ? (
+                                    <div className="w-full max-w-xs">
+                                        <div className="bg-gray-700 p-6 rounded-lg border border-gray-600 text-center">
+                                            <h3 className="font-medium text-lg text-white mb-4">Damage Calculation</h3>
+                                            <div className="space-y-4">
+                                                {printDamageNumbers(damageResult)}
+                                                <p className="text-gray-300">{damageResult.hits} hits to KO</p>
+                                                {/* Effectiveness message */}
+                                                {damageResult.typeEffectMult === 4 && (
+                                                    <p className="text-pink-400 font-bold">Hyper Effective!</p>
+                                                )}
+                                                {damageResult.typeEffectMult === 2 && (
+                                                    <p className="text-green-400 font-bold">Super Effective!</p>
+                                                )}
+                                                {damageResult.typeEffectMult === 0.5 && (
+                                                    <p className="text-red-400 font-bold">Not Very Effective!</p>
+                                                )}
+                                                {damageResult.typeEffectMult === 0.25 && (
+                                                    <p className="text-gray-400 font-bold">Barely Effective!</p>
+                                                )}
+                                                {damageResult.typeEffectMult === 0 && (
+                                                    <p className="text-gray-500 font-bold shadow-md">Not Effective!</p>
+                                                )}
+                                                {/* Fixed health bar */}
+                                                {printHPBar(damageResult)}
+                                            </div>
+                                        </div>
                                     </div>
+                                ) : (
+                                    <div className="text-center text-gray-500 p-8">
+                                        <p>Select Pokémon and moves to see damage calculation</p>
+                                    </div>
+                                )}
+                                <ColumnHeader colour="text-purple-400">Field Status</ColumnHeader>
+                                <div className="mt-6">
+                                    <Checkbox checked={multiBattle} onChange={() => setMultiBattle(!multiBattle)}>
+                                        Multi Battle
+                                    </Checkbox>
                                 </div>
-                            </div>
+                            </Column>
+
+                            {/* Opponent's Pokemon Section */}
+                            <Column>
+                                <ColumnHeader colour="text-red-400">Opponent&apos;s Pokémon</ColumnHeader>
+                                <ColumnBody>
+                                    {pokemonSelect("opponent")}
+
+                                    {pokemonStats("opponent")}
+                                </ColumnBody>
+                            </Column>
+
+                            {/* Trainer Pokemon Section */}
+                            <Column>
+                                <ColumnHeader colour="text-red-400">Trainer Pokémon</ColumnHeader>
+                                <ColumnBody>
+                                    {!isNull(opposingTrainer) && (
+                                        <div className="flex justify-center mb-4">
+                                            <Image
+                                                src={"/Trainers/" + opposingTrainer.class + ".png"}
+                                                alt={opposingTrainer.displayName()}
+                                                height="160"
+                                                width="160"
+                                                className="w-24 h-24"
+                                            />
+                                        </div>
+                                    )}
+                                    <div className="text-center">
+                                        <InputLabel>Trainer</InputLabel>
+                                    </div>
+                                    <Dropdown
+                                        value={opposingTrainer.key()}
+                                        onChange={(e) => handleLoadingTrainer(e.target.value)}
+                                    >
+                                        <option value="" className="bg-gray-800">
+                                            Select Trainer
+                                        </option>
+                                        {Object.values(trainers).map((t) => (
+                                            <option key={t.key()} value={t.key()} className="bg-gray-800">
+                                                {t.displayName()}
+                                            </option>
+                                        ))}
+                                    </Dropdown>
+                                    {!isNull(opposingTrainer) && (
+                                        <>
+                                            <div className="text-center">
+                                                <InputLabel>Trainer Pokémon</InputLabel>
+                                            </div>
+                                            <div className="space-y-4">
+                                                {opposingTrainer.pokemon.map((p, i) => (
+                                                    <div
+                                                        key={i}
+                                                        className="bg-gray-700 p-4 rounded-lg border border-gray-600 flex justify-between items-center"
+                                                    >
+                                                        <div>
+                                                            <p className="text-gray-200 font-medium">
+                                                                {p.nickname
+                                                                    ? p.nickname + " (" + p.pokemon.name + ")"
+                                                                    : p.pokemon.name}
+                                                            </p>
+                                                            <p className="text-gray-400 text-sm">Level: {p.level}</p>
+                                                        </div>
+                                                        <button
+                                                            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 focus:ring-2 focus:ring-blue-400"
+                                                            onClick={() => handleLoadingTrainerPokemon(i)}
+                                                        >
+                                                            Set Active
+                                                        </button>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </>
+                                    )}
+                                </ColumnBody>
+                            </Column>
                         </div>
                     </div>
                 </div>
