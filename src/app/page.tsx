@@ -8,6 +8,7 @@ import Column from "./components/Column";
 import ColumnBody from "./components/ColumnBody";
 import ColumnHeader from "./components/ColumnHeader";
 import Dropdown from "./components/DropDown";
+import InlineLink from "./components/InlineLink";
 import InputLabel from "./components/InputLabel";
 import { CalcPokemon, calculateDamage, DamageResult } from "./damageCalc";
 import { defaultStylePoints, StylePoints } from "./data/basicData";
@@ -52,6 +53,8 @@ const PokemonDamageCalculator: NextPage = () => {
     const [opposingTrainer, setOpposingTrainer] = useState<Trainer>(nullTrainer);
 
     const [multiBattle, setMultiBattle] = useState<boolean>(false);
+
+    const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
 
     type Side = "player" | "opponent";
 
@@ -468,8 +471,44 @@ const PokemonDamageCalculator: NextPage = () => {
         <div className="min-h-screen bg-gray-900 py-8 flex flex-col items-center">
             <div className="mx-auto px-4">
                 {/* Centered title */}
-                <div className="text-center mb-10">
-                    <h1 className="text-3xl font-bold text-blue-400 mb-2">Pokémon Tectonic Damage Calculator</h1>
+                <div className="flex justify-center items-center mb-10 relative">
+                    <button
+                        className="p-2 bg-gray-800 text-white rounded absolute right-0"
+                        onClick={() => setSidebarOpen(!sidebarOpen)}
+                    >
+                        ☰
+                    </button>
+                    <h1 className="text-3xl font-bold text-blue-400">Pokémon Tectonic Damage Calculator</h1>
+                </div>
+                {/* Sidebar */}
+                <div
+                    className={`fixed top-0 left-0 h-full bg-gray-800 p-4 transition-transform transform ${
+                        sidebarOpen ? "translate-x-0" : "-translate-x-full"
+                    }`}
+                    style={{ width: "250px" }}
+                >
+                    <button className="p-2 bg-red-500 text-white rounded mb-4" onClick={() => setSidebarOpen(false)}>
+                        Close
+                    </button>
+                    <h2 className="text-2xl font-semibold mb-4">About</h2>
+                    <p>
+                        This app allows you to calculate the expected damage of a move in the fangame Pokémon Tectonic,
+                        using its unique stats, formulae, and mechanics.
+                    </p>
+                    <br />
+                    <p>
+                        Created by <InlineLink url="https://www.alphakretin.com">LunaFlare</InlineLink>. This app is not
+                        associated with or endorsed by the various copyright holders of the Pokémon franchise. However,
+                        I am a developer on Pokémon Tectonic.
+                    </p>
+                    <br />
+                    <p>
+                        This app is a work in progress. See future features, leave feedback, and contribute at{" "}
+                        <InlineLink url="https://github.com/AlphaKretin/tectonic-damage-calc">
+                            https://github.com/AlphaKretin/tectonic-damage-calc
+                        </InlineLink>
+                        .
+                    </p>
                 </div>
 
                 {/* Calculator container */}
