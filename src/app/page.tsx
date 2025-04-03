@@ -465,8 +465,8 @@ const PokemonDamageCalculator: NextPage = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-900 py-8">
-            <div className="max-w-7xl mx-auto px-4">
+        <div className="min-h-screen bg-gray-900 py-8 flex flex-col items-center">
+            <div className="mx-auto px-4">
                 {/* Centered title */}
                 <div className="text-center mb-10">
                     <h1 className="text-3xl font-bold text-blue-400 mb-2">Pokémon Tectonic Damage Calculator</h1>
