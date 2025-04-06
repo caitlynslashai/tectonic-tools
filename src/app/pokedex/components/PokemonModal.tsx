@@ -258,7 +258,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon, onClose }) => {
                                 <div className="grid grid-cols-3 gap-4 mt-4">
                                     {Object.entries(atkMatchups).some(([, value]) => value > 1) && (
                                         <div>
-                                            <h4 className="text-red-600 dark:text-red-400 font-semibold">Super</h4>
+                                            <h4 className="text-green-600 dark:text-green-400 font-semibold">Super</h4>
                                             <ul className="list-inside text-gray-600 dark:text-gray-300">
                                                 {Object.entries(atkMatchups)
                                                     .filter(([, value]) => value > 1)
@@ -272,9 +272,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon, onClose }) => {
                                     )}
                                     {Object.entries(atkMatchups).some(([, value]) => value > 0 && value < 1) && (
                                         <div>
-                                            <h4 className="text-green-600 dark:text-green-400 font-semibold">
-                                                Not Very
-                                            </h4>
+                                            <h4 className="text-red-600 dark:text-red-400 font-semibold">Not Very</h4>
                                             <ul className="list-inside text-gray-600 dark:text-gray-300">
                                                 {Object.entries(atkMatchups)
                                                     .filter(([, value]) => value > 0 && value < 1)
