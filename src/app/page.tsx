@@ -1,3 +1,4 @@
+import InlineLink from "@/components/InlineLink";
 import ToolLink from "@/components/ToolLink";
 import type { NextPage } from "next";
 
@@ -15,7 +16,10 @@ const HomePage: NextPage = () => {
                 </ToolLink>
 
                 <div className="mt-8 pt-6 border-t border-gray-700 text-center text-gray-400">
-                    <p>Created by LunaFlare • Not affiliated with Nintendo or The Pokémon Company</p>
+                    <p>
+                        Created by <InlineLink url="https://www.alphakretin.com">LunaFlare</InlineLink> • Not affiliated
+                        with Nintendo or The Pokémon Company
+                    </p>
                 </div>
             </div>
         </div>
