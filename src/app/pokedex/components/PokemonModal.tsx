@@ -1,3 +1,5 @@
+import { PokemonType, pokemonTypes } from "@/app/data/basicData";
+import { typeChart } from "@/app/data/typeChart";
 import { Pokemon } from "@/app/data/types/Pokemon";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -14,8 +16,8 @@ const tabs = [
     "Info",
     "Abilities",
     "Stats",
-    // "Def. Matchups",
-    // "Atk. Matchups",
+    "Def. Matchups",
+    "Atk. Matchups",
     // "Level Up Moves",
     // "Tutor Moves",
     // "Evolutions",
@@ -53,6 +55,32 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon, onClose }) => {
     };
 
     if (!isRendered || !currentPokemon) return null;
+
+    const defMatchups = Object.fromEntries(
+        pokemonTypes.map((t) => [
+            t,
+            typeChart[t][currentPokemon.type1] * (currentPokemon.type2 ? typeChart[t][currentPokemon.type2] : 1),
+        ])
+    );
+
+    const atkMatchups = Object.fromEntries(
+        pokemonTypes.map((t) => [
+            t,
+            Math.max(typeChart[currentPokemon.type1][t], currentPokemon.type2 ? typeChart[currentPokemon.type2][t] : 0),
+        ])
+    );
+
+    function prioritiseSort<T>(prio: T) {
+        return function (a: T, b: T): number {
+            if (a === prio && b !== prio) {
+                return -1;
+            }
+            if (a !== prio && b === prio) {
+                return 1;
+            }
+            return 0;
+        };
+    }
 
     return (
         <div
@@ -165,6 +193,116 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon, onClose }) => {
                                         <StatRow name="Total" value={currentPokemon.BST()}></StatRow>
                                     </tbody>
                                 </table>
+                            </div>
+                        </PokemonTab>
+                        <PokemonTab tab="Def. Matchups" activeTab={activeTab}>
+                            <div>
+                                <h3 className="font-semibold text-gray-800 dark:text-gray-100">Defensive Matchups</h3>
+                                <div className="grid grid-cols-3 gap-4 mt-4">
+                                    {Object.entries(defMatchups).some(([, value]) => value > 1) && (
+                                        <div>
+                                            <h4 className="text-red-600 dark:text-red-400 font-semibold">Weak</h4>
+                                            <ul className="list-inside text-gray-600 dark:text-gray-300">
+                                                {Object.entries(defMatchups)
+                                                    .filter(([, value]) => value > 1)
+                                                    .sort(([, a], [, b]) => prioritiseSort(4)(a, b)) // Sort 4 to the top
+                                                    .map(([type, value]) => (
+                                                        <li key={type}>
+                                                            <TypeBadge
+                                                                type1={type as PokemonType}
+                                                                hyper={value === 4}
+                                                            />
+                                                        </li>
+                                                    ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                    {Object.entries(defMatchups).some(([, value]) => value > 0 && value < 1) && (
+                                        <div>
+                                            <h4 className="text-green-600 dark:text-green-400 font-semibold">Resist</h4>
+                                            <ul className="list-inside text-gray-600 dark:text-gray-300">
+                                                {Object.entries(defMatchups)
+                                                    .filter(([, value]) => value > 0 && value < 1)
+                                                    .sort(([, a], [, b]) => prioritiseSort(0.25)(a, b)) // Sort 4 to the top
+                                                    .map(([type, value]) => (
+                                                        <li key={type}>
+                                                            <TypeBadge
+                                                                type1={type as PokemonType}
+                                                                hyper={value === 0.25}
+                                                            />
+                                                        </li>
+                                                    ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                    {Object.entries(defMatchups).some(([, value]) => value === 0) && (
+                                        <div>
+                                            <h4 className="text-gray-600 dark:text-gray-400 font-semibold">Immune</h4>
+                                            <ul className="list-inside text-gray-600 dark:text-gray-300">
+                                                {Object.entries(defMatchups)
+                                                    .filter(([, value]) => value === 0)
+                                                    .map(([type]) => (
+                                                        <li key={type}>
+                                                            <TypeBadge type1={type as PokemonType} />
+                                                        </li>
+                                                    ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </PokemonTab>
+                        <PokemonTab tab="Atk. Matchups" activeTab={activeTab}>
+                            <div>
+                                <h3 className="font-semibold text-gray-800 dark:text-gray-100">Offensive Matchups</h3>
+                                <div className="grid grid-cols-3 gap-4 mt-4">
+                                    {Object.entries(atkMatchups).some(([, value]) => value > 1) && (
+                                        <div>
+                                            <h4 className="text-red-600 dark:text-red-400 font-semibold">Super</h4>
+                                            <ul className="list-inside text-gray-600 dark:text-gray-300">
+                                                {Object.entries(atkMatchups)
+                                                    .filter(([, value]) => value > 1)
+                                                    .map(([type]) => (
+                                                        <li key={type}>
+                                                            <TypeBadge type1={type as PokemonType} />
+                                                        </li>
+                                                    ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                    {Object.entries(atkMatchups).some(([, value]) => value > 0 && value < 1) && (
+                                        <div>
+                                            <h4 className="text-green-600 dark:text-green-400 font-semibold">
+                                                Not Very
+                                            </h4>
+                                            <ul className="list-inside text-gray-600 dark:text-gray-300">
+                                                {Object.entries(atkMatchups)
+                                                    .filter(([, value]) => value > 0 && value < 1)
+                                                    .map(([type]) => (
+                                                        <li key={type}>
+                                                            <TypeBadge type1={type as PokemonType} />
+                                                        </li>
+                                                    ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                    {Object.entries(atkMatchups).some(([, value]) => value === 0) && (
+                                        <div>
+                                            <h4 className="text-gray-600 dark:text-gray-400 font-semibold">
+                                                No Effect
+                                            </h4>
+                                            <ul className="list-inside text-gray-600 dark:text-gray-300">
+                                                {Object.entries(atkMatchups)
+                                                    .filter(([, value]) => value === 0)
+                                                    .map(([type]) => (
+                                                        <li key={type}>
+                                                            <TypeBadge type1={type as PokemonType} />
+                                                        </li>
+                                                    ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </PokemonTab>
                     </div>

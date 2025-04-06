@@ -10,7 +10,7 @@ export default function PokemonTab({
     activeTab: Tab;
 }) {
     if (activeTab === tab) {
-        return <div>{children}</div>;
+        return <div key={tab}>{children}</div>;
     }
     return <></>;
 }

@@ -547,7 +547,7 @@ const PokemonDamageCalculator: NextPage = () => {
                                                 </h3>
                                                 <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
                                                     <div className="text-right text-gray-400">Type:</div>
-                                                    <TypeBadge type1={playerMove.type} type2={undefined} />
+                                                    <TypeBadge type1={playerMove.type} />
                                                     <div className="text-right text-gray-400">Power:</div>
                                                     <div className="text-left text-gray-200">
                                                         {playerMove.getPower(playerPokemonStats)}
