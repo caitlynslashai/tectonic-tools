@@ -1,9 +1,16 @@
 import { abilities } from "../abilities";
 import { PokemonTribe, PokemonType } from "../basicData";
 import { moves } from "../moves";
-import { Evolution, LoadedPokemon } from "../pokemon";
+import { LoadedPokemon, pokemon } from "../pokemon";
 import { Ability } from "./Ability";
 import { Move } from "./Move";
+
+export interface Evolution {
+    target: string;
+    method: string;
+    param: string;
+    prevo: boolean;
+}
 
 export interface Stats {
     hp: number;
@@ -73,7 +80,9 @@ export class Pokemon {
         this.pokedex = mon.pokedex;
         this.evos = [];
         if (mon.evos !== null) {
-            this.evos = mon.evos;
+            this.evos = mon.evos.map((e) => {
+                return { ...e, prevo: false };
+            });
         }
     }
 
@@ -95,5 +104,26 @@ export class Pokemon {
             this.stats.spdef +
             this.stats.speed
         );
+    }
+
+    public getPrevos(): Evolution[] {
+        return this.evos.filter((e) => e.prevo);
+    }
+
+    public getEvos(): Evolution[] {
+        return this.evos.filter((e) => !e.prevo);
+    }
+
+    public getDeepEvos(): Evolution[] {
+        let allEvos = this.getEvos();
+        if (allEvos.length === 0) {
+            return [];
+        }
+        for (const evo of this.getEvos()) {
+            const mon = pokemon[evo.target];
+            const monEvos = mon.getDeepEvos();
+            allEvos = allEvos.concat(monEvos);
+        }
+        return allEvos;
     }
 }
