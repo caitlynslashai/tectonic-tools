@@ -1,4 +1,5 @@
 import { PokemonType, pokemonTypes } from "@/app/data/basicData";
+import { items } from "@/app/data/items";
 import { moves } from "@/app/data/moves";
 import { pokemon } from "@/app/data/pokemon";
 import { typeChart } from "@/app/data/typeChart";
@@ -128,15 +129,15 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
             case "Location":
                 return "case leveled up near a special location";
             case "Item":
-                return `by using a ${1}`;
+                return `by using a ${items[evo.param].name}`;
             case "ItemMale":
-                return `by using a ${1} if it's male`;
+                return `by using a ${items[evo.param].name} if it's male`;
             case "ItemFemale":
-                return `by using a ${1} if it's female`;
+                return `by using a ${items[evo.param].name} if it's female`;
             case "Trade":
                 return "case traded";
             case "TradeItem":
-                return `case traded holding an ${1}`;
+                return `case traded holding an ${items[evo.param].name}`;
             case "HasInParty":
                 return `case leveled up while a ${pokemon[evo.param]} is also in the party`;
             case "Shedinja":
@@ -381,7 +382,10 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                             <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
                                                 {currentPokemon.getDeepEvos().map((evo, index) => (
                                                     <li key={index}>
-                                                        {pokemon[evo.target].name} {describeEvoMethod(evo)}
+                                                        <span className="font-semibold">
+                                                            {pokemon[evo.target].name}
+                                                        </span>{" "}
+                                                        {describeEvoMethod(evo)}
                                                     </li>
                                                 ))}
                                             </ul>

@@ -1,0 +1,2907 @@
+{
+    "REPEL": {
+        "id": "REPEL",
+        "name": "Repel",
+        "description": "An item that prevents wild Pok\u00e9mon from appearing for 100 steps after its use.",
+        "flags": null
+    },
+    "STINKBOMB": {
+        "id": "STINKBOMB",
+        "name": "Stink Bomb",
+        "description": "Rare contraband. Any average solo trainer will flee from the stench of its explosion.",
+        "flags": null
+    },
+    "FIRESTONE": {
+        "id": "FIRESTONE",
+        "name": "Fire Stone",
+        "description": "A peculiar stone that makes certain species of Pok\u00e9mon evolve. It is colored orange.",
+        "flags": [
+            "EvolutionItem",
+            "EvolutionStone"
+        ]
+    },
+    "THUNDERSTONE": {
+        "id": "THUNDERSTONE",
+        "name": "Thunder Stone",
+        "description": "A peculiar stone that makes certain species of Pok\u00e9mon evolve. It has a thunderbolt pattern.",
+        "flags": [
+            "EvolutionItem",
+            "EvolutionStone"
+        ]
+    },
+    "WATERSTONE": {
+        "id": "WATERSTONE",
+        "name": "Water Stone",
+        "description": "A peculiar stone that makes certain species of Pok\u00e9mon evolve. It is a clear, light blue.",
+        "flags": [
+            "EvolutionItem",
+            "EvolutionStone"
+        ]
+    },
+    "LEAFSTONE": {
+        "id": "LEAFSTONE",
+        "name": "Leaf Stone",
+        "description": "A peculiar stone that makes certain species of Pok\u00e9mon evolve. It has a leaf pattern.",
+        "flags": [
+            "EvolutionItem",
+            "EvolutionStone"
+        ]
+    },
+    "MOONSTONE": {
+        "id": "MOONSTONE",
+        "name": "Moon Stone",
+        "description": "A peculiar stone that makes certain species of Pok\u00e9mon evolve. It is as black as the night sky.",
+        "flags": [
+            "EvolutionItem",
+            "EvolutionStone"
+        ]
+    },
+    "SUNSTONE": {
+        "id": "SUNSTONE",
+        "name": "Sun Stone",
+        "description": "A peculiar stone that makes certain species of Pok\u00e9mon evolve. It is as red as the sun.",
+        "flags": [
+            "EvolutionItem",
+            "EvolutionStone"
+        ]
+    },
+    "DUSKSTONE": {
+        "id": "DUSKSTONE",
+        "name": "Dusk Stone",
+        "description": "A peculiar stone that makes certain species of Pok\u00e9mon evolve. It is as dark as dark can be.",
+        "flags": [
+            "EvolutionItem",
+            "EvolutionStone"
+        ]
+    },
+    "DAWNSTONE": {
+        "id": "DAWNSTONE",
+        "name": "Dawn Stone",
+        "description": "A peculiar stone that makes certain species of Pok\u00e9mon evolve. It sparkles like eyes.",
+        "flags": [
+            "EvolutionItem",
+            "EvolutionStone"
+        ]
+    },
+    "SHINYSTONE": {
+        "id": "SHINYSTONE",
+        "name": "Shiny Stone",
+        "description": "A peculiar stone that makes certain species of Pok\u00e9mon evolve. It shines with a dazzling light.",
+        "flags": [
+            "EvolutionItem",
+            "EvolutionStone"
+        ]
+    },
+    "ICESTONE": {
+        "id": "ICESTONE",
+        "name": "Ice Stone",
+        "description": "A peculiar stone that makes certain species of Pok\u00e9mon evolve. It has a snowflake pattern.",
+        "flags": [
+            "EvolutionItem",
+            "EvolutionStone"
+        ]
+    },
+    "PRISMSTONE": {
+        "id": "PRISMSTONE",
+        "name": "Prism Stone",
+        "description": "A many-colored stone that makes a lot of Pok\u00e9mon evolve. Can be used in place of any evolution stone.",
+        "flags": [
+            "EvolutionItem",
+            "EvolutionStone"
+        ]
+    },
+    "DIAMONDTIARA": {
+        "id": "DIAMONDTIARA",
+        "name": "Diamond Tiara",
+        "description": "A glimmering tiara made of diamonds. It makes a certain Pok\u00e9mon evolve.",
+        "flags": [
+            "EvolutionItem",
+            "Clothing"
+        ]
+    },
+    "KNIGHTHELMET": {
+        "id": "KNIGHTHELMET",
+        "name": "Knight Helmet",
+        "description": "A shining helmet. It makes a certain Pok\u00e9mon evolve.",
+        "flags": [
+            "EvolutionItem",
+            "Clothing"
+        ]
+    },
+    "NINJASCARF": {
+        "id": "NINJASCARF",
+        "name": "Ninja Scarf",
+        "description": "A cool scarf. It makes a certain Pok\u00e9mon evolve.",
+        "flags": [
+            "EvolutionItem",
+            "Clothing"
+        ]
+    },
+    "ALOLANWREATH": {
+        "id": "ALOLANWREATH",
+        "name": "Alolan Wreath",
+        "description": "A beautiful floral wreath from Alola that makes certain species of Pok\u00e9mon evolve.",
+        "flags": [
+            "EvolutionItem",
+            "Clothing"
+        ]
+    },
+    "GALARICAWREATH": {
+        "id": "GALARICAWREATH",
+        "name": "Galarica Wreath",
+        "description": "A wreath made from woven Galarica Twigs. It makes certain species of Pok\u00e9mon evolve.",
+        "flags": [
+            "EvolutionItem",
+            "Clothing"
+        ]
+    },
+    "SWEETAPPLE": {
+        "id": "SWEETAPPLE",
+        "name": "Sweet Apple",
+        "description": "A peculiar apple that can make a certain species of Pok\u00e9mon evolve. It's exceptionally sweet.",
+        "flags": [
+            "EvolutionItem"
+        ]
+    },
+    "TARTAPPLE": {
+        "id": "TARTAPPLE",
+        "name": "Tart Apple",
+        "description": "A peculiar apple that can make a certain species of Pok\u00e9mon evolve. It's exceptionally tart.",
+        "flags": [
+            "EvolutionItem"
+        ]
+    },
+    "HELIXFOSSIL": {
+        "id": "HELIXFOSSIL",
+        "name": "Helix Fossil",
+        "description": "A fossil of an ancient Pok\u00e9mon that lived in the sea. It appears to be part of a seashell.",
+        "flags": [
+            "Fossil"
+        ]
+    },
+    "DOMEFOSSIL": {
+        "id": "DOMEFOSSIL",
+        "name": "Dome Fossil",
+        "description": "A fossil of an ancient Pok\u00e9mon that lived in the sea. It appears to be part of a shell.",
+        "flags": [
+            "Fossil"
+        ]
+    },
+    "OLDAMBER": {
+        "id": "OLDAMBER",
+        "name": "Old Amber",
+        "description": "A piece of amber that contains the genes of an ancient Pok\u00e9mon. It is clear with a reddish tint.",
+        "flags": [
+            "Fossil"
+        ]
+    },
+    "ROOTFOSSIL": {
+        "id": "ROOTFOSSIL",
+        "name": "Root Fossil",
+        "description": "A fossil of an ancient Pok\u00e9mon that lived in the sea. It appears to be part of a plant root.",
+        "flags": [
+            "Fossil"
+        ]
+    },
+    "CLAWFOSSIL": {
+        "id": "CLAWFOSSIL",
+        "name": "Claw Fossil",
+        "description": "A fossil of an ancient Pok\u00e9mon that lived in the sea. It appears to be part of a claw.",
+        "flags": [
+            "Fossil"
+        ]
+    },
+    "SKULLFOSSIL": {
+        "id": "SKULLFOSSIL",
+        "name": "Skull Fossil",
+        "description": "A fossil from a prehistoric Pok\u00e9mon that lived on the land. It appears to be part of a head.",
+        "flags": [
+            "Fossil"
+        ]
+    },
+    "ARMORFOSSIL": {
+        "id": "ARMORFOSSIL",
+        "name": "Armor Fossil",
+        "description": "A fossil from a prehistoric Pok\u00e9mon that lived on the land. It appears to be part of a collar.",
+        "flags": [
+            "Fossil"
+        ]
+    },
+    "COVERFOSSIL": {
+        "id": "COVERFOSSIL",
+        "name": "Cover Fossil",
+        "description": "A fossil of an ancient Pok\u00e9mon that lived in the sea in ancient times. It appears to be part of its back.",
+        "flags": [
+            "Fossil"
+        ]
+    },
+    "PLUMEFOSSIL": {
+        "id": "PLUMEFOSSIL",
+        "name": "Plume Fossil",
+        "description": "A fossil of an ancient Pok\u00e9mon that flew in the sky in ancient times. It appears to be part of its wing.",
+        "flags": [
+            "Fossil"
+        ]
+    },
+    "JAWFOSSIL": {
+        "id": "JAWFOSSIL",
+        "name": "Jaw Fossil",
+        "description": "A fossil from a prehistoric Pok\u00e9mon that once lived on the land. It appears to be part of a large jaw.",
+        "flags": [
+            "Fossil"
+        ]
+    },
+    "SAILFOSSIL": {
+        "id": "SAILFOSSIL",
+        "name": "Sail Fossil",
+        "description": "A fossil from a prehistoric Pok\u00e9mon that once lived on the land. It looks like the impression from a skin sail.",
+        "flags": [
+            "Fossil"
+        ]
+    },
+    "HONEY": {
+        "id": "HONEY",
+        "name": "Honey",
+        "description": "A sweet honey with a sweeter aroma. It can be sold to shops for $750.",
+        "flags": null
+    },
+    "PRETTYFEATHER": {
+        "id": "PRETTYFEATHER",
+        "name": "Pretty Feather",
+        "description": "A beautiful feather. It can be sold to shops for $1500.",
+        "flags": null
+    },
+    "TINYMUSHROOM": {
+        "id": "TINYMUSHROOM",
+        "name": "Tiny Mushroom",
+        "description": "A small and rare mushroom. It can be sold to shops for $250.",
+        "flags": null
+    },
+    "BIGMUSHROOM": {
+        "id": "BIGMUSHROOM",
+        "name": "Big Mushroom",
+        "description": "A large and rare mushroom. It can be sold to shops for $2500.",
+        "flags": null
+    },
+    "BALMMUSHROOM": {
+        "id": "BALMMUSHROOM",
+        "name": "Balm Mushroom",
+        "description": "A rare mushroom which gives off a nice fragrance. It can be sold to shops for $7500.",
+        "flags": null
+    },
+    "PEARL": {
+        "id": "PEARL",
+        "name": "Pearl",
+        "description": "A somewhat-small pearl that sparkles in a pretty silver color. It can be sold to shops for $1000.",
+        "flags": null
+    },
+    "BIGPEARL": {
+        "id": "BIGPEARL",
+        "name": "Big Pearl",
+        "description": "A quite-large pearl that sparkles in a pretty silver color. It can be sold to shops for $4000.",
+        "flags": null
+    },
+    "PEARLSTRING": {
+        "id": "PEARLSTRING",
+        "name": "Pearl String",
+        "description": "Very large pearls that sparkle in a pretty silver color. It can be sold to shops for $10000.",
+        "flags": null
+    },
+    "STARDUST": {
+        "id": "STARDUST",
+        "name": "Stardust",
+        "description": "Lovely, red-colored sand with a loose, silky feel. It can be sold to shops for $1500.",
+        "flags": null
+    },
+    "STARPIECE": {
+        "id": "STARPIECE",
+        "name": "Star Piece",
+        "description": "A shard of a pretty gem that sparkles in a red color. It can be sold to shops for $6000.",
+        "flags": null
+    },
+    "COMETSHARD": {
+        "id": "COMETSHARD",
+        "name": "Comet Shard",
+        "description": "A shard which fell to the ground when a comet approached. It can be sold to shops for $12500.",
+        "flags": null
+    },
+    "NUGGET": {
+        "id": "NUGGET",
+        "name": "Gold Nugget",
+        "description": "A nugget of pure gold that gives off a lustrous gleam. It can be sold to shops for $5000.",
+        "flags": null
+    },
+    "BIGNUGGET": {
+        "id": "BIGNUGGET",
+        "name": "Big Nugget",
+        "description": "A big nugget of pure gold that gives off a lustrous gleam. It can be sold to shops for $20000.",
+        "flags": null
+    },
+    "SLOWPOKETAIL": {
+        "id": "SLOWPOKETAIL",
+        "name": "Slowpoke Tail",
+        "description": "A very tasty tail of something. It can be sold to shops for $4000.",
+        "flags": null
+    },
+    "RAREBONE": {
+        "id": "RAREBONE",
+        "name": "Rare Bone",
+        "description": "A bone that is extremely valuable for Pok\u00e9mon archaeology. It can be sold to shops for $2500.",
+        "flags": null
+    },
+    "RELICCOPPER": {
+        "id": "RELICCOPPER",
+        "name": "Relic Copper",
+        "description": "A copper coin used in a civilization about 3,000 years ago. It can be sold to shops for $1000.",
+        "flags": null
+    },
+    "RELICSILVER": {
+        "id": "RELICSILVER",
+        "name": "Relic Silver",
+        "description": "A silver coin used in a civilization about 3,000 years ago. It can be sold to shops for $5000.",
+        "flags": null
+    },
+    "RELICGOLD": {
+        "id": "RELICGOLD",
+        "name": "Relic Gold",
+        "description": "A gold coin used in a civilization about 3,000 years ago. It can be sold to shops for $10,000.",
+        "flags": null
+    },
+    "RELICVASE": {
+        "id": "RELICVASE",
+        "name": "Relic Vase",
+        "description": "A vase made in a civilization about 3,000 years ago. It can be sold to shops for $30,000.",
+        "flags": null
+    },
+    "RELICBAND": {
+        "id": "RELICBAND",
+        "name": "Relic Band",
+        "description": "A bracelet made in a civilization about 3,000 years ago. It can be sold to shops for $80,000.",
+        "flags": null
+    },
+    "RELICSTATUE": {
+        "id": "RELICSTATUE",
+        "name": "Relic Statue",
+        "description": "A stone figure made in a civilization about 3,000 years ago. Can be sold for $150,000.",
+        "flags": null
+    },
+    "RELICCROWN": {
+        "id": "RELICCROWN",
+        "name": "Relic Crown",
+        "description": "A crown made in a civilization about 3,000 years ago. Can be sold for $300,000.",
+        "flags": null
+    },
+    "AIRBALLOON": {
+        "id": "AIRBALLOON",
+        "name": "Air Balloon",
+        "description": "An item to be held by a Pok\u00e9mon. The holder will float in the air until hit. Once hit, this item will burst.",
+        "flags": [
+            "Levitation"
+        ]
+    },
+    "EVIOLITE": {
+        "id": "EVIOLITE",
+        "name": "Eviolite",
+        "description": "When held by a Pok\u00e9mon who can still evolve, reduces move damage taken by 33%. Prevents evolution.",
+        "flags": null
+    },
+    "POWERLOCK": {
+        "id": "POWERLOCK",
+        "name": "Power Lock",
+        "description": "A held item. In battles, it sets the holder's base Attack stat to 120.",
+        "flags": null
+    },
+    "ENERGYLOCK": {
+        "id": "ENERGYLOCK",
+        "name": "Energy Lock",
+        "description": "A held item. In battles, it sets the holder's base Sp. Atk stat to 120.",
+        "flags": null
+    },
+    "FLOATSTONE": {
+        "id": "FLOATSTONE",
+        "name": "Float Stone",
+        "description": "A very light stone. It reduces the weight of a Pok\u00e9mon when held.",
+        "flags": null
+    },
+    "ASSAULTVEST": {
+        "id": "ASSAULTVEST",
+        "name": "Assault Vest",
+        "description": "An item to be held by a Pok\u00e9mon. It raises Sp. Def by 50% but prevents the use of status moves.",
+        "flags": [
+            "Clothing",
+            "NoStatusUse"
+        ]
+    },
+    "STRIKEVEST": {
+        "id": "STRIKEVEST",
+        "name": "Strike Vest",
+        "description": "An item to be held by a Pok\u00e9mon. It raises Defense by 50% but prevents the use of status moves.",
+        "flags": [
+            "Clothing",
+            "NoStatusUse"
+        ]
+    },
+    "WEAKNESSPOLICY": {
+        "id": "WEAKNESSPOLICY",
+        "name": "Weakness Policy",
+        "description": "An item to be held by a Pok\u00e9mon. Its Attack and Sp. Atk raise by four steps if hit by a move it's weak to.",
+        "flags": null
+    },
+    "ADRENALINEORB": {
+        "id": "ADRENALINEORB",
+        "name": "Adrenaline Orb",
+        "description": "When held, it boosts Speed by two steps when intimidated, fascinated, or frustrated once per battle.",
+        "flags": null
+    },
+    "ROCKYHELMET": {
+        "id": "ROCKYHELMET",
+        "name": "Rocky Helmet",
+        "description": "Damages attackers for 1/6th of their HP when they hit the holder with physical attacks.",
+        "flags": [
+            "Clothing",
+            "AttackerRecoil"
+        ]
+    },
+    "HIVISJACKET": {
+        "id": "HIVISJACKET",
+        "name": "Hi-Viz Jacket",
+        "description": "Damages attackers for 1/6th of their HP when they hit the holder with special attacks.",
+        "flags": [
+            "Clothing",
+            "AttackerRecoil"
+        ]
+    },
+    "EJECTBUTTON": {
+        "id": "EJECTBUTTON",
+        "name": "Eject Button",
+        "description": "If the holder is hit by an attack, it will switch with another Pok\u00e9mon in your party.",
+        "flags": null
+    },
+    "REDCARD": {
+        "id": "REDCARD",
+        "name": "Red Card",
+        "description": "A card with a mysterious power. When the holder is struck by a foe, the attacker is removed from battle.",
+        "flags": null
+    },
+    "SHEDSHELL": {
+        "id": "SHEDSHELL",
+        "name": "Shed Shell",
+        "description": "An item to be held by a Pok\u00e9mon. This discarded carapace lets the holder switch out of battle without fail.",
+        "flags": null
+    },
+    "SMOKEBALL": {
+        "id": "SMOKEBALL",
+        "name": "Smoke Ball",
+        "description": "An item to be held by a Pok\u00e9mon. It enables the holder to flee from any wild Pok\u00e9mon without fail.",
+        "flags": null
+    },
+    "LUCKYEGG": {
+        "id": "LUCKYEGG",
+        "name": "Lucky Egg",
+        "description": "An item to be held by a Pok\u00e9mon. It is an egg filled with happiness that earns extra Exp. Points in battle.",
+        "flags": null
+    },
+    "AMULETCOIN": {
+        "id": "AMULETCOIN",
+        "name": "Amulet Coin",
+        "description": "An item to be held by a Pok\u00e9mon. It doubles a battle's prize money if the holding Pok\u00e9mon joins in.",
+        "flags": null
+    },
+    "SOOTHEBELL": {
+        "id": "SOOTHEBELL",
+        "name": "Soothe Bell",
+        "description": "An item to be held by a Pok\u00e9mon. The comforting chime of this bell makes it gain happiness twice as fast.",
+        "flags": null
+    },
+    "CLEANSETAG": {
+        "id": "CLEANSETAG",
+        "name": "Cleanse Tag",
+        "description": "An item to be held by a Pok\u00e9mon. It prevents wild Pok\u00e9mon encounters if the holder is the first one in the party.",
+        "flags": null
+    },
+    "CHOICEBAND": {
+        "id": "CHOICEBAND",
+        "name": "Choice Band",
+        "description": "Held item which ups Attack by 40%, but allows the use of only one move.",
+        "flags": [
+            "Clothing",
+            "ChoiceLocking"
+        ]
+    },
+    "CHOICESPECS": {
+        "id": "CHOICESPECS",
+        "name": "Choice Specs",
+        "description": "Held item which ups Sp. Atk by 40%, but allows the use of only one move.",
+        "flags": [
+            "Clothing",
+            "ChoiceLocking"
+        ]
+    },
+    "CHOICESCARF": {
+        "id": "CHOICESCARF",
+        "name": "Choice Scarf",
+        "description": "Held item which boosts Speed by 40% but allows the use of only one move.",
+        "flags": [
+            "Clothing",
+            "ChoiceLocking"
+        ]
+    },
+    "LUMBERAXE": {
+        "id": "LUMBERAXE",
+        "name": "Lumber Axe",
+        "description": "Held item which boosts move damage by 25%, but lowers the user's Speed by 15%.",
+        "flags": null
+    },
+    "HEATROCK": {
+        "id": "HEATROCK",
+        "name": "Heat Rock",
+        "description": "A Pok\u00e9mon held item. When the holder summons sunshine, it lasts twice as long.",
+        "flags": [
+            "WeatherRock"
+        ]
+    },
+    "DAMPROCK": {
+        "id": "DAMPROCK",
+        "name": "Damp Rock",
+        "description": "A Pok\u00e9mon held item. When the holder summons rainstorm, it lasts twice as long.",
+        "flags": null
+    },
+    "SMOOTHROCK": {
+        "id": "SMOOTHROCK",
+        "name": "Smooth Rock",
+        "description": "A Pok\u00e9mon held item. When the holder summons a sandstorm, it lasts twice as long.",
+        "flags": [
+            "WeatherRock"
+        ]
+    },
+    "ICYROCK": {
+        "id": "ICYROCK",
+        "name": "Icy Rock",
+        "description": "A Pok\u00e9mon held item. When the holder summons hail, it lasts twice as long.",
+        "flags": [
+            "WeatherRock"
+        ]
+    },
+    "PINPOINTROCK": {
+        "id": "PINPOINTROCK",
+        "name": "Pin-Point Rock",
+        "description": "A Pok\u00e9mon held item. When the holder summons eclipse, it lasts twice as long.",
+        "flags": [
+            "WeatherRock"
+        ]
+    },
+    "MIRROREDROCK": {
+        "id": "MIRROREDROCK",
+        "name": "Mirrored Rock",
+        "description": "A Pok\u00e9mon held item. When the holder summons moonglow, it lasts twice as long.",
+        "flags": [
+            "WeatherRock"
+        ]
+    },
+    "LIGHTCLAY": {
+        "id": "LIGHTCLAY",
+        "name": "Light Clay",
+        "description": "An item to be held by a Pok\u00e9mon. Protective screens will be effective for 3 more turns.",
+        "flags": null
+    },
+    "REINFORCINGROD": {
+        "id": "REINFORCINGROD",
+        "name": "Reinforcing Rod",
+        "description": "An item to be held by a Pok\u00e9mon. It doubles the duration of Rooms created by the holder.",
+        "flags": null
+    },
+    "GRIPCLAW": {
+        "id": "GRIPCLAW",
+        "name": "Grip Claw",
+        "description": "A Pok\u00e9mon held item that doubles the duration of multiturn trapping attacks.",
+        "flags": null
+    },
+    "BINDINGBAND": {
+        "id": "BINDINGBAND",
+        "name": "Binding Band",
+        "description": "A band that doubles the damage dealt each turn by binding moves when held.",
+        "flags": [
+            "Clothing"
+        ]
+    },
+    "LOADEDDICE": {
+        "id": "LOADEDDICE",
+        "name": "Loaded Dice",
+        "description": "A held item. It makes multi-hit attacks consistently hit 4 or 5 times.",
+        "flags": null
+    },
+    "FRAGILELOCKET": {
+        "id": "FRAGILELOCKET",
+        "name": "Fragile Locket",
+        "description": "An item to be held by a Pok\u00e9mon. The user gets both of its legal abilities, but its stats are cut by 10%.",
+        "flags": null
+    },
+    "BIGROOT": {
+        "id": "BIGROOT",
+        "name": "Big Root",
+        "description": "A held item. The holder recovers 30% more HP from draining moves, Ingrain, Aqua Ring, and leech.",
+        "flags": null
+    },
+    "BLACKSLUDGE": {
+        "id": "BLACKSLUDGE",
+        "name": "Black Sludge",
+        "description": "A held item that gradually restores the HP of Poison-type Pok\u00e9mon. It inflicts damage on all other types.",
+        "flags": null
+    },
+    "LEFTOVERS": {
+        "id": "LEFTOVERS",
+        "name": "Leftovers",
+        "description": "A held item. The holder's HP is restored by 1/16th at the end of each turn.",
+        "flags": [
+            "Leftovers"
+        ]
+    },
+    "SHELLBELL": {
+        "id": "SHELLBELL",
+        "name": "Shell Bell",
+        "description": "An item to be held by a Pok\u00e9mon. The holder restores 1/5th HP of the damage it deals with moves.",
+        "flags": null
+    },
+    "WATERBALLOON": {
+        "id": "WATERBALLOON",
+        "name": "Water Balloon",
+        "description": "A held item. At half health, the holder breaks the balloon and gains an Aqua Ring.",
+        "flags": null
+    },
+    "MENTALHERB": {
+        "id": "MENTALHERB",
+        "name": "Mental Herb",
+        "description": "An item to be held by a Pok\u00e9mon. It snaps the holder out of a variety of mental warping effects.",
+        "flags": [
+            "Herb"
+        ]
+    },
+    "WHITEHERB": {
+        "id": "WHITEHERB",
+        "name": "White Herb",
+        "description": "An item to be held by a Pok\u00e9mon. It restores any lowered stat in battle.",
+        "flags": [
+            "Herb"
+        ]
+    },
+    "BLACKHERB": {
+        "id": "BLACKHERB",
+        "name": "Black Herb",
+        "description": "An item to be held by a Pok\u00e9mon. Lowered stats on the holder are also applied to foes.",
+        "flags": [
+            "Herb"
+        ]
+    },
+    "AGILITYHERB": {
+        "id": "AGILITYHERB",
+        "name": "Agility Herb",
+        "description": "An item to be held by a Pok\u00e9mon. Doubles the Speed of the holder's move once per battle.",
+        "flags": [
+            "Herb"
+        ]
+    },
+    "STRENGTHHERB": {
+        "id": "STRENGTHHERB",
+        "name": "Strength Herb",
+        "description": "An item to be held by a Pok\u00e9mon. Boosts the power of a physical move by 30% once per battle.",
+        "flags": [
+            "Herb"
+        ]
+    },
+    "INTELLECTHERB": {
+        "id": "INTELLECTHERB",
+        "name": "Intellect Herb",
+        "description": "An item to be held by a Pok\u00e9mon. Boosts the power of a special move by 30% once per battle.",
+        "flags": [
+            "Herb"
+        ]
+    },
+    "POWERHERB": {
+        "id": "POWERHERB",
+        "name": "Power Herb",
+        "description": "A single-use item to be held by a Pok\u00e9mon. It allows the immediate use of a move that charges up first.",
+        "flags": [
+            "Herb"
+        ]
+    },
+    "ENERGYHERB": {
+        "id": "ENERGYHERB",
+        "name": "Energy Herb",
+        "description": "A single-use item to be held by a Pok\u00e9mon. It allows user to skip the recharging turn of an exhausting move.",
+        "flags": [
+            "Herb"
+        ]
+    },
+    "MIRRORHERB": {
+        "id": "MIRRORHERB",
+        "name": "Mirror Herb",
+        "description": "A held item. When a foe raises their stats, the herb is consumed to copy the increase.",
+        "flags": [
+            "Herb"
+        ]
+    },
+    "PARADOXHERB": {
+        "id": "PARADOXHERB",
+        "name": "Paradox Herb",
+        "description": "A held item. When a foe raises their stats, the herb is consumed to reset their stats.",
+        "flags": [
+            "Herb"
+        ]
+    },
+    "LUCKHERB": {
+        "id": "LUCKHERB",
+        "name": "Luck Herb",
+        "description": "An item to be held by a Pok\u00e9mon. Ensures a random additional affect activates once per battle.",
+        "flags": [
+            "Herb"
+        ]
+    },
+    "SKILLHERB": {
+        "id": "SKILLHERB",
+        "name": "Skill Herb",
+        "description": "An item to be held by a Pok\u00e9mon. Ensures a less than full accuracy move lands once per battle.",
+        "flags": [
+            "Herb"
+        ]
+    },
+    "LIFEORB": {
+        "id": "LIFEORB",
+        "name": "Life Orb",
+        "description": "A held item. It boosts the power of moves by 30%, but at the cost of 10% HP on each hit.",
+        "flags": null
+    },
+    "EXPERTBELT": {
+        "id": "EXPERTBELT",
+        "name": "Expert Belt",
+        "description": "A well-worn belt that boosts the holder's supereffective moves by 20%.",
+        "flags": [
+            "Clothing"
+        ]
+    },
+    "METRONOME": {
+        "id": "METRONOME",
+        "name": "Metronome",
+        "description": "A held item. Boosts a move used consecutively by 20% more each time. This resets if another move is used.",
+        "flags": null
+    },
+    "MUSCLEBAND": {
+        "id": "MUSCLEBAND",
+        "name": "Muscle Band",
+        "description": "An item to be held by a Pok\u00e9mon. It is a headband that boosts the power of physical moves by 10%.",
+        "flags": [
+            "Clothing"
+        ]
+    },
+    "WISEGLASSES": {
+        "id": "WISEGLASSES",
+        "name": "Wise Glasses",
+        "description": "An item to be held by a Pok\u00e9mon. It is a thick pair of glasses that boosts the power of special moves by 10%.",
+        "flags": [
+            "Clothing"
+        ]
+    },
+    "SEVENLEAGUEBOOTS": {
+        "id": "SEVENLEAGUEBOOTS",
+        "name": "7-League Boots",
+        "description": "An item to be held by a Pok\u00e9mon. They are boots that boost Speed by 10%.",
+        "flags": [
+            "Clothing"
+        ]
+    },
+    "SCOPELENS": {
+        "id": "SCOPELENS",
+        "name": "Scope Lens",
+        "description": "A held item. Doubles the holder's critical-hit chance.",
+        "flags": null
+    },
+    "WIDELENS": {
+        "id": "WIDELENS",
+        "name": "Wide Lens",
+        "description": "A held item. It is a magnifying lens that boosts the Accuracy of moves by 35%.",
+        "flags": null
+    },
+    "LAGGINGTAIL": {
+        "id": "LAGGINGTAIL",
+        "name": "Lagging Tail",
+        "description": "An item to be held by a Pok\u00e9mon. It is tremendously heavy and makes the holder move slower than usual.",
+        "flags": null
+    },
+    "FOCUSSASH": {
+        "id": "FOCUSSASH",
+        "name": "Focus Sash",
+        "description": "An item to be held by a Pok\u00e9mon. If it has full HP, the holder will endure one potential KO attack, leaving 1 HP.",
+        "flags": [
+            "Clothing",
+            "Endure"
+        ]
+    },
+    "FLAMEORB": {
+        "id": "FLAMEORB",
+        "name": "Flame Orb",
+        "description": "An item to be held by a Pok\u00e9mon. A bizarre orb that inflicts burn on the holder at the end of a turn.",
+        "flags": null
+    },
+    "FROSTORB": {
+        "id": "FROSTORB",
+        "name": "Frost Orb",
+        "description": "An item to be held by a Pok\u00e9mon. A bizarre orb that inflicts frostbite on the holder at the end of a turn.",
+        "flags": null
+    },
+    "POISONORB": {
+        "id": "POISONORB",
+        "name": "Poison Orb",
+        "description": "An item to be held by a Pok\u00e9mon. A bizarre orb that inflicts poison on the holder at the end of a turn.",
+        "flags": null
+    },
+    "STICKYBARB": {
+        "id": "STICKYBARB",
+        "name": "Sticky Barb",
+        "description": "A held item that damages the holder on every turn. It may latch on to Pok\u00e9mon that attacks the holder.",
+        "flags": null
+    },
+    "EJECTPACK": {
+        "id": "EJECTPACK",
+        "name": "Eject Pack",
+        "description": "An item to be held by a Pok\u00e9mon. When the holder's stats are lowered, it will be switched out of battle.",
+        "flags": [
+            "Clothing"
+        ]
+    },
+    "HEAVYDUTYBOOTS": {
+        "id": "HEAVYDUTYBOOTS",
+        "name": "Heavy-Duty Boots",
+        "description": "These boots prevent the effects of traps set on the battlefield.",
+        "flags": [
+            "Clothing"
+        ]
+    },
+    "THROATSPRAY": {
+        "id": "THROATSPRAY",
+        "name": "Throat Spray",
+        "description": "Raises Sp. Atk by two steps when the Pok\u00e9mon uses a sound move the first time each battle.",
+        "flags": null
+    },
+    "WHETSTONE": {
+        "id": "WHETSTONE",
+        "name": "Whetstone",
+        "description": "Raises Attack by two steps when the Pok\u00e9mon uses a blade move the first time each battle.",
+        "flags": null
+    },
+    "UTILITYUMBRELLA": {
+        "id": "UTILITYUMBRELLA",
+        "name": "Utility Umbrella",
+        "description": "A held item. The holder is protected from the negative effects of weather.",
+        "flags": [
+            "Clothing"
+        ]
+    },
+    "CRYSTALVEIL": {
+        "id": "CRYSTALVEIL",
+        "name": "Crystal Veil",
+        "description": "A held item. It changes the holder's type in battle. You can change which type between battles.",
+        "flags": [
+            "TypeSetting",
+            "Clothing"
+        ]
+    },
+    "MEMORYSET": {
+        "id": "MEMORYSET",
+        "name": "Memory Set",
+        "description": "A set of memory discs, one for each type. If held by a Silvally, you can change its type between battles.",
+        "flags": [
+            "TypeSetting"
+        ]
+    },
+    "PRISMATICPLATE": {
+        "id": "PRISMATICPLATE",
+        "name": "Prismatic Plate",
+        "description": "A tablet that boosts same-type attacks by 20%. If held by Arceus, you can change its type between battles.",
+        "flags": [
+            "TypeSetting"
+        ]
+    },
+    "WILDCARD": {
+        "id": "WILDCARD",
+        "name": "Wild Card",
+        "description": "An item to be held by a Pok\u00e9mon. It counts as a member of every tribe.",
+        "flags": null
+    },
+    "PROXYFIST": {
+        "id": "PROXYFIST",
+        "name": "Proxy Fist",
+        "description": "A held item. The holder doesn't trigger items, abilities, or effects of targets it hits.",
+        "flags": null
+    },
+    "COVERTCLOAK": {
+        "id": "COVERTCLOAK",
+        "name": "Covert Cloak",
+        "description": "A held item. The holder is protected from the random added effects and takes 10% less move damage.",
+        "flags": [
+            "Clothing"
+        ]
+    },
+    "COURAGEBADGE": {
+        "id": "COURAGEBADGE",
+        "name": "Courage Badge",
+        "description": "A held item. The holder is protected from flinching.",
+        "flags": null
+    },
+    "CLEARAMULET": {
+        "id": "CLEARAMULET",
+        "name": "Clear Amulet",
+        "description": "A held item. The holder is protected from stat drops (except when self-inflicted).",
+        "flags": null
+    },
+    "ADAMANTORB": {
+        "id": "ADAMANTORB",
+        "name": "Adamant Orb",
+        "description": "A brightly gleaming orb to be held by Dialga. It boosts the power of Dragon- and Steel-type moves.",
+        "flags": null
+    },
+    "LUSTROUSORB": {
+        "id": "LUSTROUSORB",
+        "name": "Lustrous Orb",
+        "description": "A beautifully glowing orb to be held by Palkia. It boosts the power of Dragon- and Water-type moves.",
+        "flags": null
+    },
+    "GRISEOUSORB": {
+        "id": "GRISEOUSORB",
+        "name": "Griseous Orb",
+        "description": "A glowing orb to be held by Giratina. It boosts the power of Dragon- and Ghost-type moves.",
+        "flags": null
+    },
+    "DOUSEDRIVE": {
+        "id": "DOUSEDRIVE",
+        "name": "Douse Drive",
+        "description": "A cassette to be held by Genesect. It changes Techno Blast to a Water-type move.",
+        "flags": null
+    },
+    "SHOCKDRIVE": {
+        "id": "SHOCKDRIVE",
+        "name": "Shock Drive",
+        "description": "A cassette to be held by Genesect. It changes Techno Blast to an Electric-type move.",
+        "flags": null
+    },
+    "BURNDRIVE": {
+        "id": "BURNDRIVE",
+        "name": "Burn Drive",
+        "description": "A cassette to be held by Genesect. It changes Techno Blast to a Fire-type move.",
+        "flags": null
+    },
+    "CHILLDRIVE": {
+        "id": "CHILLDRIVE",
+        "name": "Chill Drive",
+        "description": "A cassette to be held by Genesect. It changes Techno Blast to an Ice-type move.",
+        "flags": null
+    },
+    "EVERSTONE": {
+        "id": "EVERSTONE",
+        "name": "Everstone",
+        "description": "An item to be held by a Pok\u00e9mon. The Pok\u00e9mon holding this peculiar stone is prevented from evolving.",
+        "flags": null
+    },
+    "IRONBALL": {
+        "id": "IRONBALL",
+        "name": "Iron Ball",
+        "description": "A Pok\u00e9mon held item that cuts Speed. It makes Flying-type and levitating holders susceptible to Ground moves.",
+        "flags": null
+    },
+    "CHARCOAL": {
+        "id": "CHARCOAL",
+        "name": "Charcoal",
+        "description": "A combustible fuel that boosts the holder's Fire-type moves by 20%.",
+        "flags": null
+    },
+    "MYSTICWATER": {
+        "id": "MYSTICWATER",
+        "name": "Mystic Water",
+        "description": "A teardrop-shaped gem that boosts the holder's Water-type moves by 20%.",
+        "flags": null
+    },
+    "MAGNET": {
+        "id": "MAGNET",
+        "name": "Magnet",
+        "description": "A powerful magnet that boosts the holder's Electric-type moves by 20%.",
+        "flags": null
+    },
+    "MIRACLESEED": {
+        "id": "MIRACLESEED",
+        "name": "Miracle Seed",
+        "description": "A seed imbued with life that boosts the holder's Grass-type moves by 20%.",
+        "flags": null
+    },
+    "NEVERMELTICE": {
+        "id": "NEVERMELTICE",
+        "name": "Never-Melt Ice",
+        "description": "A piece of ice that repels heat and boosts Ice-type moves by 20%.",
+        "flags": null
+    },
+    "BLACKBELT": {
+        "id": "BLACKBELT",
+        "name": "Black Belt",
+        "description": "A belt that boosts determination and Fighting-type moves by 20%.",
+        "flags": [
+            "Clothing"
+        ]
+    },
+    "POISONBARB": {
+        "id": "POISONBARB",
+        "name": "Poison Barb",
+        "description": "A small, poisonous barb that boosts the holder's Poison-type moves by 20%.",
+        "flags": null
+    },
+    "SOFTSAND": {
+        "id": "SOFTSAND",
+        "name": "Soft Sand",
+        "description": "A loose, silky sand that boosts the holder's Ground-type moves by 20%.",
+        "flags": null
+    },
+    "SHARPBEAK": {
+        "id": "SHARPBEAK",
+        "name": "Sharp Beak",
+        "description": "A long, sharp beak that boosts the holder's Flying-type moves by 20%.",
+        "flags": null
+    },
+    "TWISTEDSPOON": {
+        "id": "TWISTEDSPOON",
+        "name": "Twisted Spoon",
+        "description": "A spoon imbued with telekinetic power that boosts Psychic-type moves by 20%.",
+        "flags": null
+    },
+    "SILVERPOWDER": {
+        "id": "SILVERPOWDER",
+        "name": "Silver Powder",
+        "description": "A shiny, silver powder that boosts the holder's Bug-type moves by 20%.",
+        "flags": null
+    },
+    "HARDSTONE": {
+        "id": "HARDSTONE",
+        "name": "Hard Stone",
+        "description": "An unbreakable stone that boosts the holder's Rock-type moves by 20%.",
+        "flags": null
+    },
+    "SPELLTAG": {
+        "id": "SPELLTAG",
+        "name": "Spell Tag",
+        "description": "A sinister, eerie tag that boosts the holder's Ghost-type moves by 20%.",
+        "flags": null
+    },
+    "DRAGONFANG": {
+        "id": "DRAGONFANG",
+        "name": "Dragon Fang",
+        "description": "A hard and sharp fang that boosts the holder's Dragon-type moves by 20%.",
+        "flags": null
+    },
+    "BLACKGLASSES": {
+        "id": "BLACKGLASSES",
+        "name": "Black Glasses",
+        "description": "A shady-looking pair of glasses that boosts the holder's Dark-type moves by 20%.",
+        "flags": [
+            "Clothing"
+        ]
+    },
+    "METALCOAT": {
+        "id": "METALCOAT",
+        "name": "Metal Coat",
+        "description": "A special metallic film that boosts the holder's Steel-type moves by 20%.",
+        "flags": null
+    },
+    "SILKSCARF": {
+        "id": "SILKSCARF",
+        "name": "Silk Scarf",
+        "description": "A sumptuous scarf that boosts the holder's Normal-type moves by 20%.",
+        "flags": [
+            "Clothing"
+        ]
+    },
+    "FAIRYFEATHER": {
+        "id": "FAIRYFEATHER",
+        "name": "Fairy Feather",
+        "description": "A gleaming feather that boosts the holder's Fairy-type moves by 20%.",
+        "flags": null
+    },
+    "FIREGEM": {
+        "id": "FIREGEM",
+        "name": "Fire Gem",
+        "description": "A gem with an essence of fire. Boosts the power of a Fire-type move by 50% once per battle.",
+        "flags": [
+            "TypeGem"
+        ]
+    },
+    "WATERGEM": {
+        "id": "WATERGEM",
+        "name": "Water Gem",
+        "description": "A gem with an essence of water. Boosts the power of a Water-type move by 50% once per battle.",
+        "flags": [
+            "TypeGem"
+        ]
+    },
+    "ELECTRICGEM": {
+        "id": "ELECTRICGEM",
+        "name": "Electric Gem",
+        "description": "A gem with an essence of electricity. Boosts the power of an Electric-type move by 50% once per battle.",
+        "flags": [
+            "TypeGem"
+        ]
+    },
+    "GRASSGEM": {
+        "id": "GRASSGEM",
+        "name": "Grass Gem",
+        "description": "A gem with an essence of nature. Boosts the power of a Grass-type move by 50% once per battle.",
+        "flags": [
+            "TypeGem"
+        ]
+    },
+    "ICEGEM": {
+        "id": "ICEGEM",
+        "name": "Ice Gem",
+        "description": "A gem with an essence of ice. Boosts the power of an Ice-type move by 50% once per battle.",
+        "flags": [
+            "TypeGem"
+        ]
+    },
+    "FIGHTINGGEM": {
+        "id": "FIGHTINGGEM",
+        "name": "Fighting Gem",
+        "description": "A gem with an essence of combat. Boosts the power of a Fighting-type move by 50% once per battle.",
+        "flags": [
+            "TypeGem"
+        ]
+    },
+    "POISONGEM": {
+        "id": "POISONGEM",
+        "name": "Poison Gem",
+        "description": "A gem with an essence of poison. Boosts the power of a Poison-type move by 50% once per battle.",
+        "flags": [
+            "TypeGem"
+        ]
+    },
+    "GROUNDGEM": {
+        "id": "GROUNDGEM",
+        "name": "Ground Gem",
+        "description": "A gem with an essence of land. Boosts the power of a Ground-type move by 50% once per battle.",
+        "flags": [
+            "TypeGem"
+        ]
+    },
+    "FLYINGGEM": {
+        "id": "FLYINGGEM",
+        "name": "Flying Gem",
+        "description": "A gem with an essence of air. Boosts the power of a Flying-type move by 50% once per battle.",
+        "flags": [
+            "TypeGem"
+        ]
+    },
+    "PSYCHICGEM": {
+        "id": "PSYCHICGEM",
+        "name": "Psychic Gem",
+        "description": "A gem with an essence of the mind. Boosts the power of a Psychic-type move by 50% once per battle.",
+        "flags": [
+            "TypeGem"
+        ]
+    },
+    "BUGGEM": {
+        "id": "BUGGEM",
+        "name": "Bug Gem",
+        "description": "A gem with an insect-like essence. Boosts the power of a Bug-type move by 50% once per battle.",
+        "flags": [
+            "TypeGem"
+        ]
+    },
+    "ROCKGEM": {
+        "id": "ROCKGEM",
+        "name": "Rock Gem",
+        "description": "A gem with an essence of rock. Boosts the power of a Rock-type move by 50% once per battle.",
+        "flags": [
+            "TypeGem"
+        ]
+    },
+    "GHOSTGEM": {
+        "id": "GHOSTGEM",
+        "name": "Ghost Gem",
+        "description": "A gem with a spectral essence. Boosts the power of a Ghost-type move by 50% once per battle.",
+        "flags": [
+            "TypeGem"
+        ]
+    },
+    "DRAGONGEM": {
+        "id": "DRAGONGEM",
+        "name": "Dragon Gem",
+        "description": "A gem with a draconic essence. Boosts the power of a Dragon-type move by 50% once per battle.",
+        "flags": [
+            "TypeGem"
+        ]
+    },
+    "DARKGEM": {
+        "id": "DARKGEM",
+        "name": "Dark Gem",
+        "description": "A gem with an essence of darkness. Boosts the power of a Dark-type move by 50% once per battle.",
+        "flags": [
+            "TypeGem"
+        ]
+    },
+    "STEELGEM": {
+        "id": "STEELGEM",
+        "name": "Steel Gem",
+        "description": "A gem with an essence of steel. Boosts the power of a Steel-type move by 50% once per battle.",
+        "flags": [
+            "TypeGem"
+        ]
+    },
+    "NORMALGEM": {
+        "id": "NORMALGEM",
+        "name": "Normal Gem",
+        "description": "A gem with an ordinary essence. Boosts the power of a Normal-type move by 50% once per battle.",
+        "flags": [
+            "TypeGem"
+        ]
+    },
+    "FAIRYGEM": {
+        "id": "FAIRYGEM",
+        "name": "Fairy Gem",
+        "description": "A gem with an essence of the fey. Boosts the power of a Fairy-type move by 50% once per battle.",
+        "flags": [
+            "TypeGem"
+        ]
+    },
+    "POTION": {
+        "id": "POTION",
+        "name": "Potion",
+        "description": "A spray-type medicine for wounds. It restores the HP of one Pok\u00e9mon, fainted or able, by 40 points.",
+        "flags": [
+            "SkipPocketMessage"
+        ]
+    },
+    "SUPERPOTION": {
+        "id": "SUPERPOTION",
+        "name": "Super Potion",
+        "description": "A spray-type medicine for wounds. It restores the HP of one Pok\u00e9mon, fainted or able, by 80 points.",
+        "flags": [
+            "SkipPocketMessage"
+        ]
+    },
+    "HYPERPOTION": {
+        "id": "HYPERPOTION",
+        "name": "Hyper Potion",
+        "description": "A spray-type medicine for wounds. It restores the HP of one Pok\u00e9mon, fainted or able, by 120 points.",
+        "flags": [
+            "SkipPocketMessage"
+        ]
+    },
+    "MAXPOTION": {
+        "id": "MAXPOTION",
+        "name": "Max Potion",
+        "description": "A spray-type medicine for wounds. It completely restores the HP of a single Pok\u00e9mon, fainted or able.",
+        "flags": [
+            "SkipPocketMessage"
+        ]
+    },
+    "FULLRESTORE": {
+        "id": "FULLRESTORE",
+        "name": "Full Restore",
+        "description": "A medicine that fully restores the HP and heals any status problems of a single Pok\u00e9mon, fainted or able.",
+        "flags": [
+            "SkipPocketMessage"
+        ]
+    },
+    "SACREDASH": {
+        "id": "SACREDASH",
+        "name": "Sacred Ash",
+        "description": "It revives all fainted Pok\u00e9mon. In doing so, it also fully restores their HP.",
+        "flags": null
+    },
+    "LAVACOOKIE": {
+        "id": "LAVACOOKIE",
+        "name": "Lava Cookie",
+        "description": "Lavaridge Town's local specialty. It heals all the status problems of one Pok\u00e9mon.",
+        "flags": null
+    },
+    "OLDGATEAU": {
+        "id": "OLDGATEAU",
+        "name": "Old Gateau",
+        "description": "Old Chateau's hidden specialty. It heals all the status problems of a single Pok\u00e9mon.",
+        "flags": null
+    },
+    "CASTELIACONE": {
+        "id": "CASTELIACONE",
+        "name": "Casteliacone",
+        "description": "Castelia City's specialty, soft-serve ice cream. It heals all the status problems of a single Pok\u00e9mon.",
+        "flags": null
+    },
+    "BERRYJUICE": {
+        "id": "BERRYJUICE",
+        "name": "Berry Juice",
+        "description": "A 100% pure juice made of Berries. It restores the HP of one Pok\u00e9mon by just 20 points.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "RAGECANDYBAR": {
+        "id": "RAGECANDYBAR",
+        "name": "Rage Candy Bar",
+        "description": "Mahogany Town's famous candy. It can be used once to heal all the status conditions of a Pok\u00e9mon.",
+        "flags": null
+    },
+    "SWEETHEART": {
+        "id": "SWEETHEART",
+        "name": "Sweet Heart",
+        "description": "Very sweet chocolate. It restores the HP of one Pok\u00e9mon by 40 points and makes it happier.",
+        "flags": null
+    },
+    "FRESHWATER": {
+        "id": "FRESHWATER",
+        "name": "Fresh Water",
+        "description": "Water with a high mineral content. It restores the HP of one Pok\u00e9mon by 50 points.",
+        "flags": null
+    },
+    "SODAPOP": {
+        "id": "SODAPOP",
+        "name": "Soda Pop",
+        "description": "A fizzy soda drink. It restores the HP of one Pok\u00e9mon by 100 points.",
+        "flags": null
+    },
+    "LEMONADE": {
+        "id": "LEMONADE",
+        "name": "Lemonade",
+        "description": "A very sweet drink. It restores the HP of one Pok\u00e9mon by 150 points.",
+        "flags": null
+    },
+    "MOOMOOMILK": {
+        "id": "MOOMOOMILK",
+        "name": "Moomoo Milk",
+        "description": "Nutritious milk. It fully restores the HP and heals any status problems of a single Pok\u00e9mon.",
+        "flags": null
+    },
+    "RARECANDY": {
+        "id": "RARECANDY",
+        "name": "Rare Candy",
+        "description": "A candy that is packed with energy. It raises the level of a single Pok\u00e9mon by one.",
+        "flags": [
+            "SkipPocketMessage"
+        ]
+    },
+    "VANILLATULUMBA": {
+        "id": "VANILLATULUMBA",
+        "name": "Vanilla Tulumba",
+        "description": "Fried dough dipped in vanilla syrup. Heals a single Pok\u00e9mon by 100 HP, and grants it 4000 Experience points.",
+        "flags": null
+    },
+    "MASTERBALL": {
+        "id": "MASTERBALL",
+        "name": "Master Ball",
+        "description": "The best Ball with the ultimate level of performance. It will catch any wild Pok\u00e9mon without fail.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "NoBallSwap"
+        ]
+    },
+    "RADIANTBALL": {
+        "id": "RADIANTBALL",
+        "name": "Radiant Ball",
+        "description": "A ball with a mythical quality. It will catch any wild Pok\u00e9mon without fail, and turn that Pok\u00e9mon shiny.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "NoBallSwap"
+        ]
+    },
+    "ULTRABALL": {
+        "id": "ULTRABALL",
+        "name": "Ultra Ball",
+        "description": "An ultra-performance Ball with 2x the strength of a regular ball.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "SkipPocketMessage"
+        ]
+    },
+    "GREATBALL": {
+        "id": "GREATBALL",
+        "name": "Great Ball",
+        "description": "A good, high-performance Ball with 1.5x strength compared to a regular ball.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "SkipPocketMessage"
+        ]
+    },
+    "POKEBALL": {
+        "id": "POKEBALL",
+        "name": "Pok\u00e9 Ball",
+        "description": "A device for catching wild Pok\u00e9mon. It is thrown like a ball at the target. It is designed as a capsule system.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "SkipPocketMessage"
+        ]
+    },
+    "SAFARIBALL": {
+        "id": "SAFARIBALL",
+        "name": "Safari Ball",
+        "description": "A special Pok\u00e9 Ball that is used only in the Safari Zone. It is decorated in a camouflage pattern.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "SkipPocketMessage"
+        ]
+    },
+    "SPORTBALL": {
+        "id": "SPORTBALL",
+        "name": "Sport Ball",
+        "description": "A special Pok\u00e9 Ball for the Bug-Catching Contest.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "SkipPocketMessage"
+        ]
+    },
+    "NESTBALL": {
+        "id": "NESTBALL",
+        "name": "Nest Ball",
+        "description": "A somewhat different Pok\u00e9 Ball that works better the lower the Pok\u00e9mon's level is below your level cap.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "SkipPocketMessage"
+        ]
+    },
+    "REPEATBALL": {
+        "id": "REPEATBALL",
+        "name": "Repeat Ball",
+        "description": "A somewhat different Pok\u00e9 Ball that works at 3.5x strength on Pok\u00e9mon species that were previously caught.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "SkipPocketMessage"
+        ]
+    },
+    "TIMERBALL": {
+        "id": "TIMERBALL",
+        "name": "Timer Ball",
+        "description": "A somewhat different Ball that becomes up to 4x better the more turns there are in a battle.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "SkipPocketMessage"
+        ]
+    },
+    "LUXURYBALL": {
+        "id": "LUXURYBALL",
+        "name": "Luxury Ball",
+        "description": "A comfortable Pok\u00e9 Ball that makes a caught wild Pok\u00e9mon gain happiness twice as quickly.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "SkipPocketMessage"
+        ]
+    },
+    "PREMIERBALL": {
+        "id": "PREMIERBALL",
+        "name": "Premier Ball",
+        "description": "A somewhat rare Pok\u00e9 Ball that has been specially made to commemorate an event of some sort.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "SkipPocketMessage"
+        ]
+    },
+    "HEALBALL": {
+        "id": "HEALBALL",
+        "name": "Heal Ball",
+        "description": "A remedial Pok\u00e9 Ball that restores the caught Pok\u00e9mon's HP and eliminates any status problem.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "SkipPocketMessage"
+        ]
+    },
+    "QUICKBALL": {
+        "id": "QUICKBALL",
+        "name": "Quick Ball",
+        "description": "A somewhat different Pok\u00e9 Ball which has 5x strength on the first turn of a wild encounter.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "SkipPocketMessage"
+        ]
+    },
+    "CHERISHBALL": {
+        "id": "CHERISHBALL",
+        "name": "Cherish Ball",
+        "description": "A quite rare Pok\u00e9 Ball that has been specially crafted to commemorate an occasion of some sort.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "SkipPocketMessage",
+            "NoBallSwap"
+        ]
+    },
+    "FRIENDBALL": {
+        "id": "FRIENDBALL",
+        "name": "Friend Ball",
+        "description": "A Pok\u00e9 Ball that makes caught Pok\u00e9mon more friendly.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "SkipPocketMessage"
+        ]
+    },
+    "DREAMBALL": {
+        "id": "DREAMBALL",
+        "name": "Dream Ball",
+        "description": "A somewhat different Pok\u00e9 Ball that makes it easier to catch wild Pok\u00e9mon while they're asleep.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "SkipPocketMessage"
+        ]
+    },
+    "BEASTBALL": {
+        "id": "BEASTBALL",
+        "name": "Beast Ball",
+        "description": "A special Pok\u00e9 Ball designed to catch Ultra Beasts. It has a low success rate for catching others.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "SkipPocketMessage",
+            "NoBallSwap"
+        ]
+    },
+    "SLICEBALL": {
+        "id": "SLICEBALL",
+        "name": "Slice Ball",
+        "description": "A sharp Pok\u00e9 Ball that damages the Pok\u00e9mon for 1/4th of its HP if it fails to catch it.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "SkipPocketMessage"
+        ]
+    },
+    "LEECHBALL": {
+        "id": "LEECHBALL",
+        "name": "Leech Ball",
+        "description": "A parasitic Pok\u00e9 Ball that leeches the Pok\u00e9mon if it fails to catch it.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "SkipPocketMessage"
+        ]
+    },
+    "POTIONBALL": {
+        "id": "POTIONBALL",
+        "name": "Potion Ball",
+        "description": "A medicinal Pok\u00e9 Ball that heals the Pok\u00e9mon for 1/4th of its HP if it fails to catch it.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "SkipPocketMessage"
+        ]
+    },
+    "DISABLEBALL": {
+        "id": "DISABLEBALL",
+        "name": "Disable Ball",
+        "description": "A mentally disrupting Pok\u00e9 Ball that disables the Pok\u00e9mon's last used move for 10 turns if it fails to catch it.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "SkipPocketMessage"
+        ]
+    },
+    "ROYALBALL": {
+        "id": "ROYALBALL",
+        "name": "Royal Ball",
+        "description": "A ball whose striking appearance makes it popular despite its poor performance.",
+        "flags": [
+            "PokeBall",
+            "SnagBall",
+            "SkipPocketMessage",
+            "NoBallSwap"
+        ]
+    },
+    "CHERIBERRY": {
+        "id": "CHERIBERRY",
+        "name": "Cheri Berry",
+        "description": "It may be held by a Pok\u00e9mon to recover from numbing.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "CHESTOBERRY": {
+        "id": "CHESTOBERRY",
+        "name": "Chesto Berry",
+        "description": "It may be held by a Pok\u00e9mon to recover from sleep.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "PECHABERRY": {
+        "id": "PECHABERRY",
+        "name": "Pecha Berry",
+        "description": "It may be held by a Pok\u00e9mon to recover from poison.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "RAWSTBERRY": {
+        "id": "RAWSTBERRY",
+        "name": "Rawst Berry",
+        "description": "It may be held by a Pok\u00e9mon to recover from a burn.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "ASPEARBERRY": {
+        "id": "ASPEARBERRY",
+        "name": "Aspear Berry",
+        "description": "It may be held by a Pok\u00e9mon to recover from a frostbite.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "PERSIMBERRY": {
+        "id": "PERSIMBERRY",
+        "name": "Persim Berry",
+        "description": "It may be held by a Pok\u00e9mon to recover from being dizzy.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "SPELONBERRY": {
+        "id": "SPELONBERRY",
+        "name": "Spelon Berry",
+        "description": "It may be held by a Pok\u00e9mon to recover from being leeched.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "BELUEBERRY": {
+        "id": "BELUEBERRY",
+        "name": "Belue Berry",
+        "description": "It may be held by a Pok\u00e9mon to recover from being waterlogged.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "LEPPABERRY": {
+        "id": "LEPPABERRY",
+        "name": "Leppa Berry",
+        "description": "It may be held by a Pok\u00e9mon to restore a move's PP by 10.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "LUMBERRY": {
+        "id": "LUMBERRY",
+        "name": "Lum Berry",
+        "description": "It may be held by a Pok\u00e9mon to recover from any status problem.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "SITRUSBERRY": {
+        "id": "SITRUSBERRY",
+        "name": "Sitrus Berry",
+        "description": "If held by a Pok\u00e9mon, it heals its HP by 25% at half health.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "CADOBERRY": {
+        "id": "CADOBERRY",
+        "name": "Cado Berry",
+        "description": "It may be held by a Pok\u00e9mon to heal the user by 33% in a pinch (below 25% HP).",
+        "flags": [
+            "Berry",
+            "Pinch"
+        ]
+    },
+    "OCCABERRY": {
+        "id": "OCCABERRY",
+        "name": "Occa Berry",
+        "description": "Weakens a supereffective Fire-type attack against the holding Pok\u00e9mon.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "PASSHOBERRY": {
+        "id": "PASSHOBERRY",
+        "name": "Passho Berry",
+        "description": "Weakens a supereffective Water-type attack against the holding Pok\u00e9mon.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "WACANBERRY": {
+        "id": "WACANBERRY",
+        "name": "Wacan Berry",
+        "description": "Weakens a supereffective Electric-type attack against the holding Pok\u00e9mon.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "RINDOBERRY": {
+        "id": "RINDOBERRY",
+        "name": "Rindo Berry",
+        "description": "Weakens a supereffective Grass-type attack against the holding Pok\u00e9mon.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "YACHEBERRY": {
+        "id": "YACHEBERRY",
+        "name": "Yache Berry",
+        "description": "Weakens a supereffective Ice-type attack against the holding Pok\u00e9mon.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "CHOPLEBERRY": {
+        "id": "CHOPLEBERRY",
+        "name": "Chople Berry",
+        "description": "Weakens a supereffective Fighting-type attack against the holding Pok\u00e9mon.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "KEBIABERRY": {
+        "id": "KEBIABERRY",
+        "name": "Kebia Berry",
+        "description": "Weakens a supereffective Poison-type attack against the holding Pok\u00e9mon.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "SHUCABERRY": {
+        "id": "SHUCABERRY",
+        "name": "Shuca Berry",
+        "description": "Weakens a supereffective Ground-type attack against the holding Pok\u00e9mon.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "COBABERRY": {
+        "id": "COBABERRY",
+        "name": "Coba Berry",
+        "description": "Weakens a supereffective Flying-type attack against the holding Pok\u00e9mon.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "PAYAPABERRY": {
+        "id": "PAYAPABERRY",
+        "name": "Payapa Berry",
+        "description": "Weakens a supereffective Psychic-type attack against the holding Pok\u00e9mon.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "TANGABERRY": {
+        "id": "TANGABERRY",
+        "name": "Tanga Berry",
+        "description": "Weakens a supereffective Bug-type attack against the holding Pok\u00e9mon.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "CHARTIBERRY": {
+        "id": "CHARTIBERRY",
+        "name": "Charti Berry",
+        "description": "Weakens a supereffective Rock-type attack against the holding Pok\u00e9mon.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "KASIBBERRY": {
+        "id": "KASIBBERRY",
+        "name": "Kasib Berry",
+        "description": "Weakens a supereffective Ghost-type attack against the holding Pok\u00e9mon.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "HABANBERRY": {
+        "id": "HABANBERRY",
+        "name": "Haban Berry",
+        "description": "Weakens a supereffective Dragon-type attack against the holding Pok\u00e9mon.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "COLBURBERRY": {
+        "id": "COLBURBERRY",
+        "name": "Colbur Berry",
+        "description": "Weakens a supereffective Dark-type attack against the holding Pok\u00e9mon.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "BABIRIBERRY": {
+        "id": "BABIRIBERRY",
+        "name": "Babiri Berry",
+        "description": "Weakens a supereffective Steel-type attack against the holding Pok\u00e9mon.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "ROSELIBERRY": {
+        "id": "ROSELIBERRY",
+        "name": "Roseli Berry",
+        "description": "Weakens a supereffective Fairy-type attack against the holding Pok\u00e9mon.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "CHILANBERRY": {
+        "id": "CHILANBERRY",
+        "name": "Chilan Berry",
+        "description": "Weakens a Normal-type attack against the holding Pok\u00e9mon.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "LIECHIBERRY": {
+        "id": "LIECHIBERRY",
+        "name": "Liechi Berry",
+        "description": "If held by a Pok\u00e9mon, it raises its Attack by two steps in a pinch.",
+        "flags": [
+            "Berry",
+            "Pinch"
+        ]
+    },
+    "GANLONBERRY": {
+        "id": "GANLONBERRY",
+        "name": "Ganlon Berry",
+        "description": "If held by a Pok\u00e9mon, it raises its Defense by two steps in a pinch.",
+        "flags": [
+            "Berry",
+            "Pinch"
+        ]
+    },
+    "SALACBERRY": {
+        "id": "SALACBERRY",
+        "name": "Salac Berry",
+        "description": "If held by a Pok\u00e9mon, it raises its Speed by two steps in a pinch.",
+        "flags": [
+            "Berry",
+            "Pinch"
+        ]
+    },
+    "PETAYABERRY": {
+        "id": "PETAYABERRY",
+        "name": "Petaya Berry",
+        "description": "If held by a Pok\u00e9mon, it raises its Sp. Atk by two steps in a pinch.",
+        "flags": [
+            "Berry",
+            "Pinch"
+        ]
+    },
+    "APICOTBERRY": {
+        "id": "APICOTBERRY",
+        "name": "Apicot Berry",
+        "description": "If held by a Pok\u00e9mon, it raises its Sp. Def by two steps in a pinch.",
+        "flags": [
+            "Berry",
+            "Pinch"
+        ]
+    },
+    "LANSATBERRY": {
+        "id": "LANSATBERRY",
+        "name": "Lansat Berry",
+        "description": "If held by a Pok\u00e9mon, it raises its critical-hit ratio in a pinch.",
+        "flags": [
+            "Berry",
+            "Pinch"
+        ]
+    },
+    "STARFBERRY": {
+        "id": "STARFBERRY",
+        "name": "Starf Berry",
+        "description": "If held by a Pok\u00e9mon, it raises one of its stats by three steps in a pinch.",
+        "flags": [
+            "Berry",
+            "Pinch"
+        ]
+    },
+    "ENIGMABERRY": {
+        "id": "ENIGMABERRY",
+        "name": "Enigma Berry",
+        "description": "If held by a Pok\u00e9mon, it restores its HP if it is hit by any supereffective attack.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "MICLEBERRY": {
+        "id": "MICLEBERRY",
+        "name": "Micle Berry",
+        "description": "If held by a Pok\u00e9mon, it raises its Accuracy by four steps in a pinch.",
+        "flags": [
+            "Berry",
+            "Pinch"
+        ]
+    },
+    "CUSTAPBERRY": {
+        "id": "CUSTAPBERRY",
+        "name": "Custap Berry",
+        "description": "If held by a Pok\u00e9mon, it gets to move first just once in a pinch.",
+        "flags": [
+            "Berry",
+            "Pinch"
+        ]
+    },
+    "JABOCABERRY": {
+        "id": "JABOCABERRY",
+        "name": "Jaboca Berry",
+        "description": "If held by a Pok\u00e9mon and a physical attack hits it, the attacker takes 25% HP damage.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "ROWAPBERRY": {
+        "id": "ROWAPBERRY",
+        "name": "Rowap Berry",
+        "description": "If held by a Pok\u00e9mon and a special attack hits it, the attacker takes 25% HP damage.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "KEEBERRY": {
+        "id": "KEEBERRY",
+        "name": "Kee Berry",
+        "description": "If held by a Pok\u00e9mon, this Berry will increase the holder's Defense by four steps if it's hit with a physical move.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "MARANGABERRY": {
+        "id": "MARANGABERRY",
+        "name": "Maranga Berry",
+        "description": "If held by a Pok\u00e9mon, this Berry will increase the holder's Sp. Def by four steps if it's hit with a special move.",
+        "flags": [
+            "Berry"
+        ]
+    },
+    "BICYCLE": {
+        "id": "BICYCLE",
+        "name": "Bicycle",
+        "description": "A folding Bicycle that enables much faster movement than the Running Shoes.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "TOWNMAP": {
+        "id": "TOWNMAP",
+        "name": "Region Map",
+        "description": "A very convenient map that can be viewed anytime. It even shows your present location.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "GRACIDEA": {
+        "id": "GRACIDEA",
+        "name": "Gracidea",
+        "description": "A flower that conveys gratitude. Use it to transform Shaymin into or out of Sky form.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "DNASPLICERS": {
+        "id": "DNASPLICERS",
+        "name": "DNA Splicers",
+        "description": "A splicer that fuses Kyurem and a certain Pok\u00e9mon. They are said to have been one in the beginning.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "REVEALGLASS": {
+        "id": "REVEALGLASS",
+        "name": "Reveal Glass",
+        "description": "A glass that reveals the truth. It is a mysterious glass that returns a Pok\u00e9mon back to its original shape.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "SHINYCHARM": {
+        "id": "SHINYCHARM",
+        "name": "Shiny Charm",
+        "description": "A shiny charm which doubles the chance of finding a Shiny Pok\u00e9mon.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "SWEETTOOTH": {
+        "id": "SWEETTOOTH",
+        "name": "Sweet Tooth",
+        "description": "A charm in the shape of a tooth. It increases the EXP. gained from EXP Candy by 15%.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "SOOTHECHARM": {
+        "id": "SOOTHECHARM",
+        "name": "Soothe Charm",
+        "description": "A comforting charm which doubles the happiness your Pok\u00e9mon gain from being close to you.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "REDORB": {
+        "id": "REDORB",
+        "name": "Red Orb",
+        "description": "A shiny red orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.",
+        "flags": null
+    },
+    "BLUEORB": {
+        "id": "BLUEORB",
+        "name": "Blue Orb",
+        "description": "A shiny blue orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.",
+        "flags": null
+    },
+    "LUMIOSEGALETTE": {
+        "id": "LUMIOSEGALETTE",
+        "name": "Lumiose Galette",
+        "description": "A popular treat in Lumiose City. It can be used once to heal all the status conditions of a Pok\u00e9mon.",
+        "flags": null
+    },
+    "SHALOURSABLE": {
+        "id": "SHALOURSABLE",
+        "name": "Shalour Sable",
+        "description": "Shalour City's famous shortbread. It can be used once to heal all the status conditions of a Pok\u00e9mon.",
+        "flags": null
+    },
+    "BIGMALASADA": {
+        "id": "BIGMALASADA",
+        "name": "Big Malasada",
+        "description": "The Alola region's specialty--fried bread. It can be used once to heal all the status conditions of a Pok\u00e9mon.",
+        "flags": null
+    },
+    "ABILITYCAPSULE": {
+        "id": "ABILITYCAPSULE",
+        "name": "Ability Capsule",
+        "description": "A capsule that allows a Pok\u00e9mon with two Abilities to switch between these Abilities when it is used.",
+        "flags": null
+    },
+    "SPRINKLOTAD": {
+        "id": "SPRINKLOTAD",
+        "name": "Sprinklotad",
+        "description": "A watering can shaped like a Lotad. It helps promote the healthy growth of any Berries planted in soft soil.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "PRISONBOTTLE": {
+        "id": "PRISONBOTTLE",
+        "name": "Prison Bottle",
+        "description": "A bottle believed to have been used to seal away the power of a certain Pok\u00e9mon long, long ago.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "NSOLARIZER": {
+        "id": "NSOLARIZER",
+        "name": "N-Solarizer",
+        "description": "A machine to fuse Necrozma, which needs light, and Solgaleo.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "NLUNARIZER": {
+        "id": "NLUNARIZER",
+        "name": "N-Lunarizer",
+        "description": "A machine to fuse Necrozma, which needs light, and Lunala.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "MEGARING": {
+        "id": "MEGARING",
+        "name": "Mega Ring",
+        "description": "This ring contains an untold power that somehow enables Pok\u00e9mon carrying Mega Stones to Mega Evolve.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "ZYGARDECUBE": {
+        "id": "ZYGARDECUBE",
+        "name": "Zygarde Cube",
+        "description": "An item holding Zygarde's Cores and Cells. You can use it to change Zygarde's ability.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "EXPCANDYXS": {
+        "id": "EXPCANDYXS",
+        "name": "Exp. Candy XS",
+        "description": "A candy that is packed with energy. When consumed, it will grant a single Pok\u00e9mon 250 Exp. Points.",
+        "flags": [
+            "SkipPocketMessage"
+        ]
+    },
+    "EXPCANDYS": {
+        "id": "EXPCANDYS",
+        "name": "Exp. Candy S",
+        "description": "A candy that is packed with energy. When consumed, it will grant a single Pok\u00e9mon 1000 Exp. Points.",
+        "flags": [
+            "SkipPocketMessage"
+        ]
+    },
+    "EXPCANDYM": {
+        "id": "EXPCANDYM",
+        "name": "Exp. Candy M",
+        "description": "A candy that is packed with energy. When consumed, it will grant a single Pok\u00e9mon 4,000 Exp. Points.",
+        "flags": [
+            "SkipPocketMessage"
+        ]
+    },
+    "EXPCANDYL": {
+        "id": "EXPCANDYL",
+        "name": "Exp. Candy L",
+        "description": "A candy that is packed with energy. When consumed, it will grant a single Pok\u00e9mon 16,000 Exp. Points.",
+        "flags": [
+            "SkipPocketMessage"
+        ]
+    },
+    "EXPCANDYXL": {
+        "id": "EXPCANDYXL",
+        "name": "Exp. Candy XL",
+        "description": "A candy that is packed with energy. When consumed, it will grant a single Pok\u00e9mon 64,000 Exp. Points.",
+        "flags": [
+            "SkipPocketMessage"
+        ]
+    },
+    "FOSSILIZEDBIRD": {
+        "id": "FOSSILIZEDBIRD",
+        "name": "Fossilized Bird",
+        "description": "The fossil of an ancient Pok\u00e9mon that once soared through the sky. What it looked like is a mystery.",
+        "flags": [
+            "Fossil"
+        ]
+    },
+    "FOSSILIZEDFISH": {
+        "id": "FOSSILIZEDFISH",
+        "name": "Fossilized Fish",
+        "description": "The fossil of an ancient Pok\u00e9mon that once lived in the sea. What it looked like is a mystery.",
+        "flags": [
+            "Fossil"
+        ]
+    },
+    "FOSSILIZEDDRAKE": {
+        "id": "FOSSILIZEDDRAKE",
+        "name": "Fossilized Drake",
+        "description": "The fossil of an ancient Pok\u00e9mon that once roamed the land. What it looked like is a mystery.",
+        "flags": [
+            "Fossil"
+        ]
+    },
+    "FOSSILIZEDDINO": {
+        "id": "FOSSILIZEDDINO",
+        "name": "Fossilized Dino",
+        "description": "The fossil of an ancient Pok\u00e9mon that once lived in the sea. What it looked like is a mystery.",
+        "flags": [
+            "Fossil"
+        ]
+    },
+    "RUSTEDSHIELD": {
+        "id": "RUSTEDSHIELD",
+        "name": "Rusted Shield",
+        "description": "It is said that a hero used this shield to halt a terrible disaster in ancient times. But it's grown rusty and worn.",
+        "flags": null
+    },
+    "RUSTEDSWORD": {
+        "id": "RUSTEDSWORD",
+        "name": "Rusted Sword",
+        "description": "It is said that a hero used this sword to halt a terrible disaster in ancient times. But it's grown rusty and worn.",
+        "flags": null
+    },
+    "REINSOFUNITY": {
+        "id": "REINSOFUNITY",
+        "name": "Reins of Unity",
+        "description": "Reins that people presented to the king. They enable Calyrex to connect and communicate with its beloved steed.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "EXPCHARM": {
+        "id": "EXPCHARM",
+        "name": "EXP Charm",
+        "description": "A charm that increases the Exp. Points that Pok\u00e9mon can get by 10%. A machine-like object is inside the charm.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "CATCHINGCHARM": {
+        "id": "CATCHINGCHARM",
+        "name": "Catching Charm",
+        "description": "A charm that doubles the chance of getting a critical catch.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "INFINITEROPE": {
+        "id": "INFINITEROPE",
+        "name": "Escape Rope",
+        "description": "A long, durable rope. Use it to escape instantly from a cave or a dungeon.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "GRASSTOKEN": {
+        "id": "GRASSTOKEN",
+        "name": "Grass Token",
+        "description": "A token which can be exchanged for a Grass-type at the Starter Store.",
+        "flags": null
+    },
+    "WATERTOKEN": {
+        "id": "WATERTOKEN",
+        "name": "Water Token",
+        "description": "A token which can be exchanged for a Water-type at the Starter Store.",
+        "flags": null
+    },
+    "ORIGINORE": {
+        "id": "ORIGINORE",
+        "name": "Origin Ore",
+        "description": "A peculiar ore that makes certain species of Pok\u00e9mon evolve. Associated with Arceus.",
+        "flags": [
+            "EvolutionItem"
+        ]
+    },
+    "FIRETOKEN": {
+        "id": "FIRETOKEN",
+        "name": "Fire Token",
+        "description": "A token which can be exchanged for a Fire-type at the Starter Store.",
+        "flags": null
+    },
+    "DRATINIEGG": {
+        "id": "DRATINIEGG",
+        "name": "Dratini Egg",
+        "description": "An abandoned Dratini egg that is cold and calm. Only an expert would be able to hatch it.",
+        "flags": null
+    },
+    "BAGONEGG": {
+        "id": "BAGONEGG",
+        "name": "Bagon Egg",
+        "description": "An abandoned Bagon egg that is cold and calm. Only an expert would be able to hatch it.",
+        "flags": null
+    },
+    "GIBLEEGG": {
+        "id": "GIBLEEGG",
+        "name": "Gible Egg",
+        "description": "An abandoned Gible egg that is cold and calm. Only an expert would be able to hatch it.",
+        "flags": null
+    },
+    "DEINOEGG": {
+        "id": "DEINOEGG",
+        "name": "Deino Egg",
+        "description": "An abandoned Deino egg that is cold and calm. Only an expert would be able to hatch it.",
+        "flags": null
+    },
+    "GOOMYEGG": {
+        "id": "GOOMYEGG",
+        "name": "Goomy Egg",
+        "description": "An abandoned Goomy egg that is cold and calm. Only an expert would be able to hatch it.",
+        "flags": null
+    },
+    "JANGMOOEGG": {
+        "id": "JANGMOOEGG",
+        "name": "Jangmo-o Egg",
+        "description": "An abandoned Jangmo-o egg that is cold and calm. Only an expert would be able to hatch it.",
+        "flags": null
+    },
+    "DREEPYEGG": {
+        "id": "DREEPYEGG",
+        "name": "Dreepy Egg",
+        "description": "An abandoned Dreepy egg that is cold and calm. Only an expert would be able to hatch it.",
+        "flags": null
+    },
+    "EEVEETICKET": {
+        "id": "EEVEETICKET",
+        "name": "Eevee Ticket",
+        "description": "A ticket that can be exchanged for an Eevee at the Skeevy Eevee Pub.",
+        "flags": null
+    },
+    "AIDKIT": {
+        "id": "AIDKIT",
+        "name": "Aid Kit",
+        "description": "Heals your whole team a limited number of times. Restocked at PokeCenters and after resting.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "KITEXPANSION": {
+        "id": "KITEXPANSION",
+        "name": "Kit Expansion",
+        "description": "A pack for holding medicine. If you use it, your Aid Kit will gain a max charge.",
+        "flags": null
+    },
+    "MEDICALUPGRADE": {
+        "id": "MEDICALUPGRADE",
+        "name": "Medical Upgrade",
+        "description": "A suite of medicines. If you use it, your Aid Kit will heal more efficiently.",
+        "flags": null
+    },
+    "DYNAMITESTICK": {
+        "id": "DYNAMITESTICK",
+        "name": "Dynamite Stick",
+        "description": "A stick of dynamite, perfectly suited to destroying small bits of rock.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "FIGMENT": {
+        "id": "FIGMENT",
+        "name": "Figment",
+        "description": "A wisp of ideas with infinite potential. Use it on a Pok\u00e9mon to teach any one of their legal moves.",
+        "flags": null
+    },
+    "SACCHARITEPICK": {
+        "id": "SACCHARITEPICK",
+        "name": "Saccharite Pick",
+        "description": "A food grade mining tool. Allows you to extract EXP. Candy from saccharite deposits.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "SURFBOARD": {
+        "id": "SURFBOARD",
+        "name": "Surf Board",
+        "description": "A surf board, allowing you to surf on water.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "CHASMIDCARD": {
+        "id": "CHASMIDCARD",
+        "name": "Chasm ID Card",
+        "description": "An ID card which unlocks Team Chasm gates and doors, giving access to dangers and rewards.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "CLIMBINGGEAR": {
+        "id": "CLIMBINGGEAR",
+        "name": "Climbing Gear",
+        "description": "A set of climbing gear, allowing you to climb on white rocks.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "FLORASCEPTRE": {
+        "id": "FLORASCEPTRE",
+        "name": "Flora Sceptre",
+        "description": "An ancient kingly rod. You can use it to make certain plants grow.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "ABRAPORTER": {
+        "id": "ABRAPORTER",
+        "name": "Abraporter",
+        "description": "A teleporter which brings you to your last safe spot using the power of Abras.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "REMATERIALIZER": {
+        "id": "REMATERIALIZER",
+        "name": "Rematerializer",
+        "description": "A 3D printer which automatically copies consumed held items after battles.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "EXPEZDISPENSER": {
+        "id": "EXPEZDISPENSER",
+        "name": "EXP-EZ Dispenser",
+        "description": "A machine that stores excess EXP. You can activate it to turn that stored EXP into candies.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "UNIVERSALFORMALIZER": {
+        "id": "UNIVERSALFORMALIZER",
+        "name": "Universal Formalizer",
+        "description": "Use on a Pok\u00e9mon to switch it into another one of its forms.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "SPANNINGBAND": {
+        "id": "SPANNINGBAND",
+        "name": "Spanning Bands",
+        "description": "An ancient pair of interlocking ceramic rings. Unlocks the ability to teleport between Avatar Totems.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "POCKETTOTEM": {
+        "id": "POCKETTOTEM",
+        "name": "Pocket Totem",
+        "description": "A miniature Avatar Totem. Use it to teleport to any unlocked Avatar Totems throughout Makya.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "BOXLINK": {
+        "id": "BOXLINK",
+        "name": "Box Link",
+        "description": "An advanced transporter which allows you to access your Pok\u00e9mon Storage to withdraw or deposit Pok\u00e9mon.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "STYLINGKIT": {
+        "id": "STYLINGKIT",
+        "name": "Styling Kit",
+        "description": "A suite of training tools which allows you to modify your Pok\u00e9mon's style points.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "TAROTAMULET": {
+        "id": "TAROTAMULET",
+        "name": "Tarot Amulet",
+        "description": "If reversed, gym leaders and story fights will become harder through unique curses.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "NOISEMACHINE": {
+        "id": "NOISEMACHINE",
+        "name": "Noise Machine",
+        "description": "A small, versatile machine that can be used to repel wild Pok\u00e9mon, or draw them near.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "POKEXRAY": {
+        "id": "POKEXRAY",
+        "name": "Pok\u00e9 X-Ray",
+        "description": "A high tech surveillance device. Use it to scout out the teams of nearby trainers.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "CELLBOOSTER": {
+        "id": "CELLBOOSTER",
+        "name": "Cell Booster",
+        "description": "Condensed essence of life. Holding it allows you to run, bike, and surf faster.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "RUSTEDCOMPASS": {
+        "id": "RUSTEDCOMPASS",
+        "name": "Rusted Compass",
+        "description": "A small compass. Relic of a heroic age. It can be used to find lootable items nearby.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "MAGNETICGAUNTLET": {
+        "id": "MAGNETICGAUNTLET",
+        "name": "Magnetic Gauntlet",
+        "description": "An electrified glove with a claw-like shape. Recovers the first failed Pok\u00e9 Ball thrown in a wild battle.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "CHROMACLARION": {
+        "id": "CHROMACLARION",
+        "name": "Chroma Clarion",
+        "description": "An ancient horn. Sound it to start a 3v3 wild battle. Foes will be higher level and likely to have rare moves.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "HOUSEDEED1": {
+        "id": "HOUSEDEED1",
+        "name": "House Deed",
+        "description": "Proof of ownership for the house you bought in Prizca East.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "GLEAMPOWDER": {
+        "id": "GLEAMPOWDER",
+        "name": "Gleam Powder",
+        "description": "A small vial of gleaming powder. Can be used once to ensure the next wild Pok\u00e9mon you find is shiny.",
+        "flags": null
+    },
+    "VIRALHELIX": {
+        "id": "VIRALHELIX",
+        "name": "Viral Helix",
+        "description": "Infinitely mutating alien DNA. It allows a Pok\u00e9mon with two abilities to switch abilities when used.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "BALLLAUNCHER": {
+        "id": "BALLLAUNCHER",
+        "name": "Ball Launcher",
+        "description": "A device which creates then launches regular Pok\u00e9 Balls, never running out.",
+        "flags": [
+            "KeyItem",
+            "PokeBall",
+            "SnagBall"
+        ]
+    },
+    "PERFORMANCEANALYZER": {
+        "id": "PERFORMANCEANALYZER",
+        "name": "Performance Analyzer",
+        "description": "A hi-tech recording device which creates a Battle Report by analyzing the results of momentous battles.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "PERFORMANCEANALYZER2": {
+        "id": "PERFORMANCEANALYZER2",
+        "name": "Performance Analyzer 2",
+        "description": "An upgraded, hi-tech recording device. It increases experience earned from battles by 10%.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "BATTLEREPORT": {
+        "id": "BATTLEREPORT",
+        "name": "Battle Report",
+        "description": "A detailed report on how to improve as a trainer. If you decide to read it, your level cap will be raised by 5.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "MILKBONETREAT": {
+        "id": "MILKBONETREAT",
+        "name": "Milk Bone Treat",
+        "description": "It would be a delicious treat if you were a Pok\u00e9mon.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "PRIMALCLAY": {
+        "id": "PRIMALCLAY",
+        "name": "Primal Clay",
+        "description": "A lump of ancient clay. It glows with a soft golden color.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "OMNIDRIVE": {
+        "id": "OMNIDRIVE",
+        "name": "OmniDrive",
+        "description": "A mysterious data storage device. Plug it into any PC to unlock The Omnitutor.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "ANCIENTSEAWATER": {
+        "id": "ANCIENTSEAWATER",
+        "name": "Ancient Sea Water",
+        "description": "A vial of shimmering ocean water. It makes a certain Pok\u00e9mon evolve.",
+        "flags": [
+            "EvolutionItem"
+        ]
+    },
+    "CUPOFCOFFEE": {
+        "id": "CUPOFCOFFEE",
+        "name": "Cup of Coffee",
+        "description": "It's a cup filled with warm coffee. You probably shouldn't be keeping this in your backpack.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "LUXTECHSHIPMENT": {
+        "id": "LUXTECHSHIPMENT",
+        "name": "LuxTech Shipment",
+        "description": "A package containing an important shipment destined for LuxTech.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "WEIRDPACKAGE": {
+        "id": "WEIRDPACKAGE",
+        "name": "Weird Package",
+        "description": "A suspicious package. Probably best not to look inside.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "AEGISIDCARD": {
+        "id": "AEGISIDCARD",
+        "name": "Aegis ID Card",
+        "description": "A forged ID card. It will let you pretend you work at Aegis Insurance.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "INCRIMINATINGEVIDENCE": {
+        "id": "INCRIMINATINGEVIDENCE",
+        "name": "Incriminating Evidence",
+        "description": "A device containing evidence against Aegis Insurance.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "DIGITSLIP": {
+        "id": "DIGITSLIP",
+        "name": "Digit Slip",
+        "description": "A slip of paper with one digit of the code for the lock to Rafael's gym door.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "SIGILLEFTHALF": {
+        "id": "SIGILLEFTHALF",
+        "name": "Sigil Left Half",
+        "description": "The left half of the sigil of an ancient order of knights.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "SIGILRIGHTHALF": {
+        "id": "SIGILRIGHTHALF",
+        "name": "Sigil Right Half",
+        "description": "The right half of the sigil of an ancient order of knights.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "CARNATIONSIGIL": {
+        "id": "CARNATIONSIGIL",
+        "name": "Carnation Sigil",
+        "description": "An ancient sigil of the Carnation Knights. You feel it pulling you towards another place.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "CONDENSEDLIGHT": {
+        "id": "CONDENSEDLIGHT",
+        "name": "Condensed Light",
+        "description": "A strange ball of light. You should gather these for a friend.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "CHAMBER1KEY": {
+        "id": "CHAMBER1KEY",
+        "name": "Chamber 1 Key",
+        "description": "The key to the first chamber containing a powerful avatar.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "CHAMBER2KEY": {
+        "id": "CHAMBER2KEY",
+        "name": "Chamber 2 Key",
+        "description": "The key to the second chamber containing a powerful avatar.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "CHAMBER3KEY": {
+        "id": "CHAMBER3KEY",
+        "name": "Chamber 3 Key",
+        "description": "The key to the third chamber containing a powerful avatar.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "CHAMBER4KEY": {
+        "id": "CHAMBER4KEY",
+        "name": "Chamber 4 Key",
+        "description": "The key to the fourth chamber containing a powerful avatar.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "CHAMBER5KEY": {
+        "id": "CHAMBER5KEY",
+        "name": "Chamber 5 Key",
+        "description": "The key to the fifth chamber containing a powerful avatar.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "CHAMBER6KEY": {
+        "id": "CHAMBER6KEY",
+        "name": "Chamber 6 Key",
+        "description": "The key to the sixth chamber containing a powerful avatar.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "CHAMBER7KEY": {
+        "id": "CHAMBER7KEY",
+        "name": "Chamber 7 Key",
+        "description": "The key to the seventh chamber containing a powerful avatar.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "CHAMBER8KEY": {
+        "id": "CHAMBER8KEY",
+        "name": "Chamber 8 Key",
+        "description": "The key to the eighth chamber containing a powerful avatar.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "UBCONTAINMENTKEY": {
+        "id": "UBCONTAINMENTKEY",
+        "name": "UB Containment Key",
+        "description": "A key which unlocks the Ultra Beast Containment Room at Novo College.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "FACTORYPASS": {
+        "id": "FACTORYPASS",
+        "name": "Factory Pass",
+        "description": "A pass that grants you access through the locked door in Victoire's factory.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "RUINEDTOWERKEY": {
+        "id": "RUINEDTOWERKEY",
+        "name": "Ruined Tower Key",
+        "description": "A key which unlocks the ruined tower on the Sandstone Estuary coastline.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "LATENTSEED": {
+        "id": "LATENTSEED",
+        "name": "Latent Seed",
+        "description": "A simple tree seed. It hums with the potential for great change.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "ALLOYEDLUMP": {
+        "id": "ALLOYEDLUMP",
+        "name": "Alloyed Lump",
+        "description": "Misshapen, unusual metal. Useless without a way to sharpen it.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "ALLOYEDBLADE": {
+        "id": "ALLOYEDBLADE",
+        "name": "Alloyed Blade",
+        "description": "A fragile blade of unusual metal. Sharp enough to cut alloyed overgrowth.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "ALLOYEDWIRE": {
+        "id": "ALLOYEDWIRE",
+        "name": "Alloyed Wire",
+        "description": "A thin, nearly invisible strand of unusual metal.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "SPACETIMESHARD": {
+        "id": "SPACETIMESHARD",
+        "name": "Space-time Shard",
+        "description": "A sliver of the fragment of the universe. Highly unstable.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "OLDUSBDRIVE": {
+        "id": "OLDUSBDRIVE",
+        "name": "Old USB Drive",
+        "description": "A USB containing data from a Team Chasm's early days.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "GILDEDAPRICORN": {
+        "id": "GILDEDAPRICORN",
+        "name": "Gilded Apricorn",
+        "description": "A gleaming golden fruit. Someone skilled may be able to craft it into a unique Pok\u00e9 Ball.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "RAGGEDJOURNAL": {
+        "id": "RAGGEDJOURNAL",
+        "name": "Ragged Journal",
+        "description": "A damaged traveler's journal. If you find its scattered pages, you can put them back in place.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "DEADSKYSLIVER": {
+        "id": "DEADSKYSLIVER",
+        "name": "Dead Sky Sliver",
+        "description": "A dark sliver of something that hurts to look at. It bears an inscription.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "TIMELOSTALABASTER": {
+        "id": "TIMELOSTALABASTER",
+        "name": "Timelost Alabaster",
+        "description": "Inscribed, delicate pale stone. It\u2019s always been here, but it hasn\u2019t always always been here.",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "WRETCHEDWHITEWING": {
+        "id": "WRETCHEDWHITEWING",
+        "name": "Wretched Whitewing",
+        "description": "A radiant wing. It radiates misery, but you feel peaceful holding it. Returning home, returning home...",
+        "flags": [
+            "KeyItem"
+        ]
+    },
+    "VIPCARD": {
+        "id": "VIPCARD",
+        "name": "VIP Card",
+        "description": "A glamorous steel card. While holding it, all vendors cost 10% less and Pok\u00e9center Marts have extra items.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    },
+    "OMINOUSEGG": {
+        "id": "OMINOUSEGG",
+        "name": "Ominous Egg",
+        "description": "A vessel for negative emotions. Perfectly defeat enough trainers to earn its rewards.",
+        "flags": [
+            "KeyItem",
+            "SkipPocketMessage"
+        ]
+    }
+}
