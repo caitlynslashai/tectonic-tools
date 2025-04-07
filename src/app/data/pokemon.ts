@@ -32,12 +32,9 @@ export const pokemon: Record<string, Pokemon> = Object.fromEntries(
 // propagate prevos
 const all_evos: Record<string, Evolution> = {};
 for (const index in pokemon) {
-    if (index in all_evos) {
-        continue;
-    }
     const mon = pokemon[index];
     for (const evo of mon.evos) {
-        all_evos[evo.target] = { ...evo, prevo: true };
+        all_evos[evo.target] = { ...evo, target: index, prevo: true };
     }
 }
 

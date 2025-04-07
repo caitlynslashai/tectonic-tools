@@ -401,7 +401,10 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                             <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
                                                 {currentPokemon.getPrevos().map((prevo, index) => (
                                                     <li key={index}>
-                                                        {pokemon[prevo.target].name} {describeEvoMethod(prevo)}
+                                                        <span className="font-semibold">
+                                                            {pokemon[prevo.target].name}
+                                                        </span>{" "}
+                                                        {describeEvoMethod(prevo)}
                                                     </li>
                                                 ))}
                                             </ul>
