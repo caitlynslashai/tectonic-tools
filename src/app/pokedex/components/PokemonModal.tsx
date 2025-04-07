@@ -1,6 +1,8 @@
 import { PokemonType, pokemonTypes } from "@/app/data/basicData";
+import { moves } from "@/app/data/moves";
+import { pokemon } from "@/app/data/pokemon";
 import { typeChart } from "@/app/data/typeChart";
-import { Pokemon } from "@/app/data/types/Pokemon";
+import { Evolution, Pokemon } from "@/app/data/types/Pokemon";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import TypeBadge from "../../../components/TypeBadge";
@@ -20,27 +22,27 @@ const tabs = [
     "Atk. Matchups",
     // "Level Up Moves",
     // "Tutor Moves",
-    // "Evolutions",
+    "Evolutions",
     // "Encounters",
 ] as const;
 export type Tab = (typeof tabs)[number];
 
-const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon, onClose }) => {
+const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) => {
     const [isVisible, setIsVisible] = useState(false);
     const [isRendered, setIsRendered] = useState(false);
-    const [currentPokemon, setCurrentPokemon] = useState(pokemon);
+    const [currentPokemon, setCurrentPokemon] = useState(mon);
     const [activeTab, setActiveTab] = useState<Tab>("Info"); // Track active tab
 
     useEffect(() => {
-        if (pokemon) {
-            setCurrentPokemon(pokemon); // Update to the new Pokémon
+        if (mon) {
+            setCurrentPokemon(mon); // Update to the new Pokémon
             setIsRendered(true);
             setTimeout(() => setIsVisible(true), 10); // Slight delay to trigger animation
         } else {
             setIsVisible(false);
             setTimeout(() => setIsRendered(false), 300); // Match duration-300 for fade-out
         }
-    }, [pokemon]);
+    }, [mon]);
 
     const handleClose = () => {
         setIsVisible(false);
@@ -80,6 +82,70 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon, onClose }) => {
             }
             return 0;
         };
+    }
+
+    function describeEvoMethod(evo: Evolution) {
+        switch (evo.method) {
+            case "Level":
+            case "Ninjask":
+                return `at level ${evo.param}`;
+            case "LevelMale":
+                return `at level ${evo.param} if it's male`;
+            case "LevelFemale":
+                return `at level ${evo.param} if it's female`;
+            case "LevelDay":
+                return `at level ${evo.param} during the day`;
+            case "LevelNight":
+                return `at level ${evo.param} during nighttime`;
+            case "LevelRain":
+                return `at level ${evo.param} while raining`;
+            case "LevelDarkInParty":
+                return `at level ${evo.param} while a dark type is in the party`;
+            case "AttackGreater":
+                return `at level ${evo.param} if it has more attack than defense`;
+            case "AtkDefEqual":
+                return `at level ${evo.param} if it has attack equal to defense`;
+            case "DefenseGreater":
+                return `at level ${evo.param} if it has more defense than attack`;
+            case "Silcoon":
+                return `at level ${evo.param} half of the time`;
+            case "Cascoon":
+                return `at level ${evo.param} the other half of the time`;
+            case "Ability0":
+                return `at level ${evo.param} if it has the first of its possible abilities`;
+            case "Ability1":
+                return `at level ${evo.param} if it has the second of its possible abilities`;
+            case "Happiness":
+                return "case leveled up while it has high happiness";
+            case "MaxHappiness":
+                return "case leveled up while it has maximum happiness";
+            case "Beauty":
+                return "case leveled up while it has maximum beauty";
+            case "HasMove":
+                return `case leveled up while it knows the move ${moves[evo.param].name}`;
+            case "HasMoveType":
+                return `case leveled up while it knows a move of the ${evo.param} type`;
+            case "Location":
+                return "case leveled up near a special location";
+            case "Item":
+                return `by using a ${1}`;
+            case "ItemMale":
+                return `by using a ${1} if it's male`;
+            case "ItemFemale":
+                return `by using a ${1} if it's female`;
+            case "Trade":
+                return "case traded";
+            case "TradeItem":
+                return `case traded holding an ${1}`;
+            case "HasInParty":
+                return `case leveled up while a ${pokemon[evo.param]} is also in the party`;
+            case "Shedinja":
+                return "also if you have an empty Poké Ball and party slot";
+            case "Originize":
+                return `at level ${evo.param} if you spend an Origin Ore`;
+            default:
+                return "via a method the programmer was too lazy to describe";
+        }
     }
 
     return (
@@ -299,6 +365,45 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon, onClose }) => {
                                                     ))}
                                             </ul>
                                         </div>
+                                    )}
+                                </div>
+                            </div>
+                        </PokemonTab>
+                        <PokemonTab tab="Evolutions" activeTab={activeTab}>
+                            <div>
+                                <h3 className="font-semibold text-gray-800 dark:text-gray-100">Evolutions</h3>
+                                <div className="mt-4">
+                                    {currentPokemon.getDeepEvos().length > 0 ? (
+                                        <div>
+                                            <h4 className="font-semibold text-gray-800 dark:text-gray-100">
+                                                Evolves Into:
+                                            </h4>
+                                            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+                                                {currentPokemon.getDeepEvos().map((evo, index) => (
+                                                    <li key={index}>
+                                                        {pokemon[evo.target].name} {describeEvoMethod(evo)}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    ) : (
+                                        <p className="text-gray-600 dark:text-gray-300">No further evolutions.</p>
+                                    )}
+                                    {currentPokemon.getPrevos().length > 0 ? (
+                                        <div className="mt-4">
+                                            <h4 className="font-semibold text-gray-800 dark:text-gray-100">
+                                                Evolved From:
+                                            </h4>
+                                            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+                                                {currentPokemon.getPrevos().map((prevo, index) => (
+                                                    <li key={index}>
+                                                        {pokemon[prevo.target].name} {describeEvoMethod(prevo)}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    ) : (
+                                        <p className="text-gray-600 dark:text-gray-300">No previous evolutions.</p>
                                     )}
                                 </div>
                             </div>
