@@ -7,6 +7,7 @@ import { Evolution, Pokemon } from "@/app/data/types/Pokemon";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import TypeBadge from "../../../components/TypeBadge";
+import MoveDisplay from "./MoveDisplay";
 import PokemonTab from "./PokemonTab";
 import StatRow from "./StatRow";
 
@@ -21,8 +22,8 @@ const tabs = [
     "Stats",
     "Def. Matchups",
     "Atk. Matchups",
-    // "Level Up Moves",
-    // "Tutor Moves",
+    "Level Moves",
+    "Tutor Moves",
     "Evolutions",
     // "Encounters",
 ] as const;
@@ -158,7 +159,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
         >
             <div
                 onClick={(e) => e.stopPropagation()} // Prevent background click from closing modal
-                className={`bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-300 ${
+                className={`bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] min-h-[70vh] overflow-y-auto transform transition-transform duration-300 ${
                     isVisible ? "scale-100" : "scale-95"
                 }`}
             >
@@ -194,7 +195,13 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
 
                     {/* Tabs */}
                     <div className="mt-4 border-b border-gray-200 dark:border-gray-700">
-                        <nav className="-mb-px flex space-x-4">
+                        <nav
+                            className="-mb-px flex space-x-4 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700"
+                            onWheel={(e) => {
+                                const target = e.currentTarget;
+                                target.scrollLeft += e.deltaY;
+                            }}
+                        >
                             {tabs.map((tab) => (
                                 <button
                                     key={tab}
@@ -370,9 +377,14 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                 </div>
                             </div>
                         </PokemonTab>
+                        <PokemonTab tab="Level Moves" activeTab={activeTab}>
+                            <MoveDisplay pokemon={currentPokemon} moveKey="level" />
+                        </PokemonTab>
+                        <PokemonTab tab="Tutor Moves" activeTab={activeTab}>
+                            <MoveDisplay pokemon={currentPokemon} moveKey="tutor" />
+                        </PokemonTab>
                         <PokemonTab tab="Evolutions" activeTab={activeTab}>
                             <div>
-                                <h3 className="font-semibold text-gray-800 dark:text-gray-100">Evolutions</h3>
                                 <div className="mt-4">
                                     {currentPokemon.getDeepEvos().length > 0 ? (
                                         <div>
