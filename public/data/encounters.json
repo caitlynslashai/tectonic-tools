@@ -1,0 +1,4078 @@
+{
+    "003": {
+        "id": "003",
+        "name": "Kilna Turf",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 20,
+                    "pokemon": "DODUO"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MANKEY"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "RHYHORN"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SANDSHREW"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "YAMPER"
+                }
+            ],
+            "LandTall": [
+                {
+                    "weight": 20,
+                    "pokemon": "BLITZLE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "NIDORANfE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "NIDORANmA"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "PONYTA"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "POOCHYENA"
+                }
+            ],
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "NUMEL"
+                }
+            ]
+        }
+    },
+    "004": {
+        "id": "004",
+        "name": "Scientist's House",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "AGEODUDE"
+                }
+            ]
+        }
+    },
+    "006": {
+        "id": "006",
+        "name": "LuxTech Campus",
+        "encounters": {
+            "FloweryGrass2": [
+                {
+                    "weight": 28,
+                    "pokemon": "MIMEJR"
+                },
+                {
+                    "weight": 28,
+                    "pokemon": "PORYGON"
+                },
+                {
+                    "weight": 14,
+                    "pokemon": "JOLTIK"
+                },
+                {
+                    "weight": 14,
+                    "pokemon": "PURRLOIN"
+                },
+                {
+                    "weight": 14,
+                    "pokemon": "SHINX"
+                }
+            ],
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "GSLOWPOKE"
+                }
+            ]
+        }
+    },
+    "007": {
+        "id": "007",
+        "name": "Repora Forest",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 40,
+                    "pokemon": "MEOWTH"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "NICKIT"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SHROOMISH"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SIZZLIPEDE"
+                }
+            ],
+            "LandSparse": [
+                {
+                    "weight": 20,
+                    "pokemon": "GROWLITHE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "LARVESTA"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MURKROW"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "PHANTUMP"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "VENONAT"
+                }
+            ]
+        }
+    },
+    "008": {
+        "id": "008",
+        "name": "Velenz",
+        "encounters": {
+            "LandTall": [
+                {
+                    "weight": 25,
+                    "pokemon": "GLAMEOW"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "LOTAD"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "NATU"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "PUMPKABOO"
+                }
+            ]
+        }
+    },
+    "011": {
+        "id": "011",
+        "name": "Eleig River Crossing",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 25,
+                    "pokemon": "AXEW"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "CHEWTLE"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "DROWZEE"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "GOSSIFLEUR"
+                }
+            ],
+            "Puddle": [
+                {
+                    "weight": 25,
+                    "pokemon": "BIDOOF"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "BUIZEL"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "LUVDISC"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "SKRELP"
+                }
+            ]
+        }
+    },
+    "019": {
+        "id": "019",
+        "name": "Reading Ribombee Caf\u00e9",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "MILCERY"
+                }
+            ]
+        }
+    },
+    "020": {
+        "id": "020",
+        "name": "Alloyed Thicket",
+        "encounters": {
+            "LandSparse": [
+                {
+                    "weight": 20,
+                    "pokemon": "AMOONGUSS"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "ARIADOS"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "DITTO"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "DURANT"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "FERROTHORN"
+                }
+            ]
+        }
+    },
+    "025": {
+        "id": "025",
+        "name": "Grouz",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 33,
+                    "pokemon": "RUFFLET"
+                },
+                {
+                    "weight": 33,
+                    "pokemon": "TYROGUE"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "GOTHITA"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "PAWNIARD"
+                }
+            ],
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "TENTACOOL"
+                }
+            ]
+        }
+    },
+    "026": {
+        "id": "026",
+        "name": "Bluepoint Grotto",
+        "encounters": {
+            "DarkCave": [
+                {
+                    "weight": 25,
+                    "pokemon": "GEODUDE"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "NOIBAT"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "SALANDIT"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "WHISMUR"
+                }
+            ],
+            "LandSparse": [
+                {
+                    "weight": 25,
+                    "pokemon": "DITTO"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "FERROSEED"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "PARAS"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "SHELLDER"
+                }
+            ]
+        }
+    },
+    "029": {
+        "id": "029",
+        "name": "Full Blast Records F2",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "GMEOWTH"
+                }
+            ]
+        }
+    },
+    "030": {
+        "id": "030",
+        "name": "Windy Way",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 33,
+                    "pokemon": "RALTS"
+                },
+                {
+                    "weight": 33,
+                    "pokemon": "ROCKRUFF"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "HOPPIP"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "MAREEP"
+                }
+            ],
+            "LandTall": [
+                {
+                    "weight": 40,
+                    "pokemon": "MWURMPLE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "STARLY"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "STUNKY"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "WOOLOO"
+                }
+            ],
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "PIDOVE"
+                }
+            ]
+        }
+    },
+    "032": {
+        "id": "032",
+        "name": "Novo Apartments F1",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "MVULPIX"
+                }
+            ]
+        }
+    },
+    "034": {
+        "id": "034",
+        "name": "Battle Plaza",
+        "encounters": {
+            "FloweryGrass": [
+                {
+                    "weight": 20,
+                    "pokemon": "HAPPINY"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "LILLIPUP"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SAWK"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SKITTY"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "THROH"
+                }
+            ]
+        }
+    },
+    "035": {
+        "id": "035",
+        "name": "Impromptu Lab",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "BOUNSWEET"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "KRABBY"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "NUMEL"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "PATRAT"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "SKWOVET"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "ZIGZAGOON"
+                }
+            ]
+        }
+    },
+    "036": {
+        "id": "036",
+        "name": "Grouz Mine",
+        "encounters": {
+            "DarkCave": [
+                {
+                    "weight": 25,
+                    "pokemon": "BELDUM"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "KLINK"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "MAGNEMITE"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "SPINARAK"
+                }
+            ]
+        }
+    },
+    "037": {
+        "id": "037",
+        "name": "Svait",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 25,
+                    "pokemon": "MHOOTHOOT"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "MIENFOO"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "MISDREAVUS"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "TEDDIURSA"
+                }
+            ]
+        }
+    },
+    "038": {
+        "id": "038",
+        "name": "Bluepoint Beach",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 33,
+                    "pokemon": "EXEGGCUTE"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "GRUBBIN"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "HOUNDOUR"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "SANDYGAST"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "WINGULL"
+                }
+            ],
+            "Puddle": [
+                {
+                    "weight": 40,
+                    "pokemon": "CLAMPERL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "HORSEA"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "INKAY"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MGOLDEEN"
+                }
+            ]
+        }
+    },
+    "039": {
+        "id": "039",
+        "name": "Casaba Center",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "ASANDSHREW"
+                }
+            ]
+        }
+    },
+    "040": {
+        "id": "040",
+        "name": "Gigalith's Guts",
+        "encounters": {
+            "DarkCave": [
+                {
+                    "weight": 25,
+                    "pokemon": "ARON"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "MROGGENROLA"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "NOSEPASS"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "ZUBAT"
+                }
+            ]
+        }
+    },
+    "047": {
+        "id": "047",
+        "name": "Grand Hotel",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "HEATMOR"
+                }
+            ]
+        }
+    },
+    "049": {
+        "id": "049",
+        "name": "Tourist's House",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "BONSLY"
+                }
+            ]
+        }
+    },
+    "051": {
+        "id": "051",
+        "name": "Foreclosed Tunnel",
+        "encounters": {
+            "DarkCave": [
+                {
+                    "weight": 25,
+                    "pokemon": "GASTLY"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "LITWICK"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "ROLYCOLY"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "TRAPINCH"
+                }
+            ],
+            "Mud": [
+                {
+                    "weight": 25,
+                    "pokemon": "MACHOP"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "MUDBRAY"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "ONIX"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "PHANPY"
+                }
+            ]
+        }
+    },
+    "053": {
+        "id": "053",
+        "name": "The Shelf",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 40,
+                    "pokemon": "SCYTHER"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MORELULL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "PANSEAR"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "ZORUA"
+                }
+            ],
+            "Mud": [
+                {
+                    "weight": 33,
+                    "pokemon": "SLOWPOKE"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "EKANS"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "PANPOUR"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "STUFFUL"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "WOOPER"
+                }
+            ],
+            "LandTall": [
+                {
+                    "weight": 40,
+                    "pokemon": "ODDISH"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "PANSAGE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "ROOKIDEE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SKIDDO"
+                }
+            ]
+        }
+    },
+    "055": {
+        "id": "055",
+        "name": "Lingering Delta",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 25,
+                    "pokemon": "BUNEARY"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "CROAGUNK"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "CUTIEFLY"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "MVULLABY"
+                }
+            ],
+            "LandTall": [
+                {
+                    "weight": 50,
+                    "pokemon": "DEERLING_1"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "ESPURR"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "PSYDUCK"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "YANMA"
+                }
+            ],
+            "Puddle": [
+                {
+                    "weight": 40,
+                    "pokemon": "POLIWAG"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "BARBOACH"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SURSKIT"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "TYMPOLE"
+                }
+            ],
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "REMORAID"
+                }
+            ]
+        }
+    },
+    "056": {
+        "id": "056",
+        "name": "Novo Town",
+        "encounters": {
+            "FloweryGrass": [
+                {
+                    "weight": 25,
+                    "pokemon": "CHERUBI"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "DUCKLETT"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "SMOOCHUM"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "SWIRLIX"
+                }
+            ],
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "EEVEE"
+                }
+            ]
+        }
+    },
+    "057": {
+        "id": "057",
+        "name": "Novo Center",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "AMEOWTH"
+                }
+            ]
+        }
+    },
+    "059": {
+        "id": "059",
+        "name": "Feebas' Fin",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 40,
+                    "pokemon": "GULPIN"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "CHINGLING"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "TAILLOW"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "TIMBURR"
+                }
+            ],
+            "Puddle": [
+                {
+                    "weight": 20,
+                    "pokemon": "BINACLE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "FEEBAS"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MAGIKARP"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MSKRELP"
+                },
+                {
+                    "weight": 10,
+                    "pokemon": "SHELLOS"
+                },
+                {
+                    "weight": 10,
+                    "pokemon": "SHELLOS_1"
+                }
+            ],
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "CARVANHA"
+                }
+            ]
+        }
+    },
+    "060": {
+        "id": "060",
+        "name": "Shipping Lane",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 25,
+                    "pokemon": "IGGLYBUFF"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "MSENTRET"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "SLAKOTH"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "VENIPEDE"
+                }
+            ],
+            "LandTall": [
+                {
+                    "weight": 25,
+                    "pokemon": "DIGLETT"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "PIKIPEK"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "PINECO"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "SCATTERBUG"
+                }
+            ]
+        }
+    },
+    "066": {
+        "id": "066",
+        "name": "Apartment Attic",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "ABSOL"
+                }
+            ]
+        }
+    },
+    "067": {
+        "id": "067",
+        "name": "Old Ice Cream Shop",
+        "encounters": {
+            "LandSparse": [
+                {
+                    "weight": 20,
+                    "pokemon": "AZURILL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "CLOBBOPUS"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "HONEDGE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "TOXEL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "VANILLITE"
+                }
+            ]
+        }
+    },
+    "071": {
+        "id": "071",
+        "name": "Room 103",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "MAREANIE"
+                }
+            ]
+        }
+    },
+    "085": {
+        "id": "085",
+        "name": "Worried Man's House",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "SHELLOS"
+                }
+            ]
+        }
+    },
+    "086": {
+        "id": "086",
+        "name": "Zigzagoon Nest",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "GZIGZAGOON"
+                }
+            ]
+        }
+    },
+    "087": {
+        "id": "087",
+        "name": "LuxTech Rec Center",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "APPLIN"
+                }
+            ]
+        }
+    },
+    "090": {
+        "id": "090",
+        "name": "Employees' House",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "SNUBBULL"
+                }
+            ]
+        }
+    },
+    "092": {
+        "id": "092",
+        "name": "Svait Lodge Room 2",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "AGRIMER"
+                }
+            ]
+        }
+    },
+    "095": {
+        "id": "095",
+        "name": "Snowbird's House F2",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "ARATTATA"
+                }
+            ]
+        }
+    },
+    "096": {
+        "id": "096",
+        "name": "LuxTech Cold Storage",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "SEWADDLE"
+                }
+            ]
+        }
+    },
+    "098": {
+        "id": "098",
+        "name": "LuxTech Cold Storage Basement",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "SEEL"
+                }
+            ]
+        }
+    },
+    "103": {
+        "id": "103",
+        "name": "Velenz Mart",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "MAGBY"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "SINISTEA"
+                }
+            ]
+        }
+    },
+    "117": {
+        "id": "117",
+        "name": "Ice Cave",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 28,
+                    "pokemon": "BERGMITE"
+                },
+                {
+                    "weight": 28,
+                    "pokemon": "SNORUNT"
+                },
+                {
+                    "weight": 14,
+                    "pokemon": "PANCHAM"
+                },
+                {
+                    "weight": 14,
+                    "pokemon": "SNEASEL"
+                },
+                {
+                    "weight": 14,
+                    "pokemon": "SWINUB"
+                }
+            ]
+        }
+    },
+    "120": {
+        "id": "120",
+        "name": "Hollowed Layer",
+        "encounters": {
+            "DarkCave": [
+                {
+                    "weight": 20,
+                    "pokemon": "BALTOY"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "BRONZOR"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "DUNSPARCE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "LARVITAR"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "TYNAMO"
+                }
+            ]
+        }
+    },
+    "121": {
+        "id": "121",
+        "name": "Kilna Ascent",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 20,
+                    "pokemon": "CUBCHOO"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MPETILIL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SNOM"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SNOVER"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SPEAROW"
+                }
+            ],
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "HAPPINY"
+                }
+            ]
+        }
+    },
+    "122": {
+        "id": "122",
+        "name": "LuxTech Sewers",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "VOLTORB"
+                }
+            ],
+            "SewerFloor": [
+                {
+                    "weight": 22,
+                    "pokemon": "GRIMER"
+                },
+                {
+                    "weight": 22,
+                    "pokemon": "MUNCHLAX"
+                },
+                {
+                    "weight": 22,
+                    "pokemon": "SOLOSIS"
+                },
+                {
+                    "weight": 22,
+                    "pokemon": "TRUBBISH"
+                },
+                {
+                    "weight": 12,
+                    "pokemon": "VOLTORB"
+                }
+            ]
+        }
+    },
+    "123": {
+        "id": "123",
+        "name": "Novo College",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "AERODACTYL"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "AMAURA"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "ANORITH"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "ARCHEN"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "CRANIDOS"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "FURRET"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "KABUTO"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "LILEEP"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "OMANYTE"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "SHIELDON"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "TIRTOUGA"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "TYRUNT"
+                }
+            ]
+        }
+    },
+    "129": {
+        "id": "129",
+        "name": "Barren Crater",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 33,
+                    "pokemon": "NINCADA"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "BONSLY"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "MTANGELA"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "SPOINK"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "VULLABY"
+                }
+            ],
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "LILLIPUP"
+                }
+            ]
+        }
+    },
+    "130": {
+        "id": "130",
+        "name": "Canal Desert",
+        "encounters": {
+            "LandSparse": [
+                {
+                    "weight": 20,
+                    "pokemon": "CACNEA"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "HELIOPTILE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "HIPPOPOTAS"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SANDILE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SILICOBRA"
+                }
+            ],
+            "FloweryGrass": [
+                {
+                    "weight": 25,
+                    "pokemon": "GLIGAR"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "MARACTUS"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "PACHIRISU"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "SKORUPI"
+                }
+            ],
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "DARUMAKA"
+                }
+            ]
+        }
+    },
+    "135": {
+        "id": "135",
+        "name": "Nebula Ruins",
+        "encounters": {
+            "Cloud": [
+                {
+                    "weight": 20,
+                    "pokemon": "BLIPBUG"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "CLEFFA"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MINIOR"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "STONJOURNER"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "WOOBAT"
+                }
+            ]
+        }
+    },
+    "136": {
+        "id": "136",
+        "name": "Casaba Villa",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 40,
+                    "pokemon": "PIDGEY"
+                },
+                {
+                    "weight": 40,
+                    "pokemon": "SPRITZEE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "ELECTRIKE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MSINISTEA"
+                }
+            ],
+            "FloweryGrass": [
+                {
+                    "weight": 25,
+                    "pokemon": "ABRA"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "BUDEW"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "RATTATA"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "TOGEPI"
+                }
+            ]
+        }
+    },
+    "138": {
+        "id": "138",
+        "name": "Scenic Trail",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 20,
+                    "pokemon": "CATERPIE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "IMPIDIMP"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "LITLEO"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SEEDOT"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "WEEDLE"
+                }
+            ],
+            "LandTall": [
+                {
+                    "weight": 40,
+                    "pokemon": "PICHU"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MEDITITE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "RIOLU"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SHUPPET"
+                }
+            ]
+        }
+    },
+    "140": {
+        "id": "140",
+        "name": "Starters Store - Grass",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "BULBASAUR"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "CHESPIN"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "CHIKORITA"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "GROOKEY"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "ROWLET"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "SNIVY"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "TREECKO"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "TURTWIG"
+                }
+            ]
+        }
+    },
+    "141": {
+        "id": "141",
+        "name": "Starters Store - Fire",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "CHARMANDER"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "CHIMCHAR"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "CYNDAQUIL"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "FENNEKIN"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "LITTEN"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "SCORBUNNY"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "TEPIG"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "TORCHIC"
+                }
+            ]
+        }
+    },
+    "142": {
+        "id": "142",
+        "name": "Starters Store - Water",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "FROAKIE"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "MUDKIP"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "OSHAWOTT"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "PIPLUP"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "POPPLIO"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "SOBBLE"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "SQUIRTLE"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "TOTODILE"
+                }
+            ]
+        }
+    },
+    "155": {
+        "id": "155",
+        "name": "Prizca West",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 40,
+                    "pokemon": "KOFFING"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "AIPOM"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MVULPIX"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "PIDOVE"
+                }
+            ],
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "ROTOM"
+                }
+            ]
+        }
+    },
+    "158": {
+        "id": "158",
+        "name": "Prizca West Center",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "GFARFETCHD"
+                }
+            ]
+        }
+    },
+    "159": {
+        "id": "159",
+        "name": "Travel Agency",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "ORICORIO"
+                }
+            ]
+        }
+    },
+    "180": {
+        "id": "180",
+        "name": "Blustery Bosk",
+        "encounters": {
+            "FloweryGrass2": [
+                {
+                    "weight": 20,
+                    "pokemon": "CORVIKNIGHT"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "FEAROW"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "LEDIAN"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "LUXRAY"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "TOUCANNON"
+                }
+            ]
+        }
+    },
+    "182": {
+        "id": "182",
+        "name": "Spirit Atoll",
+        "encounters": {
+            "FloweryGrass": [
+                {
+                    "weight": 25,
+                    "pokemon": "CHERRIM"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "SNORLAX"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "STARAPTOR"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "VESPIQUEN"
+                }
+            ],
+            "FloweryGrass2": [
+                {
+                    "weight": 25,
+                    "pokemon": "CHIMECHO"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "GOLDUCK"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "LICKILICKY"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "ROSERADE"
+                }
+            ]
+        }
+    },
+    "183": {
+        "id": "183",
+        "name": "Circuit Cave",
+        "encounters": {
+            "DarkCave": [
+                {
+                    "weight": 25,
+                    "pokemon": "ELEKID"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "MINUN"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "MORPEKO"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "PLUSLE"
+                }
+            ]
+        }
+    },
+    "185": {
+        "id": "185",
+        "name": "Eleig Stretch",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 25,
+                    "pokemon": "EMOLGA"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "MSEVIPER"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "MZANGOOSE"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "STANTLER"
+                }
+            ],
+            "LandTall": [
+                {
+                    "weight": 20,
+                    "pokemon": "DEWPIDER"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "DHELMISE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "HERACROSS"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "LICKITUNG"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SEWADDLE"
+                }
+            ],
+            "Puddle": [
+                {
+                    "weight": 40,
+                    "pokemon": "ESPURR"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "CUFANT"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "ILLUMISE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "VOLBEAT"
+                }
+            ]
+        }
+    },
+    "186": {
+        "id": "186",
+        "name": "Frostflow Farms",
+        "encounters": {
+            "LandTall": [
+                {
+                    "weight": 20,
+                    "pokemon": "AUDINO"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "COTTONEE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "DEDENNE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MILTANK"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "TAUROS"
+                }
+            ],
+            "FloweryGrass2": [
+                {
+                    "weight": 20,
+                    "pokemon": "BOUFFALANT"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "COMBEE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SPHEAL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "TOGEDEMARU"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "TROPIUS"
+                }
+            ],
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "CASTFORM"
+                }
+            ]
+        }
+    },
+    "187": {
+        "id": "187",
+        "name": "Prizca East",
+        "encounters": {
+            "FloweryGrass2": [
+                {
+                    "weight": 20,
+                    "pokemon": "FURFROU"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "INDEEDEE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MINCCINO"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SMEARGLE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SNUBBULL"
+                }
+            ],
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "SEVIPER"
+                }
+            ]
+        }
+    },
+    "192": {
+        "id": "192",
+        "name": "Field of Spires",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 20,
+                    "pokemon": "AMBIPOM"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "CLAYDOL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "DUGTRIO"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "GLISCOR"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "UNFEZANT"
+                }
+            ]
+        }
+    },
+    "193": {
+        "id": "193",
+        "name": "Volcanic Shore",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 25,
+                    "pokemon": "COMFEY"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "CRABRAWLER"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "LAPRAS"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "PINCURCHIN"
+                }
+            ],
+            "LandSparse": [
+                {
+                    "weight": 34,
+                    "pokemon": "MAGBY"
+                },
+                {
+                    "weight": 33,
+                    "pokemon": "KECLEON"
+                },
+                {
+                    "weight": 33,
+                    "pokemon": "SLUGMA"
+                }
+            ]
+        }
+    },
+    "196": {
+        "id": "196",
+        "name": "Boiling Cave",
+        "encounters": {
+            "DarkCave": [
+                {
+                    "weight": 25,
+                    "pokemon": "DWEBBLE"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "SOLROCK"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "TORKOAL"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "TURTONATOR"
+                }
+            ],
+            "Mud": [
+                {
+                    "weight": 25,
+                    "pokemon": "SHUCKLE"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "STUNFISK"
+                },
+                {
+                    "weight": 13,
+                    "pokemon": "SHELLOS_1"
+                },
+                {
+                    "weight": 12,
+                    "pokemon": "SHELLOS"
+                }
+            ]
+        }
+    },
+    "202": {
+        "id": "202",
+        "name": "Mountaineer's House",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "ORICORIO"
+                }
+            ]
+        }
+    },
+    "203": {
+        "id": "203",
+        "name": "Skeevy Eevee Pub",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "EEVEE"
+                }
+            ]
+        }
+    },
+    "211": {
+        "id": "211",
+        "name": "Split Peaks",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 25,
+                    "pokemon": "ABSOL"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "KOMALA"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "PINSIR"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "SPINDA"
+                }
+            ],
+            "LandSparse": [
+                {
+                    "weight": 25,
+                    "pokemon": "DELIBIRD"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "DRILBUR"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "HAWLUCHA"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "SKARMORY"
+                }
+            ]
+        }
+    },
+    "212": {
+        "id": "212",
+        "name": "Ruins Digsite",
+        "encounters": {
+            "DarkCave": [
+                {
+                    "weight": 6,
+                    "pokemon": "UNOWN_22"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_1"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_10"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_11"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_12"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_13"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_14"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_15"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_16"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_17"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_18"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_19"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_2"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_20"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_21"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_23"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_24"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_25"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_26"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_27"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_3"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_4"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_5"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_6"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_7"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_8"
+                },
+                {
+                    "weight": 3,
+                    "pokemon": "UNOWN_9"
+                }
+            ]
+        }
+    },
+    "213": {
+        "id": "213",
+        "name": "Velenz Menagerie",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 20,
+                    "pokemon": "AMEOWTH"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "ASANDSHREW"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "AVULPIX"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "GDARUMAKA"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "YUNGOOS"
+                }
+            ],
+            "LandTall": [
+                {
+                    "weight": 33,
+                    "pokemon": "WURMPLE"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "ARATTATA"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "PATRAT"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "SKWOVET"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "ZIGZAGOON"
+                }
+            ],
+            "LandSparse": [
+                {
+                    "weight": 20,
+                    "pokemon": "GPONYTA"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "GYAMASK"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "KARRABLAST"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SHELMET"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "VULPIX"
+                }
+            ],
+            "Puddle": [
+                {
+                    "weight": 33,
+                    "pokemon": "GSLOWPOKE"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "AGRIMER"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "BELLSPROUT"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "HOOTHOOT"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "TANGELA"
+                }
+            ],
+            "FloweryGrass": [
+                {
+                    "weight": 33,
+                    "pokemon": "PETILIL"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "FARFETCHD"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "FOMANTIS"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "GFARFETCHD"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "SENTRET"
+                }
+            ],
+            "DarkCave": [
+                {
+                    "weight": 33,
+                    "pokemon": "BURMY"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "ADIGLETT"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "AGEODUDE"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "GMEOWTH"
+                },
+                {
+                    "weight": 16,
+                    "pokemon": "ROGGENROLA"
+                }
+            ],
+            "Mud": [
+                {
+                    "weight": 20,
+                    "pokemon": "CARNIVINE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "CRAMORANT"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "GSTUNFISK"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SEVIPER"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "STUNFISK"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "ZANGOOSE"
+                }
+            ]
+        }
+    },
+    "214": {
+        "id": "214",
+        "name": "Team Chasm HQ",
+        "encounters": {
+            "DarkCave": [
+                {
+                    "weight": 25,
+                    "pokemon": "CARBINK"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "DURALUDON"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "ELGYEM"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "MUNNA"
+                }
+            ]
+        }
+    },
+    "215": {
+        "id": "215",
+        "name": "Tempest Realm",
+        "encounters": {
+            "Cloud": [
+                {
+                    "weight": 20,
+                    "pokemon": "CASTFORM"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "CRYOGONAL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "DRIFLOON"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MINIOR"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "WAILMER"
+                }
+            ]
+        }
+    },
+    "216": {
+        "id": "216",
+        "name": "Highland Lake",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 25,
+                    "pokemon": "CHATOT"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "FOONGUS"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "ORANGURU"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "PASSIMIAN"
+                }
+            ],
+            "LandTall": [
+                {
+                    "weight": 25,
+                    "pokemon": "DRAMPA"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "FALINKS"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "GIRAFARIG"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "KANGASKHAN"
+                }
+            ],
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "KRABBY"
+                }
+            ]
+        }
+    },
+    "217": {
+        "id": "217",
+        "name": "Sweetrock Harbor",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 40,
+                    "pokemon": "APPLIN"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "COMFEY"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "FALINKS"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MILCERY"
+                }
+            ]
+        }
+    },
+    "218": {
+        "id": "218",
+        "name": "Abyssal Cavern",
+        "encounters": {
+            "ActiveWater": [
+                {
+                    "weight": 25,
+                    "pokemon": "CHINCHOU"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "MFRILLISH"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "RELICANTH"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "WIMPOD"
+                }
+            ],
+            "DarkCave": [
+                {
+                    "weight": 34,
+                    "pokemon": "LUNATONE"
+                },
+                {
+                    "weight": 33,
+                    "pokemon": "MAREANIE"
+                },
+                {
+                    "weight": 33,
+                    "pokemon": "WYNAUT"
+                }
+            ]
+        }
+    },
+    "219": {
+        "id": "219",
+        "name": "Stone Nest",
+        "encounters": {
+            "DarkCave": [
+                {
+                    "weight": 20,
+                    "pokemon": "AXEW"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "EKANS"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "GEODUDE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MTANGELA"
+                },
+                {
+                    "weight": 10,
+                    "pokemon": "NIDORANfE"
+                },
+                {
+                    "weight": 10,
+                    "pokemon": "NIDORANmA"
+                }
+            ]
+        }
+    },
+    "220": {
+        "id": "220",
+        "name": "Ancient Sewers",
+        "encounters": {
+            "LandSparse": [
+                {
+                    "weight": 25,
+                    "pokemon": "DRUDDIGON"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "MIMIKYU"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "SPIRITOMB"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "YAMASK"
+                }
+            ]
+        }
+    },
+    "223": {
+        "id": "223",
+        "name": "Battle Plaza Underground",
+        "encounters": {
+            "LandSparse": [
+                {
+                    "weight": 20,
+                    "pokemon": "ELGYEM"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "GOLETT"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "KLEFKI"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SCRAGGY"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SIGILYPH"
+                }
+            ]
+        }
+    },
+    "228": {
+        "id": "228",
+        "name": "Hidden Laboratory",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "TYPENULL"
+                }
+            ]
+        }
+    },
+    "230": {
+        "id": "230",
+        "name": "Galarian Fan's House",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "CRYOGONAL"
+                }
+            ]
+        }
+    },
+    "232": {
+        "id": "232",
+        "name": "Biologist's House",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "GOLDEEN"
+                }
+            ]
+        }
+    },
+    "234": {
+        "id": "234",
+        "name": "Ranger Recruitment",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "KECLEON"
+                }
+            ]
+        }
+    },
+    "239": {
+        "id": "239",
+        "name": "Ocean Fishing Contest",
+        "encounters": {
+            "Puddle": [
+                {
+                    "weight": 5,
+                    "pokemon": "BARBOACH"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "BINACLE"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "CLAMPERL"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "CLAUNCHER"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "CLOBBOPUS"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "CORPHISH"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "CORSOLA"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "GCORSOLA"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "HORSEA"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "INKAY"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "MAREANIE"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "REMORAID"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "SHELLDER"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "STARYU"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "TENTACOOL"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "WIMPOD"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "BARBARACLE"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "CLOYSTER"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "CRAWDAUNT"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "GOLISOPOD"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "GRAPPLOCT"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "OCTILLERY"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "SEADRA"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "TENTACRUEL"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "WHISCASH"
+                }
+            ],
+            "ActiveWater": [
+                {
+                    "weight": 5,
+                    "pokemon": "ARROKUDA"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "BASCULIN"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "BRUXISH"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "CARVANHA"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "CHINCHOU"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "FEEBAS"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "FINNEON"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "FRILLISH"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "GOLDEEN"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "LUVDISC"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "MAGIKARP"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "MANTYKE"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "QWILFISH"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "RELICANTH"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "WAILMER"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "WISHIWASHI"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "ALOMOMOLA"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "BARRASKEWDA"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "GYARADOS"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "JELLICENT"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "LANTURN"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "LUMINEON"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "MANTINE"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "MILOTIC"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "SEAKING"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "SHARPEDO"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "WAILORD"
+                }
+            ],
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "WINGULL"
+                }
+            ]
+        }
+    },
+    "243": {
+        "id": "243",
+        "name": "Chasm Base Mess Hall",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "DEWPIDER"
+                }
+            ]
+        }
+    },
+    "250": {
+        "id": "250",
+        "name": "Chasm Base Lab",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "ARCTOVISH"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "ARCTOZOLT"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "DRACOVISH"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "DRACOZOLT"
+                }
+            ]
+        }
+    },
+    "251": {
+        "id": "251",
+        "name": "Samorn's House",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "BAGON"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "DEINO"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "DRATINI"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "DREEPY"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "GIBLE"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "GOOMY"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "JANGMOO"
+                }
+            ]
+        }
+    },
+    "257": {
+        "id": "257",
+        "name": "Cave of Hatching",
+        "encounters": {
+            "LandSparse": [
+                {
+                    "weight": 25,
+                    "pokemon": "CUBONE"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "LARVITAR"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "MAGNEMITE"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "ZUBAT"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "KECLEON"
+                }
+            ]
+        }
+    },
+    "258": {
+        "id": "258",
+        "name": "Whitebloom Town",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 25,
+                    "pokemon": "BUNEARY"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "KRICKETOT"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "PICHU"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "ROOKIDEE"
+                }
+            ]
+        }
+    },
+    "263": {
+        "id": "263",
+        "name": "Sweetrock Harbor Center",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "BOUNSWEET"
+                }
+            ]
+        }
+    },
+    "264": {
+        "id": "264",
+        "name": "Thunder Point",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 20,
+                    "pokemon": "BLASFEMMIE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "DEDENNE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "EMOLGA"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "FALINKS"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SEISMAW"
+                }
+            ]
+        }
+    },
+    "282": {
+        "id": "282",
+        "name": "The Catacombs B1",
+        "encounters": {
+            "LandSparse": [
+                {
+                    "weight": 20,
+                    "pokemon": "AEGISLASH"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "DRUDDIGON"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "DUSKNOIR"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MCARNIVINE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "NOIVERN"
+                }
+            ]
+        }
+    },
+    "288": {
+        "id": "288",
+        "name": "Underground River",
+        "encounters": {
+            "Puddle": [
+                {
+                    "weight": 25,
+                    "pokemon": "LUVDISC"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "MANTYKE"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "STARYU"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "TENTACOOL"
+                }
+            ],
+            "LandSparse": [
+                {
+                    "weight": 25,
+                    "pokemon": "CLAUNCHER"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "DURANT"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "HEATMOR"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "PYUKUMUKU"
+                }
+            ]
+        }
+    },
+    "299": {
+        "id": "299",
+        "name": "Fin Center",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "COTTONEE"
+                }
+            ]
+        }
+    },
+    "301": {
+        "id": "301",
+        "name": "County Park",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 20,
+                    "pokemon": "BUNNELBY"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "FLETCHLING"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "HATENNA"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "KRICKETOT"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MAKUHITA"
+                }
+            ],
+            "FloweryGrass": [
+                {
+                    "weight": 25,
+                    "pokemon": "LEDYBA"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "SUNKERN"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "SWABLU"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "FLABEBE"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "FLABEBE_1"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "FLABEBE_2"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "FLABEBE_3"
+                },
+                {
+                    "weight": 5,
+                    "pokemon": "FLABEBE_4"
+                }
+            ],
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "DRIFLOON"
+                }
+            ]
+        }
+    },
+    "304": {
+        "id": "304",
+        "name": "Ruined Tower F1",
+        "encounters": {
+            "LandSparse": [
+                {
+                    "weight": 20,
+                    "pokemon": "ABSOL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "CARKOL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "GOLETT"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "LARVESTA"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "WEEPINBELL"
+                }
+            ]
+        }
+    },
+    "305": {
+        "id": "305",
+        "name": "Dock Warehouse",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "GPONYTA"
+                }
+            ]
+        }
+    },
+    "316": {
+        "id": "316",
+        "name": "Sandstone Estuary",
+        "encounters": {
+            "ActiveWater": [
+                {
+                    "weight": 20,
+                    "pokemon": "CARVANHA"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MANTYKE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MFRILLISH"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "REMORAID"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "WAILMER"
+                }
+            ],
+            "LandSparse": [
+                {
+                    "weight": 20,
+                    "pokemon": "CRABRAWLER"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "EISCUE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "LAPRAS"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "PINCURCHIN"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SEEL"
+                }
+            ]
+        }
+    },
+    "321": {
+        "id": "321",
+        "name": "Crater Station Backroom",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "MCARNIVINE"
+                }
+            ]
+        }
+    },
+    "323": {
+        "id": "323",
+        "name": "HQ Station Backroom",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "WIMPOD"
+                }
+            ]
+        }
+    },
+    "326": {
+        "id": "326",
+        "name": "Carnation Graves",
+        "encounters": {
+            "DarkCave": [
+                {
+                    "weight": 40,
+                    "pokemon": "CUBONE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "DUSKULL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MAWILE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SABLEYE"
+                }
+            ]
+        }
+    },
+    "333": {
+        "id": "333",
+        "name": "Floral Maze",
+        "encounters": {
+            "FloweryGrass2": [
+                {
+                    "weight": 20,
+                    "pokemon": "APPLETUN"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "GRIMMSNARL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "INDEEDEE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "LURANTIS"
+                },
+                {
+                    "weight": 2,
+                    "pokemon": "VIVILLON_19"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "VIVILLON"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "VIVILLON_1"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "VIVILLON_10"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "VIVILLON_11"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "VIVILLON_12"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "VIVILLON_13"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "VIVILLON_14"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "VIVILLON_15"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "VIVILLON_16"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "VIVILLON_17"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "VIVILLON_2"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "VIVILLON_3"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "VIVILLON_4"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "VIVILLON_5"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "VIVILLON_6"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "VIVILLON_7"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "VIVILLON_8"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "VIVILLON_9"
+                }
+            ]
+        }
+    },
+    "335": {
+        "id": "335",
+        "name": "Svait Sauna Underground",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 20,
+                    "pokemon": "DARUMAKA"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "DWEBBLE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SLUGMA"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "TORKOAL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "TURTONATOR"
+                }
+            ]
+        }
+    },
+    "342": {
+        "id": "342",
+        "name": "Carnation Tower F1",
+        "encounters": {
+            "LandSparse": [
+                {
+                    "weight": 20,
+                    "pokemon": "ABSOL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "FALINKS"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "FLABEBE_4"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "KARRABLAST"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SHELMET"
+                }
+            ]
+        }
+    },
+    "346": {
+        "id": "346",
+        "name": "Executive's House",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "SHEDINJA"
+                }
+            ]
+        }
+    },
+    "349": {
+        "id": "349",
+        "name": "UB Portal",
+        "encounters": {
+            "DarkCave": [
+                {
+                    "weight": 13,
+                    "pokemon": "BUZZWOLE"
+                },
+                {
+                    "weight": 13,
+                    "pokemon": "NIHILEGO"
+                },
+                {
+                    "weight": 13,
+                    "pokemon": "PHEROMOSA"
+                },
+                {
+                    "weight": 13,
+                    "pokemon": "XURKITREE"
+                },
+                {
+                    "weight": 12,
+                    "pokemon": "BLACEPHALON"
+                },
+                {
+                    "weight": 12,
+                    "pokemon": "CELESTEELA"
+                },
+                {
+                    "weight": 12,
+                    "pokemon": "GUZZLORD"
+                },
+                {
+                    "weight": 12,
+                    "pokemon": "KARTANA"
+                },
+                {
+                    "weight": 12,
+                    "pokemon": "POIPOLE"
+                },
+                {
+                    "weight": 12,
+                    "pokemon": "STAKATAKA"
+                }
+            ]
+        }
+    },
+    "353": {
+        "id": "353",
+        "name": "Crumbling Canyon B4",
+        "encounters": {
+            "DarkCave": [
+                {
+                    "weight": 20,
+                    "pokemon": "LUNATONE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "RHYPERIOR"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SOLROCK"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "TITANIX"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "TYRANITAR"
+                }
+            ]
+        }
+    },
+    "356": {
+        "id": "356",
+        "name": "Isle of Dragons",
+        "encounters": {
+            "LandSparse": [
+                {
+                    "weight": 22,
+                    "pokemon": "GOOMY"
+                },
+                {
+                    "weight": 11,
+                    "pokemon": "BAGON"
+                },
+                {
+                    "weight": 11,
+                    "pokemon": "DEINO"
+                },
+                {
+                    "weight": 11,
+                    "pokemon": "DRATINI"
+                },
+                {
+                    "weight": 11,
+                    "pokemon": "DREEPY"
+                },
+                {
+                    "weight": 11,
+                    "pokemon": "GIBLE"
+                },
+                {
+                    "weight": 11,
+                    "pokemon": "JANGMOO"
+                },
+                {
+                    "weight": 11,
+                    "pokemon": "MMUNNA"
+                }
+            ]
+        }
+    },
+    "358": {
+        "id": "358",
+        "name": "Dr. Hekata's House",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 20,
+                    "pokemon": "BASCULIN_2"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "HGROWLITHE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "HQWILFISH"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "HSNEASEL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "HVOLTORB"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "HZORUA"
+                }
+            ]
+        }
+    },
+    "377": {
+        "id": "377",
+        "name": "Guardian Island",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 20,
+                    "pokemon": "COMFEY"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "GUMSHOOS"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "RIBOMBEE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "TRUMBEAK"
+                },
+                {
+                    "weight": 6,
+                    "pokemon": "ORICORIO"
+                },
+                {
+                    "weight": 6,
+                    "pokemon": "ORICORIO_1"
+                },
+                {
+                    "weight": 6,
+                    "pokemon": "ORICORIO_2"
+                },
+                {
+                    "weight": 6,
+                    "pokemon": "ORICORIO_3"
+                }
+            ]
+        }
+    },
+    "383": {
+        "id": "383",
+        "name": "Mirror Tundra",
+        "encounters": {
+            "LandTall": [
+                {
+                    "weight": 20,
+                    "pokemon": "CARBINK"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "CRYOGONAL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "HATTERENE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "JYNX"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MNOCTOWL"
+                }
+            ]
+        }
+    },
+    "384": {
+        "id": "384",
+        "name": "Casaba-Bluepoint Gatehouse",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "SPHEAL"
+                }
+            ]
+        }
+    },
+    "392": {
+        "id": "392",
+        "name": "Turf-Grouz Gatehouse",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "ELEKID"
+                }
+            ]
+        }
+    },
+    "403": {
+        "id": "403",
+        "name": "Frozen Lake",
+        "encounters": {
+            "LandTall": [
+                {
+                    "weight": 20,
+                    "pokemon": "CARBINK"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "CRYOGONAL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "HATTERENE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "JYNX"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MNOCTOWL"
+                }
+            ]
+        }
+    },
+    "406": {
+        "id": "406",
+        "name": "Oasis System",
+        "encounters": {
+            "DarkCave": [
+                {
+                    "weight": 20,
+                    "pokemon": "EELEKTROSS"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "KROOKODILE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MASQUERAIN"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "PORYGONZ"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "ROTOM"
+                }
+            ]
+        }
+    },
+    "411": {
+        "id": "411",
+        "name": "Tri Island",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 25,
+                    "pokemon": "BOUNSWEET"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "CASTFORM"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "KRABBY"
+                },
+                {
+                    "weight": 25,
+                    "pokemon": "NUMEL"
+                }
+            ]
+        }
+    },
+    "413": {
+        "id": "413",
+        "name": "Eventide Isle",
+        "encounters": {
+            "LandSparse": [
+                {
+                    "weight": 20,
+                    "pokemon": "CLEFABLE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "GENGAR"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MUSHARNA"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "NOCTOWL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "URSALUNA"
+                }
+            ]
+        }
+    },
+    "414": {
+        "id": "414",
+        "name": "Eventide Peak",
+        "encounters": {
+            "LandSparse": [
+                {
+                    "weight": 20,
+                    "pokemon": "CLEFABLE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "GENGAR"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MUSHARNA"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "NOCTOWL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "URSALUNA"
+                }
+            ]
+        }
+    },
+    "415": {
+        "id": "415",
+        "name": "Frigid Overlook",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 20,
+                    "pokemon": "CRYOGONAL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "EISCUE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "FROSMOTH"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MNOCTOWL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "WEAVILE"
+                }
+            ]
+        }
+    },
+    "416": {
+        "id": "416",
+        "name": "Vernal Clearing",
+        "encounters": {
+            "Land": [
+                {
+                    "weight": 20,
+                    "pokemon": "ARCANINE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "CHERRIM"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "PYROAR"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SUNFLORA"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "TALONFLAME"
+                }
+            ]
+        }
+    },
+    "417": {
+        "id": "417",
+        "name": "Crackling Cave",
+        "encounters": {
+            "Cloud": [
+                {
+                    "weight": 20,
+                    "pokemon": "EELEKTROSS"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "ELECTIVIRE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "EMOLGA"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MAGNEZONE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MANERGETIC"
+                }
+            ]
+        }
+    },
+    "425": {
+        "id": "425",
+        "name": "Shimmer Haven",
+        "encounters": {
+            "LandTall": [
+                {
+                    "weight": 20,
+                    "pokemon": "ACCELGOR"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "ESCAVALIER"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "FLORGES"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "LILLIGANT"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "PURUGLY"
+                }
+            ]
+        }
+    },
+    "428": {
+        "id": "428",
+        "name": "Steamy Valley",
+        "encounters": {
+            "FloweryGrass": [
+                {
+                    "weight": 20,
+                    "pokemon": "GOLDUCK"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "HYMNUS"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MISMAGIUS"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "POLITOED"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "TORKOAL"
+                }
+            ]
+        }
+    },
+    "430": {
+        "id": "430",
+        "name": "Amber Hills",
+        "encounters": {
+            "LandSparse": [
+                {
+                    "weight": 20,
+                    "pokemon": "DUBWOOL"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "FLAPPLE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "GOGOAT"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "GOLEM"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "SAHARICANE"
+                }
+            ]
+        }
+    },
+    "431": {
+        "id": "431",
+        "name": "Ship Graveyard",
+        "encounters": {
+            "Puddle": [
+                {
+                    "weight": 20,
+                    "pokemon": "DEWGONG"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "JELLICENT"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "KINGDRA"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "MDRAGALGE"
+                },
+                {
+                    "weight": 20,
+                    "pokemon": "PELIPPER"
+                }
+            ]
+        }
+    },
+    "438": {
+        "id": "438",
+        "name": "Bogdan Cement Plant",
+        "encounters": {
+            "Special": [
+                {
+                    "weight": 1,
+                    "pokemon": "CORSOLA"
+                },
+                {
+                    "weight": 1,
+                    "pokemon": "SHUCKLE"
+                }
+            ]
+        }
+    }
+}
