@@ -11,6 +11,42 @@ function printEncChance(encs: Encounter[], currentPokemon: Pokemon) {
     return ((currentWeight / totalWeight) * 100).toFixed(0) + "%";
 }
 
+function getNameForEncounterType(encounterType: string) {
+    switch (encounterType) {
+        case "Land":
+            return "Grass";
+        case "LandSparse":
+            return "Sparse Grass";
+        case "LandTall":
+            return "Tall Grass";
+        case "Special":
+            return "Other";
+        case "FloweryGrass":
+            return "Yellow Flowers";
+        case "FloweryGrass2":
+            return "Blue Flowers";
+        case "SewerWater":
+            return "Sewage";
+        case "SewerFloor":
+            return "Dirty Floor";
+        case "DarkCave":
+            return "Dark Ground";
+        case "Mud":
+            return "Mud";
+        case "Puddle":
+            return "Puddle";
+        case "LandTinted":
+            return "Secret Grass";
+        case "Cloud":
+            return "Dark Clouds";
+        case "ActiveWater":
+            return "Deep Water";
+        case "FishingContest":
+            return "Surfing";
+    }
+    return "Unknown";
+}
+
 export default function EncounterDisplay({ encounters, pokemon }: { encounters: EncounterArea[]; pokemon: Pokemon }) {
     return (
         <div>
@@ -24,8 +60,11 @@ export default function EncounterDisplay({ encounters, pokemon }: { encounters: 
                                 .map(([encType, encs]) => (
                                     <p key={encType}>
                                         {encType === "Special"
-                                            ? encType
-                                            : encType + " (" + printEncChance(encs, pokemon) + ")"}
+                                            ? "Other"
+                                            : getNameForEncounterType(encType) +
+                                              " (" +
+                                              printEncChance(encs, pokemon) +
+                                              ")"}
                                     </p>
                                 ))}
                         </div>
