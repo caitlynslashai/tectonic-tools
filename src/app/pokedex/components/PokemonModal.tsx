@@ -1,12 +1,15 @@
 import { PokemonType, pokemonTypes } from "@/app/data/basicData";
+import { encounters } from "@/app/data/encounters";
 import { items } from "@/app/data/items";
 import { moves } from "@/app/data/moves";
 import { pokemon } from "@/app/data/pokemon";
 import { typeChart } from "@/app/data/typeChart";
+import { EncounterArea } from "@/app/data/types/Encounter";
 import { Evolution, Pokemon } from "@/app/data/types/Pokemon";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import TypeBadge from "../../../components/TypeBadge";
+import EncounterDisplay from "./EncounterDisplay";
 import MoveDisplay from "./MoveDisplay";
 import PokemonTab from "./PokemonTab";
 import StatRow from "./StatRow";
@@ -25,7 +28,7 @@ const tabs = [
     "Level Moves",
     "Tutor Moves",
     "Evolutions",
-    // "Encounters",
+    "Encounters",
 ] as const;
 export type Tab = (typeof tabs)[number];
 
@@ -148,6 +151,26 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
             default:
                 return "via a method the programmer was too lazy to describe";
         }
+    }
+
+    const currentEncounters = Object.values(encounters).filter((e) =>
+        Object.values(e.encounters).some((en) => en.some((enc) => enc.pokemon === currentPokemon.id))
+    );
+
+    const prevoEncounters: Record<string, EncounterArea[]> = {};
+    const prevos = currentPokemon.getPrevos();
+    let currentPrevo = prevos.length > 0 ? prevos[0].target : undefined;
+    while (currentPrevo !== undefined) {
+        const currentSpecies = pokemon[currentPrevo];
+        const newEncounters = Object.values(encounters).filter((e) =>
+            Object.values(e.encounters).some((en) => en.some((enc) => enc.pokemon === currentSpecies.id))
+        );
+        if (newEncounters.length > 0) {
+            prevoEncounters[currentPrevo] = newEncounters;
+        }
+        // get prevos recursively
+        const newPrevos = currentSpecies.getPrevos();
+        currentPrevo = newPrevos.length > 0 ? newPrevos[0].target : undefined;
     }
 
     return (
@@ -426,6 +449,17 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                     )}
                                 </div>
                             </div>
+                        </PokemonTab>
+                        <PokemonTab tab={"Encounters"} activeTab={activeTab}>
+                            <EncounterDisplay encounters={currentEncounters} pokemon={currentPokemon} />
+                            {Object.entries(prevoEncounters).map(([prevo, encs]) => (
+                                <div key={prevo}>
+                                    <h4 className="font-semibold text-gray-800 dark:text-gray-100">
+                                        Previous Evolution - {pokemon[prevo].name}
+                                    </h4>
+                                    <EncounterDisplay encounters={encs} pokemon={pokemon[prevo]} />
+                                </div>
+                            ))}
                         </PokemonTab>
                     </div>
                 </div>
