@@ -1,4 +1,4 @@
-import { pokemonTypes } from "@/app/data/basicData";
+import { pokemonTribes, pokemonTypes } from "@/app/data/basicData";
 import { Pokemon } from "@/app/data/types/Pokemon";
 
 export type FilterOperator = "==" | "!=" | ">" | "<" | "includes";
@@ -62,6 +62,62 @@ const AVAILABLE_FILTERS: PokemonFilterType[] = [
         },
         inputMethod: "select",
         inputValues: pokemonTypes,
+    },
+    {
+        type: "custom",
+        label: "Ability Name",
+        operator: "includes",
+        value: "",
+        apply: (pokemon: Pokemon, value: string | number) => {
+            const searchValue = String(value).toLowerCase();
+            return pokemon.abilities.some((a) => a.name.toLowerCase().includes(searchValue));
+        },
+        inputMethod: "text",
+    },
+    {
+        type: "custom",
+        label: "Ability Desc",
+        operator: "includes",
+        value: "",
+        apply: (pokemon: Pokemon, value: string | number) => {
+            const searchValue = String(value).toLowerCase();
+            return pokemon.abilities.some((a) => a.description.toLowerCase().includes(searchValue));
+        },
+        inputMethod: "text",
+    },
+    {
+        type: "custom",
+        label: "Moves (Level)",
+        operator: "includes",
+        value: "",
+        apply: (pokemon: Pokemon, value: string | number) => {
+            const searchValue = String(value).toLowerCase();
+            return pokemon.level_moves.some((m) => m[1].name.toLowerCase().includes(searchValue));
+        },
+        inputMethod: "text",
+    },
+    {
+        type: "custom",
+        label: "Moves (All)",
+        operator: "includes",
+        value: "",
+        apply: (pokemon: Pokemon, value: string | number) => {
+            const searchValue = String(value).toLowerCase();
+            return pokemon.allMoves().some((m) => m.name.toLowerCase().includes(searchValue));
+        },
+        inputMethod: "text",
+    },
+    {
+        type: "custom",
+        label: "Tribes",
+        operator: "includes",
+        value: "",
+        apply: (pokemon: Pokemon, value: string | number) => {
+            const searchValue = String(value).toLowerCase();
+            return pokemon.tribes.some((t) => t.toLowerCase().includes(searchValue));
+        },
+        inputMethod: "select",
+        inputValues: pokemonTribes,
     },
 ];
 
