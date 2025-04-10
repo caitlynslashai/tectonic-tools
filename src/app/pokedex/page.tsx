@@ -6,7 +6,7 @@ import Head from "next/head";
 import { useEffect, useMemo, useState } from "react";
 import { pokemon } from "../data/pokemon";
 import { Pokemon } from "../data/types/Pokemon";
-import PokemonFilter, { compareValues, PokemonFilterType } from "./components/PokemonFilter";
+import PokemonFilter, { PokemonFilterType } from "./components/PokemonFilter";
 import PokemonModal from "./components/PokemonModal";
 import PokemonTable from "./components/PokemonTable";
 
@@ -23,10 +23,6 @@ const Home: NextPage = () => {
     const filteredPokemon = useMemo(() => {
         const filtered = mons.filter((mon) => {
             return filters.every((filter) => {
-                if (filter.type === "field") {
-                    const fieldValue = mon[filter.field];
-                    return compareValues(fieldValue, filter.operator, filter.value);
-                }
                 return filter.apply(mon, filter.value);
             });
         });

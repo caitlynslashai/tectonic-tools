@@ -1,4 +1,5 @@
 import { pokemonTribes, pokemonTypes } from "@/app/data/basicData";
+import { moves } from "@/app/data/moves";
 import { Pokemon } from "@/app/data/types/Pokemon";
 
 export type FilterOperator = "==" | "!=" | ">" | "<" | "includes";
@@ -7,22 +8,11 @@ type BaseFilter = {
     label: string; // What users see in the UI
     operator: FilterOperator;
     value: string | number;
-};
-
-// Direct field comparison
-type FieldFilter = BaseFilter & {
-    type: "field";
-    field: keyof Pokemon; // Ensures field exists on Pokemon
+    apply: (pokemon: Pokemon, value: string | number) => boolean;
 };
 
 type TextFilter = BaseFilter & {
     inputMethod: "text";
-};
-
-// Custom filter logic
-type CustomFilter = BaseFilter & {
-    type: "custom";
-    apply: (pokemon: Pokemon, value: string | number) => boolean; // Custom filter function
 };
 
 type SelectFilter = BaseFilter & {
@@ -30,26 +20,37 @@ type SelectFilter = BaseFilter & {
     inputValues: readonly string[];
 };
 
-export type PokemonFilterType =
-    | (FieldFilter & TextFilter)
-    | (FieldFilter & SelectFilter)
-    | (CustomFilter & TextFilter)
-    | (CustomFilter & SelectFilter);
+function validateMoves(pokemon: Pokemon) {
+    if (!pokemon.level_moves) {
+        console.warn(`Pokemon ${pokemon.name} has undefined level_moves`);
+        return false;
+    }
+
+    const invalidMoves = pokemon.level_moves.filter((m) => !m?.[1]?.name);
+    if (invalidMoves.length > 0) {
+        console.warn(`Pokemon ${pokemon.name} has invalid moves:`, invalidMoves);
+        return false;
+    }
+    return true;
+}
+
+export type PokemonFilterType = TextFilter | SelectFilter;
 
 const AVAILABLE_FILTERS: PokemonFilterType[] = [
     // Standard field filters
     {
-        type: "field",
         label: "Name",
-        field: "name",
         operator: "includes",
         value: "",
         inputMethod: "text",
+        apply: (pokemon, value) => {
+            const searchValue = String(value).toLowerCase();
+            return pokemon.name.toLowerCase().includes(searchValue);
+        },
     },
 
     // Custom filters
     {
-        type: "custom",
         label: "Type",
         operator: "includes",
         value: "",
@@ -64,7 +65,6 @@ const AVAILABLE_FILTERS: PokemonFilterType[] = [
         inputValues: pokemonTypes,
     },
     {
-        type: "custom",
         label: "Ability Name",
         operator: "includes",
         value: "",
@@ -75,7 +75,6 @@ const AVAILABLE_FILTERS: PokemonFilterType[] = [
         inputMethod: "text",
     },
     {
-        type: "custom",
         label: "Ability Desc",
         operator: "includes",
         value: "",
@@ -86,29 +85,30 @@ const AVAILABLE_FILTERS: PokemonFilterType[] = [
         inputMethod: "text",
     },
     {
-        type: "custom",
         label: "Moves (Level)",
         operator: "includes",
         value: "",
         apply: (pokemon: Pokemon, value: string | number) => {
+            if (!validateMoves(pokemon)) return false;
             const searchValue = String(value).toLowerCase();
             return pokemon.level_moves.some((m) => m[1].name.toLowerCase().includes(searchValue));
         },
-        inputMethod: "text",
+        inputMethod: "select",
+        inputValues: Object.values(moves).map((m) => m.name),
     },
     {
-        type: "custom",
         label: "Moves (All)",
         operator: "includes",
         value: "",
         apply: (pokemon: Pokemon, value: string | number) => {
+            if (!validateMoves(pokemon)) return false;
             const searchValue = String(value).toLowerCase();
             return pokemon.allMoves().some((m) => m.name.toLowerCase().includes(searchValue));
         },
-        inputMethod: "text",
+        inputMethod: "select",
+        inputValues: Object.values(moves).map((m) => m.name),
     },
     {
-        type: "custom",
         label: "Tribes",
         operator: "includes",
         value: "",
@@ -121,20 +121,19 @@ const AVAILABLE_FILTERS: PokemonFilterType[] = [
     },
 ];
 
-export function compareValues<T>(a: T, op: FilterOperator, b: T) {
-    switch (op) {
-        case "==":
-            return a == b;
-        case "!=":
-            return a != b;
-        case ">":
-            return Number(a) > Number(b);
-        case "<":
-            return Number(a) < Number(b);
-        case "includes":
-            return String(a).toLowerCase().includes(String(b).toLowerCase());
-    }
-}
+// to use when we implement numeric filters
+// function compareValues(a: number, op: FilterOperator, b: number) {
+//     switch (op) {
+//         case "==":
+//             return a == b;
+//         case "!=":
+//             return a != b;
+//         case ">":
+//             return Number(a) > Number(b);
+//         case "<":
+//             return Number(a) < Number(b);
+//     }
+// }
 
 import { useEffect, useState } from "react";
 
@@ -208,7 +207,7 @@ export default function PokemonFilter({
                         onChange={(e) => setCurrentValue(e.target.value)}
                     >
                         <option value="">Value...</option>
-                        {pokemonTypes.map((type) => (
+                        {currentFilter.inputValues.map((type) => (
                             <option key={type} value={type}>
                                 {type}
                             </option>
