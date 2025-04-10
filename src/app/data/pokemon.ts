@@ -10,6 +10,7 @@ interface LoadedEvolution {
 export interface LoadedPokemon {
     id: string;
     name: string;
+    form_name: string | null;
     type1: string;
     type2: string | null;
     stats: Stats;
@@ -48,6 +49,7 @@ export const nullPokemon: Pokemon = new Pokemon(
     {
         id: "id",
         name: "",
+        form_name: null,
         type1: "Normal",
         type2: null,
         stats: blankStats,

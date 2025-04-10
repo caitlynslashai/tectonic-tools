@@ -1,0 +1,3095 @@
+{
+    "PIKACHU": [
+        {
+            "id": "PIKACHU",
+            "form_id": 3,
+            "form_name": "Cosplay",
+            "pokedex": "Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pok\u00e9mon mistook the intensity of its charge."
+        },
+        {
+            "id": "PIKACHU",
+            "form_id": 4,
+            "form_name": "Cosplay - Belle",
+            "pokedex": "Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pok\u00e9mon mistook the intensity of its charge."
+        },
+        {
+            "id": "PIKACHU",
+            "form_id": 5,
+            "form_name": "Cosplay - Libre",
+            "pokedex": "Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pok\u00e9mon mistook the intensity of its charge."
+        },
+        {
+            "id": "PIKACHU",
+            "form_id": 6,
+            "form_name": "Cosplay - Ph.D.",
+            "pokedex": "Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pok\u00e9mon mistook the intensity of its charge."
+        },
+        {
+            "id": "PIKACHU",
+            "form_id": 7,
+            "form_name": "Cosplay - Pop Star",
+            "pokedex": "Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pok\u00e9mon mistook the intensity of its charge."
+        },
+        {
+            "id": "PIKACHU",
+            "form_id": 8,
+            "form_name": "Cosplay - Rock Star",
+            "pokedex": "Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pok\u00e9mon mistook the intensity of its charge."
+        },
+        {
+            "id": "PIKACHU",
+            "form_id": 9,
+            "form_name": "Original Cap",
+            "pokedex": "This Pikachu wears its partner's cap, which is brimming with memories of traveling through many different regions."
+        },
+        {
+            "id": "PIKACHU",
+            "form_id": 10,
+            "form_name": "Hoenn Cap",
+            "pokedex": "This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Hoenn region."
+        },
+        {
+            "id": "PIKACHU",
+            "form_id": 11,
+            "form_name": "Sinnoh Cap",
+            "pokedex": "This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Sinnoh region."
+        },
+        {
+            "id": "PIKACHU",
+            "form_id": 12,
+            "form_name": "Unova Cap",
+            "pokedex": "This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Unova region."
+        },
+        {
+            "id": "PIKACHU",
+            "form_id": 13,
+            "form_name": "Kalos Cap",
+            "pokedex": "This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Kalos region."
+        },
+        {
+            "id": "PIKACHU",
+            "form_id": 14,
+            "form_name": "Alola Cap",
+            "pokedex": "This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Alola region."
+        },
+        {
+            "id": "PIKACHU",
+            "form_id": 15,
+            "form_name": "Partner Cap",
+            "pokedex": "This Pikachu wears its partner's cap, which is brimming with memories of when they first met."
+        },
+        {
+            "id": "PIKACHU",
+            "form_id": 16,
+            "form_name": "World Cap",
+            "pokedex": "This Pikachu is wearing its Trainer's cap. The cap is a precious symbol that travels across different regions with Pikachu."
+        }
+    ],
+    "UNOWN": [
+        {
+            "id": "UNOWN",
+            "form_id": 1,
+            "form_name": "B"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 2,
+            "form_name": "C"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 3,
+            "form_name": "D"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 4,
+            "form_name": "E"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 5,
+            "form_name": "F"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 6,
+            "form_name": "G"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 7,
+            "form_name": "H"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 8,
+            "form_name": "I"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 9,
+            "form_name": "J"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 10,
+            "form_name": "K"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 11,
+            "form_name": "L"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 12,
+            "form_name": "M"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 13,
+            "form_name": "N"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 14,
+            "form_name": "O"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 15,
+            "form_name": "P"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 16,
+            "form_name": "Q"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 17,
+            "form_name": "R"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 18,
+            "form_name": "S"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 19,
+            "form_name": "T"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 20,
+            "form_name": "U"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 21,
+            "form_name": "V"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 22,
+            "form_name": "W"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 23,
+            "form_name": "X"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 24,
+            "form_name": "Y"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 25,
+            "form_name": "Z"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 26,
+            "form_name": "?"
+        },
+        {
+            "id": "UNOWN",
+            "form_id": 27,
+            "form_name": "!"
+        }
+    ],
+    "CASTFORM": [
+        {
+            "id": "CASTFORM",
+            "form_id": 1,
+            "form_name": "Sun",
+            "type1": "Fire",
+            "pokedex": "This is the form Castform takes on the brightest of days. Its skin is unexpectedly hot to the touch, so approach with care."
+        },
+        {
+            "id": "CASTFORM",
+            "form_id": 2,
+            "form_name": "Rain",
+            "type1": "Water",
+            "pokedex": "This is the form Castform takes when soaked with rain. When its body is compressed, water will seep out as if from a sponge."
+        },
+        {
+            "id": "CASTFORM",
+            "form_id": 3,
+            "form_name": "Hail",
+            "type1": "Ice",
+            "pokedex": "This is the form Castform takes when covered in snow. Its body becomes an ice-like material, with a temperature near -5 degrees Celsius."
+        },
+        {
+            "id": "CASTFORM",
+            "form_id": 4,
+            "form_name": "Sand",
+            "type1": "Rock",
+            "pokedex": "This is the form Castform takes when sand sweeps up. Its body is made of particles that are constantly spinning."
+        },
+        {
+            "id": "CASTFORM",
+            "form_id": 5,
+            "form_name": "Moonglow",
+            "type1": "Fairy",
+            "pokedex": "This is the form Castform takes when the moon rises. The particles in its body take on mystical fae-like properties."
+        },
+        {
+            "id": "CASTFORM",
+            "form_id": 6,
+            "form_name": "Eclipse",
+            "type1": "Psychic",
+            "pokedex": "This is the form Castform takes when an eclipse covers the sky. It moves around using its hands made of pure psychic energy."
+        }
+    ],
+    "DEOXYS": [
+        {
+            "id": "DEOXYS",
+            "form_id": 1,
+            "form_name": "Attack",
+            "stats": {
+                "hp": 50,
+                "attack": 180,
+                "defense": 20,
+                "speed": 150,
+                "spatk": 180,
+                "spdef": 20
+            },
+            "level_moves": [
+                [
+                    1,
+                    "GRAVITY"
+                ],
+                [
+                    1,
+                    "LEER"
+                ],
+                [
+                    5,
+                    "RETREAT"
+                ],
+                [
+                    10,
+                    "PULSAR"
+                ],
+                [
+                    15,
+                    "TAUNT"
+                ],
+                [
+                    20,
+                    "PURSUIT"
+                ],
+                [
+                    25,
+                    "PSYCHIC"
+                ],
+                [
+                    30,
+                    "SUPERPOWER"
+                ],
+                [
+                    35,
+                    "PSYCHOSHIFT"
+                ],
+                [
+                    40,
+                    "ZENHEADBUTT"
+                ],
+                [
+                    45,
+                    "WORKUP"
+                ],
+                [
+                    50,
+                    "ZAPCANNON"
+                ],
+                [
+                    55,
+                    "PSYCHOBOOST"
+                ],
+                [
+                    60,
+                    "HYPERBEAM"
+                ]
+            ]
+        },
+        {
+            "id": "DEOXYS",
+            "form_id": 2,
+            "form_name": "Defense",
+            "stats": {
+                "hp": 50,
+                "attack": 70,
+                "defense": 160,
+                "speed": 90,
+                "spatk": 70,
+                "spdef": 160
+            },
+            "level_moves": [
+                [
+                    1,
+                    "GRAVITY"
+                ],
+                [
+                    1,
+                    "LEER"
+                ],
+                [
+                    5,
+                    "RETREAT"
+                ],
+                [
+                    10,
+                    "PULSAR"
+                ],
+                [
+                    15,
+                    "KNOCKOFF"
+                ],
+                [
+                    20,
+                    "SPIKES"
+                ],
+                [
+                    25,
+                    "PSYCHIC"
+                ],
+                [
+                    30,
+                    "SNATCH"
+                ],
+                [
+                    35,
+                    "PSYCHOSHIFT"
+                ],
+                [
+                    40,
+                    "ZENHEADBUTT"
+                ],
+                [
+                    45,
+                    "COSMICPOWER"
+                ],
+                [
+                    50,
+                    "AMNESIA"
+                ],
+                [
+                    55,
+                    "RECOVER"
+                ],
+                [
+                    60,
+                    "PSYCHOBOOST"
+                ],
+                [
+                    65,
+                    "COUNTER"
+                ],
+                [
+                    65,
+                    "MIRRORCOAT"
+                ]
+            ]
+        },
+        {
+            "id": "DEOXYS",
+            "form_id": 3,
+            "form_name": "Speed",
+            "stats": {
+                "hp": 50,
+                "attack": 95,
+                "defense": 90,
+                "speed": 180,
+                "spatk": 95,
+                "spdef": 90
+            },
+            "level_moves": [
+                [
+                    1,
+                    "GRAVITY"
+                ],
+                [
+                    1,
+                    "LEER"
+                ],
+                [
+                    5,
+                    "RETREAT"
+                ],
+                [
+                    10,
+                    "PULSAR"
+                ],
+                [
+                    15,
+                    "KNOCKOFF"
+                ],
+                [
+                    20,
+                    "PURSUIT"
+                ],
+                [
+                    25,
+                    "PSYCHIC"
+                ],
+                [
+                    30,
+                    "SWIFT"
+                ],
+                [
+                    35,
+                    "PSYCHOSHIFT"
+                ],
+                [
+                    40,
+                    "ZENHEADBUTT"
+                ],
+                [
+                    45,
+                    "AGILITY"
+                ],
+                [
+                    50,
+                    "RECOVER"
+                ],
+                [
+                    55,
+                    "PSYCHOBOOST"
+                ],
+                [
+                    60,
+                    "EXTREMESPEED"
+                ]
+            ]
+        }
+    ],
+    "BURMY": [
+        {
+            "id": "BURMY",
+            "form_id": 1,
+            "form_name": "Sand"
+        },
+        {
+            "id": "BURMY",
+            "form_id": 2,
+            "form_name": "Trash"
+        }
+    ],
+    "WORMADAM": [
+        {
+            "id": "WORMADAM",
+            "form_id": 1,
+            "form_name": "Sand",
+            "type1": "Bug",
+            "type2": "Ground"
+        },
+        {
+            "id": "WORMADAM",
+            "form_id": 2,
+            "form_name": "Trash",
+            "type1": "Bug",
+            "type2": "Steel"
+        }
+    ],
+    "CHERRIM": [
+        {
+            "id": "CHERRIM",
+            "form_id": 1,
+            "form_name": "Sun"
+        }
+    ],
+    "SHELLOS": [
+        {
+            "id": "SHELLOS",
+            "form_id": 1,
+            "form_name": "East Sea"
+        }
+    ],
+    "GASTRODON": [
+        {
+            "id": "GASTRODON",
+            "form_id": 1,
+            "form_name": "East Sea"
+        }
+    ],
+    "ROTOM": [
+        {
+            "id": "ROTOM",
+            "form_id": 1,
+            "form_name": "Heat",
+            "type1": "Electric",
+            "type2": "Fire",
+            "abilities": [
+                "LEVITATE",
+                "HAUNTED"
+            ],
+            "pokedex": "This Rotom has possessed a convection microwave oven that uses a special motor. It also has a flair for manipulating flames."
+        },
+        {
+            "id": "ROTOM",
+            "form_id": 2,
+            "form_name": "Wash",
+            "type1": "Electric",
+            "type2": "Water",
+            "abilities": [
+                "LEVITATE",
+                "HAUNTED"
+            ],
+            "pokedex": "This form of Rotom enjoys coming up with water-based pranks. Be careful with it if you don't want your room flooded."
+        },
+        {
+            "id": "ROTOM",
+            "form_id": 3,
+            "form_name": "Frost",
+            "type1": "Electric",
+            "type2": "Ice",
+            "abilities": [
+                "LEVITATE",
+                "HAUNTED"
+            ],
+            "pokedex": "Rotom assumes this form when it takes over a refrigerator powered by a special motor. It battles by spewing cold air."
+        },
+        {
+            "id": "ROTOM",
+            "form_id": 4,
+            "form_name": "Fan",
+            "type1": "Electric",
+            "type2": "Flying",
+            "abilities": [
+                "MOTORDRIVE",
+                "HAUNTED"
+            ],
+            "pokedex": "In this form, Rotom applies its new power over wind to its love of pranks. It will happily blow away any important documents it can find."
+        },
+        {
+            "id": "ROTOM",
+            "form_id": 5,
+            "form_name": "Mow",
+            "type1": "Electric",
+            "type2": "Grass",
+            "abilities": [
+                "LEVITATE",
+                "HAUNTED"
+            ],
+            "pokedex": "This is Rotom after it's seized control of a lawn mower that has a special motor. As it mows down grass, it scatters the clippings everywhere."
+        }
+    ],
+    "GIRATINA": [
+        {
+            "id": "GIRATINA",
+            "form_id": 1,
+            "form_name": "Origin",
+            "stats": {
+                "hp": 150,
+                "attack": 120,
+                "defense": 100,
+                "speed": 90,
+                "spatk": 120,
+                "spdef": 100
+            },
+            "abilities": [
+                "LEVITATE"
+            ],
+            "height": 6.9,
+            "weight": 650.0
+        }
+    ],
+    "SHAYMIN": [
+        {
+            "id": "SHAYMIN",
+            "form_id": 1,
+            "form_name": "Sky",
+            "type1": "Grass",
+            "type2": "Flying",
+            "stats": {
+                "hp": 100,
+                "attack": 103,
+                "defense": 75,
+                "speed": 127,
+                "spatk": 120,
+                "spdef": 75
+            },
+            "abilities": [
+                "AERODYNAMIC",
+                "FLOWERVEIL"
+            ],
+            "level_moves": [
+                [
+                    1,
+                    "GROWTH"
+                ],
+                [
+                    5,
+                    "GUST"
+                ],
+                [
+                    10,
+                    "MAGICALLEAF"
+                ],
+                [
+                    15,
+                    "LEECHSEED"
+                ],
+                [
+                    20,
+                    "QUICKATTACK"
+                ],
+                [
+                    25,
+                    "NATURALGIFT"
+                ],
+                [
+                    30,
+                    "BLUSTER"
+                ],
+                [
+                    35,
+                    "ROOST"
+                ],
+                [
+                    40,
+                    "ENERGYBALL"
+                ],
+                [
+                    45,
+                    "SWEETKISS"
+                ],
+                [
+                    50,
+                    "AIRSLASH"
+                ],
+                [
+                    55,
+                    "LEAFSTORM"
+                ],
+                [
+                    60,
+                    "SEEDFLARE"
+                ]
+            ],
+            "height": 0.4,
+            "weight": 5.2
+        }
+    ],
+    "ARCEUS": [
+        {
+            "id": "ARCEUS",
+            "form_id": 1,
+            "form_name": "Fighting Type",
+            "type1": "Fighting"
+        },
+        {
+            "id": "ARCEUS",
+            "form_id": 2,
+            "form_name": "Flying Type",
+            "type1": "Flying"
+        },
+        {
+            "id": "ARCEUS",
+            "form_id": 3,
+            "form_name": "Poison Type",
+            "type1": "Poison"
+        },
+        {
+            "id": "ARCEUS",
+            "form_id": 4,
+            "form_name": "Ground Type",
+            "type1": "Ground"
+        },
+        {
+            "id": "ARCEUS",
+            "form_id": 5,
+            "form_name": "Rock Type",
+            "type1": "Rock"
+        },
+        {
+            "id": "ARCEUS",
+            "form_id": 6,
+            "form_name": "Bug Type",
+            "type1": "Bug"
+        },
+        {
+            "id": "ARCEUS",
+            "form_id": 7,
+            "form_name": "Ghost Type",
+            "type1": "Ghost"
+        },
+        {
+            "id": "ARCEUS",
+            "form_id": 8,
+            "form_name": "Steel Type",
+            "type1": "Steel"
+        },
+        {
+            "id": "ARCEUS",
+            "form_id": 9,
+            "form_name": "Unknown Type",
+            "type1": "Qmarks"
+        },
+        {
+            "id": "ARCEUS",
+            "form_id": 10,
+            "form_name": "Fire Type",
+            "type1": "Fire"
+        },
+        {
+            "id": "ARCEUS",
+            "form_id": 11,
+            "form_name": "Water Type",
+            "type1": "Water"
+        },
+        {
+            "id": "ARCEUS",
+            "form_id": 12,
+            "form_name": "Grass Type",
+            "type1": "Grass"
+        },
+        {
+            "id": "ARCEUS",
+            "form_id": 13,
+            "form_name": "Electric Type",
+            "type1": "Electric"
+        },
+        {
+            "id": "ARCEUS",
+            "form_id": 14,
+            "form_name": "Psychic Type",
+            "type1": "Psychic"
+        },
+        {
+            "id": "ARCEUS",
+            "form_id": 15,
+            "form_name": "Ice Type",
+            "type1": "Ice"
+        },
+        {
+            "id": "ARCEUS",
+            "form_id": 16,
+            "form_name": "Dragon Type",
+            "type1": "Dragon"
+        },
+        {
+            "id": "ARCEUS",
+            "form_id": 17,
+            "form_name": "Dark Type",
+            "type1": "Dark"
+        },
+        {
+            "id": "ARCEUS",
+            "form_id": 18,
+            "form_name": "Fairy Type",
+            "type1": "Fairy"
+        }
+    ],
+    "BASCULIN": [
+        {
+            "id": "BASCULIN",
+            "form_id": 1,
+            "form_name": "Blue-Striped",
+            "pokedex": "Even Basculin, which devours everything it can with its huge jaws, is nothing more than food to organisms stronger than itself."
+        },
+        {
+            "id": "BASCULIN",
+            "form_id": 2,
+            "form_name": "White-Striped",
+            "kind": "Mellow",
+            "pokedex": "It differs from other Basculin in several respects, including demeanor. It is much gentler than other color variants."
+        }
+    ],
+    "DEERLING": [
+        {
+            "id": "DEERLING",
+            "form_id": 1,
+            "form_name": "Summer",
+            "type1": "Normal",
+            "type2": "Grass",
+            "stats": {
+                "hp": 60,
+                "attack": 80,
+                "defense": 50,
+                "speed": 70,
+                "spatk": 40,
+                "spdef": 80
+            },
+            "level_moves": [
+                [
+                    1,
+                    "GROWL"
+                ],
+                [
+                    1,
+                    "TACKLE"
+                ],
+                [
+                    4,
+                    "LEAFAGE"
+                ],
+                [
+                    8,
+                    "SMIRK"
+                ],
+                [
+                    12,
+                    "ANESTHETIZE"
+                ],
+                [
+                    16,
+                    "RAZORLEAF"
+                ],
+                [
+                    20,
+                    "HEADBUTT"
+                ],
+                [
+                    24,
+                    "DOUBLEKICK"
+                ],
+                [
+                    28,
+                    "TAKEDOWN"
+                ],
+                [
+                    32,
+                    "SCYTHEKICK"
+                ],
+                [
+                    36,
+                    "WHIPKICK"
+                ],
+                [
+                    40,
+                    "AROMATHERAPY"
+                ],
+                [
+                    44,
+                    "TAUNT"
+                ],
+                [
+                    48,
+                    "DOUBLEEDGE"
+                ],
+                [
+                    52,
+                    "SOLARGLIDE"
+                ],
+                [
+                    56,
+                    "SYNTHESIS"
+                ],
+                [
+                    60,
+                    "SEASONSEND"
+                ]
+            ]
+        },
+        {
+            "id": "DEERLING",
+            "form_id": 2,
+            "form_name": "Autumn",
+            "type1": "Normal",
+            "type2": "Ground",
+            "stats": {
+                "hp": 60,
+                "attack": 50,
+                "defense": 50,
+                "speed": 85,
+                "spatk": 40,
+                "spdef": 95
+            },
+            "level_moves": [
+                [
+                    1,
+                    "GROWL"
+                ],
+                [
+                    1,
+                    "TACKLE"
+                ],
+                [
+                    4,
+                    "TREADON"
+                ],
+                [
+                    8,
+                    "LEER"
+                ],
+                [
+                    12,
+                    "BESTOW"
+                ],
+                [
+                    16,
+                    "TREMOR"
+                ],
+                [
+                    20,
+                    "HEADBUTT"
+                ],
+                [
+                    24,
+                    "DOUBLEKICK"
+                ],
+                [
+                    28,
+                    "TAKEDOWN"
+                ],
+                [
+                    32,
+                    "SCYTHEKICK"
+                ],
+                [
+                    36,
+                    "TRAMPLE"
+                ],
+                [
+                    40,
+                    "SYMBIOSIS"
+                ],
+                [
+                    44,
+                    "SPIKES"
+                ],
+                [
+                    48,
+                    "DOUBLEEDGE"
+                ],
+                [
+                    52,
+                    "EARTHQUAKE"
+                ],
+                [
+                    56,
+                    "SHOREUP"
+                ],
+                [
+                    60,
+                    "SEASONSEND"
+                ]
+            ]
+        },
+        {
+            "id": "DEERLING",
+            "form_id": 3,
+            "form_name": "Winter",
+            "type1": "Normal",
+            "type2": "Ice",
+            "stats": {
+                "hp": 60,
+                "attack": 65,
+                "defense": 95,
+                "speed": 55,
+                "spatk": 45,
+                "spdef": 60
+            },
+            "level_moves": [
+                [
+                    1,
+                    "GROWL"
+                ],
+                [
+                    1,
+                    "TACKLE"
+                ],
+                [
+                    4,
+                    "COLDEMBRACE"
+                ],
+                [
+                    8,
+                    "DAZZLE"
+                ],
+                [
+                    12,
+                    "CHILL"
+                ],
+                [
+                    16,
+                    "FROSTBARB"
+                ],
+                [
+                    20,
+                    "HEADBUTT"
+                ],
+                [
+                    24,
+                    "DOUBLEKICK"
+                ],
+                [
+                    28,
+                    "TAKEDOWN"
+                ],
+                [
+                    32,
+                    "SCYTHEKICK"
+                ],
+                [
+                    36,
+                    "ICECALIBUR"
+                ],
+                [
+                    40,
+                    "CHARM"
+                ],
+                [
+                    44,
+                    "SHIVERDANCE"
+                ],
+                [
+                    48,
+                    "DOUBLEEDGE"
+                ],
+                [
+                    52,
+                    "GLACIALRAM"
+                ],
+                [
+                    56,
+                    "WISH"
+                ],
+                [
+                    60,
+                    "SEASONSEND"
+                ]
+            ]
+        }
+    ],
+    "SAWSBUCK": [
+        {
+            "id": "SAWSBUCK",
+            "form_id": 1,
+            "form_name": "Summer",
+            "type1": "Normal",
+            "type2": "Grass",
+            "stats": {
+                "hp": 80,
+                "attack": 120,
+                "defense": 70,
+                "speed": 90,
+                "spatk": 60,
+                "spdef": 100
+            }
+        },
+        {
+            "id": "SAWSBUCK",
+            "form_id": 2,
+            "form_name": "Autumn",
+            "type1": "Normal",
+            "type2": "Ground",
+            "stats": {
+                "hp": 80,
+                "attack": 90,
+                "defense": 70,
+                "speed": 105,
+                "spatk": 60,
+                "spdef": 115
+            }
+        },
+        {
+            "id": "SAWSBUCK",
+            "form_id": 3,
+            "form_name": "Winter",
+            "type1": "Normal",
+            "type2": "Ice",
+            "stats": {
+                "hp": 80,
+                "attack": 105,
+                "defense": 125,
+                "speed": 70,
+                "spatk": 60,
+                "spdef": 80
+            }
+        }
+    ],
+    "TORNADUS": [
+        {
+            "id": "TORNADUS",
+            "form_id": 1,
+            "form_name": "Therian",
+            "stats": {
+                "hp": 79,
+                "attack": 100,
+                "defense": 80,
+                "speed": 121,
+                "spatk": 110,
+                "spdef": 90
+            },
+            "abilities": [
+                "REGENERATOR"
+            ],
+            "height": 1.4
+        }
+    ],
+    "THUNDURUS": [
+        {
+            "id": "THUNDURUS",
+            "form_id": 1,
+            "form_name": "Therian",
+            "stats": {
+                "hp": 79,
+                "attack": 105,
+                "defense": 70,
+                "speed": 101,
+                "spatk": 145,
+                "spdef": 80
+            },
+            "abilities": [
+                "VOLTABSORB"
+            ],
+            "height": 3.0
+        }
+    ],
+    "LANDORUS": [
+        {
+            "id": "LANDORUS",
+            "form_id": 1,
+            "form_name": "Therian",
+            "stats": {
+                "hp": 89,
+                "attack": 145,
+                "defense": 90,
+                "speed": 91,
+                "spatk": 105,
+                "spdef": 80
+            },
+            "abilities": [
+                "INTIMIDATE"
+            ],
+            "height": 1.3
+        }
+    ],
+    "KYUREM": [
+        {
+            "id": "KYUREM",
+            "form_id": 1,
+            "form_name": "White",
+            "stats": {
+                "hp": 125,
+                "attack": 120,
+                "defense": 90,
+                "speed": 95,
+                "spatk": 170,
+                "spdef": 100
+            },
+            "abilities": [
+                "JUGGERNAUT"
+            ],
+            "level_moves": [
+                [
+                    1,
+                    "DRAGONBREATH"
+                ],
+                [
+                    1,
+                    "NOBLEROAR"
+                ],
+                [
+                    4,
+                    "ANCIENTPOWER"
+                ],
+                [
+                    8,
+                    "POWDERSNOW"
+                ],
+                [
+                    12,
+                    "SLASH"
+                ],
+                [
+                    16,
+                    "ENDEAVOR"
+                ],
+                [
+                    20,
+                    "CHILL"
+                ],
+                [
+                    24,
+                    "DRAGONPULSE"
+                ],
+                [
+                    28,
+                    "ICEBEAM"
+                ],
+                [
+                    32,
+                    "HYPERVOICE"
+                ],
+                [
+                    36,
+                    "SCARYFACE"
+                ],
+                [
+                    40,
+                    "BLIZZARD"
+                ],
+                [
+                    44,
+                    "OUTRAGE"
+                ],
+                [
+                    48,
+                    "ICEBURN"
+                ],
+                [
+                    52,
+                    "GLACIALRAM"
+                ]
+            ],
+            "height": 3.6,
+            "pokedex": "It has foreseen that a world of truth will arrive for people and Pok\u00e9mon. It strives to protect that future."
+        },
+        {
+            "id": "KYUREM",
+            "form_id": 2,
+            "form_name": "Black",
+            "stats": {
+                "hp": 125,
+                "attack": 170,
+                "defense": 100,
+                "speed": 95,
+                "spatk": 120,
+                "spdef": 90
+            },
+            "abilities": [
+                "JUGGERNAUT"
+            ],
+            "level_moves": [
+                [
+                    1,
+                    "DRAGONBREATH"
+                ],
+                [
+                    1,
+                    "NOBLEROAR"
+                ],
+                [
+                    4,
+                    "ANCIENTPOWER"
+                ],
+                [
+                    8,
+                    "POWDERSNOW"
+                ],
+                [
+                    12,
+                    "SLASH"
+                ],
+                [
+                    16,
+                    "ENDEAVOR"
+                ],
+                [
+                    20,
+                    "CHILL"
+                ],
+                [
+                    24,
+                    "DRAGONPULSE"
+                ],
+                [
+                    28,
+                    "ICEBEAM"
+                ],
+                [
+                    32,
+                    "HYPERVOICE"
+                ],
+                [
+                    36,
+                    "SCARYFACE"
+                ],
+                [
+                    40,
+                    "BLIZZARD"
+                ],
+                [
+                    44,
+                    "OUTRAGE"
+                ],
+                [
+                    48,
+                    "FREEZESHOCK"
+                ],
+                [
+                    52,
+                    "GLACIALRAM"
+                ]
+            ],
+            "height": 3.3,
+            "pokedex": "It's said that this Pok\u00e9mon battles in order to protect the ideal world that will exist in the future for people and Pok\u00e9mon."
+        },
+        {
+            "id": "KYUREM",
+            "form_id": 3,
+            "form_name": "White",
+            "stats": {
+                "hp": 125,
+                "attack": 120,
+                "defense": 90,
+                "speed": 95,
+                "spatk": 170,
+                "spdef": 100
+            },
+            "abilities": [
+                "JUGGERNAUT"
+            ],
+            "level_moves": [
+                [
+                    1,
+                    "CLASH"
+                ],
+                [
+                    1,
+                    "ICYWIND"
+                ],
+                [
+                    8,
+                    "BAR"
+                ],
+                [
+                    15,
+                    "ANCIENTPOWER"
+                ],
+                [
+                    22,
+                    "ICEBEAM"
+                ],
+                [
+                    29,
+                    "DRAGONBREATH"
+                ],
+                [
+                    36,
+                    "SLASH"
+                ],
+                [
+                    43,
+                    "FUSIONFLARE"
+                ],
+                [
+                    50,
+                    "ICEBURN"
+                ],
+                [
+                    57,
+                    "DRAGONPULSE"
+                ],
+                [
+                    64,
+                    "NOBLEROAR"
+                ],
+                [
+                    71,
+                    "ENDEAVOR"
+                ],
+                [
+                    78,
+                    "BLIZZARD"
+                ],
+                [
+                    85,
+                    "OUTRAGE"
+                ],
+                [
+                    92,
+                    "HYPERVOICE"
+                ]
+            ],
+            "height": 3.6
+        },
+        {
+            "id": "KYUREM",
+            "form_id": 4,
+            "form_name": "Black",
+            "stats": {
+                "hp": 125,
+                "attack": 170,
+                "defense": 100,
+                "speed": 95,
+                "spatk": 120,
+                "spdef": 90
+            },
+            "abilities": [
+                "JUGGERNAUT"
+            ],
+            "level_moves": [
+                [
+                    1,
+                    "CLASH"
+                ],
+                [
+                    1,
+                    "ICYWIND"
+                ],
+                [
+                    8,
+                    "BAR"
+                ],
+                [
+                    15,
+                    "ANCIENTPOWER"
+                ],
+                [
+                    22,
+                    "ICEBEAM"
+                ],
+                [
+                    29,
+                    "DRAGONBREATH"
+                ],
+                [
+                    36,
+                    "SLASH"
+                ],
+                [
+                    43,
+                    "FUSIONBOLT"
+                ],
+                [
+                    50,
+                    "FREEZESHOCK"
+                ],
+                [
+                    57,
+                    "DRAGONPULSE"
+                ],
+                [
+                    64,
+                    "NOBLEROAR"
+                ],
+                [
+                    71,
+                    "ENDEAVOR"
+                ],
+                [
+                    78,
+                    "BLIZZARD"
+                ],
+                [
+                    85,
+                    "OUTRAGE"
+                ],
+                [
+                    92,
+                    "HYPERVOICE"
+                ]
+            ],
+            "height": 3.3
+        }
+    ],
+    "KELDEO": [
+        {
+            "id": "KELDEO",
+            "form_id": 1,
+            "form_name": "Resolute",
+            "pokedex": "The power that lay hidden in its body now covers its horn, turning it into a sword that can slice through anything."
+        }
+    ],
+    "MELOETTA": [
+        {
+            "id": "MELOETTA",
+            "form_id": 1,
+            "form_name": "Pirouette",
+            "type1": "Normal",
+            "type2": "Fighting",
+            "stats": {
+                "hp": 100,
+                "attack": 128,
+                "defense": 90,
+                "speed": 128,
+                "spatk": 77,
+                "spdef": 77
+            }
+        }
+    ],
+    "GENESECT": [
+        {
+            "id": "GENESECT",
+            "form_id": 1,
+            "form_name": "Shock Drive"
+        },
+        {
+            "id": "GENESECT",
+            "form_id": 2,
+            "form_name": "Burn Drive"
+        },
+        {
+            "id": "GENESECT",
+            "form_id": 3,
+            "form_name": "Chill Drive"
+        },
+        {
+            "id": "GENESECT",
+            "form_id": 4,
+            "form_name": "Douse Drive"
+        }
+    ],
+    "VIVILLON": [
+        {
+            "id": "VIVILLON",
+            "form_id": 1,
+            "form_name": "Continental Pattern"
+        },
+        {
+            "id": "VIVILLON",
+            "form_id": 2,
+            "form_name": "Elegant Pattern"
+        },
+        {
+            "id": "VIVILLON",
+            "form_id": 3,
+            "form_name": "Garden Pattern"
+        },
+        {
+            "id": "VIVILLON",
+            "form_id": 4,
+            "form_name": "High Plains Pattern"
+        },
+        {
+            "id": "VIVILLON",
+            "form_id": 5,
+            "form_name": "Icy Snow Pattern"
+        },
+        {
+            "id": "VIVILLON",
+            "form_id": 6,
+            "form_name": "Jungle Pattern"
+        },
+        {
+            "id": "VIVILLON",
+            "form_id": 7,
+            "form_name": "Marine Pattern"
+        },
+        {
+            "id": "VIVILLON",
+            "form_id": 8,
+            "form_name": "Archipelago Pattern"
+        },
+        {
+            "id": "VIVILLON",
+            "form_id": 9,
+            "form_name": "Modern Pattern"
+        },
+        {
+            "id": "VIVILLON",
+            "form_id": 10,
+            "form_name": "Monsoon Pattern"
+        },
+        {
+            "id": "VIVILLON",
+            "form_id": 11,
+            "form_name": "Ocean Pattern"
+        },
+        {
+            "id": "VIVILLON",
+            "form_id": 12,
+            "form_name": "Polar Pattern"
+        },
+        {
+            "id": "VIVILLON",
+            "form_id": 13,
+            "form_name": "River Pattern"
+        },
+        {
+            "id": "VIVILLON",
+            "form_id": 14,
+            "form_name": "Sandstorm Pattern"
+        },
+        {
+            "id": "VIVILLON",
+            "form_id": 15,
+            "form_name": "Savanna Pattern"
+        },
+        {
+            "id": "VIVILLON",
+            "form_id": 16,
+            "form_name": "Sun Pattern"
+        },
+        {
+            "id": "VIVILLON",
+            "form_id": 17,
+            "form_name": "Tundra Pattern"
+        },
+        {
+            "id": "VIVILLON",
+            "form_id": 18,
+            "form_name": "Fancy Pattern"
+        },
+        {
+            "id": "VIVILLON",
+            "form_id": 19,
+            "form_name": "Pok\u00e9 Ball Pattern"
+        }
+    ],
+    "FLABEBE": [
+        {
+            "id": "FLABEBE",
+            "form_id": 1,
+            "form_name": "Yellow Flower"
+        },
+        {
+            "id": "FLABEBE",
+            "form_id": 2,
+            "form_name": "Orange Flower"
+        },
+        {
+            "id": "FLABEBE",
+            "form_id": 3,
+            "form_name": "Blue Flower"
+        },
+        {
+            "id": "FLABEBE",
+            "form_id": 4,
+            "form_name": "White Flower"
+        }
+    ],
+    "FLOETTE": [
+        {
+            "id": "FLOETTE",
+            "form_id": 1,
+            "form_name": "Yellow Flower"
+        },
+        {
+            "id": "FLOETTE",
+            "form_id": 2,
+            "form_name": "Orange Flower"
+        },
+        {
+            "id": "FLOETTE",
+            "form_id": 3,
+            "form_name": "Blue Flower"
+        },
+        {
+            "id": "FLOETTE",
+            "form_id": 4,
+            "form_name": "White Flower"
+        }
+    ],
+    "FLORGES": [
+        {
+            "id": "FLORGES",
+            "form_id": 1,
+            "form_name": "Yellow Flower"
+        },
+        {
+            "id": "FLORGES",
+            "form_id": 2,
+            "form_name": "Orange Flower"
+        },
+        {
+            "id": "FLORGES",
+            "form_id": 3,
+            "form_name": "Blue Flower"
+        },
+        {
+            "id": "FLORGES",
+            "form_id": 4,
+            "form_name": "White Flower"
+        }
+    ],
+    "FURFROU": [
+        {
+            "id": "FURFROU",
+            "form_id": 1,
+            "form_name": "Heart Trim"
+        },
+        {
+            "id": "FURFROU",
+            "form_id": 2,
+            "form_name": "Star Trim"
+        },
+        {
+            "id": "FURFROU",
+            "form_id": 3,
+            "form_name": "Diamond Trim"
+        },
+        {
+            "id": "FURFROU",
+            "form_id": 4,
+            "form_name": "Debutante Trim"
+        },
+        {
+            "id": "FURFROU",
+            "form_id": 5,
+            "form_name": "Matron Trim"
+        },
+        {
+            "id": "FURFROU",
+            "form_id": 6,
+            "form_name": "Dandy Trim"
+        },
+        {
+            "id": "FURFROU",
+            "form_id": 7,
+            "form_name": "La Reine Trim"
+        },
+        {
+            "id": "FURFROU",
+            "form_id": 8,
+            "form_name": "Kabuki Trim"
+        },
+        {
+            "id": "FURFROU",
+            "form_id": 9,
+            "form_name": "Pharaoh Trim"
+        }
+    ],
+    "MEOWSTIC": [
+        {
+            "id": "MEOWSTIC",
+            "form_id": 1,
+            "form_name": "Female"
+        }
+    ],
+    "AEGISLASH": [
+        {
+            "id": "AEGISLASH",
+            "form_id": 1,
+            "form_name": "Blade",
+            "stats": {
+                "hp": 60,
+                "attack": 150,
+                "defense": 50,
+                "speed": 60,
+                "spatk": 150,
+                "spdef": 50
+            }
+        }
+    ],
+    "PUMPKABOO": [
+        {
+            "id": "PUMPKABOO",
+            "form_id": 1,
+            "form_name": "Average Size",
+            "stats": {
+                "hp": 77,
+                "attack": 56,
+                "defense": 63,
+                "speed": 77,
+                "spatk": 70,
+                "spdef": 63
+            },
+            "pokedex": "Spirits that wander this world are placed into Pumpkaboo's body. They're then moved on to the afterlife."
+        },
+        {
+            "id": "PUMPKABOO",
+            "form_id": 2,
+            "form_name": "Large Size",
+            "stats": {
+                "hp": 77,
+                "attack": 63,
+                "defense": 70,
+                "speed": 63,
+                "spatk": 77,
+                "spdef": 70
+            },
+            "height": 0.5,
+            "weight": 7.5,
+            "pokedex": "When taking spirits to the afterlife, large Pumpkaboo prefer the spirits of adults to those of children."
+        },
+        {
+            "id": "PUMPKABOO",
+            "form_id": 3,
+            "form_name": "Super Size",
+            "stats": {
+                "hp": 77,
+                "attack": 70,
+                "defense": 77,
+                "speed": 49,
+                "spatk": 84,
+                "spdef": 77
+            },
+            "height": 0.8,
+            "weight": 15.0,
+            "pokedex": "Massive Pumpkaboo are said to be the product of areas where a great number of lost souls lingered."
+        }
+    ],
+    "GOURGEIST": [
+        {
+            "id": "GOURGEIST",
+            "form_id": 1,
+            "form_name": "Average Size",
+            "stats": {
+                "hp": 105,
+                "attack": 80,
+                "defense": 85,
+                "speed": 100,
+                "spatk": 100,
+                "spdef": 85
+            },
+            "pokedex": "Eerie cries emanate from its body in the dead of night. The sounds are said to be the wails of spirits who are suffering in the afterlife."
+        },
+        {
+            "id": "GOURGEIST",
+            "form_id": 2,
+            "form_name": "Large Size",
+            "stats": {
+                "hp": 105,
+                "attack": 90,
+                "defense": 95,
+                "speed": 80,
+                "spatk": 110,
+                "spdef": 95
+            },
+            "height": 1.1,
+            "weight": 14.0,
+            "pokedex": "Large Gourgeist put on the guise of adults, taking the hands of children to lead them to the afterlife."
+        },
+        {
+            "id": "GOURGEIST",
+            "form_id": 3,
+            "form_name": "Super Size",
+            "stats": {
+                "hp": 105,
+                "attack": 100,
+                "defense": 105,
+                "speed": 60,
+                "spatk": 120,
+                "spdef": 105
+            },
+            "height": 1.7,
+            "weight": 39.0,
+            "pokedex": "Supersized Gourgeist aren't picky. They will forcefully drag anyone off to the afterlife."
+        }
+    ],
+    "XERNEAS": [
+        {
+            "id": "XERNEAS",
+            "form_id": 1,
+            "form_name": "Active Mode"
+        }
+    ],
+    "ZYGARDE": [
+        {
+            "id": "ZYGARDE",
+            "form_id": 1,
+            "form_name": "10%",
+            "stats": {
+                "hp": 54,
+                "attack": 91,
+                "defense": 71,
+                "speed": 115,
+                "spatk": 71,
+                "spdef": 85
+            },
+            "height": 1.2,
+            "weight": 33.5,
+            "pokedex": "This is Zygarde when about 10% of its pieces have been assembled. It leaps at its opponent's chest and sinks its sharp fangs into them."
+        },
+        {
+            "id": "ZYGARDE",
+            "form_id": 2,
+            "form_name": "Complete",
+            "stats": {
+                "hp": 225,
+                "attack": 91,
+                "defense": 121,
+                "speed": 85,
+                "spatk": 91,
+                "spdef": 95
+            },
+            "abilities": [
+                "POWERCONSTRUCT"
+            ],
+            "height": 4.5,
+            "weight": 610.0,
+            "pokedex": "This is Zygarde's perfected form. From the orifice on its chest, it radiates high-powered energy that eliminates everything."
+        },
+        {
+            "id": "ZYGARDE",
+            "form_id": 3,
+            "form_name": "50%",
+            "abilities": [
+                "POWERCONSTRUCT"
+            ]
+        }
+    ],
+    "HOOPA": [
+        {
+            "id": "HOOPA",
+            "form_id": 1,
+            "form_name": "Unbound",
+            "type1": "Psychic",
+            "type2": "Dark",
+            "stats": {
+                "hp": 80,
+                "attack": 160,
+                "defense": 60,
+                "speed": 80,
+                "spatk": 170,
+                "spdef": 130
+            },
+            "abilities": [
+                "SUBSPACESCHISM"
+            ],
+            "level_moves": [
+                [
+                    1,
+                    "HELPINGHAND"
+                ],
+                [
+                    1,
+                    "MINDWAVES"
+                ],
+                [
+                    4,
+                    "ASTONISH"
+                ],
+                [
+                    8,
+                    "MAGICCOAT"
+                ],
+                [
+                    12,
+                    "LIGHTSCREEN"
+                ],
+                [
+                    16,
+                    "PSYBEAM"
+                ],
+                [
+                    20,
+                    "SKILLSWAP"
+                ],
+                [
+                    24,
+                    "POWERSPLIT"
+                ],
+                [
+                    28,
+                    "GUARDSPLIT"
+                ],
+                [
+                    32,
+                    "PHANTOMFORCE"
+                ],
+                [
+                    36,
+                    "ZENHEADBUTT"
+                ],
+                [
+                    40,
+                    "SHADOWBALL"
+                ],
+                [
+                    44,
+                    "TRICK"
+                ],
+                [
+                    48,
+                    "DESTINYBOND"
+                ],
+                [
+                    52,
+                    "DREAMDANCE"
+                ],
+                [
+                    56,
+                    "PSYCHIC"
+                ],
+                [
+                    60,
+                    "HYPERSPACEFURY"
+                ]
+            ],
+            "height": 6.5,
+            "weight": 490.0
+        }
+    ],
+    "ORICORIO": [
+        {
+            "id": "ORICORIO",
+            "form_id": 1,
+            "form_name": "Pom-Pom Style",
+            "type1": "Electric",
+            "type2": "Flying",
+            "pokedex": "It creates an electric charge by rubbing its feathers together. It dances over to its enemies and delivers shocking electrical punches."
+        },
+        {
+            "id": "ORICORIO",
+            "form_id": 2,
+            "form_name": "Pa'u Style",
+            "type1": "Psychic",
+            "type2": "Flying",
+            "pokedex": "This Oricorio relaxes by swaying gently. This increases its psychic energy, which it then fires at its enemies."
+        },
+        {
+            "id": "ORICORIO",
+            "form_id": 3,
+            "form_name": "Sensu Style",
+            "type1": "Ghost",
+            "type2": "Flying",
+            "pokedex": "It summons the dead with its dreamy dancing. From their malice, it draws power with which to curse its enemies."
+        }
+    ],
+    "LYCANROC": [
+        {
+            "id": "LYCANROC",
+            "form_id": 1,
+            "form_name": "Midnight",
+            "type1": "Rock",
+            "type2": "Dark",
+            "stats": {
+                "hp": 75,
+                "attack": 125,
+                "defense": 105,
+                "speed": 135,
+                "spatk": 65,
+                "spdef": 95
+            },
+            "abilities": [
+                "NOGUARD"
+            ],
+            "height": 1.1,
+            "pokedex": "It goads its enemies into attacking, withstands the hits, and in return, delivers a headbutt, crushing their bones with its rocky mane."
+        },
+        {
+            "id": "LYCANROC",
+            "form_id": 2,
+            "form_name": "Dusk",
+            "abilities": [
+                "TOUGHCLAWS"
+            ],
+            "pokedex": "Bathed in the setting sun of evening, Lycanroc has undergone a special kind of evolution. An intense fighting spirit underlies its calmness."
+        }
+    ],
+    "WISHIWASHI": [
+        {
+            "id": "WISHIWASHI",
+            "form_id": 1,
+            "form_name": "School",
+            "stats": {
+                "hp": 45,
+                "attack": 140,
+                "defense": 130,
+                "speed": 30,
+                "spatk": 140,
+                "spdef": 135
+            },
+            "height": 8.2,
+            "weight": 78.6,
+            "pokedex": "Weak Wishiwashi school together to concentrate their power. Their united force makes them the demon of the sea, feared near and far."
+        }
+    ],
+    "SILVALLY": [
+        {
+            "id": "SILVALLY",
+            "form_id": 1,
+            "form_name": "Type: Fighting",
+            "type1": "Fighting"
+        },
+        {
+            "id": "SILVALLY",
+            "form_id": 2,
+            "form_name": "Type: Flying",
+            "type1": "Flying"
+        },
+        {
+            "id": "SILVALLY",
+            "form_id": 3,
+            "form_name": "Type: Poison",
+            "type1": "Poison"
+        },
+        {
+            "id": "SILVALLY",
+            "form_id": 4,
+            "form_name": "Type: Ground",
+            "type1": "Ground"
+        },
+        {
+            "id": "SILVALLY",
+            "form_id": 5,
+            "form_name": "Type: Rock",
+            "type1": "Rock"
+        },
+        {
+            "id": "SILVALLY",
+            "form_id": 6,
+            "form_name": "Type: Bug",
+            "type1": "Bug"
+        },
+        {
+            "id": "SILVALLY",
+            "form_id": 7,
+            "form_name": "Type: Ghost",
+            "type1": "Ghost"
+        },
+        {
+            "id": "SILVALLY",
+            "form_id": 8,
+            "form_name": "Type: Steel",
+            "type1": "Steel"
+        },
+        {
+            "id": "SILVALLY",
+            "form_id": 9,
+            "form_name": "Type: Unknown",
+            "type1": "Qmarks"
+        },
+        {
+            "id": "SILVALLY",
+            "form_id": 10,
+            "form_name": "Type: Fire",
+            "type1": "Fire"
+        },
+        {
+            "id": "SILVALLY",
+            "form_id": 11,
+            "form_name": "Type: Water",
+            "type1": "Water"
+        },
+        {
+            "id": "SILVALLY",
+            "form_id": 12,
+            "form_name": "Type: Grass",
+            "type1": "Grass"
+        },
+        {
+            "id": "SILVALLY",
+            "form_id": 13,
+            "form_name": "Type: Electric",
+            "type1": "Electric"
+        },
+        {
+            "id": "SILVALLY",
+            "form_id": 14,
+            "form_name": "Type: Psychic",
+            "type1": "Psychic"
+        },
+        {
+            "id": "SILVALLY",
+            "form_id": 15,
+            "form_name": "Type: Ice",
+            "type1": "Ice"
+        },
+        {
+            "id": "SILVALLY",
+            "form_id": 16,
+            "form_name": "Type: Dragon",
+            "type1": "Dragon"
+        },
+        {
+            "id": "SILVALLY",
+            "form_id": 17,
+            "form_name": "Type: Dark",
+            "type1": "Dark"
+        },
+        {
+            "id": "SILVALLY",
+            "form_id": 18,
+            "form_name": "Type: Fairy",
+            "type1": "Fairy"
+        }
+    ],
+    "MINIOR": [
+        {
+            "id": "MINIOR",
+            "form_id": 7,
+            "form_name": "Red",
+            "stats": {
+                "hp": 65,
+                "attack": 100,
+                "defense": 60,
+                "speed": 120,
+                "spatk": 130,
+                "spdef": 60
+            },
+            "weight": 0.3,
+            "pokedex": "If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Pok\u00e9 Ball quickly enough."
+        },
+        {
+            "id": "MINIOR",
+            "form_id": 8,
+            "form_name": "Orange",
+            "stats": {
+                "hp": 65,
+                "attack": 100,
+                "defense": 60,
+                "speed": 120,
+                "spatk": 130,
+                "spdef": 60
+            },
+            "weight": 0.3,
+            "pokedex": "If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Pok\u00e9 Ball quickly enough."
+        },
+        {
+            "id": "MINIOR",
+            "form_id": 9,
+            "form_name": "Yellow",
+            "stats": {
+                "hp": 65,
+                "attack": 100,
+                "defense": 60,
+                "speed": 120,
+                "spatk": 130,
+                "spdef": 60
+            },
+            "weight": 0.3,
+            "pokedex": "If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Pok\u00e9 Ball quickly enough."
+        },
+        {
+            "id": "MINIOR",
+            "form_id": 10,
+            "form_name": "Green",
+            "stats": {
+                "hp": 65,
+                "attack": 100,
+                "defense": 60,
+                "speed": 120,
+                "spatk": 130,
+                "spdef": 60
+            },
+            "weight": 0.3,
+            "pokedex": "If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Pok\u00e9 Ball quickly enough."
+        },
+        {
+            "id": "MINIOR",
+            "form_id": 11,
+            "form_name": "Blue",
+            "stats": {
+                "hp": 65,
+                "attack": 100,
+                "defense": 60,
+                "speed": 120,
+                "spatk": 130,
+                "spdef": 60
+            },
+            "weight": 0.3,
+            "pokedex": "If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Pok\u00e9 Ball quickly enough."
+        },
+        {
+            "id": "MINIOR",
+            "form_id": 12,
+            "form_name": "Indigo",
+            "stats": {
+                "hp": 65,
+                "attack": 100,
+                "defense": 60,
+                "speed": 120,
+                "spatk": 130,
+                "spdef": 60
+            },
+            "weight": 0.3,
+            "pokedex": "If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Pok\u00e9 Ball quickly enough."
+        },
+        {
+            "id": "MINIOR",
+            "form_id": 13,
+            "form_name": "Violet",
+            "stats": {
+                "hp": 65,
+                "attack": 100,
+                "defense": 60,
+                "speed": 120,
+                "spatk": 130,
+                "spdef": 60
+            },
+            "weight": 0.3,
+            "pokedex": "If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Pok\u00e9 Ball quickly enough."
+        }
+    ],
+    "MIMIKYU": [
+        {
+            "id": "MIMIKYU",
+            "form_id": 1,
+            "form_name": "Busted",
+            "pokedex": "Sad that its true identity may be exposed, Mimikyu will mercilessly seek revenge on any opponent that breaks its neck."
+        }
+    ],
+    "NECROZMA": [
+        {
+            "id": "NECROZMA",
+            "form_id": 1,
+            "form_name": "Dusk Mane",
+            "type1": "Psychic",
+            "type2": "Steel",
+            "stats": {
+                "hp": 97,
+                "attack": 157,
+                "defense": 127,
+                "speed": 77,
+                "spatk": 113,
+                "spdef": 109
+            },
+            "height": 3.8,
+            "weight": 460.0,
+            "pokedex": "This is Necrozma's form while it's absorbing the power of Solgaleo, making it extremely ferocious and impossible to control."
+        },
+        {
+            "id": "NECROZMA",
+            "form_id": 2,
+            "form_name": "Dawn Wings",
+            "type1": "Psychic",
+            "type2": "Ghost",
+            "stats": {
+                "hp": 97,
+                "attack": 113,
+                "defense": 109,
+                "speed": 77,
+                "spatk": 157,
+                "spdef": 127
+            },
+            "height": 4.2,
+            "weight": 350.0,
+            "pokedex": "Lunala no longer has a will of its own. Now under the control of Necrozma, it continuously expels all of its energy."
+        },
+        {
+            "id": "NECROZMA",
+            "form_id": 3,
+            "form_name": "Ultra",
+            "type1": "Psychic",
+            "type2": "Dragon",
+            "stats": {
+                "hp": 97,
+                "attack": 167,
+                "defense": 97,
+                "speed": 129,
+                "spatk": 167,
+                "spdef": 97
+            },
+            "abilities": [
+                "NEUROFORCE"
+            ],
+            "height": 7.5,
+            "pokedex": "The light pouring out from all over its body affects living things and nature, impacting them in various ways."
+        },
+        {
+            "id": "NECROZMA",
+            "form_id": 4,
+            "form_name": "Ultra",
+            "type1": "Psychic",
+            "type2": "Dragon",
+            "stats": {
+                "hp": 97,
+                "attack": 167,
+                "defense": 97,
+                "speed": 129,
+                "spatk": 167,
+                "spdef": 97
+            },
+            "abilities": [
+                "NEUROFORCE"
+            ],
+            "height": 7.5
+        }
+    ],
+    "MAGEARNA": [
+        {
+            "id": "MAGEARNA",
+            "form_id": 1,
+            "form_name": "Original Color",
+            "pokedex": "This gorgeous Magearna looks as it did at the time of its invention. Its luxurious decoration pleased the king's daughter."
+        }
+    ],
+    "CRAMORANT": [
+        {
+            "id": "CRAMORANT",
+            "form_id": 1,
+            "form_name": "Gulping",
+            "pokedex": "The slightest shock is sometimes enough to get this Pok\u00e9mon to spit out the Arrokuda lodged in its throat."
+        },
+        {
+            "id": "CRAMORANT",
+            "form_id": 2,
+            "form_name": "Gorging",
+            "pokedex": "The half-swallowed Pikachu is so startled that it isn't struggling yet, but it's still looking for a chance to strike back."
+        }
+    ],
+    "EISCUE": [
+        {
+            "id": "EISCUE",
+            "form_id": 1,
+            "form_name": "Noice Face",
+            "stats": {
+                "hp": 85,
+                "attack": 90,
+                "defense": 105,
+                "speed": 100,
+                "spatk": 90,
+                "spdef": 50
+            },
+            "pokedex": "The hair on its head connects to the surface of its brain. When this Pok\u00e9mon has something on its mind, its hair chills the air around it."
+        }
+    ],
+    "SINISTEA": [
+        {
+            "id": "SINISTEA",
+            "form_id": 1,
+            "form_name": "Antique",
+            "pokedex": "It absorbs the life-force of those who drink it. It waits patiently, but opportunities are fleeting\u2014it tastes so bad that it gets spat out immediately."
+        }
+    ],
+    "POLTEAGEIST": [
+        {
+            "id": "POLTEAGEIST",
+            "form_id": 1,
+            "form_name": "Antique",
+            "pokedex": "Trainers Polteageist trusts will be allowed to experience its distinctive flavor and aroma firsthand by sampling just a tiny bit of its tea."
+        }
+    ],
+    "INDEEDEE": [
+        {
+            "id": "INDEEDEE",
+            "form_id": 1,
+            "form_name": "Female",
+            "pokedex": "They diligently serve people and Pok\u00e9mon so they can gather feelings of gratitude. The females are particularly good at babysitting."
+        }
+    ],
+    "MORPEKO": [
+        {
+            "id": "MORPEKO",
+            "form_id": 1,
+            "form_name": "Hangry",
+            "type1": "Dark",
+            "stats": {
+                "hp": 90,
+                "attack": 125,
+                "defense": 70,
+                "speed": 120,
+                "spatk": 85,
+                "spdef": 70
+            },
+            "pokedex": "Hunger hormones affect its temperament. Until its hunger is appeased, it gets up to all manner of evil deeds."
+        }
+    ],
+    "ZACIAN": [
+        {
+            "id": "ZACIAN",
+            "form_id": 1,
+            "form_name": "Crowned",
+            "type1": "Fairy",
+            "type2": "Steel",
+            "stats": {
+                "hp": 92,
+                "attack": 170,
+                "defense": 115,
+                "speed": 148,
+                "spatk": 80,
+                "spdef": 115
+            },
+            "weight": 355.0,
+            "pokedex": "Able to cut down anything with a single strike, it became known as the Fairy King's Sword, and it inspired awe in friend and foe alike."
+        }
+    ],
+    "ZAMAZENTA": [
+        {
+            "id": "ZAMAZENTA",
+            "form_id": 1,
+            "form_name": "Crowned",
+            "type1": "Fighting",
+            "type2": "Steel",
+            "stats": {
+                "hp": 92,
+                "attack": 130,
+                "defense": 145,
+                "speed": 128,
+                "spatk": 80,
+                "spdef": 145
+            },
+            "weight": 785.0,
+            "pokedex": "Now that it's equipped with its shield, it can shrug off impressive blows, including the attacks of Dynamax Pok\u00e9mon."
+        }
+    ],
+    "URSHIFU": [
+        {
+            "id": "URSHIFU",
+            "form_id": 1,
+            "form_name": "Rapid Strike",
+            "type1": "Fighting",
+            "type2": "Water",
+            "level_moves": [
+                [
+                    0,
+                    "SURGINGSTRIKES"
+                ],
+                [
+                    1,
+                    "AQUAJET"
+                ],
+                [
+                    1,
+                    "SURGINGSTRIKES"
+                ]
+            ],
+            "pokedex": "This form of Urshifu is a strong believer in defeating foes by raining many blows down on them. Its strikes are nonstop, flowing like a river."
+        }
+    ],
+    "CALYREX": [
+        {
+            "id": "CALYREX",
+            "form_id": 1,
+            "form_name": "Ice",
+            "type1": "Psychic",
+            "type2": "Ice",
+            "stats": {
+                "hp": 100,
+                "attack": 165,
+                "defense": 150,
+                "speed": 50,
+                "spatk": 85,
+                "spdef": 130
+            },
+            "abilities": [
+                "ASONEICE"
+            ],
+            "level_moves": [
+                [
+                    1,
+                    "AVALANCHE"
+                ],
+                [
+                    1,
+                    "BODYSLAM"
+                ],
+                [
+                    1,
+                    "DOUBLEEDGE"
+                ],
+                [
+                    1,
+                    "DOUBLEKICK"
+                ],
+                [
+                    1,
+                    "GLACIALLANCE"
+                ],
+                [
+                    1,
+                    "GREYMIST"
+                ],
+                [
+                    1,
+                    "ICECALIBUR"
+                ],
+                [
+                    1,
+                    "IRONDEFENSE"
+                ],
+                [
+                    1,
+                    "LEER"
+                ],
+                [
+                    1,
+                    "MEGADRAIN"
+                ],
+                [
+                    1,
+                    "POUND"
+                ],
+                [
+                    1,
+                    "SCRUTINIZE"
+                ],
+                [
+                    1,
+                    "SWORDSDANCE"
+                ],
+                [
+                    1,
+                    "TACKLE"
+                ],
+                [
+                    1,
+                    "TAKEDOWN"
+                ],
+                [
+                    1,
+                    "TAUNT"
+                ],
+                [
+                    1,
+                    "THRASH"
+                ],
+                [
+                    1,
+                    "TORMENT"
+                ],
+                [
+                    5,
+                    "GROWTH"
+                ],
+                [
+                    10,
+                    "LIFEDEW"
+                ],
+                [
+                    15,
+                    "GIGADRAIN"
+                ],
+                [
+                    20,
+                    "EXPLOIT"
+                ],
+                [
+                    25,
+                    "HELPINGHAND"
+                ],
+                [
+                    30,
+                    "AROMATHERAPY"
+                ],
+                [
+                    35,
+                    "ENERGYBALL"
+                ],
+                [
+                    40,
+                    "TOTALCONTROL"
+                ],
+                [
+                    45,
+                    "LEECHSEED"
+                ],
+                [
+                    50,
+                    "HEALPULSE"
+                ],
+                [
+                    55,
+                    "SOLARBEAM"
+                ],
+                [
+                    60,
+                    "FUTURESIGHT"
+                ]
+            ],
+            "kind": "High King",
+            "pokedex": "It's said that this Pok\u00e9mon once moved a large forest\u2014and all the Pok\u00e9mon living there\u2014to a new location overnight."
+        },
+        {
+            "id": "CALYREX",
+            "form_id": 2,
+            "form_name": "Shadow",
+            "type1": "Psychic",
+            "type2": "Ghost",
+            "stats": {
+                "hp": 100,
+                "attack": 85,
+                "defense": 80,
+                "speed": 150,
+                "spatk": 165,
+                "spdef": 100
+            },
+            "abilities": [
+                "ASONEGHOST"
+            ],
+            "level_moves": [
+                [
+                    1,
+                    "AGILITY"
+                ],
+                [
+                    1,
+                    "ASTRALBARRAGE"
+                ],
+                [
+                    1,
+                    "CONFUSERAY"
+                ],
+                [
+                    1,
+                    "DISABLE"
+                ],
+                [
+                    1,
+                    "DOUBLEEDGE"
+                ],
+                [
+                    1,
+                    "DOUBLEKICK"
+                ],
+                [
+                    1,
+                    "DREAMDANCE"
+                ],
+                [
+                    1,
+                    "GREYMIST"
+                ],
+                [
+                    1,
+                    "HEX"
+                ],
+                [
+                    1,
+                    "LEER"
+                ],
+                [
+                    1,
+                    "MEGADRAIN"
+                ],
+                [
+                    1,
+                    "POUND"
+                ],
+                [
+                    1,
+                    "RUIN"
+                ],
+                [
+                    1,
+                    "SCRUTINIZE"
+                ],
+                [
+                    1,
+                    "SHADOWBALL"
+                ],
+                [
+                    1,
+                    "TACKLE"
+                ],
+                [
+                    1,
+                    "TAKEDOWN"
+                ],
+                [
+                    1,
+                    "THRASH"
+                ],
+                [
+                    5,
+                    "GROWTH"
+                ],
+                [
+                    10,
+                    "LIFEDEW"
+                ],
+                [
+                    15,
+                    "GIGADRAIN"
+                ],
+                [
+                    20,
+                    "EXPLOIT"
+                ],
+                [
+                    25,
+                    "HELPINGHAND"
+                ],
+                [
+                    30,
+                    "AROMATHERAPY"
+                ],
+                [
+                    35,
+                    "ENERGYBALL"
+                ],
+                [
+                    40,
+                    "TOTALCONTROL"
+                ],
+                [
+                    45,
+                    "LEECHSEED"
+                ],
+                [
+                    50,
+                    "HEALPULSE"
+                ],
+                [
+                    55,
+                    "SOLARBEAM"
+                ],
+                [
+                    60,
+                    "FUTURESIGHT"
+                ]
+            ],
+            "kind": "High King",
+            "pokedex": "Legend says that by using its power to see all events from past to future, this Pok\u00e9mon saved the creatures of a forest from a meteorite strike."
+        }
+    ],
+    "KYOGRE": [
+        {
+            "id": "KYOGRE",
+            "form_id": 1,
+            "form_name": "Primal",
+            "stats": {
+                "hp": 100,
+                "attack": 150,
+                "defense": 90,
+                "speed": 90,
+                "spatk": 180,
+                "spdef": 160
+            },
+            "abilities": [
+                "PRIMORDIALSEA"
+            ],
+            "height": 9.8,
+            "weight": 430.0
+        }
+    ],
+    "GROUDON": [
+        {
+            "id": "GROUDON",
+            "form_id": 1,
+            "form_name": "Primal",
+            "type1": "Ground",
+            "type2": "Fire",
+            "stats": {
+                "hp": 100,
+                "attack": 180,
+                "defense": 160,
+                "speed": 90,
+                "spatk": 150,
+                "spdef": 90
+            },
+            "abilities": [
+                "DESOLATELAND"
+            ],
+            "height": 5.0,
+            "weight": 999.7
+        }
+    ],
+    "RAYQUAZA": [
+        {
+            "id": "RAYQUAZA",
+            "form_id": 1,
+            "form_name": "Delta",
+            "stats": {
+                "hp": 105,
+                "attack": 180,
+                "defense": 100,
+                "speed": 115,
+                "spatk": 180,
+                "spdef": 100
+            },
+            "abilities": [
+                "DELTASTREAM"
+            ],
+            "height": 10.8,
+            "weight": 392.0
+        }
+    ],
+    "DARMANITAN": [
+        {
+            "id": "DARMANITAN",
+            "form_id": 1,
+            "form_name": "Zen",
+            "type1": "Fire",
+            "type2": "Psychic",
+            "stats": {
+                "hp": 105,
+                "attack": 30,
+                "defense": 105,
+                "speed": 55,
+                "spatk": 140,
+                "spdef": 105
+            },
+            "abilities": [
+                "TOUGH"
+            ],
+            "pokedex": "When wounded, it stops moving. It goes as still as stone to meditate, sharpening its mind and spirit."
+        }
+    ],
+    "GDARMANITAN": [
+        {
+            "id": "GDARMANITAN",
+            "form_id": 1,
+            "form_name": "Zen",
+            "type1": "Ice",
+            "type2": "Fire",
+            "stats": {
+                "hp": 135,
+                "attack": 50,
+                "defense": 105,
+                "speed": 35,
+                "spatk": 110,
+                "spdef": 105
+            },
+            "abilities": [
+                "PHASESHIFT"
+            ],
+            "pokedex": "Darmanitan takes this form when enraged. It won't stop spewing flames until its rage has settled, even if its body starts to melt."
+        }
+    ],
+    "AMPHAROS": [
+        {
+            "id": "AMPHAROS",
+            "form_id": 1,
+            "form_name": "Ascended",
+            "stats": {
+                "hp": 110,
+                "attack": 100,
+                "defense": 165,
+                "speed": 80,
+                "spatk": 210,
+                "spdef": 165
+            }
+        }
+    ],
+    "GARCHOMP": [
+        {
+            "id": "GARCHOMP",
+            "form_id": 1,
+            "form_name": "Reaper",
+            "stats": {
+                "hp": 108,
+                "attack": 155,
+                "defense": 125,
+                "speed": 97,
+                "spatk": 100,
+                "spdef": 75
+            }
+        }
+    ],
+    "GYARADOS": [
+        {
+            "id": "GYARADOS",
+            "form_id": 1,
+            "form_name": "Rampage",
+            "stats": {
+                "hp": 95,
+                "attack": 155,
+                "defense": 109,
+                "speed": 86,
+                "spatk": 85,
+                "spdef": 115
+            },
+            "abilities": [
+                "JUGGERNAUT"
+            ]
+        }
+    ],
+    "GARDEVOIR": [
+        {
+            "id": "GARDEVOIR",
+            "form_id": 1,
+            "form_name": "Finale",
+            "stats": {
+                "hp": 88,
+                "attack": 85,
+                "defense": 85,
+                "speed": 110,
+                "spatk": 145,
+                "spdef": 145
+            },
+            "abilities": [
+                "SYNCHRONIZE"
+            ]
+        }
+    ],
+    "GALLADE": [
+        {
+            "id": "GALLADE",
+            "form_id": 1,
+            "form_name": "Finale",
+            "stats": {
+                "hp": 88,
+                "attack": 125,
+                "defense": 100,
+                "speed": 110,
+                "spatk": 75,
+                "spdef": 160
+            },
+            "abilities": [
+                "INNERFOCUS"
+            ]
+        }
+    ],
+    "MEWTWO": [
+        {
+            "id": "MEWTWO",
+            "form_id": 1,
+            "form_name": "Overmatter",
+            "type1": "Psychic",
+            "type2": "Fighting",
+            "stats": {
+                "hp": 110,
+                "attack": 190,
+                "defense": 100,
+                "speed": 130,
+                "spatk": 150,
+                "spdef": 100
+            },
+            "abilities": [
+                "INNERFOCUS"
+            ],
+            "height": 2.3,
+            "weight": 127.0,
+            "pokedex": "Psychic power has augmented its muscles. It has a grip strength of one ton and can sprint a hundred meters in two seconds flat!"
+        },
+        {
+            "id": "MEWTWO",
+            "form_id": 2,
+            "form_name": "Overmind",
+            "stats": {
+                "hp": 110,
+                "attack": 150,
+                "defense": 70,
+                "speed": 140,
+                "spatk": 190,
+                "spdef": 120
+            },
+            "abilities": [
+                "VITALSPIRIT"
+            ],
+            "height": 1.5,
+            "weight": 33.0,
+            "pokedex": "Despite its diminished size, its mental power has grown phenomenally. With a mere thought, it can smash a skyscraper to smithereens."
+        }
+    ],
+    "ENAMORUS": [
+        {
+            "id": "ENAMORUS",
+            "form_id": 1,
+            "form_name": "Therian",
+            "stats": {
+                "hp": 74,
+                "attack": 115,
+                "defense": 110,
+                "speed": 46,
+                "spatk": 135,
+                "spdef": 100
+            },
+            "abilities": [
+                "WEATHERED"
+            ]
+        }
+    ],
+    "MAROMATISSE": [
+        {
+            "id": "MAROMATISSE",
+            "form_id": 1,
+            "form_name": "Harvest",
+            "stats": {
+                "hp": 120,
+                "attack": 130,
+                "defense": 81,
+                "speed": 68,
+                "spatk": 130,
+                "spdef": 81
+            },
+            "abilities": [
+                "AUTUMNAL"
+            ]
+        }
+    ]
+}

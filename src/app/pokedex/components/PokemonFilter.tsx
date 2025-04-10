@@ -21,12 +21,12 @@ type SelectFilter = BaseFilter & {
 };
 
 function validateMoves(pokemon: Pokemon) {
-    if (!pokemon.level_moves) {
+    if (!pokemon.levelMoves) {
         console.warn(`Pokemon ${pokemon.name} has undefined level_moves`);
         return false;
     }
 
-    const invalidMoves = pokemon.level_moves.filter((m) => !m?.[1]?.name);
+    const invalidMoves = pokemon.levelMoves.filter((m) => !m?.[1]?.name);
     if (invalidMoves.length > 0) {
         console.warn(`Pokemon ${pokemon.name} has invalid moves:`, invalidMoves);
         return false;
@@ -91,7 +91,7 @@ const AVAILABLE_FILTERS: PokemonFilterType[] = [
         apply: (pokemon: Pokemon, value: string | number) => {
             if (!validateMoves(pokemon)) return false;
             const searchValue = String(value).toLowerCase();
-            return pokemon.level_moves.some((m) => m[1].name.toLowerCase().includes(searchValue));
+            return pokemon.levelMoves.some((m) => m[1].name.toLowerCase().includes(searchValue));
         },
         inputMethod: "select",
         inputValues: Object.values(moves).map((m) => m.name),

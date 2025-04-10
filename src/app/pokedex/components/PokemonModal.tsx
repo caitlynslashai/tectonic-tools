@@ -197,7 +197,8 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                 className="w-24 h-24"
                             />
                             <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
-                                {currentPokemon.dex}: {currentPokemon.name}
+                                {currentPokemon.dex}: {currentPokemon.name}{" "}
+                                {currentPokemon.formName && "(" + currentPokemon.formName + ")"}
                             </h2>
                             <TypeBadge type1={currentPokemon.type1} type2={currentPokemon.type2} />
                         </div>

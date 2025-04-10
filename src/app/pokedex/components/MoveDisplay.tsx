@@ -12,8 +12,8 @@ export default function MoveDisplay({ pokemon, moveKey }: { pokemon: Pokemon; mo
     const [selectedMove, setSelectedMove] = useState<Move>(nullMove);
     const [selectedCategory, setSelectedCategory] = useState<MoveCategory>("Physical");
     const moves =
-        moveKey === "level" ? pokemon.level_moves.map((m) => m[1]) : pokemon.line_moves.concat(pokemon.tutor_moves);
-    const levels = moveKey === "level" ? pokemon.level_moves.map((m) => m[0]) : [];
+        moveKey === "level" ? pokemon.levelMoves.map((m) => m[1]) : pokemon.lineMoves.concat(pokemon.tutorMoves);
+    const levels = moveKey === "level" ? pokemon.levelMoves.map((m) => m[0]) : [];
     const filteredMoves = levels.length === 0 ? moves.filter((move) => move.category === selectedCategory) : moves;
 
     return (

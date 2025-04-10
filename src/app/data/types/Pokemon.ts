@@ -38,13 +38,14 @@ export class Pokemon {
     id: string;
     dex: number;
     name: string;
+    formName?: string;
     type1: PokemonType;
     type2?: PokemonType;
     stats: Stats;
     abilities: Ability[];
-    level_moves: [number, Move][];
-    line_moves: Move[];
-    tutor_moves: Move[];
+    levelMoves: [number, Move][];
+    lineMoves: Move[];
+    tutorMoves: Move[];
     tribes: PokemonTribe[];
     height: number;
     weight: number;
@@ -55,20 +56,23 @@ export class Pokemon {
         this.id = mon.id;
         this.dex = dexNo;
         this.name = mon.name;
+        if (mon.form_name !== null) {
+            this.formName = mon.form_name;
+        }
         this.type1 = mon.type1 as PokemonType;
         if (mon.type2 !== null) {
             this.type2 = mon.type2 as PokemonType;
         }
         this.stats = mon.stats;
         this.abilities = mon.abilities.map((a) => abilities[a]);
-        this.level_moves = mon.level_moves.map((m) => [m[0] as number, moves[m[1]]]);
-        this.line_moves = [];
+        this.levelMoves = mon.level_moves.map((m) => [m[0] as number, moves[m[1]]]);
+        this.lineMoves = [];
         if (mon.line_moves !== null) {
-            this.line_moves = mon.line_moves.map((m) => moves[m]);
+            this.lineMoves = mon.line_moves.map((m) => moves[m]);
         }
-        this.tutor_moves = [];
+        this.tutorMoves = [];
         if (mon.tutor_moves !== null) {
-            this.tutor_moves = mon.tutor_moves.map((m) => moves[m]);
+            this.tutorMoves = mon.tutor_moves.map((m) => moves[m]);
         }
         this.tribes = [];
         if (mon.tribes !== null) {
@@ -87,8 +91,8 @@ export class Pokemon {
     }
 
     public allMoves(): Move[] {
-        const flatLevelMoves = this.level_moves.map((m) => m[1]);
-        return uniq(flatLevelMoves.concat(this.line_moves, this.tutor_moves));
+        const flatLevelMoves = this.levelMoves.map((m) => m[1]);
+        return uniq(flatLevelMoves.concat(this.lineMoves, this.tutorMoves));
     }
 
     public hasType(type: PokemonType): boolean {
