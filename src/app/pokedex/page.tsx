@@ -3,14 +3,23 @@
 import InternalLink from "@/components/InternalLink";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { pokemon } from "../data/pokemon";
 import { Pokemon } from "../data/types/Pokemon";
 import PokemonModal from "./components/PokemonModal";
 import PokemonTable from "./components/PokemonTable";
 
+export interface PokemonTableProps {
+    mons: Pokemon[];
+    onRowClick: (pokemon: Pokemon) => void;
+}
+
+type SortOption = "dex" | "name" | "type";
+
 const Home: NextPage = () => {
     const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
+    const [filterText, setFilterText] = useState<string>("");
+    const [sortKey, setSortKey] = useState<SortOption>("dex");
 
     useEffect(() => {
         if (selectedPokemon) {
@@ -27,6 +36,26 @@ const Home: NextPage = () => {
     const handleCloseModal = () => {
         setSelectedPokemon(null);
     };
+
+    const handleFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setFilterText(event.target.value.toLowerCase());
+    };
+
+    const handleSortChange = (event: ChangeEvent<HTMLSelectElement>) => {
+        setSortKey(event.target.value as "name" | "type");
+    };
+
+    const filteredAndSortedPokemon = Object.values(pokemon)
+        .filter((mon) => mon.name.toLowerCase().includes(filterText))
+        .sort((a, b) => {
+            if (sortKey === "dex") {
+                return a.dex - b.dex;
+            }
+            if (sortKey === "name") {
+                return a.name.localeCompare(b.name);
+            }
+            return a.type1.localeCompare(b.type1);
+        });
 
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -45,8 +74,32 @@ const Home: NextPage = () => {
                     </p>
                 </div>
 
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-4">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+                        <input
+                            type="text"
+                            placeholder="Filter by name"
+                            value={filterText}
+                            onChange={handleFilterChange}
+                            className="border border-gray-300 rounded px-4 py-2 w-full sm:w-auto"
+                        />
+                        <div className="flex items-center gap-2">
+                            <span>Sort by</span>
+                            <select
+                                value={sortKey}
+                                onChange={handleSortChange}
+                                className="border border-gray-300 rounded px-4 py-2 w-full sm:w-auto"
+                            >
+                                <option value="dex">Dex ID</option>
+                                <option value="name">Name</option>
+                                <option value="type">Type</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-                    <PokemonTable mons={Object.values(pokemon)} onRowClick={handleRowClick} />
+                    <PokemonTable mons={filteredAndSortedPokemon} onRowClick={handleRowClick} />
                 </div>
             </main>
 
