@@ -14,7 +14,7 @@ export interface PokemonTableProps {
     onRowClick: (pokemon: Pokemon) => void;
 }
 
-type SortOption = "dex" | "name" | "type";
+type SortOption = "dex" | "name";
 
 const Home: NextPage = () => {
     const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
@@ -42,7 +42,7 @@ const Home: NextPage = () => {
     };
 
     const handleSortChange = (event: ChangeEvent<HTMLSelectElement>) => {
-        setSortKey(event.target.value as "name" | "type");
+        setSortKey(event.target.value as "name" | "dex");
     };
 
     const filteredAndSortedPokemon = Object.values(pokemon)
@@ -51,10 +51,7 @@ const Home: NextPage = () => {
             if (sortKey === "dex") {
                 return a.dex - b.dex;
             }
-            if (sortKey === "name") {
-                return a.name.localeCompare(b.name);
-            }
-            return a.type1.localeCompare(b.type1);
+            return a.name.localeCompare(b.name);
         });
 
     return (
@@ -92,7 +89,6 @@ const Home: NextPage = () => {
                             >
                                 <option value="dex">Dex ID</option>
                                 <option value="name">Name</option>
-                                <option value="type">Type</option>
                             </select>
                         </div>
                     </div>
