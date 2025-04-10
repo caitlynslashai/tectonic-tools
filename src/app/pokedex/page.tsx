@@ -1,5 +1,6 @@
 "use client";
 
+import InlineLink from "@/components/InlineLink";
 import InternalLink from "@/components/InternalLink";
 import type { NextPage } from "next";
 import Head from "next/head";
@@ -57,6 +58,11 @@ const Home: NextPage = () => {
                     <h1 className="text-3xl font-bold text-center mb-8 text-blue-800 dark:text-blue-300">
                         Pokémon Tectonic Online Pokédex
                     </h1>
+                    <p>
+                        This tool is a work in progress! While it&apos;s largely functional, improvements are still
+                        planned. See the to-do list and contribute on{" "}
+                        <InlineLink url="https://github.com/AlphaKretin/tectonic-tools">GitHub</InlineLink>.
+                    </p>
                     <p>
                         <InternalLink url="../">Return to homepage</InternalLink>
                     </p>
