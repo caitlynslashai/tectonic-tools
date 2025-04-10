@@ -1,5 +1,6 @@
 import { abilities } from "../abilities";
 import { PokemonTribe, PokemonType } from "../basicData";
+import { PokemonForm } from "../forms";
 import { moves } from "../moves";
 import { LoadedPokemon, pokemon } from "../pokemon";
 import { Ability } from "./Ability";
@@ -34,6 +35,15 @@ function uniq<T>(a: T[]) {
     return a.filter((item, pos, self) => self.indexOf(item) == pos);
 }
 
+function getterFactory<T extends keyof Pokemon>(mon: Pokemon, key: T) {
+    return function (form: number = -1) {
+        if (form in mon.forms && mon.forms[form][key] !== undefined) {
+            return mon.forms[form][key];
+        }
+        return mon[key];
+    };
+}
+
 export class Pokemon {
     id: string;
     dex: number;
@@ -52,6 +62,7 @@ export class Pokemon {
     kind: string;
     pokedex: string;
     evos: Evolution[];
+    forms: PokemonForm[] = [];
     constructor(mon: LoadedPokemon, dexNo: number) {
         this.id = mon.id;
         this.dex = dexNo;
@@ -90,8 +101,12 @@ export class Pokemon {
         }
     }
 
-    public allMoves(): Move[] {
-        const flatLevelMoves = this.levelMoves.map((m) => m[1]);
+    public addForms(forms: PokemonForm[]) {
+        this.forms = this.forms.concat(forms);
+    }
+
+    public allMoves(currentForm: number = 0): Move[] {
+        const flatLevelMoves = this.getLevelMoves(currentForm).map((m) => m[1]);
         return uniq(flatLevelMoves.concat(this.lineMoves, this.tutorMoves));
     }
 
@@ -99,15 +114,9 @@ export class Pokemon {
         return this.type1 === type || this.type2 === type;
     }
 
-    public BST(): number {
-        return (
-            this.stats.hp +
-            this.stats.attack +
-            this.stats.defense +
-            this.stats.spatk +
-            this.stats.spdef +
-            this.stats.speed
-        );
+    public BST(currentForm: number = 0): number {
+        const stats = this.getStats(currentForm);
+        return stats.hp + stats.attack + stats.defense + stats.spatk + stats.spdef + stats.speed;
     }
 
     public getPrevos(): Evolution[] {
@@ -130,4 +139,12 @@ export class Pokemon {
         }
         return allEvos;
     }
+
+    public getFormName = getterFactory(this, "formName");
+    public getType1 = getterFactory(this, "type1");
+    public getType2 = getterFactory(this, "type2");
+    public getAbilities = getterFactory(this, "abilities");
+    public getStats = getterFactory(this, "stats");
+    public getPokedex = getterFactory(this, "pokedex");
+    public getLevelMoves = getterFactory(this, "levelMoves");
 }

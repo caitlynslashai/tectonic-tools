@@ -1,4 +1,5 @@
 import loadedPokemon from "public/data/pokemon.json";
+import { forms, nullForm } from "./forms";
 import { blankStats, Evolution, Pokemon, Stats } from "./types/Pokemon";
 
 interface LoadedEvolution {
@@ -43,6 +44,11 @@ for (const index in pokemon) {
     if (index in all_evos) {
         pokemon[index].evos.push(all_evos[index]);
     }
+}
+
+for (const mon in forms) {
+    //0th form should fall back to base form
+    pokemon[mon].addForms([nullForm, ...forms[mon]]);
 }
 
 export const nullPokemon: Pokemon = new Pokemon(

@@ -8,12 +8,22 @@ import { isNull } from "@/app/data/util";
 import TypeBadge from "@/components/TypeBadge";
 import { useState } from "react";
 
-export default function MoveDisplay({ pokemon, moveKey }: { pokemon: Pokemon; moveKey: "level" | "tutor" }) {
+export default function MoveDisplay({
+    pokemon,
+    form,
+    moveKey,
+}: {
+    pokemon: Pokemon;
+    form: number;
+    moveKey: "level" | "tutor";
+}) {
     const [selectedMove, setSelectedMove] = useState<Move>(nullMove);
     const [selectedCategory, setSelectedCategory] = useState<MoveCategory>("Physical");
     const moves =
-        moveKey === "level" ? pokemon.levelMoves.map((m) => m[1]) : pokemon.lineMoves.concat(pokemon.tutorMoves);
-    const levels = moveKey === "level" ? pokemon.levelMoves.map((m) => m[0]) : [];
+        moveKey === "level"
+            ? pokemon.getLevelMoves(form).map((m) => m[1])
+            : pokemon.lineMoves.concat(pokemon.tutorMoves);
+    const levels = moveKey === "level" ? pokemon.getLevelMoves(form).map((m) => m[0]) : [];
     const filteredMoves = levels.length === 0 ? moves.filter((move) => move.category === selectedCategory) : moves;
 
     return (

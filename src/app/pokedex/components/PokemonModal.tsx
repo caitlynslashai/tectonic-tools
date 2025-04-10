@@ -32,15 +32,21 @@ const tabs = [
 ] as const;
 export type Tab = (typeof tabs)[number];
 
+function negativeMod(n: number, m: number) {
+    return ((n % m) + m) % m;
+}
+
 const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) => {
     const [isVisible, setIsVisible] = useState(false);
     const [isRendered, setIsRendered] = useState(false);
     const [currentPokemon, setCurrentPokemon] = useState(mon);
     const [activeTab, setActiveTab] = useState<Tab>("Info"); // Track active tab
+    const [currentForm, setCurrentForm] = useState<number>(0);
 
     useEffect(() => {
         if (mon) {
             setCurrentPokemon(mon); // Update to the new Pokémon
+            setCurrentForm(0); // reset form index when new Pokemon selected
             setIsRendered(true);
             setTimeout(() => setIsVisible(true), 10); // Slight delay to trigger animation
         } else {
@@ -64,17 +70,17 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
     if (!isRendered || !currentPokemon) return null;
 
     const defMatchups = Object.fromEntries(
-        pokemonTypes.map((t) => [
-            t,
-            typeChart[t][currentPokemon.type1] * (currentPokemon.type2 ? typeChart[t][currentPokemon.type2] : 1),
-        ])
+        pokemonTypes.map((t) => {
+            const type2 = currentPokemon.getType2(currentForm);
+            return [t, typeChart[t][currentPokemon.getType1(currentForm)] * (type2 ? typeChart[t][type2] : 1)];
+        })
     );
 
     const atkMatchups = Object.fromEntries(
-        pokemonTypes.map((t) => [
-            t,
-            Math.max(typeChart[currentPokemon.type1][t], currentPokemon.type2 ? typeChart[currentPokemon.type2][t] : 0),
-        ])
+        pokemonTypes.map((t) => {
+            const type2 = currentPokemon.getType2(currentForm);
+            return [t, Math.max(typeChart[currentPokemon.getType1(currentForm)][t], type2 ? typeChart[type2][t] : 0)];
+        })
     );
 
     function prioritiseSort<T>(prio: T) {
@@ -173,6 +179,8 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
         currentPrevo = newPrevos.length > 0 ? newPrevos[0].target : undefined;
     }
 
+    const stats = currentPokemon.getStats(currentForm);
+
     return (
         <div
             onClick={handleClose} // Close modal on background click
@@ -190,7 +198,12 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                     <div className="flex justify-between items-start">
                         <div>
                             <Image
-                                src={"/Pokemon/" + currentPokemon.id + ".png"}
+                                src={
+                                    "/Pokemon/" +
+                                    currentPokemon.id +
+                                    (currentForm > 0 ? "_" + currentPokemon.forms[currentForm].formId : "") +
+                                    ".png"
+                                }
                                 alt={currentPokemon.name}
                                 height="160"
                                 width="160"
@@ -198,10 +211,46 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                             />
                             <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
                                 {currentPokemon.dex}: {currentPokemon.name}{" "}
-                                {currentPokemon.formName && "(" + currentPokemon.formName + ")"}
+                                {currentPokemon.getFormName(currentForm) &&
+                                    "(" + currentPokemon.getFormName(currentForm) + ")"}
                             </h2>
-                            <TypeBadge type1={currentPokemon.type1} type2={currentPokemon.type2} />
+                            <TypeBadge
+                                type1={currentPokemon.getType1(currentForm)}
+                                type2={currentPokemon.getType2(currentForm)}
+                            />
                         </div>
+                        {currentPokemon.forms.length > 0 && (
+                            <div className="flex items-center space-x-2">
+                                <button
+                                    onClick={() =>
+                                        setCurrentForm(negativeMod(currentForm - 1, currentPokemon.forms.length))
+                                    }
+                                    className="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
+                                >
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M15 19l-7-7 7-7"
+                                        />
+                                    </svg>
+                                </button>
+                                <button
+                                    onClick={() => setCurrentForm((currentForm + 1) % currentPokemon.forms.length)}
+                                    className="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
+                                >
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M9 5l7 7-7 7"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+                        )}
                         <button
                             onClick={handleClose}
                             className="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
@@ -256,15 +305,17 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                     ))}
                                 </ul>
                                 <br />
-                                <p className="text-gray-600 dark:text-gray-300">{currentPokemon.pokedex}</p>
+                                <p className="text-gray-600 dark:text-gray-300">
+                                    {currentPokemon.getPokedex(currentForm)}
+                                </p>
                             </div>
                         </PokemonTab>
                         <PokemonTab tab="Abilities" activeTab={activeTab}>
-                            {currentPokemon.abilities.map((a) => (
-                                <>
+                            {currentPokemon.getAbilities(currentForm).map((a) => (
+                                <div key={a.id}>
                                     <h3 className="font-semibold text-gray-800 dark:text-gray-100">{a.name}</h3>
                                     <p className="text-gray-600 dark:text-gray-300">{a.description}</p>
-                                </>
+                                </div>
                             ))}
                         </PokemonTab>
                         <PokemonTab tab="Stats" activeTab={activeTab}>
@@ -282,13 +333,13 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <StatRow name="HP" value={currentPokemon.stats.hp}></StatRow>
-                                        <StatRow name="Attack" value={currentPokemon.stats.attack}></StatRow>
-                                        <StatRow name="Defense" value={currentPokemon.stats.defense}></StatRow>
-                                        <StatRow name="Sp. Atk" value={currentPokemon.stats.spatk}></StatRow>
-                                        <StatRow name="Sp. Def" value={currentPokemon.stats.spdef}></StatRow>
-                                        <StatRow name="Speed" value={currentPokemon.stats.speed}></StatRow>
-                                        <StatRow name="Total" value={currentPokemon.BST()}></StatRow>
+                                        <StatRow name="HP" value={stats.hp}></StatRow>
+                                        <StatRow name="Attack" value={stats.attack}></StatRow>
+                                        <StatRow name="Defense" value={stats.defense}></StatRow>
+                                        <StatRow name="Sp. Atk" value={stats.spatk}></StatRow>
+                                        <StatRow name="Sp. Def" value={stats.spdef}></StatRow>
+                                        <StatRow name="Speed" value={stats.speed}></StatRow>
+                                        <StatRow name="Total" value={currentPokemon.BST(currentForm)}></StatRow>
                                     </tbody>
                                 </table>
                             </div>
@@ -402,10 +453,10 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                             </div>
                         </PokemonTab>
                         <PokemonTab tab="Level Moves" activeTab={activeTab}>
-                            <MoveDisplay pokemon={currentPokemon} moveKey="level" />
+                            <MoveDisplay pokemon={currentPokemon} form={currentForm} moveKey="level" />
                         </PokemonTab>
                         <PokemonTab tab="Tutor Moves" activeTab={activeTab}>
-                            <MoveDisplay pokemon={currentPokemon} moveKey="tutor" />
+                            <MoveDisplay pokemon={currentPokemon} form={currentForm} moveKey="tutor" />
                         </PokemonTab>
                         <PokemonTab tab="Evolutions" activeTab={activeTab}>
                             <div>
