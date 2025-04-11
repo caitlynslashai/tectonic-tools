@@ -52,6 +52,7 @@ const TeamBuilder: NextPage = () => {
     const [teamName, setTeamName] = useState<string>("");
     const [savedTeams, setSavedTeams] = useState<string[]>([]);
     const [loadedTeam, setLoadedTeam] = useState<string>("");
+    const [teamCode, setTeamCode] = useState<string>("");
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -79,11 +80,7 @@ const TeamBuilder: NextPage = () => {
         .filter((tribe) => tribeCounts[tribe] > 1)
         .sort((a, b) => tribeCounts[b] - tribeCounts[a]);
 
-    function saveTeam() {
-        if (teamName.length < 1) {
-            alert("Please name the team before saving!");
-            return;
-        }
+    function saveTeamToJSON() {
         const savedCards: SavedCardData[] = cards.map((c) => {
             return {
                 pokemon: c.pokemon.id,
@@ -93,9 +90,40 @@ const TeamBuilder: NextPage = () => {
                 form: c.form,
             };
         });
-        localStorage.setItem(teamName, JSON.stringify(savedCards));
+        return JSON.stringify(savedCards);
+    }
+
+    function saveTeam() {
+        if (teamName.length < 1) {
+            alert("Please name the team before saving!");
+            return;
+        }
+
+        localStorage.setItem(teamName, saveTeamToJSON());
         setSavedTeams(Object.keys(localStorage));
         alert("Character saved successfully!");
+    }
+
+    function exportTeam() {
+        const json = saveTeamToJSON();
+        const base64 = btoa(json);
+        setTeamCode(base64);
+        alert("Team exported successfully!");
+    }
+
+    function loadTeamFromJSON(json: string) {
+        const savedCards = JSON.parse(json) as SavedCardData[];
+        setCards(
+            savedCards.map((c) => {
+                return {
+                    pokemon: pokemon[c.pokemon] || nullPokemon,
+                    moves: c.moves.map((m) => moves[m] || nullMove),
+                    ability: abilities[c.ability] || nullAbility,
+                    item: items[c.item] || nullItem,
+                    form: c.form,
+                };
+            })
+        );
     }
 
     function loadTeam(name: string) {
@@ -106,19 +134,15 @@ const TeamBuilder: NextPage = () => {
         }
         const savedCardsJson = localStorage.getItem(name);
         if (savedCardsJson) {
-            const savedCards = JSON.parse(savedCardsJson) as SavedCardData[];
-            setCards(
-                savedCards.map((c) => {
-                    return {
-                        pokemon: pokemon[c.pokemon] || nullPokemon,
-                        moves: c.moves.map((m) => moves[m] || nullMove),
-                        ability: abilities[c.ability] || nullAbility,
-                        item: items[c.item] || nullItem,
-                        form: c.form,
-                    };
-                })
-            );
+            loadTeamFromJSON(savedCardsJson);
         }
+    }
+
+    function importTeam() {
+        const base64 = teamCode;
+        const json = atob(base64);
+        loadTeamFromJSON(json);
+        alert("Team imported successfully!");
     }
 
     return (
@@ -144,7 +168,7 @@ const TeamBuilder: NextPage = () => {
                     <div className="flex flex-row justify-center items-center gap-4 mt-6">
                         <input
                             type="text"
-                            placeholder="Team Name"
+                            placeholder="Team name"
                             className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                             value={teamName}
                             onChange={(e) => setTeamName(e.target.value)}
@@ -163,6 +187,27 @@ const TeamBuilder: NextPage = () => {
                                 </option>
                             ))}
                         </Dropdown>
+                    </div>
+                    <div className="flex flex-row justify-center items-center gap-4 mt-6">
+                        <input
+                            type="text"
+                            placeholder="Team code"
+                            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            value={teamCode}
+                            onChange={(e) => setTeamCode(e.target.value)}
+                        />
+                        <button
+                            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            onClick={importTeam}
+                        >
+                            Import Team
+                        </button>
+                        <button
+                            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            onClick={exportTeam}
+                        >
+                            Export Team
+                        </button>
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 w-full">
                         {Array.from({ length: 6 }).map((_, index) => (
