@@ -1,16 +1,17 @@
 "use client";
 
+import Dropdown from "@/components/DropDown";
 import InlineLink from "@/components/InlineLink";
 import InternalLink from "@/components/InternalLink";
 import TypeBadge from "@/components/TypeBadge";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
-import { nullAbility } from "../data/abilities";
+import { useEffect, useState } from "react";
+import { abilities, nullAbility } from "../data/abilities";
 import { pokemonTribes, pokemonTypes } from "../data/basicData";
-import { nullItem } from "../data/items";
-import { nullMove } from "../data/moves";
-import { nullPokemon } from "../data/pokemon";
+import { items, nullItem } from "../data/items";
+import { moves, nullMove } from "../data/moves";
+import { nullPokemon, pokemon } from "../data/pokemon";
 import { Ability } from "../data/types/Ability";
 import { Item } from "../data/types/Item";
 import { Move } from "../data/types/Move";
@@ -30,6 +31,14 @@ export interface CardData {
     form: number;
 }
 
+interface SavedCardData {
+    pokemon: keyof typeof pokemon;
+    moves: Array<keyof typeof moves>;
+    ability: keyof typeof abilities;
+    item: keyof typeof items;
+    form: number;
+}
+
 const nullCard = {
     pokemon: nullPokemon,
     moves: Array(4).fill(nullMove),
@@ -40,6 +49,15 @@ const nullCard = {
 
 const TeamBuilder: NextPage = () => {
     const [cards, setCards] = useState<CardData[]>(Array(6).fill(nullCard));
+    const [teamName, setTeamName] = useState<string>("");
+    const [savedTeams, setSavedTeams] = useState<string[]>([]);
+    const [loadedTeam, setLoadedTeam] = useState<string>("");
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setSavedTeams(Object.keys(localStorage));
+        }
+    }, []);
 
     function updateCards(index: number, card: CardData) {
         const newCards = [...cards];
@@ -61,6 +79,48 @@ const TeamBuilder: NextPage = () => {
         .filter((tribe) => tribeCounts[tribe] > 1)
         .sort((a, b) => tribeCounts[b] - tribeCounts[a]);
 
+    function saveTeam() {
+        if (teamName.length < 1) {
+            alert("Please name the team before saving!");
+            return;
+        }
+        const savedCards: SavedCardData[] = cards.map((c) => {
+            return {
+                pokemon: c.pokemon.id,
+                moves: c.moves.map((m) => m.id),
+                ability: c.ability.id,
+                item: c.item.id,
+                form: c.form,
+            };
+        });
+        localStorage.setItem(teamName, JSON.stringify(savedCards));
+        setSavedTeams(Object.keys(localStorage));
+        alert("Character saved successfully!");
+    }
+
+    function loadTeam(name: string) {
+        setLoadedTeam(name);
+        if (name === "") {
+            // returning to null entry
+            return;
+        }
+        const savedCardsJson = localStorage.getItem(name);
+        if (savedCardsJson) {
+            const savedCards = JSON.parse(savedCardsJson) as SavedCardData[];
+            setCards(
+                savedCards.map((c) => {
+                    return {
+                        pokemon: pokemon[c.pokemon] || nullPokemon,
+                        moves: c.moves.map((m) => moves[m] || nullMove),
+                        ability: abilities[c.ability] || nullAbility,
+                        item: items[c.item] || nullItem,
+                        form: c.form,
+                    };
+                })
+            );
+        }
+    }
+
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
             <Head>
@@ -81,6 +141,29 @@ const TeamBuilder: NextPage = () => {
                     <p>
                         <InternalLink url="../">Return to homepage</InternalLink>
                     </p>
+                    <div className="flex flex-row justify-center items-center gap-4 mt-6">
+                        <input
+                            type="text"
+                            placeholder="Team Name"
+                            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            value={teamName}
+                            onChange={(e) => setTeamName(e.target.value)}
+                        />
+                        <button
+                            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            onClick={saveTeam}
+                        >
+                            Save Team
+                        </button>
+                        <Dropdown value={loadedTeam} onChange={(e) => loadTeam(e.target.value)}>
+                            <option value="">Load Saved Team</option>
+                            {savedTeams.map((team) => (
+                                <option key={team} value={team}>
+                                    {team}
+                                </option>
+                            ))}
+                        </Dropdown>
+                    </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 w-full">
                         {Array.from({ length: 6 }).map((_, index) => (
                             <PokemonCard key={index} data={cards[index]} update={(c) => updateCards(index, c)} />
