@@ -55,6 +55,10 @@ const TeamBuilder: NextPage = () => {
         }
     }
 
+    const filteredTribes = Object.keys(tribeCounts)
+        .filter((tribe) => tribeCounts[tribe] > 1)
+        .sort((a, b) => tribeCounts[b] - tribeCounts[a]);
+
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
             <Head>
@@ -83,21 +87,17 @@ const TeamBuilder: NextPage = () => {
 
                     {/* Potential Tribes Table */}
                     <div className="w-full max-w-4xl mx-auto mt-8">
-                        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 text-center">
-                            Potential Tribes
-                        </h2>
+                        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 text-center">Tribes</h2>
                         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
                             <div className="overflow-x-auto">
-                                <table className="w-full">
-                                    <thead className="bg-gray-50 dark:bg-gray-700">
-                                        <tr>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                                Tribe
-                                            </th>
-                                            {Object.keys(tribeCounts)
-                                                .filter((tribe) => tribeCounts[tribe] > 1)
-                                                .sort((a, b) => tribeCounts[b] - tribeCounts[a])
-                                                .map((tribe) => (
+                                {filteredTribes.length > 0 ? (
+                                    <table className="w-full">
+                                        <thead className="bg-gray-50 dark:bg-gray-700">
+                                            <tr>
+                                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                                    Tribe
+                                                </th>
+                                                {filteredTribes.map((tribe) => (
                                                     <th
                                                         key={tribe}
                                                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
@@ -105,27 +105,32 @@ const TeamBuilder: NextPage = () => {
                                                         {tribe}
                                                     </th>
                                                 ))}
-                                        </tr>
-                                    </thead>
-                                    <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                                        <tr>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
-                                                Count
-                                            </td>
-                                            {Object.entries(tribeCounts)
-                                                .filter(([, count]) => count > 1)
-                                                .sort((a, b) => b[1] - a[1])
-                                                .map(([t, count]) => (
-                                                    <td
-                                                        key={t}
-                                                        className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300"
-                                                    >
-                                                        {count}
-                                                    </td>
-                                                ))}
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                                            <tr>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
+                                                    Count
+                                                </td>
+                                                {Object.entries(tribeCounts)
+                                                    .filter(([, count]) => count > 1)
+                                                    .sort((a, b) => b[1] - a[1])
+                                                    .map(([t, count]) => (
+                                                        <td
+                                                            key={t}
+                                                            className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300"
+                                                        >
+                                                            {count}
+                                                        </td>
+                                                    ))}
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                ) : (
+                                    <p className="text-center">
+                                        If multiple Pokémon on your team share a tribe, they&apos;ll be listed here.
+                                    </p>
+                                )}
                             </div>
                         </div>
                     </div>
