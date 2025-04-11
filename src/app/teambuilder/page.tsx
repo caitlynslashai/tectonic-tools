@@ -68,8 +68,8 @@ const TeamBuilder: NextPage = () => {
                         Pokémon Tectonic Team Builder
                     </h1>
                     <p>
-                        This tool is a work in progress! It is currently in the first stages of construction. See the
-                        to-do list and contribute on{" "}
+                        This tool is a work in progress! While it&apos;s largely functional, improvements are still
+                        planned. See the to-do list and contribute on{" "}
                         <InlineLink url="https://github.com/AlphaKretin/tectonic-tools">GitHub</InlineLink>.
                     </p>
                     <p>
