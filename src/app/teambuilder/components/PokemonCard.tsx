@@ -4,7 +4,7 @@ import { abilities, nullAbility } from "@/app/data/abilities";
 import { items, nullItem } from "@/app/data/items";
 import { moves, nullMove } from "@/app/data/moves";
 import { nullPokemon, pokemon } from "@/app/data/pokemon";
-import { isNull } from "@/app/data/util";
+import { isNull, negativeMod } from "@/app/data/util";
 import Dropdown from "@/components/DropDown";
 import TypeBadge from "@/components/TypeBadge";
 import Image from "next/image";
@@ -15,12 +15,20 @@ export default function PokemonCard({ data, update }: { data: CardData; update: 
     const currentMoves = data.moves;
     const currentAbility = data.ability;
     const currentItem = data.item;
+    const currentForm = data.form;
 
+    // wipe pokemon-dependent data when switching pokemon
     function updatePokemon(pokemonId: string) {
         if (pokemonId in pokemon) {
-            update({ ...data, pokemon: pokemon[pokemonId] });
+            update({
+                ...data,
+                pokemon: pokemon[pokemonId],
+                form: 0,
+                moves: Array(4).fill(nullMove),
+                ability: nullAbility,
+            });
         } else {
-            update({ ...data, pokemon: nullPokemon });
+            update({ ...data, pokemon: nullPokemon, form: 0, moves: Array(4).fill(nullMove), ability: nullAbility });
         }
     }
 
@@ -57,28 +65,63 @@ export default function PokemonCard({ data, update }: { data: CardData; update: 
         }
     }
 
+    function updateForm(form: number) {
+        update({ ...data, form });
+    }
+
     return (
         <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4 flex flex-col items-center w-60">
-            <Dropdown value={currentPokemon.id} onChange={(e) => updatePokemon(e.target.value)}>
-                <option value="">Select Pokémon</option>
-                {Object.values(pokemon).map((p) => (
-                    <option key={p.id} value={p.id}>
-                        {p.name}
-                    </option>
-                ))}
-            </Dropdown>
+            <div className="text-center flex flex-row items-center">
+                {currentPokemon.forms.length > 1 && (
+                    <button
+                        onClick={() => updateForm(negativeMod(currentForm - 1, currentPokemon.forms.length))}
+                        className="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
+                    >
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                )}
+                <Dropdown value={currentPokemon.id} onChange={(e) => updatePokemon(e.target.value)}>
+                    <option value="">Select Pokémon</option>
+                    {Object.values(pokemon).map((p) => (
+                        <option key={p.id} value={p.id}>
+                            {p.name}
+                        </option>
+                    ))}
+                </Dropdown>
+                {currentPokemon.forms.length > 1 && (
+                    <button
+                        onClick={() => updateForm((currentForm + 1) % currentPokemon.forms.length)}
+                        className="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
+                    >
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                )}
+            </div>
             {!isNull(currentPokemon) && (
                 <div>
                     <div className="text-center flex flex-col items-center">
+                        {currentPokemon.forms.length > 0 && <div className="flex items-center space-x-2"></div>}
                         <Image
-                            src={currentPokemon.getImage()}
+                            src={currentPokemon.getImage(currentForm)}
                             alt={currentPokemon.name}
                             height="160"
                             width="160"
                             className="my-2"
                         />
-                        <p className="text-lg font-semibold text-gray-800 dark:text-gray-200">{currentPokemon.name}</p>
-                        <TypeBadge type1={currentPokemon.type1} type2={currentPokemon.type2} />
+                        <p className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+                            {currentPokemon.name +
+                                (currentPokemon.getFormName(currentForm)
+                                    ? " " + currentPokemon.getFormName(currentForm)
+                                    : "")}
+                        </p>
+                        <TypeBadge
+                            type1={currentPokemon.getType1(currentForm)}
+                            type2={currentPokemon.getType2(currentForm)}
+                        />
                     </div>
                     <div className="w-full mt-4 text-center">
                         <h3 className="font-semibold text-gray-800 dark:text-gray-100">Moves</h3>
@@ -92,7 +135,7 @@ export default function PokemonCard({ data, update }: { data: CardData; update: 
                                         value={currentMoves[moveIndex].id}
                                     >
                                         <option value="">Select Move {moveIndex + 1}</option>
-                                        {currentPokemon.allMoves().map((m) => (
+                                        {currentPokemon.allMoves(currentForm).map((m) => (
                                             <option
                                                 key={m.id}
                                                 value={m.id}
@@ -115,7 +158,7 @@ export default function PokemonCard({ data, update }: { data: CardData; update: 
                         <h3 className="font-semibold text-gray-800 dark:text-gray-100">Ability</h3>
                         <Dropdown value={currentAbility.id} onChange={(e) => updateAbility(e.target.value)}>
                             <option value="">Select Ability</option>
-                            {currentPokemon.abilities.map((a) => (
+                            {currentPokemon.getAbilities(currentForm).map((a) => (
                                 <option key={a.id} value={a.id}>
                                     {a.name}
                                 </option>

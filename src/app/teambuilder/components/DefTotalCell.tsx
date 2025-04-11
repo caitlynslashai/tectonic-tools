@@ -18,7 +18,7 @@ export default function DefTotalCell({
     type: PokemonType;
     total: "weak" | "strong";
 }): React.ReactNode {
-    const num = cards.filter((c) => !isNull(c.pokemon) && compare(c.pokemon.defMatchups()[type], total)).length;
+    const num = cards.filter((c) => !isNull(c.pokemon) && compare(c.pokemon.defMatchups(c.form)[type], total)).length;
 
     // Updated color scheme with better readability and subtle transitions
     const bgs = [

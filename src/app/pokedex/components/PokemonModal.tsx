@@ -5,6 +5,7 @@ import { moves } from "@/app/data/moves";
 import { pokemon } from "@/app/data/pokemon";
 import { EncounterArea } from "@/app/data/types/Encounter";
 import { Evolution, Pokemon } from "@/app/data/types/Pokemon";
+import { negativeMod } from "@/app/data/util";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import TypeBadge from "../../../components/TypeBadge";
@@ -30,10 +31,6 @@ const tabs = [
     "Encounters",
 ] as const;
 export type Tab = (typeof tabs)[number];
-
-function negativeMod(n: number, m: number) {
-    return ((n % m) + m) % m;
-}
 
 const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) => {
     const [isVisible, setIsVisible] = useState(false);

@@ -7,3 +7,7 @@ import { Trainer } from "./types/Trainer";
 export function isNull(o: Pokemon | Move | Trainer | Ability | Item | undefined): boolean {
     return !o || o.name === "";
 }
+
+export function negativeMod(n: number, m: number) {
+    return ((n % m) + m) % m;
+}

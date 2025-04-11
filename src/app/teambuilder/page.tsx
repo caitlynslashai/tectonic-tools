@@ -27,6 +27,7 @@ export interface CardData {
     moves: Move[];
     ability: Ability;
     item: Item;
+    form: number;
 }
 
 const nullCard = {
@@ -34,6 +35,7 @@ const nullCard = {
     moves: Array(4).fill(nullMove),
     ability: nullAbility,
     item: nullItem,
+    form: 0,
 };
 
 const TeamBuilder: NextPage = () => {
@@ -152,7 +154,7 @@ const TeamBuilder: NextPage = () => {
                                                     key={index}
                                                     className="px-4 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
                                                 >
-                                                    <TableHeader pokemon={cards[index].pokemon} />
+                                                    <TableHeader card={cards[index]} />
                                                 </th>
                                             ))}
                                             <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
@@ -175,7 +177,7 @@ const TeamBuilder: NextPage = () => {
                                                     </div>
                                                 </td>
                                                 {cards.map((card, index) => (
-                                                    <DefTableCell key={index} type={type} pokemon={card.pokemon} />
+                                                    <DefTableCell key={index} type={type} card={card} />
                                                 ))}
                                                 <DefTotalCell cards={cards} type={type} total="weak" />
                                                 <DefTotalCell cards={cards} type={type} total="strong" />
@@ -205,7 +207,7 @@ const TeamBuilder: NextPage = () => {
                                                     key={index}
                                                     className="px-4 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
                                                 >
-                                                    <TableHeader pokemon={cards[index].pokemon} />
+                                                    <TableHeader card={cards[index]} />
                                                 </th>
                                             ))}
                                             <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
