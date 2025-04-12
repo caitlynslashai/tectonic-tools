@@ -66,7 +66,7 @@
     "BERSERK": {
         "id": "BERSERK",
         "name": "Berserk",
-        "description": "Raises Attack and Sp. Atk by two steps each when its HP is lowered below half.",
+        "description": "Raises Attack and Sp. Atk by two steps when its HP is lowered below half.",
         "flags": null
     },
     "CHEEKPOUCH": {
@@ -198,7 +198,7 @@
     "DOWNLOAD": {
         "id": "DOWNLOAD",
         "name": "Download",
-        "description": "Boosts one Attacking stat by two steps according to the foe's defenses.",
+        "description": "Boosts either Attack or Sp. Atk by two steps according to the foe's defenses.",
         "flags": null
     },
     "DRAGONSMAW": {
@@ -424,7 +424,7 @@
     "INFILTRATOR": {
         "id": "INFILTRATOR",
         "name": "Infiltrator",
-        "description": "Ignores screens and other barriers, Substitute, and boosted defensive stats.",
+        "description": "Ignores screens and other barriers, Substitute, and boosted Defense and Sp. Def.",
         "flags": null
     },
     "INNARDSOUT": {
@@ -596,7 +596,7 @@
     "PERISHBODY": {
         "id": "PERISHBODY",
         "name": "Perish Body",
-        "description": "When it takes a hit, both Pok\u00e9mon faint after 3 turns.",
+        "description": "When it takes a hit, the Pok\u00e9mon and the attacker both faint after 3 turns.",
         "flags": [
             "SetupCounterAI"
         ]
@@ -760,7 +760,7 @@
     "SAPSIPPER": {
         "id": "SAPSIPPER",
         "name": "Sap Sipper",
-        "description": "Immune to Grass-type moves, and raises both attacking stats when hit by one.",
+        "description": "Immune to Grass-type moves, and raises Attack and Sp. Atk when hit by one.",
         "flags": null
     },
     "SCHOOLING": {
@@ -1014,7 +1014,7 @@
     "UNAWARE": {
         "id": "UNAWARE",
         "name": "Unaware",
-        "description": "Ignores defensive stat changes in opponents it's hitting, and offensive stat steps in foes hitting it.",
+        "description": "Ignores modified Defense and Sp. Def while attacking, and ignores modified Attack and Sp. Atk while being attacked.",
         "flags": null
     },
     "UNBURDEN": {
@@ -1102,7 +1102,7 @@
     "ACIDRAIN": {
         "id": "ACIDRAIN",
         "name": "Acid Rain",
-        "description": "At the end of each turn, if in rainstorm, each Pok\u00e9mon not immune to rainstorm has their defensive stats lowered by 1 step.",
+        "description": "At the end of each turn, if in rainstorm, each Pok\u00e9mon not immune to rainstorm has their Defense and Sp. Def lowered by 1 step.",
         "flags": [
             "RainstormSynergy"
         ]
@@ -1110,7 +1110,7 @@
     "ADAPTIVESKIN": {
         "id": "ADAPTIVESKIN",
         "name": "Adaptive Skin",
-        "description": "The user raises the related defensive stat by two steps after each hit taken.",
+        "description": "After being hit by an attack, the Pok\u00e9mon raises either Defense or Sp. Def based on the attack's category.",
         "flags": null
     },
     "ADRENALINERUSH": {
@@ -1128,7 +1128,7 @@
     "AEROSHELL": {
         "id": "AEROSHELL",
         "name": "Aeroshell",
-        "description": "After using a wind move, raises both of the Pok\u00e9mon's defensive stats.",
+        "description": "After using a wind move, raises the Pok\u00e9mon's Defense and Sp. Def.",
         "flags": null
     },
     "AFROTECTION": {
@@ -1174,7 +1174,7 @@
     "ANCESTRALDANCE": {
         "id": "ANCESTRALDANCE",
         "name": "Ancestral Dance",
-        "description": "Raises both defensive stats whenever any Pok\u00e9mon uses a dance move.",
+        "description": "Raises Defense and Sp. Def whenever any Pok\u00e9mon uses a dance move.",
         "flags": null
     },
     "APPREHENSIVE": {
@@ -1318,7 +1318,7 @@
     "BATTLEHARDENED": {
         "id": "BATTLEHARDENED",
         "name": "Battle-Hardened",
-        "description": "Raises Defense and Sp. Def by three steps each when its HP is lowered below half.",
+        "description": "Raises Defense and Sp. Def by three steps when its HP is lowered below half.",
         "flags": null
     },
     "BEGUILING": {
@@ -1330,7 +1330,7 @@
     "BELLIGERENT": {
         "id": "BELLIGERENT",
         "name": "Belligerent",
-        "description": "Boosts both attacking stats by three steps when a stat is lowered by a foe.",
+        "description": "Boosts Attack and Sp. Atk by three steps when a stat is lowered by a foe.",
         "flags": null
     },
     "BELLOWER": {
@@ -1378,7 +1378,7 @@
     "BLADEBRAINED": {
         "id": "BLADEBRAINED",
         "name": "Bladebrained",
-        "description": "Boosts the power of blade moves by 30%. Blade moves ignore the target's defensive stat changes.",
+        "description": "Boosts the power of blade moves by 30%. Blade moves ignore the target's modified Defense and Sp. Def.",
         "flags": null
     },
     "BLINDINGLIGHT": {
@@ -1478,7 +1478,7 @@
     "CHALLENGER": {
         "id": "CHALLENGER",
         "name": "Challenger",
-        "description": "Immune to Fighting-type moves, and raises both attacking stats if hit by one.",
+        "description": "Immune to Fighting-type moves, and raises Attack and Sp. Atk if hit by one.",
         "flags": null
     },
     "CHILLEDBODY": {
@@ -1562,7 +1562,7 @@
     "COLDRECEPTION": {
         "id": "COLDRECEPTION",
         "name": "Cold Reception",
-        "description": "Immune to Ice-type moves, and raises both attacking stats if hit by one.",
+        "description": "Immune to Ice-type moves, and raises Attack and Sp. Atk if hit by one.",
         "flags": null
     },
     "CONSTRICTOR": {
@@ -1580,7 +1580,7 @@
     "COSMICCONTACT": {
         "id": "COSMICCONTACT",
         "name": "Cosmic Contact",
-        "description": "After using a status move, raises both of the Pok\u00e9mon's defensive stats.",
+        "description": "After using a status move, raises the Pok\u00e9mon's Defense and Sp. Def.",
         "flags": null
     },
     "COSTUMECHANGE": {
@@ -1775,7 +1775,7 @@
     "DRAMATICLIGHTING": {
         "id": "DRAMATICLIGHTING",
         "name": "Dramatic Lighting",
-        "description": "Upon entry during eclipse, lowers foe's Attack and Sp. Atk by two steps each.",
+        "description": "Upon entry during eclipse, lowers foe's Attack and Sp. Atk by two steps.",
         "flags": [
             "EclipseSynergy"
         ]
@@ -1919,7 +1919,7 @@
     "EXOTHERMENGINE": {
         "id": "EXOTHERMENGINE",
         "name": "Exotherm Engine",
-        "description": "Boosts Speed by 50% but the user is locked into the first move they use.",
+        "description": "Boosts Speed by 50% but the Pok\u00e9mon is locked into the first move they use.",
         "flags": [
             "ChoiceLocking"
         ]
@@ -2055,7 +2055,7 @@
     "FILTHY": {
         "id": "FILTHY",
         "name": "Filthy",
-        "description": "Immune to Poison-type moves, and boosts both defensive stats when hit by one.",
+        "description": "Immune to Poison-type moves, and boosts Defense and Sp. Def when hit by one.",
         "flags": null
     },
     "FINESUGAR": {
@@ -2075,7 +2075,7 @@
     "FIREFIGHTER": {
         "id": "FIREFIGHTER",
         "name": "Firefighter",
-        "description": "Immune to Fire-type moves, and raises both attacking stats if hit by one.",
+        "description": "Immune to Fire-type moves, and raises Attack and Sp. Atk if hit by one.",
         "flags": null
     },
     "FIRSTSTRIKE": {
@@ -2137,7 +2137,7 @@
     "FLYTRAP": {
         "id": "FLYTRAP",
         "name": "Flytrap",
-        "description": "Grants immunity to Bug-type moves, and raises both attacking stats when hit by one.",
+        "description": "Grants immunity to Bug-type moves, and raises Attack and Sp. Atk when hit by one.",
         "flags": null
     },
     "FOGTOTEM": {
@@ -2155,13 +2155,13 @@
     "FOOLHARDY": {
         "id": "FOOLHARDY",
         "name": "Foolhardy",
-        "description": "Immune to Psychic-type moves, and raises both attacking stats if hit by one.",
+        "description": "Immune to Psychic-type moves, and raises Attack and Sp. Atk if hit by one.",
         "flags": null
     },
     "FORCEREVERSAL": {
         "id": "FORCEREVERSAL",
         "name": "Force Reversal",
-        "description": "Raises both attacking stats by two steps when hit by a not-very-effective move.",
+        "description": "Raises Attack and Sp. Atk by two steps when hit by a not-very-effective move.",
         "flags": null
     },
     "FORTIFIED": {
@@ -2289,7 +2289,7 @@
     "GLASSFIRING": {
         "id": "GLASSFIRING",
         "name": "Glass Firing",
-        "description": "Immune to Fire-type moves and raises both defensive stats if hit by one.",
+        "description": "Immune to Fire-type moves and raises Defense and Sp. Def if hit by one.",
         "flags": null
     },
     "GNAWING": {
@@ -2399,7 +2399,7 @@
     "HEARTOFJUSTICE": {
         "id": "HEARTOFJUSTICE",
         "name": "Heart of Justice",
-        "description": "Immune to Dark-type moves, and boosts both attacking stats when hit by one.",
+        "description": "Immune to Dark-type moves, and boosts Attack and Sp. Atk when hit by one.",
         "flags": null
     },
     "HEATSAVOR": {
@@ -2824,7 +2824,7 @@
     "MAESTRO": {
         "id": "MAESTRO",
         "name": "Maestro",
-        "description": "The user's Speed is doubled while using Sound-based moves.",
+        "description": "The Pok\u00e9mon's Speed is doubled while using Sound-based moves.",
         "flags": null
     },
     "MAGICSHIELD": {
@@ -2848,7 +2848,7 @@
     "MALICIOUSGLOW": {
         "id": "MALICIOUSGLOW",
         "name": "Malicious Glow",
-        "description": "When attacking during moonglow, uses the target's attacking stats instead of its own.",
+        "description": "When attacking during moonglow, uses the target's Attack and Sp. Atk instead of its own.",
         "flags": [
             "MoonglowSynergy"
         ]
@@ -2943,7 +2943,7 @@
     "MOONBLANKET": {
         "id": "MOONBLANKET",
         "name": "Moon Blanket",
-        "description": "User and allies take 25% less move damage during moonglow.",
+        "description": "The Pok\u00e9mon and its allies take 25% less move damage during moonglow.",
         "flags": null
     },
     "MOONGAZE": {
@@ -3091,7 +3091,7 @@
     "ODDITY": {
         "id": "ODDITY",
         "name": "Oddity",
-        "description": "Upon entry, creates an Odd Room for five turns, swapping offensive and defensive stats.",
+        "description": "Upon entry, creates an Odd Room for five turns, swapping offensive and Defense and Sp. Def.",
         "flags": null
     },
     "OFFENSIVE": {
@@ -3416,6 +3416,12 @@
         "description": "Before using a status move against a single foe, lowers their Sp. Def by two steps.",
         "flags": null
     },
+    "REFRACTIVE": {
+        "id": "REFRACTIVE",
+        "name": "Refract Aura",
+        "description": "Pulse moves change the Pok\u00e9mon's secondary type and their power is boosted by 30%.",
+        "flags": null
+    },
     "REFRESHMENTS": {
         "id": "REFRESHMENTS",
         "name": "Refreshments",
@@ -3457,7 +3463,7 @@
     "ROAST": {
         "id": "ROAST",
         "name": "Roast",
-        "description": "When the Pok\u00e9mon eats a Berry, it raises its attacking stats by two steps each.",
+        "description": "When the Pok\u00e9mon eats a Berry, it raises its Attack and Sp. Atk by two steps.",
         "flags": null
     },
     "ROCKBODY": {
@@ -3589,7 +3595,7 @@
     "SCOUREDSILHOUETTE": {
         "id": "SCOUREDSILHOUETTE",
         "name": "Scoured Silhouette",
-        "description": "Upon entry during sandstorm, lowers foe's Attack and Sp. Atk by two steps each.",
+        "description": "Upon entry during sandstorm, lowers foe's Attack and Sp. Atk by two steps.",
         "flags": [
             "SandstormSynergy"
         ]
@@ -3615,7 +3621,7 @@
     "SELECTIVESCUTES": {
         "id": "SELECTIVESCUTES",
         "name": "Selective Scutes",
-        "description": "Boosts one defending stat by two steps according to the foe's attacking stats.",
+        "description": "Boosts one defending stat by two steps according to the foe's Attack and Sp. Atk.",
         "flags": null
     },
     "SELFSUFFICIENT": {
@@ -3657,7 +3663,7 @@
     "SHIFTINGFIST": {
         "id": "SHIFTINGFIST",
         "name": "Shifting Fist",
-        "description": "Punching moves change secondary type and their power is boosted by 30%.",
+        "description": "Punching moves change the Pok\u00e9mon's secondary type and their power is boosted by 30%.",
         "flags": null
     },
     "SHOCKSTYLE": {
@@ -3713,7 +3719,7 @@
     "SIRENSONG": {
         "id": "SIRENSONG",
         "name": "Siren Song",
-        "description": "After using a sound move, lowers one of each foe's attacking stats, whichever is higher.",
+        "description": "After using a sound move, lowers one of each foe's Attack and Sp. Atk, whichever is higher.",
         "flags": null
     },
     "SLAPSTICK": {
@@ -3805,7 +3811,7 @@
     "SOUNDBARRIER": {
         "id": "SOUNDBARRIER",
         "name": "Sound Barrier",
-        "description": "After using a sound move, raises both of the Pok\u00e9mon's defensive stats.",
+        "description": "After using a sound move, raises the Pok\u00e9mon's Defense and Sp. Def.",
         "flags": null
     },
     "SPACEINTERLOPER": {
@@ -3862,7 +3868,7 @@
     "STAMPEDE": {
         "id": "STAMPEDE",
         "name": "Stampede",
-        "description": "The user's critical hit chance raises or lowers with its Speed.",
+        "description": "The Pok\u00e9mon's critical hit chance raises or lowers with its Speed.",
         "flags": null
     },
     "STARGUARDIAN": {
@@ -4033,7 +4039,7 @@
     "SUNBURNING": {
         "id": "SUNBURNING",
         "name": "Sun Burning",
-        "description": "At the end of each turn, if in sunshine, each Pok\u00e9mon not immune to sunshine has their defensive stats lowered by 1 step.",
+        "description": "At the end of each turn, if in sunshine, each Pok\u00e9mon not immune to sunshine has their Defense and Sp. Def lowered by 1 step.",
         "flags": [
             "SunshineSynergy"
         ]
@@ -4077,7 +4083,7 @@
     "SWIFTSTOMPS": {
         "id": "SWIFTSTOMPS",
         "name": "Swift Stomps",
-        "description": "The user's Speed is doubled while using kicking moves.",
+        "description": "The Pok\u00e9mon's Speed is doubled while using kicking moves.",
         "flags": null
     },
     "SWORDPLAY": {
@@ -4215,13 +4221,13 @@
     "TRENCHCARVER": {
         "id": "TRENCHCARVER",
         "name": "Trench Carver",
-        "description": "The user's Speed is doubled while using recoil moves.",
+        "description": "The Pok\u00e9mon's Speed is doubled while using recoil moves.",
         "flags": null
     },
     "TUNEDOUT": {
         "id": "TUNEDOUT",
         "name": "Tuned Out",
-        "description": "Boosts the power of sound moves by 30%. Sound moves ignore the target's defensive stat changes.",
+        "description": "Boosts the power of sound moves by 30%. Sound moves ignore the target's modified Defense and Sp. Def.",
         "flags": null
     },
     "TUNNELMAKER": {
@@ -4321,7 +4327,7 @@
     "VENOMDETTA": {
         "id": "VENOMDETTA",
         "name": "Venomdetta",
-        "description": "Immune to Poison-type moves, and raises both attacking stats if hit by one.",
+        "description": "Immune to Poison-type moves, and raises Attack and Sp. Atk if hit by one.",
         "flags": null
     },
     "VENOMGORGER": {
