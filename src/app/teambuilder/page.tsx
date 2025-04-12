@@ -47,6 +47,20 @@ const nullCard = {
     form: 0,
 };
 
+const indices = {
+    pokemon: Object.fromEntries(Object.keys(pokemon).map((id, i) => [id, i])),
+    ability: Object.fromEntries(Object.keys(abilities).map((id, i) => [id, i])),
+    item: Object.fromEntries(Object.keys(items).map((id, i) => [id, i])),
+    move: Object.fromEntries(Object.keys(moves).map((id, i) => [id, i])),
+};
+
+const keys = {
+    pokemon: Object.keys(pokemon),
+    ability: Object.keys(abilities),
+    item: Object.keys(items),
+    move: Object.keys(moves),
+};
+
 const TeamBuilder: NextPage = () => {
     const [cards, setCards] = useState<CardData[]>(Array(6).fill(nullCard));
     const [teamName, setTeamName] = useState<string>("");
@@ -80,7 +94,7 @@ const TeamBuilder: NextPage = () => {
         .filter((tribe) => tribeCounts[tribe] > 1)
         .sort((a, b) => tribeCounts[b] - tribeCounts[a]);
 
-    function saveTeamToJSON() {
+    function saveTeamToData() {
         const savedCards: SavedCardData[] = cards.map((c) => {
             return {
                 pokemon: c.pokemon.id,
@@ -90,7 +104,7 @@ const TeamBuilder: NextPage = () => {
                 form: c.form,
             };
         });
-        return JSON.stringify(savedCards);
+        return savedCards;
     }
 
     function saveTeam() {
@@ -98,23 +112,54 @@ const TeamBuilder: NextPage = () => {
             alert("Please name the team before saving!");
             return;
         }
-
-        localStorage.setItem(teamName, saveTeamToJSON());
+        const savedCards = saveTeamToData();
+        const json = JSON.stringify(savedCards);
+        localStorage.setItem(teamName, json);
         setSavedTeams(Object.keys(localStorage));
         alert("Character saved successfully!");
     }
 
+    const encodeChunk = (data: SavedCardData): string => {
+        const indexList = [
+            indices.pokemon[data.pokemon],
+            indices.ability[data.ability],
+            indices.item[data.item],
+            data.form,
+            indices.move[data.moves[0]],
+            indices.move[data.moves[1]],
+            indices.move[data.moves[2]],
+            indices.move[data.moves[3]],
+        ];
+
+        const buffer = new ArrayBuffer(indexList.length * 2); // Each number is 16 bits (2 bytes)
+        const view = new DataView(buffer);
+
+        indexList.forEach((value, i) => {
+            view.setUint16(i * 2, value); // Store each number as 16 bits
+        });
+
+        return Buffer.from(buffer).toString("base64");
+    };
+
     function exportTeam() {
-        const json = saveTeamToJSON();
-        const base64 = btoa(json);
-        setTeamCode(base64);
-        alert("Team exported successfully!");
+        const savedCards: SavedCardData[] = cards.map((card) => ({
+            pokemon: card.pokemon.id,
+            ability: card.ability.id,
+            item: card.item.id,
+            form: card.form,
+            moves: card.moves.map((m) => m.id),
+        }));
+
+        const chunks = savedCards.map(encodeChunk);
+        const code = chunks.join("!"); // Using ! as separator
+        setTeamCode(code);
+        navigator.clipboard.writeText(code);
+        alert(`Team copied to clipboard!`);
     }
 
-    function loadTeamFromJSON(json: string) {
-        const savedCards = JSON.parse(json) as SavedCardData[];
+    function loadTeamFromData(data: SavedCardData[]) {
         setCards(
-            savedCards.map((c) => {
+            data.map((c) => {
                 return {
                     pokemon: pokemon[c.pokemon] || nullPokemon,
                     moves: c.moves.map((m) => moves[m] || nullMove),
@@ -134,15 +179,52 @@ const TeamBuilder: NextPage = () => {
         }
         const savedCardsJson = localStorage.getItem(name);
         if (savedCardsJson) {
-            loadTeamFromJSON(savedCardsJson);
+            try {
+                const savedCards = JSON.parse(savedCardsJson) as SavedCardData[];
+                loadTeamFromData(savedCards);
+            } catch (e) {
+                console.error(e);
+                alert("Error while loading team!");
+            }
         }
     }
 
+    const decodeChunk = (chunk: string): SavedCardData => {
+        const buffer = Buffer.from(chunk, "base64");
+        const view = new DataView(buffer.buffer);
+
+        const indexList = [];
+        for (let i = 0; i < buffer.byteLength; i += 2) {
+            indexList.push(view.getUint16(i));
+        }
+
+        return {
+            pokemon: keys.pokemon[indexList[0]],
+            ability: keys.ability[indexList[1]],
+            item: keys.item[indexList[2]],
+            form: indexList[3],
+            moves: [keys.move[indexList[4]], keys.move[indexList[5]], keys.move[indexList[6]], keys.move[indexList[7]]],
+        };
+    };
+
     function importTeam() {
-        const base64 = teamCode;
-        const json = atob(base64);
-        loadTeamFromJSON(json);
-        alert("Team imported successfully!");
+        try {
+            const chunks = teamCode.split("!");
+
+            const loadedCards = chunks.map(decodeChunk).map((card) => ({
+                pokemon: pokemon[card.pokemon] || nullPokemon,
+                ability: abilities[card.ability] || nullAbility,
+                item: items[card.item] || nullItem,
+                form: card.form,
+                moves: card.moves.map((m) => moves[m] || nullMove),
+            }));
+
+            setCards(loadedCards);
+            alert("Team imported successfully!");
+        } catch (error) {
+            console.error("Import error:", error);
+            alert("Invalid team code! Please check and try again.");
+        }
     }
 
     return (
