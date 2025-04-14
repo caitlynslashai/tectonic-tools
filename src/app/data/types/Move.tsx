@@ -101,11 +101,8 @@ export class Move {
         return false;
     }
 
-    public isSignature(): boolean {
-        return this.id in getSignatureMoves();
-    }
-
-    public signatureOf(): string {
-        return getSignatureMoves()[this.id];
+    public isSignature(pokemon?: Pokemon): boolean {
+        if (!pokemon) return this.id in getSignatureMoves();
+        return getSignatureMoves()[this.id] === pokemon.id;
     }
 }

@@ -293,7 +293,13 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                         <PokemonTab tab="Abilities" activeTab={activeTab}>
                             {currentPokemon.getAbilities(currentForm).map((a) => (
                                 <div key={a.id}>
-                                    <h3 className="font-semibold text-gray-800 dark:text-gray-100">{a.name}</h3>
+                                    <h3
+                                        className={`font-semibold ${
+                                            a.isSignature() ? "text-yellow-500" : "text-gray-800 dark:text-gray-100"
+                                        }`}
+                                    >
+                                        {a.name}
+                                    </h3>
                                     <p className="text-gray-600 dark:text-gray-300">{a.description}</p>
                                 </div>
                             ))}

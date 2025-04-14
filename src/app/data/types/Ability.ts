@@ -1,5 +1,6 @@
 import { LoadedAbility } from "../abilities";
 import { getSignatureAbilities } from "../signatures";
+import { Pokemon } from "./Pokemon";
 
 export class Ability {
     id: string;
@@ -13,11 +14,8 @@ export class Ability {
         this.flags = ability.flags || [];
     }
 
-    public isSignature(): boolean {
-        return this.id in getSignatureAbilities();
-    }
-
-    public signatureOf(): string {
-        return getSignatureAbilities()[this.id];
+    public isSignature(pokemon?: Pokemon): boolean {
+        if (!pokemon) return this.id in getSignatureAbilities();
+        return getSignatureAbilities()[this.id] === pokemon.id;
     }
 }

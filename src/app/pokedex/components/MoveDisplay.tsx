@@ -57,7 +57,15 @@ export default function MoveDisplay({
                                     onClick={() => setSelectedMove(move)}
                                 >
                                     {levels.length > 0 ? (levels[index] === 0 ? "E: " : `${levels[index]}: `) : ""}
-                                    <span className={move.isSTAB(pokemon) ? "font-semibold" : ""}>{move.name}</span>
+                                    <span
+                                        className={
+                                            (move.isSTAB(pokemon) ? "font-semibold" : "") +
+                                            " " +
+                                            (move.isSignature() ? "text-yellow-500" : "")
+                                        }
+                                    >
+                                        {move.name}
+                                    </span>
                                 </li>
                             ))}
                         </ul>

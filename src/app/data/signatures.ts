@@ -5,7 +5,15 @@ import { pokemon } from "./pokemon";
 type AbilityCounts = Record<string, string[]>;
 type MoveCounts = Record<string, string[]>;
 
-export function getSignatureAbilities(): Record<string, string> {
+// memoise - we can't init on boot because it causes a circular dependency
+type SignatureList = Record<string, string>;
+let signatureAbilities: SignatureList | undefined = undefined;
+let signatureMoves: SignatureList | undefined = undefined;
+
+export function getSignatureAbilities(): SignatureList {
+    if (signatureAbilities !== undefined) {
+        return signatureAbilities;
+    }
     const abilityCounts = getAbilityCounts();
     for (const [ability, group] of Object.entries(abilityCounts)) {
         if (group.length !== 1) {
@@ -13,10 +21,11 @@ export function getSignatureAbilities(): Record<string, string> {
         }
     }
 
-    const result: Record<string, string> = {};
+    const result: SignatureList = {};
     for (const [ability, group] of Object.entries(abilityCounts)) {
         result[ability] = group[0];
     }
+    signatureAbilities = result;
     return result;
 }
 
@@ -44,7 +53,11 @@ function getAbilityCounts(): AbilityCounts {
     return abilityCounts;
 }
 
-export function getSignatureMoves(): Record<string, string> {
+export function getSignatureMoves(): SignatureList {
+    if (signatureMoves !== undefined) {
+        return signatureMoves;
+    }
+
     const moveCounts = getMoveLearnableGroups();
     for (const [move, group] of Object.entries(moveCounts)) {
         if (group.length !== 1) {
@@ -52,10 +65,11 @@ export function getSignatureMoves(): Record<string, string> {
         }
     }
 
-    const result: Record<string, string> = {};
+    const result: SignatureList = {};
     for (const [move, group] of Object.entries(moveCounts)) {
         result[move] = group[0];
     }
+    signatureMoves = result;
     return result;
 }
 
