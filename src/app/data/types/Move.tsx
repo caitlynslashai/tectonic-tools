@@ -1,6 +1,7 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
 import { PokemonStats } from "../../damagecalc/damageCalc";
 import { MoveCategory, PokemonType, pokemonTypes } from "../basicData";
+import { getSignatureMoves } from "../signatures";
 import { StatusEffect } from "../statusEffects";
 import { typeChart } from "../typeChart";
 import { isNull } from "../util";
@@ -98,5 +99,13 @@ export class Move {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public ignoreStatus(effect: StatusEffect): boolean {
         return false;
+    }
+
+    public isSignature(): boolean {
+        return this.id in getSignatureMoves();
+    }
+
+    public signatureOf(): string {
+        return getSignatureMoves()[this.id];
     }
 }
