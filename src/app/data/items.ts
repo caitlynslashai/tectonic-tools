@@ -1,5 +1,4 @@
 import loadedItems from "public/data/items.json";
-import { Ability } from "./types/Ability";
 import { Item } from "./types/Item";
 
 interface LoadedItem {
@@ -9,12 +8,12 @@ interface LoadedItem {
     flags: string[] | null;
 }
 
-function loadItem(item: LoadedItem): Ability {
+function loadItem(item: LoadedItem): Item {
     const newFlags = item.flags || [];
     return { ...item, flags: newFlags };
 }
 
-export const items: Record<string, Ability> = Object.fromEntries(
+export const items: Record<string, Item> = Object.fromEntries(
     Object.entries(loadedItems).map(([id, ability]) => [id, loadItem(ability)])
 );
 

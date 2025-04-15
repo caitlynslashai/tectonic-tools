@@ -2,6 +2,7 @@
 
 import { moveCategories, MoveCategory } from "@/app/data/basicData";
 import { nullMove } from "@/app/data/moves";
+import { getSignatureMoves } from "@/app/data/signatures";
 import { Move } from "@/app/data/types/Move";
 import { Pokemon } from "@/app/data/types/Pokemon";
 import { isNull } from "@/app/data/util";
@@ -57,7 +58,15 @@ export default function MoveDisplay({
                                     onClick={() => setSelectedMove(move)}
                                 >
                                     {levels.length > 0 ? (levels[index] === 0 ? "E: " : `${levels[index]}: `) : ""}
-                                    <span className={move.isSTAB(pokemon) ? "font-semibold" : ""}>{move.name}</span>
+                                    <span
+                                        className={
+                                            (move.isSTAB(pokemon) ? "font-semibold" : "") +
+                                            " " +
+                                            (getSignatureMoves()[move.id] !== undefined ? "text-yellow-500" : "")
+                                        }
+                                    >
+                                        {move.name}
+                                    </span>
                                 </li>
                             ))}
                         </ul>
