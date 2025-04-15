@@ -1,7 +1,6 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
 import { PokemonStats } from "../../damagecalc/damageCalc";
 import { MoveCategory, PokemonType, pokemonTypes } from "../basicData";
-import { getSignatureMoves } from "../signatures";
 import { StatusEffect } from "../statusEffects";
 import { typeChart } from "../typeChart";
 import { isNull } from "../util";
@@ -99,10 +98,5 @@ export class Move {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public ignoreStatus(effect: StatusEffect): boolean {
         return false;
-    }
-
-    public isSignature(pokemon?: Pokemon): boolean {
-        if (!pokemon) return this.id in getSignatureMoves();
-        return getSignatureMoves()[this.id] === pokemon.id;
     }
 }

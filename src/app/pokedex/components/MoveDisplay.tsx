@@ -2,6 +2,7 @@
 
 import { moveCategories, MoveCategory } from "@/app/data/basicData";
 import { nullMove } from "@/app/data/moves";
+import { getSignatureMoves } from "@/app/data/signatures";
 import { Move } from "@/app/data/types/Move";
 import { Pokemon } from "@/app/data/types/Pokemon";
 import { isNull } from "@/app/data/util";
@@ -61,7 +62,7 @@ export default function MoveDisplay({
                                         className={
                                             (move.isSTAB(pokemon) ? "font-semibold" : "") +
                                             " " +
-                                            (move.isSignature() ? "text-yellow-500" : "")
+                                            (getSignatureMoves()[move.id] !== undefined ? "text-yellow-500" : "")
                                         }
                                     >
                                         {move.name}
