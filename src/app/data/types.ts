@@ -1,20 +1,22 @@
 import loadedTypes from "public/data/types.json";
 
 import { LoadedType } from "./loading/types";
-import { Item } from "./types/Item";
 import { PokemonType } from "./types/PokemonType";
 
-function loadItem(item: LoadedType): PokemonType {
+function loadType(item: LoadedType): PokemonType {
     return { ...item, id: item.key };
 }
 
 export const types: Record<string, PokemonType> = Object.fromEntries(
-    Object.entries(loadedTypes).map(([id, ability]) => [id, loadItem(ability)])
+    Object.entries(loadedTypes).map(([id, monType]) => [id, loadType(monType)])
 );
 
-export const nullItem: Item = {
+export const nullType: PokemonType = {
     id: "",
     name: "",
-    description: "",
-    flags: [],
+    index: 0,
+    weaknesses: "",
+    resistances: "",
+    immunities: "",
+    isRealType: false,
 };

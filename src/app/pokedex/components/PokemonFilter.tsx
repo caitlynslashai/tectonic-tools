@@ -114,7 +114,7 @@ const AVAILABLE_FILTERS: PokemonFilterType[] = [
         value: "",
         apply: (pokemon: Pokemon, value: string | number) => {
             const searchValue = String(value).toLowerCase();
-            return pokemon.tribes.some((t) => t.toLowerCase().includes(searchValue));
+            return pokemon.tribes.some((t) => t.name.toLowerCase().includes(searchValue));
         },
         inputMethod: "select",
         inputValues: pokemonTribes,

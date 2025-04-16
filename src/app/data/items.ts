@@ -7,7 +7,7 @@ function loadItem(item: LoadedItem): Item {
 }
 
 export const items: Record<string, Item> = Object.fromEntries(
-    Object.entries(loadedItems).map(([id, ability]) => [id, loadItem(ability)])
+    Object.entries(loadedItems).map(([id, item]) => [id, loadItem(item)])
 );
 
 export const nullItem: Item = {

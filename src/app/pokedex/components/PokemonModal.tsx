@@ -281,7 +281,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                 <h3 className="font-semibold text-gray-800 dark:text-gray-100 mt-4">Tribes</h3>
                                 <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
                                     {currentPokemon.tribes.map((tribe, index) => (
-                                        <li key={index}>{tribe}</li>
+                                        <li key={index}>{tribe.name}</li>
                                     ))}
                                 </ul>
                                 <br />

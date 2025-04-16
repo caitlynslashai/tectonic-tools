@@ -1,14 +1,15 @@
 import { abilities } from "../abilities";
-import { PokemonTribe } from "../basicData";
 import { PokemonForm } from "../forms";
 import { LoadedPokemon } from "../loading/pokemon";
 import { moves } from "../moves";
 import { pokemon } from "../pokemon";
+import { tribes } from "../tribes";
 import { typeChart } from "../typeChart";
 import { types } from "../types";
 import { Ability } from "./Ability";
 import { Move } from "./Move";
 import { PokemonType } from "./PokemonType";
+import { Tribe } from "./Tribe";
 
 export interface Evolution {
     target: string;
@@ -60,7 +61,7 @@ export class Pokemon {
     levelMoves: [number, Move][];
     lineMoves: Move[];
     tutorMoves: Move[];
-    tribes: PokemonTribe[];
+    tribes: Tribe[];
     height: number;
     weight: number;
     kind: string;
@@ -98,7 +99,7 @@ export class Pokemon {
         }
         this.tribes = [];
         if (mon.tribes !== null) {
-            this.tribes = mon.tribes as PokemonTribe[];
+            this.tribes = mon.tribes.map((t) => tribes[t]);
         }
         this.height = mon.height;
         this.weight = mon.weight;
