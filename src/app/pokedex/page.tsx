@@ -508,10 +508,7 @@ const Home: NextPage = () => {
                 </TabContent>
                 <TabContent tab="Type Chart" activeTab={activeTab}>
                     <div className="overflow-x-auto">
-                        <table
-                            id="typeChartTable"
-                            className="w-full text-center align-middle border border-gray-300 dark:border-gray-700 rounded-lg shadow-md bg-white dark:bg-gray-800"
-                        >
+                        <table className="w-full text-center align-middle border border-gray-300 dark:border-gray-700 rounded-lg shadow-md bg-white dark:bg-gray-800">
                             <thead className="bg-gray-100 dark:bg-gray-700">
                                 <tr>
                                     <th className="px-8 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
