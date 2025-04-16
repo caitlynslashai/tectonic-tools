@@ -27,7 +27,7 @@ import { types } from "@/app/data/types";
 import Image from "next/image";
 import { abilities } from "../data/abilities";
 import { items } from "../data/items";
-import { typeChart } from "../data/typeChart";
+import { calcTypeMatchup } from "../data/typeChart";
 import { Ability } from "../data/types/Ability";
 import { Item } from "../data/types/Item";
 import { Tribe } from "../data/types/Tribe";
@@ -536,7 +536,7 @@ const Home: NextPage = () => {
                                             <TypeBadge type1={t} />
                                         </td>
                                         {realTypes.map((t2) => {
-                                            const mult = typeChart[t.index][t2.index];
+                                            const mult = calcTypeMatchup({ type: t }, { type1: t2 });
                                             return <TypeChartCell key={t2.index} mult={mult} />;
                                         })}
                                     </tr>
