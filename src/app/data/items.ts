@@ -1,20 +1,13 @@
 import loadedItems from "public/data/items.json";
+import { LoadedItem } from "./loading/items";
 import { Item } from "./types/Item";
 
-interface LoadedItem {
-    id: string;
-    name: string;
-    description: string;
-    flags: string[] | null;
-}
-
 function loadItem(item: LoadedItem): Item {
-    const newFlags = item.flags || [];
-    return { ...item, flags: newFlags };
+    return { ...item, id: item.key };
 }
 
 export const items: Record<string, Item> = Object.fromEntries(
-    Object.entries(loadedItems).map(([id, ability]) => [id, loadItem(ability)])
+    Object.entries(loadedItems).map(([id, item]) => [id, loadItem(item)])
 );
 
 export const nullItem: Item = {

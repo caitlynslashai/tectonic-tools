@@ -1,31 +1,6 @@
 import loadedPokemon from "public/data/pokemon.json";
 import { forms, nullForm } from "./forms";
-import { blankStats, Evolution, Pokemon, Stats } from "./types/Pokemon";
-
-interface LoadedEvolution {
-    target: string;
-    method: string;
-    param: string;
-}
-
-export interface LoadedPokemon {
-    id: string;
-    name: string;
-    form_name: string | null;
-    type1: string;
-    type2: string | null;
-    stats: Stats;
-    abilities: string[];
-    level_moves: (number | string)[][];
-    line_moves: string[] | null;
-    tutor_moves: string[] | null;
-    tribes: string[] | null;
-    height: number;
-    weight: number;
-    kind: string;
-    pokedex: string;
-    evos: LoadedEvolution[] | null;
-}
+import { Evolution, Pokemon } from "./types/Pokemon";
 
 export const pokemon: Record<string, Pokemon> = Object.fromEntries(
     Object.entries(loadedPokemon).map(([id, mon], i) => [id, new Pokemon(mon, i + 1)])
@@ -53,22 +28,31 @@ for (const mon in forms) {
 
 export const nullPokemon: Pokemon = new Pokemon(
     {
-        id: "id",
+        key: "",
         name: "",
-        form_name: null,
-        type1: "Normal",
-        type2: null,
-        stats: blankStats,
+        formName: "",
+        type1: "NORMAL",
+        type2: "",
         abilities: [],
-        level_moves: [],
-        line_moves: null,
-        tutor_moves: null,
-        tribes: null,
+        levelMoves: {},
+        lineMoves: [],
+        tutorMoves: [],
+        tribes: [],
         height: 0,
         weight: 0,
         kind: "",
         pokedex: "",
-        evos: null,
+        evolutions: [],
+        dexNum: 0,
+        hp: 0,
+        attack: 0,
+        spAttack: 0,
+        speed: 0,
+        defense: 0,
+        spDefense: 0,
+        bst: 0,
+        wildItems: [],
+        firstEvolution: "",
     },
     0
 );

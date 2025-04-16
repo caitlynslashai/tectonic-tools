@@ -1,9 +1,8 @@
 "use client";
 
-import { moveCategories, MoveCategory } from "@/app/data/basicData";
 import { nullMove } from "@/app/data/moves";
 import { getSignatureMoves } from "@/app/data/signatures";
-import { Move } from "@/app/data/types/Move";
+import { Move, moveCategories, MoveCategory } from "@/app/data/types/Move";
 import { Pokemon } from "@/app/data/types/Pokemon";
 import { isNull } from "@/app/data/util";
 import TypeBadge from "@/components/TypeBadge";

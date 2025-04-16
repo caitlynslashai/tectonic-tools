@@ -1,4 +1,4 @@
-import { PokemonType } from "@/app/data/basicData";
+import { PokemonType } from "@/app/data/types/PokemonType";
 import { CardData } from "../page";
 
 export default function AtkTableCell({ type, card }: { type: PokemonType; card: CardData }) {
@@ -7,7 +7,7 @@ export default function AtkTableCell({ type, card }: { type: PokemonType; card: 
     let bg = "";
 
     if (realMoves.length > 0) {
-        const moveMatchups = realMoves.map((m) => m.matchups()[type]);
+        const moveMatchups = realMoves.map((m) => m.matchups()[type.id]);
         const matchup = Math.max(...moveMatchups);
 
         if (matchup > 1 || matchup === 0) {

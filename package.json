@@ -6,7 +6,8 @@
         "dev": "next dev --turbopack",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint"
+        "lint": "next lint",
+        "data": "tsx src/app/data/loading/loadData.ts"
     },
     "dependencies": {
         "next": "^15.3.0",
@@ -24,6 +25,7 @@
         "eslint-config-next": "15.2.2",
         "postcss": "^8.5.3",
         "tailwindcss": "^4.0.15",
+        "tsx": "^4.19.3",
         "typescript": "^5"
     }
 }

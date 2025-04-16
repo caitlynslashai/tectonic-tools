@@ -1,4 +1,4 @@
-import { PokemonType } from "@/app/data/basicData";
+import { PokemonType } from "@/app/data/types/PokemonType";
 import { isNull } from "@/app/data/util";
 import { CardData } from "../page";
 
@@ -18,7 +18,9 @@ export default function DefTotalCell({
     type: PokemonType;
     total: "weak" | "strong";
 }): React.ReactNode {
-    const num = cards.filter((c) => !isNull(c.pokemon) && compare(c.pokemon.defMatchups(c.form)[type], total)).length;
+    const num = cards.filter(
+        (c) => !isNull(c.pokemon) && compare(c.pokemon.defMatchups(c.form)[type.id], total)
+    ).length;
 
     // Updated color scheme with better readability and subtle transitions
     const bgs = [

@@ -1,4 +1,4 @@
-import { PokemonType } from "@/app/data/basicData";
+import { PokemonType } from "@/app/data/types/PokemonType";
 import { CardData } from "../page";
 
 function compare(num: number, total: "nve" | "se") {
@@ -19,7 +19,7 @@ export default function AtkTotalCell({
 }): React.ReactNode {
     const num = cards.filter((c) => {
         const realMoves = c.moves.filter((m) => m.isAttackingMove());
-        return realMoves.length > 0 && compare(Math.max(...realMoves.map((m) => m.matchups()[type])), total);
+        return realMoves.length > 0 && compare(Math.max(...realMoves.map((m) => m.matchups()[type.id])), total);
     }).length;
     // Updated color scheme with better readability and subtle transitions
     const bgs = [

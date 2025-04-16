@@ -8,10 +8,11 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { abilities, nullAbility } from "../data/abilities";
-import { pokemonTribes, pokemonTypes } from "../data/basicData";
 import { items, nullItem } from "../data/items";
 import { moves, nullMove } from "../data/moves";
 import { nullPokemon, pokemon } from "../data/pokemon";
+import { tribes } from "../data/tribes";
+import { types } from "../data/types";
 import { Ability } from "../data/types/Ability";
 import { Item } from "../data/types/Item";
 import { Move } from "../data/types/Move";
@@ -81,12 +82,12 @@ const TeamBuilder: NextPage = () => {
     }
 
     // Mutant type is secret and irrelevant to defensive matchups
-    const nonMutantTypes = pokemonTypes.slice(0, pokemonTypes.length - 1);
+    const nonMutantTypes = Object.values(types).filter((t) => t.name !== "Mutant");
 
-    const tribeCounts = Object.fromEntries(pokemonTribes.map((t) => [t, 0]));
+    const tribeCounts = Object.fromEntries(Object.values(tribes).map((t) => [t.id, 0]));
     for (const card of cards) {
         for (const tribe of card.pokemon.tribes) {
-            tribeCounts[tribe]++;
+            tribeCounts[tribe.id]++;
         }
     }
 
@@ -378,7 +379,7 @@ const TeamBuilder: NextPage = () => {
                                     <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                                         {nonMutantTypes.map((type) => (
                                             <tr
-                                                key={type}
+                                                key={type.id}
                                                 className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                                             >
                                                 <td className="px-4 py-4 whitespace-nowrap">
@@ -429,9 +430,9 @@ const TeamBuilder: NextPage = () => {
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                                        {pokemonTypes.map((type) => (
+                                        {Object.values(types).map((type) => (
                                             <tr
-                                                key={type}
+                                                key={type.id}
                                                 className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                                             >
                                                 <td className="px-4 py-4 whitespace-nowrap">
