@@ -29,6 +29,7 @@ import { abilities } from "../data/abilities";
 import { items } from "../data/items";
 import { Ability } from "../data/types/Ability";
 import { Item } from "../data/types/Item";
+import { Tribe } from "../data/types/Tribe";
 
 export type FilterOperator = "==" | "!=" | ">" | "<" | "includes";
 
@@ -99,6 +100,18 @@ const allMovesFilter: PokemonFilterType = {
     inputValues: Object.values(moves).map((m) => m.name),
 };
 
+const tribesFilter: PokemonFilterType = {
+    label: "Tribes",
+    operator: "includes",
+    value: "",
+    apply: (pokemon: Pokemon, value: string | number) => {
+        const searchValue = String(value).toLowerCase();
+        return pokemon.tribes.some((t) => t.name.toLowerCase().includes(searchValue));
+    },
+    inputMethod: "select",
+    inputValues: Object.values(tribes).map((t) => t.name),
+};
+
 const heldItemFilter: PokemonFilterType = {
     label: "Wild Held Item",
     operator: "includes",
@@ -154,17 +167,7 @@ const AVAILABLE_FILTERS: PokemonFilterType[] = [
         inputValues: Object.values(moves).map((m) => m.name),
     },
     allMovesFilter,
-    {
-        label: "Tribes",
-        operator: "includes",
-        value: "",
-        apply: (pokemon: Pokemon, value: string | number) => {
-            const searchValue = String(value).toLowerCase();
-            return pokemon.tribes.some((t) => t.name.toLowerCase().includes(searchValue));
-        },
-        inputMethod: "select",
-        inputValues: Object.values(tribes).map((t) => t.name),
-    },
+    tribesFilter,
     heldItemFilter,
 ];
 
@@ -235,6 +238,13 @@ const Home: NextPage = () => {
     const handleItemClick = (item: Item) => {
         const newFilters = [...filters];
         newFilters.push({ ...heldItemFilter, value: item.name.toLowerCase() });
+        setFilters(newFilters);
+        setActiveTab("Pokemon");
+    };
+
+    const handleTribeClick = (tribe: Tribe) => {
+        const newFilters = [...filters];
+        newFilters.push({ ...tribesFilter, value: tribe.name.toLowerCase() });
         setFilters(newFilters);
         setActiveTab("Pokemon");
     };
@@ -463,6 +473,30 @@ const Home: NextPage = () => {
                                         </TableCell>
                                         <TableCell>{i.name}</TableCell>
                                         <TableCell>{i.description}</TableCell>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </TabContent>
+                <TabContent tab="Tribes" activeTab={activeTab}>
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                            <thead className="bg-gray-50 dark:bg-gray-800">
+                                <tr>
+                                    <TableHeader>Name</TableHeader>
+                                    <TableHeader>Effect</TableHeader>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {Object.values(tribes).map((t) => (
+                                    <tr
+                                        key={t.id}
+                                        onClick={() => handleTribeClick(t)}
+                                        className={`hover:bg-blue-50 dark:hover:bg-blue-900 cursor-pointer`}
+                                    >
+                                        <TableCell>{t.name}</TableCell>
+                                        <TableCell>{t.description}</TableCell>
                                     </tr>
                                 ))}
                             </tbody>
