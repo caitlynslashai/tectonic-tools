@@ -4,7 +4,10 @@ export type TypeChart = number[][];
 
 export function buildTypeChart(types: Record<string, LoadedType>) {
     const size = Object.keys(types).length;
-    const typeChart: TypeChart = Array(size).fill(Array(size).fill(1.0));
+    const typeChart = [];
+    for (let i = 0; i < size; i++) {
+        typeChart[i] = Array(size).fill(1.0);
+    }
 
     for (const atkType in types) {
         const attacker = types[atkType];
