@@ -1,6 +1,6 @@
-import { getAbilities } from "./abilities";
+import { abilities } from "./abilities";
 import { moves } from "./moves";
-import { getPokemon } from "./pokemon";
+import { pokemon } from "./pokemon";
 
 type AbilityCounts = Record<string, string[]>;
 type MoveCounts = Record<string, string[]>;
@@ -10,11 +10,11 @@ type SignatureList = Record<string, string>;
 let signatureAbilities: SignatureList | undefined = undefined;
 let signatureMoves: SignatureList | undefined = undefined;
 
-export async function getSignatureAbilities(): Promise<SignatureList> {
+export function getSignatureAbilities(): SignatureList {
     if (signatureAbilities !== undefined) {
         return signatureAbilities;
     }
-    const abilityCounts = await getAbilityCounts();
+    const abilityCounts = getAbilityCounts();
     for (const [ability, group] of Object.entries(abilityCounts)) {
         if (group.length !== 1) {
             delete abilityCounts[ability];
@@ -29,17 +29,15 @@ export async function getSignatureAbilities(): Promise<SignatureList> {
     return result;
 }
 
-async function getAbilityCounts(): Promise<AbilityCounts> {
+function getAbilityCounts(): AbilityCounts {
     const abilityCounts: AbilityCounts = {};
 
-    const abilities = await getAbilities();
     Object.values(abilities).forEach((abilityData) => {
         abilityCounts[abilityData.id] = [];
     });
 
-    const pokemon = await getPokemon();
     Object.values(pokemon).forEach((speciesData) => {
-        // if (speciesData.getEvos().length > 0) return;
+        if (speciesData.getEvos().length > 0) return;
 
         // const arrayID = speciesData.isLegendary() ? 1 : 0;
         speciesData.abilities.forEach((ability) => {
@@ -55,12 +53,12 @@ async function getAbilityCounts(): Promise<AbilityCounts> {
     return abilityCounts;
 }
 
-export async function getSignatureMoves(): Promise<SignatureList> {
+export function getSignatureMoves(): SignatureList {
     if (signatureMoves !== undefined) {
         return signatureMoves;
     }
 
-    const moveCounts = await getMoveLearnableGroups();
+    const moveCounts = getMoveLearnableGroups();
     for (const [move, group] of Object.entries(moveCounts)) {
         if (group.length !== 1) {
             delete moveCounts[move];
@@ -75,16 +73,15 @@ export async function getSignatureMoves(): Promise<SignatureList> {
     return result;
 }
 
-async function getMoveLearnableGroups(): Promise<MoveCounts> {
+function getMoveLearnableGroups(): MoveCounts {
     const moveCounts: MoveCounts = {};
 
     Object.values(moves).forEach((moveData) => {
         moveCounts[moveData.id] = [];
     });
 
-    const pokemon = await getPokemon();
     Object.values(pokemon).forEach((speciesData) => {
-        // if (speciesData.getEvos().length > 0) return;
+        if (speciesData.getEvos().length > 0) return;
 
         //const groupIndex = speciesData.isLegendary() ? 1 : 0;
         speciesData.allMoves().forEach((move) => {

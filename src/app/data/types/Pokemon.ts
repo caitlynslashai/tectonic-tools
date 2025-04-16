@@ -1,6 +1,8 @@
+import { abilities } from "../abilities";
 import { PokemonTribe, PokemonType, pokemonTypes } from "../basicData";
 import { PokemonForm } from "../forms";
-import { LoadedPokemon } from "../loading/pokemon";
+import { moves } from "../moves";
+import { LoadedPokemon, pokemon } from "../pokemon";
 import { typeChart } from "../typeChart";
 import { Ability } from "./Ability";
 import { Move } from "./Move";
@@ -9,6 +11,7 @@ export interface Evolution {
     target: string;
     method: string;
     param: string;
+    prevo: boolean;
 }
 
 export interface Stats {
@@ -50,7 +53,6 @@ export class Pokemon {
     type1: PokemonType;
     type2?: PokemonType;
     stats: Stats;
-    bst: number;
     abilities: Ability[];
     levelMoves: [number, Move][];
     lineMoves: Move[];
@@ -58,53 +60,46 @@ export class Pokemon {
     tribes: PokemonTribe[];
     height: number;
     weight: number;
-    // kind: string;
-    // pokedex: string;
+    kind: string;
+    pokedex: string;
     evos: Evolution[];
     forms: PokemonForm[] = [];
-    constructor(mon: LoadedPokemon, abilities: Record<string, Ability>, moves: Record<string, Move>) {
-        this.id = mon.key;
-        this.dex = mon.dexNum;
+    constructor(mon: LoadedPokemon, dexNo: number) {
+        this.id = mon.id;
+        this.dex = dexNo;
         this.name = mon.name;
-        // TODO: Reimplement forms
-        // if (mon.form_name !== null) {
-        //     this.formName = mon.form_name;
-        // }
+        if (mon.form_name !== null) {
+            this.formName = mon.form_name;
+        }
         this.type1 = mon.type1 as PokemonType;
         if (mon.type2 !== null) {
             this.type2 = mon.type2 as PokemonType;
         }
-        this.stats = {
-            hp: mon.hp,
-            attack: mon.attack,
-            defense: mon.defense,
-            speed: mon.speed,
-            spatk: mon.spAttack,
-            spdef: mon.spDefense,
-        };
-        this.bst = mon.bst;
+        this.stats = mon.stats;
         this.abilities = mon.abilities.map((a) => abilities[a]);
-        this.levelMoves = Array.from(mon.levelMoves).map((m) => {
-            const level: number = m[1];
-            const moveId: string = m[0];
-            const move: Move = moves[moveId];
-            return [level, move];
-        });
-        this.lineMoves = mon.lineMoves.map((m) => moves[m]);
-        this.tutorMoves = mon.tutorMoves.map((m) => moves[m]);
-        this.tribes = mon.tribes as PokemonTribe[];
+        this.levelMoves = mon.level_moves.map((m) => [m[0] as number, moves[m[1]]]);
+        this.lineMoves = [];
+        if (mon.line_moves !== null) {
+            this.lineMoves = mon.line_moves.map((m) => moves[m]);
+        }
+        this.tutorMoves = [];
+        if (mon.tutor_moves !== null) {
+            this.tutorMoves = mon.tutor_moves.map((m) => moves[m]);
+        }
+        this.tribes = [];
+        if (mon.tribes !== null) {
+            this.tribes = mon.tribes as PokemonTribe[];
+        }
         this.height = mon.height;
         this.weight = mon.weight;
-        // this.kind = mon.kind;
-        // this.pokedex = mon.pokedex;
-
-        this.evos = mon.evolutions.map((e) => {
-            return {
-                target: e.pokemon,
-                method: e.method,
-                param: e.condition,
-            };
-        });
+        this.kind = mon.kind;
+        this.pokedex = mon.pokedex;
+        this.evos = [];
+        if (mon.evos !== null) {
+            this.evos = mon.evos.map((e) => {
+                return { ...e, prevo: false };
+            });
+        }
     }
 
     public addForms(forms: PokemonForm[]) {
@@ -125,33 +120,33 @@ export class Pokemon {
         return stats.hp + stats.attack + stats.defense + stats.spatk + stats.spdef + stats.speed;
     }
 
-    // public getPrevos(): Evolution[] {
-    //     return this.evos.filter((e) => e.prevo);
-    // }
+    public getPrevos(): Evolution[] {
+        return this.evos.filter((e) => e.prevo);
+    }
 
-    // public getEvos(): Evolution[] {
-    //     return this.evos.filter((e) => !e.prevo);
-    // }
+    public getEvos(): Evolution[] {
+        return this.evos.filter((e) => !e.prevo);
+    }
 
-    // public getDeepEvos(): Evolution[] {
-    //     let allEvos = this.getEvos();
-    //     if (allEvos.length === 0) {
-    //         return [];
-    //     }
-    //     for (const evo of this.getEvos()) {
-    //         const mon = pokemon[evo.target];
-    //         const monEvos = mon.getDeepEvos();
-    //         allEvos = allEvos.concat(monEvos);
-    //     }
-    //     return allEvos;
-    // }
+    public getDeepEvos(): Evolution[] {
+        let allEvos = this.getEvos();
+        if (allEvos.length === 0) {
+            return [];
+        }
+        for (const evo of this.getEvos()) {
+            const mon = pokemon[evo.target];
+            const monEvos = mon.getDeepEvos();
+            allEvos = allEvos.concat(monEvos);
+        }
+        return allEvos;
+    }
 
     public getFormName = getterFactory(this, "formName");
     public getType1 = getterFactory(this, "type1");
     public getType2 = getterFactory(this, "type2");
     public getAbilities = getterFactory(this, "abilities");
     public getStats = getterFactory(this, "stats");
-    // public getPokedex = getterFactory(this, "pokedex");
+    public getPokedex = getterFactory(this, "pokedex");
     public getLevelMoves = getterFactory(this, "levelMoves");
 
     public getImage(currentForm: number = 0) {
