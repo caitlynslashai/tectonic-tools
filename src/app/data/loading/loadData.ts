@@ -3,6 +3,7 @@
 import { writeFile } from "fs/promises";
 import path from "path";
 import { parseAbilities } from "./abilities";
+import { parseForms } from "./forms";
 import { parseItems } from "./items";
 import { parseMoves } from "./moves";
 import { addAllTribesAndEvolutions, parsePokemon } from "./pokemon";
@@ -92,6 +93,7 @@ async function loadData(): Promise<void> {
         fileFetch("PBS/moves_new.txt"),
         fileFetch("PBS/items.txt"),
         fileFetch("PBS/pokemon.txt"),
+        fileFetch("PBS/pokemonforms.txt"),
         fileFetch("release_version.txt"),
     ])
         .then((values) => tectonicFiles.push(...values))
@@ -104,8 +106,9 @@ async function loadData(): Promise<void> {
     const items = standardFilesParser([tectonicFiles[6]], parseItems);
     // const heldItems = filterToHeldItems(items);
     const pokemon = addAllTribesAndEvolutions(standardFilesParser([tectonicFiles[7]], parsePokemon));
+    const forms = parseForms([tectonicFiles[8]]);
     const typeChart = buildTypeChart(types);
-    const version = tectonicFiles[8];
+    const version = tectonicFiles[9];
 
     await Promise.all([
         dataWrite("types.json", types),
@@ -114,6 +117,7 @@ async function loadData(): Promise<void> {
         dataWrite("moves.json", moves),
         dataWrite("items.json", items),
         dataWrite("pokemon.json", pokemon),
+        dataWrite("forms.json", forms),
         dataWrite("typechart.json", typeChart),
         dataWrite("version.txt", version),
     ]);
