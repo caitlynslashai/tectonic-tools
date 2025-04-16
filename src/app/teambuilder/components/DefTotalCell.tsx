@@ -1,3 +1,4 @@
+import { calcTypeMatchup } from "@/app/data/typeChart";
 import { PokemonType } from "@/app/data/types/PokemonType";
 import { isNull } from "@/app/data/util";
 import { CardData } from "../page";
@@ -19,7 +20,15 @@ export default function DefTotalCell({
     total: "weak" | "strong";
 }): React.ReactNode {
     const num = cards.filter(
-        (c) => !isNull(c.pokemon) && compare(c.pokemon.defMatchups(c.form)[type.id], total)
+        (c) =>
+            !isNull(c.pokemon) &&
+            compare(
+                calcTypeMatchup(
+                    { type },
+                    { type1: c.pokemon.getType1(c.form), type2: c.pokemon.getType2(c.form), ability: c.ability }
+                ),
+                total
+            )
     ).length;
 
     // Updated color scheme with better readability and subtle transitions

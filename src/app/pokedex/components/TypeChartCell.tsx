@@ -18,6 +18,13 @@ function getColourClassForMult(mult: number): string {
     return "";
 }
 
+function getTextColourForMult(mult: number): string {
+    if (mult !== 1) {
+        return "text-black";
+    }
+    return "";
+}
+
 function getTextForMult(mult: number): string {
     if (mult === 0.125) {
         return "⅛";
@@ -33,6 +40,11 @@ function getTextForMult(mult: number): string {
 
 export default function TypeChartCell({ mult }: { mult: number }) {
     const colourClass = getColourClassForMult(mult);
+    const textClass = getTextColourForMult(mult);
     const content = getTextForMult(mult);
-    return <td className={"text-black border border-gray-600 text-lg cursor-default " + colourClass}>{content}</td>;
+    return (
+        <td className={"text-center border border-gray-600 text-lg cursor-default " + colourClass + " " + textClass}>
+            {content}
+        </td>
+    );
 }

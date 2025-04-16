@@ -2,7 +2,6 @@ import { Dispatch, ReactNode, SetStateAction } from "react";
 import { PokemonStats } from "../../damagecalc/damageCalc";
 import { LoadedMove } from "../loading/moves";
 import { StatusEffect } from "../statusEffects";
-import { typeChart } from "../typeChart";
 import { types } from "../types";
 import { isNull } from "../util";
 import { Pokemon } from "./Pokemon";
@@ -63,14 +62,6 @@ export class Move {
 
     public isSTAB(mon: Pokemon): boolean {
         return mon.type1.name === this.type.name || mon.type2?.name === this.type.name;
-    }
-
-    public matchups() {
-        return Object.fromEntries(
-            Object.values(types).map((t) => {
-                return [t.id, Math.max(typeChart[this.type.index][t.index])];
-            })
-        ) as Record<keyof typeof types, number>;
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

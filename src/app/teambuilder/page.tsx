@@ -12,14 +12,15 @@ import { items, nullItem } from "../data/items";
 import { moves, nullMove } from "../data/moves";
 import { nullPokemon, pokemon } from "../data/pokemon";
 import { tribes } from "../data/tribes";
+import { calcTypeMatchup } from "../data/typeChart";
 import { types } from "../data/types";
 import { Ability } from "../data/types/Ability";
 import { Item } from "../data/types/Item";
 import { Move } from "../data/types/Move";
 import { Pokemon } from "../data/types/Pokemon";
-import AtkTableCell from "./components/AtkTableCell";
+import { isNull } from "../data/util";
+import TypeChartCell from "../pokedex/components/TypeChartCell";
 import AtkTotalCell from "./components/AtkTotalCell";
-import DefTableCell from "./components/DefTableCell";
 import DefTotalCell from "./components/DefTotalCell";
 import PokemonCard from "./components/PokemonCard";
 import TableHeader from "./components/TableHeader";
@@ -82,7 +83,7 @@ const TeamBuilder: NextPage = () => {
     }
 
     // Mutant type is secret and irrelevant to defensive matchups
-    const nonMutantTypes = Object.values(types).filter((t) => t.name !== "Mutant");
+    const realTypes = Object.values(types).filter((t) => t.isRealType);
 
     const tribeCounts = Object.fromEntries(Object.values(tribes).map((t) => [t.id, 0]));
     for (const card of cards) {
@@ -377,7 +378,7 @@ const TeamBuilder: NextPage = () => {
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                                        {nonMutantTypes.map((type) => (
+                                        {realTypes.map((type) => (
                                             <tr
                                                 key={type.id}
                                                 className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
@@ -387,9 +388,19 @@ const TeamBuilder: NextPage = () => {
                                                         <TypeBadge type1={type} />
                                                     </div>
                                                 </td>
-                                                {cards.map((card, index) => (
-                                                    <DefTableCell key={index} type={type} card={card} />
-                                                ))}
+                                                {cards.map((c, index) => {
+                                                    const mult = !isNull(c.pokemon)
+                                                        ? calcTypeMatchup(
+                                                              { type },
+                                                              {
+                                                                  type1: c.pokemon.getType1(c.form),
+                                                                  type2: c.pokemon.getType2(c.form),
+                                                                  ability: c.ability,
+                                                              }
+                                                          )
+                                                        : 1;
+                                                    return <TypeChartCell key={index} mult={mult} />;
+                                                })}
                                                 <DefTotalCell cards={cards} type={type} total="weak" />
                                                 <DefTotalCell cards={cards} type={type} total="strong" />
                                             </tr>
@@ -430,7 +441,7 @@ const TeamBuilder: NextPage = () => {
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                                        {Object.values(types).map((type) => (
+                                        {realTypes.map((type) => (
                                             <tr
                                                 key={type.id}
                                                 className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
@@ -440,9 +451,24 @@ const TeamBuilder: NextPage = () => {
                                                         <TypeBadge type1={type} />
                                                     </div>
                                                 </td>
-                                                {cards.map((card, index) => (
-                                                    <AtkTableCell key={index} type={type} card={card} />
-                                                ))}
+                                                {cards.map((c, index) => {
+                                                    const realMoves = c.moves.filter((m) => !isNull(m));
+                                                    const mult = !isNull(c.pokemon)
+                                                        ? Math.max(
+                                                              ...realMoves.map((m) =>
+                                                                  calcTypeMatchup(
+                                                                      {
+                                                                          type: m.type,
+                                                                          move: m,
+                                                                          ability: c.ability,
+                                                                      },
+                                                                      { type1: type }
+                                                                  )
+                                                              )
+                                                          )
+                                                        : 1;
+                                                    return <TypeChartCell key={index} mult={mult} />;
+                                                })}
                                                 <AtkTotalCell cards={cards} type={type} total="nve" />
                                                 <AtkTotalCell cards={cards} type={type} total="se" />
                                             </tr>
