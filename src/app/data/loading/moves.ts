@@ -8,8 +8,8 @@ export interface LoadedMove extends LoadedData {
     accuracy: number;
     pp: number;
     target: string;
-    effectChance: number;
-    priority: number;
+    effectChance?: number;
+    priority?: number;
     description: string;
     flags: string[];
 }
@@ -24,8 +24,6 @@ export function parseMoves(pairs: KVPair[]): LoadedMove {
         accuracy: 0,
         pp: 0,
         target: "",
-        effectChance: 0,
-        priority: 0,
         description: "",
         flags: [],
     };

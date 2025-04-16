@@ -9,9 +9,9 @@ interface LoadedEvolution {
 export interface LoadedPokemon extends LoadedData {
     name: string;
     dexNum: number;
-    formName: string;
+    formName?: string;
     type1: string;
-    type2: string;
+    type2?: string;
     height: number;
     weight: number;
     hp: number;
@@ -38,9 +38,7 @@ export function parsePokemon(pairs: KVPair[]): LoadedPokemon {
         key: "",
         name: "",
         dexNum: 0,
-        formName: "",
         type1: "",
-        type2: "",
         height: 0,
         weight: 0,
         hp: 0,

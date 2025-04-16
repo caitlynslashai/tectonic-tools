@@ -88,11 +88,11 @@ export class Pokemon {
         this.id = mon.key;
         this.dex = dexNo;
         this.name = mon.name;
-        if (mon.formName !== null) {
+        if (mon.formName) {
             this.formName = mon.formName;
         }
         this.type1 = types[mon.type1];
-        if (mon.type2 !== null) {
+        if (mon.type2) {
             this.type2 = types[mon.type2];
         }
         this.stats = {
@@ -105,28 +105,24 @@ export class Pokemon {
         };
         this.abilities = mon.abilities.map((a) => abilities[a]);
         this.levelMoves = Object.entries(mon.levelMoves).map(([id, level]) => [level, moves[id]]);
-        this.lineMoves = [];
-        if (mon.lineMoves !== null) {
-            this.lineMoves = mon.lineMoves.map((m) => moves[m]);
-        }
-        this.tutorMoves = [];
-        if (mon.tutorMoves !== null) {
-            this.tutorMoves = mon.tutorMoves.map((m) => moves[m]);
-        }
+
+        this.lineMoves = mon.lineMoves.map((m) => moves[m]);
+
+        this.tutorMoves = mon.tutorMoves.map((m) => moves[m]);
+
         this.tribes = [];
-        if (mon.tribes !== null) {
-            this.tribes = mon.tribes.map((t) => tribes[t]);
-        }
+
+        this.tribes = mon.tribes.map((t) => tribes[t]);
+
         this.height = mon.height;
         this.weight = mon.weight;
         this.kind = mon.kind;
         this.pokedex = mon.pokedex;
         this.evos = [];
-        if (mon.evolutions !== null) {
-            this.evos = mon.evolutions.map((e) => {
-                return { target: e.pokemon, method: e.method, param: e.condition, prevo: false };
-            });
-        }
+
+        this.evos = mon.evolutions.map((e) => {
+            return { target: e.pokemon, method: e.method, param: e.condition, prevo: false };
+        });
     }
 
     public addForms(forms: PokemonForm[]) {
