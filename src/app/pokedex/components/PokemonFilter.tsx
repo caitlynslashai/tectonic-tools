@@ -1,5 +1,6 @@
-import { pokemonTribes, pokemonTypes } from "@/app/data/basicData";
 import { moves } from "@/app/data/moves";
+import { tribes } from "@/app/data/tribes";
+import { types } from "@/app/data/types";
 import { Pokemon } from "@/app/data/types/Pokemon";
 
 export type FilterOperator = "==" | "!=" | ">" | "<" | "includes";
@@ -62,7 +63,7 @@ const AVAILABLE_FILTERS: PokemonFilterType[] = [
             );
         },
         inputMethod: "select",
-        inputValues: pokemonTypes,
+        inputValues: Object.values(types).map((t) => t.name),
     },
     {
         label: "Ability Name",
@@ -117,7 +118,7 @@ const AVAILABLE_FILTERS: PokemonFilterType[] = [
             return pokemon.tribes.some((t) => t.name.toLowerCase().includes(searchValue));
         },
         inputMethod: "select",
-        inputValues: pokemonTribes,
+        inputValues: Object.values(tribes).map((t) => t.name),
     },
 ];
 
