@@ -27,9 +27,11 @@ import { types } from "@/app/data/types";
 import Image from "next/image";
 import { abilities } from "../data/abilities";
 import { items } from "../data/items";
+import { typeChart } from "../data/typeChart";
 import { Ability } from "../data/types/Ability";
 import { Item } from "../data/types/Item";
 import { Tribe } from "../data/types/Tribe";
+import TypeChartCell from "./components/TypeChartCell";
 
 export type FilterOperator = "==" | "!=" | ">" | "<" | "includes";
 
@@ -171,7 +173,7 @@ const AVAILABLE_FILTERS: PokemonFilterType[] = [
     heldItemFilter,
 ];
 
-const tabNames = ["Pokemon", "Moves", "Abilities", "Items", "Tribes", "TypeChart"];
+const tabNames = ["Pokemon", "Moves", "Abilities", "Items", "Tribes", "Type Chart"];
 
 const Home: NextPage = () => {
     const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
@@ -254,6 +256,7 @@ const Home: NextPage = () => {
         Object.values(pokemon).some((p) => p.items.some((pi) => pi.name === i.name))
     );
 
+    const realTypes = Object.values(types).filter((t) => t.isRealType);
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
             <Head>
@@ -497,6 +500,45 @@ const Home: NextPage = () => {
                                     >
                                         <TableCell>{t.name}</TableCell>
                                         <TableCell>{t.description}</TableCell>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </TabContent>
+                <TabContent tab="Type Chart" activeTab={activeTab}>
+                    <div className="overflow-x-auto">
+                        <table
+                            id="typeChartTable"
+                            className="w-full text-center align-middle border border-gray-300 dark:border-gray-700 rounded-lg shadow-md bg-white dark:bg-gray-800"
+                        >
+                            <thead className="bg-gray-100 dark:bg-gray-700">
+                                <tr>
+                                    <th className="px-8 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                                        Defense →
+                                        <br />
+                                        Attack ↴
+                                    </th>
+                                    {realTypes.map((t) => (
+                                        <th
+                                            key={t.id}
+                                            className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        >
+                                            <TypeBadge type1={t} />
+                                        </th>
+                                    ))}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {realTypes.map((t) => (
+                                    <tr key={t.id} className="even:bg-gray-50 dark:even:bg-gray-700">
+                                        <td className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                                            <TypeBadge type1={t} />
+                                        </td>
+                                        {realTypes.map((t2) => {
+                                            const mult = typeChart[t.index][t2.index];
+                                            return <TypeChartCell key={t2.index} mult={mult} />;
+                                        })}
                                     </tr>
                                 ))}
                             </tbody>
