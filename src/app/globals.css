@@ -70,4 +70,9 @@ body {
     --color-bug-bg: #5a690c;
     --color-mutant: #a27292;
     --color-mutant-bg: #53374a;
+    --color-hyper-effective: #2e8bcf;
+    --color-super-effective: #2e8b57;
+    --color-not-effective: #b04f4a;
+    --color-barely-effective: #e3649f;
+    --color-not-very-effective: #f7be81;
 }

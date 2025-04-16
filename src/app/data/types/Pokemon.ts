@@ -1,11 +1,15 @@
 import { abilities } from "../abilities";
-import { PokemonTribe, PokemonType, pokemonTypes } from "../basicData";
-import { PokemonForm } from "../forms";
+import { items } from "../items";
+import { LoadedPokemon } from "../loading/pokemon";
 import { moves } from "../moves";
-import { LoadedPokemon, pokemon } from "../pokemon";
-import { typeChart } from "../typeChart";
+import { pokemon } from "../pokemon";
+import { tribes } from "../tribes";
+import { types } from "../types";
 import { Ability } from "./Ability";
+import { Item } from "./Item";
 import { Move } from "./Move";
+import { PokemonType } from "./PokemonType";
+import { Tribe } from "./Tribe";
 
 export interface Evolution {
     target: string;
@@ -32,6 +36,22 @@ export const blankStats: Stats = {
     spdef: 0,
 };
 
+export interface StylePoints {
+    hp: number;
+    attacks: number;
+    defense: number;
+    spdef: number;
+    speed: number;
+}
+
+export const defaultStylePoints: StylePoints = {
+    hp: 10,
+    attacks: 10,
+    defense: 10,
+    spdef: 10,
+    speed: 10,
+};
+
 function uniq<T>(a: T[]) {
     return a.filter((item, pos, self) => self.indexOf(item) == pos);
 }
@@ -45,6 +65,8 @@ function getterFactory<T extends keyof Pokemon>(mon: Pokemon, key: T) {
     };
 }
 
+export type PokemonForm = Partial<Pokemon> & { formId: number };
+
 export class Pokemon {
     id: string;
     dex: number;
@@ -57,49 +79,54 @@ export class Pokemon {
     levelMoves: [number, Move][];
     lineMoves: Move[];
     tutorMoves: Move[];
-    tribes: PokemonTribe[];
+    tribes: Tribe[];
     height: number;
     weight: number;
     kind: string;
     pokedex: string;
     evos: Evolution[];
     forms: PokemonForm[] = [];
+    items: Item[];
     constructor(mon: LoadedPokemon, dexNo: number) {
-        this.id = mon.id;
+        this.id = mon.key;
         this.dex = dexNo;
         this.name = mon.name;
-        if (mon.form_name !== null) {
-            this.formName = mon.form_name;
+        if (mon.formName) {
+            this.formName = mon.formName;
         }
-        this.type1 = mon.type1 as PokemonType;
-        if (mon.type2 !== null) {
-            this.type2 = mon.type2 as PokemonType;
+        this.type1 = types[mon.type1];
+        if (mon.type2) {
+            this.type2 = types[mon.type2];
         }
-        this.stats = mon.stats;
+        this.stats = {
+            hp: mon.hp,
+            attack: mon.attack,
+            spatk: mon.spAttack,
+            speed: mon.speed,
+            defense: mon.defense,
+            spdef: mon.spDefense,
+        };
         this.abilities = mon.abilities.map((a) => abilities[a]);
-        this.levelMoves = mon.level_moves.map((m) => [m[0] as number, moves[m[1]]]);
-        this.lineMoves = [];
-        if (mon.line_moves !== null) {
-            this.lineMoves = mon.line_moves.map((m) => moves[m]);
-        }
-        this.tutorMoves = [];
-        if (mon.tutor_moves !== null) {
-            this.tutorMoves = mon.tutor_moves.map((m) => moves[m]);
-        }
+        this.levelMoves = Object.entries(mon.levelMoves).map(([id, level]) => [level, moves[id]]);
+
+        this.lineMoves = mon.lineMoves.map((m) => moves[m]);
+
+        this.tutorMoves = mon.tutorMoves.map((m) => moves[m]);
+
         this.tribes = [];
-        if (mon.tribes !== null) {
-            this.tribes = mon.tribes as PokemonTribe[];
-        }
+
+        this.tribes = mon.tribes.map((t) => tribes[t]);
+
         this.height = mon.height;
         this.weight = mon.weight;
         this.kind = mon.kind;
         this.pokedex = mon.pokedex;
         this.evos = [];
-        if (mon.evos !== null) {
-            this.evos = mon.evos.map((e) => {
-                return { ...e, prevo: false };
-            });
-        }
+
+        this.evos = mon.evolutions.map((e) => {
+            return { target: e.pokemon, method: e.method, param: e.condition, prevo: false };
+        });
+        this.items = mon.wildItems.map((i) => items[i]);
     }
 
     public addForms(forms: PokemonForm[]) {
@@ -151,23 +178,5 @@ export class Pokemon {
 
     public getImage(currentForm: number = 0) {
         return "/Pokemon/" + this.id + (currentForm > 0 ? "_" + this.forms[currentForm].formId : "") + ".png";
-    }
-
-    public defMatchups(currentForm: number = 0) {
-        return Object.fromEntries(
-            pokemonTypes.map((t) => {
-                const type2 = this.getType2(currentForm);
-                return [t, typeChart[t][this.getType1(currentForm)] * (type2 ? typeChart[t][type2] : 1)];
-            })
-        );
-    }
-
-    public atkMatchups(currentForm: number = 0) {
-        return Object.fromEntries(
-            pokemonTypes.map((t) => {
-                const type2 = this.getType2(currentForm);
-                return [t, Math.max(typeChart[this.getType1(currentForm)][t], type2 ? typeChart[type2][t] : 0)];
-            })
-        );
     }
 }

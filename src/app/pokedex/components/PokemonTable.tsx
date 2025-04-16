@@ -2,6 +2,8 @@ import { PokemonTableProps } from "@/app/pokedex/page";
 import Image from "next/image";
 import { getTypeGradient } from "../../../components/colours";
 import TypeBadge from "../../../components/TypeBadge";
+import TableCell from "./TableCell";
+import TableHeader from "./TableHeader";
 
 const PokemonTable: React.FC<PokemonTableProps> = ({ mons, onRowClick }) => {
     return (
@@ -9,16 +11,21 @@ const PokemonTable: React.FC<PokemonTableProps> = ({ mons, onRowClick }) => {
             <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                 <thead className="bg-gray-50 dark:bg-gray-800">
                     <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"></th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                            #
-                        </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                            Name
-                        </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                            Type(s)
-                        </th>
+                        <TableHeader>
+                            <></>
+                        </TableHeader>
+                        <TableHeader>#</TableHeader>
+                        <TableHeader>Name</TableHeader>
+                        <TableHeader>Type(s)</TableHeader>
+                        <TableHeader>Abilities</TableHeader>
+                        <TableHeader>Tribes</TableHeader>
+                        <TableHeader>HP</TableHeader>
+                        <TableHeader>Atk</TableHeader>
+                        <TableHeader>Def</TableHeader>
+                        <TableHeader>SpA</TableHeader>
+                        <TableHeader>SpD</TableHeader>
+                        <TableHeader>Spe</TableHeader>
+                        <TableHeader>BST</TableHeader>
                     </tr>
                 </thead>
                 <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
@@ -30,7 +37,7 @@ const PokemonTable: React.FC<PokemonTableProps> = ({ mons, onRowClick }) => {
                                 pokemon
                             )}`}
                         >
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-200">
+                            <TableCell>
                                 <Image
                                     src={`/Pokemon/${pokemon.id}.png`}
                                     alt={pokemon.name}
@@ -38,16 +45,29 @@ const PokemonTable: React.FC<PokemonTableProps> = ({ mons, onRowClick }) => {
                                     height={50}
                                     className="rounded-full"
                                 />
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-200">
-                                {pokemon.dex}
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-200">
-                                {pokemon.name}
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                            </TableCell>
+                            <TableCell>{pokemon.dex}</TableCell>
+                            <TableCell>{pokemon.name}</TableCell>
+                            <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500 dark:text-gray-400">
                                 <TypeBadge type1={pokemon.type1} type2={pokemon.type2} />
                             </td>
+                            <TableCell>
+                                {pokemon.abilities.map((a) => (
+                                    <div key={a.id}>{a.name}</div>
+                                ))}
+                            </TableCell>
+                            <TableCell>
+                                {pokemon.tribes.map((t) => (
+                                    <div key={t.id}>{t.name}</div>
+                                ))}
+                            </TableCell>
+                            <TableCell>{pokemon.stats.hp}</TableCell>
+                            <TableCell>{pokemon.stats.attack}</TableCell>
+                            <TableCell>{pokemon.stats.defense}</TableCell>
+                            <TableCell>{pokemon.stats.spatk}</TableCell>
+                            <TableCell>{pokemon.stats.spdef}</TableCell>
+                            <TableCell>{pokemon.stats.speed}</TableCell>
+                            <TableCell>{pokemon.BST()}</TableCell>
                         </tr>
                     ))}
                 </tbody>

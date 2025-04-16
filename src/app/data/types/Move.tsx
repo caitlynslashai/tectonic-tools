@@ -1,25 +1,15 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
 import { PokemonStats } from "../../damagecalc/damageCalc";
-import { MoveCategory, PokemonType, pokemonTypes } from "../basicData";
+import { LoadedMove } from "../loading/moves";
 import { StatusEffect } from "../statusEffects";
-import { typeChart } from "../typeChart";
+import { types } from "../types";
 import { isNull } from "../util";
 import { Pokemon } from "./Pokemon";
+import { PokemonType } from "./PokemonType";
 
-export interface LoadedMove {
-    id: string;
-    name: string;
-    description: string;
-    type: string;
-    bp: number;
-    accuracy: number;
-    pp: number;
-    category: string;
-    target: string;
-    minHits?: number;
-    maxHits?: number;
-    flag?: string;
-}
+export const moveCategories = ["Physical", "Special", "Status", "Adaptive"] as const;
+
+export type MoveCategory = (typeof moveCategories)[number];
 
 export type MoveTarget =
     | "FoeSide"
@@ -51,11 +41,11 @@ export class Move {
     category: MoveCategory;
     target: MoveTarget;
     constructor(loadedMove: LoadedMove) {
-        this.id = loadedMove.id;
+        this.id = loadedMove.key;
         this.name = loadedMove.name;
         this.description = loadedMove.description;
-        this.type = loadedMove.type as PokemonType;
-        this.bp = loadedMove.bp;
+        this.type = types[loadedMove.type];
+        this.bp = loadedMove.power;
         this.accuracy = loadedMove.accuracy;
         this.pp = loadedMove.pp;
         this.category = loadedMove.category as MoveCategory;
@@ -71,15 +61,7 @@ export class Move {
     }
 
     public isSTAB(mon: Pokemon): boolean {
-        return mon.type1 === this.type || mon.type2 === this.type;
-    }
-
-    public matchups() {
-        return Object.fromEntries(
-            pokemonTypes.map((t) => {
-                return [t, Math.max(typeChart[this.type][t])];
-            })
-        ) as Record<PokemonType, number>;
+        return mon.type1.name === this.type.name || mon.type2?.name === this.type.name;
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

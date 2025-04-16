@@ -1,4 +1,4 @@
-import { PokemonType } from "@/app/data/basicData";
+import { PokemonType } from "@/app/data/types/PokemonType";
 import { getTypeBadgeColourClass } from "./colours";
 
 interface TypeBadgeProps {
@@ -16,7 +16,7 @@ export default function TypeBadge({ type1, type2, hyper }: TypeBadgeProps) {
                     isHyper ? "ring-2 ring-yellow-400 shadow-md" : ""
                 }`}
             >
-                {type1}
+                {type1.name}
             </span>
             {type2 && (
                 <span
@@ -24,7 +24,7 @@ export default function TypeBadge({ type1, type2, hyper }: TypeBadgeProps) {
                         type2
                     )}`}
                 >
-                    {type2}
+                    {type2.name}
                 </span>
             )}
         </div>

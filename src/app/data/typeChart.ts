@@ -1,403 +1,147 @@
-import { PokemonType } from "./basicData";
+import loadedChart from "public/data/typechart.json";
+import { types } from "./types";
+import { Ability } from "./types/Ability";
+import { Move } from "./types/Move";
+import { PokemonType } from "./types/PokemonType";
 
-export const typeChart: Record<PokemonType, Record<PokemonType, 2 | 1 | 0.5 | 0>> = {
-    Normal: {
-        Normal: 1,
-        Fire: 1,
-        Water: 1,
-        Grass: 1,
-        Electric: 1,
-        Ice: 1,
-        Fighting: 1,
-        Poison: 1,
-        Ground: 1,
-        Flying: 1,
-        Psychic: 1,
-        Bug: 1,
-        Rock: 0.5,
-        Ghost: 0,
-        Dragon: 1,
-        Dark: 1,
-        Steel: 0.5,
-        Fairy: 1,
-        Mutant: 2,
-    },
-    Fire: {
-        Normal: 1,
-        Fire: 0.5,
-        Water: 0.5,
-        Grass: 2,
-        Electric: 1,
-        Ice: 2,
-        Fighting: 1,
-        Poison: 1,
-        Ground: 1,
-        Flying: 1,
-        Psychic: 1,
-        Bug: 2,
-        Rock: 0.5,
-        Ghost: 1,
-        Dragon: 0.5,
-        Dark: 1,
-        Steel: 2,
-        Fairy: 1,
-        Mutant: 0,
-    },
-    Water: {
-        Normal: 1,
-        Fire: 2,
-        Water: 0.5,
-        Grass: 0.5,
-        Electric: 1,
-        Ice: 1,
-        Fighting: 1,
-        Poison: 1,
-        Ground: 2,
-        Flying: 1,
-        Psychic: 1,
-        Bug: 1,
-        Rock: 2,
-        Ghost: 1,
-        Dragon: 0.5,
-        Dark: 1,
-        Steel: 1,
-        Fairy: 1,
-        Mutant: 1,
-    },
-    Grass: {
-        Normal: 1,
-        Fire: 0.5,
-        Water: 2,
-        Grass: 0.5,
-        Electric: 1,
-        Ice: 1,
-        Fighting: 1,
-        Poison: 0.5,
-        Ground: 2,
-        Flying: 0.5,
-        Psychic: 1,
-        Bug: 0.5,
-        Rock: 2,
-        Ghost: 1,
-        Dragon: 0.5,
-        Dark: 1,
-        Steel: 0.5,
-        Fairy: 1,
-        Mutant: 1,
-    },
-    Electric: {
-        Normal: 1,
-        Fire: 1,
-        Water: 2,
-        Grass: 0.5,
-        Electric: 0.5,
-        Ice: 1,
-        Fighting: 1,
-        Poison: 1,
-        Ground: 0,
-        Flying: 2,
-        Psychic: 1,
-        Bug: 1,
-        Rock: 1,
-        Ghost: 1,
-        Dragon: 0.5,
-        Dark: 1,
-        Steel: 1,
-        Fairy: 1,
-        Mutant: 0.5,
-    },
-    Ice: {
-        Normal: 1,
-        Fire: 0.5,
-        Water: 0.5,
-        Grass: 2,
-        Electric: 1,
-        Ice: 0.5,
-        Fighting: 1,
-        Poison: 1,
-        Ground: 2,
-        Flying: 2,
-        Psychic: 1,
-        Bug: 1,
-        Rock: 0.5,
-        Ghost: 1,
-        Dragon: 2,
-        Dark: 1,
-        Steel: 0.5,
-        Fairy: 1,
-        Mutant: 0,
-    },
-    Fighting: {
-        Normal: 2,
-        Fire: 1,
-        Water: 1,
-        Grass: 1,
-        Electric: 1,
-        Ice: 2,
-        Fighting: 1,
-        Poison: 0.5,
-        Ground: 1,
-        Flying: 0.5,
-        Psychic: 0.5,
-        Bug: 0.5,
-        Rock: 2,
-        Ghost: 0,
-        Dragon: 1,
-        Dark: 2,
-        Steel: 2,
-        Fairy: 0.5,
-        Mutant: 0.5,
-    },
-    Poison: {
-        Normal: 1,
-        Fire: 1,
-        Water: 2,
-        Grass: 2,
-        Electric: 1,
-        Ice: 1,
-        Fighting: 1,
-        Poison: 0.5,
-        Ground: 0.5,
-        Flying: 1,
-        Psychic: 1,
-        Bug: 1,
-        Rock: 0.5,
-        Ghost: 0.5,
-        Dragon: 1,
-        Dark: 1,
-        Steel: 0,
-        Fairy: 2,
-        Mutant: 0.5,
-    },
-    Ground: {
-        Normal: 1,
-        Fire: 2,
-        Water: 1,
-        Grass: 0.5,
-        Electric: 2,
-        Ice: 0.5,
-        Fighting: 1,
-        Poison: 2,
-        Ground: 1,
-        Flying: 0,
-        Psychic: 1,
-        Bug: 0.5,
-        Rock: 2,
-        Ghost: 1,
-        Dragon: 1,
-        Dark: 1,
-        Steel: 2,
-        Fairy: 1,
-        Mutant: 1,
-    },
-    Flying: {
-        Normal: 1,
-        Fire: 1,
-        Water: 1,
-        Grass: 2,
-        Electric: 0.5,
-        Ice: 0.5,
-        Fighting: 2,
-        Poison: 1,
-        Ground: 1,
-        Flying: 1,
-        Psychic: 1,
-        Bug: 2,
-        Rock: 0.5,
-        Ghost: 1,
-        Dragon: 1,
-        Dark: 1,
-        Steel: 0.5,
-        Fairy: 1,
-        Mutant: 1,
-    },
-    Psychic: {
-        Normal: 1,
-        Fire: 1,
-        Water: 1,
-        Grass: 0.5,
-        Electric: 1,
-        Ice: 1,
-        Fighting: 2,
-        Poison: 2,
-        Ground: 1,
-        Flying: 1,
-        Psychic: 0.5,
-        Bug: 0.5,
-        Rock: 1,
-        Ghost: 1,
-        Dragon: 1,
-        Dark: 0,
-        Steel: 2,
-        Fairy: 1,
-        Mutant: 1,
-    },
-    Bug: {
-        Normal: 1,
-        Fire: 0.5,
-        Water: 1,
-        Grass: 2,
-        Electric: 1,
-        Ice: 1,
-        Fighting: 0.5,
-        Poison: 0.5,
-        Ground: 1,
-        Flying: 0.5,
-        Psychic: 2,
-        Bug: 1,
-        Rock: 1,
-        Ghost: 0.5,
-        Dragon: 1,
-        Dark: 2,
-        Steel: 0.5,
-        Fairy: 2,
-        Mutant: 1,
-    },
-    Rock: {
-        Normal: 1,
-        Fire: 2,
-        Water: 1,
-        Grass: 1,
-        Electric: 1,
-        Ice: 2,
-        Fighting: 0.5,
-        Poison: 1,
-        Ground: 0.5,
-        Flying: 2,
-        Psychic: 1,
-        Bug: 2,
-        Rock: 1,
-        Ghost: 1,
-        Dragon: 1,
-        Dark: 1,
-        Steel: 0.5,
-        Fairy: 1,
-        Mutant: 0.5,
-    },
-    Ghost: {
-        Normal: 0,
-        Fire: 1,
-        Water: 1,
-        Grass: 0.5,
-        Electric: 1,
-        Ice: 1,
-        Fighting: 1,
-        Poison: 1,
-        Ground: 1,
-        Flying: 1,
-        Psychic: 2,
-        Bug: 1,
-        Rock: 1,
-        Ghost: 2,
-        Dragon: 1,
-        Dark: 0.5,
-        Steel: 1,
-        Fairy: 1,
-        Mutant: 0.5,
-    },
-    Dragon: {
-        Normal: 1,
-        Fire: 1,
-        Water: 1,
-        Grass: 1,
-        Electric: 1,
-        Ice: 1,
-        Fighting: 1,
-        Poison: 1,
-        Ground: 1,
-        Flying: 1,
-        Psychic: 1,
-        Bug: 1,
-        Rock: 1,
-        Ghost: 1,
-        Dragon: 2,
-        Dark: 1,
-        Steel: 0.5,
-        Fairy: 0.5,
-        Mutant: 2,
-    },
-    Dark: {
-        Normal: 1,
-        Fire: 1,
-        Water: 1,
-        Grass: 1,
-        Electric: 1,
-        Ice: 1,
-        Fighting: 0.5,
-        Poison: 1,
-        Ground: 1,
-        Flying: 1,
-        Psychic: 2,
-        Bug: 1,
-        Rock: 1,
-        Ghost: 2,
-        Dragon: 1,
-        Dark: 0.5,
-        Steel: 1,
-        Fairy: 0.5,
-        Mutant: 0.5,
-    },
-    Steel: {
-        Normal: 1,
-        Fire: 0.5,
-        Water: 0.5,
-        Grass: 1,
-        Electric: 0.5,
-        Ice: 2,
-        Fighting: 1,
-        Poison: 1,
-        Ground: 1,
-        Flying: 1,
-        Psychic: 1,
-        Bug: 1,
-        Rock: 2,
-        Ghost: 1,
-        Dragon: 1,
-        Dark: 1,
-        Steel: 0.5,
-        Fairy: 2,
-        Mutant: 1,
-    },
-    Fairy: {
-        Normal: 1,
-        Fire: 1,
-        Water: 1,
-        Grass: 0.5,
-        Electric: 1,
-        Ice: 1,
-        Fighting: 2,
-        Poison: 0.5,
-        Ground: 1,
-        Flying: 1,
-        Psychic: 1,
-        Bug: 1,
-        Rock: 1,
-        Ghost: 1,
-        Dragon: 2,
-        Dark: 2,
-        Steel: 0.5,
-        Fairy: 1,
-        Mutant: 1,
-    },
-    Mutant: {
-        Normal: 1,
-        Fire: 1,
-        Water: 1,
-        Grass: 1,
-        Electric: 1,
-        Ice: 1,
-        Fighting: 1,
-        Poison: 1,
-        Ground: 1,
-        Flying: 1,
-        Psychic: 1,
-        Bug: 1,
-        Rock: 1,
-        Ghost: 1,
-        Dragon: 1,
-        Dark: 1,
-        Steel: 1,
-        Fairy: 1,
-        Mutant: 1,
-    },
-};
+export const typeChart = loadedChart;
+
+interface AttackerData {
+    type: PokemonType;
+    move?: Move;
+    ability?: Ability;
+}
+
+interface DefenderData {
+    type1: PokemonType;
+    type2?: PokemonType;
+    ability?: Ability;
+}
+
+const immunityAbilities = [
+    { ability: "AERODYNAMIC", type1: "FLYING" },
+    { ability: "CHALLENGER", type1: "FIGHTING" },
+    { ability: "COLDRECEPTION", type1: "ICE" },
+    { ability: "DESERTSPIRIT", type1: "GROUND" },
+    { ability: "DRAGONSLAYER", type1: "DRAGON" },
+    { ability: "FILTHY", type1: "POISON" },
+    { ability: "FIREFIGHTER", type1: "FIRE" },
+    { ability: "FLYTRAP", type1: "BUG" },
+    { ability: "FOOLHARDY", type1: "PSYCHIC" },
+    { ability: "FULLBLUBBER", type1: "WATER", type2: "ICE" },
+    { ability: "GLASSFIRING", type1: "FIRE" },
+    { ability: "HEARTLESS", type1: "FAIRY" },
+    { ability: "HEARTOFJUSTICE", type1: "DARK" },
+    { ability: "INDUSTRIALIZE", type1: "STEEL" },
+    { ability: "PECKINGORDER", type1: "FLYING" },
+    { ability: "POISONABSORB", type1: "POISON" },
+    { ability: "ROCKCLIMBER", type1: "ROCK" },
+    { ability: "STEELABSORB", type1: "STEEL" },
+    { ability: "VENOMDETTA", type1: "POISON" },
+    { ability: "LEVITATE", type1: "GROUND" },
+    { ability: "MOTORDRIVE", type1: "ELECTRIC" },
+    { ability: "SAPSIPPER", type1: "GRASS" },
+    { ability: "VOLTABSORB", type1: "ELECTRIC" },
+    { ability: "WATERABSORB", type1: "WATER" },
+    { ability: "WONDERGUARD", type1: "QMARKS" },
+];
+const halfDmgAbilities = [
+    { ability: "EXORCIST", type1: "PSYCHIC", type2: "GHOST" },
+    { ability: "FEATHERCOAT", type1: "ICE", type2: "FLYING" },
+    { ability: "REALIST", type1: "DRAGON", type2: "FAIRY" },
+    { ability: "TOUGH", type1: "FIGHTING", type2: "ROCK" },
+    { ability: "UNAFRAID", type1: "DARK", type2: "BUG" },
+    { ability: "THICKFAT", type1: "FIRE", type2: "ICE" },
+    { ability: "WATERBUBBLE", type1: "FIRE" },
+];
+const doubleTakenAbilities = [
+    { ability: "FLUFFY", type1: "FIRE" },
+    { ability: "PARANOID", type1: "PSYCHIC" },
+];
+const isAlsoTypeAbilities = [
+    { ability: "HAUNTED", type1: "GHOST" },
+    { ability: "INFECTED", type1: "GRASS" },
+    { ability: "RUSTWRACK", type1: "STEEL" },
+    { ability: "SLUGGISH", type1: "BUG" },
+];
+const doubleDealtMoves = [
+    { move: "HONORLESSSTING", type1: "FIGHTING" },
+    { move: "SLAY", type1: "DRAGON" },
+    { move: "HOLLYCHARM", type1: "GHOST" },
+    { move: "BLACKOUT", type1: "ELECTRIC" },
+];
+
+export function calcTypeMatchup(atk: AttackerData, def: DefenderData) {
+    const atkType = atk.type;
+    const defType1 = def.type1;
+    let thirdType = null;
+
+    let defType1Calc = typeChart[atkType.index][defType1.index];
+    let defType2Calc = 1.0;
+    let defAbilityCalc = 1.0;
+    if (def.type2 !== undefined) {
+        const defType2 = def.type2;
+        defType2Calc = typeChart[atkType.index][defType2.index];
+    }
+    const defAbility = def.ability;
+    if (defAbility !== undefined) {
+        const immunityMatch = immunityAbilities.find((x) => x.ability == defAbility.id);
+        const halfMatch = halfDmgAbilities.find((x) => x.ability == defAbility.id);
+        const doubleMatch = doubleTakenAbilities.find((x) => x.ability == defAbility.id);
+        const isAlsoTypeMatch = isAlsoTypeAbilities.find((x) => x.ability == defAbility.id);
+
+        if (defAbility.id == "WONDERGUARD" && defType1Calc * defType2Calc < 1) {
+            defAbilityCalc = 0;
+        } else if (defAbility.id == "UNFAZED" && defType1Calc * defType2Calc == 1) {
+            defAbilityCalc = 0.8;
+        } else if (defAbility.id == "WELLSUITED" && defType1Calc * defType2Calc < 1) {
+            defAbilityCalc = 0.5;
+        } else if (defAbility.id == "FILTER" && defType1Calc * defType2Calc > 1) {
+            defAbilityCalc = 0.75;
+        } else if (
+            immunityMatch !== undefined &&
+            (immunityMatch.type1 == atk.type.id || immunityMatch.type2 == atk.type.id)
+        ) {
+            defAbilityCalc = 0;
+        } else if (halfMatch !== undefined && (halfMatch.type1 == atk.type.id || halfMatch.type2 == atk.type.id)) {
+            defAbilityCalc = 0.5;
+        } else if (doubleMatch !== undefined && doubleMatch.type1 == atk.type.id) {
+            defAbilityCalc = 2.0;
+        } else if (isAlsoTypeMatch !== undefined) {
+            const defType3 = types[isAlsoTypeMatch.type1];
+            defAbilityCalc = typeChart[atkType.index][defType3.index];
+            thirdType = isAlsoTypeMatch.type1;
+        }
+    }
+
+    let atkAbilityCalc = 1.0;
+    let atkMoveCalc = 1.0;
+    const atkAbility = atk.ability;
+    if (atkAbility !== undefined) {
+        if (atkAbility.flags.includes("MoldBreaking")) {
+            defAbilityCalc = 1.0;
+        } else if (atkAbility.id == "BREAKTHROUGH") {
+            defType1Calc = defType1Calc == 0 ? 1.0 : defType1Calc;
+            defType2Calc = defType2Calc == 0 ? 1.0 : defType2Calc;
+            defAbilityCalc = defAbilityCalc == 0 && thirdType != null ? 1.0 : defAbilityCalc;
+        } else if (atkAbility.id == "TINTEDLENS") {
+            atkAbilityCalc = defType1Calc * defType2Calc * defAbilityCalc < 1 ? 2 : 1;
+        } else if (atkAbility.id == "EXPERTISE") {
+            atkAbilityCalc = 1.3;
+        }
+    }
+    const atkMove = atk.move;
+    if (atkMove !== undefined) {
+        const doubleDealtMatch = doubleDealtMoves.find((x) => x.move == atkMove.id);
+        if (
+            doubleDealtMatch !== undefined &&
+            (doubleDealtMatch.type1 == def.type1.id ||
+                doubleDealtMatch.type1 == def.type2?.id ||
+                doubleDealtMatch.type1 == thirdType)
+        ) {
+            atkMoveCalc = 0;
+        }
+    }
+
+    return defType1Calc * defType2Calc * defAbilityCalc * atkAbilityCalc * atkMoveCalc;
+}

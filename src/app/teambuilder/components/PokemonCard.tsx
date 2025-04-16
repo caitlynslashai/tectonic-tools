@@ -180,7 +180,7 @@ export default function PokemonCard({ data, update }: { data: CardData; update: 
                         <h3 className="font-semibold text-gray-800 dark:text-gray-100">Tribes</h3>
                         <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
                             {currentPokemon.tribes.map((tribe, index) => (
-                                <li key={index}>{tribe}</li>
+                                <li key={index}>{tribe.name}</li>
                             ))}
                         </ul>
                     </div>

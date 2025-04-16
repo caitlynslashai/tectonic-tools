@@ -1,9 +1,9 @@
-import { PokemonType } from "../data/basicData";
 import { MultiHitMove } from "../data/moves/MultiHitMove";
 import { StatusEffect } from "../data/statusEffects";
 import { typeChart } from "../data/typeChart";
 import { Move } from "../data/types/Move";
 import { Pokemon, Stats } from "../data/types/Pokemon";
+import { PokemonType } from "../data/types/PokemonType";
 
 export interface PokemonStats {
     level: number;
@@ -565,9 +565,9 @@ function pbCalcTypeBasedDamageMultipliers(
     // Type effectiveness
     // TODO: Handle moves that modify type
     // const typeMod = target.typeMod(type, target, this, checkingForAI);
-    let effectiveness = typeChart[type][target.type1];
+    let effectiveness = typeChart[type.index][target.type1.index];
     if (target.type2) {
-        effectiveness *= typeChart[type][target.type2];
+        effectiveness *= typeChart[type.index][target.type2.index];
     }
     multipliers.final_damage_multiplier *= effectiveness;
 
