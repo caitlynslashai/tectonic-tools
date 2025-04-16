@@ -2,6 +2,7 @@ import { encounters } from "@/app/data/encounters";
 import { items } from "@/app/data/items";
 import { moves } from "@/app/data/moves";
 import { pokemon } from "@/app/data/pokemon";
+import { getSignatureAbilities } from "@/app/data/signatures";
 import { types } from "@/app/data/types";
 import { EncounterArea } from "@/app/data/types/Encounter";
 import { Evolution, Pokemon } from "@/app/data/types/Pokemon";
@@ -295,7 +296,9 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                 <div key={a.id}>
                                     <h3
                                         className={`font-semibold ${
-                                            a.isSignature() ? "text-yellow-500" : "text-gray-800 dark:text-gray-100"
+                                            a.id in getSignatureAbilities()
+                                                ? "text-yellow-500"
+                                                : "text-gray-800 dark:text-gray-100"
                                         }`}
                                     >
                                         {a.name}
