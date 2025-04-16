@@ -1,10 +1,10 @@
-import { PokemonType } from "@/app/data/basicData";
+import { PokemonType } from "@/app/data/types/PokemonType";
 import { isNull } from "@/app/data/util";
 import { CardData } from "../page";
 
 export default function DefTableCell({ type, card }: { type: PokemonType; card: CardData }) {
     const pokemon = card.pokemon;
-    const matchup = pokemon.defMatchups(card.form)[type];
+    const matchup = pokemon.defMatchups(card.form)[type.id];
     let content = "";
     let bg = "";
     if (!isNull(pokemon)) {

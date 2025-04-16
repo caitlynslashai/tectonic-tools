@@ -70,7 +70,7 @@ export class Move {
             Object.values(types).map((t) => {
                 return [t.id, Math.max(typeChart[this.type.index][t.index])];
             })
-        ) as Record<keyof PokemonType, number>;
+        ) as Record<keyof typeof types, number>;
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

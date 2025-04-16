@@ -1,9 +1,9 @@
 import loadedForms from "public/data/forms.json";
 import { abilities } from "./abilities";
-import { PokemonType } from "./basicData";
+import { LoadedPokemon } from "./loading/pokemon";
 import { moves } from "./moves";
-import { LoadedPokemon } from "./pokemon";
 import { Pokemon } from "./types/Pokemon";
+import { PokemonType } from "./types/PokemonType";
 
 type LoadedForm = Partial<LoadedPokemon> & { form_id: number };
 export type PokemonForm = Partial<Pokemon> & { formId: number };
@@ -13,11 +13,13 @@ function loadForm(form: LoadedForm): PokemonForm {
     return {
         ...form,
         formId: form.form_id,
-        formName: form.form_name as string | undefined,
+        formName: form.formName as string | undefined,
         type1: form.type1 as PokemonType | undefined,
         type2: form.type2 as PokemonType | undefined,
         abilities: form.abilities?.map((a) => abilities[a]),
-        levelMoves: form.level_moves?.map((m) => [m[0] as number, moves[m[1]]]),
+        levelMoves: form.levelMoves
+            ? Object.entries(form.levelMoves).map(([moveId, level]) => [level, moves[moveId]])
+            : undefined,
         tribes: undefined, // should never be defined on a form, this makes my life easier
         evos: undefined, // should never be defined on a form, this makes my life easier
     };
