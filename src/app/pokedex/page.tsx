@@ -24,6 +24,8 @@ export interface PokemonTableProps {
 
 import { tribes } from "@/app/data/tribes";
 import { types } from "@/app/data/types";
+import { abilities } from "../data/abilities";
+import { Ability } from "../data/types/Ability";
 
 export type FilterOperator = "==" | "!=" | ">" | "<" | "includes";
 
@@ -70,6 +72,17 @@ const nameFilter: PokemonFilterType = {
     },
 };
 
+const abilityNameFilter: PokemonFilterType = {
+    label: "Ability Name",
+    operator: "includes",
+    value: "",
+    apply: (pokemon: Pokemon, value: string | number) => {
+        const searchValue = String(value).toLowerCase();
+        return pokemon.abilities.some((a) => a.name.toLowerCase().includes(searchValue));
+    },
+    inputMethod: "text",
+};
+
 const allMovesFilter: PokemonFilterType = {
     label: "Moves (All)",
     operator: "includes",
@@ -102,16 +115,7 @@ const AVAILABLE_FILTERS: PokemonFilterType[] = [
         inputMethod: "select",
         inputValues: Object.values(types).map((t) => t.name),
     },
-    {
-        label: "Ability Name",
-        operator: "includes",
-        value: "",
-        apply: (pokemon: Pokemon, value: string | number) => {
-            const searchValue = String(value).toLowerCase();
-            return pokemon.abilities.some((a) => a.name.toLowerCase().includes(searchValue));
-        },
-        inputMethod: "text",
-    },
+    abilityNameFilter,
     {
         label: "Ability Desc",
         operator: "includes",
@@ -201,6 +205,13 @@ const Home: NextPage = () => {
     const handleMoveClick = (move: Move) => {
         const newFilters = [...filters];
         newFilters.push({ ...allMovesFilter, value: move.name.toLowerCase() });
+        setFilters(newFilters);
+        setActiveTab("Pokemon");
+    };
+
+    const handleAbilityClick = (ability: Ability) => {
+        const newFilters = [...filters];
+        newFilters.push({ ...abilityNameFilter, value: ability.name.toLowerCase() });
         setFilters(newFilters);
         setActiveTab("Pokemon");
     };
@@ -365,6 +376,30 @@ const Home: NextPage = () => {
                                         <TableCell>{m.accuracy}</TableCell>
                                         <TableCell>{m.pp}</TableCell>
                                         <TableCell>{m.description}</TableCell>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </TabContent>
+                <TabContent tab="Abilities" activeTab={activeTab}>
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                            <thead className="bg-gray-50 dark:bg-gray-800">
+                                <tr>
+                                    <TableHeader>Name</TableHeader>
+                                    <TableHeader>Effect</TableHeader>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {Object.values(abilities).map((a) => (
+                                    <tr
+                                        key={a.id}
+                                        onClick={() => handleAbilityClick(a)}
+                                        className={`hover:bg-blue-50 dark:hover:bg-blue-900 cursor-pointer`}
+                                    >
+                                        <TableCell>{a.name}</TableCell>
+                                        <TableCell>{a.description}</TableCell>
                                     </tr>
                                 ))}
                             </tbody>
