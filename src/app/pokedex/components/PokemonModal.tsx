@@ -12,8 +12,8 @@ import { useEffect, useState } from "react";
 import TypeBadge from "../../../components/TypeBadge";
 import EncounterDisplay from "./EncounterDisplay";
 import MoveDisplay from "./MoveDisplay";
-import PokemonTab from "./PokemonTab";
 import StatRow from "./StatRow";
+import TabContent from "./TabContent";
 
 interface PokemonModalProps {
     pokemon: Pokemon | null;
@@ -31,13 +31,13 @@ const tabs = [
     "Evolutions",
     "Encounters",
 ] as const;
-export type Tab = (typeof tabs)[number];
+export type PokemonTabName = (typeof tabs)[number];
 
 const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) => {
     const [isVisible, setIsVisible] = useState(false);
     const [isRendered, setIsRendered] = useState(false);
     const [currentPokemon, setCurrentPokemon] = useState(mon);
-    const [activeTab, setActiveTab] = useState<Tab>("Info"); // Track active tab
+    const [activeTab, setActiveTab] = useState<PokemonTabName>("Info"); // Track active tab
     const [currentForm, setCurrentForm] = useState<number>(0);
 
     useEffect(() => {
@@ -60,7 +60,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
         }, 300); // Match duration-300 for fade-out
     };
 
-    const handleTabChange = (tab: Tab) => {
+    const handleTabChange = (tab: PokemonTabName) => {
         setActiveTab(tab);
     };
 
@@ -274,7 +274,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
 
                     {/* Tab Content */}
                     <div className="mt-6">
-                        <PokemonTab tab="Info" activeTab={activeTab}>
+                        <TabContent tab="Info" activeTab={activeTab}>
                             <div>
                                 <h3 className="font-semibold text-gray-800 dark:text-gray-100">
                                     {currentPokemon.kind} Pokémon
@@ -290,8 +290,8 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                     {currentPokemon.getPokedex(currentForm)}
                                 </p>
                             </div>
-                        </PokemonTab>
-                        <PokemonTab tab="Abilities" activeTab={activeTab}>
+                        </TabContent>
+                        <TabContent tab="Abilities" activeTab={activeTab}>
                             {currentPokemon.getAbilities(currentForm).map((a) => (
                                 <div key={a.id}>
                                     <h3
@@ -306,8 +306,8 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                     <p className="text-gray-600 dark:text-gray-300">{a.description}</p>
                                 </div>
                             ))}
-                        </PokemonTab>
-                        <PokemonTab tab="Stats" activeTab={activeTab}>
+                        </TabContent>
+                        <TabContent tab="Stats" activeTab={activeTab}>
                             <div>
                                 <h3 className="font-semibold text-gray-800 dark:text-gray-100">Stats</h3>
                                 <table className="table-auto w-full mt-4 border-collapse border border-gray-300 dark:border-gray-700">
@@ -332,8 +332,8 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                     </tbody>
                                 </table>
                             </div>
-                        </PokemonTab>
-                        <PokemonTab tab="Def. Matchups" activeTab={activeTab}>
+                        </TabContent>
+                        <TabContent tab="Def. Matchups" activeTab={activeTab}>
                             <div>
                                 <h3 className="font-semibold text-gray-800 dark:text-gray-100">Defensive Matchups</h3>
                                 <div className="grid grid-cols-3 gap-4 mt-4">
@@ -383,8 +383,8 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                     )}
                                 </div>
                             </div>
-                        </PokemonTab>
-                        <PokemonTab tab="Atk. Matchups" activeTab={activeTab}>
+                        </TabContent>
+                        <TabContent tab="Atk. Matchups" activeTab={activeTab}>
                             <div>
                                 <h3 className="font-semibold text-gray-800 dark:text-gray-100">Offensive Matchups</h3>
                                 <div className="grid grid-cols-3 gap-4 mt-4">
@@ -434,14 +434,14 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                     )}
                                 </div>
                             </div>
-                        </PokemonTab>
-                        <PokemonTab tab="Level Moves" activeTab={activeTab}>
+                        </TabContent>
+                        <TabContent tab="Level Moves" activeTab={activeTab}>
                             <MoveDisplay pokemon={currentPokemon} form={currentForm} moveKey="level" />
-                        </PokemonTab>
-                        <PokemonTab tab="Tutor Moves" activeTab={activeTab}>
+                        </TabContent>
+                        <TabContent tab="Tutor Moves" activeTab={activeTab}>
                             <MoveDisplay pokemon={currentPokemon} form={currentForm} moveKey="tutor" />
-                        </PokemonTab>
-                        <PokemonTab tab="Evolutions" activeTab={activeTab}>
+                        </TabContent>
+                        <TabContent tab="Evolutions" activeTab={activeTab}>
                             <div>
                                 <div className="mt-4">
                                     {currentPokemon.getDeepEvos().length > 0 ? (
@@ -484,8 +484,8 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                     )}
                                 </div>
                             </div>
-                        </PokemonTab>
-                        <PokemonTab tab={"Encounters"} activeTab={activeTab}>
+                        </TabContent>
+                        <TabContent tab={"Encounters"} activeTab={activeTab}>
                             <EncounterDisplay encounters={currentEncounters} pokemon={currentPokemon} />
                             {Object.entries(prevoEncounters).map(([prevo, encs]) => (
                                 <div key={prevo}>
@@ -495,7 +495,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                     <EncounterDisplay encounters={encs} pokemon={pokemon[prevo]} />
                                 </div>
                             ))}
-                        </PokemonTab>
+                        </TabContent>
                     </div>
                 </div>
             </div>

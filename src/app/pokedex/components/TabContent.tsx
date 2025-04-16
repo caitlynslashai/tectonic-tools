@@ -1,13 +1,11 @@
-import { Tab } from "./PokemonModal";
-
-export default function PokemonTab({
+export default function TabContent({
     children,
     tab,
     activeTab,
 }: {
     children: React.ReactNode;
-    tab: Tab;
-    activeTab: Tab;
+    tab: string;
+    activeTab: string;
 }) {
     if (activeTab === tab) {
         return <div key={tab}>{children}</div>;

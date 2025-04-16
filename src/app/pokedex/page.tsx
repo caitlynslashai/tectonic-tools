@@ -10,15 +10,19 @@ import { Pokemon } from "../data/types/Pokemon";
 import PokemonFilter, { PokemonFilterType } from "./components/PokemonFilter";
 import PokemonModal from "./components/PokemonModal";
 import PokemonTable from "./components/PokemonTable";
+import TabContent from "./components/TabContent";
 
 export interface PokemonTableProps {
     mons: Pokemon[];
     onRowClick: (pokemon: Pokemon) => void;
 }
 
+const tabNames = ["Pokemon", "Moves", "Abilities", "Items", "Tribes", "TypeChart"];
+
 const Home: NextPage = () => {
     const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
     const [filters, setFilters] = useState<PokemonFilterType[]>([]);
+    const [activeTab, setActiveTab] = useState<string>("Pokemon");
 
     const mons = Object.values(pokemon);
     const filteredPokemon = useMemo(() => {
@@ -68,13 +72,28 @@ const Home: NextPage = () => {
                     </p>
                 </div>
 
-                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-4">
-                    <PokemonFilter onChangeFilters={setFilters} />
+                <div className="text-center p-1.5 w-max mx-auto sticky top-0 bg-gray-900">
+                    {tabNames.map((n) => (
+                        <button
+                            key={n}
+                            className={`p-2.5 text-2xl text-center no-underline inline-block rounded-lg mx-2 hover:bg-[#FFD166] hover:text-black hover:cursor-pointer ${
+                                n === activeTab ? "bg-[#FFD166] text-black" : "bg-gray-500"
+                            }`}
+                            onClick={() => setActiveTab(n)}
+                        >
+                            {n}
+                        </button>
+                    ))}
                 </div>
+                <TabContent tab="Pokemon" activeTab={activeTab}>
+                    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-4">
+                        <PokemonFilter onChangeFilters={setFilters} />
+                    </div>
 
-                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-                    <PokemonTable mons={filteredPokemon} onRowClick={handleRowClick} />
-                </div>
+                    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                        <PokemonTable mons={filteredPokemon} onRowClick={handleRowClick} />
+                    </div>
+                </TabContent>
             </main>
 
             {selectedPokemon && <PokemonModal pokemon={selectedPokemon} onClose={handleCloseModal} />}
