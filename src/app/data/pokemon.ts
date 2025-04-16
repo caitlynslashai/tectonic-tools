@@ -28,10 +28,10 @@ for (const mon in forms) {
 
 export const nullPokemon: Pokemon = new Pokemon(
     {
-        key: "id",
+        key: "",
         name: "",
         formName: "",
-        type1: "Normal",
+        type1: "NORMAL",
         type2: "",
         abilities: [],
         levelMoves: {},
