@@ -1,4 +1,6 @@
+import { calcTypeMatchup } from "@/app/data/typeChart";
 import { PokemonType } from "@/app/data/types/PokemonType";
+import { isNull } from "@/app/data/util";
 import { CardData } from "../page";
 
 function compare(num: number, total: "nve" | "se") {
@@ -18,8 +20,22 @@ export default function AtkTotalCell({
     total: "nve" | "se";
 }): React.ReactNode {
     const num = cards.filter((c) => {
-        const realMoves = c.moves.filter((m) => m.isAttackingMove());
-        return realMoves.length > 0 && compare(Math.max(...realMoves.map((m) => m.matchups()[type.id])), total);
+        const realMoves = c.moves.filter((m) => !isNull(m));
+        const mult = !isNull(c.pokemon)
+            ? Math.max(
+                  ...realMoves.map((m) =>
+                      calcTypeMatchup(
+                          {
+                              type: m.type,
+                              move: m,
+                              ability: c.ability,
+                          },
+                          { type1: type }
+                      )
+                  )
+              )
+            : 1;
+        return compare(mult, total);
     }).length;
     // Updated color scheme with better readability and subtle transitions
     const bgs = [

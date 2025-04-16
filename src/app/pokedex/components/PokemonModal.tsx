@@ -3,17 +3,20 @@ import { items } from "@/app/data/items";
 import { moves } from "@/app/data/moves";
 import { pokemon } from "@/app/data/pokemon";
 import { getSignatureAbilities } from "@/app/data/signatures";
+import { calcTypeMatchup } from "@/app/data/typeChart";
 import { types } from "@/app/data/types";
 import { EncounterArea } from "@/app/data/types/Encounter";
 import { Evolution, Pokemon } from "@/app/data/types/Pokemon";
 import { negativeMod } from "@/app/data/util";
+import TypeBadgeHeader from "@/components/TypeBadgeSingle";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import TypeBadge from "../../../components/TypeBadge";
 import EncounterDisplay from "./EncounterDisplay";
 import MoveDisplay from "./MoveDisplay";
-import PokemonTab from "./PokemonTab";
 import StatRow from "./StatRow";
+import TabContent from "./TabContent";
+import TypeChartCell from "./TypeChartCell";
 
 interface PokemonModalProps {
     pokemon: Pokemon | null;
@@ -31,13 +34,13 @@ const tabs = [
     "Evolutions",
     "Encounters",
 ] as const;
-export type Tab = (typeof tabs)[number];
+export type PokemonTabName = (typeof tabs)[number];
 
 const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) => {
     const [isVisible, setIsVisible] = useState(false);
     const [isRendered, setIsRendered] = useState(false);
     const [currentPokemon, setCurrentPokemon] = useState(mon);
-    const [activeTab, setActiveTab] = useState<Tab>("Info"); // Track active tab
+    const [activeTab, setActiveTab] = useState<PokemonTabName>("Info"); // Track active tab
     const [currentForm, setCurrentForm] = useState<number>(0);
 
     useEffect(() => {
@@ -60,23 +63,11 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
         }, 300); // Match duration-300 for fade-out
     };
 
-    const handleTabChange = (tab: Tab) => {
+    const handleTabChange = (tab: PokemonTabName) => {
         setActiveTab(tab);
     };
 
     if (!isRendered || !currentPokemon) return null;
-
-    function prioritiseSort<T>(prio: T) {
-        return function (a: T, b: T): number {
-            if (a === prio && b !== prio) {
-                return -1;
-            }
-            if (a !== prio && b === prio) {
-                return 1;
-            }
-            return 0;
-        };
-    }
 
     function describeEvoMethod(evo: Evolution) {
         switch (evo.method) {
@@ -163,9 +154,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
     }
 
     const stats = currentPokemon.getStats(currentForm);
-
-    const defMatchups = currentPokemon.defMatchups(currentForm);
-    const atkMatchups = currentPokemon.atkMatchups(currentForm);
+    const realTypes = Object.values(types).filter((t) => t.isRealType);
 
     return (
         <div
@@ -274,7 +263,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
 
                     {/* Tab Content */}
                     <div className="mt-6">
-                        <PokemonTab tab="Info" activeTab={activeTab}>
+                        <TabContent tab="Info" activeTab={activeTab}>
                             <div>
                                 <h3 className="font-semibold text-gray-800 dark:text-gray-100">
                                     {currentPokemon.kind} Pokémon
@@ -290,8 +279,8 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                     {currentPokemon.getPokedex(currentForm)}
                                 </p>
                             </div>
-                        </PokemonTab>
-                        <PokemonTab tab="Abilities" activeTab={activeTab}>
+                        </TabContent>
+                        <TabContent tab="Abilities" activeTab={activeTab}>
                             {currentPokemon.getAbilities(currentForm).map((a) => (
                                 <div key={a.id}>
                                     <h3
@@ -306,8 +295,8 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                     <p className="text-gray-600 dark:text-gray-300">{a.description}</p>
                                 </div>
                             ))}
-                        </PokemonTab>
-                        <PokemonTab tab="Stats" activeTab={activeTab}>
+                        </TabContent>
+                        <TabContent tab="Stats" activeTab={activeTab}>
                             <div>
                                 <h3 className="font-semibold text-gray-800 dark:text-gray-100">Stats</h3>
                                 <table className="table-auto w-full mt-4 border-collapse border border-gray-300 dark:border-gray-700">
@@ -332,116 +321,96 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                     </tbody>
                                 </table>
                             </div>
-                        </PokemonTab>
-                        <PokemonTab tab="Def. Matchups" activeTab={activeTab}>
+                        </TabContent>
+                        <TabContent tab="Def. Matchups" activeTab={activeTab}>
                             <div>
                                 <h3 className="font-semibold text-gray-800 dark:text-gray-100">Defensive Matchups</h3>
-                                <div className="grid grid-cols-3 gap-4 mt-4">
-                                    {Object.entries(defMatchups).some(([, value]) => value > 1) && (
-                                        <div>
-                                            <h4 className="text-red-600 dark:text-red-400 font-semibold">Weak</h4>
-                                            <ul className="list-inside text-gray-600 dark:text-gray-300">
-                                                {Object.entries(defMatchups)
-                                                    .filter(([, value]) => value > 1)
-                                                    .sort(([, a], [, b]) => prioritiseSort(4)(a, b)) // Sort 4 to the top
-                                                    .map(([type, value]) => (
-                                                        <li key={type}>
-                                                            <TypeBadge type1={types[type]} hyper={value === 4} />
-                                                        </li>
-                                                    ))}
-                                            </ul>
-                                        </div>
-                                    )}
-                                    {Object.entries(defMatchups).some(([, value]) => value > 0 && value < 1) && (
-                                        <div>
-                                            <h4 className="text-green-600 dark:text-green-400 font-semibold">Resist</h4>
-                                            <ul className="list-inside text-gray-600 dark:text-gray-300">
-                                                {Object.entries(defMatchups)
-                                                    .filter(([, value]) => value > 0 && value < 1)
-                                                    .sort(([, a], [, b]) => prioritiseSort(0.25)(a, b)) // Sort 4 to the top
-                                                    .map(([type, value]) => (
-                                                        <li key={type}>
-                                                            <TypeBadge type1={types[type]} hyper={value === 0.25} />
-                                                        </li>
-                                                    ))}
-                                            </ul>
-                                        </div>
-                                    )}
-                                    {Object.entries(defMatchups).some(([, value]) => value === 0) && (
-                                        <div>
-                                            <h4 className="text-gray-600 dark:text-gray-400 font-semibold">Immune</h4>
-                                            <ul className="list-inside text-gray-600 dark:text-gray-300">
-                                                {Object.entries(defMatchups)
-                                                    .filter(([, value]) => value === 0)
-                                                    .map(([type]) => (
-                                                        <li key={type}>
-                                                            <TypeBadge type1={types[type]} />
-                                                        </li>
-                                                    ))}
-                                            </ul>
-                                        </div>
-                                    )}
+                                <div className="overflow-x-auto mt-4">
+                                    <table className="w-full text-center align-middle border border-gray-300 dark:border-gray-700 rounded-lg shadow-md bg-white dark:bg-gray-800">
+                                        <thead className="bg-gray-100 dark:bg-gray-700">
+                                            <tr>
+                                                <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-left text-gray-800 dark:text-gray-100">
+                                                    Ability
+                                                </th>
+                                                {realTypes.map((t) => (
+                                                    <TypeBadgeHeader key={t.id} type={t} />
+                                                ))}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {currentPokemon.abilities.map((a) => (
+                                                <tr key={a.id}>
+                                                    <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-gray-800 dark:text-gray-100">
+                                                        {a.name}
+                                                    </td>
+                                                    {realTypes.map((t) => {
+                                                        const mult = calcTypeMatchup(
+                                                            { type: t },
+                                                            {
+                                                                type1: currentPokemon.getType1(currentForm),
+                                                                type2: currentPokemon.getType2(currentForm),
+                                                                ability: a,
+                                                            }
+                                                        );
+                                                        return <TypeChartCell key={t.id} mult={mult} />;
+                                                    })}
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                        </PokemonTab>
-                        <PokemonTab tab="Atk. Matchups" activeTab={activeTab}>
+                        </TabContent>
+                        <TabContent tab="Atk. Matchups" activeTab={activeTab}>
                             <div>
-                                <h3 className="font-semibold text-gray-800 dark:text-gray-100">Offensive Matchups</h3>
+                                <h3 className="font-semibold text-gray-800 dark:text-gray-100">
+                                    STAB Offensive Matchups
+                                </h3>
                                 <div className="grid grid-cols-3 gap-4 mt-4">
-                                    {Object.entries(atkMatchups).some(([, value]) => value > 1) && (
-                                        <div>
-                                            <h4 className="text-green-600 dark:text-green-400 font-semibold">Super</h4>
-                                            <ul className="list-inside text-gray-600 dark:text-gray-300">
-                                                {Object.entries(atkMatchups)
-                                                    .filter(([, value]) => value > 1)
-                                                    .map(([type]) => (
-                                                        <li key={type}>
-                                                            <TypeBadge type1={types[type]} />
-                                                        </li>
-                                                    ))}
-                                            </ul>
-                                        </div>
-                                    )}
-                                    {Object.entries(atkMatchups).some(([, value]) => value > 0 && value < 1) && (
-                                        <div>
-                                            <h4 className="text-red-600 dark:text-red-400 font-semibold">Not Very</h4>
-                                            <ul className="list-inside text-gray-600 dark:text-gray-300">
-                                                {Object.entries(atkMatchups)
-                                                    .filter(([, value]) => value > 0 && value < 1)
-                                                    .map(([type]) => (
-                                                        <li key={type}>
-                                                            <TypeBadge type1={types[type]} />
-                                                        </li>
-                                                    ))}
-                                            </ul>
-                                        </div>
-                                    )}
-                                    {Object.entries(atkMatchups).some(([, value]) => value === 0) && (
-                                        <div>
-                                            <h4 className="text-gray-600 dark:text-gray-400 font-semibold">
-                                                No Effect
-                                            </h4>
-                                            <ul className="list-inside text-gray-600 dark:text-gray-300">
-                                                {Object.entries(atkMatchups)
-                                                    .filter(([, value]) => value === 0)
-                                                    .map(([type]) => (
-                                                        <li key={type}>
-                                                            <TypeBadge type1={types[type]} />
-                                                        </li>
-                                                    ))}
-                                            </ul>
-                                        </div>
-                                    )}
+                                    <table className="w-full text-center align-middle border border-gray-300 dark:border-gray-700 rounded-lg shadow-md bg-white dark:bg-gray-800">
+                                        <thead className="bg-gray-100 dark:bg-gray-700">
+                                            <tr>
+                                                {realTypes.map((t) => (
+                                                    <TypeBadgeHeader key={t.id} type={t} />
+                                                ))}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {realTypes.map((t) => {
+                                                    const mult = Math.max(
+                                                        calcTypeMatchup(
+                                                            { type: currentPokemon.getType1(currentForm) },
+                                                            {
+                                                                type1: t,
+                                                            }
+                                                        ),
+                                                        calcTypeMatchup(
+                                                            {
+                                                                type:
+                                                                    currentPokemon.getType2(currentForm) ||
+                                                                    currentPokemon.getType1(currentForm),
+                                                            },
+                                                            {
+                                                                type1: t,
+                                                            }
+                                                        )
+                                                    );
+                                                    return <TypeChartCell key={t.id} mult={mult} />;
+                                                })}
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                        </PokemonTab>
-                        <PokemonTab tab="Level Moves" activeTab={activeTab}>
+                        </TabContent>
+                        <TabContent tab="Level Moves" activeTab={activeTab}>
                             <MoveDisplay pokemon={currentPokemon} form={currentForm} moveKey="level" />
-                        </PokemonTab>
-                        <PokemonTab tab="Tutor Moves" activeTab={activeTab}>
+                        </TabContent>
+                        <TabContent tab="Tutor Moves" activeTab={activeTab}>
                             <MoveDisplay pokemon={currentPokemon} form={currentForm} moveKey="tutor" />
-                        </PokemonTab>
-                        <PokemonTab tab="Evolutions" activeTab={activeTab}>
+                        </TabContent>
+                        <TabContent tab="Evolutions" activeTab={activeTab}>
                             <div>
                                 <div className="mt-4">
                                     {currentPokemon.getDeepEvos().length > 0 ? (
@@ -484,8 +453,8 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                     )}
                                 </div>
                             </div>
-                        </PokemonTab>
-                        <PokemonTab tab={"Encounters"} activeTab={activeTab}>
+                        </TabContent>
+                        <TabContent tab={"Encounters"} activeTab={activeTab}>
                             <EncounterDisplay encounters={currentEncounters} pokemon={currentPokemon} />
                             {Object.entries(prevoEncounters).map(([prevo, encs]) => (
                                 <div key={prevo}>
@@ -495,7 +464,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                     <EncounterDisplay encounters={encs} pokemon={pokemon[prevo]} />
                                 </div>
                             ))}
-                        </PokemonTab>
+                        </TabContent>
                     </div>
                 </div>
             </div>

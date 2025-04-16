@@ -148,7 +148,7 @@ function getTypeGradientToColourClass(type: PokemonType): string {
     }
 }
 
-function getTypeGradientSolidColourClass(type: PokemonType): string {
+export function getTypeGradientSolidColourClass(type: PokemonType): string {
     switch (type.name) {
         case "Fire":
             return "bg-fire-bg";

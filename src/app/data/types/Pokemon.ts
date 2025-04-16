@@ -1,11 +1,12 @@
 import { abilities } from "../abilities";
+import { items } from "../items";
 import { LoadedPokemon } from "../loading/pokemon";
 import { moves } from "../moves";
 import { pokemon } from "../pokemon";
 import { tribes } from "../tribes";
-import { typeChart } from "../typeChart";
 import { types } from "../types";
 import { Ability } from "./Ability";
+import { Item } from "./Item";
 import { Move } from "./Move";
 import { PokemonType } from "./PokemonType";
 import { Tribe } from "./Tribe";
@@ -85,6 +86,7 @@ export class Pokemon {
     pokedex: string;
     evos: Evolution[];
     forms: PokemonForm[] = [];
+    items: Item[];
     constructor(mon: LoadedPokemon, dexNo: number) {
         this.id = mon.key;
         this.dex = dexNo;
@@ -124,6 +126,7 @@ export class Pokemon {
         this.evos = mon.evolutions.map((e) => {
             return { target: e.pokemon, method: e.method, param: e.condition, prevo: false };
         });
+        this.items = mon.wildItems.map((i) => items[i]);
     }
 
     public addForms(forms: PokemonForm[]) {
@@ -175,33 +178,5 @@ export class Pokemon {
 
     public getImage(currentForm: number = 0) {
         return "/Pokemon/" + this.id + (currentForm > 0 ? "_" + this.forms[currentForm].formId : "") + ".png";
-    }
-
-    public defMatchups(currentForm: number = 0) {
-        return Object.fromEntries(
-            Object.values(types).map((t) => {
-                const type2 = this.getType2(currentForm);
-                return [
-                    t.id,
-                    typeChart[t.index][this.getType1(currentForm).index] *
-                        (type2 ? typeChart[t.index][type2.index] : 1),
-                ];
-            })
-        );
-    }
-
-    public atkMatchups(currentForm: number = 0) {
-        return Object.fromEntries(
-            Object.values(types).map((t) => {
-                const type2 = this.getType2(currentForm);
-                return [
-                    t.id,
-                    Math.max(
-                        typeChart[this.getType1(currentForm).index][t.index],
-                        type2 ? typeChart[type2.index][t.index] : 0
-                    ),
-                ];
-            })
-        );
     }
 }
