@@ -1,12 +1,14 @@
 // data loading code adapted from https://github.com/Cincidial/techo
 
-import { LoadedAbility, parseAbilities } from "./abilities";
-import { filterToHeldItems, LoadedItem, parseItems } from "./items";
-import { LoadedMove, parseMoves } from "./moves";
-import { addAllTribesAndEvolutions, LoadedPokemon, parsePokemon } from "./pokemon";
-import { LoadedTribe, parseTribes } from "./tribes";
+import { writeFile } from "fs/promises";
+import path from "path";
+import { parseAbilities } from "./abilities";
+import { parseItems } from "./items";
+import { parseMoves } from "./moves";
+import { addAllTribesAndEvolutions, parsePokemon } from "./pokemon";
+import { parseTribes } from "./tribes";
 import { buildTypeChart, TypeChart } from "./typeChart";
-import { LoadedType, parsePokemonTypes } from "./types";
+import { parsePokemonTypes } from "./types";
 
 async function fileFetch(path: string) {
     const baseUrl = "https://raw.githubusercontent.com/xeuorux/Pokemon-Tectonic/refs/heads/main/";
@@ -20,6 +22,15 @@ async function fileFetch(path: string) {
     return await response.text();
 }
 
+async function dataWrite<T>(filePath: string, contents: Record<string, T> | TypeChart | string) {
+    const basePath = path.join(__dirname, "../../../../public/data/");
+    const fullPath = basePath + filePath;
+
+    const output = typeof contents === "string" ? contents : JSON.stringify(contents);
+
+    await writeFile(fullPath, output);
+}
+
 type ParserFunction<T extends LoadedData> = (pairs: KVPair[]) => T;
 
 export interface LoadedData {
@@ -31,8 +42,8 @@ export interface KVPair {
     value: string;
 }
 
-function standardFilesParser<T extends LoadedData>(files: string[], dataParser: ParserFunction<T>): Map<string, T> {
-    const map = new Map();
+function standardFilesParser<T extends LoadedData>(files: string[], dataParser: ParserFunction<T>): Record<string, T> {
+    const map: Record<string, T> = {};
 
     files.forEach((file) => {
         const pairs: KVPair[] = [];
@@ -41,7 +52,7 @@ function standardFilesParser<T extends LoadedData>(files: string[], dataParser: 
             if (line.startsWith("#-")) {
                 if (pairs.length !== 0) {
                     const value = dataParser(pairs);
-                    map.set(value.key, value);
+                    map[value.key] = value;
                 }
 
                 pairs.length = 0;
@@ -61,7 +72,7 @@ function standardFilesParser<T extends LoadedData>(files: string[], dataParser: 
 
         if (pairs.length !== 0) {
             const value = dataParser(pairs);
-            map.set(value.key, value);
+            map[value.key] = value;
 
             pairs.length = 0;
         }
@@ -70,25 +81,7 @@ function standardFilesParser<T extends LoadedData>(files: string[], dataParser: 
     return map;
 }
 
-interface AllData {
-    types: Map<string, LoadedType>;
-    tribes: Map<string, LoadedTribe>;
-    abilities: Map<string, LoadedAbility>;
-    moves: Map<string, LoadedMove>;
-    items: Map<string, LoadedItem>;
-    heldItems: Map<string, LoadedItem>;
-    pokemon: Map<string, LoadedPokemon>;
-    typeChart: TypeChart;
-    version: string;
-}
-
-// memoise
-let allData: AllData | undefined = undefined;
-
-export async function loadData(): Promise<AllData> {
-    if (allData !== undefined) {
-        return allData;
-    }
+async function loadData(): Promise<void> {
     const tectonicFiles: string[] = [];
     await Promise.all([
         fileFetch("PBS/types.txt"),
@@ -109,12 +102,21 @@ export async function loadData(): Promise<AllData> {
     const abilities = standardFilesParser([tectonicFiles[2], tectonicFiles[3]], parseAbilities);
     const moves = standardFilesParser([tectonicFiles[4], tectonicFiles[5]], parseMoves);
     const items = standardFilesParser([tectonicFiles[6]], parseItems);
-    const heldItems = filterToHeldItems(items);
+    // const heldItems = filterToHeldItems(items);
     const pokemon = addAllTribesAndEvolutions(standardFilesParser([tectonicFiles[7]], parsePokemon));
     const typeChart = buildTypeChart(types);
     const version = tectonicFiles[8];
 
-    const newData: AllData = { types, tribes, abilities, moves, items, heldItems, pokemon, typeChart, version };
-    allData = newData;
-    return newData;
+    await Promise.all([
+        dataWrite("types.json", types),
+        dataWrite("tribes.json", tribes),
+        dataWrite("abilities.json", abilities),
+        dataWrite("moves.json", moves),
+        dataWrite("items.json", items),
+        dataWrite("pokemon.json", pokemon),
+        dataWrite("typechart.json", typeChart),
+        dataWrite("version.txt", version),
+    ]);
 }
+
+loadData().catch((e) => console.error(e));

@@ -6,8 +6,8 @@ export interface LoadedTribe extends LoadedData {
     description: string;
 }
 
-export function parseTribes(file: string): Map<string, LoadedTribe> {
-    const map = new Map();
+export function parseTribes(file: string): Record<string, LoadedTribe> {
+    const map: Record<string, LoadedTribe> = {};
     file.split(/\r?\n/)
         .filter((line) => line.length > 0)
         .forEach((line) => {
@@ -24,7 +24,7 @@ export function parseTribes(file: string): Map<string, LoadedTribe> {
             obj.name = obj.key[0] + obj.key.substring(1).toLowerCase();
             obj.description = split[2].replaceAll('"', "");
 
-            map.set(obj.key, obj);
+            map[obj.key] = obj;
         });
 
     return map;

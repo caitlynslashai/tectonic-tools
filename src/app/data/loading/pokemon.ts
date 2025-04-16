@@ -129,37 +129,37 @@ export function parsePokemon(pairs: KVPair[]): LoadedPokemon {
     return obj;
 }
 
-export function addAllTribesAndEvolutions(pokemon: Map<string, LoadedPokemon>): Map<string, LoadedPokemon> {
-    pokemon.forEach((mon) => {
-        if (mon.firstEvolution.length == 0) {
-            recursivelyAddFirstEvolution(pokemon, mon, mon.key);
+export function addAllTribesAndEvolutions(pokemon: Record<string, LoadedPokemon>): Record<string, LoadedPokemon> {
+    for (const id in pokemon) {
+        if (pokemon[id].firstEvolution.length == 0) {
+            recursivelyAddFirstEvolution(pokemon, pokemon[id], pokemon[id].key);
         }
-    });
+    }
 
-    pokemon.forEach((mon) => {
-        if (mon.tribes.length == 0) {
-            const evoMon = pokemon.get(mon.firstEvolution);
+    for (const id in pokemon) {
+        if (pokemon[id].tribes.length == 0) {
+            const evoMon = pokemon[pokemon[id].firstEvolution];
             if (evoMon) {
-                const evoPath = recursivelyFindEvoPath(pokemon, evoMon, mon);
+                const evoPath = recursivelyFindEvoPath(pokemon, evoMon, pokemon[id]);
                 const mostRecentEvoWithTribes = evoPath.reverse().find((evo) => evo.tribes.length > 0);
-                mon.tribes = mostRecentEvoWithTribes == null ? [] : mostRecentEvoWithTribes.tribes;
+                pokemon[id].tribes = mostRecentEvoWithTribes == null ? [] : mostRecentEvoWithTribes.tribes;
             }
         }
-    });
+    }
 
     return pokemon;
 }
 
-function recursivelyAddFirstEvolution(pokemon: Map<string, LoadedPokemon>, mon: LoadedPokemon, first: string) {
+function recursivelyAddFirstEvolution(pokemon: Record<string, LoadedPokemon>, mon: LoadedPokemon, first: string) {
     mon.firstEvolution = first;
     mon.evolutions.forEach((evo) => {
-        const evoMon = pokemon.get(evo.pokemon);
+        const evoMon = pokemon[evo.pokemon];
         if (evoMon) recursivelyAddFirstEvolution(pokemon, evoMon, first);
     });
 }
 
 function recursivelyFindEvoPath(
-    pokemon: Map<string, LoadedPokemon>,
+    pokemon: Record<string, LoadedPokemon>,
     cur: LoadedPokemon,
     find: LoadedPokemon
 ): LoadedPokemon[] {
@@ -168,7 +168,7 @@ function recursivelyFindEvoPath(
     }
 
     for (const evo of cur.evolutions) {
-        const evoMon = pokemon.get(evo.pokemon);
+        const evoMon = pokemon[evo.pokemon];
         if (evoMon) {
             const result = recursivelyFindEvoPath(pokemon, evoMon, find);
             if (result.length > 0) {
