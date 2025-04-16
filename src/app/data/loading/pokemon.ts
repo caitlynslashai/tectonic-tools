@@ -9,6 +9,7 @@ interface LoadedEvolution {
 export interface LoadedPokemon extends LoadedData {
     name: string;
     dexNum: number;
+    formName: string;
     type1: string;
     type2: string;
     height: number;
@@ -21,11 +22,13 @@ export interface LoadedPokemon extends LoadedData {
     spDefense: number;
     bst: number;
     abilities: string[];
-    levelMoves: Map<string, number>;
+    levelMoves: Record<string, number>;
     lineMoves: string[];
     tutorMoves: string[];
     tribes: string[];
     evolutions: LoadedEvolution[];
+    kind: string;
+    pokedex: string;
     wildItems: string[];
     firstEvolution: string;
 }
@@ -35,6 +38,7 @@ export function parsePokemon(pairs: KVPair[]): LoadedPokemon {
         key: "",
         name: "",
         dexNum: 0,
+        formName: "",
         type1: "",
         type2: "",
         height: 0,
@@ -47,12 +51,14 @@ export function parsePokemon(pairs: KVPair[]): LoadedPokemon {
         spDefense: 0,
         bst: 0,
         abilities: [],
-        levelMoves: new Map(), // Key of move name and value of level
+        levelMoves: {}, // Key of move name and value of level
         lineMoves: [], // Note that only the first evo has this
         tutorMoves: [], // Not every mon has these
         tribes: [],
         evolutions: [], // Note that this is an object of {pokemon, method, condition}
         wildItems: [],
+        kind: "",
+        pokedex: "",
         firstEvolution: "",
     };
     pairs.forEach((pair) => {
@@ -62,6 +68,9 @@ export function parsePokemon(pairs: KVPair[]): LoadedPokemon {
                 break;
             case "Name":
                 obj.name = pair.value;
+                break;
+            case "FormName":
+                obj.formName = pair.value;
                 break;
             case "InternalName":
                 obj.key = pair.value;
@@ -94,7 +103,7 @@ export function parsePokemon(pairs: KVPair[]): LoadedPokemon {
             case "Moves":
                 const moveSplit = pair.value.split(",");
                 for (let i = 0; i < moveSplit.length; i += 2) {
-                    obj.levelMoves.set(moveSplit[i + 1], parseInt(moveSplit[i]));
+                    obj.levelMoves[moveSplit[i + 1]] = parseInt(moveSplit[i]);
                 }
                 break;
             case "LineMoves":
@@ -114,6 +123,12 @@ export function parsePokemon(pairs: KVPair[]): LoadedPokemon {
                 break;
             case "WildItemRare":
                 obj.wildItems.push(pair.value);
+                break;
+            case "Kind":
+                obj.kind = pair.value;
+                break;
+            case "Pokedex":
+                obj.pokedex = pair.value;
                 break;
             case "Evolutions":
                 const evoSplit = pair.value.split(",");

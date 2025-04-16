@@ -1,8 +1,9 @@
 import { abilities } from "../abilities";
 import { PokemonTribe, PokemonType, pokemonTypes } from "../basicData";
 import { PokemonForm } from "../forms";
+import { LoadedPokemon } from "../loading/pokemon";
 import { moves } from "../moves";
-import { LoadedPokemon, pokemon } from "../pokemon";
+import { pokemon } from "../pokemon";
 import { typeChart } from "../typeChart";
 import { Ability } from "./Ability";
 import { Move } from "./Move";
@@ -65,26 +66,33 @@ export class Pokemon {
     evos: Evolution[];
     forms: PokemonForm[] = [];
     constructor(mon: LoadedPokemon, dexNo: number) {
-        this.id = mon.id;
+        this.id = mon.key;
         this.dex = dexNo;
         this.name = mon.name;
-        if (mon.form_name !== null) {
-            this.formName = mon.form_name;
+        if (mon.formName !== null) {
+            this.formName = mon.formName;
         }
         this.type1 = mon.type1 as PokemonType;
         if (mon.type2 !== null) {
             this.type2 = mon.type2 as PokemonType;
         }
-        this.stats = mon.stats;
+        this.stats = {
+            hp: mon.hp,
+            attack: mon.attack,
+            spatk: mon.spAttack,
+            speed: mon.speed,
+            defense: mon.defense,
+            spdef: mon.spDefense,
+        };
         this.abilities = mon.abilities.map((a) => abilities[a]);
-        this.levelMoves = mon.level_moves.map((m) => [m[0] as number, moves[m[1]]]);
+        this.levelMoves = Object.entries(mon.levelMoves).map(([id, level]) => [level, moves[id]]);
         this.lineMoves = [];
-        if (mon.line_moves !== null) {
-            this.lineMoves = mon.line_moves.map((m) => moves[m]);
+        if (mon.lineMoves !== null) {
+            this.lineMoves = mon.lineMoves.map((m) => moves[m]);
         }
         this.tutorMoves = [];
-        if (mon.tutor_moves !== null) {
-            this.tutorMoves = mon.tutor_moves.map((m) => moves[m]);
+        if (mon.tutorMoves !== null) {
+            this.tutorMoves = mon.tutorMoves.map((m) => moves[m]);
         }
         this.tribes = [];
         if (mon.tribes !== null) {
@@ -95,9 +103,9 @@ export class Pokemon {
         this.kind = mon.kind;
         this.pokedex = mon.pokedex;
         this.evos = [];
-        if (mon.evos !== null) {
-            this.evos = mon.evos.map((e) => {
-                return { ...e, prevo: false };
+        if (mon.evolutions !== null) {
+            this.evos = mon.evolutions.map((e) => {
+                return { target: e.pokemon, method: e.method, param: e.condition, prevo: false };
             });
         }
     }
