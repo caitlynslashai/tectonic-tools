@@ -1,11 +1,13 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
 import { PokemonStats } from "../../damagecalc/damageCalc";
-import { MoveCategory, PokemonType, pokemonTypes } from "../basicData";
+import { MoveCategory } from "../basicData";
 import { LoadedMove } from "../loading/moves";
 import { StatusEffect } from "../statusEffects";
 import { typeChart } from "../typeChart";
+import { types } from "../types";
 import { isNull } from "../util";
 import { Pokemon } from "./Pokemon";
+import { PokemonType } from "./PokemonType";
 
 export type MoveTarget =
     | "FoeSide"
@@ -40,7 +42,7 @@ export class Move {
         this.id = loadedMove.key;
         this.name = loadedMove.name;
         this.description = loadedMove.description;
-        this.type = loadedMove.type as PokemonType;
+        this.type = types[loadedMove.type];
         this.bp = loadedMove.power;
         this.accuracy = loadedMove.accuracy;
         this.pp = loadedMove.pp;
@@ -57,15 +59,15 @@ export class Move {
     }
 
     public isSTAB(mon: Pokemon): boolean {
-        return mon.type1 === this.type || mon.type2 === this.type;
+        return mon.type1.name === this.type.name || mon.type2?.name === this.type.name;
     }
 
     public matchups() {
         return Object.fromEntries(
-            pokemonTypes.map((t) => {
-                return [t, Math.max(typeChart[this.type][t])];
+            Object.values(types).map((t) => {
+                return [t.id, Math.max(typeChart[this.type.index][t.index])];
             })
-        ) as Record<PokemonType, number>;
+        ) as Record<keyof PokemonType, number>;
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
