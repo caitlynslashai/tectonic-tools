@@ -1,21 +1,152 @@
 "use client";
 
+import { getTypeGradientSolidColourClass } from "@/components/colours";
 import InlineLink from "@/components/InlineLink";
 import InternalLink from "@/components/InternalLink";
+import TypeBadge from "@/components/TypeBadge";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useMemo, useState } from "react";
+import { moves } from "../data/moves";
 import { pokemon } from "../data/pokemon";
+import { Move } from "../data/types/Move";
 import { Pokemon } from "../data/types/Pokemon";
-import PokemonFilter, { PokemonFilterType } from "./components/PokemonFilter";
 import PokemonModal from "./components/PokemonModal";
 import PokemonTable from "./components/PokemonTable";
 import TabContent from "./components/TabContent";
+import TableCell from "./components/TableCell";
+import TableHeader from "./components/TableHeader";
 
 export interface PokemonTableProps {
     mons: Pokemon[];
     onRowClick: (pokemon: Pokemon) => void;
 }
+
+import { tribes } from "@/app/data/tribes";
+import { types } from "@/app/data/types";
+
+export type FilterOperator = "==" | "!=" | ">" | "<" | "includes";
+
+type BaseFilter = {
+    label: string; // What users see in the UI
+    operator: FilterOperator;
+    value: string | number;
+    apply: (pokemon: Pokemon, value: string | number) => boolean;
+};
+
+type TextFilter = BaseFilter & {
+    inputMethod: "text";
+};
+
+type SelectFilter = BaseFilter & {
+    inputMethod: "select";
+    inputValues: readonly string[];
+};
+
+function validateMoves(pokemon: Pokemon) {
+    if (!pokemon.levelMoves) {
+        console.warn(`Pokemon ${pokemon.name} has undefined level_moves`);
+        return false;
+    }
+
+    const invalidMoves = pokemon.levelMoves.filter((m) => !m?.[1]?.name);
+    if (invalidMoves.length > 0) {
+        console.warn(`Pokemon ${pokemon.name} has invalid moves:`, invalidMoves);
+        return false;
+    }
+    return true;
+}
+
+type PokemonFilterType = TextFilter | SelectFilter;
+
+const nameFilter: PokemonFilterType = {
+    label: "Name",
+    operator: "includes",
+    value: "",
+    inputMethod: "text",
+    apply: (pokemon, value) => {
+        const searchValue = String(value).toLowerCase();
+        return pokemon.name.toLowerCase().includes(searchValue);
+    },
+};
+
+const allMovesFilter: PokemonFilterType = {
+    label: "Moves (All)",
+    operator: "includes",
+    value: "",
+    apply: (pokemon: Pokemon, value: string | number) => {
+        if (!validateMoves(pokemon)) return false;
+        const searchValue = String(value).toLowerCase();
+        return pokemon.allMoves().some((m) => m.name.toLowerCase().includes(searchValue));
+    },
+    inputMethod: "select",
+    inputValues: Object.values(moves).map((m) => m.name),
+};
+
+const AVAILABLE_FILTERS: PokemonFilterType[] = [
+    // Standard field filters
+    nameFilter,
+
+    // Custom filters
+    {
+        label: "Type",
+        operator: "includes",
+        value: "",
+        apply: (pokemon: Pokemon, value: string | number) => {
+            const searchType = String(value).toLowerCase();
+            return (
+                pokemon.type1.name.toLowerCase().includes(searchType) ||
+                (pokemon.type2?.name.toLowerCase().includes(searchType) ?? false)
+            );
+        },
+        inputMethod: "select",
+        inputValues: Object.values(types).map((t) => t.name),
+    },
+    {
+        label: "Ability Name",
+        operator: "includes",
+        value: "",
+        apply: (pokemon: Pokemon, value: string | number) => {
+            const searchValue = String(value).toLowerCase();
+            return pokemon.abilities.some((a) => a.name.toLowerCase().includes(searchValue));
+        },
+        inputMethod: "text",
+    },
+    {
+        label: "Ability Desc",
+        operator: "includes",
+        value: "",
+        apply: (pokemon: Pokemon, value: string | number) => {
+            const searchValue = String(value).toLowerCase();
+            return pokemon.abilities.some((a) => a.description.toLowerCase().includes(searchValue));
+        },
+        inputMethod: "text",
+    },
+    {
+        label: "Moves (Level)",
+        operator: "includes",
+        value: "",
+        apply: (pokemon: Pokemon, value: string | number) => {
+            if (!validateMoves(pokemon)) return false;
+            const searchValue = String(value).toLowerCase();
+            return pokemon.levelMoves.some((m) => m[1].name.toLowerCase().includes(searchValue));
+        },
+        inputMethod: "select",
+        inputValues: Object.values(moves).map((m) => m.name),
+    },
+    allMovesFilter,
+    {
+        label: "Tribes",
+        operator: "includes",
+        value: "",
+        apply: (pokemon: Pokemon, value: string | number) => {
+            const searchValue = String(value).toLowerCase();
+            return pokemon.tribes.some((t) => t.name.toLowerCase().includes(searchValue));
+        },
+        inputMethod: "select",
+        inputValues: Object.values(tribes).map((t) => t.name),
+    },
+];
 
 const tabNames = ["Pokemon", "Moves", "Abilities", "Items", "Tribes", "TypeChart"];
 
@@ -23,6 +154,23 @@ const Home: NextPage = () => {
     const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
     const [filters, setFilters] = useState<PokemonFilterType[]>([]);
     const [activeTab, setActiveTab] = useState<string>("Pokemon");
+
+    const [currentFilter, setCurrentFilter] = useState<PokemonFilterType>(AVAILABLE_FILTERS[0]);
+    const [currentValue, setCurrentValue] = useState("");
+
+    const addFilter = () => {
+        if (!currentValue) {
+            alert("Please select a value for the filter!");
+            return;
+        }
+
+        setFilters((prev) => [...prev, { ...currentFilter, value: currentValue }]);
+        setCurrentValue("");
+    };
+
+    const removeFilter = (index: number) => {
+        setFilters((prev) => prev.filter((_, i) => i !== index));
+    };
 
     const mons = Object.values(pokemon);
     const filteredPokemon = useMemo(() => {
@@ -42,12 +190,19 @@ const Home: NextPage = () => {
         }
     }, [selectedPokemon]);
 
-    const handleRowClick = (pokemon: Pokemon) => {
+    const handlePokemonClick = (pokemon: Pokemon) => {
         setSelectedPokemon(pokemon);
     };
 
     const handleCloseModal = () => {
         setSelectedPokemon(null);
+    };
+
+    const handleMoveClick = (move: Move) => {
+        const newFilters = [...filters];
+        newFilters.push({ ...allMovesFilter, value: move.name.toLowerCase() });
+        setFilters(newFilters);
+        setActiveTab("Pokemon");
     };
 
     return (
@@ -85,18 +240,138 @@ const Home: NextPage = () => {
                         </button>
                     ))}
                 </div>
-                <TabContent tab="Pokemon" activeTab={activeTab}>
-                    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-4">
-                        <PokemonFilter onChangeFilters={setFilters} />
-                    </div>
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-4">
+                    <div className="filter-container p-4 border rounded shadow-md bg-white dark:bg-gray-800 dark:border-gray-700">
+                        <div className="filter-controls flex items-center gap-4 mb-4">
+                            <select
+                                className="border rounded px-2 py-1 bg-white dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                                value={currentFilter.label}
+                                onChange={(e) => {
+                                    const selected = AVAILABLE_FILTERS.find((f) => f.label === e.target.value);
+                                    if (selected) setCurrentFilter(selected);
+                                }}
+                            >
+                                {AVAILABLE_FILTERS.map((filter) => (
+                                    <option key={filter.label} value={filter.label}>
+                                        {filter.label}
+                                    </option>
+                                ))}
+                            </select>
 
+                            {[">", "<", "==", "!="].includes(currentFilter.operator) && (
+                                <select
+                                    className="border rounded px-2 py-1 bg-white dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                                    value={currentFilter.operator}
+                                    onChange={(e) =>
+                                        setCurrentFilter({
+                                            ...currentFilter,
+                                            operator: e.target.value as FilterOperator,
+                                        })
+                                    }
+                                >
+                                    <option value="==">=</option>
+                                    <option value="!=">≠</option>
+                                    <option value=">">&gt;</option>
+                                    <option value="<">&lt;</option>
+                                </select>
+                            )}
+
+                            {currentFilter.inputMethod === "select" ? (
+                                <select
+                                    className="border rounded px-2 py-1 bg-white dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                                    value={currentValue}
+                                    onChange={(e) => setCurrentValue(e.target.value)}
+                                >
+                                    <option value="">Value...</option>
+                                    {currentFilter.inputValues.map((type) => (
+                                        <option key={type} value={type}>
+                                            {type}
+                                        </option>
+                                    ))}
+                                </select>
+                            ) : (
+                                <input
+                                    className="border rounded px-2 py-1 bg-white dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                                    type={typeof currentFilter.value === "number" ? "number" : "text"}
+                                    value={currentValue}
+                                    onChange={(e) => setCurrentValue(e.target.value)}
+                                    placeholder="Value..."
+                                />
+                            )}
+
+                            <button
+                                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
+                                onClick={addFilter}
+                            >
+                                Add Filter
+                            </button>
+                        </div>
+
+                        <div className="active-filters flex flex-wrap gap-2">
+                            {filters.map((filter, index) => (
+                                <div
+                                    key={index}
+                                    className="filter-chip flex items-center gap-2 px-3 py-1 bg-gray-200 rounded shadow-sm dark:bg-gray-700"
+                                >
+                                    <span className="text-sm dark:text-white">
+                                        {filter.label} {filter.operator} {filter.value}
+                                    </span>
+                                    <button
+                                        className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-500"
+                                        onClick={() => removeFilter(index)}
+                                    >
+                                        ×
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+                <TabContent tab="Pokemon" activeTab={activeTab}>
                     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-                        <PokemonTable mons={filteredPokemon} onRowClick={handleRowClick} />
+                        <PokemonTable mons={filteredPokemon} onRowClick={handlePokemonClick} />
+                    </div>
+                    {selectedPokemon && <PokemonModal pokemon={selectedPokemon} onClose={handleCloseModal} />}
+                </TabContent>
+                <TabContent tab="Moves" activeTab={activeTab}>
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                            <thead className="bg-gray-50 dark:bg-gray-800">
+                                <tr>
+                                    <TableHeader>Name</TableHeader>
+                                    <TableHeader>Type</TableHeader>
+                                    <TableHeader>Category</TableHeader>
+                                    <TableHeader>Power</TableHeader>
+                                    <TableHeader>Acc</TableHeader>
+                                    <TableHeader>PP</TableHeader>
+                                    <TableHeader>Effect</TableHeader>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {Object.values(moves).map((m) => (
+                                    <tr
+                                        key={m.id}
+                                        onClick={() => handleMoveClick(m)}
+                                        className={`hover:bg-blue-50 dark:hover:bg-blue-900 cursor-pointer transition-colors ${getTypeGradientSolidColourClass(
+                                            m.type
+                                        )}`}
+                                    >
+                                        <TableCell>{m.name}</TableCell>
+                                        <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500 dark:text-gray-400">
+                                            <TypeBadge type1={m.type} />
+                                        </td>
+                                        <TableCell>{m.category}</TableCell>
+                                        <TableCell>{m.bp}</TableCell>
+                                        <TableCell>{m.accuracy}</TableCell>
+                                        <TableCell>{m.pp}</TableCell>
+                                        <TableCell>{m.description}</TableCell>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 </TabContent>
             </main>
-
-            {selectedPokemon && <PokemonModal pokemon={selectedPokemon} onClose={handleCloseModal} />}
         </div>
     );
 };
