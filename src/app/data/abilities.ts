@@ -1,19 +1,20 @@
-import loadedAbilities from "public/data/abilities.json";
+import { loadData } from "./loading/loadData";
 import { Ability } from "./types/Ability";
 
-export interface LoadedAbility {
-    id: string;
-    name: string;
-    description: string;
-    flags: string[] | null;
+let abilities: Record<string, Ability> | undefined = undefined;
+
+export async function getAbilities(): Promise<Record<string, Ability>> {
+    if (abilities !== undefined) {
+        return abilities;
+    }
+    const loadedAbilities = (await loadData()).abilities;
+    abilities = {};
+    loadedAbilities.forEach((ability) => (abilities![ability.key] = new Ability(ability)));
+    return abilities;
 }
 
-export const abilities: Record<string, Ability> = Object.fromEntries(
-    Object.entries(loadedAbilities).map(([id, ability]) => [id, new Ability(ability)])
-);
-
 export const nullAbility: Ability = new Ability({
-    id: "",
+    key: "",
     name: "",
     description: "",
     flags: [],

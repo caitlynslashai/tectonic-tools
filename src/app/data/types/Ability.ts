@@ -1,4 +1,4 @@
-import { LoadedAbility } from "../abilities";
+import { LoadedAbility } from "../loading/abilities";
 import { getSignatureAbilities } from "../signatures";
 import { Pokemon } from "./Pokemon";
 
@@ -8,14 +8,15 @@ export class Ability {
     description: string;
     flags: string[];
     constructor(ability: LoadedAbility) {
-        this.id = ability.id;
+        this.id = ability.key;
         this.name = ability.name;
         this.description = ability.description;
-        this.flags = ability.flags || [];
+        this.flags = ability.flags;
     }
 
-    public isSignature(pokemon?: Pokemon): boolean {
-        if (!pokemon) return this.id in getSignatureAbilities();
-        return getSignatureAbilities()[this.id] === pokemon.id;
+    public async isSignature(pokemon?: Pokemon): Promise<boolean> {
+        const signatures = await getSignatureAbilities();
+        if (!pokemon) return this.id in signatures;
+        return signatures[this.id] === pokemon.id;
     }
 }
