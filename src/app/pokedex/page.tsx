@@ -24,8 +24,11 @@ export interface PokemonTableProps {
 
 import { tribes } from "@/app/data/tribes";
 import { types } from "@/app/data/types";
+import Image from "next/image";
 import { abilities } from "../data/abilities";
+import { items } from "../data/items";
 import { Ability } from "../data/types/Ability";
+import { Item } from "../data/types/Item";
 
 export type FilterOperator = "==" | "!=" | ">" | "<" | "includes";
 
@@ -96,6 +99,18 @@ const allMovesFilter: PokemonFilterType = {
     inputValues: Object.values(moves).map((m) => m.name),
 };
 
+const heldItemFilter: PokemonFilterType = {
+    label: "Wild Held Item",
+    operator: "includes",
+    value: "",
+    apply: (pokemon: Pokemon, value: string | number) => {
+        const searchValue = String(value).toLowerCase();
+        return pokemon.items.some((i) => i.name.toLowerCase().includes(searchValue));
+    },
+    inputMethod: "select",
+    inputValues: Object.values(items).map((m) => m.name),
+};
+
 const AVAILABLE_FILTERS: PokemonFilterType[] = [
     // Standard field filters
     nameFilter,
@@ -150,6 +165,7 @@ const AVAILABLE_FILTERS: PokemonFilterType[] = [
         inputMethod: "select",
         inputValues: Object.values(tribes).map((t) => t.name),
     },
+    heldItemFilter,
 ];
 
 const tabNames = ["Pokemon", "Moves", "Abilities", "Items", "Tribes", "TypeChart"];
@@ -215,6 +231,18 @@ const Home: NextPage = () => {
         setFilters(newFilters);
         setActiveTab("Pokemon");
     };
+
+    const handleItemClick = (item: Item) => {
+        const newFilters = [...filters];
+        newFilters.push({ ...heldItemFilter, value: item.name.toLowerCase() });
+        setFilters(newFilters);
+        setActiveTab("Pokemon");
+    };
+
+    // filter for items that can be found on wild pokemon
+    const validItems = Object.values(items).filter((i) =>
+        Object.values(pokemon).some((p) => p.items.some((pi) => pi.name === i.name))
+    );
 
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -400,6 +428,41 @@ const Home: NextPage = () => {
                                     >
                                         <TableCell>{a.name}</TableCell>
                                         <TableCell>{a.description}</TableCell>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </TabContent>
+                <TabContent tab="Items" activeTab={activeTab}>
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                            <thead className="bg-gray-50 dark:bg-gray-800">
+                                <tr>
+                                    <TableHeader>
+                                        <></>
+                                    </TableHeader>
+                                    <TableHeader>Name</TableHeader>
+                                    <TableHeader>Effect</TableHeader>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {validItems.map((i) => (
+                                    <tr
+                                        key={i.id}
+                                        onClick={() => handleItemClick(i)}
+                                        className={`hover:bg-blue-50 dark:hover:bg-blue-900 cursor-pointer`}
+                                    >
+                                        <TableCell>
+                                            <Image
+                                                alt={i.name}
+                                                src={"/Items/" + i.id + ".png"}
+                                                width={50}
+                                                height={50}
+                                            />
+                                        </TableCell>
+                                        <TableCell>{i.name}</TableCell>
+                                        <TableCell>{i.description}</TableCell>
                                     </tr>
                                 ))}
                             </tbody>
