@@ -1,8 +1,8 @@
-import { PokemonType } from "../app/data/basicData";
+import { PokemonType } from "@/app/data/types/PokemonType";
 import { Pokemon } from "../app/data/types/Pokemon";
 
 export function getTypeBadgeColourClass(type: PokemonType) {
-    switch (type) {
+    switch (type.name) {
         case "Fire":
             return "bg-fire";
         case "Water":
@@ -59,7 +59,7 @@ export function getTypeGradient(pokemon: Pokemon): string {
 // but it's still annoying having to type them all out explicitly
 // i've defined the colours in my theme you should safelist all the appropriate variants smh
 function getTypeGradientFromColourClass(type: PokemonType): string {
-    switch (type) {
+    switch (type.name) {
         case "Fire":
             return "from-fire-bg";
         case "Water":
@@ -104,7 +104,7 @@ function getTypeGradientFromColourClass(type: PokemonType): string {
 }
 
 function getTypeGradientToColourClass(type: PokemonType): string {
-    switch (type) {
+    switch (type.name) {
         case "Fire":
             return "to-fire-bg";
         case "Water":
@@ -149,7 +149,7 @@ function getTypeGradientToColourClass(type: PokemonType): string {
 }
 
 function getTypeGradientSolidColourClass(type: PokemonType): string {
-    switch (type) {
+    switch (type.name) {
         case "Fire":
             return "bg-fire-bg";
         case "Water":

@@ -57,8 +57,8 @@ const AVAILABLE_FILTERS: PokemonFilterType[] = [
         apply: (pokemon: Pokemon, value: string | number) => {
             const searchType = String(value).toLowerCase();
             return (
-                pokemon.type1.toLowerCase().includes(searchType) ||
-                (pokemon.type2?.toLowerCase().includes(searchType) ?? false)
+                pokemon.type1.name.toLowerCase().includes(searchType) ||
+                (pokemon.type2?.name.toLowerCase().includes(searchType) ?? false)
             );
         },
         inputMethod: "select",
