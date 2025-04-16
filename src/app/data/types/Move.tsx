@@ -1,25 +1,11 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
 import { PokemonStats } from "../../damagecalc/damageCalc";
 import { MoveCategory, PokemonType, pokemonTypes } from "../basicData";
+import { LoadedMove } from "../loading/moves";
 import { StatusEffect } from "../statusEffects";
 import { typeChart } from "../typeChart";
 import { isNull } from "../util";
 import { Pokemon } from "./Pokemon";
-
-export interface LoadedMove {
-    id: string;
-    name: string;
-    description: string;
-    type: string;
-    bp: number;
-    accuracy: number;
-    pp: number;
-    category: string;
-    target: string;
-    minHits?: number;
-    maxHits?: number;
-    flag?: string;
-}
 
 export type MoveTarget =
     | "FoeSide"
@@ -51,11 +37,11 @@ export class Move {
     category: MoveCategory;
     target: MoveTarget;
     constructor(loadedMove: LoadedMove) {
-        this.id = loadedMove.id;
+        this.id = loadedMove.key;
         this.name = loadedMove.name;
         this.description = loadedMove.description;
         this.type = loadedMove.type as PokemonType;
-        this.bp = loadedMove.bp;
+        this.bp = loadedMove.power;
         this.accuracy = loadedMove.accuracy;
         this.pp = loadedMove.pp;
         this.category = loadedMove.category as MoveCategory;
