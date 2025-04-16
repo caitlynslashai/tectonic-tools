@@ -1,6 +1,5 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
 import { PokemonStats } from "../../damagecalc/damageCalc";
-import { MoveCategory } from "../basicData";
 import { LoadedMove } from "../loading/moves";
 import { StatusEffect } from "../statusEffects";
 import { typeChart } from "../typeChart";
@@ -8,6 +7,10 @@ import { types } from "../types";
 import { isNull } from "../util";
 import { Pokemon } from "./Pokemon";
 import { PokemonType } from "./PokemonType";
+
+export const moveCategories = ["Physical", "Special", "Status", "Adaptive"] as const;
+
+export type MoveCategory = (typeof moveCategories)[number];
 
 export type MoveTarget =
     | "FoeSide"
