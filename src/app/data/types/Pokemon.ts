@@ -1,5 +1,4 @@
 import { abilities } from "../abilities";
-import { PokemonForm } from "../forms";
 import { LoadedPokemon } from "../loading/pokemon";
 import { moves } from "../moves";
 import { pokemon } from "../pokemon";
@@ -64,6 +63,8 @@ function getterFactory<T extends keyof Pokemon>(mon: Pokemon, key: T) {
         return mon[key];
     };
 }
+
+export type PokemonForm = Partial<Pokemon> & { formId: number };
 
 export class Pokemon {
     id: string;
