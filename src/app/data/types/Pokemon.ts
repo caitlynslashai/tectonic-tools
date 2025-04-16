@@ -36,6 +36,22 @@ export const blankStats: Stats = {
     spdef: 0,
 };
 
+export interface StylePoints {
+    hp: number;
+    attacks: number;
+    defense: number;
+    spdef: number;
+    speed: number;
+}
+
+export const defaultStylePoints: StylePoints = {
+    hp: 10,
+    attacks: 10,
+    defense: 10,
+    spdef: 10,
+    speed: 10,
+};
+
 function uniq<T>(a: T[]) {
     return a.filter((item, pos, self) => self.indexOf(item) == pos);
 }
