@@ -119,7 +119,7 @@ const TeamBuilder: NextPage = () => {
             indices.move[data.moves[1]],
             indices.move[data.moves[2]],
             indices.move[data.moves[3]],
-        ];
+        ].map((i) => (i === undefined ? -1 : i));
 
         const buffer = new ArrayBuffer(indexList.length * 2); // Each number is 16 bits (2 bytes)
         const view = new DataView(buffer);
