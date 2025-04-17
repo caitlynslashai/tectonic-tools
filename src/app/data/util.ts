@@ -12,6 +12,10 @@ export function negativeMod(n: number, m: number) {
     return ((n % m) + m) % m;
 }
 
+export function getItemImage(id: string) {
+    return `/Items/${id}.png`;
+}
+
 export class NTreeNode<T> {
     private parent: NTreeNode<T> | null;
     private children: NTreeNode<T>[];
@@ -71,16 +75,20 @@ export class NTreeNode<T> {
         return null;
     }
 
-    // recursion pattern modified to avoid aliasing "this" to local variable
-    // hopefully still works as expected
-    ascendParents(fn: (node: NTreeNode<T>) => void) {
+    callSelfAndParents(fn: (node: NTreeNode<T>) => void) {
         fn(this);
         if (this.parent) {
-            this.parent.ascendParents(fn);
+            this.parent.callSelfAndParents(fn);
         }
     }
 
-    asBreadthFist(): NTreeNode<T>[][] {
+    callParents(fn: (node: NTreeNode<T>) => void) {
+        if (this.parent) {
+            this.parent.callSelfAndParents(fn);
+        }
+    }
+
+    asBreadthFirst(): NTreeNode<T>[][] {
         const levels: NTreeNode<T>[][] = [];
         this.depthFirst((depth, node) => {
             while (levels.length <= depth) {

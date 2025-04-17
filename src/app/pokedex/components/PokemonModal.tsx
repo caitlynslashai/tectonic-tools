@@ -1,6 +1,5 @@
 import { encounters } from "@/app/data/encounters";
 import { items } from "@/app/data/items";
-import { LoadedEvolution } from "@/app/data/loading/pokemon";
 import { moves } from "@/app/data/moves";
 import { pokemon } from "@/app/data/pokemon";
 import { getSignatureAbilities } from "@/app/data/signatures";
@@ -18,11 +17,12 @@ import MoveDisplay from "./MoveDisplay";
 import StatRow from "./StatRow";
 import TabContent from "./TabContent";
 import TypeChartCell from "./TypeChartCell";
+import PokemonEvolution from "./PokemonEvolution";
 
 interface PokemonModalProps {
     allMons: Record<string, Pokemon>;
     pokemon: Pokemon | null;
-    onClose: () => void;
+    handlePokemonClick: (pokemon: Pokemon | null) => void;
 }
 
 const tabs = [
@@ -38,7 +38,7 @@ const tabs = [
 ] as const;
 export type PokemonTabName = (typeof tabs)[number];
 
-const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, onClose }) => {
+const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, handlePokemonClick }) => {
     const [isVisible, setIsVisible] = useState(false);
     const [isRendered, setIsRendered] = useState(false);
     const [currentPokemon, setCurrentPokemon] = useState(mon);
@@ -61,7 +61,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, onCl
         setIsVisible(false);
         setTimeout(() => {
             setIsRendered(false);
-            onClose(); // Call the onClose callback after fade-out
+            handlePokemonClick(null); // Close after fade-out
         }, 300); // Match duration-300 for fade-out
     };
 
@@ -71,76 +71,12 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, onCl
 
     if (!isRendered || !currentPokemon) return null;
 
-    function describeEvoMethod(evo: LoadedEvolution) {
-        switch (evo.method) {
-            case "Level":
-            case "Ninjask":
-                return `at level ${evo.condition}`;
-            case "LevelMale":
-                return `at level ${evo.condition} if it's male`;
-            case "LevelFemale":
-                return `at level ${evo.condition} if it's female`;
-            case "LevelDay":
-                return `at level ${evo.condition} during the day`;
-            case "LevelNight":
-                return `at level ${evo.condition} during nighttime`;
-            case "LevelRain":
-                return `at level ${evo.condition} while raining`;
-            case "LevelDarkInParty":
-                return `at level ${evo.condition} while a dark type is in the party`;
-            case "AttackGreater":
-                return `at level ${evo.condition} if it has more attack than defense`;
-            case "AtkDefEqual":
-                return `at level ${evo.condition} if it has attack equal to defense`;
-            case "DefenseGreater":
-                return `at level ${evo.condition} if it has more defense than attack`;
-            case "Silcoon":
-                return `at level ${evo.condition} half of the time`;
-            case "Cascoon":
-                return `at level ${evo.condition} the other half of the time`;
-            case "Ability0":
-                return `at level ${evo.condition} if it has the first of its possible abilities`;
-            case "Ability1":
-                return `at level ${evo.condition} if it has the second of its possible abilities`;
-            case "Happiness":
-                return "case leveled up while it has high happiness";
-            case "MaxHappiness":
-                return "case leveled up while it has maximum happiness";
-            case "Beauty":
-                return "case leveled up while it has maximum beauty";
-            case "HasMove":
-                return `case leveled up while it knows the move ${moves[evo.condition].name}`;
-            case "HasMoveType":
-                return `case leveled up while it knows a move of the ${evo.condition} type`;
-            case "Location":
-                return "case leveled up near a special location";
-            case "Item":
-                return `by using a ${items[evo.condition].name}`;
-            case "ItemMale":
-                return `by using a ${items[evo.condition].name} if it's male`;
-            case "ItemFemale":
-                return `by using a ${items[evo.condition].name} if it's female`;
-            case "Trade":
-                return "case traded";
-            case "TradeItem":
-                return `case traded holding an ${items[evo.condition].name}`;
-            case "HasInParty":
-                return `case leveled up while a ${pokemon[evo.condition]} is also in the party`;
-            case "Shedinja":
-                return "also if you have an empty Poké Ball and party slot";
-            case "Originize":
-                return `at level ${evo.condition} if you spend an Origin Ore`;
-            default:
-                return "via a method the programmer was too lazy to describe";
-        }
-    }
-
     const currentEncounters = Object.values(encounters).filter((e) =>
         Object.values(e.encounters).some((en) => en.some((enc) => enc.pokemon === currentPokemon.id))
     );
 
     const prevoEncounters: Record<string, EncounterArea[]> = {};
-    currentPokemon.getEvoNode().ascendParents((node) => {
+    currentPokemon.getEvoNode().callParents((node) => {
         const currentSpecies = pokemon[node.getData().pokemon];
         const newEncounters = Object.values(encounters).filter((e) =>
             Object.values(e.encounters).some((en) => en.some((enc) => enc.pokemon === currentSpecies.id))
@@ -411,43 +347,27 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, onCl
                             <div>
                                 <div className="mt-4">
                                     {currentPokemon.evolutionTree.isLeaf() ? (
-                                        <p className="text-gray-600 dark:text-gray-300">No further evolutions.</p>
+                                        <p className="text-gray-600 dark:text-gray-300">Does not evolve.</p>
                                     ) : (
                                         <table>
                                             <tbody>
                                                 <tr>
                                                     {currentPokemon.evolutionTree
-                                                        .asBreadthFist()
+                                                        .asBreadthFirst()
                                                         .map((level, index) => (
                                                             <td key={index}>
                                                                 <table>
                                                                     <tbody>
                                                                         {level.map((node, index) => (
-                                                                            <tr key={index}>
-                                                                                {node.isRoot() ? (
-                                                                                    <></>
-                                                                                ) : (
-                                                                                    <td>
-                                                                                        <div>
-                                                                                            →{" "}
-                                                                                            {describeEvoMethod(
-                                                                                                node.getData()
-                                                                                            )}
-                                                                                        </div>
-                                                                                    </td>
-                                                                                )}
-                                                                                <td>
-                                                                                    <Image
-                                                                                        src={allMons[
-                                                                                            node.getData().pokemon
-                                                                                        ].getImage()}
-                                                                                        alt={node.getData().pokemon}
-                                                                                        height="160"
-                                                                                        width="160"
-                                                                                        className="w-24 h-24"
-                                                                                    />
-                                                                                </td>
-                                                                            </tr>
+                                                                            <PokemonEvolution
+                                                                                key={index}
+                                                                                pokemon={allMons}
+                                                                                moves={moves}
+                                                                                items={items}
+                                                                                node={node}
+                                                                                index={index}
+                                                                                onClick={handlePokemonClick}
+                                                                            />
                                                                         ))}
                                                                     </tbody>
                                                                 </table>

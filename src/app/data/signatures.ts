@@ -37,7 +37,7 @@ function getAbilityCounts(): AbilityCounts {
     });
 
     Object.values(pokemon).forEach((speciesData) => {
-        if (speciesData.isFinalEvo()) return;
+        if (!speciesData.isFinalEvo()) return;
 
         // const arrayID = speciesData.isLegendary() ? 1 : 0;
         speciesData.abilities.forEach((ability) => {
@@ -81,7 +81,7 @@ function getMoveLearnableGroups(): MoveCounts {
     });
 
     Object.values(pokemon).forEach((speciesData) => {
-        if (speciesData.isFinalEvo()) return;
+        if (!speciesData.isFinalEvo()) return;
 
         //const groupIndex = speciesData.isLegendary() ? 1 : 0;
         speciesData.allMoves().forEach((move) => {
