@@ -14,5 +14,6 @@ export const nullItem: Item = {
     id: "",
     name: "",
     description: "",
+    pocket: 0,
     flags: [],
 };

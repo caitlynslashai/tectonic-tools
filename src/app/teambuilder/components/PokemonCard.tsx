@@ -69,6 +69,9 @@ export default function PokemonCard({ data, update }: { data: CardData; update: 
         update({ ...data, form });
     }
 
+    // TODO: Add a non-magic map of pockets somewhere
+    const heldItems = Object.values(items).filter((i) => i.pocket === 5);
+
     return (
         <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4 flex flex-col items-center w-60">
             <div className="text-center flex flex-row items-center">
@@ -167,14 +170,26 @@ export default function PokemonCard({ data, update }: { data: CardData; update: 
                     </div>
                     <div className="w-full mt-4 text-center">
                         <h3 className="font-semibold text-gray-800 dark:text-gray-100">Held Item</h3>
-                        <Dropdown value={currentItem.id} onChange={(e) => updateItem(e.target.value)}>
-                            <option value="">Select Item</option>
-                            {Object.values(items).map((i) => (
-                                <option key={i.id} value={i.id}>
-                                    {i.name}
-                                </option>
-                            ))}
-                        </Dropdown>
+                        <div className="flex items-center space-x-2">
+                            <Dropdown value={currentItem.id} onChange={(e) => updateItem(e.target.value)}>
+                                <option value="">Select Item</option>
+                                {Object.values(heldItems).map((i) => (
+                                    <option key={i.id} value={i.id}>
+                                        {i.name}
+                                    </option>
+                                ))}
+                            </Dropdown>
+                            <div className="w-12 flex justify-center">
+                                {!isNull(currentItem) && (
+                                    <Image
+                                        alt={currentItem.name}
+                                        src={"/Items/" + currentItem.id + ".png"}
+                                        width={50}
+                                        height={50}
+                                    />
+                                )}
+                            </div>
+                        </div>
                     </div>
                     <div className="w-full mt-4 text-center">
                         <h3 className="font-semibold text-gray-800 dark:text-gray-100">Tribes</h3>
