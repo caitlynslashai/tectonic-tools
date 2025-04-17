@@ -33,7 +33,6 @@ import { Item } from "../data/types/Item";
 import { Tribe } from "../data/types/Tribe";
 import { FilterInput } from "./components/FilterInput";
 import TypeChartCell from "./components/TypeChartCell";
-import { getItemImage } from "../data/util";
 
 export type FilterOperator = "==" | "!=" | ">" | "<" | "includes";
 
@@ -428,7 +427,7 @@ const Home: NextPage = () => {
                                         className={`hover:bg-blue-50 dark:hover:bg-blue-900 cursor-pointer`}
                                     >
                                         <TableCell>
-                                            <Image alt={i.name} src={getItemImage(i.id)} width={50} height={50} />
+                                            <Image alt={i.name} src={i.getImage()} width={50} height={50} />
                                         </TableCell>
                                         <TableCell>{i.name}</TableCell>
                                         <TableCell>{i.description}</TableCell>

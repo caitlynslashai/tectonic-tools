@@ -2,7 +2,7 @@ import { LoadedEvolution } from "@/app/data/loading/pokemon";
 import { Item } from "@/app/data/types/Item";
 import { Move } from "@/app/data/types/Move";
 import { Pokemon } from "@/app/data/types/Pokemon";
-import { getItemImage, NTreeNode } from "@/app/data/util";
+import { NTreeNode } from "@/app/data/util";
 import Image from "next/image";
 
 interface PokemonEvolutionProps {
@@ -105,7 +105,7 @@ const PokemonEvolution: React.FC<PokemonEvolutionProps> = ({ pokemon, moves, ite
                         <></>
                     ) : (
                         <Image
-                            src={getItemImage(evoDisplay.itemImg)}
+                            src={items[evoDisplay.itemImg].getImage()}
                             alt={evoDisplay.itemImg}
                             height="48"
                             width="48"
