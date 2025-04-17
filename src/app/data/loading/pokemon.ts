@@ -58,7 +58,7 @@ export function parsePokemon(pairs: KVPair[]): LoadedPokemon {
         bst: 0,
         abilities: [],
         levelMoves: {}, // Key of move name and value of level
-        lineMoves: [], // Note that only the first evo has this
+        lineMoves: [], // Note that only the first evo has this in PBS
         tutorMoves: [], // Not every mon has these
         tribes: [],
         evolutions: [],
@@ -150,7 +150,8 @@ export function parsePokemon(pairs: KVPair[]): LoadedPokemon {
     return obj;
 }
 
-export function addAllTribesAndFirstEvo(pokemon: Record<string, LoadedPokemon>): Record<string, LoadedPokemon> {
+// Propagates tribe data, first evolutions, and line moves throughout evolution lines
+export function propagatePokemonData(pokemon: Record<string, LoadedPokemon>): Record<string, LoadedPokemon> {
     function addFirstEvo(mon: LoadedPokemon | null, first: string) {
         if (mon == null) {
             return;
@@ -176,15 +177,19 @@ export function addAllTribesAndFirstEvo(pokemon: Record<string, LoadedPokemon>):
     }
 
     for (const id in pokemon) {
-        if (pokemon[id].firstEvolution.length == 0) {
+        if (pokemon[id].firstEvolution.length === 0) {
             addFirstEvo(pokemon[id], pokemon[id].key);
         }
     }
 
     for (const id in pokemon) {
-        if (pokemon[id].tribes.length == 0) {
+        if (pokemon[id].tribes.length === 0) {
             const evoPath = getEvoPath(pokemon[pokemon[id].firstEvolution], pokemon[id]);
             pokemon[id].tribes = evoPath.reverse().find((evo) => evo.tribes.length > 0)?.tribes ?? [];
+        }
+        if (pokemon[id].lineMoves.length === 0) {
+            const evoPath = getEvoPath(pokemon[pokemon[id].firstEvolution], pokemon[id]);
+            pokemon[id].lineMoves = evoPath.reverse().find((evo) => evo.lineMoves.length > 0)?.lineMoves ?? [];
         }
     }
 
