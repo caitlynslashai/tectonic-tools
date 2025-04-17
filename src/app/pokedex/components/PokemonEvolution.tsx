@@ -1,8 +1,8 @@
 import { LoadedEvolution } from "@/app/data/loading/pokemon";
 import { Item } from "@/app/data/types/Item";
 import { Move } from "@/app/data/types/Move";
+import { NTreeNode } from "@/app/data/types/NTreeNode";
 import { Pokemon } from "@/app/data/types/Pokemon";
-import { NTreeNode } from "@/app/data/util";
 import Image from "next/image";
 
 interface PokemonEvolutionProps {

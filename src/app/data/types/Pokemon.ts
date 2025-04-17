@@ -1,13 +1,13 @@
 import { abilities } from "../abilities";
 import { items } from "../items";
-import { LoadedPokemon, LoadedEvolution } from "../loading/pokemon";
+import { LoadedEvolution, LoadedPokemon } from "../loading/pokemon";
 import { moves } from "../moves";
 import { tribes } from "../tribes";
 import { types } from "../types";
-import { NTreeNode } from "../util";
 import { Ability } from "./Ability";
 import { Item } from "./Item";
 import { Move } from "./Move";
+import { NTreeNode } from "./NTreeNode";
 import { PokemonType } from "./PokemonType";
 import { Tribe } from "./Tribe";
 
@@ -134,7 +134,7 @@ export class Pokemon {
     }
 
     public getEvoNode(): NTreeNode<LoadedEvolution> {
-        return this.evolutionTree.findDepthFirst(node => node.getData().pokemon == this.id)!;
+        return this.evolutionTree.findDepthFirst((node) => node.getData().pokemon == this.id)!;
     }
 
     public isFinalEvo(): boolean {

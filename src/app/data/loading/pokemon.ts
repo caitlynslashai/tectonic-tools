@@ -1,5 +1,5 @@
+import { NTreeNode } from "../types/NTreeNode";
 import { KVPair, LoadedData } from "./loadData";
-import { NTreeNode } from "../util";
 
 export class LoadedEvolution {
     pokemon: string;

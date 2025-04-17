@@ -1,8 +1,8 @@
 import loadedPokemon from "public/data/pokemon.json";
 import { forms, nullForm } from "./forms";
 import { LoadedEvolution, LoadedPokemon } from "./loading/pokemon";
+import { NTreeNode } from "./types/NTreeNode";
 import { Pokemon } from "./types/Pokemon";
-import { NTreeNode } from "./util";
 
 export const pokemon: Record<string, Pokemon> = {};
 const loadData: Record<string, LoadedPokemon> = {};
