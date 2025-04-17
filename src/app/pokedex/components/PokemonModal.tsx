@@ -20,6 +20,7 @@ import TypeChartCell from "./TypeChartCell";
 import { LoadedEvolution } from "@/app/data/loading/pokemon";
 
 interface PokemonModalProps {
+    allMons: Record<string, Pokemon>,
     pokemon: Pokemon | null;
     onClose: () => void;
 }
@@ -37,7 +38,7 @@ const tabs = [
 ] as const;
 export type PokemonTabName = (typeof tabs)[number];
 
-const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) => {
+const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, onClose }) => {
     const [isVisible, setIsVisible] = useState(false);
     const [isRendered, setIsRendered] = useState(false);
     const [currentPokemon, setCurrentPokemon] = useState(mon);
@@ -74,33 +75,33 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
         switch (evo.method) {
             case "Level":
             case "Ninjask":
-                return `at level ${evo.method}`;
+                return `at level ${evo.condition}`;
             case "LevelMale":
-                return `at level ${evo.method} if it's male`;
+                return `at level ${evo.condition} if it's male`;
             case "LevelFemale":
-                return `at level ${evo.method} if it's female`;
+                return `at level ${evo.condition} if it's female`;
             case "LevelDay":
-                return `at level ${evo.method} during the day`;
+                return `at level ${evo.condition} during the day`;
             case "LevelNight":
-                return `at level ${evo.method} during nighttime`;
+                return `at level ${evo.condition} during nighttime`;
             case "LevelRain":
-                return `at level ${evo.method} while raining`;
+                return `at level ${evo.condition} while raining`;
             case "LevelDarkInParty":
-                return `at level ${evo.method} while a dark type is in the party`;
+                return `at level ${evo.condition} while a dark type is in the party`;
             case "AttackGreater":
-                return `at level ${evo.method} if it has more attack than defense`;
+                return `at level ${evo.condition} if it has more attack than defense`;
             case "AtkDefEqual":
-                return `at level ${evo.method} if it has attack equal to defense`;
+                return `at level ${evo.condition} if it has attack equal to defense`;
             case "DefenseGreater":
-                return `at level ${evo.method} if it has more defense than attack`;
+                return `at level ${evo.condition} if it has more defense than attack`;
             case "Silcoon":
-                return `at level ${evo.method} half of the time`;
+                return `at level ${evo.condition} half of the time`;
             case "Cascoon":
-                return `at level ${evo.method} the other half of the time`;
+                return `at level ${evo.condition} the other half of the time`;
             case "Ability0":
-                return `at level ${evo.method} if it has the first of its possible abilities`;
+                return `at level ${evo.condition} if it has the first of its possible abilities`;
             case "Ability1":
-                return `at level ${evo.method} if it has the second of its possible abilities`;
+                return `at level ${evo.condition} if it has the second of its possible abilities`;
             case "Happiness":
                 return "case leveled up while it has high happiness";
             case "MaxHappiness":
@@ -108,27 +109,27 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
             case "Beauty":
                 return "case leveled up while it has maximum beauty";
             case "HasMove":
-                return `case leveled up while it knows the move ${moves[evo.method].name}`;
+                return `case leveled up while it knows the move ${moves[evo.condition].name}`;
             case "HasMoveType":
-                return `case leveled up while it knows a move of the ${evo.method} type`;
+                return `case leveled up while it knows a move of the ${evo.condition} type`;
             case "Location":
                 return "case leveled up near a special location";
             case "Item":
-                return `by using a ${items[evo.method].name}`;
+                return `by using a ${items[evo.condition].name}`;
             case "ItemMale":
-                return `by using a ${items[evo.method].name} if it's male`;
+                return `by using a ${items[evo.condition].name} if it's male`;
             case "ItemFemale":
-                return `by using a ${items[evo.method].name} if it's female`;
+                return `by using a ${items[evo.condition].name} if it's female`;
             case "Trade":
                 return "case traded";
             case "TradeItem":
-                return `case traded holding an ${items[evo.method].name}`;
+                return `case traded holding an ${items[evo.condition].name}`;
             case "HasInParty":
-                return `case leveled up while a ${pokemon[evo.method]} is also in the party`;
+                return `case leveled up while a ${pokemon[evo.condition]} is also in the party`;
             case "Shedinja":
                 return "also if you have an empty Poké Ball and party slot";
             case "Originize":
-                return `at level ${evo.method} if you spend an Origin Ore`;
+                return `at level ${evo.condition} if you spend an Origin Ore`;
             default:
                 return "via a method the programmer was too lazy to describe";
         }
@@ -139,7 +140,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
     );
 
     const prevoEncounters: Record<string, EncounterArea[]> = {};
-    currentPokemon.getEvoNode().forToParent(node => {
+    currentPokemon.getEvoNode().ascendParents(node => {
         const currentSpecies = pokemon[node.getData().pokemon];
         const newEncounters = Object.values(encounters).filter((e) =>
             Object.values(e.encounters).some((en) => en.some((enc) => enc.pokemon === currentSpecies.id))
@@ -405,44 +406,39 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                         <TabContent tab="Evolutions" activeTab={activeTab}>
                             <div>
                                 <div className="mt-4">
-                                    {currentPokemon.getDeepEvos().length > 0 ? (
-                                        <div>
-                                            <h4 className="font-semibold text-gray-800 dark:text-gray-100">
-                                                Evolves Into:
-                                            </h4>
-                                            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
-                                                {currentPokemon.getDeepEvos().map((evo, index) => (
-                                                    <li key={index}>
-                                                        <span className="font-semibold">
-                                                            {pokemon[evo.target].name}
-                                                        </span>{" "}
-                                                        {describeEvoMethod(evo)}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    ) : (
-                                        <p className="text-gray-600 dark:text-gray-300">No further evolutions.</p>
-                                    )}
-                                    {currentPokemon.getPrevos().length > 0 ? (
-                                        <div className="mt-4">
-                                            <h4 className="font-semibold text-gray-800 dark:text-gray-100">
-                                                Evolved From:
-                                            </h4>
-                                            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
-                                                {currentPokemon.getPrevos().map((prevo, index) => (
-                                                    <li key={index}>
-                                                        <span className="font-semibold">
-                                                            {pokemon[prevo.target].name}
-                                                        </span>{" "}
-                                                        {describeEvoMethod(prevo)}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    ) : (
-                                        <p className="text-gray-600 dark:text-gray-300">No previous evolutions.</p>
-                                    )}
+                                    {currentPokemon.evolutionTree.isLeaf()
+                                        ? (<p className="text-gray-600 dark:text-gray-300">No further evolutions.</p>)
+                                        : (
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        {currentPokemon.evolutionTree.asBreadthFist().map(level => (
+                                                            <td>
+                                                                <table>
+                                                                    <tbody>
+                                                                        {level.map(node => (
+                                                                            <tr>
+                                                                                {node.isRoot()
+                                                                                    ? (<></>)
+                                                                                    : (
+                                                                                        <td>
+                                                                                            <div>→ {describeEvoMethod(node.getData())}</div>
+                                                                                        </td>
+                                                                                    )}
+                                                                                <td>
+                                                                                    <img src={allMons[node.getData().pokemon].getImage()} />
+                                                                                </td>
+                                                                            </tr>
+                                                                        ))}
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        ))}
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        )
+                                    }
                                 </div>
                             </div>
                         </TabContent>

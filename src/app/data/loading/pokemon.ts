@@ -150,7 +150,7 @@ export function parsePokemon(pairs: KVPair[]): LoadedPokemon {
     return obj;
 }
 
-export function addAllTribesAndEvoTree(pokemon: Record<string, LoadedPokemon>): Record<string, LoadedPokemon> {
+export function addAllTribesAndFirstEvo(pokemon: Record<string, LoadedPokemon>): Record<string, LoadedPokemon> {
     function addFirstEvo(mon: LoadedPokemon | null, first: string) {
         if (mon == null) {
             return;

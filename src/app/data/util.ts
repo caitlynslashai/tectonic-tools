@@ -51,6 +51,11 @@ export class NTreeNode<T> {
         return node;
     }
 
+    depthFirst(fn: (depth: number, node: NTreeNode<T>) => void, depth: number = 0) {
+        fn(depth, this);
+        this.children.forEach(x => x.depthFirst(fn, depth + 1));
+    }
+
     findDepthFirst(fn: (node: NTreeNode<T>) => boolean): NTreeNode<T> | null {
         if (fn(this)) {
             return this;
@@ -66,11 +71,24 @@ export class NTreeNode<T> {
         return null;
     }
 
-    forToParent(fn: (node: NTreeNode<T>) => void) {
+    ascendParents(fn: (node: NTreeNode<T>) => void) {
         let node: NTreeNode<T> | null = this;
         while (node != null) {
             fn(node)
-            node = this.parent
+            node = node.parent;
         }
+    }
+
+    asBreadthFist(): NTreeNode<T>[][] {
+        const levels: NTreeNode<T>[][] = [];
+        this.depthFirst((depth, node) => {
+            while (levels.length <= depth) {
+                levels.push([]);
+            }
+
+            levels[depth].push(node)
+        })
+
+        return levels;
     }
 }

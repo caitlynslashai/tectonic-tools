@@ -283,9 +283,8 @@ const Home: NextPage = () => {
                     {tabNames.map((n) => (
                         <button
                             key={n}
-                            className={`p-2.5 text-2xl text-center no-underline inline-block rounded-lg mx-2 hover:bg-[#FFD166] hover:text-black hover:cursor-pointer ${
-                                n === activeTab ? "bg-[#FFD166] text-black" : "bg-gray-500"
-                            }`}
+                            className={`p-2.5 text-2xl text-center no-underline inline-block rounded-lg mx-2 hover:bg-[#FFD166] hover:text-black hover:cursor-pointer ${n === activeTab ? "bg-[#FFD166] text-black" : "bg-gray-500"
+                                }`}
                             onClick={() => setActiveTab(n)}
                         >
                             {n}
@@ -383,7 +382,7 @@ const Home: NextPage = () => {
                     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
                         <PokemonTable mons={filteredPokemon} onRowClick={handlePokemonClick} />
                     </div>
-                    {selectedPokemon && <PokemonModal pokemon={selectedPokemon} onClose={handleCloseModal} />}
+                    {selectedPokemon && <PokemonModal allMons={pokemon} pokemon={selectedPokemon} onClose={handleCloseModal} />}
                 </TabContent>
                 <TabContent tab="Moves" activeTab={activeTab}>
                     <div className="overflow-x-auto">
