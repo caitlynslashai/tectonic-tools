@@ -1,22 +1,15 @@
 import { abilities } from "../abilities";
 import { items } from "../items";
-import { LoadedPokemon } from "../loading/pokemon";
+import { LoadedPokemon, LoadedEvolution } from "../loading/pokemon";
 import { moves } from "../moves";
-import { pokemon } from "../pokemon";
 import { tribes } from "../tribes";
 import { types } from "../types";
+import { NTreeNode } from "../util";
 import { Ability } from "./Ability";
 import { Item } from "./Item";
 import { Move } from "./Move";
 import { PokemonType } from "./PokemonType";
 import { Tribe } from "./Tribe";
-
-export interface Evolution {
-    target: string;
-    method: string;
-    param: string;
-    prevo: boolean;
-}
 
 export interface Stats {
     hp: number;
@@ -84,9 +77,10 @@ export class Pokemon {
     weight: number;
     kind: string;
     pokedex: string;
-    evos: Evolution[];
     forms: PokemonForm[] = [];
     items: Item[];
+    evolutionTree: NTreeNode<LoadedEvolution>;
+
     constructor(mon: LoadedPokemon, dexNo: number) {
         this.id = mon.key;
         this.dex = dexNo;
@@ -107,26 +101,18 @@ export class Pokemon {
             spdef: mon.spDefense,
         };
         this.abilities = mon.abilities.map((a) => abilities[a]);
+
         this.levelMoves = Object.entries(mon.levelMoves).map(([id, level]) => [level, moves[id]]);
-
         this.lineMoves = mon.lineMoves.map((m) => moves[m]);
-
         this.tutorMoves = mon.tutorMoves.map((m) => moves[m]);
 
-        this.tribes = [];
-
         this.tribes = mon.tribes.map((t) => tribes[t]);
-
         this.height = mon.height;
         this.weight = mon.weight;
         this.kind = mon.kind;
         this.pokedex = mon.pokedex;
-        this.evos = [];
-
-        this.evos = mon.evolutions.map((e) => {
-            return { target: e.pokemon, method: e.method, param: e.condition, prevo: false };
-        });
         this.items = mon.wildItems.map((i) => items[i]);
+        this.evolutionTree = mon.evolutionTree!;
     }
 
     public addForms(forms: PokemonForm[]) {
@@ -147,25 +133,12 @@ export class Pokemon {
         return stats.hp + stats.attack + stats.defense + stats.spatk + stats.spdef + stats.speed;
     }
 
-    public getPrevos(): Evolution[] {
-        return this.evos.filter((e) => e.prevo);
+    public getEvoNode(): NTreeNode<LoadedEvolution> {
+        return this.evolutionTree.findDepthFirst(node => node.getData().pokemon == this.id)!;
     }
 
-    public getEvos(): Evolution[] {
-        return this.evos.filter((e) => !e.prevo);
-    }
-
-    public getDeepEvos(): Evolution[] {
-        let allEvos = this.getEvos();
-        if (allEvos.length === 0) {
-            return [];
-        }
-        for (const evo of this.getEvos()) {
-            const mon = pokemon[evo.target];
-            const monEvos = mon.getDeepEvos();
-            allEvos = allEvos.concat(monEvos);
-        }
-        return allEvos;
+    public isFinalEvo(): boolean {
+        return this.getEvoNode().isLeaf();
     }
 
     public getFormName = getterFactory(this, "formName");

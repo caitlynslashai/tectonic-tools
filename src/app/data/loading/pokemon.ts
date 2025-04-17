@@ -1,9 +1,16 @@
 import { KVPair, LoadedData } from "./loadData";
+import { NTreeNode } from "../util";
 
-interface LoadedEvolution {
+export class LoadedEvolution {
     pokemon: string;
     method: string;
     condition: string;
+
+    constructor(pokemon: string, method: string, condition: string) {
+        this.pokemon = pokemon;
+        this.method = method;
+        this.condition = condition;
+    }
 }
 
 export interface LoadedPokemon extends LoadedData {
@@ -30,7 +37,8 @@ export interface LoadedPokemon extends LoadedData {
     kind: string;
     pokedex: string;
     wildItems: string[];
-    firstEvolution: string;
+    firstEvolution: string; // Post processing
+    evolutionTree?: NTreeNode<LoadedEvolution>; // Post processing
 }
 
 export function parsePokemon(pairs: KVPair[]): LoadedPokemon {
@@ -53,7 +61,7 @@ export function parsePokemon(pairs: KVPair[]): LoadedPokemon {
         lineMoves: [], // Note that only the first evo has this
         tutorMoves: [], // Not every mon has these
         tribes: [],
-        evolutions: [], // Note that this is an object of {pokemon, method, condition}
+        evolutions: [],
         wildItems: [],
         kind: "",
         pokedex: "",
@@ -130,9 +138,9 @@ export function parsePokemon(pairs: KVPair[]): LoadedPokemon {
                 break;
             case "Evolutions":
                 const evoSplit = pair.value.split(",");
-                const evolutions = [];
+                const evolutions: LoadedEvolution[] = [];
                 for (let i = 0; i < evoSplit.length; i += 3) {
-                    evolutions.push({ pokemon: evoSplit[i], method: evoSplit[i + 1], condition: evoSplit[i + 2] });
+                    evolutions.push(new LoadedEvolution(evoSplit[i], evoSplit[i + 1], evoSplit[i + 2]));
                 }
                 obj.evolutions = evolutions;
                 break;
@@ -142,53 +150,43 @@ export function parsePokemon(pairs: KVPair[]): LoadedPokemon {
     return obj;
 }
 
-export function addAllTribesAndEvolutions(pokemon: Record<string, LoadedPokemon>): Record<string, LoadedPokemon> {
+export function addAllTribesAndEvoTree(pokemon: Record<string, LoadedPokemon>): Record<string, LoadedPokemon> {
+    function addFirstEvo(mon: LoadedPokemon | null, first: string) {
+        if (mon == null) {
+            return;
+        }
+
+        mon.firstEvolution = first;
+        mon.evolutions.forEach((evo) => addFirstEvo(pokemon[evo.pokemon], first));
+    }
+
+    function getEvoPath(cur: LoadedPokemon, find: LoadedPokemon): LoadedPokemon[] {
+        if (cur.key == find.key) {
+            return [cur];
+        }
+
+        for (const evo of cur.evolutions) {
+            const result = getEvoPath(pokemon[evo.pokemon], find);
+            if (result.length > 0) {
+                return [cur].concat(result);
+            }
+        }
+
+        return [];
+    }
+
     for (const id in pokemon) {
         if (pokemon[id].firstEvolution.length == 0) {
-            recursivelyAddFirstEvolution(pokemon, pokemon[id], pokemon[id].key);
+            addFirstEvo(pokemon[id], pokemon[id].key);
         }
     }
 
     for (const id in pokemon) {
         if (pokemon[id].tribes.length == 0) {
-            const evoMon = pokemon[pokemon[id].firstEvolution];
-            if (evoMon) {
-                const evoPath = recursivelyFindEvoPath(pokemon, evoMon, pokemon[id]);
-                const mostRecentEvoWithTribes = evoPath.reverse().find((evo) => evo.tribes.length > 0);
-                pokemon[id].tribes = mostRecentEvoWithTribes == null ? [] : mostRecentEvoWithTribes.tribes;
-            }
+            const evoPath = getEvoPath(pokemon[pokemon[id].firstEvolution], pokemon[id]);
+            pokemon[id].tribes = evoPath.reverse().find((evo) => evo.tribes.length > 0)?.tribes ?? [];
         }
     }
 
     return pokemon;
-}
-
-function recursivelyAddFirstEvolution(pokemon: Record<string, LoadedPokemon>, mon: LoadedPokemon, first: string) {
-    mon.firstEvolution = first;
-    mon.evolutions.forEach((evo) => {
-        const evoMon = pokemon[evo.pokemon];
-        if (evoMon) recursivelyAddFirstEvolution(pokemon, evoMon, first);
-    });
-}
-
-function recursivelyFindEvoPath(
-    pokemon: Record<string, LoadedPokemon>,
-    cur: LoadedPokemon,
-    find: LoadedPokemon
-): LoadedPokemon[] {
-    if (cur.key == find.key) {
-        return [cur];
-    }
-
-    for (const evo of cur.evolutions) {
-        const evoMon = pokemon[evo.pokemon];
-        if (evoMon) {
-            const result = recursivelyFindEvoPath(pokemon, evoMon, find);
-            if (result.length > 0) {
-                return [cur].concat(result);
-            }
-        }
-    }
-
-    return [];
 }

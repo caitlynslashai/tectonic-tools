@@ -6,7 +6,7 @@ import { getSignatureAbilities } from "@/app/data/signatures";
 import { calcTypeMatchup } from "@/app/data/typeChart";
 import { types } from "@/app/data/types";
 import { EncounterArea } from "@/app/data/types/Encounter";
-import { Evolution, Pokemon } from "@/app/data/types/Pokemon";
+import { Pokemon } from "@/app/data/types/Pokemon";
 import { negativeMod } from "@/app/data/util";
 import TypeBadgeHeader from "@/components/TypeBadgeSingle";
 import Image from "next/image";
@@ -17,6 +17,7 @@ import MoveDisplay from "./MoveDisplay";
 import StatRow from "./StatRow";
 import TabContent from "./TabContent";
 import TypeChartCell from "./TypeChartCell";
+import { LoadedEvolution } from "@/app/data/loading/pokemon";
 
 interface PokemonModalProps {
     pokemon: Pokemon | null;
@@ -69,37 +70,37 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
 
     if (!isRendered || !currentPokemon) return null;
 
-    function describeEvoMethod(evo: Evolution) {
+    function describeEvoMethod(evo: LoadedEvolution) {
         switch (evo.method) {
             case "Level":
             case "Ninjask":
-                return `at level ${evo.param}`;
+                return `at level ${evo.method}`;
             case "LevelMale":
-                return `at level ${evo.param} if it's male`;
+                return `at level ${evo.method} if it's male`;
             case "LevelFemale":
-                return `at level ${evo.param} if it's female`;
+                return `at level ${evo.method} if it's female`;
             case "LevelDay":
-                return `at level ${evo.param} during the day`;
+                return `at level ${evo.method} during the day`;
             case "LevelNight":
-                return `at level ${evo.param} during nighttime`;
+                return `at level ${evo.method} during nighttime`;
             case "LevelRain":
-                return `at level ${evo.param} while raining`;
+                return `at level ${evo.method} while raining`;
             case "LevelDarkInParty":
-                return `at level ${evo.param} while a dark type is in the party`;
+                return `at level ${evo.method} while a dark type is in the party`;
             case "AttackGreater":
-                return `at level ${evo.param} if it has more attack than defense`;
+                return `at level ${evo.method} if it has more attack than defense`;
             case "AtkDefEqual":
-                return `at level ${evo.param} if it has attack equal to defense`;
+                return `at level ${evo.method} if it has attack equal to defense`;
             case "DefenseGreater":
-                return `at level ${evo.param} if it has more defense than attack`;
+                return `at level ${evo.method} if it has more defense than attack`;
             case "Silcoon":
-                return `at level ${evo.param} half of the time`;
+                return `at level ${evo.method} half of the time`;
             case "Cascoon":
-                return `at level ${evo.param} the other half of the time`;
+                return `at level ${evo.method} the other half of the time`;
             case "Ability0":
-                return `at level ${evo.param} if it has the first of its possible abilities`;
+                return `at level ${evo.method} if it has the first of its possible abilities`;
             case "Ability1":
-                return `at level ${evo.param} if it has the second of its possible abilities`;
+                return `at level ${evo.method} if it has the second of its possible abilities`;
             case "Happiness":
                 return "case leveled up while it has high happiness";
             case "MaxHappiness":
@@ -107,27 +108,27 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
             case "Beauty":
                 return "case leveled up while it has maximum beauty";
             case "HasMove":
-                return `case leveled up while it knows the move ${moves[evo.param].name}`;
+                return `case leveled up while it knows the move ${moves[evo.method].name}`;
             case "HasMoveType":
-                return `case leveled up while it knows a move of the ${evo.param} type`;
+                return `case leveled up while it knows a move of the ${evo.method} type`;
             case "Location":
                 return "case leveled up near a special location";
             case "Item":
-                return `by using a ${items[evo.param].name}`;
+                return `by using a ${items[evo.method].name}`;
             case "ItemMale":
-                return `by using a ${items[evo.param].name} if it's male`;
+                return `by using a ${items[evo.method].name} if it's male`;
             case "ItemFemale":
-                return `by using a ${items[evo.param].name} if it's female`;
+                return `by using a ${items[evo.method].name} if it's female`;
             case "Trade":
                 return "case traded";
             case "TradeItem":
-                return `case traded holding an ${items[evo.param].name}`;
+                return `case traded holding an ${items[evo.method].name}`;
             case "HasInParty":
-                return `case leveled up while a ${pokemon[evo.param]} is also in the party`;
+                return `case leveled up while a ${pokemon[evo.method]} is also in the party`;
             case "Shedinja":
                 return "also if you have an empty Poké Ball and party slot";
             case "Originize":
-                return `at level ${evo.param} if you spend an Origin Ore`;
+                return `at level ${evo.method} if you spend an Origin Ore`;
             default:
                 return "via a method the programmer was too lazy to describe";
         }
@@ -138,20 +139,15 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
     );
 
     const prevoEncounters: Record<string, EncounterArea[]> = {};
-    const prevos = currentPokemon.getPrevos();
-    let currentPrevo = prevos.length > 0 ? prevos[0].target : undefined;
-    while (currentPrevo !== undefined) {
-        const currentSpecies = pokemon[currentPrevo];
+    currentPokemon.getEvoNode().forToParent(node => {
+        const currentSpecies = pokemon[node.getData().pokemon];
         const newEncounters = Object.values(encounters).filter((e) =>
             Object.values(e.encounters).some((en) => en.some((enc) => enc.pokemon === currentSpecies.id))
         );
         if (newEncounters.length > 0) {
-            prevoEncounters[currentPrevo] = newEncounters;
+            prevoEncounters[node.getData().pokemon] = newEncounters;
         }
-        // get prevos recursively
-        const newPrevos = currentSpecies.getPrevos();
-        currentPrevo = newPrevos.length > 0 ? newPrevos[0].target : undefined;
-    }
+    });
 
     const stats = currentPokemon.getStats(currentForm);
     const realTypes = Object.values(types).filter((t) => t.isRealType);
@@ -159,15 +155,13 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
     return (
         <div
             onClick={handleClose} // Close modal on background click
-            className={`fixed inset-0 backdrop-blur-sm flex items-center justify-center p-4 z-50 transition-opacity duration-300 ${
-                isVisible ? "opacity-100" : "opacity-0"
-            }`}
+            className={`fixed inset-0 backdrop-blur-sm flex items-center justify-center p-4 z-50 transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"
+                }`}
         >
             <div
                 onClick={(e) => e.stopPropagation()} // Prevent background click from closing modal
-                className={`bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] min-h-[70vh] overflow-y-auto transform transition-transform duration-300 ${
-                    isVisible ? "scale-100" : "scale-95"
-                }`}
+                className={`bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] min-h-[70vh] overflow-y-auto transform transition-transform duration-300 ${isVisible ? "scale-100" : "scale-95"
+                    }`}
             >
                 <div className="p-6">
                     <div className="flex justify-between items-start">
@@ -249,11 +243,10 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                                 <button
                                     key={tab}
                                     onClick={() => handleTabChange(tab)}
-                                    className={`px-4 py-2 text-sm font-medium ${
-                                        activeTab === tab
-                                            ? "text-blue-600 border-b-2 border-blue-600 dark:text-blue-400 dark:border-blue-400"
-                                            : "text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
-                                    }`}
+                                    className={`px-4 py-2 text-sm font-medium ${activeTab === tab
+                                        ? "text-blue-600 border-b-2 border-blue-600 dark:text-blue-400 dark:border-blue-400"
+                                        : "text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
+                                        }`}
                                 >
                                     {tab}
                                 </button>
@@ -284,11 +277,10 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, onClose }) =>
                             {currentPokemon.getAbilities(currentForm).map((a) => (
                                 <div key={a.id}>
                                     <h3
-                                        className={`font-semibold ${
-                                            a.id in getSignatureAbilities()
-                                                ? "text-yellow-500"
-                                                : "text-gray-800 dark:text-gray-100"
-                                        }`}
+                                        className={`font-semibold ${a.id in getSignatureAbilities()
+                                            ? "text-yellow-500"
+                                            : "text-gray-800 dark:text-gray-100"
+                                            }`}
                                     >
                                         {a.name}
                                     </h3>

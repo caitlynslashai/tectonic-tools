@@ -6,7 +6,7 @@ import { parseAbilities } from "./abilities";
 import { parseForms } from "./forms";
 import { parseItems } from "./items";
 import { parseMoves } from "./moves";
-import { addAllTribesAndEvolutions, parsePokemon } from "./pokemon";
+import { addAllTribesAndEvoTree, parsePokemon } from "./pokemon";
 import { parseTribes } from "./tribes";
 import { buildTypeChart, TypeChart } from "./typeChart";
 import { parsePokemonTypes } from "./types";
@@ -105,7 +105,7 @@ async function loadData(): Promise<void> {
     const moves = standardFilesParser([tectonicFiles[4], tectonicFiles[5]], parseMoves);
     const items = standardFilesParser([tectonicFiles[6]], parseItems);
     // const heldItems = filterToHeldItems(items);
-    const pokemon = addAllTribesAndEvolutions(standardFilesParser([tectonicFiles[7]], parsePokemon));
+    const pokemon = addAllTribesAndEvoTree(standardFilesParser([tectonicFiles[7]], parsePokemon));
     const forms = parseForms([tectonicFiles[8]]);
     const typeChart = buildTypeChart(types);
     const version = tectonicFiles[9];
