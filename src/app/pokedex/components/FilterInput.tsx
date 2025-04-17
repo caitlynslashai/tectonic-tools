@@ -40,6 +40,11 @@ export function FilterInput({ currentFilter, onAddFilter }: FilterInputProps) {
                     value={localValue}
                     onChange={(e) => setLocalValue(e.target.value)}
                     placeholder="Value..."
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            handleAdd();
+                        }
+                    }}
                 />
             )}
 
