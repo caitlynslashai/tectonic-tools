@@ -10,14 +10,14 @@ import { Pokemon } from "@/app/data/types/Pokemon";
 import { negativeMod } from "@/app/data/util";
 import TypeBadgeHeader from "@/components/TypeBadgeSingle";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TypeBadge from "../../../components/TypeBadge";
 import EncounterDisplay from "./EncounterDisplay";
 import MoveDisplay from "./MoveDisplay";
+import PokemonEvolution from "./PokemonEvolution";
 import StatRow from "./StatRow";
 import TabContent from "./TabContent";
 import TypeChartCell from "./TypeChartCell";
-import PokemonEvolution from "./PokemonEvolution";
 
 interface PokemonModalProps {
     allMons: Record<string, Pokemon>;
@@ -42,18 +42,24 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
     const [isVisible, setIsVisible] = useState(false);
     const [isRendered, setIsRendered] = useState(false);
     const [currentPokemon, setCurrentPokemon] = useState(mon);
-    const [activeTab, setActiveTab] = useState<PokemonTabName>("Info"); // Track active tab
+    const [activeTab, setActiveTab] = useState<PokemonTabName>("Info");
     const [currentForm, setCurrentForm] = useState<number>(0);
+    const modalRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (mon) {
-            setCurrentPokemon(mon); // Update to the new Pokémon
-            setCurrentForm(0); // reset form index when new Pokemon selected
+            setCurrentPokemon(mon);
+            setCurrentForm(0);
             setIsRendered(true);
-            setTimeout(() => setIsVisible(true), 10); // Slight delay to trigger animation
+            setTimeout(() => {
+                setIsVisible(true);
+                if (modalRef.current) {
+                    modalRef.current.scrollTop = 0;
+                }
+            }, 10);
         } else {
             setIsVisible(false);
-            setTimeout(() => setIsRendered(false), 300); // Match duration-300 for fade-out
+            setTimeout(() => setIsRendered(false), 300);
         }
     }, [mon]);
 
@@ -61,8 +67,8 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
         setIsVisible(false);
         setTimeout(() => {
             setIsRendered(false);
-            handlePokemonClick(null); // Close after fade-out
-        }, 300); // Match duration-300 for fade-out
+            handlePokemonClick(null);
+        }, 300);
     };
 
     const handleTabChange = (tab: PokemonTabName) => {
@@ -91,13 +97,14 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
 
     return (
         <div
-            onClick={handleClose} // Close modal on background click
+            onClick={handleClose}
             className={`fixed inset-0 backdrop-blur-sm flex items-center justify-center p-4 z-50 transition-opacity duration-300 ${
                 isVisible ? "opacity-100" : "opacity-0"
             }`}
         >
             <div
-                onClick={(e) => e.stopPropagation()} // Prevent background click from closing modal
+                ref={modalRef}
+                onClick={(e) => e.stopPropagation()}
                 className={`bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] min-h-[70vh] overflow-y-auto transform transition-transform duration-300 ${
                     isVisible ? "scale-100" : "scale-95"
                 }`}
