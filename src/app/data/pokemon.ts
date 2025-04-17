@@ -1,32 +1,35 @@
 import loadedPokemon from "public/data/pokemon.json";
 import { forms, nullForm } from "./forms";
-import { Evolution, Pokemon } from "./types/Pokemon";
+import { LoadedEvolution, LoadedPokemon } from "./loading/pokemon";
+import { Pokemon } from "./types/Pokemon";
+import { NTreeNode } from "./util";
 
-export const pokemon: Record<string, Pokemon> = Object.fromEntries(
-    Object.entries(loadedPokemon).map(([id, mon], i) => [id, new Pokemon(mon, i + 1)])
-);
+export const pokemon: Record<string, Pokemon> = {};
+const loadData: Record<string, LoadedPokemon> = {};
+Object.entries(loadedPokemon).forEach(([id, mon]) => (loadData[id] = mon));
 
-// propagate prevos
-const all_evos: Record<string, Evolution> = {};
-for (const index in pokemon) {
-    const mon = pokemon[index];
-    for (const evo of mon.evos) {
-        all_evos[evo.target] = { ...evo, target: index, prevo: true };
+function buildEvoTree(curNode: NTreeNode<LoadedEvolution>, cur: LoadedPokemon) {
+    for (const evo of cur.evolutions) {
+        buildEvoTree(curNode.addChild(evo), loadData[evo.pokemon]);
     }
 }
 
-for (const index in pokemon) {
-    if (index in all_evos) {
-        pokemon[index].evos.push(all_evos[index]);
+Object.values(loadData).forEach((loadMon) => {
+    const firstEvo = loadData[loadMon.firstEvolution];
+    if (firstEvo.evolutionTree == null) {
+        firstEvo.evolutionTree = new NTreeNode(new LoadedEvolution(firstEvo.key, "", ""));
+        buildEvoTree(firstEvo.evolutionTree, firstEvo);
     }
-}
+    loadMon.evolutionTree = firstEvo.evolutionTree;
+    pokemon[loadMon.key] = new Pokemon(loadMon, loadMon.dexNum);
+});
 
 for (const mon in forms) {
     //0th form should fall back to base form
     pokemon[mon].addForms([nullForm, ...forms[mon]]);
 }
 
-export const nullPokemon: Pokemon = new Pokemon(
+export const nullPokemon = new Pokemon(
     {
         key: "",
         name: "",
@@ -38,11 +41,11 @@ export const nullPokemon: Pokemon = new Pokemon(
         lineMoves: [],
         tutorMoves: [],
         tribes: [],
+        evolutions: [],
         height: 0,
         weight: 0,
         kind: "",
         pokedex: "",
-        evolutions: [],
         dexNum: 0,
         hp: 0,
         attack: 0,

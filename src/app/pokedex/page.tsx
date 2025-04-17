@@ -33,6 +33,7 @@ import { Item } from "../data/types/Item";
 import { Tribe } from "../data/types/Tribe";
 import { FilterInput } from "./components/FilterInput";
 import TypeChartCell from "./components/TypeChartCell";
+import { getItemImage } from "../data/util";
 
 export type FilterOperator = "==" | "!=" | ">" | "<" | "includes";
 
@@ -209,12 +210,8 @@ const Home: NextPage = () => {
         }
     }, [selectedPokemon]);
 
-    const handlePokemonClick = (pokemon: Pokemon) => {
+    const handlePokemonClick = (pokemon: Pokemon | null) => {
         setSelectedPokemon(pokemon);
-    };
-
-    const handleCloseModal = () => {
-        setSelectedPokemon(null);
     };
 
     const handleMoveClick = (move: Move) => {
@@ -341,7 +338,13 @@ const Home: NextPage = () => {
                     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
                         <PokemonTable mons={filteredPokemon} onRowClick={handlePokemonClick} />
                     </div>
-                    {selectedPokemon && <PokemonModal pokemon={selectedPokemon} onClose={handleCloseModal} />}
+                    {selectedPokemon && (
+                        <PokemonModal
+                            allMons={pokemon}
+                            pokemon={selectedPokemon}
+                            handlePokemonClick={handlePokemonClick}
+                        />
+                    )}
                 </TabContent>
                 <TabContent tab="Moves" activeTab={activeTab}>
                     <div className="overflow-x-auto">
@@ -425,12 +428,7 @@ const Home: NextPage = () => {
                                         className={`hover:bg-blue-50 dark:hover:bg-blue-900 cursor-pointer`}
                                     >
                                         <TableCell>
-                                            <Image
-                                                alt={i.name}
-                                                src={"/Items/" + i.id + ".png"}
-                                                width={50}
-                                                height={50}
-                                            />
+                                            <Image alt={i.name} src={getItemImage(i.id)} width={50} height={50} />
                                         </TableCell>
                                         <TableCell>{i.name}</TableCell>
                                         <TableCell>{i.description}</TableCell>
