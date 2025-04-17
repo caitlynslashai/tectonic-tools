@@ -1,6 +1,6 @@
 // data loading code adapted from https://github.com/Cincidial/techo
 
-import { writeFile } from "fs/promises";
+import { readFile, writeFile } from "fs/promises";
 import path from "path";
 import { parseAbilities } from "./abilities";
 import { parseForms } from "./forms";
@@ -21,6 +21,14 @@ async function fileFetch(path: string) {
     }
 
     return await response.text();
+}
+
+async function dataRead(filePath: string) {
+    const basePath = path.join(__dirname, "../../../../public/data/");
+    const fullPath = basePath + filePath;
+
+    const fileData = await readFile(fullPath, "utf-8");
+    return JSON.parse(fileData);
 }
 
 async function dataWrite<T>(filePath: string, contents: Record<string, T> | TypeChart | string) {
@@ -108,7 +116,25 @@ async function loadData(): Promise<void> {
     const pokemon = addAllTribesAndEvolutions(standardFilesParser([tectonicFiles[7]], parsePokemon));
     const forms = parseForms([tectonicFiles[8]]);
     const typeChart = buildTypeChart(types);
-    const version = tectonicFiles[9];
+    const version = tectonicFiles[9].trim();
+    const currentVersion = { version };
+
+    const indices = {
+        pokemon: Object.fromEntries(Object.keys(pokemon).map((id, i) => [id, i])),
+        ability: Object.fromEntries(Object.keys(abilities).map((id, i) => [id, i])),
+        item: Object.fromEntries(Object.keys(items).map((id, i) => [id, i])),
+        move: Object.fromEntries(Object.keys(moves).map((id, i) => [id, i])),
+    };
+
+    const keys = {
+        pokemon: Object.keys(pokemon),
+        ability: Object.keys(abilities),
+        item: Object.keys(items),
+        move: Object.keys(moves),
+    };
+
+    const versions = await dataRead("versions.json");
+    versions[version] = { indices, keys };
 
     await Promise.all([
         dataWrite("types.json", types),
@@ -119,7 +145,8 @@ async function loadData(): Promise<void> {
         dataWrite("pokemon.json", pokemon),
         dataWrite("forms.json", forms),
         dataWrite("typechart.json", typeChart),
-        dataWrite("version.txt", version),
+        dataWrite("currentversion.json", currentVersion),
+        dataWrite("versions.json", versions),
     ]);
 }
 
