@@ -32,11 +32,11 @@ export class NTreeNode<T> {
     }
 
     isLeaf(): boolean {
-        return this.children.length == 0
+        return this.children.length == 0;
     }
 
     getParent(): NTreeNode<T> | null {
-        return this.parent
+        return this.parent;
     }
 
     hasChildren(): boolean {
@@ -53,7 +53,7 @@ export class NTreeNode<T> {
 
     depthFirst(fn: (depth: number, node: NTreeNode<T>) => void, depth: number = 0) {
         fn(depth, this);
-        this.children.forEach(x => x.depthFirst(fn, depth + 1));
+        this.children.forEach((x) => x.depthFirst(fn, depth + 1));
     }
 
     findDepthFirst(fn: (node: NTreeNode<T>) => boolean): NTreeNode<T> | null {
@@ -71,11 +71,12 @@ export class NTreeNode<T> {
         return null;
     }
 
+    // recursion pattern modified to avoid aliasing "this" to local variable
+    // hopefully still works as expected
     ascendParents(fn: (node: NTreeNode<T>) => void) {
-        let node: NTreeNode<T> | null = this;
-        while (node != null) {
-            fn(node)
-            node = node.parent;
+        fn(this);
+        if (this.parent) {
+            this.parent.ascendParents(fn);
         }
     }
 
@@ -86,8 +87,8 @@ export class NTreeNode<T> {
                 levels.push([]);
             }
 
-            levels[depth].push(node)
-        })
+            levels[depth].push(node);
+        });
 
         return levels;
     }

@@ -1,16 +1,16 @@
 import loadedPokemon from "public/data/pokemon.json";
 import { forms, nullForm } from "./forms";
-import { Pokemon } from "./types/Pokemon";
 import { LoadedEvolution, LoadedPokemon } from "./loading/pokemon";
+import { Pokemon } from "./types/Pokemon";
 import { NTreeNode } from "./util";
 
-export const pokemon: Record<string, Pokemon> = {}
-const loadData: Record<string, LoadedPokemon> = {}
-Object.entries(loadedPokemon).forEach(([id, mon], _i) => loadData[id] = mon);
+export const pokemon: Record<string, Pokemon> = {};
+const loadData: Record<string, LoadedPokemon> = {};
+Object.entries(loadedPokemon).forEach(([id, mon]) => (loadData[id] = mon));
 
 function buildEvoTree(curNode: NTreeNode<LoadedEvolution>, cur: LoadedPokemon) {
     for (const evo of cur.evolutions) {
-        buildEvoTree(curNode.addChild(evo), loadData[evo.pokemon])
+        buildEvoTree(curNode.addChild(evo), loadData[evo.pokemon]);
     }
 }
 
@@ -21,8 +21,8 @@ Object.values(loadData).forEach((loadMon) => {
         buildEvoTree(firstEvo.evolutionTree, firstEvo);
     }
     loadMon.evolutionTree = firstEvo.evolutionTree;
-    pokemon[loadMon.key] = new Pokemon(loadMon, loadMon.dexNum)
-})
+    pokemon[loadMon.key] = new Pokemon(loadMon, loadMon.dexNum);
+});
 
 for (const mon in forms) {
     //0th form should fall back to base form

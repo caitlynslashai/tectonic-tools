@@ -1,5 +1,6 @@
 import { encounters } from "@/app/data/encounters";
 import { items } from "@/app/data/items";
+import { LoadedEvolution } from "@/app/data/loading/pokemon";
 import { moves } from "@/app/data/moves";
 import { pokemon } from "@/app/data/pokemon";
 import { getSignatureAbilities } from "@/app/data/signatures";
@@ -17,10 +18,9 @@ import MoveDisplay from "./MoveDisplay";
 import StatRow from "./StatRow";
 import TabContent from "./TabContent";
 import TypeChartCell from "./TypeChartCell";
-import { LoadedEvolution } from "@/app/data/loading/pokemon";
 
 interface PokemonModalProps {
-    allMons: Record<string, Pokemon>,
+    allMons: Record<string, Pokemon>;
     pokemon: Pokemon | null;
     onClose: () => void;
 }
@@ -140,7 +140,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, onCl
     );
 
     const prevoEncounters: Record<string, EncounterArea[]> = {};
-    currentPokemon.getEvoNode().ascendParents(node => {
+    currentPokemon.getEvoNode().ascendParents((node) => {
         const currentSpecies = pokemon[node.getData().pokemon];
         const newEncounters = Object.values(encounters).filter((e) =>
             Object.values(e.encounters).some((en) => en.some((enc) => enc.pokemon === currentSpecies.id))
@@ -156,13 +156,15 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, onCl
     return (
         <div
             onClick={handleClose} // Close modal on background click
-            className={`fixed inset-0 backdrop-blur-sm flex items-center justify-center p-4 z-50 transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"
-                }`}
+            className={`fixed inset-0 backdrop-blur-sm flex items-center justify-center p-4 z-50 transition-opacity duration-300 ${
+                isVisible ? "opacity-100" : "opacity-0"
+            }`}
         >
             <div
                 onClick={(e) => e.stopPropagation()} // Prevent background click from closing modal
-                className={`bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] min-h-[70vh] overflow-y-auto transform transition-transform duration-300 ${isVisible ? "scale-100" : "scale-95"
-                    }`}
+                className={`bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] min-h-[70vh] overflow-y-auto transform transition-transform duration-300 ${
+                    isVisible ? "scale-100" : "scale-95"
+                }`}
             >
                 <div className="p-6">
                     <div className="flex justify-between items-start">
@@ -244,10 +246,11 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, onCl
                                 <button
                                     key={tab}
                                     onClick={() => handleTabChange(tab)}
-                                    className={`px-4 py-2 text-sm font-medium ${activeTab === tab
-                                        ? "text-blue-600 border-b-2 border-blue-600 dark:text-blue-400 dark:border-blue-400"
-                                        : "text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
-                                        }`}
+                                    className={`px-4 py-2 text-sm font-medium ${
+                                        activeTab === tab
+                                            ? "text-blue-600 border-b-2 border-blue-600 dark:text-blue-400 dark:border-blue-400"
+                                            : "text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
+                                    }`}
                                 >
                                     {tab}
                                 </button>
@@ -278,10 +281,11 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, onCl
                             {currentPokemon.getAbilities(currentForm).map((a) => (
                                 <div key={a.id}>
                                     <h3
-                                        className={`font-semibold ${a.id in getSignatureAbilities()
-                                            ? "text-yellow-500"
-                                            : "text-gray-800 dark:text-gray-100"
-                                            }`}
+                                        className={`font-semibold ${
+                                            a.id in getSignatureAbilities()
+                                                ? "text-yellow-500"
+                                                : "text-gray-800 dark:text-gray-100"
+                                        }`}
                                     >
                                         {a.name}
                                     </h3>
@@ -406,27 +410,42 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, onCl
                         <TabContent tab="Evolutions" activeTab={activeTab}>
                             <div>
                                 <div className="mt-4">
-                                    {currentPokemon.evolutionTree.isLeaf()
-                                        ? (<p className="text-gray-600 dark:text-gray-300">No further evolutions.</p>)
-                                        : (
-                                            <table>
-                                                <tbody>
-                                                    <tr>
-                                                        {currentPokemon.evolutionTree.asBreadthFist().map(level => (
-                                                            <td>
+                                    {currentPokemon.evolutionTree.isLeaf() ? (
+                                        <p className="text-gray-600 dark:text-gray-300">No further evolutions.</p>
+                                    ) : (
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    {currentPokemon.evolutionTree
+                                                        .asBreadthFist()
+                                                        .map((level, index) => (
+                                                            <td key={index}>
                                                                 <table>
                                                                     <tbody>
-                                                                        {level.map(node => (
-                                                                            <tr>
-                                                                                {node.isRoot()
-                                                                                    ? (<></>)
-                                                                                    : (
-                                                                                        <td>
-                                                                                            <div>→ {describeEvoMethod(node.getData())}</div>
-                                                                                        </td>
-                                                                                    )}
+                                                                        {level.map((node, index) => (
+                                                                            <tr key={index}>
+                                                                                {node.isRoot() ? (
+                                                                                    <></>
+                                                                                ) : (
+                                                                                    <td>
+                                                                                        <div>
+                                                                                            →{" "}
+                                                                                            {describeEvoMethod(
+                                                                                                node.getData()
+                                                                                            )}
+                                                                                        </div>
+                                                                                    </td>
+                                                                                )}
                                                                                 <td>
-                                                                                    <img src={allMons[node.getData().pokemon].getImage()} />
+                                                                                    <Image
+                                                                                        src={allMons[
+                                                                                            node.getData().pokemon
+                                                                                        ].getImage()}
+                                                                                        alt={node.getData().pokemon}
+                                                                                        height="160"
+                                                                                        width="160"
+                                                                                        className="w-24 h-24"
+                                                                                    />
                                                                                 </td>
                                                                             </tr>
                                                                         ))}
@@ -434,11 +453,10 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, onCl
                                                                 </table>
                                                             </td>
                                                         ))}
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        )
-                                    }
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    )}
                                 </div>
                             </div>
                         </TabContent>
