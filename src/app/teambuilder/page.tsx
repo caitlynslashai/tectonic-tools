@@ -74,8 +74,15 @@ const TeamBuilder: NextPage = () => {
 
     const tribeCounts = Object.fromEntries(Object.values(tribes).map((t) => [t.id, 0]));
     for (const card of cards) {
-        for (const tribe of card.pokemon.tribes) {
-            tribeCounts[tribe.id]++;
+        // count as all tribes if wild card equipped
+        if (card.item.id === "WILDCARD") {
+            for (const tribe in tribes) {
+                tribeCounts[tribe]++;
+            }
+        } else {
+            for (const tribe of card.pokemon.tribes) {
+                tribeCounts[tribe.id]++;
+            }
         }
     }
 
