@@ -19,6 +19,7 @@ import { Item } from "../data/types/Item";
 import { Move } from "../data/types/Move";
 import { Pokemon } from "../data/types/Pokemon";
 import { isNull } from "../data/util";
+import { version, VersionMap, versionMaps } from "../data/versions";
 import TypeChartCell from "../pokedex/components/TypeChartCell";
 import AtkTotalCell from "./components/AtkTotalCell";
 import DefTotalCell from "./components/DefTotalCell";
@@ -47,20 +48,6 @@ const nullCard = {
     ability: nullAbility,
     item: nullItem,
     form: 0,
-};
-
-const indices = {
-    pokemon: Object.fromEntries(Object.keys(pokemon).map((id, i) => [id, i])),
-    ability: Object.fromEntries(Object.keys(abilities).map((id, i) => [id, i])),
-    item: Object.fromEntries(Object.keys(items).map((id, i) => [id, i])),
-    move: Object.fromEntries(Object.keys(moves).map((id, i) => [id, i])),
-};
-
-const keys = {
-    pokemon: Object.keys(pokemon),
-    ability: Object.keys(abilities),
-    item: Object.keys(items),
-    move: Object.keys(moves),
 };
 
 const TeamBuilder: NextPage = () => {
@@ -122,6 +109,7 @@ const TeamBuilder: NextPage = () => {
     }
 
     const encodeChunk = (data: SavedCardData): string => {
+        const indices = versionMaps[version].indices;
         const indexList = [
             indices.pokemon[data.pokemon],
             indices.ability[data.ability],
@@ -153,6 +141,7 @@ const TeamBuilder: NextPage = () => {
         }));
 
         const chunks = savedCards.map(encodeChunk);
+        chunks.unshift(version);
         const code = chunks.join("!"); // Using ! as separator
         setTeamCode(code);
         navigator.clipboard.writeText(code);
@@ -191,7 +180,8 @@ const TeamBuilder: NextPage = () => {
         }
     }
 
-    const decodeChunk = (chunk: string): SavedCardData => {
+    const decodeChunk = (chunk: string, version: VersionMap): SavedCardData => {
+        const keys = version.keys;
         const buffer = Buffer.from(chunk, "base64");
         const view = new DataView(buffer.buffer);
 
@@ -212,14 +202,18 @@ const TeamBuilder: NextPage = () => {
     function importTeam() {
         try {
             const chunks = teamCode.split("!");
+            const version = chunks[0];
+            const dataChunks = chunks.slice(1);
 
-            const loadedCards = chunks.map(decodeChunk).map((card) => ({
-                pokemon: pokemon[card.pokemon] || nullPokemon,
-                ability: abilities[card.ability] || nullAbility,
-                item: items[card.item] || nullItem,
-                form: card.form,
-                moves: card.moves.map((m) => moves[m] || nullMove),
-            }));
+            const loadedCards = dataChunks
+                .map((c) => decodeChunk(c, versionMaps[version]))
+                .map((card) => ({
+                    pokemon: pokemon[card.pokemon] || nullPokemon,
+                    ability: abilities[card.ability] || nullAbility,
+                    item: items[card.item] || nullItem,
+                    form: card.form,
+                    moves: card.moves.map((m) => moves[m] || nullMove),
+                }));
 
             setCards(loadedCards);
             alert("Team imported successfully!");

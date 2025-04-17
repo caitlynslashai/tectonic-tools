@@ -117,6 +117,7 @@ async function loadData(): Promise<void> {
     const forms = parseForms([tectonicFiles[8]]);
     const typeChart = buildTypeChart(types);
     const version = tectonicFiles[9].trim();
+    const currentVersion = { version };
 
     const indices = {
         pokemon: Object.fromEntries(Object.keys(pokemon).map((id, i) => [id, i])),
@@ -144,7 +145,7 @@ async function loadData(): Promise<void> {
         dataWrite("pokemon.json", pokemon),
         dataWrite("forms.json", forms),
         dataWrite("typechart.json", typeChart),
-        dataWrite("version.txt", version),
+        dataWrite("currentversion.json", currentVersion),
         dataWrite("versions.json", versions),
     ]);
 }
