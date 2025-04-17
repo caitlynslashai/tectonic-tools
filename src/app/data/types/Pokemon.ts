@@ -2,6 +2,7 @@ import { abilities } from "../abilities";
 import { items } from "../items";
 import { LoadedEvolution, LoadedPokemon } from "../loading/pokemon";
 import { moves } from "../moves";
+import { calculateHP, calculateStat } from "../stats";
 import { tribes } from "../tribes";
 import { types } from "../types";
 import { Ability } from "./Ability";
@@ -59,6 +60,9 @@ function getterFactory<T extends keyof Pokemon>(mon: Pokemon, key: T) {
 }
 
 export type PokemonForm = Partial<Pokemon> & { formId: number };
+
+const EHP_LEVEL = 50;
+const DEFAULT_STYLE_VALUE = 10;
 
 export class Pokemon {
     id: string;
@@ -148,6 +152,22 @@ export class Pokemon {
     public getStats = getterFactory(this, "stats");
     public getPokedex = getterFactory(this, "pokedex");
     public getLevelMoves = getterFactory(this, "levelMoves");
+
+    public getPEHP(currentForm: number = 0) {
+        const stats = this.getStats(currentForm);
+        const defStat = stats.defense;
+        const hpValue = calculateHP(stats.hp, EHP_LEVEL, DEFAULT_STYLE_VALUE);
+        const defValue = calculateStat(defStat, EHP_LEVEL, DEFAULT_STYLE_VALUE);
+        return Math.max(Math.round((hpValue * defValue) / 100), 1);
+    }
+
+    public getSEHP(currentForm: number = 0) {
+        const stats = this.getStats(currentForm);
+        const defStat = stats.spdef;
+        const hpValue = calculateHP(stats.hp, EHP_LEVEL, DEFAULT_STYLE_VALUE);
+        const defValue = calculateStat(defStat, EHP_LEVEL, DEFAULT_STYLE_VALUE);
+        return Math.max(Math.round((hpValue * defValue) / 100), 1);
+    }
 
     public getImage(currentForm: number = 0) {
         return "/Pokemon/" + this.id + (currentForm > 0 ? "_" + this.forms[currentForm].formId : "") + ".png";

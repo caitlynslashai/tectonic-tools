@@ -13,6 +13,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import TypeBadge from "../../../components/TypeBadge";
 import EncounterDisplay from "./EncounterDisplay";
+import EStatRow from "./EStatRow";
 import MoveDisplay from "./MoveDisplay";
 import PokemonEvolution from "./PokemonEvolution";
 import StatRow from "./StatRow";
@@ -244,8 +245,10 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
                                         <StatRow name="HP" value={stats.hp} scale={1} />
                                         <StatRow name="Attack" value={stats.attack} scale={1} />
                                         <StatRow name="Defense" value={stats.defense} scale={1} />
+                                        <EStatRow name="PEHP" pokemon={currentPokemon} form={currentForm} />
                                         <StatRow name="Sp. Atk" value={stats.spatk} scale={1} />
                                         <StatRow name="Sp. Def" value={stats.spdef} scale={1} />
+                                        <EStatRow name="SEHP" pokemon={currentPokemon} form={currentForm} />
                                         <StatRow name="Speed" value={stats.speed} scale={1} />
                                         <StatRow name="Total" value={currentPokemon.BST(currentForm)} scale={6} />
                                     </tbody>

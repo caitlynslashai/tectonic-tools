@@ -15,6 +15,7 @@ import Dropdown from "../../components/DropDown";
 import InputLabel from "../../components/InputLabel";
 import { moves, nullMove } from "../data/moves";
 import { nullPokemon, pokemon } from "../data/pokemon";
+import { calculateHP, calculateStat } from "../data/stats";
 import { StatusEffect, statusEffects } from "../data/statusEffects";
 import { nullTrainer, trainers } from "../data/trainers";
 import { Move } from "../data/types/Move";
@@ -164,25 +165,6 @@ const PokemonDamageCalculator: NextPage = () => {
         setStylePoints["opponent"](pokemon.sp);
         setStatusEffect["opponent"]("None");
         recalculateStats(pokemon.pokemon.stats, pokemon.level, pokemon.sp, "None", "opponent");
-    }
-
-    function styleValueMult(level: number): number {
-        return 2.0 + level / 50.0;
-    }
-
-    function calculateHP(base: number, level: number, sv: number, stylish: boolean = false): number {
-        if (base === 1) return 1; // For Shedinja
-        const pseudoLevel = 15.0 + level / 2.0;
-        const stylishMult = stylish ? 2.0 : 1.0;
-        return Math.floor(
-            ((base * 2.0 + sv * styleValueMult(level) * stylishMult) * pseudoLevel) / 100.0 + pseudoLevel + 10.0
-        );
-    }
-
-    function calculateStat(base: number, level: number, sv: number, stylish: boolean = false): number {
-        const pseudoLevel = 15.0 + level / 2.0;
-        const stylishMult = stylish ? 2.0 : 1.0;
-        return Math.floor(((base * 2.0 + sv * styleValueMult(level) * stylishMult) * pseudoLevel) / 100.0 + 5.0);
     }
 
     function isReadyToCalculate() {
