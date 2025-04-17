@@ -239,25 +239,15 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
                         <TabContent tab="Stats" activeTab={activeTab}>
                             <div>
                                 <h3 className="font-semibold text-gray-800 dark:text-gray-100">Stats</h3>
-                                <table className="table-auto w-full mt-4 border-collapse border border-gray-300 dark:border-gray-700">
-                                    <thead>
-                                        <tr>
-                                            <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-left text-gray-800 dark:text-gray-100">
-                                                Stat
-                                            </th>
-                                            <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-left text-gray-800 dark:text-gray-100">
-                                                Value
-                                            </th>
-                                        </tr>
-                                    </thead>
+                                <table className="table-auto w-full mt-4 inline-block text-center align-middle border-collapse">
                                     <tbody>
-                                        <StatRow name="HP" value={stats.hp}></StatRow>
-                                        <StatRow name="Attack" value={stats.attack}></StatRow>
-                                        <StatRow name="Defense" value={stats.defense}></StatRow>
-                                        <StatRow name="Sp. Atk" value={stats.spatk}></StatRow>
-                                        <StatRow name="Sp. Def" value={stats.spdef}></StatRow>
-                                        <StatRow name="Speed" value={stats.speed}></StatRow>
-                                        <StatRow name="Total" value={currentPokemon.BST(currentForm)}></StatRow>
+                                        <StatRow name="HP" value={stats.hp} scale={1} />
+                                        <StatRow name="Attack" value={stats.attack} scale={1} />
+                                        <StatRow name="Defense" value={stats.defense} scale={1} />
+                                        <StatRow name="Sp. Atk" value={stats.spatk} scale={1} />
+                                        <StatRow name="Sp. Def" value={stats.spdef} scale={1} />
+                                        <StatRow name="Speed" value={stats.speed} scale={1} />
+                                        <StatRow name="Total" value={currentPokemon.BST(currentForm)} scale={6} />
                                     </tbody>
                                 </table>
                             </div>
