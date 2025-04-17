@@ -31,6 +31,7 @@ import { calcTypeMatchup } from "../data/typeChart";
 import { Ability } from "../data/types/Ability";
 import { Item } from "../data/types/Item";
 import { Tribe } from "../data/types/Tribe";
+import { FilterInput } from "./components/FilterInput";
 import TypeChartCell from "./components/TypeChartCell";
 
 export type FilterOperator = "==" | "!=" | ">" | "<" | "includes";
@@ -65,7 +66,7 @@ function validateMoves(pokemon: Pokemon) {
     return true;
 }
 
-type PokemonFilterType = TextFilter | SelectFilter;
+export type PokemonFilterType = TextFilter | SelectFilter;
 
 const nameFilter: PokemonFilterType = {
     label: "Name",
@@ -181,16 +182,9 @@ const Home: NextPage = () => {
     const [activeTab, setActiveTab] = useState<string>("Pokemon");
 
     const [currentFilter, setCurrentFilter] = useState<PokemonFilterType>(AVAILABLE_FILTERS[0]);
-    const [currentValue, setCurrentValue] = useState("");
 
-    const addFilter = () => {
-        if (!currentValue) {
-            alert("Please select a value for the filter!");
-            return;
-        }
-
-        setFilters((prev) => [...prev, { ...currentFilter, value: currentValue }]);
-        setCurrentValue("");
+    const handleAddFilter = (filter: PokemonFilterType, value: string) => {
+        setFilters((prev) => [...prev, { ...filter, value }]);
     };
 
     const removeFilter = (index: number) => {
@@ -224,30 +218,22 @@ const Home: NextPage = () => {
     };
 
     const handleMoveClick = (move: Move) => {
-        const newFilters = [...filters];
-        newFilters.push({ ...allMovesFilter, value: move.name.toLowerCase() });
-        setFilters(newFilters);
+        handleAddFilter(allMovesFilter, move.name.toLowerCase());
         setActiveTab("Pokemon");
     };
 
     const handleAbilityClick = (ability: Ability) => {
-        const newFilters = [...filters];
-        newFilters.push({ ...abilityNameFilter, value: ability.name.toLowerCase() });
-        setFilters(newFilters);
+        handleAddFilter(abilityNameFilter, ability.name.toLowerCase());
         setActiveTab("Pokemon");
     };
 
     const handleItemClick = (item: Item) => {
-        const newFilters = [...filters];
-        newFilters.push({ ...heldItemFilter, value: item.name.toLowerCase() });
-        setFilters(newFilters);
+        handleAddFilter(heldItemFilter, item.name.toLowerCase());
         setActiveTab("Pokemon");
     };
 
     const handleTribeClick = (tribe: Tribe) => {
-        const newFilters = [...filters];
-        newFilters.push({ ...tribesFilter, value: tribe.name.toLowerCase() });
-        setFilters(newFilters);
+        handleAddFilter(tribesFilter, tribe.name.toLowerCase());
         setActiveTab("Pokemon");
     };
 
@@ -327,37 +313,9 @@ const Home: NextPage = () => {
                                     <option value="<">&lt;</option>
                                 </select>
                             )}
-
-                            {currentFilter.inputMethod === "select" ? (
-                                <select
-                                    className="border rounded px-2 py-1 bg-white dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                                    value={currentValue}
-                                    onChange={(e) => setCurrentValue(e.target.value)}
-                                >
-                                    <option value="">Value...</option>
-                                    {currentFilter.inputValues.map((type) => (
-                                        <option key={type} value={type}>
-                                            {type}
-                                        </option>
-                                    ))}
-                                </select>
-                            ) : (
-                                <input
-                                    className="border rounded px-2 py-1 bg-white dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                                    type={typeof currentFilter.value === "number" ? "number" : "text"}
-                                    value={currentValue}
-                                    onChange={(e) => setCurrentValue(e.target.value)}
-                                    placeholder="Value..."
-                                />
-                            )}
-
-                            <button
-                                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
-                                onClick={addFilter}
-                            >
-                                Add Filter
-                            </button>
                         </div>
+
+                        <FilterInput currentFilter={currentFilter} onAddFilter={handleAddFilter} />
 
                         <div className="active-filters flex flex-wrap gap-2">
                             {filters.map((filter, index) => (
