@@ -1,5 +1,5 @@
-import trainerTypes from "public/data/trainertypes.json";
 import { pokemon } from "../pokemon";
+import { trainerTypes } from "../trainerTypes";
 import { Pokemon, StylePoints } from "./Pokemon";
 
 export interface TrainerPokemon {
@@ -50,7 +50,9 @@ export class Trainer {
 
     public displayName(): string {
         return (
-            trainerTypes[this.class as keyof typeof trainerTypes] +
+            // this fallback shouldn't be necessary once trainers.txt and trainertypes.txt are in sync
+            // but it doesn't hurt, and makes staggered development easier
+            (trainerTypes[this.class]?.name || this.class) +
             " " +
             this.name +
             (this.class.includes("MASKEDVILLAIN") && this.hashName ? " (" + this.hashName + ")" : "") +
