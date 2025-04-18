@@ -17,6 +17,7 @@ import { moves, nullMove } from "../data/moves";
 import { nullPokemon, pokemon } from "../data/pokemon";
 import { calculateHP, calculateStat } from "../data/stats";
 import { StatusEffect, statusEffects } from "../data/statusEffects";
+import { decodeTeam } from "../data/teamExport";
 import { nullTrainer, trainers } from "../data/trainers";
 import { Move } from "../data/types/Move";
 import { blankStats, defaultStylePoints, Pokemon, Stats, StylePoints } from "../data/types/Pokemon";
@@ -54,9 +55,12 @@ const PokemonDamageCalculator: NextPage = () => {
     const [opponentStatusEffect, setOpponentStatusEffect] = useState<StatusEffect>("None");
     const [opponentForm, setOpponentForm] = useState<number>(0);
 
+    const [playerTeam, setPlayerTeam] = useState<Trainer>(nullTrainer);
     const [opposingTrainer, setOpposingTrainer] = useState<Trainer>(nullTrainer);
 
     const [multiBattle, setMultiBattle] = useState<boolean>(false);
+
+    const [teamCode, setTeamCode] = useState<string>("");
 
     type Side = "player" | "opponent";
 
@@ -130,6 +134,11 @@ const PokemonDamageCalculator: NextPage = () => {
         opponent: setOpponentForm,
     };
 
+    const getTrainer = {
+        player: playerTeam,
+        opponent: opposingTrainer,
+    };
+
     const MIN_LEVEL = 1;
     const MAX_LEVEL = 70;
     const STYLE_POINT_CAP = 50;
@@ -190,6 +199,27 @@ const PokemonDamageCalculator: NextPage = () => {
         }
     }
 
+    function importTeam() {
+        const teamCards = decodeTeam(teamCode);
+        const playerTrainer = new Trainer({
+            key: "val",
+            class: "POKEMONTRAINER",
+            name: "Val",
+            policies: [],
+            flags: [],
+            pokemon: teamCards.map((c) => {
+                return {
+                    id: c.pokemon.id,
+                    level: 70,
+                    items: [c.item.id],
+                    moves: c.moves.map((m) => m.id),
+                    sp: [10, 10, 10, 10, 10, 10],
+                };
+            }),
+        });
+        setPlayerTeam(playerTrainer);
+    }
+
     function handleLoadingTrainer(trainer_key: string) {
         const trainer = trainers[trainer_key] || nullTrainer;
         if (!isNull(trainer)) {
@@ -197,17 +227,17 @@ const PokemonDamageCalculator: NextPage = () => {
         }
     }
 
-    function handleLoadingTrainerPokemon(index: number) {
+    function handleLoadingTrainerPokemon(index: number, side: Side) {
         if (index < 0) {
             return;
         }
-        const pokemon = opposingTrainer.pokemon[index];
-        setPokemon["opponent"](pokemon.pokemon);
-        setLevel["opponent"](pokemon.level);
-        setStylePoints["opponent"](pokemon.sp);
-        setStatSteps["opponent"](blankStats);
-        setStatusEffect["opponent"]("None");
-        recalculateStats(pokemon.pokemon.stats, pokemon.level, pokemon.sp, blankStats, "None", "opponent");
+        const pokemon = getTrainer[side].pokemon[index];
+        setPokemon[side](pokemon.pokemon);
+        setLevel[side](pokemon.level);
+        setStylePoints[side](pokemon.sp);
+        setStatSteps[side](blankStats);
+        setStatusEffect[side]("None");
+        recalculateStats(pokemon.pokemon.stats, pokemon.level, pokemon.sp, blankStats, "None", side);
     }
 
     function isReadyToCalculate() {
@@ -475,10 +505,12 @@ const PokemonDamageCalculator: NextPage = () => {
 
                     <table>
                         <thead>
-                            <th>Stat</th>
-                            <th>Value</th>
-                            <th>SP</th>
-                            <th>Steps</th>
+                            <tr>
+                                <th>Stat</th>
+                                <th>Value</th>
+                                <th>SP</th>
+                                <th>Steps</th>
+                            </tr>
                         </thead>
                         <tbody>
                             {safeKeys(getPokemon[side].getStats(getForm[side])).map((statName) => {
@@ -634,6 +666,59 @@ const PokemonDamageCalculator: NextPage = () => {
                     <div className="flex justify-center">
                         <div className="w-full max-w-8xl bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700">
                             <div className="flex flex-col md:flex-row">
+                                <Column>
+                                    <ColumnHeader colour="text-blue-400">Your Pokémon</ColumnHeader>
+                                    <ColumnBody>
+                                        <div className="text-center">
+                                            <InputLabel>Team Code</InputLabel>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="Team code"
+                                            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            value={teamCode}
+                                            onChange={(e) => setTeamCode(e.target.value)}
+                                        />
+                                        <button
+                                            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            onClick={importTeam}
+                                        >
+                                            Import Team
+                                        </button>
+                                        {!isNull(playerTeam) && (
+                                            <>
+                                                <div className="text-center">
+                                                    <InputLabel>Trainer Pokémon</InputLabel>
+                                                </div>
+                                                <div className="space-y-4">
+                                                    {playerTeam.pokemon.map((p, i) => (
+                                                        <div
+                                                            key={i}
+                                                            className="bg-gray-700 p-4 rounded-lg border border-gray-600 flex justify-between items-center"
+                                                        >
+                                                            <div>
+                                                                <p className="text-gray-200 font-medium">
+                                                                    {p.nickname
+                                                                        ? p.nickname + " (" + p.pokemon.name + ")"
+                                                                        : p.pokemon.name}
+                                                                </p>
+                                                                <p className="text-gray-400 text-sm">
+                                                                    Level: {p.level}
+                                                                </p>
+                                                            </div>
+                                                            <button
+                                                                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 focus:ring-2 focus:ring-blue-400"
+                                                                onClick={() => handleLoadingTrainerPokemon(i, "player")}
+                                                            >
+                                                                Set Active
+                                                            </button>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </>
+                                        )}
+                                    </ColumnBody>
+                                </Column>
                                 {/* Player's Pokemon Section */}
                                 <Column>
                                     <ColumnHeader colour="text-blue-400">Attacking Pokémon</ColumnHeader>
@@ -820,7 +905,9 @@ const PokemonDamageCalculator: NextPage = () => {
                                                             </div>
                                                             <button
                                                                 className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 focus:ring-2 focus:ring-blue-400"
-                                                                onClick={() => handleLoadingTrainerPokemon(i)}
+                                                                onClick={() =>
+                                                                    handleLoadingTrainerPokemon(i, "opponent")
+                                                                }
                                                             >
                                                                 Set Active
                                                             </button>
