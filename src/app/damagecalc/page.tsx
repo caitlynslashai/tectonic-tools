@@ -21,7 +21,7 @@ import { nullTrainer, trainers } from "../data/trainers";
 import { Move } from "../data/types/Move";
 import { blankStats, defaultStylePoints, Pokemon, Stats, StylePoints } from "../data/types/Pokemon";
 import { Trainer } from "../data/types/Trainer";
-import { isNull } from "../data/util";
+import { isNull, negativeMod } from "../data/util";
 import { calculateDamage, DamageResult, PokemonStats } from "./damageCalc";
 
 function isKey<T extends object>(k: string | number | symbol, o: T): k is keyof T {
@@ -39,6 +39,7 @@ const PokemonDamageCalculator: NextPage = () => {
     const [playerStylePoints, setPlayerStylePoints] = useState<StylePoints>(defaultStylePoints);
     const [playerCalculatedStats, setPlayerCalculatedStats] = useState<Stats>(blankStats);
     const [playerStatusEffect, setPlayerStatusEffect] = useState<StatusEffect>("None");
+    const [playerForm, setPlayerForm] = useState<number>(0);
 
     const [playerMove, setPlayerMove] = useState<Move>(nullMove);
     const [customMoveVar, setCustomMoveVar] = useState<number>(0);
@@ -49,6 +50,7 @@ const PokemonDamageCalculator: NextPage = () => {
     const [opponentStylePoints, setOpponentStylePoints] = useState<StylePoints>(defaultStylePoints);
     const [opponentCalculatedStats, setOpponentCalculatedStats] = useState<Stats>(blankStats);
     const [opponentStatusEffect, setOpponentStatusEffect] = useState<StatusEffect>("None");
+    const [opponentForm, setOpponentForm] = useState<number>(0);
 
     const [opposingTrainer, setOpposingTrainer] = useState<Trainer>(nullTrainer);
 
@@ -106,6 +108,16 @@ const PokemonDamageCalculator: NextPage = () => {
         opponent: setOpponentStatusEffect,
     };
 
+    const getForm = {
+        player: playerForm,
+        opponent: opponentForm,
+    };
+
+    const setForm = {
+        player: setPlayerForm,
+        opponent: setOpponentForm,
+    };
+
     const MIN_LEVEL = 1;
     const MAX_LEVEL = 70;
     const STYLE_POINT_CAP = 50;
@@ -137,7 +149,8 @@ const PokemonDamageCalculator: NextPage = () => {
     function handleLoadingPokemon(pokemon: Pokemon, side: Side) {
         if (!isNull(pokemon)) {
             setPokemon[side](pokemon);
-            const baseStats = pokemon.stats;
+            setForm[side](0);
+            const baseStats = pokemon.getStats(0);
             const level = getLevel[side];
             const stylePoints = getStylePoints[side];
             const effect = getStatusEffect[side];
@@ -145,6 +158,18 @@ const PokemonDamageCalculator: NextPage = () => {
             if (side === "player") {
                 setPlayerMove(nullMove);
             }
+        }
+    }
+
+    function handleLoadingForm(form: number, side: Side) {
+        setForm[side](form);
+        const baseStats = getPokemon[side].getStats(form);
+        const level = getLevel[side];
+        const stylePoints = getStylePoints[side];
+        const effect = getStatusEffect[side];
+        recalculateStats(baseStats, level, stylePoints, effect, side);
+        if (side === "player") {
+            setPlayerMove(nullMove);
         }
     }
 
@@ -175,7 +200,7 @@ const PokemonDamageCalculator: NextPage = () => {
         level = Math.max(level, MIN_LEVEL);
         level = Math.min(level, MAX_LEVEL);
         setLevel[side](level);
-        const baseStats = getPokemon[side].stats;
+        const baseStats = getPokemon[side].getStats(getForm[side]);
         const stylePoints = getStylePoints[side];
         const effect = getStatusEffect[side];
         recalculateStats(baseStats, level, stylePoints, effect, side);
@@ -191,7 +216,7 @@ const PokemonDamageCalculator: NextPage = () => {
             return;
         }
         setStylePoints[side](stylePoints);
-        const baseStats = getPokemon[side].stats;
+        const baseStats = getPokemon[side].getStats(getForm[side]);
         const level = getLevel[side];
         const effect = getStatusEffect[side];
         recalculateStats(baseStats, level, stylePoints, effect, side);
@@ -207,7 +232,7 @@ const PokemonDamageCalculator: NextPage = () => {
     function handleStatusEffect(effect: StatusEffect, side: Side) {
         setStatusEffect[side](effect);
         const stylePoints = getStylePoints[side];
-        const baseStats = getPokemon[side].stats;
+        const baseStats = getPokemon[side].getStats(getForm[side]);
         const level = getLevel[side];
         recalculateStats(baseStats, level, stylePoints, effect, side);
         if (effect === "Jinx" && side === "player") {
@@ -234,11 +259,13 @@ const PokemonDamageCalculator: NextPage = () => {
         stats: playerCalculatedStats,
         level: playerLevel,
         status: playerStatusEffect,
+        form: playerForm,
     };
     const opponentPokemonStats: PokemonStats = {
         stats: opponentCalculatedStats,
         level: opponentLevel,
         status: opponentStatusEffect,
+        form: opponentForm,
     };
 
     const battleState = {
@@ -264,7 +291,7 @@ const PokemonDamageCalculator: NextPage = () => {
                             // this is a stupid solution but it didn't work if i had the ternary in the className
                             side === "player" ? (
                                 <Image
-                                    src={"/Pokemon/" + getPokemon[side].id + ".png"}
+                                    src={getPokemon[side].getImage(getForm[side])}
                                     alt={getPokemon[side].name}
                                     height="160"
                                     width="160"
@@ -272,7 +299,7 @@ const PokemonDamageCalculator: NextPage = () => {
                                 />
                             ) : (
                                 <Image
-                                    src={"/Pokemon/" + getPokemon[side].id + ".png"}
+                                    src={getPokemon[side].getImage(getForm[side])}
                                     alt={getPokemon[side].name}
                                     height="160"
                                     width="160"
@@ -282,9 +309,39 @@ const PokemonDamageCalculator: NextPage = () => {
                         }
                     </div>
                 )}
-                <div className="text-center">
-                    <InputLabel>Pokémon</InputLabel>
+                <div className="flex justify-between items-center">
+                    {getPokemon[side].forms.length > 1 && (
+                        <button
+                            onClick={() =>
+                                handleLoadingForm(negativeMod(getForm[side] - 1, getPokemon[side].forms.length), side)
+                            }
+                            className="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
+                        >
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M15 19l-7-7 7-7"
+                                />
+                            </svg>
+                        </button>
+                    )}
+                    <div className="text-center flex-grow">
+                        <InputLabel>Pokémon</InputLabel>
+                    </div>
+                    {getPokemon[side].forms.length > 1 && (
+                        <button
+                            onClick={() => handleLoadingForm((getForm[side] + 1) % getPokemon[side].forms.length, side)}
+                            className="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
+                        >
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    )}
                 </div>
+
                 <Dropdown
                     value={getPokemon[side].id}
                     onChange={(e) => handleLoadingPokemon(pokemon[e.target.value] || nullPokemon, side)}
@@ -307,7 +364,10 @@ const PokemonDamageCalculator: NextPage = () => {
             <div className={`space-y-6`}>
                 {/* Pokemon type */}
                 <div className="text-center">
-                    <TypeBadge type1={getPokemon[side].type1} type2={getPokemon[side].type2} />
+                    <TypeBadge
+                        type1={getPokemon[side].getType1(getForm[side])}
+                        type2={getPokemon[side].getType2(getForm[side])}
+                    />
                 </div>
 
                 {/* Level input */}
@@ -345,7 +405,7 @@ const PokemonDamageCalculator: NextPage = () => {
                 <div>
                     <h3 className="text-sm font-medium text-gray-300 mb-3 text-center">Stats</h3>
                     <div className="space-y-3">
-                        {safeKeys(getPokemon[side].stats).map((statName) => {
+                        {safeKeys(getPokemon[side].getStats(getForm[side])).map((statName) => {
                             const styleName = styleFromStat(statName);
                             return (
                                 <div key={statName} className="flex items-center justify-between px-2">
@@ -497,7 +557,7 @@ const PokemonDamageCalculator: NextPage = () => {
                                                         Select Move
                                                     </option>
                                                     {playerPokemon
-                                                        .allMoves()
+                                                        .allMoves(getForm["player"])
                                                         .filter((m) => m.bp > 0)
                                                         .map((m) => (
                                                             <option

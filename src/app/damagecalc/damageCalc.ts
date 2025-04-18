@@ -1,6 +1,6 @@
 import { MultiHitMove } from "../data/moves/MultiHitMove";
 import { StatusEffect } from "../data/statusEffects";
-import { typeChart } from "../data/typeChart";
+import { calcTypeMatchup } from "../data/typeChart";
 import { Move } from "../data/types/Move";
 import { Pokemon, Stats } from "../data/types/Pokemon";
 import { PokemonType } from "../data/types/PokemonType";
@@ -9,6 +9,7 @@ export interface PokemonStats {
     level: number;
     status: StatusEffect;
     stats: Stats;
+    form: number;
 }
 
 export interface DamageResult {
@@ -543,7 +544,7 @@ function pbCalcTypeBasedDamageMultipliers(
     //     });
     //     stabActive = anyPartyMemberHasType;
     // } else {
-    stabActive = type && (user.type1 === type || user.type2 === type);
+    stabActive = type && (user.getType1(userStats.form) === type || user.getType2(userStats.form) === type);
     //}
     // TODO: Handle curses
     // stabActive = stabActive && !(user.pbOwnedByPlayer() && battle.curses.includes("DULLED"));
@@ -565,10 +566,10 @@ function pbCalcTypeBasedDamageMultipliers(
     // Type effectiveness
     // TODO: Handle moves that modify type
     // const typeMod = target.typeMod(type, target, this, checkingForAI);
-    let effectiveness = typeChart[type.index][target.type1.index];
-    if (target.type2) {
-        effectiveness *= typeChart[type.index][target.type2.index];
-    }
+    const effectiveness = calcTypeMatchup(
+        { type },
+        { type1: target.getType1(targetStats.form), type2: target.getType2(targetStats.form) }
+    );
     multipliers.final_damage_multiplier *= effectiveness;
 
     // TODO: Misc effects like Charge
