@@ -315,6 +315,41 @@ const PokemonDamageCalculator: NextPage = () => {
         battleState
     );
 
+    function swapPokemon() {
+        const mon1 = playerPokemon;
+        const level1 = playerLevel;
+        const sp1 = playerStylePoints;
+        const steps1 = playerStatSteps;
+        const stats1 = playerCalculatedStats;
+        const status1 = playerStatusEffect;
+        const form1 = playerForm;
+
+        const mon2 = opponentPokemon;
+        const level2 = opponentLevel;
+        const sp2 = opponentStylePoints;
+        const steps2 = opponentStatSteps;
+        const stats2 = opponentCalculatedStats;
+        const status2 = opponentStatusEffect;
+        const form2 = opponentForm;
+
+        setPlayerPokemon(mon2);
+        setPlayerLevel(level2);
+        setPlayerStylePoints(sp2);
+        setPlayerStatSteps(steps2);
+        setPlayerCalculatedStats(stats2);
+        setPlayerStatusEffect(status2);
+        setPlayerForm(form2);
+        setPlayerMove(nullMove);
+
+        setOpponentPokemon(mon1);
+        setOpponentLevel(level1);
+        setOpponentStylePoints(sp1);
+        setOpponentStatSteps(steps1);
+        setOpponentCalculatedStats(stats1);
+        setOpponentStatusEffect(status1);
+        setOpponentForm(form1);
+    }
+
     function pokemonSelect(side: Side) {
         return (
             <>
@@ -601,7 +636,7 @@ const PokemonDamageCalculator: NextPage = () => {
                             <div className="flex flex-col md:flex-row">
                                 {/* Player's Pokemon Section */}
                                 <Column>
-                                    <ColumnHeader colour="text-blue-400">Your Pokémon</ColumnHeader>
+                                    <ColumnHeader colour="text-blue-400">Attacking Pokémon</ColumnHeader>
                                     <ColumnBody>
                                         {pokemonSelect("player")}
                                         {pokemonStats("player")}
@@ -713,11 +748,17 @@ const PokemonDamageCalculator: NextPage = () => {
                                             Multi Battle
                                         </Checkbox>
                                     </div>
+                                    <button
+                                        onClick={() => swapPokemon()}
+                                        className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 focus:ring-2 focus:ring-blue-400 mt-4"
+                                    >
+                                        Swap Pokémon
+                                    </button>
                                 </Column>
 
                                 {/* Opponent's Pokemon Section */}
                                 <Column>
-                                    <ColumnHeader colour="text-red-400">Opponent&apos;s Pokémon</ColumnHeader>
+                                    <ColumnHeader colour="text-red-400">Defending Pokémon</ColumnHeader>
                                     <ColumnBody>
                                         {pokemonSelect("opponent")}
 
