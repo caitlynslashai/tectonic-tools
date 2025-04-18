@@ -11,8 +11,10 @@ import { parseTribes } from "./tribes";
 import { buildTypeChart, TypeChart } from "./typeChart";
 import { parsePokemonTypes } from "./types";
 
-async function fileFetch(path: string) {
-    const baseUrl = "https://raw.githubusercontent.com/xeuorux/Pokemon-Tectonic/refs/heads/main/";
+async function fileFetch(path: string, dev: boolean = false) {
+    const baseUrl = `https://raw.githubusercontent.com/xeuorux/Pokemon-Tectonic/refs/heads/${
+        dev ? "development" : "main"
+    }/`;
     const fullPath = baseUrl + path;
     const response = await fetch(fullPath);
 
@@ -90,19 +92,19 @@ function standardFilesParser<T extends LoadedData>(files: string[], dataParser: 
     return map;
 }
 
-async function loadData(): Promise<void> {
+async function loadData(dev: boolean = false): Promise<void> {
     const tectonicFiles: string[] = [];
     await Promise.all([
-        fileFetch("PBS/types.txt"),
-        fileFetch("PBS/tribes.txt"),
-        fileFetch("PBS/abilities.txt"),
-        fileFetch("PBS/abilities_new.txt"),
-        fileFetch("PBS/moves.txt"),
-        fileFetch("PBS/moves_new.txt"),
-        fileFetch("PBS/items.txt"),
-        fileFetch("PBS/pokemon.txt"),
-        fileFetch("PBS/pokemonforms.txt"),
-        fileFetch("release_version.txt"),
+        fileFetch("PBS/types.txt", dev),
+        fileFetch("PBS/tribes.txt", dev),
+        fileFetch("PBS/abilities.txt", dev),
+        fileFetch("PBS/abilities_new.txt", dev),
+        fileFetch("PBS/moves.txt", dev),
+        fileFetch("PBS/moves_new.txt", dev),
+        fileFetch("PBS/items.txt", dev),
+        fileFetch("PBS/pokemon.txt", dev),
+        fileFetch("PBS/pokemonforms.txt", dev),
+        fileFetch("release_version.txt", dev),
     ])
         .then((values) => tectonicFiles.push(...values))
         .catch((error) => console.error(error));
@@ -116,7 +118,8 @@ async function loadData(): Promise<void> {
     const pokemon = propagatePokemonData(standardFilesParser([tectonicFiles[7]], parsePokemon));
     const forms = parseForms([tectonicFiles[8]]);
     const typeChart = buildTypeChart(types);
-    const version = tectonicFiles[9].trim();
+    // TODO: Where is the version number "3.3.0-dev" stored?
+    const version = dev ? "dev" : tectonicFiles[9].trim();
     const currentVersion = { version };
 
     const indices = {
@@ -150,4 +153,6 @@ async function loadData(): Promise<void> {
     ]);
 }
 
-loadData().catch((e) => console.error(e));
+const arg = process.argv[2];
+
+loadData(arg === "dev").catch((e) => console.error(e));
