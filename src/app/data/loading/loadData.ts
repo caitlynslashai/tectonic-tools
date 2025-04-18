@@ -7,7 +7,7 @@ import { parseForms } from "./forms";
 import { parseItems } from "./items";
 import { parseMoves } from "./moves";
 import { parsePokemon, parsePokemonLegacy, propagatePokemonData } from "./pokemon";
-import { parseTrainerTypes } from "./trainertypes";
+import { parseTrainerTypes } from "./trainerTypes";
 import { parseTribes, parseTribesLegacy } from "./tribes";
 import { buildTypeChart, TypeChart } from "./typeChart";
 import { parsePokemonTypes } from "./types";
