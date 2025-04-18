@@ -5,7 +5,6 @@ import { moves } from "./moves";
 import { types } from "./types";
 import { PokemonForm } from "./types/Pokemon";
 
-// this is currently redundant but I'm maintaining the structure in case I need to change things
 function loadForm(form: LoadedForm): PokemonForm {
     return {
         ...form,
