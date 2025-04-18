@@ -1,7 +1,7 @@
+import { CardData } from "@/app/data/teamExport";
 import { calcTypeMatchup } from "@/app/data/typeChart";
 import { PokemonType } from "@/app/data/types/PokemonType";
 import { isNull } from "@/app/data/util";
-import { CardData } from "../page";
 
 function compare(num: number, total: "nve" | "se") {
     if (total === "se") {

@@ -4,11 +4,11 @@ import { abilities, nullAbility } from "@/app/data/abilities";
 import { items, nullItem } from "@/app/data/items";
 import { moves, nullMove } from "@/app/data/moves";
 import { nullPokemon, pokemon } from "@/app/data/pokemon";
+import { CardData } from "@/app/data/teamExport";
 import { isNull, negativeMod } from "@/app/data/util";
 import Dropdown from "@/components/DropDown";
 import TypeBadge from "@/components/TypeBadge";
 import Image from "next/image";
-import { CardData } from "../page";
 
 export default function PokemonCard({ data, update }: { data: CardData; update: (c: CardData) => void }) {
     const currentPokemon = data.pokemon;
