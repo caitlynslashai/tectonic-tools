@@ -1,5 +1,5 @@
 import loadedTrainerTypes from "public/data/trainertypes.json";
-import { LoadedTrainerType } from "./loading/trainertypes";
+import { LoadedTrainerType } from "./loading/trainerTypes";
 import { TrainerType } from "./types/TrainerType";
 
 function loadTrainerType(type: LoadedTrainerType): TrainerType {
