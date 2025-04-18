@@ -1,7 +1,8 @@
-import { Encounter, EncounterArea } from "@/app/data/types/Encounter";
+import { EncounterMap, EncounterTable } from "@/app/data/types/Encounter";
 import { Pokemon } from "@/app/data/types/Pokemon";
 
-function printEncChance(encs: Encounter[], currentPokemon: Pokemon) {
+function printEncChance(table: EncounterTable, currentPokemon: Pokemon) {
+    const encs = table.encounters;
     const currentEnc = encs.find((e) => e.pokemon === currentPokemon.id);
     if (!currentEnc) {
         return "Error";
@@ -47,7 +48,7 @@ function getNameForEncounterType(encounterType: string) {
     return "Unknown";
 }
 
-export default function EncounterDisplay({ encounters, pokemon }: { encounters: EncounterArea[]; pokemon: Pokemon }) {
+export default function EncounterDisplay({ encounters, pokemon }: { encounters: EncounterMap[]; pokemon: Pokemon }) {
     return (
         <div>
             {encounters.length > 0 ? (
@@ -55,16 +56,13 @@ export default function EncounterDisplay({ encounters, pokemon }: { encounters: 
                     {encounters.map((area, index) => (
                         <div key={index} className="mb-4">
                             <h4 className="font-semibold text-gray-800 dark:text-gray-100">{area.name}</h4>
-                            {Object.entries(area.encounters)
-                                .filter(([, encs]) => encs.some((e) => e.pokemon === pokemon.id))
-                                .map(([encType, encs]) => (
-                                    <p key={encType}>
-                                        {encType === "Special"
+                            {area.tables
+                                .filter((t) => t.encounters.some((e) => e.pokemon === pokemon.id))
+                                .map((t) => (
+                                    <p key={t.type}>
+                                        {t.type === "Special"
                                             ? "Other"
-                                            : getNameForEncounterType(encType) +
-                                              " (" +
-                                              printEncChance(encs, pokemon) +
-                                              ")"}
+                                            : getNameForEncounterType(t.type) + " (" + printEncChance(t, pokemon) + ")"}
                                     </p>
                                 ))}
                         </div>

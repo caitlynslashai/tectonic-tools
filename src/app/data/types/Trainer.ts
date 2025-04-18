@@ -1,6 +1,7 @@
-import trainerTypes from "public/data/trainertypes.json";
+import { LoadedTrainer } from "../loading/trainers";
 import { pokemon } from "../pokemon";
-import { Pokemon, StylePoints } from "./Pokemon";
+import { trainerTypes } from "../trainerTypes";
+import { defaultStylePoints, Pokemon, StylePoints } from "./Pokemon";
 
 export interface TrainerPokemon {
     pokemon: Pokemon;
@@ -9,23 +10,8 @@ export interface TrainerPokemon {
     nickname?: string;
 }
 
-interface LoadedTrainerPokemon {
-    id: string;
-    level: number;
-    sp: StylePoints;
-    nickname: string | null;
-}
-
-interface LoadedTrainer {
-    class: string;
-    name: string;
-    hashName: string | null; // for masked villains
-    version: number;
-    extends: number | null;
-    pokemon: LoadedTrainerPokemon[];
-}
-
 export class Trainer {
+    id: string;
     class: string;
     name: string;
     hashName?: string; // for masked villains
@@ -33,14 +19,23 @@ export class Trainer {
     extends?: number;
     pokemon: TrainerPokemon[];
     constructor(loadedTrainer: LoadedTrainer) {
-        const trainerMons = loadedTrainer.pokemon.map((mon) => {
-            return { ...mon, pokemon: pokemon[mon.id], nickname: mon.nickname || undefined };
+        const trainerMons: TrainerPokemon[] = loadedTrainer.pokemon.map((mon) => {
+            return {
+                ...mon,
+                pokemon: pokemon[mon.id],
+                nickname: mon.name,
+                sp:
+                    mon.sp.length === 0
+                        ? defaultStylePoints
+                        : { hp: mon.sp[0], attacks: mon.sp[1], defense: mon.sp[2], speed: mon.sp[3], spdef: mon.sp[5] },
+            };
         });
+        this.id = loadedTrainer.key;
         this.class = loadedTrainer.class;
         this.name = loadedTrainer.name;
-        this.hashName = loadedTrainer.hashName || undefined;
-        this.version = loadedTrainer.version;
-        this.extends = loadedTrainer.extends === null ? undefined : loadedTrainer.extends;
+        this.hashName = loadedTrainer.nameForHashing;
+        this.version = loadedTrainer.version || 0;
+        this.extends = loadedTrainer.extendsVersion;
         this.pokemon = trainerMons;
     }
 
@@ -50,7 +45,9 @@ export class Trainer {
 
     public displayName(): string {
         return (
-            trainerTypes[this.class as keyof typeof trainerTypes] +
+            // this fallback shouldn't be necessary once trainers.txt and trainertypes.txt are in sync
+            // but it doesn't hurt, and makes staggered development easier
+            (trainerTypes[this.class]?.name || this.class) +
             " " +
             this.name +
             (this.class.includes("MASKEDVILLAIN") && this.hashName ? " (" + this.hashName + ")" : "") +

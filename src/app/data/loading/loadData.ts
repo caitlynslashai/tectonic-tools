@@ -3,10 +3,13 @@
 import { readFile, writeFile } from "fs/promises";
 import path from "path";
 import { parseAbilities } from "./abilities";
+import { parseEncounters } from "./encounters";
 import { parseForms } from "./forms";
 import { parseItems } from "./items";
 import { parseMoves } from "./moves";
 import { parsePokemon, parsePokemonLegacy, propagatePokemonData } from "./pokemon";
+import { parseTrainers } from "./trainers";
+import { parseTrainerTypes } from "./trainerTypes";
 import { parseTribes, parseTribesLegacy } from "./tribes";
 import { buildTypeChart, TypeChart } from "./typeChart";
 import { parsePokemonTypes } from "./types";
@@ -104,12 +107,16 @@ async function loadData(dev: boolean = false): Promise<void> {
         fileFetch("PBS/items.txt", dev),
         fileFetch("PBS/pokemon.txt", dev),
         fileFetch("PBS/pokemonforms.txt", dev),
+        fileFetch("PBS/trainertypes.txt", dev),
+        fileFetch("PBS/trainers.txt", dev),
+        fileFetch("PBS/encounters.txt", dev),
         fileFetch("release_version.txt", dev),
     ])
         .then((values) => tectonicFiles.push(...values))
         .catch((error) => console.error(error));
     // TODO: Where is the version number "3.3.0-dev" stored?
-    const version = dev ? "dev" : tectonicFiles[9].trim();
+    // Always store the release version last so that we don't have to edit the index every time
+    const version = dev ? "dev" : tectonicFiles[tectonicFiles.length - 1].trim();
 
     const types = standardFilesParser([tectonicFiles[0]], parsePokemonTypes);
 
@@ -127,6 +134,10 @@ async function loadData(dev: boolean = false): Promise<void> {
 
     const forms = parseForms([tectonicFiles[8]]);
     const typeChart = buildTypeChart(types);
+    const trainerTypes = standardFilesParser([tectonicFiles[9]], parseTrainerTypes);
+    const trainers = standardFilesParser([tectonicFiles[10]], parseTrainers);
+    const encounters = parseEncounters(tectonicFiles[11]);
+
     const currentVersion = { version };
 
     const indices = {
@@ -155,6 +166,9 @@ async function loadData(dev: boolean = false): Promise<void> {
         dataWrite("pokemon.json", pokemon),
         dataWrite("forms.json", forms),
         dataWrite("typechart.json", typeChart),
+        dataWrite("trainertypes.json", trainerTypes),
+        dataWrite("trainers.json", trainers),
+        dataWrite("encounters.json", encounters),
         dataWrite("currentversion.json", currentVersion),
         dataWrite("versions.json", versions),
     ]);

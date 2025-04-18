@@ -1,10 +1,15 @@
-export interface Encounter {
+interface Encounter {
     weight: number;
     pokemon: string;
 }
 
-export interface EncounterArea {
+export interface EncounterTable {
+    type: string;
+    encounters: Encounter[];
+}
+
+export interface EncounterMap {
     id: string;
     name: string;
-    encounters: Record<string, Encounter[]>;
+    tables: EncounterTable[];
 }

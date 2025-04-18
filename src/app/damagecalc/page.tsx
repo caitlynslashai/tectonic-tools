@@ -622,14 +622,14 @@ const PokemonDamageCalculator: NextPage = () => {
                                             <InputLabel>Trainer</InputLabel>
                                         </div>
                                         <Dropdown
-                                            value={opposingTrainer.key()}
+                                            value={opposingTrainer.id}
                                             onChange={(e) => handleLoadingTrainer(e.target.value)}
                                         >
                                             <option value="" className="bg-gray-800">
                                                 Select Trainer
                                             </option>
                                             {Object.values(trainers).map((t) => (
-                                                <option key={t.key()} value={t.key()} className="bg-gray-800">
+                                                <option key={t.id} value={t.id} className="bg-gray-800">
                                                     {t.displayName()}
                                                 </option>
                                             ))}

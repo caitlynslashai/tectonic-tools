@@ -5,7 +5,7 @@ import { pokemon } from "@/app/data/pokemon";
 import { getSignatureAbilities } from "@/app/data/signatures";
 import { calcTypeMatchup } from "@/app/data/typeChart";
 import { types } from "@/app/data/types";
-import { EncounterArea } from "@/app/data/types/Encounter";
+import { EncounterMap } from "@/app/data/types/Encounter";
 import { Pokemon } from "@/app/data/types/Pokemon";
 import { negativeMod } from "@/app/data/util";
 import TypeBadgeHeader from "@/components/TypeBadgeSingle";
@@ -79,14 +79,14 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
     if (!isRendered || !currentPokemon) return null;
 
     const currentEncounters = Object.values(encounters).filter((e) =>
-        Object.values(e.encounters).some((en) => en.some((enc) => enc.pokemon === currentPokemon.id))
+        Object.values(e.tables).some((t) => t.encounters.some((enc) => enc.pokemon === currentPokemon.id))
     );
 
-    const prevoEncounters: Record<string, EncounterArea[]> = {};
+    const prevoEncounters: Record<string, EncounterMap[]> = {};
     currentPokemon.getEvoNode().callParents((node) => {
         const currentSpecies = pokemon[node.getData().pokemon];
         const newEncounters = Object.values(encounters).filter((e) =>
-            Object.values(e.encounters).some((en) => en.some((enc) => enc.pokemon === currentSpecies.id))
+            Object.values(e.tables).some((t) => t.encounters.some((enc) => enc.pokemon === currentSpecies.id))
         );
         if (newEncounters.length > 0) {
             prevoEncounters[node.getData().pokemon] = newEncounters;
