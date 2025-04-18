@@ -6,13 +6,15 @@ import { parseAbilities } from "./abilities";
 import { parseForms } from "./forms";
 import { parseItems } from "./items";
 import { parseMoves } from "./moves";
-import { parsePokemon, propagatePokemonData } from "./pokemon";
-import { parseTribes } from "./tribes";
+import { parsePokemon, parsePokemonLegacy, propagatePokemonData } from "./pokemon";
+import { parseTribes, parseTribesLegacy } from "./tribes";
 import { buildTypeChart, TypeChart } from "./typeChart";
 import { parsePokemonTypes } from "./types";
 
-async function fileFetch(path: string) {
-    const baseUrl = "https://raw.githubusercontent.com/xeuorux/Pokemon-Tectonic/refs/heads/main/";
+async function fileFetch(path: string, dev: boolean = false) {
+    const baseUrl = `https://raw.githubusercontent.com/xeuorux/Pokemon-Tectonic/refs/heads/${
+        dev ? "development" : "main"
+    }/`;
     const fullPath = baseUrl + path;
     const response = await fetch(fullPath);
 
@@ -90,33 +92,41 @@ function standardFilesParser<T extends LoadedData>(files: string[], dataParser: 
     return map;
 }
 
-async function loadData(): Promise<void> {
+async function loadData(dev: boolean = false): Promise<void> {
     const tectonicFiles: string[] = [];
     await Promise.all([
-        fileFetch("PBS/types.txt"),
-        fileFetch("PBS/tribes.txt"),
-        fileFetch("PBS/abilities.txt"),
-        fileFetch("PBS/abilities_new.txt"),
-        fileFetch("PBS/moves.txt"),
-        fileFetch("PBS/moves_new.txt"),
-        fileFetch("PBS/items.txt"),
-        fileFetch("PBS/pokemon.txt"),
-        fileFetch("PBS/pokemonforms.txt"),
-        fileFetch("release_version.txt"),
+        fileFetch("PBS/types.txt", dev),
+        fileFetch("PBS/tribes.txt", dev),
+        fileFetch("PBS/abilities.txt", dev),
+        fileFetch("PBS/abilities_new.txt", dev),
+        fileFetch("PBS/moves.txt", dev),
+        fileFetch("PBS/moves_new.txt", dev),
+        fileFetch("PBS/items.txt", dev),
+        fileFetch("PBS/pokemon.txt", dev),
+        fileFetch("PBS/pokemonforms.txt", dev),
+        fileFetch("release_version.txt", dev),
     ])
         .then((values) => tectonicFiles.push(...values))
         .catch((error) => console.error(error));
+    // TODO: Where is the version number "3.3.0-dev" stored?
+    const version = dev ? "dev" : tectonicFiles[9].trim();
 
     const types = standardFilesParser([tectonicFiles[0]], parsePokemonTypes);
-    const tribes = parseTribes(tectonicFiles[1]);
+
+    const tribeParser = version.startsWith("3.2") ? parseTribesLegacy : parseTribes;
+    const tribes = tribeParser(tectonicFiles[1]);
+
     const abilities = standardFilesParser([tectonicFiles[2], tectonicFiles[3]], parseAbilities);
     const moves = standardFilesParser([tectonicFiles[4], tectonicFiles[5]], parseMoves);
     const items = standardFilesParser([tectonicFiles[6]], parseItems);
     // const heldItems = filterToHeldItems(items);
-    const pokemon = propagatePokemonData(standardFilesParser([tectonicFiles[7]], parsePokemon));
+
+    // pokemon.txt schema updated in 3.3/dev - thankfully, for simplicity, this site postdates any older update except 3.2
+    const pokemonParser = version.startsWith("3.2") ? parsePokemonLegacy : parsePokemon;
+    const pokemon = propagatePokemonData(standardFilesParser([tectonicFiles[7]], pokemonParser));
+
     const forms = parseForms([tectonicFiles[8]]);
     const typeChart = buildTypeChart(types);
-    const version = tectonicFiles[9].trim();
     const currentVersion = { version };
 
     const indices = {
@@ -150,4 +160,6 @@ async function loadData(): Promise<void> {
     ]);
 }
 
-loadData().catch((e) => console.error(e));
+const arg = process.argv[2];
+
+loadData(arg === "dev").catch((e) => console.error(e));

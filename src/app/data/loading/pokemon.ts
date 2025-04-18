@@ -41,7 +41,7 @@ export interface LoadedPokemon extends LoadedData {
     evolutionTree?: NTreeNode<LoadedEvolution>; // Post processing
 }
 
-export function parsePokemon(pairs: KVPair[]): LoadedPokemon {
+export function parsePokemonLegacy(pairs: KVPair[]): LoadedPokemon {
     const obj: LoadedPokemon = {
         key: "",
         name: "",
@@ -150,6 +150,112 @@ export function parsePokemon(pairs: KVPair[]): LoadedPokemon {
     return obj;
 }
 
+export function parsePokemon(pairs: KVPair[]): LoadedPokemon {
+    const obj: LoadedPokemon = {
+        key: "",
+        name: "",
+        dexNum: 0,
+        type1: "",
+        height: 0,
+        weight: 0,
+        hp: 0,
+        attack: 0,
+        defense: 0,
+        speed: 0,
+        spAttack: 0,
+        spDefense: 0,
+        bst: 0,
+        abilities: [],
+        levelMoves: {}, // Key of move name and value of level
+        lineMoves: [], // Note that only the first evo has this in PBS
+        tutorMoves: [], // Not every mon has these
+        tribes: [],
+        evolutions: [],
+        wildItems: [],
+        kind: "",
+        pokedex: "",
+        firstEvolution: "",
+    };
+    pairs.forEach((pair) => {
+        switch (pair.key) {
+            case "Bracketvalue":
+                obj.key = pair.value;
+                break;
+            case "Name":
+                obj.name = pair.value;
+                break;
+            case "FormName":
+                obj.formName = pair.value;
+                break;
+            case "Type1":
+                obj.type1 = pair.value;
+                break;
+            case "Type2":
+                obj.type2 = pair.value;
+                break;
+            case "Height":
+                obj.height = parseFloat(pair.value);
+                break;
+            case "Weight":
+                obj.weight = parseFloat(pair.value);
+                break;
+            case "BaseStats":
+                const stats = pair.value.split(",");
+                obj.hp = parseInt(stats[0]);
+                obj.attack = parseInt(stats[1]);
+                obj.defense = parseInt(stats[2]);
+                obj.speed = parseInt(stats[3]);
+                obj.spAttack = parseInt(stats[4]);
+                obj.spDefense = parseInt(stats[5]);
+                obj.bst = obj.hp + obj.attack + obj.defense + obj.speed + obj.spAttack + obj.spDefense;
+                break;
+            case "Abilities":
+                obj.abilities = pair.value.split(",");
+                break;
+            case "Moves":
+                const moveSplit = pair.value.split(",");
+                for (let i = 0; i < moveSplit.length; i += 2) {
+                    obj.levelMoves[moveSplit[i + 1]] = parseInt(moveSplit[i]);
+                }
+                break;
+            case "LineMoves":
+                obj.lineMoves = pair.value.split(",");
+                break;
+            case "TutorMoves":
+                obj.tutorMoves = pair.value.split(",");
+                break;
+            case "Tribes":
+                obj.tribes = pair.value.split(",");
+                break;
+            case "WildItemCommon":
+                obj.wildItems.push(pair.value);
+                break;
+            case "WildItemUncommon":
+                obj.wildItems.push(pair.value);
+                break;
+            case "WildItemRare":
+                obj.wildItems.push(pair.value);
+                break;
+            case "Kind":
+                obj.kind = pair.value;
+                break;
+            case "Pokedex":
+                obj.pokedex = pair.value;
+                break;
+            case "Evolutions":
+                const evoSplit = pair.value.split(",");
+                const evolutions: LoadedEvolution[] = [];
+                for (let i = 0; i < evoSplit.length; i += 3) {
+                    evolutions.push(new LoadedEvolution(evoSplit[i], evoSplit[i + 1], evoSplit[i + 2]));
+                }
+                obj.evolutions = evolutions;
+                break;
+        }
+    });
+
+    return obj;
+}
+
 // Propagates tribe data, first evolutions, and line moves throughout evolution lines
 export function propagatePokemonData(pokemon: Record<string, LoadedPokemon>): Record<string, LoadedPokemon> {
     function addFirstEvo(mon: LoadedPokemon | null, first: string) {
@@ -176,7 +282,12 @@ export function propagatePokemonData(pokemon: Record<string, LoadedPokemon>): Re
         return [];
     }
 
+    // manually add dex numbers since they're not stored in new-format pokemon.txt
+    // for the old format, they should line up anyway (or if not, the clobbered version makes more sense)
+    let dexNum = 1;
     for (const id in pokemon) {
+        pokemon[id].dexNum = dexNum;
+        dexNum++;
         if (pokemon[id].firstEvolution.length === 0) {
             addFirstEvo(pokemon[id], pokemon[id].key);
         }
