@@ -37,6 +37,7 @@ const PokemonDamageCalculator: NextPage = () => {
     const [playerPokemon, setPlayerPokemon] = useState<Pokemon>(nullPokemon);
     const [playerLevel, setPlayerLevel] = useState<number>(70);
     const [playerStylePoints, setPlayerStylePoints] = useState<StylePoints>(defaultStylePoints);
+    const [playerStatSteps, setPlayerStatSteps] = useState<Stats>(blankStats);
     const [playerCalculatedStats, setPlayerCalculatedStats] = useState<Stats>(blankStats);
     const [playerStatusEffect, setPlayerStatusEffect] = useState<StatusEffect>("None");
     const [playerForm, setPlayerForm] = useState<number>(0);
@@ -48,6 +49,7 @@ const PokemonDamageCalculator: NextPage = () => {
     const [opponentPokemon, setOpponentPokemon] = useState<Pokemon>(nullPokemon);
     const [opponentLevel, setOpponentLevel] = useState<number>(70);
     const [opponentStylePoints, setOpponentStylePoints] = useState<StylePoints>(defaultStylePoints);
+    const [opponentStatSteps, setOpponentStatSteps] = useState<Stats>(blankStats);
     const [opponentCalculatedStats, setOpponentCalculatedStats] = useState<Stats>(blankStats);
     const [opponentStatusEffect, setOpponentStatusEffect] = useState<StatusEffect>("None");
     const [opponentForm, setOpponentForm] = useState<number>(0);
@@ -88,6 +90,16 @@ const PokemonDamageCalculator: NextPage = () => {
         opponent: setOpponentStylePoints,
     };
 
+    const getStatSteps = {
+        player: playerStatSteps,
+        opponent: opponentStatSteps,
+    };
+
+    const setStatSteps = {
+        player: setPlayerStatSteps,
+        opponent: setOpponentStatSteps,
+    };
+
     const getCalculatedStats = {
         player: playerCalculatedStats,
         opponent: opponentCalculatedStats,
@@ -123,24 +135,27 @@ const PokemonDamageCalculator: NextPage = () => {
     const STYLE_POINT_CAP = 50;
     const MIN_SP = 0;
     const MAX_SP = 20;
+    const MIN_STEP = -12;
+    const MAX_STEP = +12;
 
     function recalculateStats(
         baseStats: Stats,
         level: number,
         stylePoints: StylePoints,
+        statSteps: Stats,
         effect: StatusEffect,
         side: Side
     ) {
-        let speed = calculateStat(baseStats.speed, level, stylePoints.speed);
+        let speed = calculateStat(baseStats.speed, level, stylePoints.speed, statSteps.speed);
         if (effect === "Numb") {
             speed = Math.round(speed / 2);
         }
         const newStats: Stats = {
             hp: calculateHP(baseStats.hp, level, stylePoints.hp),
-            attack: calculateStat(baseStats.attack, level, stylePoints.attacks),
-            defense: calculateStat(baseStats.defense, level, stylePoints.defense),
-            spatk: calculateStat(baseStats.spatk, level, stylePoints.attacks),
-            spdef: calculateStat(baseStats.spdef, level, stylePoints.spdef),
+            attack: calculateStat(baseStats.attack, level, stylePoints.attacks, statSteps.attack),
+            defense: calculateStat(baseStats.defense, level, stylePoints.defense, statSteps.defense),
+            spatk: calculateStat(baseStats.spatk, level, stylePoints.attacks, statSteps.spatk),
+            spdef: calculateStat(baseStats.spdef, level, stylePoints.spdef, statSteps.spdef),
             speed,
         };
         setCalculatedStats[side](newStats);
@@ -153,8 +168,9 @@ const PokemonDamageCalculator: NextPage = () => {
             const baseStats = pokemon.getStats(0);
             const level = getLevel[side];
             const stylePoints = getStylePoints[side];
+            const statSteps = getStatSteps[side];
             const effect = getStatusEffect[side];
-            recalculateStats(baseStats, level, stylePoints, effect, side);
+            recalculateStats(baseStats, level, stylePoints, statSteps, effect, side);
             if (side === "player") {
                 setPlayerMove(nullMove);
             }
@@ -166,8 +182,9 @@ const PokemonDamageCalculator: NextPage = () => {
         const baseStats = getPokemon[side].getStats(form);
         const level = getLevel[side];
         const stylePoints = getStylePoints[side];
+        const statSteps = getStatSteps[side];
         const effect = getStatusEffect[side];
-        recalculateStats(baseStats, level, stylePoints, effect, side);
+        recalculateStats(baseStats, level, stylePoints, statSteps, effect, side);
         if (side === "player") {
             setPlayerMove(nullMove);
         }
@@ -188,8 +205,9 @@ const PokemonDamageCalculator: NextPage = () => {
         setPokemon["opponent"](pokemon.pokemon);
         setLevel["opponent"](pokemon.level);
         setStylePoints["opponent"](pokemon.sp);
+        setStatSteps["opponent"](blankStats);
         setStatusEffect["opponent"]("None");
-        recalculateStats(pokemon.pokemon.stats, pokemon.level, pokemon.sp, "None", "opponent");
+        recalculateStats(pokemon.pokemon.stats, pokemon.level, pokemon.sp, blankStats, "None", "opponent");
     }
 
     function isReadyToCalculate() {
@@ -202,8 +220,9 @@ const PokemonDamageCalculator: NextPage = () => {
         setLevel[side](level);
         const baseStats = getPokemon[side].getStats(getForm[side]);
         const stylePoints = getStylePoints[side];
+        const statSteps = getStatSteps[side];
         const effect = getStatusEffect[side];
-        recalculateStats(baseStats, level, stylePoints, effect, side);
+        recalculateStats(baseStats, level, stylePoints, statSteps, effect, side);
     }
 
     function handleStylePoints(styleName: keyof StylePoints, stylePoint: number, side: Side) {
@@ -218,8 +237,9 @@ const PokemonDamageCalculator: NextPage = () => {
         setStylePoints[side](stylePoints);
         const baseStats = getPokemon[side].getStats(getForm[side]);
         const level = getLevel[side];
+        const statSteps = getStatSteps[side];
         const effect = getStatusEffect[side];
-        recalculateStats(baseStats, level, stylePoints, effect, side);
+        recalculateStats(baseStats, level, stylePoints, statSteps, effect, side);
     }
 
     function styleFromStat(stat: keyof Stats): keyof StylePoints {
@@ -229,12 +249,25 @@ const PokemonDamageCalculator: NextPage = () => {
         return stat;
     }
 
+    function handleStatSteps(statName: keyof Stats, stat: number, side: Side) {
+        stat = Math.max(stat, MIN_STEP);
+        stat = Math.min(stat, MAX_STEP);
+        const newSteps = { ...getStatSteps[side], [statName]: stat };
+        setStatSteps[side](newSteps);
+        const baseStats = getPokemon[side].getStats(getForm[side]);
+        const level = getLevel[side];
+        const stylePoints = getStylePoints[side];
+        const effect = getStatusEffect[side];
+        recalculateStats(baseStats, level, stylePoints, newSteps, effect, side);
+    }
+
     function handleStatusEffect(effect: StatusEffect, side: Side) {
         setStatusEffect[side](effect);
         const stylePoints = getStylePoints[side];
         const baseStats = getPokemon[side].getStats(getForm[side]);
+        const statSteps = getStatSteps[side];
         const level = getLevel[side];
-        recalculateStats(baseStats, level, stylePoints, effect, side);
+        recalculateStats(baseStats, level, stylePoints, statSteps, effect, side);
         if (effect === "Jinx" && side === "player") {
             setCriticalHit(true);
         }
@@ -404,29 +437,58 @@ const PokemonDamageCalculator: NextPage = () => {
                 {/* Stats */}
                 <div>
                     <h3 className="text-sm font-medium text-gray-300 mb-3 text-center">Stats</h3>
-                    <div className="space-y-3">
-                        {safeKeys(getPokemon[side].getStats(getForm[side])).map((statName) => {
-                            const styleName = styleFromStat(statName);
-                            return (
-                                <div key={statName} className="flex items-center justify-between px-2">
-                                    <span className="text-gray-300 w-16 text-right">{statName.toUpperCase()}</span>
-                                    <span className="text-gray-400 w-12 text-center">
-                                        {getCalculatedStats[side][statName]}
-                                    </span>
-                                    <input
-                                        type="number"
-                                        min={MIN_SP}
-                                        max={MAX_SP}
-                                        className="w-16 px-2 py-1 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
-                                        value={getStylePoints[side][styleName]}
-                                        onChange={(e) =>
-                                            handleStylePoints(styleName, parseInt(e.target.value) || MIN_SP, side)
-                                        }
-                                    />
-                                </div>
-                            );
-                        })}
-                    </div>
+
+                    <table>
+                        <thead>
+                            <th>Stat</th>
+                            <th>Value</th>
+                            <th>SP</th>
+                            <th>Steps</th>
+                        </thead>
+                        <tbody>
+                            {safeKeys(getPokemon[side].getStats(getForm[side])).map((statName) => {
+                                const styleName = styleFromStat(statName);
+                                return (
+                                    <tr key={statName}>
+                                        <td className="text-gray-300 w-16 text-right">{statName.toUpperCase()}</td>
+                                        <td className="text-gray-400 w-12 text-center">
+                                            {getCalculatedStats[side][statName]}
+                                        </td>
+                                        <td>
+                                            <input
+                                                type="number"
+                                                min={MIN_SP}
+                                                max={MAX_SP}
+                                                className="w-16 px-2 py-1 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
+                                                value={getStylePoints[side][styleName]}
+                                                onChange={(e) =>
+                                                    handleStylePoints(
+                                                        styleName,
+                                                        parseInt(e.target.value) || MIN_SP,
+                                                        side
+                                                    )
+                                                }
+                                            />
+                                        </td>
+                                        <td>
+                                            {statName !== "hp" && (
+                                                <input
+                                                    type="number"
+                                                    min={MIN_STEP}
+                                                    max={MAX_STEP}
+                                                    className="w-16 px-2 py-1 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
+                                                    value={getStatSteps[side][statName]}
+                                                    onChange={(e) =>
+                                                        handleStatSteps(statName, parseInt(e.target.value) || 0, side)
+                                                    }
+                                                />
+                                            )}
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         ) : (
