@@ -15,6 +15,7 @@ export interface LoadedTrainer extends LoadedData {
     class: string;
     name: string;
     version?: number;
+    nameForHashing?: string;
     extendsVersion?: number;
     policies: string[];
     flags: string[];
@@ -50,6 +51,9 @@ export function parseTrainers(pairs: KVPair[]): LoadedTrainer {
                     obj.version = parseInt(bracketTerms[2]);
                 }
                 break;
+            case "NameForHashing":
+                obj.nameForHashing = pair.value;
+                break;
             case "ExtendsVersion":
                 obj.extendsVersion = parseInt(pair.value);
                 break;
@@ -84,7 +88,7 @@ export function parseTrainers(pairs: KVPair[]): LoadedTrainer {
                 currentPokemon.items = pair.value.split(",");
                 break;
             case "EV":
-                currentPokemon.sp = pair.value.split(",").map(parseInt);
+                currentPokemon.sp = pair.value.split(",").map((v) => parseInt(v));
                 break;
         }
     });
