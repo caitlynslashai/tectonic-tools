@@ -6,7 +6,7 @@ import { parseAbilities } from "./abilities";
 import { parseForms } from "./forms";
 import { parseItems } from "./items";
 import { parseMoves } from "./moves";
-import { parsePokemon, propagatePokemonData } from "./pokemon";
+import { parsePokemon, parsePokemonLegacy, propagatePokemonData } from "./pokemon";
 import { parseTribes } from "./tribes";
 import { buildTypeChart, TypeChart } from "./typeChart";
 import { parsePokemonTypes } from "./types";
@@ -108,6 +108,8 @@ async function loadData(dev: boolean = false): Promise<void> {
     ])
         .then((values) => tectonicFiles.push(...values))
         .catch((error) => console.error(error));
+    // TODO: Where is the version number "3.3.0-dev" stored?
+    const version = dev ? "dev" : tectonicFiles[9].trim();
 
     const types = standardFilesParser([tectonicFiles[0]], parsePokemonTypes);
     const tribes = parseTribes(tectonicFiles[1]);
@@ -115,11 +117,13 @@ async function loadData(dev: boolean = false): Promise<void> {
     const moves = standardFilesParser([tectonicFiles[4], tectonicFiles[5]], parseMoves);
     const items = standardFilesParser([tectonicFiles[6]], parseItems);
     // const heldItems = filterToHeldItems(items);
-    const pokemon = propagatePokemonData(standardFilesParser([tectonicFiles[7]], parsePokemon));
+
+    // pokemon.txt schema updated in 3.3/dev - thankfully, for simplicity, this site postdates any older update except 3.2
+    const pokemonParser = version.startsWith("3.2") ? parsePokemonLegacy : parsePokemon;
+    const pokemon = propagatePokemonData(standardFilesParser([tectonicFiles[7]], pokemonParser));
+
     const forms = parseForms([tectonicFiles[8]]);
     const typeChart = buildTypeChart(types);
-    // TODO: Where is the version number "3.3.0-dev" stored?
-    const version = dev ? "dev" : tectonicFiles[9].trim();
     const currentVersion = { version };
 
     const indices = {
