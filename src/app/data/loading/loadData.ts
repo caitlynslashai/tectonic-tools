@@ -3,6 +3,7 @@
 import { readFile, writeFile } from "fs/promises";
 import path from "path";
 import { parseAbilities } from "./abilities";
+import { parseEncounters } from "./encounters";
 import { parseForms } from "./forms";
 import { parseItems } from "./items";
 import { parseMoves } from "./moves";
@@ -108,6 +109,7 @@ async function loadData(dev: boolean = false): Promise<void> {
         fileFetch("PBS/pokemonforms.txt", dev),
         fileFetch("PBS/trainertypes.txt", dev),
         fileFetch("PBS/trainers.txt", dev),
+        fileFetch("PBS/encounters.txt", dev),
         fileFetch("release_version.txt", dev),
     ])
         .then((values) => tectonicFiles.push(...values))
@@ -134,6 +136,7 @@ async function loadData(dev: boolean = false): Promise<void> {
     const typeChart = buildTypeChart(types);
     const trainerTypes = standardFilesParser([tectonicFiles[9]], parseTrainerTypes);
     const trainers = standardFilesParser([tectonicFiles[10]], parseTrainers);
+    const encounters = parseEncounters(tectonicFiles[11]);
 
     const currentVersion = { version };
 
@@ -165,6 +168,7 @@ async function loadData(dev: boolean = false): Promise<void> {
         dataWrite("typechart.json", typeChart),
         dataWrite("trainertypes.json", trainerTypes),
         dataWrite("trainers.json", trainers),
+        dataWrite("encounters.json", encounters),
         dataWrite("currentversion.json", currentVersion),
         dataWrite("versions.json", versions),
     ]);
