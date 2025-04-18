@@ -91,11 +91,7 @@ const PokemonEvolution: React.FC<PokemonEvolutionProps> = ({ pokemon, moves, ite
 
     const evoDisplay = getEvoDisplay(node.getData());
     return (
-        <table
-            key={index}
-            className="hover:bg-blue-50 dark:hover:bg-blue-900 cursor-pointer"
-            onClick={() => onClick(pokemon[node.getData().pokemon])}
-        >
+        <table key={index}>
             <tbody>
                 <tr>
                     {node.isRoot() ? <></> : <td className="px-2">➡</td>}
@@ -118,7 +114,10 @@ const PokemonEvolution: React.FC<PokemonEvolutionProps> = ({ pokemon, moves, ite
                         </td>
                     )}
                     {node.isRoot() ? <></> : <td>➡</td>}
-                    <td>
+                    <td
+                        className="hover:bg-blue-50 dark:hover:bg-blue-900 cursor-pointer"
+                        onClick={() => onClick(pokemon[node.getData().pokemon])}
+                    >
                         <Image
                             src={pokemon[node.getData().pokemon].getImage()}
                             alt={node.getData().pokemon}
