@@ -40,8 +40,16 @@ export function parseEncounters(file: string): Record<string, LoadedEncounterMap
                 return;
             }
 
+            // new map - first add current table to current map, then finalize current map
             if (line.startsWith("[")) {
                 if (currentMap.key !== "") {
+                    if (currentTable.type !== "") {
+                        currentMap.tables.push({
+                            type: currentTable.type,
+                            encounterRate: currentTable.encounterRate,
+                            encounters: currentTable.encounters.map((enc) => ({ ...enc })),
+                        });
+                    }
                     map[currentMap.key] = {
                         key: currentMap.key,
                         id: currentMap.id,
@@ -52,13 +60,19 @@ export function parseEncounters(file: string): Record<string, LoadedEncounterMap
                             encounters: table.encounters.map((enc) => ({ ...enc })),
                         })),
                     };
-                    currentMap = {
-                        key: "",
-                        id: 0,
-                        name: "",
-                        tables: [],
-                    };
                 }
+
+                currentTable = {
+                    type: "",
+                    encounters: [],
+                };
+                currentMap = {
+                    key: "",
+                    id: 0,
+                    name: "",
+                    tables: [],
+                };
+
                 const key = line.split("]")[0].slice(1);
                 const name = line.split("#")[1].trim();
                 currentMap.key = key;
@@ -78,6 +92,7 @@ export function parseEncounters(file: string): Record<string, LoadedEncounterMap
                 return;
             }
 
+            // new table
             if (currentTable.type !== "") {
                 currentMap.tables.push({
                     type: currentTable.type,
