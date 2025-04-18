@@ -7,6 +7,7 @@ import { parseForms } from "./forms";
 import { parseItems } from "./items";
 import { parseMoves } from "./moves";
 import { parsePokemon, parsePokemonLegacy, propagatePokemonData } from "./pokemon";
+import { parseTrainers } from "./trainers";
 import { parseTrainerTypes } from "./trainerTypes";
 import { parseTribes, parseTribesLegacy } from "./tribes";
 import { buildTypeChart, TypeChart } from "./typeChart";
@@ -106,6 +107,7 @@ async function loadData(dev: boolean = false): Promise<void> {
         fileFetch("PBS/pokemon.txt", dev),
         fileFetch("PBS/pokemonforms.txt", dev),
         fileFetch("PBS/trainertypes.txt", dev),
+        fileFetch("PBS/trainers.txt", dev),
         fileFetch("release_version.txt", dev),
     ])
         .then((values) => tectonicFiles.push(...values))
@@ -131,6 +133,7 @@ async function loadData(dev: boolean = false): Promise<void> {
     const forms = parseForms([tectonicFiles[8]]);
     const typeChart = buildTypeChart(types);
     const trainerTypes = standardFilesParser([tectonicFiles[9]], parseTrainerTypes);
+    const trainers = standardFilesParser([tectonicFiles[10]], parseTrainers);
 
     const currentVersion = { version };
 
@@ -161,6 +164,7 @@ async function loadData(dev: boolean = false): Promise<void> {
         dataWrite("forms.json", forms),
         dataWrite("typechart.json", typeChart),
         dataWrite("trainertypes.json", trainerTypes),
+        dataWrite("trainers.json", trainers),
         dataWrite("currentversion.json", currentVersion),
         dataWrite("versions.json", versions),
     ]);
