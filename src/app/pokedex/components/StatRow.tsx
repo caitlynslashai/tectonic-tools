@@ -1,11 +1,19 @@
-export default function StatRow({ name, value }: { name: string; value: number }) {
+export default function StatRow({ name, value, scale }: { name: string; value: number; scale: number }) {
+    const scaledStatValue = value / scale;
+    const colorDeg = Math.min(scaledStatValue * (0.45 + scaledStatValue / 200), 280);
+
     return (
         <tr key={name}>
-            <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-gray-600 dark:text-gray-300">
-                {name}
-            </td>
-            <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-gray-600 dark:text-gray-300">
-                {value}
+            <td>{name}</td>
+            <td>{value}</td>
+            <td className="w-full">
+                <div
+                    className={`h-4 rounded-md bg-blue-500 transition-all duration-300`}
+                    style={{
+                        width: `${Math.round(scaledStatValue * 2.0)}px`,
+                        backgroundColor: `hsl(${colorDeg}deg, 100%, 50%)`,
+                    }}
+                ></div>
             </td>
         </tr>
     );

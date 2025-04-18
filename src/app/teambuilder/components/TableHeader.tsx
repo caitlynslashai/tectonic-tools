@@ -1,6 +1,6 @@
+import { CardData } from "@/app/data/teamExport";
 import { isNull } from "@/app/data/util";
 import Image from "next/image";
-import { CardData } from "../page";
 
 export default function TableHeader({ card }: { card: CardData }) {
     const pokemon = card.pokemon;

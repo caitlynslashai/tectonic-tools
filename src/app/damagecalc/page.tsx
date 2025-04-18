@@ -15,12 +15,14 @@ import Dropdown from "../../components/DropDown";
 import InputLabel from "../../components/InputLabel";
 import { moves, nullMove } from "../data/moves";
 import { nullPokemon, pokemon } from "../data/pokemon";
+import { calculateHP, calculateStat } from "../data/stats";
 import { StatusEffect, statusEffects } from "../data/statusEffects";
+import { decodeTeam } from "../data/teamExport";
 import { nullTrainer, trainers } from "../data/trainers";
 import { Move } from "../data/types/Move";
 import { blankStats, defaultStylePoints, Pokemon, Stats, StylePoints } from "../data/types/Pokemon";
 import { Trainer } from "../data/types/Trainer";
-import { isNull } from "../data/util";
+import { isNull, negativeMod } from "../data/util";
 import { calculateDamage, DamageResult, PokemonStats } from "./damageCalc";
 
 function isKey<T extends object>(k: string | number | symbol, o: T): k is keyof T {
@@ -36,8 +38,10 @@ const PokemonDamageCalculator: NextPage = () => {
     const [playerPokemon, setPlayerPokemon] = useState<Pokemon>(nullPokemon);
     const [playerLevel, setPlayerLevel] = useState<number>(70);
     const [playerStylePoints, setPlayerStylePoints] = useState<StylePoints>(defaultStylePoints);
+    const [playerStatSteps, setPlayerStatSteps] = useState<Stats>(blankStats);
     const [playerCalculatedStats, setPlayerCalculatedStats] = useState<Stats>(blankStats);
     const [playerStatusEffect, setPlayerStatusEffect] = useState<StatusEffect>("None");
+    const [playerForm, setPlayerForm] = useState<number>(0);
 
     const [playerMove, setPlayerMove] = useState<Move>(nullMove);
     const [customMoveVar, setCustomMoveVar] = useState<number>(0);
@@ -46,12 +50,17 @@ const PokemonDamageCalculator: NextPage = () => {
     const [opponentPokemon, setOpponentPokemon] = useState<Pokemon>(nullPokemon);
     const [opponentLevel, setOpponentLevel] = useState<number>(70);
     const [opponentStylePoints, setOpponentStylePoints] = useState<StylePoints>(defaultStylePoints);
+    const [opponentStatSteps, setOpponentStatSteps] = useState<Stats>(blankStats);
     const [opponentCalculatedStats, setOpponentCalculatedStats] = useState<Stats>(blankStats);
     const [opponentStatusEffect, setOpponentStatusEffect] = useState<StatusEffect>("None");
+    const [opponentForm, setOpponentForm] = useState<number>(0);
 
+    const [playerTeam, setPlayerTeam] = useState<Trainer>(nullTrainer);
     const [opposingTrainer, setOpposingTrainer] = useState<Trainer>(nullTrainer);
 
     const [multiBattle, setMultiBattle] = useState<boolean>(false);
+
+    const [teamCode, setTeamCode] = useState<string>("");
 
     type Side = "player" | "opponent";
 
@@ -85,6 +94,16 @@ const PokemonDamageCalculator: NextPage = () => {
         opponent: setOpponentStylePoints,
     };
 
+    const getStatSteps = {
+        player: playerStatSteps,
+        opponent: opponentStatSteps,
+    };
+
+    const setStatSteps = {
+        player: setPlayerStatSteps,
+        opponent: setOpponentStatSteps,
+    };
+
     const getCalculatedStats = {
         player: playerCalculatedStats,
         opponent: opponentCalculatedStats,
@@ -105,29 +124,64 @@ const PokemonDamageCalculator: NextPage = () => {
         opponent: setOpponentStatusEffect,
     };
 
+    const getForm = {
+        player: playerForm,
+        opponent: opponentForm,
+    };
+
+    const setForm = {
+        player: setPlayerForm,
+        opponent: setOpponentForm,
+    };
+
+    const getTrainer = {
+        player: playerTeam,
+        opponent: opposingTrainer,
+    };
+
     const MIN_LEVEL = 1;
     const MAX_LEVEL = 70;
     const STYLE_POINT_CAP = 50;
     const MIN_SP = 0;
     const MAX_SP = 20;
+    const MIN_STEP = -12;
+    const MAX_STEP = +12;
 
     function recalculateStats(
         baseStats: Stats,
         level: number,
         stylePoints: StylePoints,
+        statSteps: Stats,
         effect: StatusEffect,
         side: Side
     ) {
-        let speed = calculateStat(baseStats.speed, level, stylePoints.speed);
+        let speed = calculateStat(baseStats.speed, level, stylePoints.speed, statSteps.speed);
         if (effect === "Numb") {
             speed = Math.round(speed / 2);
         }
+
+        // ignore negative attack steps if critical
+        let attackStep = statSteps.attack;
+        let spAtkStep = statSteps.spatk;
+        if (side === "player" && criticalHit) {
+            attackStep = Math.max(attackStep, 0);
+            spAtkStep = Math.max(spAtkStep, 0);
+        }
+
+        // ignore positive defense steps if critical
+        let defStep = statSteps.defense;
+        let spDefStep = statSteps.spdef;
+        if (side === "opponent" && criticalHit) {
+            defStep = Math.min(defStep, 0);
+            spDefStep = Math.min(spDefStep, 0);
+        }
+
         const newStats: Stats = {
             hp: calculateHP(baseStats.hp, level, stylePoints.hp),
-            attack: calculateStat(baseStats.attack, level, stylePoints.attacks),
-            defense: calculateStat(baseStats.defense, level, stylePoints.defense),
-            spatk: calculateStat(baseStats.spatk, level, stylePoints.attacks),
-            spdef: calculateStat(baseStats.spdef, level, stylePoints.spdef),
+            attack: calculateStat(baseStats.attack, level, stylePoints.attacks, attackStep),
+            defense: calculateStat(baseStats.defense, level, stylePoints.defense, defStep),
+            spatk: calculateStat(baseStats.spatk, level, stylePoints.attacks, spAtkStep),
+            spdef: calculateStat(baseStats.spdef, level, stylePoints.spdef, spDefStep),
             speed,
         };
         setCalculatedStats[side](newStats);
@@ -136,15 +190,51 @@ const PokemonDamageCalculator: NextPage = () => {
     function handleLoadingPokemon(pokemon: Pokemon, side: Side) {
         if (!isNull(pokemon)) {
             setPokemon[side](pokemon);
-            const baseStats = pokemon.stats;
+            setForm[side](0);
+            const baseStats = pokemon.getStats(0);
             const level = getLevel[side];
             const stylePoints = getStylePoints[side];
+            const statSteps = getStatSteps[side];
             const effect = getStatusEffect[side];
-            recalculateStats(baseStats, level, stylePoints, effect, side);
+            recalculateStats(baseStats, level, stylePoints, statSteps, effect, side);
             if (side === "player") {
                 setPlayerMove(nullMove);
             }
         }
+    }
+
+    function handleLoadingForm(form: number, side: Side) {
+        setForm[side](form);
+        const baseStats = getPokemon[side].getStats(form);
+        const level = getLevel[side];
+        const stylePoints = getStylePoints[side];
+        const statSteps = getStatSteps[side];
+        const effect = getStatusEffect[side];
+        recalculateStats(baseStats, level, stylePoints, statSteps, effect, side);
+        if (side === "player") {
+            setPlayerMove(nullMove);
+        }
+    }
+
+    function importTeam() {
+        const teamCards = decodeTeam(teamCode);
+        const playerTrainer = new Trainer({
+            key: "val",
+            class: "POKEMONTRAINER",
+            name: "Val",
+            policies: [],
+            flags: [],
+            pokemon: teamCards.map((c) => {
+                return {
+                    id: c.pokemon.id,
+                    level: 70,
+                    items: [c.item.id],
+                    moves: c.moves.map((m) => m.id),
+                    sp: [10, 10, 10, 10, 10, 10],
+                };
+            }),
+        });
+        setPlayerTeam(playerTrainer);
     }
 
     function handleLoadingTrainer(trainer_key: string) {
@@ -154,35 +244,17 @@ const PokemonDamageCalculator: NextPage = () => {
         }
     }
 
-    function handleLoadingTrainerPokemon(index: number) {
+    function handleLoadingTrainerPokemon(index: number, side: Side) {
         if (index < 0) {
             return;
         }
-        const pokemon = opposingTrainer.pokemon[index];
-        setPokemon["opponent"](pokemon.pokemon);
-        setLevel["opponent"](pokemon.level);
-        setStylePoints["opponent"](pokemon.sp);
-        setStatusEffect["opponent"]("None");
-        recalculateStats(pokemon.pokemon.stats, pokemon.level, pokemon.sp, "None", "opponent");
-    }
-
-    function styleValueMult(level: number): number {
-        return 2.0 + level / 50.0;
-    }
-
-    function calculateHP(base: number, level: number, sv: number, stylish: boolean = false): number {
-        if (base === 1) return 1; // For Shedinja
-        const pseudoLevel = 15.0 + level / 2.0;
-        const stylishMult = stylish ? 2.0 : 1.0;
-        return Math.floor(
-            ((base * 2.0 + sv * styleValueMult(level) * stylishMult) * pseudoLevel) / 100.0 + pseudoLevel + 10.0
-        );
-    }
-
-    function calculateStat(base: number, level: number, sv: number, stylish: boolean = false): number {
-        const pseudoLevel = 15.0 + level / 2.0;
-        const stylishMult = stylish ? 2.0 : 1.0;
-        return Math.floor(((base * 2.0 + sv * styleValueMult(level) * stylishMult) * pseudoLevel) / 100.0 + 5.0);
+        const pokemon = getTrainer[side].pokemon[index];
+        setPokemon[side](pokemon.pokemon);
+        setLevel[side](pokemon.level);
+        setStylePoints[side](pokemon.sp);
+        setStatSteps[side](blankStats);
+        setStatusEffect[side]("None");
+        recalculateStats(pokemon.pokemon.stats, pokemon.level, pokemon.sp, blankStats, "None", side);
     }
 
     function isReadyToCalculate() {
@@ -193,10 +265,11 @@ const PokemonDamageCalculator: NextPage = () => {
         level = Math.max(level, MIN_LEVEL);
         level = Math.min(level, MAX_LEVEL);
         setLevel[side](level);
-        const baseStats = getPokemon[side].stats;
+        const baseStats = getPokemon[side].getStats(getForm[side]);
         const stylePoints = getStylePoints[side];
+        const statSteps = getStatSteps[side];
         const effect = getStatusEffect[side];
-        recalculateStats(baseStats, level, stylePoints, effect, side);
+        recalculateStats(baseStats, level, stylePoints, statSteps, effect, side);
     }
 
     function handleStylePoints(styleName: keyof StylePoints, stylePoint: number, side: Side) {
@@ -209,10 +282,11 @@ const PokemonDamageCalculator: NextPage = () => {
             return;
         }
         setStylePoints[side](stylePoints);
-        const baseStats = getPokemon[side].stats;
+        const baseStats = getPokemon[side].getStats(getForm[side]);
         const level = getLevel[side];
+        const statSteps = getStatSteps[side];
         const effect = getStatusEffect[side];
-        recalculateStats(baseStats, level, stylePoints, effect, side);
+        recalculateStats(baseStats, level, stylePoints, statSteps, effect, side);
     }
 
     function styleFromStat(stat: keyof Stats): keyof StylePoints {
@@ -222,12 +296,25 @@ const PokemonDamageCalculator: NextPage = () => {
         return stat;
     }
 
+    function handleStatSteps(statName: keyof Stats, stat: number, side: Side) {
+        stat = Math.max(stat, MIN_STEP);
+        stat = Math.min(stat, MAX_STEP);
+        const newSteps = { ...getStatSteps[side], [statName]: stat };
+        setStatSteps[side](newSteps);
+        const baseStats = getPokemon[side].getStats(getForm[side]);
+        const level = getLevel[side];
+        const stylePoints = getStylePoints[side];
+        const effect = getStatusEffect[side];
+        recalculateStats(baseStats, level, stylePoints, newSteps, effect, side);
+    }
+
     function handleStatusEffect(effect: StatusEffect, side: Side) {
         setStatusEffect[side](effect);
         const stylePoints = getStylePoints[side];
-        const baseStats = getPokemon[side].stats;
+        const baseStats = getPokemon[side].getStats(getForm[side]);
+        const statSteps = getStatSteps[side];
         const level = getLevel[side];
-        recalculateStats(baseStats, level, stylePoints, effect, side);
+        recalculateStats(baseStats, level, stylePoints, statSteps, effect, side);
         if (effect === "Jinx" && side === "player") {
             setCriticalHit(true);
         }
@@ -238,6 +325,15 @@ const PokemonDamageCalculator: NextPage = () => {
             crit = true;
         }
         setCriticalHit(crit);
+        const sides: Side[] = ["player", "opponent"];
+        for (const side of sides) {
+            const baseStats = getPokemon[side].getStats(getForm[side]);
+            const level = getLevel[side];
+            const stylePoints = getStylePoints[side];
+            const statSteps = getStatSteps[side];
+            const effect = getStatusEffect[side];
+            recalculateStats(baseStats, level, stylePoints, statSteps, effect, side);
+        }
     }
 
     function getMoveCategory(move: Move) {
@@ -252,11 +348,13 @@ const PokemonDamageCalculator: NextPage = () => {
         stats: playerCalculatedStats,
         level: playerLevel,
         status: playerStatusEffect,
+        form: playerForm,
     };
     const opponentPokemonStats: PokemonStats = {
         stats: opponentCalculatedStats,
         level: opponentLevel,
         status: opponentStatusEffect,
+        form: opponentForm,
     };
 
     const battleState = {
@@ -273,6 +371,41 @@ const PokemonDamageCalculator: NextPage = () => {
         battleState
     );
 
+    function swapPokemon() {
+        const mon1 = playerPokemon;
+        const level1 = playerLevel;
+        const sp1 = playerStylePoints;
+        const steps1 = playerStatSteps;
+        const stats1 = playerCalculatedStats;
+        const status1 = playerStatusEffect;
+        const form1 = playerForm;
+
+        const mon2 = opponentPokemon;
+        const level2 = opponentLevel;
+        const sp2 = opponentStylePoints;
+        const steps2 = opponentStatSteps;
+        const stats2 = opponentCalculatedStats;
+        const status2 = opponentStatusEffect;
+        const form2 = opponentForm;
+
+        setPlayerPokemon(mon2);
+        setPlayerLevel(level2);
+        setPlayerStylePoints(sp2);
+        setPlayerStatSteps(steps2);
+        setPlayerCalculatedStats(stats2);
+        setPlayerStatusEffect(status2);
+        setPlayerForm(form2);
+        setPlayerMove(nullMove);
+
+        setOpponentPokemon(mon1);
+        setOpponentLevel(level1);
+        setOpponentStylePoints(sp1);
+        setOpponentStatSteps(steps1);
+        setOpponentCalculatedStats(stats1);
+        setOpponentStatusEffect(status1);
+        setOpponentForm(form1);
+    }
+
     function pokemonSelect(side: Side) {
         return (
             <>
@@ -282,7 +415,7 @@ const PokemonDamageCalculator: NextPage = () => {
                             // this is a stupid solution but it didn't work if i had the ternary in the className
                             side === "player" ? (
                                 <Image
-                                    src={"/Pokemon/" + getPokemon[side].id + ".png"}
+                                    src={getPokemon[side].getImage(getForm[side])}
                                     alt={getPokemon[side].name}
                                     height="160"
                                     width="160"
@@ -290,7 +423,7 @@ const PokemonDamageCalculator: NextPage = () => {
                                 />
                             ) : (
                                 <Image
-                                    src={"/Pokemon/" + getPokemon[side].id + ".png"}
+                                    src={getPokemon[side].getImage(getForm[side])}
                                     alt={getPokemon[side].name}
                                     height="160"
                                     width="160"
@@ -300,9 +433,39 @@ const PokemonDamageCalculator: NextPage = () => {
                         }
                     </div>
                 )}
-                <div className="text-center">
-                    <InputLabel>Pokémon</InputLabel>
+                <div className="flex justify-between items-center">
+                    {getPokemon[side].forms.length > 1 && (
+                        <button
+                            onClick={() =>
+                                handleLoadingForm(negativeMod(getForm[side] - 1, getPokemon[side].forms.length), side)
+                            }
+                            className="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
+                        >
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M15 19l-7-7 7-7"
+                                />
+                            </svg>
+                        </button>
+                    )}
+                    <div className="text-center flex-grow">
+                        <InputLabel>Pokémon</InputLabel>
+                    </div>
+                    {getPokemon[side].forms.length > 1 && (
+                        <button
+                            onClick={() => handleLoadingForm((getForm[side] + 1) % getPokemon[side].forms.length, side)}
+                            className="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
+                        >
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    )}
                 </div>
+
                 <Dropdown
                     value={getPokemon[side].id}
                     onChange={(e) => handleLoadingPokemon(pokemon[e.target.value] || nullPokemon, side)}
@@ -325,7 +488,10 @@ const PokemonDamageCalculator: NextPage = () => {
             <div className={`space-y-6`}>
                 {/* Pokemon type */}
                 <div className="text-center">
-                    <TypeBadge type1={getPokemon[side].type1} type2={getPokemon[side].type2} />
+                    <TypeBadge
+                        type1={getPokemon[side].getType1(getForm[side])}
+                        type2={getPokemon[side].getType2(getForm[side])}
+                    />
                 </div>
 
                 {/* Level input */}
@@ -362,29 +528,60 @@ const PokemonDamageCalculator: NextPage = () => {
                 {/* Stats */}
                 <div>
                     <h3 className="text-sm font-medium text-gray-300 mb-3 text-center">Stats</h3>
-                    <div className="space-y-3">
-                        {safeKeys(getPokemon[side].stats).map((statName) => {
-                            const styleName = styleFromStat(statName);
-                            return (
-                                <div key={statName} className="flex items-center justify-between px-2">
-                                    <span className="text-gray-300 w-16 text-right">{statName.toUpperCase()}</span>
-                                    <span className="text-gray-400 w-12 text-center">
-                                        {getCalculatedStats[side][statName]}
-                                    </span>
-                                    <input
-                                        type="number"
-                                        min={MIN_SP}
-                                        max={MAX_SP}
-                                        className="w-16 px-2 py-1 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
-                                        value={getStylePoints[side][styleName]}
-                                        onChange={(e) =>
-                                            handleStylePoints(styleName, parseInt(e.target.value) || MIN_SP, side)
-                                        }
-                                    />
-                                </div>
-                            );
-                        })}
-                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Stat</th>
+                                <th>Value</th>
+                                <th>SP</th>
+                                <th>Steps</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {safeKeys(getPokemon[side].getStats(getForm[side])).map((statName) => {
+                                const styleName = styleFromStat(statName);
+                                return (
+                                    <tr key={statName}>
+                                        <td className="text-gray-300 w-16 text-right">{statName.toUpperCase()}</td>
+                                        <td className="text-gray-400 w-12 text-center">
+                                            {getCalculatedStats[side][statName]}
+                                        </td>
+                                        <td>
+                                            <input
+                                                type="number"
+                                                min={MIN_SP}
+                                                max={MAX_SP}
+                                                className="w-16 px-2 py-1 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
+                                                value={getStylePoints[side][styleName]}
+                                                onChange={(e) =>
+                                                    handleStylePoints(
+                                                        styleName,
+                                                        parseInt(e.target.value) || MIN_SP,
+                                                        side
+                                                    )
+                                                }
+                                            />
+                                        </td>
+                                        <td>
+                                            {statName !== "hp" && (
+                                                <input
+                                                    type="number"
+                                                    min={MIN_STEP}
+                                                    max={MAX_STEP}
+                                                    className="w-16 px-2 py-1 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
+                                                    value={getStatSteps[side][statName]}
+                                                    onChange={(e) =>
+                                                        handleStatSteps(statName, parseInt(e.target.value) || 0, side)
+                                                    }
+                                                />
+                                            )}
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         ) : (
@@ -495,9 +692,62 @@ const PokemonDamageCalculator: NextPage = () => {
                     <div className="flex justify-center">
                         <div className="w-full max-w-8xl bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700">
                             <div className="flex flex-col md:flex-row">
-                                {/* Player's Pokemon Section */}
                                 <Column>
                                     <ColumnHeader colour="text-blue-400">Your Pokémon</ColumnHeader>
+                                    <ColumnBody>
+                                        <div className="text-center">
+                                            <InputLabel>Team Code</InputLabel>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="Team code"
+                                            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            value={teamCode}
+                                            onChange={(e) => setTeamCode(e.target.value)}
+                                        />
+                                        <button
+                                            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            onClick={importTeam}
+                                        >
+                                            Import Team
+                                        </button>
+                                        {!isNull(playerTeam) && (
+                                            <>
+                                                <div className="text-center">
+                                                    <InputLabel>Trainer Pokémon</InputLabel>
+                                                </div>
+                                                <div className="space-y-4">
+                                                    {playerTeam.pokemon.map((p, i) => (
+                                                        <div
+                                                            key={i}
+                                                            className="bg-gray-700 p-4 rounded-lg border border-gray-600 flex justify-between items-center"
+                                                        >
+                                                            <div>
+                                                                <p className="text-gray-200 font-medium">
+                                                                    {p.nickname
+                                                                        ? p.nickname + " (" + p.pokemon.name + ")"
+                                                                        : p.pokemon.name}
+                                                                </p>
+                                                                <p className="text-gray-400 text-sm">
+                                                                    Level: {p.level}
+                                                                </p>
+                                                            </div>
+                                                            <button
+                                                                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 focus:ring-2 focus:ring-blue-400"
+                                                                onClick={() => handleLoadingTrainerPokemon(i, "player")}
+                                                            >
+                                                                Set Active
+                                                            </button>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </>
+                                        )}
+                                    </ColumnBody>
+                                </Column>
+                                {/* Player's Pokemon Section */}
+                                <Column>
+                                    <ColumnHeader colour="text-blue-400">Attacking Pokémon</ColumnHeader>
                                     <ColumnBody>
                                         {pokemonSelect("player")}
                                         {pokemonStats("player")}
@@ -515,7 +765,7 @@ const PokemonDamageCalculator: NextPage = () => {
                                                         Select Move
                                                     </option>
                                                     {playerPokemon
-                                                        .allMoves()
+                                                        .allMoves(getForm["player"])
                                                         .filter((m) => m.bp > 0)
                                                         .map((m) => (
                                                             <option
@@ -609,11 +859,17 @@ const PokemonDamageCalculator: NextPage = () => {
                                             Multi Battle
                                         </Checkbox>
                                     </div>
+                                    <button
+                                        onClick={() => swapPokemon()}
+                                        className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 focus:ring-2 focus:ring-blue-400 mt-4"
+                                    >
+                                        Swap Pokémon
+                                    </button>
                                 </Column>
 
                                 {/* Opponent's Pokemon Section */}
                                 <Column>
-                                    <ColumnHeader colour="text-red-400">Opponent&apos;s Pokémon</ColumnHeader>
+                                    <ColumnHeader colour="text-red-400">Defending Pokémon</ColumnHeader>
                                     <ColumnBody>
                                         {pokemonSelect("opponent")}
 
@@ -640,14 +896,14 @@ const PokemonDamageCalculator: NextPage = () => {
                                             <InputLabel>Trainer</InputLabel>
                                         </div>
                                         <Dropdown
-                                            value={opposingTrainer.key()}
+                                            value={opposingTrainer.id}
                                             onChange={(e) => handleLoadingTrainer(e.target.value)}
                                         >
                                             <option value="" className="bg-gray-800">
                                                 Select Trainer
                                             </option>
                                             {Object.values(trainers).map((t) => (
-                                                <option key={t.key()} value={t.key()} className="bg-gray-800">
+                                                <option key={t.id} value={t.id} className="bg-gray-800">
                                                     {t.displayName()}
                                                 </option>
                                             ))}
@@ -675,7 +931,9 @@ const PokemonDamageCalculator: NextPage = () => {
                                                             </div>
                                                             <button
                                                                 className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 focus:ring-2 focus:ring-blue-400"
-                                                                onClick={() => handleLoadingTrainerPokemon(i)}
+                                                                onClick={() =>
+                                                                    handleLoadingTrainerPokemon(i, "opponent")
+                                                                }
                                                             >
                                                                 Set Active
                                                             </button>

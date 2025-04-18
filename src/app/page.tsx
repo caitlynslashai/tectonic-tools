@@ -20,9 +20,13 @@ const HomePage: NextPage = () => {
 
                 <div className="mt-8 pt-6 border-t border-gray-700 text-center text-gray-400">
                     <p>
-                        Created by <InlineLink url="https://www.alphakretin.com">LunaFlare</InlineLink> • Not affiliated
-                        with Nintendo or The Pokémon Company
+                        Created by <InlineLink url="https://www.alphakretin.com">LunaFlare</InlineLink> and{" "}
+                        <InlineLink url="https://github.com/AlphaKretin/tectonic-tools/graphs/contributors">
+                            contributors
+                        </InlineLink>
+                        .
                     </p>
+                    <p>Not affiliated with Nintendo or The Pokémon Company.</p>
                 </div>
             </div>
         </div>

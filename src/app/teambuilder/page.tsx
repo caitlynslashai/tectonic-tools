@@ -11,36 +11,16 @@ import { abilities, nullAbility } from "../data/abilities";
 import { items, nullItem } from "../data/items";
 import { moves, nullMove } from "../data/moves";
 import { nullPokemon, pokemon } from "../data/pokemon";
+import { CardData, decodeTeam, encodeTeam, SavedCardData } from "../data/teamExport";
 import { tribes } from "../data/tribes";
 import { calcTypeMatchup } from "../data/typeChart";
 import { types } from "../data/types";
-import { Ability } from "../data/types/Ability";
-import { Item } from "../data/types/Item";
-import { Move } from "../data/types/Move";
-import { Pokemon } from "../data/types/Pokemon";
 import { isNull } from "../data/util";
-import { version, VersionMap, versionMaps } from "../data/versions";
 import TypeChartCell from "../pokedex/components/TypeChartCell";
 import AtkTotalCell from "./components/AtkTotalCell";
 import DefTotalCell from "./components/DefTotalCell";
 import PokemonCard from "./components/PokemonCard";
 import TableHeader from "./components/TableHeader";
-
-export interface CardData {
-    pokemon: Pokemon;
-    moves: Move[];
-    ability: Ability;
-    item: Item;
-    form: number;
-}
-
-interface SavedCardData {
-    pokemon: keyof typeof pokemon;
-    moves: Array<keyof typeof moves>;
-    ability: keyof typeof abilities;
-    item: keyof typeof items;
-    form: number;
-}
 
 const nullCard = {
     pokemon: nullPokemon,
@@ -115,29 +95,6 @@ const TeamBuilder: NextPage = () => {
         alert("Character saved successfully!");
     }
 
-    const encodeChunk = (data: SavedCardData): string => {
-        const indices = versionMaps[version].indices;
-        const indexList = [
-            indices.pokemon[data.pokemon],
-            indices.ability[data.ability],
-            indices.item[data.item],
-            data.form,
-            indices.move[data.moves[0]],
-            indices.move[data.moves[1]],
-            indices.move[data.moves[2]],
-            indices.move[data.moves[3]],
-        ].map((i) => (i === undefined ? -1 : i));
-
-        const buffer = new ArrayBuffer(indexList.length * 2); // Each number is 16 bits (2 bytes)
-        const view = new DataView(buffer);
-
-        indexList.forEach((value, i) => {
-            view.setUint16(i * 2, value); // Store each number as 16 bits
-        });
-
-        return Buffer.from(buffer).toString("base64");
-    };
-
     function exportTeam() {
         const savedCards: SavedCardData[] = cards.map((card) => ({
             pokemon: card.pokemon.id,
@@ -147,9 +104,7 @@ const TeamBuilder: NextPage = () => {
             moves: card.moves.map((m) => m.id),
         }));
 
-        const chunks = savedCards.map(encodeChunk);
-        chunks.unshift(version);
-        const code = chunks.join("!"); // Using ! as separator
+        const code = encodeTeam(savedCards);
         setTeamCode(code);
         navigator.clipboard.writeText(code);
         alert(`Team copied to clipboard!`);
@@ -187,41 +142,9 @@ const TeamBuilder: NextPage = () => {
         }
     }
 
-    const decodeChunk = (chunk: string, version: VersionMap): SavedCardData => {
-        const keys = version.keys;
-        const buffer = Buffer.from(chunk, "base64");
-        const view = new DataView(buffer.buffer);
-
-        const indexList = [];
-        for (let i = 0; i < buffer.byteLength; i += 2) {
-            indexList.push(view.getUint16(i));
-        }
-
-        return {
-            pokemon: keys.pokemon[indexList[0]],
-            ability: keys.ability[indexList[1]],
-            item: keys.item[indexList[2]],
-            form: indexList[3],
-            moves: [keys.move[indexList[4]], keys.move[indexList[5]], keys.move[indexList[6]], keys.move[indexList[7]]],
-        };
-    };
-
     function importTeam() {
         try {
-            const chunks = teamCode.split("!");
-            const version = chunks[0];
-            const dataChunks = chunks.slice(1);
-
-            const loadedCards = dataChunks
-                .map((c) => decodeChunk(c, versionMaps[version]))
-                .map((card) => ({
-                    pokemon: pokemon[card.pokemon] || nullPokemon,
-                    ability: abilities[card.ability] || nullAbility,
-                    item: items[card.item] || nullItem,
-                    form: card.form,
-                    moves: card.moves.map((m) => moves[m] || nullMove),
-                }));
-
+            const loadedCards = decodeTeam(teamCode);
             setCards(loadedCards);
             alert("Team imported successfully!");
         } catch (error) {

@@ -1,6 +1,6 @@
 import { MultiHitMove } from "../data/moves/MultiHitMove";
 import { StatusEffect } from "../data/statusEffects";
-import { typeChart } from "../data/typeChart";
+import { calcTypeMatchup } from "../data/typeChart";
 import { Move } from "../data/types/Move";
 import { Pokemon, Stats } from "../data/types/Pokemon";
 import { PokemonType } from "../data/types/PokemonType";
@@ -9,6 +9,7 @@ export interface PokemonStats {
     level: number;
     status: StatusEffect;
     stats: Stats;
+    form: number;
 }
 
 export interface DamageResult {
@@ -44,7 +45,7 @@ export function calculateDamage(
     // }
 
     // Get the move's type
-    const type = move.type; // TODO: implement moves that can change type
+    const type = move.getType(); // TODO: implement moves that can change type
 
     // Calculate base power of move
     const baseDmg = move.getPower(userStats);
@@ -184,8 +185,7 @@ function damageCalcStats(move: Move, userStats: PokemonStats, targetStats: Pokem
     //     attacking_stat_holder = target;
     // }
 
-    // TODO: implement stat steps
-    //let attack_step = attacking_stat_holder.steps[attacking_stat];
+    // in tectonic logic stat steps are handled here, but in the app it's handled in the UI
 
     // TODO: Critical hits ignore negative attack steps
     // attack_step = 0 if critical && attack_step < 0;
@@ -543,7 +543,7 @@ function pbCalcTypeBasedDamageMultipliers(
     //     });
     //     stabActive = anyPartyMemberHasType;
     // } else {
-    stabActive = type && (user.type1 === type || user.type2 === type);
+    stabActive = type && (user.getType1(userStats.form) === type || user.getType2(userStats.form) === type);
     //}
     // TODO: Handle curses
     // stabActive = stabActive && !(user.pbOwnedByPlayer() && battle.curses.includes("DULLED"));
@@ -565,10 +565,10 @@ function pbCalcTypeBasedDamageMultipliers(
     // Type effectiveness
     // TODO: Handle moves that modify type
     // const typeMod = target.typeMod(type, target, this, checkingForAI);
-    let effectiveness = typeChart[type.index][target.type1.index];
-    if (target.type2) {
-        effectiveness *= typeChart[type.index][target.type2.index];
-    }
+    const effectiveness = calcTypeMatchup(
+        { type },
+        { type1: target.getType1(targetStats.form), type2: target.getType2(targetStats.form) }
+    );
     multipliers.final_damage_multiplier *= effectiveness;
 
     // TODO: Misc effects like Charge

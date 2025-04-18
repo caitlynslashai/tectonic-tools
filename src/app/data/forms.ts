@@ -5,7 +5,6 @@ import { moves } from "./moves";
 import { types } from "./types";
 import { PokemonForm } from "./types/Pokemon";
 
-// this is currently redundant but I'm maintaining the structure in case I need to change things
 function loadForm(form: LoadedForm): PokemonForm {
     return {
         ...form,
@@ -16,6 +15,17 @@ function loadForm(form: LoadedForm): PokemonForm {
         abilities: form.abilities?.map((a) => abilities[a]),
         levelMoves: form.levelMoves
             ? Object.entries(form.levelMoves).map(([moveId, level]) => [level, moves[moveId]])
+            : undefined,
+        // if one stat is defined, they should all be
+        stats: form.hp
+            ? {
+                  hp: form.hp,
+                  attack: form.attack!,
+                  spatk: form.spAttack!,
+                  speed: form.speed!,
+                  defense: form.defense!,
+                  spdef: form.spDefense!,
+              }
             : undefined,
         // the following should never be defined on a form, this makes my life easier
         // (and explicitly labelling that in the form Type is tedious and less futureproof)

@@ -5,19 +5,20 @@ import { pokemon } from "@/app/data/pokemon";
 import { getSignatureAbilities } from "@/app/data/signatures";
 import { calcTypeMatchup } from "@/app/data/typeChart";
 import { types } from "@/app/data/types";
-import { EncounterArea } from "@/app/data/types/Encounter";
+import { EncounterMap } from "@/app/data/types/Encounter";
 import { Pokemon } from "@/app/data/types/Pokemon";
 import { negativeMod } from "@/app/data/util";
 import TypeBadgeHeader from "@/components/TypeBadgeSingle";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TypeBadge from "../../../components/TypeBadge";
 import EncounterDisplay from "./EncounterDisplay";
+import EStatRow from "./EStatRow";
 import MoveDisplay from "./MoveDisplay";
+import PokemonEvolution from "./PokemonEvolution";
 import StatRow from "./StatRow";
 import TabContent from "./TabContent";
 import TypeChartCell from "./TypeChartCell";
-import PokemonEvolution from "./PokemonEvolution";
 
 interface PokemonModalProps {
     allMons: Record<string, Pokemon>;
@@ -42,18 +43,24 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
     const [isVisible, setIsVisible] = useState(false);
     const [isRendered, setIsRendered] = useState(false);
     const [currentPokemon, setCurrentPokemon] = useState(mon);
-    const [activeTab, setActiveTab] = useState<PokemonTabName>("Info"); // Track active tab
+    const [activeTab, setActiveTab] = useState<PokemonTabName>("Info");
     const [currentForm, setCurrentForm] = useState<number>(0);
+    const modalRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (mon) {
-            setCurrentPokemon(mon); // Update to the new Pokémon
-            setCurrentForm(0); // reset form index when new Pokemon selected
+            setCurrentPokemon(mon);
+            setCurrentForm(0);
             setIsRendered(true);
-            setTimeout(() => setIsVisible(true), 10); // Slight delay to trigger animation
+            setTimeout(() => {
+                setIsVisible(true);
+                if (modalRef.current) {
+                    modalRef.current.scrollTop = 0;
+                }
+            }, 10);
         } else {
             setIsVisible(false);
-            setTimeout(() => setIsRendered(false), 300); // Match duration-300 for fade-out
+            setTimeout(() => setIsRendered(false), 300);
         }
     }, [mon]);
 
@@ -61,8 +68,8 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
         setIsVisible(false);
         setTimeout(() => {
             setIsRendered(false);
-            handlePokemonClick(null); // Close after fade-out
-        }, 300); // Match duration-300 for fade-out
+            handlePokemonClick(null);
+        }, 300);
     };
 
     const handleTabChange = (tab: PokemonTabName) => {
@@ -72,14 +79,14 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
     if (!isRendered || !currentPokemon) return null;
 
     const currentEncounters = Object.values(encounters).filter((e) =>
-        Object.values(e.encounters).some((en) => en.some((enc) => enc.pokemon === currentPokemon.id))
+        Object.values(e.tables).some((t) => t.encounters.some((enc) => enc.pokemon === currentPokemon.id))
     );
 
-    const prevoEncounters: Record<string, EncounterArea[]> = {};
+    const prevoEncounters: Record<string, EncounterMap[]> = {};
     currentPokemon.getEvoNode().callParents((node) => {
         const currentSpecies = pokemon[node.getData().pokemon];
         const newEncounters = Object.values(encounters).filter((e) =>
-            Object.values(e.encounters).some((en) => en.some((enc) => enc.pokemon === currentSpecies.id))
+            Object.values(e.tables).some((t) => t.encounters.some((enc) => enc.pokemon === currentSpecies.id))
         );
         if (newEncounters.length > 0) {
             prevoEncounters[node.getData().pokemon] = newEncounters;
@@ -91,13 +98,14 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
 
     return (
         <div
-            onClick={handleClose} // Close modal on background click
+            onClick={handleClose}
             className={`fixed inset-0 backdrop-blur-sm flex items-center justify-center p-4 z-50 transition-opacity duration-300 ${
                 isVisible ? "opacity-100" : "opacity-0"
             }`}
         >
             <div
-                onClick={(e) => e.stopPropagation()} // Prevent background click from closing modal
+                ref={modalRef}
+                onClick={(e) => e.stopPropagation()}
                 className={`bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] min-h-[70vh] overflow-y-auto transform transition-transform duration-300 ${
                     isVisible ? "scale-100" : "scale-95"
                 }`}
@@ -232,25 +240,17 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
                         <TabContent tab="Stats" activeTab={activeTab}>
                             <div>
                                 <h3 className="font-semibold text-gray-800 dark:text-gray-100">Stats</h3>
-                                <table className="table-auto w-full mt-4 border-collapse border border-gray-300 dark:border-gray-700">
-                                    <thead>
-                                        <tr>
-                                            <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-left text-gray-800 dark:text-gray-100">
-                                                Stat
-                                            </th>
-                                            <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-left text-gray-800 dark:text-gray-100">
-                                                Value
-                                            </th>
-                                        </tr>
-                                    </thead>
+                                <table className="table-auto w-full mt-4 inline-block text-center align-middle border-collapse">
                                     <tbody>
-                                        <StatRow name="HP" value={stats.hp}></StatRow>
-                                        <StatRow name="Attack" value={stats.attack}></StatRow>
-                                        <StatRow name="Defense" value={stats.defense}></StatRow>
-                                        <StatRow name="Sp. Atk" value={stats.spatk}></StatRow>
-                                        <StatRow name="Sp. Def" value={stats.spdef}></StatRow>
-                                        <StatRow name="Speed" value={stats.speed}></StatRow>
-                                        <StatRow name="Total" value={currentPokemon.BST(currentForm)}></StatRow>
+                                        <StatRow name="HP" value={stats.hp} scale={1} />
+                                        <StatRow name="Attack" value={stats.attack} scale={1} />
+                                        <StatRow name="Defense" value={stats.defense} scale={1} />
+                                        <EStatRow name="PEHP" pokemon={currentPokemon} form={currentForm} />
+                                        <StatRow name="Sp. Atk" value={stats.spatk} scale={1} />
+                                        <StatRow name="Sp. Def" value={stats.spdef} scale={1} />
+                                        <EStatRow name="SEHP" pokemon={currentPokemon} form={currentForm} />
+                                        <StatRow name="Speed" value={stats.speed} scale={1} />
+                                        <StatRow name="Total" value={currentPokemon.BST(currentForm)} scale={6} />
                                     </tbody>
                                 </table>
                             </div>
