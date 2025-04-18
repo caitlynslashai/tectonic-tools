@@ -349,7 +349,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
                                     {currentPokemon.evolutionTree.isLeaf() ? (
                                         <p className="text-gray-600 dark:text-gray-300">Does not evolve.</p>
                                     ) : (
-                                        <table>
+                                        <table className="mx-auto">
                                             <tbody>
                                                 {currentPokemon.evolutionTree.asBranches().map((branch, index) => (
                                                     <tr key={index}>
