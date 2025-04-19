@@ -11,12 +11,14 @@ export interface VersionMap {
         ability: IndexMap;
         item: IndexMap;
         move: IndexMap;
+        types: IndexMap;
     };
     keys: {
         pokemon: string[];
         ability: string[];
         item: string[];
         move: string[];
+        types: string[];
     };
 }
 
