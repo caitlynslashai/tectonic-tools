@@ -16,7 +16,7 @@ export default function PokemonCard({ data, update }: { data: CardData; update: 
     const currentPokemon = data.pokemon;
     const currentMoves = data.moves;
     const currentAbility = data.ability;
-    const currentItem = data.item;
+    const currentItems = data.items;
     const currentForm = data.form;
     const currentLevel = data.level;
     const currentSP = data.stylePoints;
@@ -61,12 +61,10 @@ export default function PokemonCard({ data, update }: { data: CardData; update: 
         }
     }
 
-    function updateItem(itemId: string) {
-        if (itemId in items) {
-            update({ ...data, item: items[itemId] });
-        } else {
-            update({ ...data, item: nullItem });
-        }
+    function updateItem(itemId: string, index: number) {
+        const newItems = [...currentItems];
+        newItems[index] = items[itemId] || nullItem;
+        update({ ...data, items: newItems });
     }
 
     function updateForm(form: number) {
@@ -213,25 +211,32 @@ export default function PokemonCard({ data, update }: { data: CardData; update: 
                     </div>
                     <div className="w-full mt-4 text-center">
                         <h3 className="font-semibold text-gray-800 dark:text-gray-100">Held Item</h3>
-                        <div className="flex items-center space-x-2">
-                            <Dropdown value={currentItem.id} onChange={(e) => updateItem(e.target.value)}>
-                                <option value="">Select Item</option>
-                                {Object.values(heldItems).map((i) => (
-                                    <option key={i.id} value={i.id}>
-                                        {i.name}
-                                    </option>
-                                ))}
-                            </Dropdown>
-                            <div className="w-12 flex justify-center">
-                                {!isNull(currentItem) && (
-                                    <Image
-                                        alt={currentItem.name}
-                                        src={"/Items/" + currentItem.id + ".png"}
-                                        width={50}
-                                        height={50}
-                                    />
-                                )}
-                            </div>
+                        <div>
+                            {Array.from({ length: 2 }).map((_, i) => (
+                                <div key={i} className="flex items-center space-x-2">
+                                    <Dropdown
+                                        value={currentItems[i].id}
+                                        onChange={(e) => updateItem(e.target.value, i)}
+                                    >
+                                        <option value="">Select Item</option>
+                                        {Object.values(heldItems).map((i) => (
+                                            <option key={i.id} value={i.id}>
+                                                {i.name}
+                                            </option>
+                                        ))}
+                                    </Dropdown>
+                                    <div className="w-12 flex justify-center">
+                                        {!isNull(currentItems[i]) && (
+                                            <Image
+                                                alt={currentItems[i].name}
+                                                src={currentItems[i].getImage()}
+                                                width={50}
+                                                height={50}
+                                            />
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                     <div>

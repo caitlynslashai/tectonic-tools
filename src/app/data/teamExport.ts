@@ -27,7 +27,7 @@ export interface CardData {
     pokemon: Pokemon;
     moves: Move[];
     ability: Ability;
-    item: Item;
+    items: Item[];
     form: number;
     level: number;
     stylePoints: StylePoints;
@@ -37,7 +37,7 @@ export interface SavedCardData {
     pokemon: keyof typeof pokemon;
     moves: Array<keyof typeof moves>;
     ability: keyof typeof abilities;
-    item: keyof typeof items;
+    items: Array<keyof typeof items>;
     form: number;
     level: number;
     sp: number[];
@@ -48,7 +48,8 @@ const encodeChunk = (data: SavedCardData): string => {
     const indexList = [
         indices.pokemon[data.pokemon],
         indices.ability[data.ability],
-        indices.item[data.item],
+        indices.item[data.items[0]],
+        indices.item[data.items[1]],
         data.form,
         indices.move[data.moves[0]],
         indices.move[data.moves[1]],
@@ -88,13 +89,13 @@ const decodeChunk = (chunk: string, version: VersionMap): SavedCardData => {
     return {
         pokemon: keys.pokemon[indexList[0]],
         ability: keys.ability[indexList[1]],
-        item: keys.item[indexList[2]],
-        form: indexList[3],
-        moves: [keys.move[indexList[4]], keys.move[indexList[5]], keys.move[indexList[6]], keys.move[indexList[7]]],
-        level: indexList[8] || MAX_LEVEL,
+        items: [keys.item[indexList[2]], keys.item[indexList[3]]],
+        form: indexList[4],
+        moves: [keys.move[indexList[5]], keys.move[indexList[6]], keys.move[indexList[7]], keys.move[indexList[8]]],
+        level: indexList[9] || MAX_LEVEL,
         sp:
-            indexList.length > 9
-                ? [indexList[9], indexList[10], indexList[11], indexList[12], indexList[13]]
+            indexList.length > 10
+                ? [indexList[10], indexList[11], indexList[12], indexList[13], indexList[14]]
                 : [10, 10, 10, 10, 10],
     };
 };
@@ -109,7 +110,7 @@ export function decodeTeam(teamCode: string): CardData[] {
         .map((card) => ({
             pokemon: pokemon[card.pokemon] || nullPokemon,
             ability: abilities[card.ability] || nullAbility,
-            item: items[card.item] || nullItem,
+            items: card.items.map((i) => items[i] || nullItem),
             form: card.form,
             moves: card.moves.map((m) => moves[m] || nullMove),
             level: card.level,

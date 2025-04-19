@@ -27,7 +27,7 @@ const nullCard: CardData = {
     pokemon: nullPokemon,
     moves: Array(4).fill(nullMove),
     ability: nullAbility,
-    item: nullItem,
+    items: Array(2).fill(nullItem),
     form: 0,
     level: 70,
     stylePoints: defaultStylePoints,
@@ -58,7 +58,7 @@ const TeamBuilder: NextPage = () => {
     const tribeCounts = Object.fromEntries(Object.values(tribes).map((t) => [t.id, 0]));
     for (const card of cards) {
         // count as all tribes if wild card equipped
-        if (card.item.id === "WILDCARD") {
+        if (card.items.some((i) => i.id === "WILDCARD")) {
             for (const tribe in tribes) {
                 tribeCounts[tribe]++;
             }
@@ -79,7 +79,7 @@ const TeamBuilder: NextPage = () => {
                 pokemon: c.pokemon.id,
                 moves: c.moves.map((m) => m.id),
                 ability: c.ability.id,
-                item: c.item.id,
+                items: c.items.map((i) => i.id),
                 form: c.form,
                 level: c.level,
                 sp: [
@@ -110,7 +110,7 @@ const TeamBuilder: NextPage = () => {
         const savedCards: SavedCardData[] = cards.map((card) => ({
             pokemon: card.pokemon.id,
             ability: card.ability.id,
-            item: card.item.id,
+            items: card.items.map((i) => i.id),
             form: card.form,
             moves: card.moves.map((m) => m.id),
             level: card.level,
@@ -139,7 +139,7 @@ const TeamBuilder: NextPage = () => {
                     pokemon: pokemon[c.pokemon] || nullPokemon,
                     moves: c.moves.map((m) => moves[m] || nullMove),
                     ability: abilities[c.ability] || nullAbility,
-                    item: items[c.item] || nullItem,
+                    items: c.items.map((i) => items[i] || nullItem),
                     form: c.form,
                     level: level,
                     stylePoints: {
