@@ -6,7 +6,7 @@ import { items, nullItem } from "@/app/data/items";
 import { TypeChangingItem } from "@/app/data/items/TypeChangingItem";
 import { moves, nullMove } from "@/app/data/moves";
 import { nullPokemon, pokemon } from "@/app/data/pokemon";
-import { statusEffects } from "@/app/data/statusEffects";
+import { StatusEffect, statusEffects, VolatileStatusEffect, volatileStatusEffects } from "@/app/data/statusEffects";
 import {
     MAX_LEVEL,
     MAX_SP,
@@ -26,6 +26,7 @@ import { isNull, negativeMod, safeKeys } from "@/app/data/util";
 import Dropdown from "@/components/DropDown";
 import TypeBadge from "@/components/TypeBadge";
 import Image from "next/image";
+import { useState } from "react";
 
 function legalItems(currentItems: Item[], ability: Ability, index: number): Item[] {
     // TODO: Add a non-magic map of pockets somewhere
@@ -50,6 +51,7 @@ export default function PokemonCard({
     update: (c: Partial<PartyPokemon>) => void;
     battle: boolean;
 }) {
+    const [isExpanded, setIsExpanded] = useState<boolean>(false);
     // wipe pokemon-dependent data when switching pokemon
     function updatePokemon(pokemonId: string) {
         if (pokemonId in pokemon) {
@@ -87,8 +89,13 @@ export default function PokemonCard({
         }
     }
 
-    function updateStatus(status: string) {
+    function updateStatus(status: StatusEffect) {
         update({ statusEffect: status });
+    }
+
+    function updateVolatileStatusEffect(status: VolatileStatusEffect, checked: boolean) {
+        const newVse = { ...data.volatileStatusEffects, [status]: checked };
+        update({ volatileStatusEffects: newVse });
     }
 
     function updateItem(itemId: string, index: number) {
@@ -239,7 +246,10 @@ export default function PokemonCard({
                     {battle && (
                         <div className="text-center">
                             <h3 className="font-semibold text-gray-800 dark:text-gray-100">Status Effect</h3>
-                            <Dropdown value={data.statusEffect} onChange={(e) => updateStatus(e.target.value)}>
+                            <Dropdown
+                                value={data.statusEffect}
+                                onChange={(e) => updateStatus(e.target.value as StatusEffect)}
+                            >
                                 <option value="None" className="bg-gray-800">
                                     None
                                 </option>
@@ -249,6 +259,46 @@ export default function PokemonCard({
                                     </option>
                                 ))}
                             </Dropdown>
+                            <div className="mt-2">
+                                <button
+                                    onClick={() => setIsExpanded(!isExpanded)}
+                                    className="flex items-center justify-between w-full px-4 py-2 text-left text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                                >
+                                    <span>Non-Volatile Status Effects</span>
+                                    <svg
+                                        className={`w-5 h-5 transition-transform ${isExpanded ? "rotate-180" : ""}`}
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M19 9l-7 7-7-7"
+                                        />
+                                    </svg>
+                                </button>
+                                {isExpanded && (
+                                    <div className="grid grid-cols-2 gap-2 mt-2">
+                                        {volatileStatusEffects.map((effect) => (
+                                            <label key={effect} className="flex items-center space-x-2">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={data.volatileStatusEffects[effect]}
+                                                    onChange={(e) =>
+                                                        updateVolatileStatusEffect(effect, e.target.checked)
+                                                    }
+                                                    className="form-checkbox text-blue-600"
+                                                />
+                                                <span className="text-sm text-gray-600 dark:text-gray-300">
+                                                    {effect}
+                                                </span>
+                                            </label>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     )}
                     <div className="w-full mt-4 text-center">

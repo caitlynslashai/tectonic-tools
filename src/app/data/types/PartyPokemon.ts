@@ -3,6 +3,7 @@ import { nullItem } from "../items";
 import { nullMove } from "../moves";
 import { nullPokemon } from "../pokemon";
 import { calculateHP, calculateStat } from "../stats";
+import { StatusEffect, VolatileStatusEffect, volatileStatusEffects } from "../statusEffects";
 import { MAX_LEVEL } from "../teamExport";
 import { Ability } from "./Ability";
 import { Item } from "./Item";
@@ -20,8 +21,8 @@ export class PartyPokemon {
     level: number;
     stylePoints: StylePoints;
     statSteps: Stats;
-    statusEffect?: string;
-    volatileStatusEffects: string[];
+    statusEffect?: StatusEffect;
+    volatileStatusEffects: Record<VolatileStatusEffect, boolean>;
     constructor(data?: Partial<PartyPokemon>) {
         this.species = data?.species || nullPokemon;
         this.moves = data?.moves || Array(4).fill(nullMove);
@@ -33,7 +34,9 @@ export class PartyPokemon {
         this.stylePoints = data?.stylePoints || defaultStylePoints;
         this.statSteps = data?.statSteps || blankStats;
         this.statusEffect = data?.statusEffect;
-        this.volatileStatusEffects = data?.volatileStatusEffects || [];
+        this.volatileStatusEffects =
+            data?.volatileStatusEffects ||
+            (Object.fromEntries(volatileStatusEffects.map((e) => [e, false])) as Record<VolatileStatusEffect, boolean>);
     }
 
     get stats(): Stats {
