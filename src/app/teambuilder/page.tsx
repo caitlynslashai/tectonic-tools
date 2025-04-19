@@ -38,7 +38,7 @@ const TeamBuilder: NextPage = () => {
 
     function updateCards(index: number, card: Partial<PartyPokemon>) {
         const newCards = [...cards];
-        newCards[index] = new PartyPokemon(card);
+        newCards[index] = new PartyPokemon({ ...cards[index], ...card });
         setCards(newCards);
     }
 
@@ -242,7 +242,12 @@ const TeamBuilder: NextPage = () => {
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 w-full">
                         {Array.from({ length: 6 }).map((_, index) => (
-                            <PokemonCard key={index} data={cards[index]} update={(c) => updateCards(index, c)} />
+                            <PokemonCard
+                                key={index}
+                                data={cards[index]}
+                                update={(c) => updateCards(index, c)}
+                                battle={false}
+                            />
                         ))}
                     </div>
 

@@ -6,12 +6,22 @@ import { items, nullItem } from "@/app/data/items";
 import { TypeChangingItem } from "@/app/data/items/TypeChangingItem";
 import { moves, nullMove } from "@/app/data/moves";
 import { nullPokemon, pokemon } from "@/app/data/pokemon";
-import { MAX_LEVEL, MAX_SP, MIN_LEVEL, MIN_SP, STYLE_POINT_CAP, styleFromStat } from "@/app/data/teamExport";
+import { statusEffects } from "@/app/data/statusEffects";
+import {
+    MAX_LEVEL,
+    MAX_SP,
+    MAX_STEP,
+    MIN_LEVEL,
+    MIN_SP,
+    MIN_STEP,
+    STYLE_POINT_CAP,
+    styleFromStat,
+} from "@/app/data/teamExport";
 import { nullType, types } from "@/app/data/types";
 import { Ability } from "@/app/data/types/Ability";
 import { Item } from "@/app/data/types/Item";
 import { PartyPokemon } from "@/app/data/types/PartyPokemon";
-import { StylePoints } from "@/app/data/types/Pokemon";
+import { Stats, StylePoints } from "@/app/data/types/Pokemon";
 import { isNull, negativeMod, safeKeys } from "@/app/data/util";
 import Dropdown from "@/components/DropDown";
 import TypeBadge from "@/components/TypeBadge";
@@ -34,9 +44,11 @@ function legalItems(currentItems: Item[], ability: Ability, index: number): Item
 export default function PokemonCard({
     data,
     update,
+    battle,
 }: {
     data: PartyPokemon;
     update: (c: Partial<PartyPokemon>) => void;
+    battle: boolean;
 }) {
     // wipe pokemon-dependent data when switching pokemon
     function updatePokemon(pokemonId: string) {
@@ -75,6 +87,10 @@ export default function PokemonCard({
         }
     }
 
+    function updateStatus(status: string) {
+        update({ statusEffect: status });
+    }
+
     function updateItem(itemId: string, index: number) {
         const newItems = [...data.items];
         newItems[index] = items[itemId] || nullItem;
@@ -107,6 +123,13 @@ export default function PokemonCard({
             return;
         }
         update({ stylePoints: newSP });
+    }
+
+    function updateStatSteps(stat: keyof Stats, value: number) {
+        value = Math.max(value, MIN_STEP);
+        value = Math.min(value, MAX_STEP);
+        const newSteps = { ...data.statSteps, [stat]: value };
+        update({ statSteps: newSteps });
     }
 
     const realTypes = Object.values(types).filter((t) => t.isRealType);
@@ -213,6 +236,21 @@ export default function PokemonCard({
                             ))}
                         </Dropdown>
                     </div>
+                    {battle && (
+                        <div className="text-center">
+                            <h3 className="font-semibold text-gray-800 dark:text-gray-100">Status Effect</h3>
+                            <Dropdown value={data.statusEffect} onChange={(e) => updateStatus(e.target.value)}>
+                                <option value="None" className="bg-gray-800">
+                                    None
+                                </option>
+                                {Object.values(statusEffects).map((s) => (
+                                    <option key={s} value={s} className="bg-gray-800">
+                                        {s}
+                                    </option>
+                                ))}
+                            </Dropdown>
+                        </div>
+                    )}
                     <div className="w-full mt-4 text-center">
                         <h3 className="font-semibold text-gray-800 dark:text-gray-100">Held Item</h3>
                         <div>
@@ -279,6 +317,7 @@ export default function PokemonCard({
                                     <th>Stat</th>
                                     <th>Value</th>
                                     <th>SP</th>
+                                    {battle && <th>Steps</th>}
                                 </tr>
                             </thead>
                             <tbody>
@@ -298,6 +337,20 @@ export default function PokemonCard({
                                                     onChange={(e) => updateSP(styleName, parseInt(e.target.value))}
                                                 />
                                             </td>
+                                            {battle && (
+                                                <td>
+                                                    <input
+                                                        type="number"
+                                                        min={MIN_STEP}
+                                                        max={MAX_STEP}
+                                                        className="w-16 px-2 py-1 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
+                                                        value={data.statSteps[statName]}
+                                                        onChange={(e) =>
+                                                            updateStatSteps(statName, parseInt(e.target.value))
+                                                        }
+                                                    />
+                                                </td>
+                                            )}
                                         </tr>
                                     );
                                 })}
