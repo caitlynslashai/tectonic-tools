@@ -6,13 +6,12 @@ import { items, nullItem } from "@/app/data/items";
 import { TypeChangingItem } from "@/app/data/items/TypeChangingItem";
 import { moves, nullMove } from "@/app/data/moves";
 import { nullPokemon, pokemon } from "@/app/data/pokemon";
-import { calculateHP, calculateStat } from "@/app/data/stats";
 import { MAX_LEVEL, MAX_SP, MIN_LEVEL, MIN_SP, STYLE_POINT_CAP, styleFromStat } from "@/app/data/teamExport";
 import { nullType, types } from "@/app/data/types";
 import { Ability } from "@/app/data/types/Ability";
 import { Item } from "@/app/data/types/Item";
 import { PartyPokemon } from "@/app/data/types/PartyPokemon";
-import { Stats, StylePoints } from "@/app/data/types/Pokemon";
+import { StylePoints } from "@/app/data/types/Pokemon";
 import { isNull, negativeMod, safeKeys } from "@/app/data/util";
 import Dropdown from "@/components/DropDown";
 import TypeBadge from "@/components/TypeBadge";
@@ -32,108 +31,92 @@ function legalItems(currentItems: Item[], ability: Ability, index: number): Item
     return heldItems;
 }
 
-export default function PokemonCard({ data, update }: { data: PartyPokemon; update: (c: PartyPokemon) => void }) {
-    const currentPokemon = data.species;
-    const currentMoves = data.moves;
-    const currentAbility = data.ability;
-    const currentItems = data.items;
-    const currentItemTypes = data.itemTypes;
-    const currentForm = data.form;
-    const currentLevel = data.level;
-    const currentSP = data.stylePoints;
-
+export default function PokemonCard({
+    data,
+    update,
+}: {
+    data: PartyPokemon;
+    update: (c: Partial<PartyPokemon>) => void;
+}) {
     // wipe pokemon-dependent data when switching pokemon
     function updatePokemon(pokemonId: string) {
         if (pokemonId in pokemon) {
             update({
-                ...data,
                 species: pokemon[pokemonId],
                 form: 0,
                 moves: Array(4).fill(nullMove),
                 ability: nullAbility,
             });
         } else {
-            update({ ...data, species: nullPokemon, form: 0, moves: Array(4).fill(nullMove), ability: nullAbility });
+            update({ species: nullPokemon, form: 0, moves: Array(4).fill(nullMove), ability: nullAbility });
         }
     }
 
     function updateMoves(moveId: string, moveIndex: number) {
-        const newMoves = [...currentMoves];
+        const newMoves = [...data.moves];
         if (moveId in moves) {
             newMoves[moveIndex] = moves[moveId];
         } else {
             newMoves[moveIndex] = nullMove;
         }
 
-        update({ ...data, moves: newMoves });
+        update({ moves: newMoves });
     }
 
     function updateAbility(abilityId: string) {
         if (abilityId in abilities) {
             update({
-                ...data,
                 ability: abilities[abilityId],
             });
         } else {
             update({
-                ...data,
                 ability: nullAbility,
             });
         }
     }
 
     function updateItem(itemId: string, index: number) {
-        const newItems = [...currentItems];
+        const newItems = [...data.items];
         newItems[index] = items[itemId] || nullItem;
-        update({ ...data, items: newItems });
+        update({ items: newItems });
     }
 
     function updateItemType(typeId: string, index: number) {
-        const newTypes = [...currentItemTypes];
+        const newTypes = [...data.itemTypes];
         newTypes[index] = types[typeId] || nullType;
-        update({ ...data, itemTypes: newTypes });
+        update({ itemTypes: newTypes });
     }
 
     function updateForm(form: number) {
-        update({ ...data, form });
+        update({ form });
     }
 
     function updateLevel(level: number) {
         level = Math.max(level, MIN_LEVEL);
         level = Math.min(level, MAX_LEVEL);
-        update({ ...data, level });
+        update({ level });
     }
 
     function updateSP(stat: keyof StylePoints, value: number) {
         value = Math.max(value, MIN_SP);
         value = Math.min(value, MAX_SP);
-        const newSP = { ...currentSP, [stat]: value };
+        const newSP = { ...data.stylePoints, [stat]: value };
         const spSum = Object.values(newSP).reduce((total, sp) => total + sp, 0);
         if (spSum > STYLE_POINT_CAP) {
             alert("You can only have a maximum of 50 total style points!");
             return;
         }
-        update({ ...data, stylePoints: newSP });
+        update({ stylePoints: newSP });
     }
-
-    const stylish = currentAbility.id === "STYLISH";
-    const calculatedStats: Stats = {
-        hp: calculateHP(currentPokemon.stats.hp, currentLevel, currentSP.hp, stylish),
-        attack: calculateStat(currentPokemon.stats.attack, currentLevel, currentSP.attacks, 0, stylish),
-        defense: calculateStat(currentPokemon.stats.defense, currentLevel, currentSP.defense, 0, stylish),
-        spatk: calculateStat(currentPokemon.stats.spatk, currentLevel, currentSP.attacks, 0, stylish),
-        spdef: calculateStat(currentPokemon.stats.spdef, currentLevel, currentSP.spdef, 0, stylish),
-        speed: calculateStat(currentPokemon.stats.speed, currentLevel, currentSP.speed, 0, stylish),
-    };
 
     const realTypes = Object.values(types).filter((t) => t.isRealType);
 
     return (
         <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4 flex flex-col items-center w-60">
             <div className="text-center flex flex-row items-center">
-                {currentPokemon.forms.length > 1 && (
+                {data.species.forms.length > 1 && (
                     <button
-                        onClick={() => updateForm(negativeMod(currentForm - 1, currentPokemon.forms.length))}
+                        onClick={() => updateForm(negativeMod(data.form - 1, data.species.forms.length))}
                         className="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
                     >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -141,7 +124,7 @@ export default function PokemonCard({ data, update }: { data: PartyPokemon; upda
                         </svg>
                     </button>
                 )}
-                <Dropdown value={currentPokemon.id} onChange={(e) => updatePokemon(e.target.value)}>
+                <Dropdown value={data.species.id} onChange={(e) => updatePokemon(e.target.value)}>
                     <option value="">Select Pokémon</option>
                     {Object.values(pokemon).map((p) => (
                         <option key={p.id} value={p.id}>
@@ -149,9 +132,9 @@ export default function PokemonCard({ data, update }: { data: PartyPokemon; upda
                         </option>
                     ))}
                 </Dropdown>
-                {currentPokemon.forms.length > 1 && (
+                {data.species.forms.length > 1 && (
                     <button
-                        onClick={() => updateForm((currentForm + 1) % currentPokemon.forms.length)}
+                        onClick={() => updateForm((data.form + 1) % data.species.forms.length)}
                         className="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
                     >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -160,27 +143,22 @@ export default function PokemonCard({ data, update }: { data: PartyPokemon; upda
                     </button>
                 )}
             </div>
-            {!isNull(currentPokemon) && (
+            {!isNull(data.species) && (
                 <div>
                     <div className="text-center flex flex-col items-center">
-                        {currentPokemon.forms.length > 0 && <div className="flex items-center space-x-2"></div>}
+                        {data.species.forms.length > 0 && <div className="flex items-center space-x-2"></div>}
                         <Image
-                            src={currentPokemon.getImage(currentForm)}
-                            alt={currentPokemon.name}
+                            src={data.species.getImage(data.form)}
+                            alt={data.species.name}
                             height="160"
                             width="160"
                             className="my-2"
                         />
                         <p className="text-lg font-semibold text-gray-800 dark:text-gray-200">
-                            {currentPokemon.name +
-                                (currentPokemon.getFormName(currentForm)
-                                    ? " " + currentPokemon.getFormName(currentForm)
-                                    : "")}
+                            {data.species.name +
+                                (data.species.getFormName(data.form) ? " " + data.species.getFormName(data.form) : "")}
                         </p>
-                        <TypeBadge
-                            type1={currentPokemon.getType1(currentForm)}
-                            type2={currentPokemon.getType2(currentForm)}
-                        />
+                        <TypeBadge type1={data.species.getType1(data.form)} type2={data.species.getType2(data.form)} />
                     </div>
                     <div className="text-center">
                         <h3 className="font-semibold text-gray-800 dark:text-gray-100">Level</h3>
@@ -189,7 +167,7 @@ export default function PokemonCard({ data, update }: { data: PartyPokemon; upda
                             min={MIN_LEVEL}
                             max={MAX_LEVEL}
                             className="w-full px-4 py-2 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
-                            value={currentLevel}
+                            value={data.level}
                             onChange={(e) => updateLevel(parseInt(e.target.value))}
                         />
                     </div>
@@ -202,14 +180,14 @@ export default function PokemonCard({ data, update }: { data: PartyPokemon; upda
                                         onChange={(e) => {
                                             updateMoves(e.target.value, moveIndex);
                                         }}
-                                        value={currentMoves[moveIndex].id}
+                                        value={data.moves[moveIndex].id}
                                     >
                                         <option value="">Select Move {moveIndex + 1}</option>
-                                        {currentPokemon.allMoves(currentForm).map((m) => (
+                                        {data.species.allMoves(data.form).map((m) => (
                                             <option
                                                 key={m.id}
                                                 value={m.id}
-                                                className={m.isSTAB(currentPokemon) ? "font-semibold" : ""}
+                                                className={m.isSTAB(data.species) ? "font-semibold" : ""}
                                             >
                                                 {m.name}
                                             </option>
@@ -217,8 +195,8 @@ export default function PokemonCard({ data, update }: { data: PartyPokemon; upda
                                     </Dropdown>
                                 </div>
                                 <div className="w-12 flex justify-center">
-                                    {currentMoves[moveIndex].isAttackingMove() && (
-                                        <TypeBadge type1={currentMoves[moveIndex].type} />
+                                    {data.moves[moveIndex].isAttackingMove() && (
+                                        <TypeBadge type1={data.moves[moveIndex].type} />
                                     )}
                                 </div>
                             </div>
@@ -226,9 +204,9 @@ export default function PokemonCard({ data, update }: { data: PartyPokemon; upda
                     </div>
                     <div className="w-full mt-4 text-center">
                         <h3 className="font-semibold text-gray-800 dark:text-gray-100">Ability</h3>
-                        <Dropdown value={currentAbility.id} onChange={(e) => updateAbility(e.target.value)}>
+                        <Dropdown value={data.ability.id} onChange={(e) => updateAbility(e.target.value)}>
                             <option value="">Select Ability</option>
-                            {currentPokemon.getAbilities(currentForm).map((a) => (
+                            {data.species.getAbilities(data.form).map((a) => (
                                 <option key={a.id} value={a.id}>
                                     {a.name}
                                 </option>
@@ -241,36 +219,36 @@ export default function PokemonCard({ data, update }: { data: PartyPokemon; upda
                             {Array.from({ length: 2 }).map(
                                 (_, i) =>
                                     // only display second item if ability enables it
-                                    (i === 0 || currentAbility instanceof TwoItemAbility) && (
+                                    (i === 0 || data.ability instanceof TwoItemAbility) && (
                                         <div key={i}>
                                             <div className="flex items-center space-x-2">
                                                 <Dropdown
-                                                    value={currentItems[i].id}
+                                                    value={data.items[i].id}
                                                     onChange={(e) => updateItem(e.target.value, i)}
                                                 >
                                                     <option value="">Select Item</option>
-                                                    {legalItems(currentItems, currentAbility, i).map((i) => (
+                                                    {legalItems(data.items, data.ability, i).map((i) => (
                                                         <option key={i.id} value={i.id}>
                                                             {i.name}
                                                         </option>
                                                     ))}
                                                 </Dropdown>
                                                 <div className="w-12 flex justify-center">
-                                                    {!isNull(currentItems[i]) && (
+                                                    {!isNull(data.items[i]) && (
                                                         <Image
-                                                            alt={currentItems[i].name}
-                                                            src={currentItems[i].getImage()}
+                                                            alt={data.items[i].name}
+                                                            src={data.items[i].getImage()}
                                                             width={50}
                                                             height={50}
                                                         />
                                                     )}
                                                 </div>
                                             </div>
-                                            {currentItems[i] instanceof TypeChangingItem &&
-                                                currentItems[i].canChangeType(currentPokemon) && (
+                                            {data.items[i] instanceof TypeChangingItem &&
+                                                data.items[i].canChangeType(data.species) && (
                                                     <div className="flex items-center space-x-2">
                                                         <Dropdown
-                                                            value={currentItemTypes[i].id}
+                                                            value={data.itemTypes[i].id}
                                                             onChange={(e) => {
                                                                 updateItemType(e.target.value, i);
                                                             }}
@@ -284,8 +262,8 @@ export default function PokemonCard({ data, update }: { data: PartyPokemon; upda
                                                                 </option>
                                                             ))}
                                                         </Dropdown>
-                                                        {!isNull(currentItemTypes[i]) && (
-                                                            <TypeBadge type1={currentItemTypes[i]} />
+                                                        {!isNull(data.itemTypes[i]) && (
+                                                            <TypeBadge type1={data.itemTypes[i]} />
                                                         )}
                                                     </div>
                                                 )}
@@ -304,21 +282,19 @@ export default function PokemonCard({ data, update }: { data: PartyPokemon; upda
                                 </tr>
                             </thead>
                             <tbody>
-                                {safeKeys(currentPokemon.getStats(currentForm)).map((statName) => {
+                                {safeKeys(data.species.getStats(data.form)).map((statName) => {
                                     const styleName = styleFromStat(statName);
                                     return (
                                         <tr key={statName}>
                                             <td className="text-gray-300 w-16 text-right">{statName.toUpperCase()}</td>
-                                            <td className="text-gray-400 w-12 text-center">
-                                                {calculatedStats[statName]}
-                                            </td>
+                                            <td className="text-gray-400 w-12 text-center">{data.stats[statName]}</td>
                                             <td>
                                                 <input
                                                     type="number"
                                                     min={MIN_SP}
                                                     max={MAX_SP}
                                                     className="w-16 px-2 py-1 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
-                                                    value={currentSP[styleName]}
+                                                    value={data.stylePoints[styleName]}
                                                     onChange={(e) => updateSP(styleName, parseInt(e.target.value))}
                                                 />
                                             </td>
@@ -331,7 +307,7 @@ export default function PokemonCard({ data, update }: { data: PartyPokemon; upda
                     <div className="w-full mt-4 text-center">
                         <h3 className="font-semibold text-gray-800 dark:text-gray-100">Tribes</h3>
                         <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
-                            {currentPokemon.tribes.map((tribe, index) => (
+                            {data.species.tribes.map((tribe, index) => (
                                 <li key={index}>{tribe.name}</li>
                             ))}
                         </ul>

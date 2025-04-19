@@ -16,7 +16,6 @@ import { tribes } from "../data/tribes";
 import { calcTypeMatchup } from "../data/typeChart";
 import { nullType, types } from "../data/types";
 import { PartyPokemon } from "../data/types/PartyPokemon";
-import { blankStats } from "../data/types/Pokemon";
 import { isNull } from "../data/util";
 import TypeChartCell from "../pokedex/components/TypeChartCell";
 import AtkTotalCell from "./components/AtkTotalCell";
@@ -37,9 +36,9 @@ const TeamBuilder: NextPage = () => {
         }
     }, []);
 
-    function updateCards(index: number, card: PartyPokemon) {
+    function updateCards(index: number, card: Partial<PartyPokemon>) {
         const newCards = [...cards];
-        newCards[index] = card;
+        newCards[index] = new PartyPokemon(card);
         setCards(newCards);
     }
 
@@ -128,7 +127,7 @@ const TeamBuilder: NextPage = () => {
                 // fall back to defaults for newly added fields
                 const level = c.level || MAX_LEVEL;
                 const sp = c.sp || [10, 10, 10, 10, 10];
-                return {
+                return new PartyPokemon({
                     species: pokemon[c.pokemon] || nullPokemon,
                     moves: c.moves.map((m) => moves[m] || nullMove),
                     ability: abilities[c.ability] || nullAbility,
@@ -143,9 +142,7 @@ const TeamBuilder: NextPage = () => {
                         spdef: sp[3],
                         speed: sp[4],
                     },
-                    statSteps: blankStats,
-                    volatileStatusEffects: [],
-                };
+                });
             })
         );
     }

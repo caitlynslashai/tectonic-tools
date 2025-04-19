@@ -2,6 +2,7 @@ import { nullAbility } from "../abilities";
 import { nullItem } from "../items";
 import { nullMove } from "../moves";
 import { nullPokemon } from "../pokemon";
+import { calculateHP, calculateStat } from "../stats";
 import { MAX_LEVEL } from "../teamExport";
 import { Ability } from "./Ability";
 import { Item } from "./Item";
@@ -33,5 +34,48 @@ export class PartyPokemon {
         this.statSteps = data?.statSteps || blankStats;
         this.statusEffect = data?.statusEffect;
         this.volatileStatusEffects = data?.volatileStatusEffects || [];
+    }
+
+    get stats(): Stats {
+        const stylish = this.ability.id === "STYLISH";
+        const calculatedStats: Stats = {
+            hp: calculateHP(this.species.stats.hp, this.level, this.stylePoints.hp, stylish),
+            attack: calculateStat(
+                this.species.stats.attack,
+                this.level,
+                this.stylePoints.attacks,
+                this.statSteps.attack,
+                stylish
+            ),
+            defense: calculateStat(
+                this.species.stats.defense,
+                this.level,
+                this.stylePoints.defense,
+                this.statSteps.defense,
+                stylish
+            ),
+            spatk: calculateStat(
+                this.species.stats.spatk,
+                this.level,
+                this.stylePoints.attacks,
+                this.statSteps.spatk,
+                stylish
+            ),
+            spdef: calculateStat(
+                this.species.stats.spdef,
+                this.level,
+                this.stylePoints.spdef,
+                this.statSteps.spdef,
+                stylish
+            ),
+            speed: calculateStat(
+                this.species.stats.speed,
+                this.level,
+                this.stylePoints.speed,
+                this.statSteps.speed,
+                stylish
+            ),
+        };
+        return calculatedStats;
     }
 }
