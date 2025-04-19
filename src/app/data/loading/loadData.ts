@@ -56,6 +56,30 @@ export interface KVPair {
     value: string;
 }
 
+// parsing ruby code as text is So Normal
+function parseVersion(file: string): string {
+    let version: string = "";
+    let dev: boolean = false;
+    file.split(/\r?\n/).forEach((line) => {
+        const terms = line.split(" = ");
+        if (terms.length > 1) {
+            if (terms[0].trim() === "GAME_VERSION") {
+                version = terms[1].trim().replace(/"/g, "");
+            }
+            if (terms[0].trim() === "DEV_VERSION") {
+                if (terms[1].trim() === "true") {
+                    dev = true;
+                }
+            }
+        }
+    });
+
+    if (dev) {
+        version += "-dev";
+    }
+    return version;
+}
+
 function standardFilesParser<T extends LoadedData>(files: string[], dataParser: ParserFunction<T>): Record<string, T> {
     const map: Record<string, T> = {};
 
@@ -110,13 +134,13 @@ async function loadData(dev: boolean = false): Promise<void> {
         fileFetch("PBS/trainertypes.txt", dev),
         fileFetch("PBS/trainers.txt", dev),
         fileFetch("PBS/encounters.txt", dev),
-        fileFetch("release_version.txt", dev),
+        fileFetch("Plugins/_Settings/GameSettings.rb", dev),
     ])
         .then((values) => tectonicFiles.push(...values))
         .catch((error) => console.error(error));
     // TODO: Where is the version number "3.3.0-dev" stored?
     // Always store the release version last so that we don't have to edit the index every time
-    const version = dev ? "dev" : tectonicFiles[tectonicFiles.length - 1].trim();
+    const version = parseVersion(tectonicFiles[tectonicFiles.length - 1]);
 
     const types = standardFilesParser([tectonicFiles[0]], parsePokemonTypes);
 
