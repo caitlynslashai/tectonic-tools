@@ -1,9 +1,9 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
-import { PokemonStats } from "../../damagecalc/damageCalc";
 import { LoadedMove } from "../loading/moves";
 import { StatusEffect } from "../statusEffects";
 import { types } from "../types";
 import { isNull } from "../util";
+import { PartyPokemon } from "./PartyPokemon";
 import { Pokemon } from "./Pokemon";
 import { PokemonType } from "./PokemonType";
 
@@ -65,7 +65,7 @@ export class Move {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public getPower(user: PokemonStats): number {
+    public getPower(user: PartyPokemon): number {
         // TODO: Implement BP variance for relevant moves
         return this.bp;
     }

@@ -1,12 +1,12 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
-import { PokemonStats } from "../../damagecalc/damageCalc";
 import { Move } from "../types/Move";
+import { PartyPokemon } from "../types/PartyPokemon";
 
 export const desperationMoves = ["FLAIL"];
 
 export class DesperationMove extends Move {
     currentHP = 0;
-    public getPower(user: PokemonStats): number {
+    public getPower(user: PartyPokemon): number {
         let hp = Math.max(this.currentHP, 1);
         hp = Math.min(hp, user.stats.hp);
         const hpRatio = hp / user.stats.hp;
