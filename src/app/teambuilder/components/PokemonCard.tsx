@@ -7,10 +7,11 @@ import { TypeChangingItem } from "@/app/data/items/TypeChangingItem";
 import { moves, nullMove } from "@/app/data/moves";
 import { nullPokemon, pokemon } from "@/app/data/pokemon";
 import { calculateHP, calculateStat } from "@/app/data/stats";
-import { CardData, MAX_LEVEL, MAX_SP, MIN_LEVEL, MIN_SP, STYLE_POINT_CAP, styleFromStat } from "@/app/data/teamExport";
+import { MAX_LEVEL, MAX_SP, MIN_LEVEL, MIN_SP, STYLE_POINT_CAP, styleFromStat } from "@/app/data/teamExport";
 import { nullType, types } from "@/app/data/types";
 import { Ability } from "@/app/data/types/Ability";
 import { Item } from "@/app/data/types/Item";
+import { PartyPokemon } from "@/app/data/types/PartyPokemon";
 import { Stats, StylePoints } from "@/app/data/types/Pokemon";
 import { isNull, negativeMod, safeKeys } from "@/app/data/util";
 import Dropdown from "@/components/DropDown";
@@ -31,8 +32,8 @@ function legalItems(currentItems: Item[], ability: Ability, index: number): Item
     return heldItems;
 }
 
-export default function PokemonCard({ data, update }: { data: CardData; update: (c: CardData) => void }) {
-    const currentPokemon = data.pokemon;
+export default function PokemonCard({ data, update }: { data: PartyPokemon; update: (c: PartyPokemon) => void }) {
+    const currentPokemon = data.species;
     const currentMoves = data.moves;
     const currentAbility = data.ability;
     const currentItems = data.items;
@@ -46,13 +47,13 @@ export default function PokemonCard({ data, update }: { data: CardData; update: 
         if (pokemonId in pokemon) {
             update({
                 ...data,
-                pokemon: pokemon[pokemonId],
+                species: pokemon[pokemonId],
                 form: 0,
                 moves: Array(4).fill(nullMove),
                 ability: nullAbility,
             });
         } else {
-            update({ ...data, pokemon: nullPokemon, form: 0, moves: Array(4).fill(nullMove), ability: nullAbility });
+            update({ ...data, species: nullPokemon, form: 0, moves: Array(4).fill(nullMove), ability: nullAbility });
         }
     }
 

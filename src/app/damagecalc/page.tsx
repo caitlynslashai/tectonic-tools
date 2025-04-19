@@ -219,7 +219,7 @@ const PokemonDamageCalculator: NextPage = () => {
             flags: [],
             pokemon: teamCards.map((c) => {
                 return {
-                    id: c.pokemon.id,
+                    id: c.species.id,
                     level: c.level,
                     items: c.items.map((i) => i.id),
                     moves: c.moves.map((m) => m.id),

@@ -3,11 +3,8 @@ import { items, nullItem } from "./items";
 import { moves, nullMove } from "./moves";
 import { nullPokemon, pokemon } from "./pokemon";
 import { nullType, types } from "./types";
-import { Ability } from "./types/Ability";
-import { Item } from "./types/Item";
-import { Move } from "./types/Move";
-import { Pokemon, Stats, StylePoints } from "./types/Pokemon";
-import { PokemonType } from "./types/PokemonType";
+import { PartyPokemon } from "./types/PartyPokemon";
+import { Stats, StylePoints } from "./types/Pokemon";
 import { version, VersionMap, versionMaps } from "./versions";
 
 export const MIN_LEVEL = 1;
@@ -25,18 +22,7 @@ export function styleFromStat(stat: keyof Stats): keyof StylePoints {
     return stat;
 }
 
-export interface CardData {
-    pokemon: Pokemon;
-    moves: Move[];
-    ability: Ability;
-    items: Item[];
-    itemTypes: PokemonType[];
-    form: number;
-    level: number;
-    stylePoints: StylePoints;
-}
-
-export interface SavedCardData {
+export interface SavedPartyPokemon {
     pokemon: keyof typeof pokemon;
     moves: Array<keyof typeof moves>;
     ability: keyof typeof abilities;
@@ -47,7 +33,7 @@ export interface SavedCardData {
     sp: number[];
 }
 
-const encodeChunk = (data: SavedCardData): string => {
+const encodeChunk = (data: SavedPartyPokemon): string => {
     const indices = versionMaps[version].indices;
     // data that should (nearly) always be defined
     const indexList = [indices.pokemon[data.pokemon], indices.ability[data.ability], data.form, data.level, ...data.sp];
@@ -85,14 +71,14 @@ const encodeChunk = (data: SavedCardData): string => {
     return Buffer.from(buffer).toString("base64");
 };
 
-export function encodeTeam(savedCards: SavedCardData[]) {
+export function encodeTeam(savedCards: SavedPartyPokemon[]) {
     const chunks = savedCards.map(encodeChunk);
     chunks.unshift(version);
     const code = chunks.join("!"); // Using ! as separator
     return code;
 }
 
-const decodeChunk = (chunk: string, version: VersionMap): SavedCardData => {
+const decodeChunk = (chunk: string, version: VersionMap): SavedPartyPokemon => {
     const keys = version.keys;
     const buffer = Buffer.from(chunk, "base64");
     const view = new DataView(buffer.buffer);
@@ -107,7 +93,7 @@ const decodeChunk = (chunk: string, version: VersionMap): SavedCardData => {
 
     // we used to support level and SP being optional as they were new additions
     // but the format has changed enough since then that it's no longer feasible
-    const decodedData: SavedCardData = {
+    const decodedData: SavedPartyPokemon = {
         pokemon: keys.pokemon[indexList[i++]],
         ability: keys.ability[indexList[i++]],
         form: indexList[i++],
@@ -144,28 +130,31 @@ const decodeChunk = (chunk: string, version: VersionMap): SavedCardData => {
     return decodedData;
 };
 
-export function decodeTeam(teamCode: string): CardData[] {
+export function decodeTeam(teamCode: string): PartyPokemon[] {
     const chunks = teamCode.split("!");
     const version = chunks[0];
     const dataChunks = chunks.slice(1);
 
     const loadedCards = dataChunks
         .map((c) => decodeChunk(c, versionMaps[version]))
-        .map((card) => ({
-            pokemon: pokemon[card.pokemon] || nullPokemon,
-            ability: abilities[card.ability] || nullAbility,
-            items: card.items.map((i) => items[i] || nullItem),
-            itemTypes: card.itemTypes.map((t) => types[t] || nullType),
-            form: card.form,
-            moves: card.moves.map((m) => moves[m] || nullMove),
-            level: card.level,
-            stylePoints: {
-                hp: card.sp[0],
-                attacks: card.sp[1],
-                defense: card.sp[2],
-                spdef: card.sp[3],
-                speed: card.sp[4],
-            },
-        }));
+        .map(
+            (card) =>
+                new PartyPokemon({
+                    species: pokemon[card.pokemon] || nullPokemon,
+                    ability: abilities[card.ability] || nullAbility,
+                    items: card.items.map((i) => items[i] || nullItem),
+                    itemTypes: card.itemTypes.map((t) => types[t] || nullType),
+                    form: card.form,
+                    moves: card.moves.map((m) => moves[m] || nullMove),
+                    level: card.level,
+                    stylePoints: {
+                        hp: card.sp[0],
+                        attacks: card.sp[1],
+                        defense: card.sp[2],
+                        spdef: card.sp[3],
+                        speed: card.sp[4],
+                    },
+                })
+        );
     return loadedCards;
 }

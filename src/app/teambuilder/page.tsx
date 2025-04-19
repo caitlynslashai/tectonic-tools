@@ -11,11 +11,12 @@ import { abilities, nullAbility } from "../data/abilities";
 import { items, nullItem } from "../data/items";
 import { moves, nullMove } from "../data/moves";
 import { nullPokemon, pokemon } from "../data/pokemon";
-import { CardData, decodeTeam, encodeTeam, MAX_LEVEL, SavedCardData } from "../data/teamExport";
+import { decodeTeam, encodeTeam, MAX_LEVEL, SavedPartyPokemon } from "../data/teamExport";
 import { tribes } from "../data/tribes";
 import { calcTypeMatchup } from "../data/typeChart";
 import { nullType, types } from "../data/types";
-import { defaultStylePoints } from "../data/types/Pokemon";
+import { PartyPokemon } from "../data/types/PartyPokemon";
+import { blankStats } from "../data/types/Pokemon";
 import { isNull } from "../data/util";
 import TypeChartCell from "../pokedex/components/TypeChartCell";
 import AtkTotalCell from "./components/AtkTotalCell";
@@ -23,19 +24,8 @@ import DefTotalCell from "./components/DefTotalCell";
 import PokemonCard from "./components/PokemonCard";
 import TableHeader from "./components/TableHeader";
 
-const nullCard: CardData = {
-    pokemon: nullPokemon,
-    moves: Array(4).fill(nullMove),
-    ability: nullAbility,
-    items: Array(2).fill(nullItem),
-    itemTypes: Array(2).fill(nullType),
-    form: 0,
-    level: 70,
-    stylePoints: defaultStylePoints,
-};
-
 const TeamBuilder: NextPage = () => {
-    const [cards, setCards] = useState<CardData[]>(Array(6).fill(nullCard));
+    const [cards, setCards] = useState<PartyPokemon[]>(Array(6).fill(new PartyPokemon()));
     const [teamName, setTeamName] = useState<string>("");
     const [savedTeams, setSavedTeams] = useState<string[]>([]);
     const [loadedTeam, setLoadedTeam] = useState<string>("");
@@ -47,7 +37,7 @@ const TeamBuilder: NextPage = () => {
         }
     }, []);
 
-    function updateCards(index: number, card: CardData) {
+    function updateCards(index: number, card: PartyPokemon) {
         const newCards = [...cards];
         newCards[index] = card;
         setCards(newCards);
@@ -64,7 +54,7 @@ const TeamBuilder: NextPage = () => {
                 tribeCounts[tribe]++;
             }
         } else {
-            for (const tribe of card.pokemon.tribes) {
+            for (const tribe of card.species.tribes) {
                 tribeCounts[tribe.id]++;
             }
         }
@@ -75,9 +65,9 @@ const TeamBuilder: NextPage = () => {
         .sort((a, b) => tribeCounts[b] - tribeCounts[a]);
 
     function saveTeamToData() {
-        const savedCards: SavedCardData[] = cards.map((c) => {
+        const savedCards: SavedPartyPokemon[] = cards.map((c) => {
             return {
-                pokemon: c.pokemon.id,
+                pokemon: c.species.id,
                 moves: c.moves.map((m) => m.id),
                 ability: c.ability.id,
                 items: c.items.map((i) => i.id),
@@ -109,8 +99,8 @@ const TeamBuilder: NextPage = () => {
     }
 
     function exportTeam() {
-        const savedCards: SavedCardData[] = cards.map((card) => ({
-            pokemon: card.pokemon.id,
+        const savedCards: SavedPartyPokemon[] = cards.map((card) => ({
+            pokemon: card.species.id,
             ability: card.ability.id,
             items: card.items.filter((i) => !isNull(i)).map((i) => i.id),
             itemTypes: card.itemTypes.filter((t) => !isNull(t)).map((t) => t.id),
@@ -132,14 +122,14 @@ const TeamBuilder: NextPage = () => {
         alert(`Team copied to clipboard!`);
     }
 
-    function loadTeamFromData(data: SavedCardData[]) {
+    function loadTeamFromData(data: SavedPartyPokemon[]) {
         setCards(
             data.map((c) => {
                 // fall back to defaults for newly added fields
                 const level = c.level || MAX_LEVEL;
                 const sp = c.sp || [10, 10, 10, 10, 10];
                 return {
-                    pokemon: pokemon[c.pokemon] || nullPokemon,
+                    species: pokemon[c.pokemon] || nullPokemon,
                     moves: c.moves.map((m) => moves[m] || nullMove),
                     ability: abilities[c.ability] || nullAbility,
                     items: c.items.map((i) => items[i] || nullItem),
@@ -153,6 +143,8 @@ const TeamBuilder: NextPage = () => {
                         spdef: sp[3],
                         speed: sp[4],
                     },
+                    statSteps: blankStats,
+                    volatileStatusEffects: [],
                 };
             })
         );
@@ -167,7 +159,7 @@ const TeamBuilder: NextPage = () => {
         const savedCardsJson = localStorage.getItem(name);
         if (savedCardsJson) {
             try {
-                const savedCards = JSON.parse(savedCardsJson) as SavedCardData[];
+                const savedCards = JSON.parse(savedCardsJson) as SavedPartyPokemon[];
                 loadTeamFromData(savedCards);
             } catch (e) {
                 console.error(e);
@@ -347,12 +339,12 @@ const TeamBuilder: NextPage = () => {
                                                     </div>
                                                 </td>
                                                 {cards.map((c, index) => {
-                                                    const mult = !isNull(c.pokemon)
+                                                    const mult = !isNull(c.species)
                                                         ? calcTypeMatchup(
                                                               { type },
                                                               {
-                                                                  type1: c.pokemon.getType1(c.form),
-                                                                  type2: c.pokemon.getType2(c.form),
+                                                                  type1: c.species.getType1(c.form),
+                                                                  type2: c.species.getType2(c.form),
                                                                   ability: c.ability,
                                                               }
                                                           )
@@ -411,7 +403,7 @@ const TeamBuilder: NextPage = () => {
                                                 </td>
                                                 {cards.map((c, index) => {
                                                     const realMoves = c.moves.filter((m) => !isNull(m));
-                                                    const mult = !isNull(c.pokemon)
+                                                    const mult = !isNull(c.species)
                                                         ? Math.max(
                                                               ...realMoves.map((m) =>
                                                                   calcTypeMatchup(
