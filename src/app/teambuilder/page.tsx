@@ -112,10 +112,10 @@ const TeamBuilder: NextPage = () => {
         const savedCards: SavedCardData[] = cards.map((card) => ({
             pokemon: card.pokemon.id,
             ability: card.ability.id,
-            items: card.items.map((i) => i.id),
-            itemTypes: card.itemTypes.map((t) => t.id),
+            items: card.items.filter((i) => !isNull(i)).map((i) => i.id),
+            itemTypes: card.itemTypes.filter((t) => !isNull(t)).map((t) => t.id),
             form: card.form,
-            moves: card.moves.map((m) => m.id),
+            moves: card.moves.filter((m) => !isNull(m)).map((m) => m.id),
             level: card.level,
             sp: [
                 card.stylePoints.hp,

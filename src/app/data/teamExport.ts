@@ -49,26 +49,36 @@ export interface SavedCardData {
 
 const encodeChunk = (data: SavedCardData): string => {
     const indices = versionMaps[version].indices;
-    const indexList = [
-        indices.pokemon[data.pokemon],
-        indices.ability[data.ability],
-        indices.item[data.items[0]],
-        indices.item[data.items[1]],
-        indices.types[data.itemTypes[0]],
-        indices.types[data.itemTypes[1]],
-        data.form,
-        indices.move[data.moves[0]],
-        indices.move[data.moves[1]],
-        indices.move[data.moves[2]],
-        indices.move[data.moves[3]],
-        data.level,
-        ...data.sp,
-    ].map((i) => (i === undefined ? -1 : i));
+    // data that should (nearly) always be defined
+    const indexList = [indices.pokemon[data.pokemon], indices.ability[data.ability], data.form, data.level, ...data.sp];
 
-    const buffer = new ArrayBuffer(indexList.length * 2); // Each number is 16 bits (2 bytes)
+    // push optional fields up to the point they exist
+    for (const i of [0, 1, 2, 3]) {
+        // if items are defined, we have to pad undefined moves
+        if (i in data.moves || data.items.length > 0) {
+            indexList.push(indices.move[data.moves[i]]);
+        }
+    }
+
+    for (const i of [0, 1]) {
+        // if itemtypes are defined, we have to pad undefined items
+        if (data.items.length > i || data.itemTypes.length > 0) {
+            indexList.push(indices.item[data.items[i]]);
+        }
+    }
+
+    for (const i of [0, 1]) {
+        if (data.itemTypes.length > i) {
+            indexList.push(indices.types[data.itemTypes[i]]);
+        }
+    }
+
+    const finalList = indexList.map((i) => (i === undefined ? -1 : i));
+
+    const buffer = new ArrayBuffer(finalList.length * 2); // Each number is 16 bits (2 bytes)
     const view = new DataView(buffer);
 
-    indexList.forEach((value, i) => {
+    finalList.forEach((value, i) => {
         view.setUint16(i * 2, value); // Store each number as 16 bits
     });
 
@@ -95,24 +105,43 @@ const decodeChunk = (chunk: string, version: VersionMap): SavedCardData => {
     // autoincrement index instead of hardcoding to be resistant to changes
     let i = 0;
 
-    return {
+    // we used to support level and SP being optional as they were new additions
+    // but the format has changed enough since then that it's no longer feasible
+    const decodedData: SavedCardData = {
         pokemon: keys.pokemon[indexList[i++]],
         ability: keys.ability[indexList[i++]],
-        items: [keys.item[indexList[i++]], keys.item[indexList[i++]]],
-        itemTypes: [keys.types[indexList[i++]], keys.types[indexList[i++]]],
         form: indexList[i++],
-        moves: [
-            keys.move[indexList[i++]],
-            keys.move[indexList[i++]],
-            keys.move[indexList[i++]],
-            keys.move[indexList[i++]],
-        ],
-        level: indexList[i++] || MAX_LEVEL,
-        sp:
-            indexList.length > i++
-                ? [indexList[i], indexList[i++], indexList[i++], indexList[i++], indexList[i++]]
-                : [10, 10, 10, 10, 10],
+        level: indexList[i++],
+        sp: [indexList[i++], indexList[i++], indexList[i++], indexList[i++], indexList[i++]],
+        moves: [],
+        items: [],
+        itemTypes: [],
     };
+    // for each index left, check if data continues to exist, and include it if so
+    // don't increment i first time because it already was for the last sp
+    if (indexList.length > i) {
+        decodedData.moves.push(keys.move[indexList[i]]);
+    }
+    if (indexList.length > i++) {
+        decodedData.moves.push(keys.move[indexList[i]]);
+    }
+    if (indexList.length > i++) {
+        decodedData.moves.push(keys.move[indexList[i]]);
+    }
+    if (indexList.length > i++) {
+        decodedData.moves.push(keys.move[indexList[i]]);
+    }
+    if (indexList.length > i++) {
+        decodedData.items.push(keys.item[indexList[i]]);
+    }
+    if (indexList.length > i++) {
+        decodedData.items.push(keys.item[indexList[i]]);
+    }
+    if (indexList.length > i++) {
+        decodedData.itemTypes.push(keys.types[indexList[i]]);
+    }
+
+    return decodedData;
 };
 
 export function decodeTeam(teamCode: string): CardData[] {
