@@ -20,3 +20,7 @@ export function safeKeys<T extends object>(o: T): Array<keyof T> {
     const allKeys = Object.keys(o);
     return allKeys.filter((k) => isKey(k, o));
 }
+
+export function uniq<T>(a: T[]) {
+    return a.filter((item, pos, self) => self.indexOf(item) == pos);
+}

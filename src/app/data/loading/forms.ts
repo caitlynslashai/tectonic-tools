@@ -51,11 +51,11 @@ function parseForm(pairs: KVPair[]): LoadedForm {
                 break;
             case "Moves":
                 if (obj.levelMoves === undefined) {
-                    obj.levelMoves = {};
+                    obj.levelMoves = [];
                 }
                 const moveSplit = pair.value.split(",");
                 for (let i = 0; i < moveSplit.length; i += 2) {
-                    obj.levelMoves[moveSplit[i + 1]] = parseInt(moveSplit[i]);
+                    obj.levelMoves.push([parseInt(moveSplit[i]), moveSplit[i + 1]]);
                 }
                 break;
             case "LineMoves":

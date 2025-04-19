@@ -13,9 +13,7 @@ function loadForm(form: LoadedForm): PokemonForm {
         type1: form.type1 ? types[form.type1] : undefined,
         type2: form.type2 ? types[form.type2] : undefined,
         abilities: form.abilities?.map((a) => abilities[a]),
-        levelMoves: form.levelMoves
-            ? Object.entries(form.levelMoves).map(([moveId, level]) => [level, moves[moveId]])
-            : undefined,
+        levelMoves: form.levelMoves ? form.levelMoves.map(([level, id]) => [level, moves[id]]) : undefined,
         // if one stat is defined, they should all be
         stats: form.hp
             ? {

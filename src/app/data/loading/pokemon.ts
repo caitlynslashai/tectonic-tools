@@ -1,4 +1,5 @@
 import { NTreeNode } from "../types/NTreeNode";
+import { uniq } from "../util";
 import { KVPair, LoadedData } from "./loadData";
 
 export class LoadedEvolution {
@@ -29,7 +30,7 @@ export interface LoadedPokemon extends LoadedData {
     spDefense: number;
     bst: number;
     abilities: string[];
-    levelMoves: Record<string, number>;
+    levelMoves: [number, string][];
     lineMoves: string[];
     tutorMoves: string[];
     tribes: string[];
@@ -57,7 +58,7 @@ export function parsePokemonLegacy(pairs: KVPair[]): LoadedPokemon {
         spDefense: 0,
         bst: 0,
         abilities: [],
-        levelMoves: {}, // Key of move name and value of level
+        levelMoves: [], // Key of move name and value of level
         lineMoves: [], // Note that only the first evo has this in PBS
         tutorMoves: [], // Not every mon has these
         tribes: [],
@@ -109,7 +110,7 @@ export function parsePokemonLegacy(pairs: KVPair[]): LoadedPokemon {
             case "Moves":
                 const moveSplit = pair.value.split(",");
                 for (let i = 0; i < moveSplit.length; i += 2) {
-                    obj.levelMoves[moveSplit[i + 1]] = parseInt(moveSplit[i]);
+                    obj.levelMoves.push([parseInt(moveSplit[i]), moveSplit[i + 1]]);
                 }
                 break;
             case "LineMoves":
@@ -166,7 +167,7 @@ export function parsePokemon(pairs: KVPair[]): LoadedPokemon {
         spDefense: 0,
         bst: 0,
         abilities: [],
-        levelMoves: {}, // Key of move name and value of level
+        levelMoves: [], // Array of level, move pairs
         lineMoves: [], // Note that only the first evo has this in PBS
         tutorMoves: [], // Not every mon has these
         tribes: [],
@@ -215,7 +216,7 @@ export function parsePokemon(pairs: KVPair[]): LoadedPokemon {
             case "Moves":
                 const moveSplit = pair.value.split(",");
                 for (let i = 0; i < moveSplit.length; i += 2) {
-                    obj.levelMoves[moveSplit[i + 1]] = parseInt(moveSplit[i]);
+                    obj.levelMoves.push([parseInt(moveSplit[i]), moveSplit[i + 1]]);
                 }
                 break;
             case "LineMoves":
@@ -310,10 +311,7 @@ export function propagatePokemonData(
             const evoPath = getEvoPath(pokemon[pokemon[id].firstEvolution], pokemon[id]);
             const prevEvoLevelMoves = evoPath.reverse().find((evo) => evo.key !== id)?.levelMoves;
             if (prevEvoLevelMoves) {
-                // merge moves into potentially existing list, don't overwrite
-                for (const move in prevEvoLevelMoves) {
-                    pokemon[id].levelMoves[move] = prevEvoLevelMoves[move];
-                }
+                pokemon[id].levelMoves = uniq(pokemon[id].levelMoves.concat(prevEvoLevelMoves));
             }
         }
     }

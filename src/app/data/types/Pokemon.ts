@@ -5,6 +5,7 @@ import { moves } from "../moves";
 import { calculateHP, calculateStat } from "../stats";
 import { tribes } from "../tribes";
 import { types } from "../types";
+import { uniq } from "../util";
 import { Ability } from "./Ability";
 import { Item } from "./Item";
 import { Move } from "./Move";
@@ -45,10 +46,6 @@ export const defaultStylePoints: StylePoints = {
     spdef: 10,
     speed: 10,
 };
-
-function uniq<T>(a: T[]) {
-    return a.filter((item, pos, self) => self.indexOf(item) == pos);
-}
 
 function getterFactory<T extends keyof Pokemon>(mon: Pokemon, key: T) {
     return function (form: number = -1) {
@@ -106,7 +103,7 @@ export class Pokemon {
         };
         this.abilities = mon.abilities.map((a) => abilities[a]);
 
-        this.levelMoves = Object.entries(mon.levelMoves).map(([id, level]) => [level, moves[id]]);
+        this.levelMoves = mon.levelMoves.map(([level, id]) => [level, moves[id]]);
         this.lineMoves = mon.lineMoves.map((m) => moves[m]);
         this.tutorMoves = mon.tutorMoves.map((m) => moves[m]);
 
