@@ -2,9 +2,10 @@ import { Ability } from "./types/Ability";
 import { Item } from "./types/Item";
 import { Move } from "./types/Move";
 import { Pokemon } from "./types/Pokemon";
+import { PokemonType } from "./types/PokemonType";
 import { Trainer } from "./types/Trainer";
 
-export function isNull(o: Pokemon | Move | Trainer | Ability | Item | undefined): boolean {
+export function isNull(o: Pokemon | Move | Trainer | Ability | Item | PokemonType | undefined): boolean {
     return !o || o.name === "";
 }
 

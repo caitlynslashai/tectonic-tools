@@ -172,6 +172,7 @@ async function loadData(dev: boolean = false): Promise<void> {
         ability: Object.fromEntries(Object.keys(abilities).map((id, i) => [id, i])),
         item: Object.fromEntries(Object.keys(items).map((id, i) => [id, i])),
         move: Object.fromEntries(Object.keys(moves).map((id, i) => [id, i])),
+        types: Object.fromEntries(Object.keys(types).map((id, i) => [id, i])),
     };
 
     const keys = {
@@ -179,6 +180,7 @@ async function loadData(dev: boolean = false): Promise<void> {
         ability: Object.keys(abilities),
         item: Object.keys(items),
         move: Object.keys(moves),
+        types: Object.keys(types),
     };
 
     const versions = await dataRead("versions.json");

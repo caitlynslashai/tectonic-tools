@@ -2,10 +2,12 @@ import { abilities, nullAbility } from "./abilities";
 import { items, nullItem } from "./items";
 import { moves, nullMove } from "./moves";
 import { nullPokemon, pokemon } from "./pokemon";
+import { nullType, types } from "./types";
 import { Ability } from "./types/Ability";
 import { Item } from "./types/Item";
 import { Move } from "./types/Move";
 import { Pokemon, Stats, StylePoints } from "./types/Pokemon";
+import { PokemonType } from "./types/PokemonType";
 import { version, VersionMap, versionMaps } from "./versions";
 
 export const MIN_LEVEL = 1;
@@ -28,6 +30,7 @@ export interface CardData {
     moves: Move[];
     ability: Ability;
     items: Item[];
+    itemTypes: PokemonType[];
     form: number;
     level: number;
     stylePoints: StylePoints;
@@ -38,6 +41,7 @@ export interface SavedCardData {
     moves: Array<keyof typeof moves>;
     ability: keyof typeof abilities;
     items: Array<keyof typeof items>;
+    itemTypes: Array<keyof typeof types>;
     form: number;
     level: number;
     sp: number[];
@@ -50,6 +54,8 @@ const encodeChunk = (data: SavedCardData): string => {
         indices.ability[data.ability],
         indices.item[data.items[0]],
         indices.item[data.items[1]],
+        indices.types[data.itemTypes[0]],
+        indices.types[data.itemTypes[1]],
         data.form,
         indices.move[data.moves[0]],
         indices.move[data.moves[1]],
@@ -86,16 +92,25 @@ const decodeChunk = (chunk: string, version: VersionMap): SavedCardData => {
         indexList.push(view.getUint16(i));
     }
 
+    // autoincrement index instead of hardcoding to be resistant to changes
+    let i = 0;
+
     return {
-        pokemon: keys.pokemon[indexList[0]],
-        ability: keys.ability[indexList[1]],
-        items: [keys.item[indexList[2]], keys.item[indexList[3]]],
-        form: indexList[4],
-        moves: [keys.move[indexList[5]], keys.move[indexList[6]], keys.move[indexList[7]], keys.move[indexList[8]]],
-        level: indexList[9] || MAX_LEVEL,
+        pokemon: keys.pokemon[indexList[i++]],
+        ability: keys.ability[indexList[i++]],
+        items: [keys.item[indexList[i++]], keys.item[indexList[i++]]],
+        itemTypes: [keys.types[indexList[i++]], keys.types[indexList[i++]]],
+        form: indexList[i++],
+        moves: [
+            keys.move[indexList[i++]],
+            keys.move[indexList[i++]],
+            keys.move[indexList[i++]],
+            keys.move[indexList[i++]],
+        ],
+        level: indexList[i++] || MAX_LEVEL,
         sp:
-            indexList.length > 10
-                ? [indexList[10], indexList[11], indexList[12], indexList[13], indexList[14]]
+            indexList.length > i++
+                ? [indexList[i], indexList[i++], indexList[i++], indexList[i++], indexList[i++]]
                 : [10, 10, 10, 10, 10],
     };
 };
@@ -111,6 +126,7 @@ export function decodeTeam(teamCode: string): CardData[] {
             pokemon: pokemon[card.pokemon] || nullPokemon,
             ability: abilities[card.ability] || nullAbility,
             items: card.items.map((i) => items[i] || nullItem),
+            itemTypes: card.itemTypes.map((t) => types[t] || nullType),
             form: card.form,
             moves: card.moves.map((m) => moves[m] || nullMove),
             level: card.level,
