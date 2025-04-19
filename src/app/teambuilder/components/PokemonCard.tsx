@@ -3,10 +3,12 @@
 import { abilities, nullAbility } from "@/app/data/abilities";
 import { TwoItemAbility } from "@/app/data/abilities/TwoItemAbility";
 import { items, nullItem } from "@/app/data/items";
+import { TypeChangingItem } from "@/app/data/items/TypeChangingItem";
 import { moves, nullMove } from "@/app/data/moves";
 import { nullPokemon, pokemon } from "@/app/data/pokemon";
 import { calculateHP, calculateStat } from "@/app/data/stats";
 import { CardData, MAX_LEVEL, MAX_SP, MIN_LEVEL, MIN_SP, STYLE_POINT_CAP, styleFromStat } from "@/app/data/teamExport";
+import { nullType, types } from "@/app/data/types";
 import { Ability } from "@/app/data/types/Ability";
 import { Item } from "@/app/data/types/Item";
 import { Stats, StylePoints } from "@/app/data/types/Pokemon";
@@ -34,6 +36,7 @@ export default function PokemonCard({ data, update }: { data: CardData; update: 
     const currentMoves = data.moves;
     const currentAbility = data.ability;
     const currentItems = data.items;
+    const currentItemTypes = data.itemTypes;
     const currentForm = data.form;
     const currentLevel = data.level;
     const currentSP = data.stylePoints;
@@ -84,6 +87,12 @@ export default function PokemonCard({ data, update }: { data: CardData; update: 
         update({ ...data, items: newItems });
     }
 
+    function updateItemType(typeId: string, index: number) {
+        const newTypes = [...currentItemTypes];
+        newTypes[index] = types[typeId] || nullType;
+        update({ ...data, itemTypes: newTypes });
+    }
+
     function updateForm(form: number) {
         update({ ...data, form });
     }
@@ -115,6 +124,8 @@ export default function PokemonCard({ data, update }: { data: CardData; update: 
         spdef: calculateStat(currentPokemon.stats.spdef, currentLevel, currentSP.spdef, 0, stylish),
         speed: calculateStat(currentPokemon.stats.speed, currentLevel, currentSP.speed, 0, stylish),
     };
+
+    const realTypes = Object.values(types).filter((t) => t.isRealType);
 
     return (
         <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4 flex flex-col items-center w-60">
@@ -230,28 +241,53 @@ export default function PokemonCard({ data, update }: { data: CardData; update: 
                                 (_, i) =>
                                     // only display second item if ability enables it
                                     (i === 0 || currentAbility instanceof TwoItemAbility) && (
-                                        <div key={i} className="flex items-center space-x-2">
-                                            <Dropdown
-                                                value={currentItems[i].id}
-                                                onChange={(e) => updateItem(e.target.value, i)}
-                                            >
-                                                <option value="">Select Item</option>
-                                                {legalItems(currentItems, currentAbility, i).map((i) => (
-                                                    <option key={i.id} value={i.id}>
-                                                        {i.name}
-                                                    </option>
-                                                ))}
-                                            </Dropdown>
-                                            <div className="w-12 flex justify-center">
-                                                {!isNull(currentItems[i]) && (
-                                                    <Image
-                                                        alt={currentItems[i].name}
-                                                        src={currentItems[i].getImage()}
-                                                        width={50}
-                                                        height={50}
-                                                    />
-                                                )}
+                                        <div key={i}>
+                                            <div className="flex items-center space-x-2">
+                                                <Dropdown
+                                                    value={currentItems[i].id}
+                                                    onChange={(e) => updateItem(e.target.value, i)}
+                                                >
+                                                    <option value="">Select Item</option>
+                                                    {legalItems(currentItems, currentAbility, i).map((i) => (
+                                                        <option key={i.id} value={i.id}>
+                                                            {i.name}
+                                                        </option>
+                                                    ))}
+                                                </Dropdown>
+                                                <div className="w-12 flex justify-center">
+                                                    {!isNull(currentItems[i]) && (
+                                                        <Image
+                                                            alt={currentItems[i].name}
+                                                            src={currentItems[i].getImage()}
+                                                            width={50}
+                                                            height={50}
+                                                        />
+                                                    )}
+                                                </div>
                                             </div>
+                                            {currentItems[i] instanceof TypeChangingItem &&
+                                                currentItems[i].canChangeType(currentPokemon) && (
+                                                    <div className="flex items-center space-x-2">
+                                                        <Dropdown
+                                                            value={currentItemTypes[i].id}
+                                                            onChange={(e) => {
+                                                                updateItemType(e.target.value, i);
+                                                            }}
+                                                        >
+                                                            <option value="" className="bg-gray-800">
+                                                                Select Type
+                                                            </option>
+                                                            {realTypes.map((t) => (
+                                                                <option key={t.id} value={t.id} className="bg-gray-800">
+                                                                    {t.name}
+                                                                </option>
+                                                            ))}
+                                                        </Dropdown>
+                                                        {!isNull(currentItemTypes[i]) && (
+                                                            <TypeBadge type1={currentItemTypes[i]} />
+                                                        )}
+                                                    </div>
+                                                )}
                                         </div>
                                     )
                             )}

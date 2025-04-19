@@ -14,7 +14,7 @@ import { nullPokemon, pokemon } from "../data/pokemon";
 import { CardData, decodeTeam, encodeTeam, MAX_LEVEL, SavedCardData } from "../data/teamExport";
 import { tribes } from "../data/tribes";
 import { calcTypeMatchup } from "../data/typeChart";
-import { types } from "../data/types";
+import { nullType, types } from "../data/types";
 import { defaultStylePoints } from "../data/types/Pokemon";
 import { isNull } from "../data/util";
 import TypeChartCell from "../pokedex/components/TypeChartCell";
@@ -28,6 +28,7 @@ const nullCard: CardData = {
     moves: Array(4).fill(nullMove),
     ability: nullAbility,
     items: Array(2).fill(nullItem),
+    itemTypes: Array(2).fill(nullType),
     form: 0,
     level: 70,
     stylePoints: defaultStylePoints,
@@ -80,6 +81,7 @@ const TeamBuilder: NextPage = () => {
                 moves: c.moves.map((m) => m.id),
                 ability: c.ability.id,
                 items: c.items.map((i) => i.id),
+                itemTypes: c.itemTypes.map((t) => t.id),
                 form: c.form,
                 level: c.level,
                 sp: [
@@ -111,6 +113,7 @@ const TeamBuilder: NextPage = () => {
             pokemon: card.pokemon.id,
             ability: card.ability.id,
             items: card.items.map((i) => i.id),
+            itemTypes: card.itemTypes.map((t) => t.id),
             form: card.form,
             moves: card.moves.map((m) => m.id),
             level: card.level,
@@ -140,6 +143,7 @@ const TeamBuilder: NextPage = () => {
                     moves: c.moves.map((m) => moves[m] || nullMove),
                     ability: abilities[c.ability] || nullAbility,
                     items: c.items.map((i) => items[i] || nullItem),
+                    itemTypes: c.itemTypes.map((t) => types[t] || nullType),
                     form: c.form,
                     level: level,
                     stylePoints: {
