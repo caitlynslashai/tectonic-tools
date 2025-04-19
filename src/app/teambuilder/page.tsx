@@ -103,7 +103,7 @@ const TeamBuilder: NextPage = () => {
         const json = JSON.stringify(savedCards);
         localStorage.setItem(teamName, json);
         setSavedTeams(Object.keys(localStorage));
-        alert("Character saved successfully!");
+        alert("Team saved successfully!");
     }
 
     function exportTeam() {
