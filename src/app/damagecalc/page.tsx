@@ -221,7 +221,7 @@ const PokemonDamageCalculator: NextPage = () => {
                 return {
                     id: c.pokemon.id,
                     level: c.level,
-                    items: [c.item.id],
+                    items: c.items.map((i) => i.id),
                     moves: c.moves.map((m) => m.id),
                     sp: [
                         c.stylePoints.hp,
