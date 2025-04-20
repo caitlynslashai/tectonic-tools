@@ -66,6 +66,16 @@ export default function MoveCard({
                 </div>
             );
         }
+        if (data.move.customVarType === "boolean") {
+            if (data.customVar === undefined) {
+                data.customVar = false;
+            }
+            return (
+                <Checkbox checked={data.customVar as boolean} onChange={() => updateCustomVar(!data.customVar)}>
+                    {data.move.customVarName}
+                </Checkbox>
+            );
+        }
         return <span>Input for type {data.move.customVarType === "number"} not yet implemented.</span>;
     }
 
