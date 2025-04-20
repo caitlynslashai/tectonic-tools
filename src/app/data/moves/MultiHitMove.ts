@@ -9,7 +9,11 @@ interface MultiHits {
 export const multiHitMoveCodes: Record<string, MultiHits> = {
     HitTwoToFiveTimes: {
         minHits: 2,
-        maxHits: 2,
+        maxHits: 5,
+    },
+    HitTwoToFiveTimesAlwaysHits: {
+        minHits: 2,
+        maxHits: 5,
     },
 };
 
