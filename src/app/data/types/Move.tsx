@@ -65,7 +65,7 @@ export class Move {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public getPower(user: PartyPokemon): number {
+    public getPower(user: PartyPokemon, target: PartyPokemon): number {
         // TODO: Implement BP variance for relevant moves
         return this.bp;
     }

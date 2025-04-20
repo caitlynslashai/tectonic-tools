@@ -3,6 +3,7 @@ import { LoadedMove } from "./loading/moves";
 import { DesperationMove, desperationMoves } from "./moves/DesperationMove";
 import { FacadeMove, facadeMoves } from "./moves/FacadeMove";
 import { MultiHitMove, multiHitMoves } from "./moves/MultiHitMove";
+import { SmellingSaltsMove, smellingSaltsMoves } from "./moves/SmellingSaltsMove";
 import { StackingMove, stackingMoves } from "./moves/StackingMove";
 import { VariableTypeMove, typeFromItemMoves } from "./moves/TypeFromItemMove";
 import { Move } from "./types/Move";
@@ -20,6 +21,9 @@ function loadMove(move: LoadedMove): Move {
     }
     if (facadeMoves.includes(move.key)) {
         return new FacadeMove(move);
+    }
+    if (smellingSaltsMoves.includes(move.key)) {
+        return new SmellingSaltsMove(move);
     }
     if (desperationMoves.includes(move.key)) {
         return new DesperationMove(move);
