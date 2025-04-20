@@ -107,7 +107,7 @@ function typeFromUser(user: PartyPokemon): PokemonType {
     return user.species.getType1(user.form);
 }
 
-export const typeFromItemMoves: Record<keyof typeof moves, MoveTypeFunction> = {
+export const variableTypeMoves: Record<keyof typeof moves, MoveTypeFunction> = {
     JUDGMENT: (user: PartyPokemon) => typeFromItemType(user, "PRISMATICPLATE"),
     MULTIATTACK: (user: PartyPokemon) => typeFromItemType(user, "MEMORYSET"),
     NATURALGIFT: (user: PartyPokemon) => typeFromItemMap(user, naturalGiftTypes),

@@ -1,41 +1,43 @@
 import loadedMoves from "public/data/moves.json";
 import { LoadedMove } from "./loading/moves";
-import { BreakScreensMove, breakScreensMoves } from "./moves/BreakScreensMove";
-import { DesperationMove, desperationMoves } from "./moves/DesperationMove";
-import { DifferentAttackingStatMove, differentAttackStatMoves } from "./moves/DifferentAttackStatMove";
-import { FacadeMove, facadeMoves } from "./moves/FacadeMove";
-import { MultiHitMove, multiHitMoves } from "./moves/MultiHitMove";
-import { SmellingSaltsMove, smellingSaltsMoves } from "./moves/SmellingSaltsMove";
-import { StackingMove, stackingMoves } from "./moves/StackingMove";
-import { VariableTypeMove, typeFromItemMoves } from "./moves/TypeFromItemMove";
+import { BreakScreensMove, breakScreensMoveCodes } from "./moves/BreakScreensMove";
+import { DesperationMove, desperationMoveCodes } from "./moves/DesperationMove";
+import { DifferentAttackingStatMove, differentAttackStatMoveCodes } from "./moves/DifferentAttackStatMove";
+import { FacadeMove, facadeMoveCodes } from "./moves/FacadeMove";
+import { MultiHitMove, multiHitMoveCodes } from "./moves/MultiHitMove";
+import { SmellingSaltsMove, smellingSaltsMoveCodes } from "./moves/SmellingSaltsMove";
+import { StackingMove, stackingMoveCodes } from "./moves/StackingMove";
+import { VariableTypeMove, variableTypeMoves } from "./moves/TypeFromItemMove";
 import { Move } from "./types/Move";
 
 function loadMove(move: LoadedMove): Move {
-    if (move.key in multiHitMoves) {
-        const hits = multiHitMoves[move.key as keyof typeof multiHitMoves];
+    if (move.functionCode in multiHitMoveCodes) {
+        const hits = multiHitMoveCodes[move.functionCode];
         return new MultiHitMove(move, hits);
     }
-    if (move.key in typeFromItemMoves) {
-        return new VariableTypeMove(move, typeFromItemMoves[move.key]);
+    // Judgment, Multi-Attack, and Techno Blast are sufficiently hardcoded that
+    // a functionCode-based approach would be more roundabout
+    if (move.key in variableTypeMoves) {
+        return new VariableTypeMove(move, variableTypeMoves[move.key]);
     }
-    if (move.key in differentAttackStatMoves) {
-        return new DifferentAttackingStatMove(move, differentAttackStatMoves[move.key]);
+    if (move.functionCode in differentAttackStatMoveCodes) {
+        return new DifferentAttackingStatMove(move, differentAttackStatMoveCodes[move.functionCode]);
     }
     // TODO: It's possible that for moves below, which have no unique functionality
     // We could determine them by Flag or FunctionCode, rather than hard coding
-    if (stackingMoves.includes(move.key)) {
+    if (stackingMoveCodes.includes(move.functionCode)) {
         return new StackingMove(move);
     }
-    if (facadeMoves.includes(move.key)) {
+    if (facadeMoveCodes.includes(move.functionCode)) {
         return new FacadeMove(move);
     }
-    if (smellingSaltsMoves.includes(move.key)) {
+    if (smellingSaltsMoveCodes.includes(move.functionCode)) {
         return new SmellingSaltsMove(move);
     }
-    if (desperationMoves.includes(move.key)) {
+    if (desperationMoveCodes.includes(move.functionCode)) {
         return new DesperationMove(move);
     }
-    if (breakScreensMoves.includes(move.key)) {
+    if (breakScreensMoveCodes.includes(move.functionCode)) {
         return new BreakScreensMove(move);
     }
     return new Move(move);
@@ -55,6 +57,7 @@ export const nullMove: Move = new Move({
     pp: 0,
     category: "Status",
     target: "User",
+    functionCode: "Basic",
     effectChance: 0,
     priority: 0,
     flags: [],

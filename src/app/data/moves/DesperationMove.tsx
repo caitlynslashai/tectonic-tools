@@ -2,7 +2,7 @@ import { Dispatch, ReactNode, SetStateAction } from "react";
 import { Move } from "../types/Move";
 import { PartyPokemon } from "../types/PartyPokemon";
 
-export const desperationMoves = ["FLAIL"];
+export const desperationMoveCodes = ["ScalesWithLostHP"];
 
 export class DesperationMove extends Move {
     currentHP = 0;

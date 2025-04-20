@@ -1,6 +1,6 @@
 import { Move } from "../types/Move";
 
-export const breakScreensMoves = ["BRICKBREAK"];
+export const breakScreensMoveCodes = ["RemoveScreens"];
 
 export class BreakScreensMove extends Move {
     public ignoresScreens(): boolean {

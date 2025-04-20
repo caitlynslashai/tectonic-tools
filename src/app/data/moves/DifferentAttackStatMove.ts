@@ -2,8 +2,8 @@ import { LoadedMove } from "../loading/moves";
 import { Move } from "../types/Move";
 import { Stat } from "../types/Pokemon";
 
-export const differentAttackStatMoves: Record<string, Stat> = {
-    BODYPRESS: "defense",
+export const differentAttackStatMoveCodes: Record<string, Stat> = {
+    AttacksWithDefense: "defense",
 };
 
 export class DifferentAttackingStatMove extends Move {

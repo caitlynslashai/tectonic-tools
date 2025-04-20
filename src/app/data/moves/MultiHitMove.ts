@@ -6,18 +6,10 @@ interface MultiHits {
     maxHits: number;
 }
 
-export const multiHitMoves = {
-    DOUBLEHIT: {
+export const multiHitMoveCodes: Record<string, MultiHits> = {
+    HitTwoToFiveTimes: {
         minHits: 2,
         maxHits: 2,
-    },
-    FURYSWIPES: {
-        minHits: 2,
-        maxHits: 5,
-    },
-    ARMTHRUST: {
-        minHits: 2,
-        maxHits: 5,
     },
 };
 

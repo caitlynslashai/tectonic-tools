@@ -2,7 +2,7 @@ import { Dispatch, ReactNode, SetStateAction } from "react";
 import { LoadedMove } from "../loading/moves";
 import { Move } from "../types/Move";
 
-export const stackingMoves = ["ECHOEDVOICE"];
+export const stackingMoveCodes = ["EchoedVoice"];
 
 export class StackingMove extends Move {
     turns = 0;
