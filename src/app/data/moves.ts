@@ -3,6 +3,7 @@ import { LoadedMove } from "./loading/moves";
 import { BreakScreensMove, breakScreensMoveCodes } from "./moves/BreakScreensMove";
 import { DesperationMove, desperationMoveCodes } from "./moves/DesperationMove";
 import { DifferentAttackingStatMove, differentAttackStatMoveCodes } from "./moves/DifferentAttackStatMove";
+import { ExtraTypeMove, extraTypeMoveCodes } from "./moves/ExtraTypeMove";
 import { FacadeMove, facadeMoveCodes } from "./moves/FacadeMove";
 import { MultiHitMove, multiHitMoveCodes } from "./moves/MultiHitMove";
 import { SmellingSaltsMove, smellingSaltsMoveCodes } from "./moves/SmellingSaltsMove";
@@ -23,8 +24,9 @@ function loadMove(move: LoadedMove): Move {
     if (move.functionCode in differentAttackStatMoveCodes) {
         return new DifferentAttackingStatMove(move, differentAttackStatMoveCodes[move.functionCode]);
     }
-    // TODO: It's possible that for moves below, which have no unique functionality
-    // We could determine them by Flag or FunctionCode, rather than hard coding
+    if (move.functionCode in extraTypeMoveCodes) {
+        return new ExtraTypeMove(move, extraTypeMoveCodes[move.functionCode]);
+    }
     if (stackingMoveCodes.includes(move.functionCode)) {
         return new StackingMove(move);
     }

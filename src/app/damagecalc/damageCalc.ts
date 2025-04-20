@@ -2,7 +2,6 @@ import { MultiHitMove } from "../data/moves/MultiHitMove";
 import { calcTypeMatchup } from "../data/typeChart";
 import { PartyPokemon } from "../data/types/PartyPokemon";
 import { Stat } from "../data/types/Pokemon";
-import { PokemonType } from "../data/types/PokemonType";
 import { MoveData } from "./components/MoveCard";
 import { BattleState } from "./page";
 
@@ -31,9 +30,6 @@ export function calculateDamage(
     //     return;
     // }
 
-    // Get the move's type
-    const type = move.move.getType(user); // TODO: implement moves that can change type
-
     // Calculate base power of move
     const baseDmg = move.move.getPower(user, target);
 
@@ -41,7 +37,7 @@ export function calculateDamage(
     // However, for calculation, it's determined by the UI
 
     // Calculate the actual damage dealt, and assign it to the damage state for tracking
-    const [damage, typeEffectMult] = calculateDamageForHit(move, user, target, type, baseDmg, battleState);
+    const [damage, typeEffectMult] = calculateDamageForHit(move, user, target, baseDmg, battleState);
     const percentage = damage / target.stats.hp;
     const hits = Math.ceil(1 / percentage);
     if (move.move instanceof MultiHitMove) {
@@ -65,7 +61,6 @@ function calculateDamageForHit(
     move: MoveData,
     user: PartyPokemon,
     target: PartyPokemon,
-    type: PokemonType,
     baseDmg: number,
     battleState: BattleState
 ): [number, number] {
@@ -73,7 +68,7 @@ function calculateDamageForHit(
     const [attack, defense] = damageCalcStats(move, user, target);
 
     // Calculate all multiplier effects
-    const [multipliers, typeEffectMult] = calcDamageMultipliers(move, user, target, battleState, type);
+    const [multipliers, typeEffectMult] = calcDamageMultipliers(move, user, target, battleState);
 
     // Main damage calculation
     let finalCalculatedDamage = calcDamageWithMultipliers(baseDmg, attack, defense, user.level, multipliers);
@@ -484,9 +479,9 @@ function pbCalcProtectionsDamageMultipliers(
 }
 
 function pbCalcTypeBasedDamageMultipliers(
+    move: MoveData,
     user: PartyPokemon,
     target: PartyPokemon,
-    type: PokemonType,
     multipliers: DamageMultipliers
 ): [DamageMultipliers, number] {
     let stabActive = false;
@@ -500,6 +495,7 @@ function pbCalcTypeBasedDamageMultipliers(
     //     });
     //     stabActive = anyPartyMemberHasType;
     // } else {
+    const type = move.move.getType(user);
     stabActive = type && (user.species.getType1(user.form) === type || user.species.getType2(user.form) === type);
     //}
     // TODO: Handle curses
@@ -520,10 +516,9 @@ function pbCalcTypeBasedDamageMultipliers(
     }
 
     // Type effectiveness
-    // TODO: Handle moves that modify type
-    // const typeMod = target.typeMod(type, target, this, checkingForAI);
+    // variable type moves are handled here in Tectonic, but on the data level here
     const effectiveness = calcTypeMatchup(
-        { type },
+        { type, move: move.move },
         { type1: target.species.getType1(target.form), type2: target.species.getType2(target.form) }
     );
     multipliers.final_damage_multiplier *= effectiveness;
@@ -644,8 +639,7 @@ function calcDamageMultipliers(
     move: MoveData,
     user: PartyPokemon,
     target: PartyPokemon,
-    battleState: BattleState,
-    type: PokemonType
+    battleState: BattleState
 ): [DamageMultipliers, number] {
     let multipliers: DamageMultipliers = {
         attack_multiplier: 1,
@@ -660,7 +654,7 @@ function calcDamageMultipliers(
     multipliers = pbCalcStatusesDamageMultipliers(move, user, target, multipliers);
     // TODO: Handle Protect-esque moves
     multipliers = pbCalcProtectionsDamageMultipliers(move, user, target, battleState, multipliers);
-    const typeResult = pbCalcTypeBasedDamageMultipliers(user, target, type, multipliers);
+    const typeResult = pbCalcTypeBasedDamageMultipliers(move, user, target, multipliers);
     multipliers = typeResult[0];
     const typeEffectMult = typeResult[1];
     // TODO: Handle tribes
