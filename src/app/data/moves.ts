@@ -9,6 +9,7 @@ import { MultiHitMove, multiHitMoveCodes } from "./moves/MultiHitMove";
 import { SmellingSaltsMove, smellingSaltsMoveCodes } from "./moves/SmellingSaltsMove";
 import { StackingMove, stackingMoveCodes } from "./moves/StackingMove";
 import { VariableTypeMove, variableTypeMoves } from "./moves/TypeFromItemMove";
+import { WeightScalingMove, weightScalingMoveCodes } from "./moves/WeightScalingMove";
 import { Move } from "./types/Move";
 
 function loadMove(move: LoadedMove): Move {
@@ -41,6 +42,9 @@ function loadMove(move: LoadedMove): Move {
     }
     if (breakScreensMoveCodes.includes(move.functionCode)) {
         return new BreakScreensMove(move);
+    }
+    if (weightScalingMoveCodes.includes(move.functionCode)) {
+        return new WeightScalingMove(move);
     }
     return new Move(move);
 }
