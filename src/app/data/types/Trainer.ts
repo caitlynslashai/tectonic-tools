@@ -3,10 +3,12 @@ import { LoadedTrainer } from "../loading/trainers";
 import { moves, nullMove } from "../moves";
 import { pokemon } from "../pokemon";
 import { trainerTypes } from "../trainerTypes";
+import { nullType, types } from "../types";
 import { Ability } from "./Ability";
 import { Item } from "./Item";
 import { Move } from "./Move";
 import { defaultStylePoints, Pokemon, StylePoints } from "./Pokemon";
+import { PokemonType } from "./PokemonType";
 
 export interface TrainerPokemon {
     pokemon: Pokemon;
@@ -16,6 +18,7 @@ export interface TrainerPokemon {
     moves: Move[];
     ability: Ability;
     items: Item[];
+    itemTypes: PokemonType[];
 }
 
 export class Trainer {
@@ -47,6 +50,7 @@ export class Trainer {
                     moves[mon.moves[3]] || nullMove,
                 ],
                 items: [items[mon.items[0]] || nullItem, items[mon.items[1]] || nullItem],
+                itemTypes: [types[mon.itemTypes[0]] || nullType, types[mon.itemTypes[1]] || nullType],
             };
         });
         this.id = loadedTrainer.key;

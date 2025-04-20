@@ -8,6 +8,7 @@ interface LoadedTrainerPokemon {
     moves: string[];
     abilityIndex?: number;
     items: string[];
+    itemTypes: string[];
     sp: number[];
 }
 
@@ -27,6 +28,7 @@ const defaultTrainerPokemon: LoadedTrainerPokemon = {
     level: 0,
     moves: [],
     items: [],
+    itemTypes: [],
     sp: [],
 };
 
@@ -86,6 +88,9 @@ export function parseTrainers(pairs: KVPair[]): LoadedTrainer {
                 break;
             case "Item":
                 currentPokemon.items = pair.value.split(",");
+                break;
+            case "ItemType":
+                currentPokemon.itemTypes = pair.value.split(",");
                 break;
             case "EV":
                 currentPokemon.sp = pair.value.split(",").map((v) => parseInt(v));
