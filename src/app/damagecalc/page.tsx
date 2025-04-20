@@ -107,6 +107,9 @@ const PokemonDamageCalculator: NextPage = () => {
                 species: pokemon.pokemon,
                 level: pokemon.level,
                 stylePoints: pokemon.sp,
+                moves: pokemon.moves,
+                items: pokemon.items,
+                ability: pokemon.ability,
             })
         );
     }

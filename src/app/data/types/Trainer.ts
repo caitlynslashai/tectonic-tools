@@ -1,6 +1,11 @@
+import { items, nullItem } from "../items";
 import { LoadedTrainer } from "../loading/trainers";
+import { moves, nullMove } from "../moves";
 import { pokemon } from "../pokemon";
 import { trainerTypes } from "../trainerTypes";
+import { Ability } from "./Ability";
+import { Item } from "./Item";
+import { Move } from "./Move";
 import { defaultStylePoints, Pokemon, StylePoints } from "./Pokemon";
 
 export interface TrainerPokemon {
@@ -8,6 +13,9 @@ export interface TrainerPokemon {
     sp: StylePoints;
     level: number;
     nickname?: string;
+    moves: Move[];
+    ability: Ability;
+    items: Item[];
 }
 
 export class Trainer {
@@ -20,6 +28,7 @@ export class Trainer {
     pokemon: TrainerPokemon[];
     constructor(loadedTrainer: LoadedTrainer) {
         const trainerMons: TrainerPokemon[] = loadedTrainer.pokemon.map((mon) => {
+            const abilityIndex = mon.abilityIndex || 0;
             return {
                 ...mon,
                 pokemon: pokemon[mon.id],
@@ -28,6 +37,16 @@ export class Trainer {
                     mon.sp.length === 0
                         ? defaultStylePoints
                         : { hp: mon.sp[0], attacks: mon.sp[1], defense: mon.sp[2], speed: mon.sp[3], spdef: mon.sp[5] },
+                ability: pokemon[mon.id].abilities[abilityIndex],
+                // TODO: autopopulate default moveset for level if moves undefined
+                // for some reason a mapping approach consistently returned blanks instead of nulls
+                moves: [
+                    moves[mon.moves[0]] || nullMove,
+                    moves[mon.moves[1]] || nullMove,
+                    moves[mon.moves[2]] || nullMove,
+                    moves[mon.moves[3]] || nullMove,
+                ],
+                items: [items[mon.items[0]] || nullItem, items[mon.items[1]] || nullItem],
             };
         });
         this.id = loadedTrainer.key;
