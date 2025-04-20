@@ -6,6 +6,7 @@ import { isNull } from "../util";
 
 export const typeFromItemMoves = {
     JUDGMENT: "PRISMATICPLATE",
+    MULTIATTACK: "MEMORYSET",
 };
 
 export class TypeFromItemMove extends Move {
