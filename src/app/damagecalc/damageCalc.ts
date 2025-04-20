@@ -35,7 +35,7 @@ export function calculateDamage(
     // }
 
     // Get the move's type
-    const type = move.move.getType(); // TODO: implement moves that can change type
+    const type = move.move.getType(user); // TODO: implement moves that can change type
 
     // Calculate base power of move
     const baseDmg = move.move.getPower(user);

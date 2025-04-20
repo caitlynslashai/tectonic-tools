@@ -71,7 +71,8 @@ export class Move {
     }
 
     // to be extended by subclasses
-    public getType(): PokemonType {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    public getType(user: PartyPokemon): PokemonType {
         return this.type;
     }
 
