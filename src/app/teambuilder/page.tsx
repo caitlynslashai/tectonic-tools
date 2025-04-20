@@ -7,6 +7,7 @@ import TypeBadge from "@/components/TypeBadge";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
+import PokemonCard from "../../components/PokemonCard";
 import { abilities, nullAbility } from "../data/abilities";
 import { items, nullItem } from "../data/items";
 import { moves, nullMove } from "../data/moves";
@@ -20,7 +21,6 @@ import { isNull } from "../data/util";
 import TypeChartCell from "../pokedex/components/TypeChartCell";
 import AtkTotalCell from "./components/AtkTotalCell";
 import DefTotalCell from "./components/DefTotalCell";
-import PokemonCard from "./components/PokemonCard";
 import TableHeader from "./components/TableHeader";
 
 const TeamBuilder: NextPage = () => {
@@ -242,12 +242,12 @@ const TeamBuilder: NextPage = () => {
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 w-full">
                         {Array.from({ length: 6 }).map((_, index) => (
-                            <PokemonCard
+                            <div
                                 key={index}
-                                data={cards[index]}
-                                update={(c) => updateCards(index, c)}
-                                battle={false}
-                            />
+                                className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4 flex flex-col items-center w-60"
+                            >
+                                <PokemonCard data={cards[index]} update={(c) => updateCards(index, c)} battle={false} />
+                            </div>
                         ))}
                     </div>
 

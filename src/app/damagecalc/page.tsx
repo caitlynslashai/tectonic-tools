@@ -12,13 +12,13 @@ import ColumnBody from "../../components/ColumnBody";
 import ColumnHeader from "../../components/ColumnHeader";
 import Dropdown from "../../components/DropDown";
 import InputLabel from "../../components/InputLabel";
+import PokemonCard from "../../components/PokemonCard";
 import { nullMove } from "../data/moves";
 import { decodeTeam } from "../data/teamExport";
 import { nullTrainer, trainers } from "../data/trainers";
 import { PartyPokemon } from "../data/types/PartyPokemon";
 import { Trainer } from "../data/types/Trainer";
 import { isNull } from "../data/util";
-import PokemonCard from "../teambuilder/components/PokemonCard";
 import MoveCard, { MoveData } from "./components/MoveCard";
 import { calculateDamage, DamageResult } from "./damageCalc";
 
