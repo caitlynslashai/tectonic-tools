@@ -47,9 +47,9 @@ export function calculateDamage(
     const [damage, typeEffectMult] = calculateDamageForHit(move, user, target, type, baseDmg, battleState);
     const percentage = damage / target.stats.hp;
     const hits = Math.ceil(1 / percentage);
-    if (move instanceof MultiHitMove) {
-        const minTotal = damage * move.minHits;
-        const maxTotal = damage * move.maxHits;
+    if (move.move instanceof MultiHitMove) {
+        const minTotal = damage * move.move.minHits;
+        const maxTotal = damage * move.move.maxHits;
         return {
             damage,
             percentage,

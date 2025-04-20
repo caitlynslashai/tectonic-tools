@@ -11,7 +11,7 @@ import { Move } from "./types/Move";
 function loadMove(move: LoadedMove): Move {
     if (move.key in multiHitMoves) {
         const hits = multiHitMoves[move.key as keyof typeof multiHitMoves];
-        return new MultiHitMove({ ...move, ...hits });
+        return new MultiHitMove(move, hits);
     }
     if (move.key in typeFromItemMoves) {
         return new VariableTypeMove(move, typeFromItemMoves[move.key as keyof typeof typeFromItemMoves]);
