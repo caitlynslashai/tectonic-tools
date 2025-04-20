@@ -4,7 +4,7 @@ import { StatusEffect } from "../statusEffects";
 import { types } from "../types";
 import { isNull } from "../util";
 import { PartyPokemon } from "./PartyPokemon";
-import { Pokemon } from "./Pokemon";
+import { Pokemon, Stat } from "./Pokemon";
 import { PokemonType } from "./PokemonType";
 
 export const moveCategories = ["Physical", "Special", "Status", "Adaptive"] as const;
@@ -86,5 +86,9 @@ export class Move {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public ignoreStatus(effect: StatusEffect): boolean {
         return false;
+    }
+
+    public getAttackingStat(category: "Physical" | "Special"): Stat {
+        return category === "Physical" ? "attack" : "spatk";
     }
 }

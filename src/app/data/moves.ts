@@ -1,6 +1,7 @@
 import loadedMoves from "public/data/moves.json";
 import { LoadedMove } from "./loading/moves";
 import { DesperationMove, desperationMoves } from "./moves/DesperationMove";
+import { DifferentAttackingStatMove, differentAttackStatMoves } from "./moves/DifferentAttackStatMove";
 import { FacadeMove, facadeMoves } from "./moves/FacadeMove";
 import { MultiHitMove, multiHitMoves } from "./moves/MultiHitMove";
 import { SmellingSaltsMove, smellingSaltsMoves } from "./moves/SmellingSaltsMove";
@@ -14,7 +15,10 @@ function loadMove(move: LoadedMove): Move {
         return new MultiHitMove(move, hits);
     }
     if (move.key in typeFromItemMoves) {
-        return new VariableTypeMove(move, typeFromItemMoves[move.key as keyof typeof typeFromItemMoves]);
+        return new VariableTypeMove(move, typeFromItemMoves[move.key]);
+    }
+    if (move.key in differentAttackStatMoves) {
+        return new DifferentAttackingStatMove(move, differentAttackStatMoves[move.key]);
     }
     if (stackingMoves.includes(move.key)) {
         return new StackingMove(move);

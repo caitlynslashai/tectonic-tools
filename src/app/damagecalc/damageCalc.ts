@@ -1,7 +1,7 @@
 import { MultiHitMove } from "../data/moves/MultiHitMove";
 import { calcTypeMatchup } from "../data/typeChart";
 import { PartyPokemon } from "../data/types/PartyPokemon";
-import { Stats } from "../data/types/Pokemon";
+import { Stat } from "../data/types/Pokemon";
 import { PokemonType } from "../data/types/PokemonType";
 import { MoveData } from "./components/MoveCard";
 
@@ -149,7 +149,7 @@ function damageCalcStats(move: MoveData, userStats: PartyPokemon, targetStats: P
     // Calculate user's attack stat
     // TODO: implement moves like foul play or body press
     const attacking_stat_holder = userStats;
-    const attacking_stat: keyof Stats = trueCategory === "Physical" ? "attack" : "spatk";
+    const attacking_stat: Stat = move.move.getAttackingStat(trueCategory);
 
     // TODO: implement abilities and weather
     // if (user.shouldAbilityApply("MALICIOUSGLOW", aiCheck) && battle.moonGlowing()) {
@@ -165,7 +165,7 @@ function damageCalcStats(move: MoveData, userStats: PartyPokemon, targetStats: P
 
     // Calculate target's defense stat
     const defending_stat_holder = targetStats;
-    const defending_stat: keyof Stats = trueCategory === "Physical" ? "defense" : "spdef";
+    const defending_stat: Stat = trueCategory === "Physical" ? "defense" : "spdef";
     // TODO: implement stat steps
     // let defense_step = defending_stat_holder.steps[defending_stat];
     // if (defense_step > 0 &&
