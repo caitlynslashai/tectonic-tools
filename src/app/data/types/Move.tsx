@@ -91,4 +91,25 @@ export class Move {
     public getAttackingStat(category: "Physical" | "Special"): Stat {
         return category === "Physical" ? "attack" : "spatk";
     }
+
+    public ignoresScreens(): boolean {
+        return false;
+    }
+
+    public getDamageCategory(user: PartyPokemon): "Physical" | "Special" {
+        let trueCategory: "Physical" | "Special";
+        if (this.category === "Adaptive") {
+            if (user.stats.attack >= user.stats.spatk) {
+                trueCategory = "Physical";
+            } else {
+                trueCategory = "Special";
+            }
+        } else if (this.category === "Status") {
+            // lazy typeguard
+            throw new Error("Status moves shouldn't be selectable!");
+        } else {
+            trueCategory = this.category;
+        }
+        return trueCategory;
+    }
 }

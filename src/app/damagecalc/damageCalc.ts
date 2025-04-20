@@ -4,6 +4,7 @@ import { PartyPokemon } from "../data/types/PartyPokemon";
 import { Stat } from "../data/types/Pokemon";
 import { PokemonType } from "../data/types/PokemonType";
 import { MoveData } from "./components/MoveCard";
+import { BattleState } from "./page";
 
 export interface DamageResult {
     damage: number;
@@ -14,10 +15,6 @@ export interface DamageResult {
     maxTotal?: number;
     minPercentage?: number;
     maxPercentage?: number;
-}
-
-export interface BattleState {
-    multiBattle: boolean;
 }
 
 export function calculateDamage(
@@ -132,20 +129,8 @@ function calcBasicDamage(
 }
 
 function damageCalcStats(move: MoveData, userStats: PartyPokemon, targetStats: PartyPokemon): [number, number] {
-    let trueCategory: "Physical" | "Special";
-    if (move.move.category === "Adaptive") {
-        if (userStats.stats.attack >= userStats.stats.spatk) {
-            trueCategory = "Physical";
-        } else {
-            trueCategory = "Special";
-        }
-    } else if (move.move.category === "Status") {
-        // lazy typeguard
-        throw new Error("Status moves shouldn't be selectable!");
-    } else {
-        trueCategory = move.move.category;
-    }
     // Calculate category for adaptive moves
+    const trueCategory = move.move.getDamageCategory(userStats);
     // Calculate user's attack stat
     // TODO: implement moves like foul play or body press
     const attacking_stat_holder = userStats;
@@ -436,64 +421,67 @@ function pbCalcStatusesDamageMultipliers(
     return multipliers;
 }
 
-// function pbCalcProtectionsDamageMultipliers(
-//     user: any,
-//     target: any,
-//     multipliers: any,
-//     checkingForAI: boolean = false
-// ): void {
-//     // Aurora Veil, Reflect, Light Screen
-//     if (!ignoresReflect() && !target.damageState.critical && !user.ignoreScreens(checkingForAI)) {
-//         if (target.pbOwnSide.effectActive("AuroraVeil")) {
-//             if (battle.pbSideBattlerCount(target) > 1) {
-//                 multipliers.final_damage_multiplier *= 2 / 3.0;
-//             } else {
-//                 multipliers.final_damage_multiplier *= 0.5;
-//             }
-//         } else if (target.pbOwnSide.effectActive("Reflect") && physicalMove()) {
-//             if (battle.pbSideBattlerCount(target) > 1) {
-//                 multipliers.final_damage_multiplier *= 2 / 3.0;
-//             } else {
-//                 multipliers.final_damage_multiplier *= 0.5;
-//             }
-//         } else if (target.pbOwnSide.effectActive("LightScreen") && specialMove()) {
-//             if (battle.pbSideBattlerCount(target) > 1) {
-//                 multipliers.final_damage_multiplier *= 2 / 3.0;
-//             } else {
-//                 multipliers.final_damage_multiplier *= 0.5;
-//             }
-//         } else if (target.pbOwnSide.effectActive("DiamondField")) {
-//             if (battle.pbSideBattlerCount(target) > 1) {
-//                 multipliers.final_damage_multiplier *= 3 / 4.0;
-//             } else {
-//                 multipliers.final_damage_multiplier *= 2 / 3.0;
-//             }
-//         }
+function pbCalcProtectionsDamageMultipliers(
+    move: MoveData,
+    user: PartyPokemon,
+    target: PartyPokemon,
+    battleState: BattleState,
+    multipliers: DamageMultipliers
+): DamageMultipliers {
+    // Aurora Veil, Reflect, Light Screen
+    // TODO: Abilities that ignore screens?
+    if (!move.move.ignoresScreens() && !move.criticalHit /* && !user.ignoreScreens(checkingForAI)*/) {
+        if (battleState["Aurora Veil"]) {
+            if (battleState["Multi Battle"]) {
+                multipliers.final_damage_multiplier *= 2 / 3.0;
+            } else {
+                multipliers.final_damage_multiplier *= 0.5;
+            }
+        } else if (battleState.Reflect && move.move.getDamageCategory(user) === "Physical") {
+            if (battleState["Multi Battle"]) {
+                multipliers.final_damage_multiplier *= 2 / 3.0;
+            } else {
+                multipliers.final_damage_multiplier *= 0.5;
+            }
+        } else if (battleState["Light Screen"] && move.move.getDamageCategory(user) === "Special") {
+            if (battleState["Multi Battle"]) {
+                multipliers.final_damage_multiplier *= 2 / 3.0;
+            } else {
+                multipliers.final_damage_multiplier *= 0.5;
+            }
+            // } else if (target.pbOwnSide.effectActive("DiamondField")) {
+            //     if (battle.pbSideBattlerCount(target) > 1) {
+            //         multipliers.final_damage_multiplier *= 3 / 4.0;
+            //     } else {
+            //         multipliers.final_damage_multiplier *= 2 / 3.0;
+            //     }
+        }
 
-//         // Repulsion Field
-//         if (baseDamage >= 100 && target.pbOwnSide.effectActive("RepulsionField")) {
-//             if (battle.pbSideBattlerCount(target) > 1) {
-//                 multipliers.final_damage_multiplier *= 2 / 3.0;
-//             } else {
-//                 multipliers.final_damage_multiplier *= 0.5;
-//             }
-//         }
-//     }
-//     // Partial protection moves
-//     if (target.effectActive(["StunningCurl", "RootShelter", "VenomGuard"])) {
-//         multipliers.final_damage_multiplier *= 0.5;
-//     }
-//     if (target.effectActive("EmpoweredDetect")) {
-//         multipliers.final_damage_multiplier *= 0.5;
-//     }
-//     if (target.pbOwnSide.effectActive("Bulwark")) {
-//         multipliers.final_damage_multiplier *= 0.5;
-//     }
-//     // For when bosses are partway piercing protection
-//     if (target.damageState.partiallyProtected) {
-//         multipliers.final_damage_multiplier *= 0.5;
-//     }
-// }
+        // // Repulsion Field
+        // if (baseDamage >= 100 && target.pbOwnSide.effectActive("RepulsionField")) {
+        //     if (battle.pbSideBattlerCount(target) > 1) {
+        //         multipliers.final_damage_multiplier *= 2 / 3.0;
+        //     } else {
+        //         multipliers.final_damage_multiplier *= 0.5;
+        //     }
+        // }
+    }
+    // Partial protection moves
+    // if (target.effectActive(["StunningCurl", "RootShelter", "VenomGuard"])) {
+    //     multipliers.final_damage_multiplier *= 0.5;
+    // }
+    // if (target.effectActive("EmpoweredDetect")) {
+    //     multipliers.final_damage_multiplier *= 0.5;
+    // }
+    // if (target.pbOwnSide.effectActive("Bulwark")) {
+    //     multipliers.final_damage_multiplier *= 0.5;
+    // }
+    // For when bosses are partway piercing protection
+    // if (target.damageState.partiallyProtected) {
+    //     multipliers.final_damage_multiplier *= 0.5;
+    // }
+    return multipliers;
+}
 
 function pbCalcTypeBasedDamageMultipliers(
     user: PartyPokemon,
@@ -671,7 +659,7 @@ function calcDamageMultipliers(
     // multipliers = pbCalcWeatherDamageMultipliers(user, target, type, multipliers);
     multipliers = pbCalcStatusesDamageMultipliers(move, user, target, multipliers);
     // TODO: Handle Protect-esque moves
-    // multipliers = pbCalcProtectionsDamageMultipliers(user, target, multipliers);
+    multipliers = pbCalcProtectionsDamageMultipliers(move, user, target, battleState, multipliers);
     const typeResult = pbCalcTypeBasedDamageMultipliers(user, target, type, multipliers);
     multipliers = typeResult[0];
     const typeEffectMult = typeResult[1];
@@ -723,7 +711,7 @@ function calcDamageMultipliers(
     // }
 
     // Multi-targeting attacks
-    if (move.move.isSpread() && battleState.multiBattle) {
+    if (move.move.isSpread() && battleState["Multi Battle"]) {
         // TODO: Handle abilities
         // if (user.shouldAbilityApply("RESONANT", aiCheck)) {
         //     multipliers.final_damage_multiplier *= 1.25;
