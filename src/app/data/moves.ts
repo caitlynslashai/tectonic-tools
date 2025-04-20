@@ -7,6 +7,7 @@ import { ExtraTypeMove, extraTypeMoveCodes } from "./moves/ExtraTypeMove";
 import { FacadeMove, facadeMoveCodes } from "./moves/FacadeMove";
 import { MultiHitMove, multiHitMoveCodes } from "./moves/MultiHitMove";
 import { SmellingSaltsMove, smellingSaltsMoveCodes } from "./moves/SmellingSaltsMove";
+import { SpitUpMove, spitUpMoveCodes } from "./moves/SpitUpMove";
 import { StackingMove, stackingMoveCodes } from "./moves/StackingMove";
 import { VariableTypeMove, variableTypeMoves } from "./moves/TypeFromItemMove";
 import { WeightScalingMove, weightScalingMoveCodes } from "./moves/WeightScalingMove";
@@ -45,6 +46,9 @@ function loadMove(move: LoadedMove): Move {
     }
     if (weightScalingMoveCodes.includes(move.functionCode)) {
         return new WeightScalingMove(move);
+    }
+    if (spitUpMoveCodes.includes(move.functionCode)) {
+        return new SpitUpMove(move);
     }
     return new Move(move);
 }
