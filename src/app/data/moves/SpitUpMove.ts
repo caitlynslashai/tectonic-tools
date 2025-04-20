@@ -3,7 +3,7 @@ import { PartyPokemon } from "../types/PartyPokemon";
 
 export const spitUpMoveCodes = ["PowerDependsOnUserStockpile"];
 
-export class DesperationMove extends Move {
+export class SpitUpMove extends Move {
     customVarName: string = "Stockpiles";
     customVarType: string = "number";
     needsInput: boolean = true;
