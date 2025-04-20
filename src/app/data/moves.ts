@@ -1,5 +1,6 @@
 import loadedMoves from "public/data/moves.json";
 import { LoadedMove } from "./loading/moves";
+import { BreakScreensMove, breakScreensMoves } from "./moves/BreakScreensMove";
 import { DesperationMove, desperationMoves } from "./moves/DesperationMove";
 import { DifferentAttackingStatMove, differentAttackStatMoves } from "./moves/DifferentAttackStatMove";
 import { FacadeMove, facadeMoves } from "./moves/FacadeMove";
@@ -20,6 +21,8 @@ function loadMove(move: LoadedMove): Move {
     if (move.key in differentAttackStatMoves) {
         return new DifferentAttackingStatMove(move, differentAttackStatMoves[move.key]);
     }
+    // TODO: It's possible that for moves below, which have no unique functionality
+    // We could determine them by Flag or FunctionCode, rather than hard coding
     if (stackingMoves.includes(move.key)) {
         return new StackingMove(move);
     }
@@ -31,6 +34,9 @@ function loadMove(move: LoadedMove): Move {
     }
     if (desperationMoves.includes(move.key)) {
         return new DesperationMove(move);
+    }
+    if (breakScreensMoves.includes(move.key)) {
+        return new BreakScreensMove(move);
     }
     return new Move(move);
 }
