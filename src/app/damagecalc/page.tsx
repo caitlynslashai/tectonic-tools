@@ -22,7 +22,7 @@ import { isNull } from "../data/util";
 import MoveCard, { MoveData } from "./components/MoveCard";
 import { calculateDamage, DamageResult } from "./damageCalc";
 
-const nullMoveData = { move: nullMove, criticalHit: false, customVar: 0 };
+const nullMoveData = { move: nullMove, criticalHit: false, customVar: undefined };
 
 const battleBooleans = ["Multi Battle", "Aurora Veil", "Reflect", "Light Screen"] as const;
 type BattleBoolean = (typeof battleBooleans)[number];

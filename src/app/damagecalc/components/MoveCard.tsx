@@ -10,7 +10,7 @@ import { ReactNode } from "react";
 
 export interface MoveData {
     move: Move;
-    customVar: number;
+    customVar: unknown;
     criticalHit: boolean;
 }
 
@@ -38,14 +38,34 @@ export default function MoveCard({
         updateMoveData(newData);
     }
 
-    // function updateCustomVar(customVar: number) {
-    //     const newData = { ...data, customVar };
-    //     updateMoveData(newData);
-    // }
+    function updateCustomVar(customVar: unknown) {
+        const newData = { ...data, customVar };
+        updateMoveData(newData);
+    }
 
     function updateCriticalHit(criticalHit: boolean) {
         const newData = { ...data, criticalHit };
         updateMoveData(newData);
+    }
+
+    function getCustomVarInput(data: MoveData, updateCustomVar: (customVar: unknown) => void): ReactNode {
+        if (data.move.customVarType === "number") {
+            if (data.customVar === undefined) {
+                data.customVar = 0;
+            }
+            return (
+                <div className="flex items-center space-x-2">
+                    <InputLabel>{data.move.customVarName}</InputLabel>
+                    <input
+                        type="number"
+                        className="w-full px-4 py-2 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
+                        value={data.customVar as number}
+                        onChange={(e) => updateCustomVar(parseInt(e.target.value))}
+                    />
+                </div>
+            );
+        }
+        return <span>Input for type {data.move.customVarType === "number"} not yet implemented.</span>;
     }
 
     return (
@@ -75,7 +95,7 @@ export default function MoveCard({
             )}
             {!isNull(data.move) && (
                 <div className="bg-gray-700 p-4 rounded-lg border border-gray-600">
-                    {/* {moveData.move.getInput(moveData.customVar, updateCustomVar)} */}
+                    {data.move.needsInput && getCustomVarInput(data, updateCustomVar)}
                     <Checkbox
                         checked={targetData.volatileStatusEffects.Jinx || data.criticalHit}
                         disabled={targetData.volatileStatusEffects.Jinx}
@@ -88,7 +108,9 @@ export default function MoveCard({
                         <div className="text-right text-gray-400">Type:</div>
                         <TypeBadge type1={data.move.getType(userData)} />
                         <div className="text-right text-gray-400">Power:</div>
-                        <div className="text-left text-gray-200">{data.move.getPower(userData, targetData)}</div>
+                        <div className="text-left text-gray-200">
+                            {data.move.getPower(userData, targetData, data.customVar)}
+                        </div>
                         <div className="text-right text-gray-400">Category:</div>
                         <div className="text-left text-gray-200">{getMoveCategory(data.move, userData)}</div>
                     </div>

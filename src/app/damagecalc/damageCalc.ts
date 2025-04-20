@@ -31,7 +31,7 @@ export function calculateDamage(
     // }
 
     // Calculate base power of move
-    const baseDmg = move.move.getPower(user, target);
+    const baseDmg = move.move.getPower(user, target, move.customVar);
 
     // In vanilla Tectonic, critical hit determination happens here
     // However, for calculation, it's determined by the UI
