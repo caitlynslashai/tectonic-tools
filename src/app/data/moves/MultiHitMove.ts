@@ -15,6 +15,10 @@ export const multiHitMoveCodes: Record<string, MultiHits> = {
         minHits: 2,
         maxHits: 5,
     },
+    HitTwoTimes: {
+        minHits: 2,
+        maxHits: 2,
+    },
 };
 
 export class MultiHitMove extends Move {
