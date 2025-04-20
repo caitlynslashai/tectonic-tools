@@ -226,7 +226,7 @@ export default function PokemonCard({
                                 </div>
                                 <div className="w-12 flex justify-center">
                                     {data.moves[moveIndex].isAttackingMove() && (
-                                        <TypeBadge type1={data.moves[moveIndex].type} />
+                                        <TypeBadge type1={data.moves[moveIndex].getType(data)} />
                                     )}
                                 </div>
                             </div>
