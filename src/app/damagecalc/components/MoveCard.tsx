@@ -68,6 +68,12 @@ export default function MoveCard({
         return <span>Input for type {data.move.customVarType === "number"} not yet implemented.</span>;
     }
 
+    // the bp > 0 filter probably isn't strictly accurate i bet there's some weird fixed damage moves it excludes
+    let legalMoves = userData.moves.filter((m) => !isNull(m) && m.bp > 0);
+    if (legalMoves.length === 0) {
+        legalMoves = userData.species.allMoves(userData.form).filter((m) => m.bp > 0);
+    }
+
     return (
         <div>
             {!isNull(userData.species) && (
@@ -77,19 +83,15 @@ export default function MoveCard({
                         <option value="" className="bg-gray-800">
                             Select Move
                         </option>
-                        {userData.moves
-                            .filter((m) => m.bp > 0)
-                            .map((m) => (
-                                <option
-                                    key={m.id}
-                                    value={m.id}
-                                    className={`bg-gray-800 ${
-                                        m.isSTAB(userData.species) ? "font-bold text-blue-400" : ""
-                                    }`}
-                                >
-                                    {m.name}
-                                </option>
-                            ))}
+                        {legalMoves.map((m) => (
+                            <option
+                                key={m.id}
+                                value={m.id}
+                                className={`bg-gray-800 ${m.isSTAB(userData.species) ? "font-bold text-blue-400" : ""}`}
+                            >
+                                {m.name}
+                            </option>
+                        ))}
                     </Dropdown>
                 </div>
             )}
