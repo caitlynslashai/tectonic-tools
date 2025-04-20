@@ -88,6 +88,13 @@ const naturalGiftTypes = {
     KEEBERRY: "FAIRY",
 };
 
+const technoBlastTypes = {
+    DOUSEDRIVE: "WATER",
+    SHOCKDRIVE: "ELECTRIC",
+    BURNDRIVE: "FIRE",
+    CHILLDRIVE: "ICE",
+};
+
 function typeFromItemMap(user: PartyPokemon, map: Record<string, string>): PokemonType | undefined {
     for (const item of user.items) {
         if (item.id in map) {
@@ -104,6 +111,7 @@ export const typeFromItemMoves: Record<keyof typeof moves, MoveTypeFunction> = {
     JUDGMENT: (user: PartyPokemon) => typeFromItemType(user, "PRISMATICPLATE"),
     MULTIATTACK: (user: PartyPokemon) => typeFromItemType(user, "MEMORYSET"),
     NATURALGIFT: (user: PartyPokemon) => typeFromItemMap(user, naturalGiftTypes),
+    TECHNOBLAST: (user: PartyPokemon) => typeFromItemMap(user, technoBlastTypes),
     REVELATIONDANCE: typeFromUser,
 };
 
