@@ -4,7 +4,7 @@ import { DesperationMove, desperationMoves } from "./moves/DesperationMove";
 import { FacadeMove, facadeMoves } from "./moves/FacadeMove";
 import { MultiHitMove, multiHitMoves } from "./moves/MultiHitMove";
 import { StackingMove, stackingMoves } from "./moves/StackingMove";
-import { TypeFromItemMove, typeFromItemMoves } from "./moves/TypeFromItemMove";
+import { VariableTypeMove, typeFromItemMoves } from "./moves/TypeFromItemMove";
 import { Move } from "./types/Move";
 
 function loadMove(move: LoadedMove): Move {
@@ -13,7 +13,7 @@ function loadMove(move: LoadedMove): Move {
         return new MultiHitMove({ ...move, ...hits });
     }
     if (move.key in typeFromItemMoves) {
-        return new TypeFromItemMove(move, typeFromItemMoves[move.key as keyof typeof typeFromItemMoves]);
+        return new VariableTypeMove(move, typeFromItemMoves[move.key as keyof typeof typeFromItemMoves]);
     }
     if (stackingMoves.includes(move.key)) {
         return new StackingMove(move);

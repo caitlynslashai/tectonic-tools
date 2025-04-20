@@ -6,7 +6,7 @@ import { PartyPokemon } from "../types/PartyPokemon";
 import { PokemonType } from "../types/PokemonType";
 import { isNull } from "../util";
 
-type TypeFromItemFunction = (user: PartyPokemon) => PokemonType | undefined;
+type MoveTypeFunction = (user: PartyPokemon) => PokemonType | undefined;
 
 function typeFromItemType(user: PartyPokemon, typeItem: string): PokemonType | undefined {
     const itemIndex = user.items.findIndex((i) => i.id === typeItem);
@@ -96,15 +96,20 @@ function typeFromItemMap(user: PartyPokemon, map: Record<string, string>): Pokem
     }
 }
 
-export const typeFromItemMoves: Record<keyof typeof moves, TypeFromItemFunction> = {
+function typeFromUser(user: PartyPokemon): PokemonType {
+    return user.species.getType1(user.form);
+}
+
+export const typeFromItemMoves: Record<keyof typeof moves, MoveTypeFunction> = {
     JUDGMENT: (user: PartyPokemon) => typeFromItemType(user, "PRISMATICPLATE"),
     MULTIATTACK: (user: PartyPokemon) => typeFromItemType(user, "MEMORYSET"),
     NATURALGIFT: (user: PartyPokemon) => typeFromItemMap(user, naturalGiftTypes),
+    REVELATIONDANCE: typeFromUser,
 };
 
-export class TypeFromItemMove extends Move {
-    typeFunction: TypeFromItemFunction;
-    constructor(move: LoadedMove, typeFunction: TypeFromItemFunction) {
+export class VariableTypeMove extends Move {
+    typeFunction: MoveTypeFunction;
+    constructor(move: LoadedMove, typeFunction: MoveTypeFunction) {
         super(move);
         this.typeFunction = typeFunction;
     }
