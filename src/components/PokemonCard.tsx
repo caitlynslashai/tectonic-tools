@@ -6,6 +6,7 @@ import { items, nullItem } from "@/app/data/items";
 import { TypeChangingItem } from "@/app/data/items/TypeChangingItem";
 import { moves, nullMove } from "@/app/data/moves";
 import { nullPokemon, pokemon } from "@/app/data/pokemon";
+import { getSignatureAbilities, getSignatureMoves } from "@/app/data/signatures";
 import { StatusEffect, statusEffects, VolatileStatusEffect, volatileStatusEffects } from "@/app/data/statusEffects";
 import {
     MAX_LEVEL,
@@ -217,7 +218,13 @@ export default function PokemonCard({
                                             <option
                                                 key={m.id}
                                                 value={m.id}
-                                                className={m.isSTAB(data.species) ? "font-semibold" : ""}
+                                                className={
+                                                    m.id in getSignatureMoves()
+                                                        ? "font-semibold text-yellow-500"
+                                                        : m.isSTAB(data.species)
+                                                        ? "font-semibold"
+                                                        : ""
+                                                }
                                             >
                                                 {m.name}
                                             </option>
@@ -237,7 +244,11 @@ export default function PokemonCard({
                         <Dropdown value={data.ability.id} onChange={(e) => updateAbility(e.target.value)}>
                             <option value="">Select Ability</option>
                             {data.species.getAbilities(data.form).map((a) => (
-                                <option key={a.id} value={a.id}>
+                                <option
+                                    key={a.id}
+                                    value={a.id}
+                                    className={a.id in getSignatureAbilities() ? "font-semibold text-yellow-500" : ""}
+                                >
                                     {a.name}
                                 </option>
                             ))}

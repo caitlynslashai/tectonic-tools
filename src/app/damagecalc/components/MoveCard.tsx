@@ -1,4 +1,5 @@
 import { moves, nullMove } from "@/app/data/moves";
+import { getSignatureMoves } from "@/app/data/signatures";
 import { Move } from "@/app/data/types/Move";
 import { PartyPokemon } from "@/app/data/types/PartyPokemon";
 import { isNull } from "@/app/data/util";
@@ -87,7 +88,13 @@ export default function MoveCard({
                             <option
                                 key={m.id}
                                 value={m.id}
-                                className={`bg-gray-800 ${m.isSTAB(userData.species) ? "font-bold text-blue-400" : ""}`}
+                                className={`bg-gray-800 ${
+                                    m.id in getSignatureMoves()
+                                        ? "font-semibold text-yellow-500"
+                                        : m.isSTAB(userData.species)
+                                        ? "font-semibold text-blue-400"
+                                        : ""
+                                }`}
                             >
                                 {m.name}
                             </option>
