@@ -27,7 +27,7 @@ import { isNull, negativeMod, safeKeys } from "@/app/data/util";
 import Dropdown from "@/components/DropDown";
 import TypeBadge from "@/components/TypeBadge";
 import Image from "next/image";
-import { useState } from "react";
+import Collapsible from "./Collapsible";
 
 function legalItems(currentItems: Item[], ability: Ability, index: number): Item[] {
     // TODO: Add a non-magic map of pockets somewhere
@@ -52,7 +52,6 @@ export default function PokemonCard({
     update: (c: Partial<PartyPokemon>) => void;
     battle: boolean;
 }) {
-    const [isExpanded, setIsExpanded] = useState<boolean>(false);
     // wipe pokemon-dependent data when switching pokemon
     function updatePokemon(pokemonId: string) {
         if (pokemonId in pokemon) {
@@ -202,8 +201,7 @@ export default function PokemonCard({
                             onChange={(e) => updateLevel(parseInt(e.target.value))}
                         />
                     </div>
-                    <div className="w-full mt-4 text-center">
-                        <h3 className="font-semibold text-gray-800 dark:text-gray-100">Moves</h3>
+                    <Collapsible title="Moves">
                         {Array.from({ length: 4 }).map((_, moveIndex) => (
                             <div key={moveIndex} className="flex items-center space-x-2">
                                 <div className="flex-1">
@@ -238,7 +236,7 @@ export default function PokemonCard({
                                 </div>
                             </div>
                         ))}
-                    </div>
+                    </Collapsible>
                     <div className="w-full mt-4 text-center">
                         <h3 className="font-semibold text-gray-800 dark:text-gray-100">Ability</h3>
                         <Dropdown value={data.ability.id} onChange={(e) => updateAbility(e.target.value)}>
@@ -271,26 +269,7 @@ export default function PokemonCard({
                                 ))}
                             </Dropdown>
                             <div className="mt-2">
-                                <button
-                                    onClick={() => setIsExpanded(!isExpanded)}
-                                    className="flex items-center justify-between w-full px-4 py-2 text-left text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
-                                >
-                                    <span>Non-Volatile Status Effects</span>
-                                    <svg
-                                        className={`w-5 h-5 transition-transform ${isExpanded ? "rotate-180" : ""}`}
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M19 9l-7 7-7-7"
-                                        />
-                                    </svg>
-                                </button>
-                                {isExpanded && (
+                                <Collapsible title="Volatile Status Effects">
                                     <div className="grid grid-cols-2 gap-2 mt-2">
                                         {volatileStatusEffects.map((effect) => (
                                             <label key={effect} className="flex items-center space-x-2">
@@ -308,7 +287,7 @@ export default function PokemonCard({
                                             </label>
                                         ))}
                                     </div>
-                                )}
+                                </Collapsible>
                             </div>
                         </div>
                     )}
@@ -371,7 +350,7 @@ export default function PokemonCard({
                             )}
                         </div>
                     </div>
-                    <div>
+                    <Collapsible title="Stats">
                         <table>
                             <thead>
                                 <tr>
@@ -417,7 +396,7 @@ export default function PokemonCard({
                                 })}
                             </tbody>
                         </table>
-                    </div>
+                    </Collapsible>
                     <div className="w-full mt-4 text-center">
                         <h3 className="font-semibold text-gray-800 dark:text-gray-100">Tribes</h3>
                         <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
