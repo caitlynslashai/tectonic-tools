@@ -27,7 +27,7 @@ export interface SavedPartyPokemon {
     moves: Array<keyof typeof moves>;
     ability: keyof typeof abilities;
     items: Array<keyof typeof items>;
-    itemTypes: Array<keyof typeof types>;
+    itemType?: keyof typeof types;
     form: number;
     level: number;
     sp: number[];
@@ -48,15 +48,15 @@ const encodeChunk = (data: SavedPartyPokemon): string => {
 
     for (const i of [0, 1]) {
         // if itemtypes are defined, we have to pad undefined items
-        if (data.items.length > i || data.itemTypes.length > 0) {
+        if (data.items.length > i || data.itemType) {
             indexList.push(indices.item[data.items[i]]);
         }
     }
 
-    for (const i of [0, 1]) {
-        if (data.itemTypes.length > i) {
-            indexList.push(indices.types[data.itemTypes[i]]);
-        }
+    if (data.itemType) {
+        indexList.push(indices.types[data.itemType]);
+    } else {
+        indexList.push(-1);
     }
 
     const finalList = indexList.map((i) => (i === undefined ? -1 : i));
@@ -93,7 +93,7 @@ const decodeChunk = (chunk: string, version: VersionMap): SavedPartyPokemon => {
 
     // we used to support level and SP being optional as they were new additions
     // but the format has changed enough since then that it's no longer feasible
-    const decodedData: SavedPartyPokemon = {
+    const decodedData: Omit<SavedPartyPokemon, "itemType"> = {
         pokemon: keys.pokemon[indexList[i++]],
         ability: keys.ability[indexList[i++]],
         form: indexList[i++],
@@ -101,7 +101,6 @@ const decodeChunk = (chunk: string, version: VersionMap): SavedPartyPokemon => {
         sp: [indexList[i++], indexList[i++], indexList[i++], indexList[i++], indexList[i++]],
         moves: [],
         items: [],
-        itemTypes: [],
     };
     // for each index left, check if data continues to exist, and include it if so
     // don't increment i first time because it already was for the last sp
@@ -123,11 +122,11 @@ const decodeChunk = (chunk: string, version: VersionMap): SavedPartyPokemon => {
     if (indexList.length > i++) {
         decodedData.items.push(keys.item[indexList[i]]);
     }
-    if (indexList.length > i++) {
-        decodedData.itemTypes.push(keys.types[indexList[i]]);
-    }
+    // this is janky, but the goal is to replace this with the newer format anyway
+    // or if not i'll come back and clean this up (it requires a format change either way)
+    const finishedData: SavedPartyPokemon = { ...decodedData, itemType: keys.types[indexList[i++]] };
 
-    return decodedData;
+    return finishedData;
 };
 
 export function decodeTeam(teamCode: string): PartyPokemon[] {
@@ -143,7 +142,7 @@ export function decodeTeam(teamCode: string): PartyPokemon[] {
                     species: pokemon[card.pokemon] || nullPokemon,
                     ability: abilities[card.ability] || nullAbility,
                     items: card.items.map((i) => items[i] || nullItem),
-                    itemTypes: card.itemTypes.map((t) => types[t] || nullType),
+                    itemType: card.itemType ? types[card.itemType] || nullType : nullType,
                     form: card.form,
                     moves: card.moves.map((m) => moves[m] || nullMove),
                     level: card.level,

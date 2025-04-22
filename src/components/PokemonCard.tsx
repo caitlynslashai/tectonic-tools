@@ -104,10 +104,9 @@ export default function PokemonCard({
         update({ items: newItems });
     }
 
-    function updateItemType(typeId: string, index: number) {
-        const newTypes = [...data.itemTypes];
-        newTypes[index] = types[typeId] || nullType;
-        update({ itemTypes: newTypes });
+    function updateItemType(typeId: string) {
+        const newType = types[typeId] || nullType;
+        update({ itemType: newType });
     }
 
     function updateForm(form: number) {
@@ -322,31 +321,28 @@ export default function PokemonCard({
                                                     )}
                                                 </div>
                                             </div>
-                                            {data.items[i] instanceof TypeChangingItem &&
-                                                data.items[i].canChangeType(data.species) && (
-                                                    <div className="flex items-center space-x-2">
-                                                        <Dropdown
-                                                            value={data.itemTypes[i].id}
-                                                            onChange={(e) => {
-                                                                updateItemType(e.target.value, i);
-                                                            }}
-                                                        >
-                                                            <option value="" className="bg-gray-800">
-                                                                Select Type
-                                                            </option>
-                                                            {realTypes.map((t) => (
-                                                                <option key={t.id} value={t.id} className="bg-gray-800">
-                                                                    {t.name}
-                                                                </option>
-                                                            ))}
-                                                        </Dropdown>
-                                                        {!isNull(data.itemTypes[i]) && (
-                                                            <TypeBadge type1={data.itemTypes[i]} />
-                                                        )}
-                                                    </div>
-                                                )}
                                         </div>
                                     )
+                            )}
+                            {data.items.some((i) => i instanceof TypeChangingItem && i.canChangeType(data.species)) && (
+                                <div className="flex items-center space-x-2">
+                                    <Dropdown
+                                        value={data.itemType.id}
+                                        onChange={(e) => {
+                                            updateItemType(e.target.value);
+                                        }}
+                                    >
+                                        <option value="" className="bg-gray-800">
+                                            Select Type
+                                        </option>
+                                        {realTypes.map((t) => (
+                                            <option key={t.id} value={t.id} className="bg-gray-800">
+                                                {t.name}
+                                            </option>
+                                        ))}
+                                    </Dropdown>
+                                    {!isNull(data.itemType) && <TypeBadge type1={data.itemType} />}
+                                </div>
                             )}
                         </div>
                     </div>

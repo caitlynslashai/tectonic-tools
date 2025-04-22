@@ -20,7 +20,7 @@ export interface TrainerPokemon {
     moves: Move[];
     ability: Ability;
     items: Item[];
-    itemTypes: PokemonType[];
+    itemType: PokemonType;
 }
 
 export class Trainer {
@@ -67,7 +67,7 @@ export class Trainer {
                 monMoves = newMoves.reverse();
             }
             const abilityIndex = mon.abilityIndex || 0;
-            return {
+            const finalMon: TrainerPokemon = {
                 ...mon,
                 pokemon: pokemon[mon.id],
                 nickname: mon.name,
@@ -78,8 +78,12 @@ export class Trainer {
                 ability: pokemon[mon.id].abilities[abilityIndex],
                 moves: monMoves,
                 items: [items[mon.items[0]] || nullItem, items[mon.items[1]] || nullItem],
-                itemTypes: [types[mon.itemTypes[0]] || nullType, types[mon.itemTypes[1]] || nullType],
+                itemType: nullType, // override the string from the unpack above
             };
+            if (mon.itemType) {
+                finalMon.itemType = types[mon.itemType] || nullType;
+            }
+            return finalMon;
         });
         this.id = loadedTrainer.key;
         this.class = loadedTrainer.class;
