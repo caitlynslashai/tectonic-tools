@@ -1,12 +1,14 @@
 "use client";
 
 import Dropdown from "@/components/DropDown";
+import { FilterInput } from "@/components/FilterInput";
+import { AVAILABLE_FILTERS, PokemonFilterType } from "@/components/filters";
 import InlineLink from "@/components/InlineLink";
 import InternalLink from "@/components/InternalLink";
 import TypeBadge from "@/components/TypeBadge";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import PokemonCard from "../../components/PokemonCard";
 import { abilities, nullAbility } from "../data/abilities";
 import { items, nullItem } from "../data/items";
@@ -29,6 +31,17 @@ const TeamBuilder: NextPage = () => {
     const [savedTeams, setSavedTeams] = useState<string[]>([]);
     const [loadedTeam, setLoadedTeam] = useState<string>("");
     const [teamCode, setTeamCode] = useState<string>("");
+
+    const [filters, setFilters] = useState<PokemonFilterType[]>([]);
+    const [currentFilter, setCurrentFilter] = useState<PokemonFilterType>(AVAILABLE_FILTERS[0]);
+
+    const handleAddFilter = (filter: PokemonFilterType, value: string) => {
+        setFilters((prev) => [...prev, { ...filter, value }]);
+    };
+
+    const removeFilter = (index: number) => {
+        setFilters((prev) => prev.filter((_, i) => i !== index));
+    };
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -176,6 +189,16 @@ const TeamBuilder: NextPage = () => {
         }
     }
 
+    const mons = Object.values(pokemon);
+    const filteredPokemon = useMemo(() => {
+        const filtered = mons.filter((mon) => {
+            return filters.every((filter) => {
+                return filter.apply(mon, filter.value);
+            });
+        });
+        return filtered;
+    }, [filters, mons]);
+
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
             <Head>
@@ -196,6 +219,13 @@ const TeamBuilder: NextPage = () => {
                     <p>
                         <InternalLink url="../">Return to homepage</InternalLink>
                     </p>
+                    <FilterInput
+                        currentFilter={currentFilter}
+                        filters={filters}
+                        onAddFilter={handleAddFilter}
+                        removeFilter={removeFilter}
+                        setCurrentFilter={setCurrentFilter}
+                    />
                     <div className="flex flex-row justify-center items-center gap-4 mt-6">
                         <input
                             type="text"
@@ -246,7 +276,12 @@ const TeamBuilder: NextPage = () => {
                                 key={index}
                                 className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4 flex flex-col items-center w-60"
                             >
-                                <PokemonCard data={cards[index]} update={(c) => updateCards(index, c)} battle={false} />
+                                <PokemonCard
+                                    pokemonList={filteredPokemon}
+                                    data={cards[index]}
+                                    update={(c) => updateCards(index, c)}
+                                    battle={false}
+                                />
                             </div>
                         ))}
                     </div>
