@@ -410,7 +410,7 @@ const TeamBuilder: NextPage = () => {
                                                               ...realMoves.map((m) =>
                                                                   calcTypeMatchup(
                                                                       {
-                                                                          type: m.type,
+                                                                          type: m.getType(c),
                                                                           move: m,
                                                                           ability: c.ability,
                                                                       },
