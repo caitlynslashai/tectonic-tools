@@ -111,24 +111,7 @@ const TeamBuilder: NextPage = () => {
     }
 
     function exportTeam() {
-        const savedCards: SavedPartyPokemon[] = cards.map((card) => ({
-            pokemon: card.species.id,
-            ability: card.ability.id,
-            items: card.items.filter((i) => !isNull(i)).map((i) => i.id),
-            itemType: isNull(card.itemType) ? undefined : card.itemType.id,
-            form: card.form,
-            moves: card.moves.filter((m) => !isNull(m)).map((m) => m.id),
-            level: card.level,
-            sp: [
-                card.stylePoints.hp,
-                card.stylePoints.attacks,
-                card.stylePoints.defense,
-                card.stylePoints.spdef,
-                card.stylePoints.speed,
-            ],
-        }));
-
-        const code = encodeTeam(savedCards);
+        const code = encodeTeam(cards);
         setTeamCode(code);
         navigator.clipboard.writeText(code);
         alert(`Team copied to clipboard!`);
@@ -180,8 +163,7 @@ const TeamBuilder: NextPage = () => {
 
     function importTeam() {
         try {
-            const loadedCards = decodeTeam(teamCode);
-            setCards(loadedCards);
+            setCards(decodeTeam(teamCode));
             alert("Team imported successfully!");
         } catch (error) {
             console.error("Import error:", error);
