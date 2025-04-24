@@ -17,6 +17,7 @@ export interface LoadedTrainer extends LoadedData {
     name: string;
     version?: number;
     nameForHashing?: string;
+    typeLabel?: string;
     extendsVersion?: number;
     policies: string[];
     flags: string[];
@@ -54,6 +55,9 @@ export function parseTrainers(pairs: KVPair[]): LoadedTrainer {
                 break;
             case "NameForHashing":
                 obj.nameForHashing = pair.value;
+                break;
+            case "TrainerTypeLabel":
+                obj.typeLabel = pair.value;
                 break;
             case "ExtendsVersion":
                 obj.extendsVersion = parseInt(pair.value);

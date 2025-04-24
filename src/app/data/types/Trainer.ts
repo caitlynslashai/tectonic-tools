@@ -28,9 +28,11 @@ export class Trainer {
     class: string;
     name: string;
     hashName?: string; // for masked villains
+    typeLabel?: string; // overrides class name
     version: number;
     extends?: number;
     pokemon: TrainerPokemon[];
+    flags: string[];
     constructor(loadedTrainer: LoadedTrainer) {
         const trainerMons: TrainerPokemon[] = loadedTrainer.pokemon.map((mon) => {
             // for some reason a mapping approach consistently returned blanks instead of nulls
@@ -89,9 +91,11 @@ export class Trainer {
         this.class = loadedTrainer.class;
         this.name = loadedTrainer.name;
         this.hashName = loadedTrainer.nameForHashing;
+        this.typeLabel = loadedTrainer.typeLabel;
         this.version = loadedTrainer.version || 0;
         this.extends = loadedTrainer.extendsVersion;
         this.pokemon = trainerMons;
+        this.flags = loadedTrainer.flags;
     }
 
     public key(): string {
@@ -99,14 +103,19 @@ export class Trainer {
     }
 
     public displayName(): string {
-        return (
-            // this fallback shouldn't be necessary once trainers.txt and trainertypes.txt are in sync
+        let name =
+            // the last fallback shouldn't be necessary once trainers.txt and trainertypes.txt are in sync
             // but it doesn't hurt, and makes staggered development easier
-            (trainerTypes[this.class]?.name || this.class) +
+            ((this.typeLabel && trainerTypes[this.typeLabel]?.name) || trainerTypes[this.class]?.name || this.class) +
             " " +
             this.name +
-            (this.class.includes("MASKEDVILLAIN") && this.hashName ? " (" + this.hashName + ")" : "") +
-            (this.extends !== undefined ? " (Cursed)" : "")
-        );
+            (this.class.includes("MASKEDVILLAIN") && this.hashName ? " (" + this.hashName + ")" : "");
+        if (this.flags.includes("HideIdentity")) {
+            name = "Mysterious Trainer (" + name + ")";
+        }
+        if (this.extends !== undefined) {
+            name += " (Cursed)";
+        }
+        return name;
     }
 }
