@@ -1,5 +1,6 @@
 "use client";
 
+import BasicButton from "@/components/BasicButton";
 import Dropdown from "@/components/DropDown";
 import { FilterInput } from "@/components/FilterInput";
 import { AVAILABLE_FILTERS, PokemonFilterType } from "@/components/filters";
@@ -220,13 +221,15 @@ const TeamBuilder: NextPage = () => {
                     <p>
                         <InternalLink url="../">Return to homepage</InternalLink>
                     </p>
-                    <FilterInput
-                        currentFilter={currentFilter}
-                        filters={filters}
-                        onAddFilter={handleAddFilter}
-                        removeFilter={removeFilter}
-                        setCurrentFilter={setCurrentFilter}
-                    />
+                    <div>
+                        <FilterInput
+                            currentFilter={currentFilter}
+                            filters={filters}
+                            onAddFilter={handleAddFilter}
+                            removeFilter={removeFilter}
+                            setCurrentFilter={setCurrentFilter}
+                        />
+                    </div>
                     <div className="flex flex-row justify-center items-center gap-4 mt-6">
                         <input
                             type="text"
@@ -235,12 +238,7 @@ const TeamBuilder: NextPage = () => {
                             value={teamName}
                             onChange={(e) => setTeamName(e.target.value)}
                         />
-                        <button
-                            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            onClick={saveTeam}
-                        >
-                            Save Team
-                        </button>
+                        <BasicButton onClick={saveTeam}>Save Team</BasicButton>
                         <Dropdown value={loadedTeam} onChange={(e) => loadTeam(e.target.value)}>
                             <option value="">Load Saved Team</option>
                             {savedTeams.map((team) => (
@@ -258,18 +256,8 @@ const TeamBuilder: NextPage = () => {
                             value={teamCode}
                             onChange={(e) => setTeamCode(e.target.value)}
                         />
-                        <button
-                            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            onClick={importTeam}
-                        >
-                            Import Team
-                        </button>
-                        <button
-                            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            onClick={exportTeam}
-                        >
-                            Export Team
-                        </button>
+                        <BasicButton onClick={importTeam}>Import Team</BasicButton>
+                        <BasicButton onClick={exportTeam}>Export Team</BasicButton>
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 w-full">
                         {Array.from({ length: 6 }).map((_, index) => (

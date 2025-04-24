@@ -131,6 +131,7 @@ const Home: NextPage = () => {
 
                 <div className="text-center p-1.5 w-max mx-auto sticky top-0 bg-gray-900">
                     {tabNames.map((n) => (
+                        // not basic button
                         <button
                             key={n}
                             className={`p-2.5 text-2xl text-center no-underline inline-block rounded-lg mx-2 hover:bg-[#FFD166] hover:text-black hover:cursor-pointer ${

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BasicButton from "./BasicButton";
 import { AVAILABLE_FILTERS, FilterOperator, PokemonFilterType } from "./filters";
 
 interface FilterInputProps {
@@ -87,12 +88,7 @@ export function FilterInput({ currentFilter, filters, onAddFilter, removeFilter,
                         />
                     )}
 
-                    <button
-                        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
-                        onClick={handleAdd}
-                    >
-                        Add Filter
-                    </button>
+                    <BasicButton onClick={handleAdd}>Add Filter</BasicButton>
                 </div>
                 <div className="active-filters flex flex-wrap gap-2">
                     {filters.map((filter, index) => (

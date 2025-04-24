@@ -1,3 +1,4 @@
+import { nullAbility } from "@/app/data/abilities";
 import { encounters } from "@/app/data/encounters";
 import { items } from "@/app/data/items";
 import { moves } from "@/app/data/moves";
@@ -5,9 +6,11 @@ import { pokemon } from "@/app/data/pokemon";
 import { getSignatureAbilities } from "@/app/data/signatures";
 import { calcTypeMatchup } from "@/app/data/typeChart";
 import { types } from "@/app/data/types";
+import { Ability } from "@/app/data/types/Ability";
 import { EncounterMap } from "@/app/data/types/Encounter";
 import { Pokemon } from "@/app/data/types/Pokemon";
 import { negativeMod } from "@/app/data/util";
+import BasicButton from "@/components/BasicButton";
 import TypeBadgeHeader from "@/components/TypeBadgeSingle";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -19,8 +22,6 @@ import PokemonEvolution from "./PokemonEvolution";
 import StatRow from "./StatRow";
 import TabContent from "./TabContent";
 import TypeChartCell from "./TypeChartCell";
-import { Ability } from "@/app/data/types/Ability";
-import { nullAbility } from "@/app/data/abilities";
 
 interface PokemonModalProps {
     allMons: Record<string, Pokemon>;
@@ -179,6 +180,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
                         </div>
                         {currentPokemon.forms.length > 0 && (
                             <div className="flex items-center space-x-2">
+                                {/* not basic buttons */}
                                 <button
                                     onClick={() =>
                                         setCurrentForm(negativeMod(currentForm - 1, currentPokemon.forms.length))
@@ -311,8 +313,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
                                     {!defMatchupDifferentForAbilities ? (
                                         <></>
                                     ) : (
-                                        <button
-                                            className="bg-blue-500 text-white w-36 ml-2 px-2 py-2 rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
+                                        <BasicButton
                                             onClick={() =>
                                                 setSelectedDefAbility(
                                                     currentPokemon.abilities.find((a) => a != selectedDefAbility) ??
@@ -321,7 +322,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
                                             }
                                         >
                                             {selectedDefAbility.name}
-                                        </button>
+                                        </BasicButton>
                                     )}
                                 </div>
                                 <div className="overflow-x-auto mt-4">
@@ -359,8 +360,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
                                 {!stabMatchupDifferentForAbilities ? (
                                     <></>
                                 ) : (
-                                    <button
-                                        className="bg-blue-500 text-white w-36 ml-2 px-2 py-2 rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
+                                    <BasicButton
                                         onClick={() =>
                                             setSelectedStabAbility(
                                                 currentPokemon.abilities.find((a) => a != selectedStabAbility) ??
@@ -369,7 +369,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
                                         }
                                     >
                                         {selectedStabAbility.name}
-                                    </button>
+                                    </BasicButton>
                                 )}
                                 <div className="overflow-x-auto mt-4">
                                     {realTypesSlices.map((slice, index) => (

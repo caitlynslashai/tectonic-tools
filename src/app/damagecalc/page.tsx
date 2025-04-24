@@ -1,5 +1,6 @@
 "use client";
 
+import BasicButton from "@/components/BasicButton";
 import { FilterInput } from "@/components/FilterInput";
 import { AVAILABLE_FILTERS, PokemonFilterType } from "@/components/filters";
 import InlineLink from "@/components/InlineLink";
@@ -290,12 +291,7 @@ const PokemonDamageCalculator: NextPage = () => {
                                             value={teamCode}
                                             onChange={(e) => setTeamCode(e.target.value)}
                                         />
-                                        <button
-                                            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                            onClick={importTeam}
-                                        >
-                                            Import Team
-                                        </button>
+                                        <BasicButton onClick={importTeam}>Import Team</BasicButton>
                                         {!isNull(playerTeam) && (
                                             <>
                                                 <div className="text-center">
@@ -317,12 +313,11 @@ const PokemonDamageCalculator: NextPage = () => {
                                                                     Level: {p.level}
                                                                 </p>
                                                             </div>
-                                                            <button
-                                                                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 focus:ring-2 focus:ring-blue-400"
+                                                            <BasicButton
                                                                 onClick={() => handleLoadingTrainerPokemon(i, "player")}
                                                             >
                                                                 Set Active
-                                                            </button>
+                                                            </BasicButton>
                                                         </div>
                                                     ))}
                                                 </div>
@@ -401,12 +396,7 @@ const PokemonDamageCalculator: NextPage = () => {
                                             </Checkbox>
                                         ))}
                                     </div>
-                                    <button
-                                        onClick={() => swapPokemon()}
-                                        className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 focus:ring-2 focus:ring-blue-400 mt-4"
-                                    >
-                                        Swap Pokémon
-                                    </button>
+                                    <BasicButton onClick={() => swapPokemon()}>Swap Pokémon</BasicButton>
                                 </Column>
 
                                 {/* Opponent's Pokemon Section */}
@@ -414,7 +404,6 @@ const PokemonDamageCalculator: NextPage = () => {
                                     <ColumnHeader colour="text-red-400">Defending Pokémon</ColumnHeader>
                                     <ColumnBody>
                                         <PokemonCard
-                                            pokemonList={filteredPokemon}
                                             data={opponentPokemon}
                                             update={updateOpponentPokemon}
                                             battle={true}
@@ -474,14 +463,13 @@ const PokemonDamageCalculator: NextPage = () => {
                                                                     Level: {p.level}
                                                                 </p>
                                                             </div>
-                                                            <button
-                                                                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 focus:ring-2 focus:ring-blue-400"
+                                                            <BasicButton
                                                                 onClick={() =>
                                                                     handleLoadingTrainerPokemon(i, "opponent")
                                                                 }
                                                             >
                                                                 Set Active
-                                                            </button>
+                                                            </BasicButton>
                                                         </div>
                                                     ))}
                                                 </div>
