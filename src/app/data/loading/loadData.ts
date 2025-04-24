@@ -95,7 +95,7 @@ function standardFilesParser<T extends LoadedData>(files: string[], dataParser: 
                 }
 
                 pairs.length = 0;
-            } else if (!line.includes("#") && line.length > 0) {
+            } else if (!line.trim().startsWith("#") && line.length > 0) {
                 if (line.startsWith("[")) {
                     const value = line.substring(1, line.length - 1);
                     pairs.push({ key: "Bracketvalue", value: value });
