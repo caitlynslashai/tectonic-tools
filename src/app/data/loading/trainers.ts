@@ -108,3 +108,46 @@ export function parseTrainers(pairs: KVPair[]): LoadedTrainer {
 
     return obj;
 }
+
+// propagate trainer data
+export function propagateTrainerData(trainers: Record<string, LoadedTrainer>) {
+    for (const trainerId in trainers) {
+        if (trainers[trainerId].extendsVersion !== undefined) {
+            const key =
+                trainers[trainerId].class +
+                "," +
+                trainers[trainerId].name +
+                (trainers[trainerId].extendsVersion ? "," + trainers[trainerId].extendsVersion : "");
+            const extendedTrainer = trainers[key];
+            if (!extendedTrainer) {
+                throw new Error("Undefined extended trainer " + key + "!");
+            }
+            trainers[trainerId].flags = extendedTrainer.flags.concat(trainers[trainerId].flags);
+            const updatedPokemon = [...extendedTrainer.pokemon];
+            for (const pokemon of trainers[trainerId].pokemon) {
+                const extendedPokemonIndex = extendedTrainer.pokemon.findIndex((p) => p.id === pokemon.id);
+                if (extendedPokemonIndex === -1) {
+                    updatedPokemon.push(pokemon);
+                } else {
+                    const newPokemon = { ...extendedTrainer.pokemon[extendedPokemonIndex] };
+                    newPokemon.abilityIndex = pokemon.abilityIndex;
+                    if (pokemon.itemType) {
+                        newPokemon.itemType = pokemon.itemType;
+                    }
+                    if (pokemon.items.length > 0) {
+                        newPokemon.items = pokemon.items;
+                    }
+                    if (pokemon.moves.length > 0) {
+                        newPokemon.moves = pokemon.moves;
+                    }
+                    if (pokemon.sp.length > 0) {
+                        newPokemon.sp = pokemon.sp;
+                    }
+                    updatedPokemon[extendedPokemonIndex] = newPokemon;
+                }
+            }
+            trainers[trainerId].pokemon = updatedPokemon;
+        }
+    }
+    return trainers;
+}
