@@ -110,7 +110,15 @@ export default function PokemonCard({
     }
 
     function updateForm(form: number) {
-        update({ form });
+        const newMoves = [...data.moves];
+        const illegalMoves = data.moves
+            .map((m, i) => (data.species.allMoves(form).some((mo) => mo.id === m.id) ? undefined : i))
+            .filter((m) => m !== undefined);
+        for (const index of illegalMoves) {
+            newMoves[index] = nullMove;
+        }
+        const ability = data.species.getAbilities(form)[0] ?? data.species.getAbilities(form)[1] ?? nullAbility;
+        update({ form, ability, moves: newMoves });
     }
 
     function updateLevel(level: number) {
