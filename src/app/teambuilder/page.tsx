@@ -20,6 +20,7 @@ import { tribes } from "../data/tribes";
 import { calcTypeMatchup } from "../data/typeChart";
 import { nullType, types } from "../data/types";
 import { PartyPokemon } from "../data/types/PartyPokemon";
+import { Pokemon } from "../data/types/Pokemon";
 import { isNull } from "../data/util";
 import TypeChartCell from "../pokedex/components/TypeChartCell";
 import AtkTotalCell from "./components/AtkTotalCell";
@@ -35,6 +36,7 @@ const TeamBuilder: NextPage = () => {
 
     const [filters, setFilters] = useState<PokemonFilterType[]>([]);
     const [currentFilter, setCurrentFilter] = useState<PokemonFilterType>(AVAILABLE_FILTERS[0]);
+    const [filterPokemon, setFilterPokemon] = useState<Pokemon>(nullPokemon);
 
     const handleAddFilter = (filter: PokemonFilterType, value: string) => {
         setFilters((prev) => [...prev, { ...filter, value }]);
@@ -201,6 +203,21 @@ const TeamBuilder: NextPage = () => {
         return filtered;
     }, [filters, mons]);
 
+    function addNextPokemon() {
+        if (isNull(filterPokemon)) {
+            alert("You must select a Pokémon to use this!");
+            return;
+        }
+        if (cards.filter((p) => !isNull(p.species)).length > 5) {
+            alert("You must have an empty Pokémon slot to use this!");
+            return;
+        }
+        const slotIndex = cards.findIndex((p) => isNull(p.species));
+        const newCards = [...cards];
+        newCards[slotIndex] = new PartyPokemon({ species: filterPokemon });
+        setCards(newCards);
+    }
+
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
             <Head>
@@ -229,6 +246,20 @@ const TeamBuilder: NextPage = () => {
                             removeFilter={removeFilter}
                             setCurrentFilter={setCurrentFilter}
                         />
+                        <div className="flex flex-row">
+                            <Dropdown
+                                value={filterPokemon.id}
+                                onChange={(e) => setFilterPokemon(pokemon[e.target.value] || nullPokemon)}
+                            >
+                                <option value="">Select Pokémon</option>
+                                {filteredPokemon.map((p) => (
+                                    <option key={p.id} value={p.id}>
+                                        {p.name}
+                                    </option>
+                                ))}
+                            </Dropdown>
+                            <BasicButton onClick={addNextPokemon}>Add Next Pokemon</BasicButton>
+                        </div>
                     </div>
                     <div className="flex flex-row justify-center items-center gap-4 mt-6">
                         <input
@@ -265,12 +296,7 @@ const TeamBuilder: NextPage = () => {
                                 key={index}
                                 className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4 flex flex-col items-center w-60"
                             >
-                                <PokemonCard
-                                    pokemonList={filteredPokemon}
-                                    data={cards[index]}
-                                    update={(c) => updateCards(index, c)}
-                                    battle={false}
-                                />
+                                <PokemonCard data={cards[index]} update={(c) => updateCards(index, c)} battle={false} />
                             </div>
                         ))}
                     </div>

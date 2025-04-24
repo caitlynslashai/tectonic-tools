@@ -17,10 +17,11 @@ import Dropdown from "../../components/DropDown";
 import InputLabel from "../../components/InputLabel";
 import PokemonCard from "../../components/PokemonCard";
 import { nullMove } from "../data/moves";
-import { pokemon } from "../data/pokemon";
+import { nullPokemon, pokemon } from "../data/pokemon";
 import { decodeTeam } from "../data/teamExport";
 import { nullTrainer, trainers } from "../data/trainers";
 import { PartyPokemon } from "../data/types/PartyPokemon";
+import { Pokemon } from "../data/types/Pokemon";
 import { Trainer } from "../data/types/Trainer";
 import { isNull } from "../data/util";
 import MoveCard, { MoveData } from "./components/MoveCard";
@@ -51,6 +52,7 @@ const PokemonDamageCalculator: NextPage = () => {
     const [filters, setFilters] = useState<PokemonFilterType[]>([]);
 
     const [currentFilter, setCurrentFilter] = useState<PokemonFilterType>(AVAILABLE_FILTERS[0]);
+    const [filterPokemon, setFilterPokemon] = useState<Pokemon>(nullPokemon);
 
     const handleAddFilter = (filter: PokemonFilterType, value: string) => {
         setFilters((prev) => [...prev, { ...filter, value }]);
@@ -89,10 +91,27 @@ const PokemonDamageCalculator: NextPage = () => {
         setBattleState(newState);
     }
 
+    const getPokemon = {
+        player: playerPokemon,
+        opponent: opponentPokemon,
+    };
+
     const setPokemon = {
         player: setPlayerPokemon,
         opponent: setOpponentPokemon,
     };
+
+    function addPokemon(side: Side) {
+        if (isNull(filterPokemon)) {
+            alert("You select a Pokémon to use this!");
+            return;
+        }
+        if (!isNull(getPokemon[side].species)) {
+            alert("The chosen Pokémon slot must be empty to use this!");
+            return;
+        }
+        setPokemon[side](new PartyPokemon({ species: filterPokemon }));
+    }
 
     const getTrainer = {
         player: playerTeam,
@@ -267,13 +286,30 @@ const PokemonDamageCalculator: NextPage = () => {
                             <InternalLink url="../">Return to homepage</InternalLink>
                         </p>
                     </div>
-                    <FilterInput
-                        currentFilter={currentFilter}
-                        filters={filters}
-                        onAddFilter={handleAddFilter}
-                        removeFilter={removeFilter}
-                        setCurrentFilter={setCurrentFilter}
-                    />
+                    <div>
+                        <FilterInput
+                            currentFilter={currentFilter}
+                            filters={filters}
+                            onAddFilter={handleAddFilter}
+                            removeFilter={removeFilter}
+                            setCurrentFilter={setCurrentFilter}
+                        />
+                        <div className="flex flex-row">
+                            <Dropdown
+                                value={filterPokemon.id}
+                                onChange={(e) => setFilterPokemon(pokemon[e.target.value] || nullPokemon)}
+                            >
+                                <option value="">Select Pokémon</option>
+                                {filteredPokemon.map((p) => (
+                                    <option key={p.id} value={p.id}>
+                                        {p.name}
+                                    </option>
+                                ))}
+                            </Dropdown>
+                            <BasicButton onClick={() => addPokemon("player")}>Set Player Pokémon</BasicButton>
+                            <BasicButton onClick={() => addPokemon("opponent")}>Set Opponent Pokémon</BasicButton>
+                        </div>
+                    </div>
                     {/* Calculator container */}
                     <div className="flex justify-center">
                         <div className="w-full max-w-8xl bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700">
@@ -329,12 +365,7 @@ const PokemonDamageCalculator: NextPage = () => {
                                 <Column>
                                     <ColumnHeader colour="text-blue-400">Attacking Pokémon</ColumnHeader>
                                     <ColumnBody>
-                                        <PokemonCard
-                                            pokemonList={filteredPokemon}
-                                            data={playerPokemon}
-                                            update={updatePlayerPokemon}
-                                            battle={true}
-                                        />
+                                        <PokemonCard data={playerPokemon} update={updatePlayerPokemon} battle={true} />
                                         {/* Move selection */}
                                         <MoveCard
                                             data={playerMove}
