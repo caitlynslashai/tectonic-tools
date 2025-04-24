@@ -3,6 +3,7 @@ import { LoadedTrainer } from "../loading/trainers";
 import { moves, nullMove } from "../moves";
 import { pokemon } from "../pokemon";
 import { getSignatureMoves } from "../signatures";
+import { trainers } from "../trainers";
 import { trainerTypes } from "../trainerTypes";
 import { nullType, types } from "../types";
 import { isNull } from "../util";
@@ -99,7 +100,13 @@ export class Trainer {
     }
 
     public key(): string {
-        return this.class + this.name + this.version;
+        return this.class + "," + this.name + "," + this.version;
+    }
+
+    public extendsKey(): string | undefined {
+        return this.extends !== undefined
+            ? this.class + "," + this.name + (this.extends > 0 ? "," + this.extends : "")
+            : undefined;
     }
 
     public displayName(): string {
@@ -112,6 +119,16 @@ export class Trainer {
             (this.class.includes("MASKEDVILLAIN") && this.hashName ? " (" + this.hashName + ")" : "");
         if (this.flags.includes("HideIdentity")) {
             name = "Mysterious Trainer (" + name + ")";
+        }
+        if (this.version > 0) {
+            const allVersions = Object.values(trainers).filter(
+                (t) => t.class === this.class && t.name === this.name && t.extends === undefined
+            );
+            const baseVersion = this.extends !== undefined ? this.extends : this.version;
+            if (baseVersion > 0) {
+                const publicVersionNumber = allVersions.findIndex((t) => t.version === baseVersion) + 1;
+                name += " (" + publicVersionNumber + ")";
+            }
         }
         if (this.extends !== undefined) {
             name += " (Cursed)";
