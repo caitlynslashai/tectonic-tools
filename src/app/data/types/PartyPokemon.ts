@@ -7,7 +7,7 @@ import { nullPokemon } from "../pokemon";
 import { calculateHP, calculateStat } from "../stats";
 import { StatusEffect, VolatileStatusEffect, volatileStatusEffects } from "../statusEffects";
 import { MAX_LEVEL } from "../teamExport";
-import { nullType } from "../types";
+import { types } from "../types";
 import { isNull } from "../util";
 import { Ability } from "./Ability";
 import { Item } from "./Item";
@@ -32,7 +32,7 @@ export class PartyPokemon {
         this.moves = data?.moves || Array(4).fill(nullMove);
         this.ability = data?.ability || nullAbility;
         this.items = data?.items || Array(2).fill(nullItem);
-        this.itemType = data?.itemType || nullType;
+        this.itemType = data?.itemType || types["NORMAL"];
         this.form = data?.form || nullForm.formId;
         this.level = data?.level || MAX_LEVEL;
         this.stylePoints = data?.stylePoints || defaultStylePoints;

@@ -333,9 +333,6 @@ export default function PokemonCard({
                                             updateItemType(e.target.value);
                                         }}
                                     >
-                                        <option value="" className="bg-gray-800">
-                                            Select Type
-                                        </option>
                                         {realTypes.map((t) => (
                                             <option key={t.id} value={t.id} className="bg-gray-800">
                                                 {t.name}

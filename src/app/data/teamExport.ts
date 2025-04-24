@@ -123,7 +123,7 @@ function encodeChunk(version: VersionMap, view: DataView<ArrayBuffer>, byteOffse
     byteOffset += 4;
 
     const hasSecondItem = data.items.length > 1 && data.items[1].id != nullItem.id;
-    const hasItem1Type = data.itemType.id != nullType.id && data.itemType.id != "NORMAL";
+    const hasItem1Type = data.itemType.id != nullType.id; // always true in practice
     const hasForm = data.form != nullForm.formId && data.form != -1;
 
     third_u32 |= getMonMoveShiftValue(2, MOVE3_SHIFT, MOVE3_MASK);
