@@ -2,8 +2,6 @@ import { StatusEffect } from "../statusEffects";
 import { Move } from "../types/Move";
 import { PartyPokemon } from "../types/PartyPokemon";
 
-export const facadeMoveCodes = ["DoubleDamageUserStatused"];
-
 export class FacadeMove extends Move {
     public getPower(user: PartyPokemon): number {
         if (user.statusEffect !== "None") {
@@ -15,4 +13,6 @@ export class FacadeMove extends Move {
     public ignoreStatus(effect: StatusEffect): boolean {
         return effect === "Burn" || effect === "Frostbite";
     }
+
+    static moveCodes = ["DoubleDamageUserStatused"];
 }

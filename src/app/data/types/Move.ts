@@ -113,4 +113,6 @@ export class Move {
         }
         return trueCategory;
     }
+
+    static moveCodes: string[] = [];
 }
