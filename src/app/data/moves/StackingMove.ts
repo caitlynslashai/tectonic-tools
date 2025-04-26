@@ -14,5 +14,5 @@ export class StackingMove extends Move {
         return this.bp * Math.pow(2, turns);
     }
 
-    static moveCodes = ["EchoedVoice", "RockRoll"];
+    static moveCodes = ["EchoedVoice", "RockRoll", "FuryCutter"];
 }
