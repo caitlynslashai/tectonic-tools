@@ -9,7 +9,7 @@ import { ExtraTypeMove, extraTypeMoveCodes } from "./moves/ExtraTypeMove";
 import { FacadeMove, facadeMoveCodes } from "./moves/FacadeMove";
 import { IgnoreStatMove, ignoreStatMoveCodes } from "./moves/IgnoreStatMove";
 import { MultiHitMove, multiHitMoveCodes } from "./moves/MultiHitMove";
-import { SmellingSaltsMove, smellingSaltsMoveCodes } from "./moves/SmellingSaltsMove";
+import { PunishStatusMove, punishStatusMoveCodes } from "./moves/PunishStatusMove";
 import { SpitUpMove, spitUpMoveCodes } from "./moves/SpitUpMove";
 import { StackingMove, stackingMoveCodes } from "./moves/StackingMove";
 import { VariableTypeMove, variableTypeMoves } from "./moves/TypeFromItemMove";
@@ -41,14 +41,14 @@ function loadMove(move: LoadedMove): Move {
     if (move.functionCode in ignoreStatMoveCodes) {
         return new IgnoreStatMove(move, ignoreStatMoveCodes[move.functionCode]);
     }
+    if (move.functionCode in punishStatusMoveCodes) {
+        return new PunishStatusMove(move, punishStatusMoveCodes[move.functionCode]);
+    }
     if (stackingMoveCodes.includes(move.functionCode)) {
         return new StackingMove(move);
     }
     if (facadeMoveCodes.includes(move.functionCode)) {
         return new FacadeMove(move);
-    }
-    if (smellingSaltsMoveCodes.includes(move.functionCode)) {
-        return new SmellingSaltsMove(move);
     }
     if (desperationMoveCodes.includes(move.functionCode)) {
         return new DesperationMove(move);
