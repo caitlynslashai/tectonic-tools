@@ -89,6 +89,10 @@ export class Move {
         return category === "Physical" ? "attack" : "spatk";
     }
 
+    public getDefendingStat(category: "Physical" | "Special"): Stat {
+        return category === "Physical" ? "defense" : "spdef";
+    }
+
     public ignoresScreens(): boolean {
         return false;
     }

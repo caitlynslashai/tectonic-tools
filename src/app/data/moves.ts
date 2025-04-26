@@ -4,6 +4,7 @@ import { BreakScreensMove, breakScreensMoveCodes } from "./moves/BreakScreensMov
 import { ConditionalDoubleMove, conditionalDoubleMoveCodes } from "./moves/ConditionalDoubleMove";
 import { DesperationMove, desperationMoveCodes } from "./moves/DesperationMove";
 import { DifferentAttackingStatMove, differentAttackStatMoveCodes } from "./moves/DifferentAttackStatMove";
+import { DifferentDefenseStatMove, differentDefenseStatMoveCodes } from "./moves/DifferentDefenseStatMove";
 import { ExtraTypeMove, extraTypeMoveCodes } from "./moves/ExtraTypeMove";
 import { FacadeMove, facadeMoveCodes } from "./moves/FacadeMove";
 import { IgnoreStatMove, ignoreStatMoveCodes } from "./moves/IgnoreStatMove";
@@ -27,6 +28,9 @@ function loadMove(move: LoadedMove): Move {
     }
     if (move.functionCode in differentAttackStatMoveCodes) {
         return new DifferentAttackingStatMove(move, differentAttackStatMoveCodes[move.functionCode]);
+    }
+    if (move.functionCode in differentDefenseStatMoveCodes) {
+        return new DifferentDefenseStatMove(move, differentDefenseStatMoveCodes[move.functionCode]);
     }
     if (move.functionCode in extraTypeMoveCodes) {
         return new ExtraTypeMove(move, extraTypeMoveCodes[move.functionCode]);

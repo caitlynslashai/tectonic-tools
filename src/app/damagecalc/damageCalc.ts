@@ -148,7 +148,7 @@ function damageCalcStats(move: MoveData, userStats: PartyPokemon, targetStats: P
 
     // Calculate target's defense stat
     const defending_stat_holder = targetStats;
-    const defending_stat: Stat = trueCategory === "Physical" ? "defense" : "spdef";
+    const defending_stat: Stat = move.move.getDefendingStat(trueCategory);
     // TODO: implement stat steps
     // let defense_step = defending_stat_holder.steps[defending_stat];
     // if (defense_step > 0 &&
