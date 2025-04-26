@@ -6,6 +6,7 @@ import { DesperationMove, desperationMoveCodes } from "./moves/DesperationMove";
 import { DifferentAttackingStatMove, differentAttackStatMoveCodes } from "./moves/DifferentAttackStatMove";
 import { ExtraTypeMove, extraTypeMoveCodes } from "./moves/ExtraTypeMove";
 import { FacadeMove, facadeMoveCodes } from "./moves/FacadeMove";
+import { IgnoreStatMove, ignoreStatMoveCodes } from "./moves/IgnoreStatMove";
 import { MultiHitMove, multiHitMoveCodes } from "./moves/MultiHitMove";
 import { SmellingSaltsMove, smellingSaltsMoveCodes } from "./moves/SmellingSaltsMove";
 import { SpitUpMove, spitUpMoveCodes } from "./moves/SpitUpMove";
@@ -32,6 +33,9 @@ function loadMove(move: LoadedMove): Move {
     }
     if (move.functionCode in conditionalDoubleMoveCodes) {
         return new ConditionalDoubleMove(move, conditionalDoubleMoveCodes[move.functionCode]);
+    }
+    if (move.functionCode in ignoreStatMoveCodes) {
+        return new IgnoreStatMove(move, ignoreStatMoveCodes[move.functionCode]);
     }
     if (stackingMoveCodes.includes(move.functionCode)) {
         return new StackingMove(move);

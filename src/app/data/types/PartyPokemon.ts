@@ -5,6 +5,7 @@ import { nullForm } from "../forms";
 import { nullItem } from "../items";
 import { TypeChangingItem } from "../items/TypeChangingItem";
 import { nullMove } from "../moves";
+import { IgnoreStatMove } from "../moves/IgnoreStatMove";
 import { nullPokemon } from "../pokemon";
 import { calculateHP, calculateStat } from "../stats";
 import { StatusEffect, VolatileStatusEffect, volatileStatusEffects } from "../statusEffects";
@@ -58,6 +59,11 @@ export class PartyPokemon {
             if (side === "opponent") {
                 steps.defense = Math.min(0, steps.defense);
                 steps.spdef = Math.min(0, steps.defense);
+            }
+        }
+        if (move?.move instanceof IgnoreStatMove && side === "opponent") {
+            for (const stat of move.move.ignoreStats) {
+                steps[stat] = Math.min(0, steps[stat]);
             }
         }
         let speed = calculateStat(this.species.stats.speed, this.level, this.stylePoints.speed, steps.speed, stylish);
