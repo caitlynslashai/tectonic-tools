@@ -5,6 +5,8 @@ import { Stat } from "../data/types/Pokemon";
 import { MoveData } from "./components/MoveCard";
 import { BattleState } from "./page";
 
+export type Side = "player" | "opponent";
+
 export interface DamageResult {
     damage: number;
     percentage: number;
@@ -38,7 +40,7 @@ export function calculateDamage(
 
     // Calculate the actual damage dealt, and assign it to the damage state for tracking
     const [damage, typeEffectMult] = calculateDamageForHit(move, user, target, baseDmg, battleState);
-    const percentage = damage / target.stats.hp;
+    const percentage = damage / target.getStats(move, "opponent").hp;
     const hits = Math.ceil(1 / percentage);
     if (move.move instanceof MultiHitMove) {
         const minTotal = damage * move.move.minHits;
@@ -50,8 +52,8 @@ export function calculateDamage(
             typeEffectMult,
             minTotal,
             maxTotal,
-            minPercentage: minTotal / target.stats.hp,
-            maxPercentage: maxTotal / target.stats.hp,
+            minPercentage: minTotal / target.getStats(move, "opponent").hp,
+            maxPercentage: maxTotal / target.getStats(move, "opponent").hp,
         };
     }
     return { damage, percentage, hits, typeEffectMult };
@@ -125,7 +127,7 @@ function calcBasicDamage(
 
 function damageCalcStats(move: MoveData, userStats: PartyPokemon, targetStats: PartyPokemon): [number, number] {
     // Calculate category for adaptive moves
-    const trueCategory = move.move.getDamageCategory(userStats);
+    const trueCategory = move.move.getDamageCategory(move, userStats);
     // Calculate user's attack stat
     // TODO: implement moves like foul play or body press
     const attacking_stat_holder = userStats;
@@ -141,7 +143,8 @@ function damageCalcStats(move: MoveData, userStats: PartyPokemon, targetStats: P
     // TODO: Critical hits ignore negative attack steps
     // attack_step = 0 if critical && attack_step < 0;
     // attack_step = 0 if target.hasActiveAbility("UNAWARE") && !battle.moldBreaker;
-    const attack = attacking_stat_holder.stats[attacking_stat];
+    // TODO: update "side" if attacking stat holder is changed by moves like e.g. foul play
+    const attack = attacking_stat_holder.getStats(move, "player")[attacking_stat];
 
     // Calculate target's defense stat
     const defending_stat_holder = targetStats;
@@ -153,7 +156,7 @@ function damageCalcStats(move: MoveData, userStats: PartyPokemon, targetStats: P
     //     defense_step = 0;
     // }
     // defense_step = 0 if user.hasActiveAbility("UNAWARE");
-    const defense = defending_stat_holder.stats[defending_stat];
+    const defense = defending_stat_holder.getStats(move, "opponent")[defending_stat];
 
     return [attack, defense];
 }
@@ -432,13 +435,13 @@ function pbCalcProtectionsDamageMultipliers(
             } else {
                 multipliers.final_damage_multiplier *= 0.5;
             }
-        } else if (battleState.Reflect && move.move.getDamageCategory(user) === "Physical") {
+        } else if (battleState.Reflect && move.move.getDamageCategory(move, user) === "Physical") {
             if (battleState["Multi Battle"]) {
                 multipliers.final_damage_multiplier *= 2 / 3.0;
             } else {
                 multipliers.final_damage_multiplier *= 0.5;
             }
-        } else if (battleState["Light Screen"] && move.move.getDamageCategory(user) === "Special") {
+        } else if (battleState["Light Screen"] && move.move.getDamageCategory(move, user) === "Special") {
             if (battleState["Multi Battle"]) {
                 multipliers.final_damage_multiplier *= 2 / 3.0;
             } else {

@@ -1,3 +1,4 @@
+import { MoveData } from "@/app/damagecalc/components/MoveCard";
 import { LoadedMove } from "../loading/moves";
 import { StatusEffect } from "../statusEffects";
 import { types } from "../types";
@@ -92,10 +93,10 @@ export class Move {
         return false;
     }
 
-    public getDamageCategory(user: PartyPokemon): "Physical" | "Special" {
+    public getDamageCategory(move: MoveData, user: PartyPokemon): "Physical" | "Special" {
         let trueCategory: "Physical" | "Special";
         if (this.category === "Adaptive") {
-            if (user.stats.attack >= user.stats.spatk) {
+            if (user.getStats(move, "player").attack >= user.getStats(move, "player").spatk) {
                 trueCategory = "Physical";
             } else {
                 trueCategory = "Special";

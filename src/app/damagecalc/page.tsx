@@ -25,7 +25,7 @@ import { Pokemon } from "../data/types/Pokemon";
 import { Trainer } from "../data/types/Trainer";
 import { isNull } from "../data/util";
 import MoveCard, { MoveData } from "./components/MoveCard";
-import { calculateDamage, DamageResult } from "./damageCalc";
+import { calculateDamage, DamageResult, Side } from "./damageCalc";
 
 const nullMoveData = { move: nullMove, criticalHit: false, customVar: undefined };
 
@@ -71,8 +71,6 @@ const PokemonDamageCalculator: NextPage = () => {
         });
         return filtered;
     }, [filters, mons]);
-
-    type Side = "player" | "opponent";
 
     function updatePlayerPokemon(card: Partial<PartyPokemon>) {
         setPlayerPokemon(new PartyPokemon({ ...playerPokemon, ...card }));

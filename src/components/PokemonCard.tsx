@@ -366,7 +366,9 @@ export default function PokemonCard({
                                     return (
                                         <tr key={statName}>
                                             <td className="text-gray-300 w-16 text-right">{statName.toUpperCase()}</td>
-                                            <td className="text-gray-400 w-12 text-center">{data.stats[statName]}</td>
+                                            <td className="text-gray-400 w-12 text-center">
+                                                {data.getStats()[statName]}
+                                            </td>
                                             <td>
                                                 <input
                                                     type="number"

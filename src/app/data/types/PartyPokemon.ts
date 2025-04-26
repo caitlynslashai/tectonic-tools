@@ -1,3 +1,5 @@
+import { MoveData } from "@/app/damagecalc/components/MoveCard";
+import { Side } from "@/app/damagecalc/damageCalc";
 import { nullAbility } from "../abilities";
 import { nullForm } from "../forms";
 import { nullItem } from "../items";
@@ -43,15 +45,22 @@ export class PartyPokemon {
             (Object.fromEntries(volatileStatusEffects.map((e) => [e, false])) as Record<VolatileStatusEffect, boolean>);
     }
 
-    get stats(): Stats {
+    public getStats(move?: MoveData, side?: Side): Stats {
         const stylish = this.ability.id === "STYLISH";
-        let speed = calculateStat(
-            this.species.stats.speed,
-            this.level,
-            this.stylePoints.speed,
-            this.statSteps.speed,
-            stylish
-        );
+        const steps = { ...this.statSteps };
+        if (move?.criticalHit) {
+            // crits ignore player attack drops
+            if (side === "player") {
+                steps.attack = Math.max(0, steps.attack);
+                steps.spatk = Math.max(0, steps.spatk);
+            }
+            // crits ignore defender defense ups
+            if (side === "opponent") {
+                steps.defense = Math.min(0, steps.defense);
+                steps.spdef = Math.min(0, steps.defense);
+            }
+        }
+        let speed = calculateStat(this.species.stats.speed, this.level, this.stylePoints.speed, steps.speed, stylish);
         // TODO: abilities probably can sometimes affect this
         if (this.statusEffect === "Numb") {
             speed = speed / 2;
@@ -62,30 +71,18 @@ export class PartyPokemon {
                 this.species.stats.attack,
                 this.level,
                 this.stylePoints.attacks,
-                this.statSteps.attack,
+                steps.attack,
                 stylish
             ),
             defense: calculateStat(
                 this.species.stats.defense,
                 this.level,
                 this.stylePoints.defense,
-                this.statSteps.defense,
+                steps.defense,
                 stylish
             ),
-            spatk: calculateStat(
-                this.species.stats.spatk,
-                this.level,
-                this.stylePoints.attacks,
-                this.statSteps.spatk,
-                stylish
-            ),
-            spdef: calculateStat(
-                this.species.stats.spdef,
-                this.level,
-                this.stylePoints.spdef,
-                this.statSteps.spdef,
-                stylish
-            ),
+            spatk: calculateStat(this.species.stats.spatk, this.level, this.stylePoints.attacks, steps.spatk, stylish),
+            spdef: calculateStat(this.species.stats.spdef, this.level, this.stylePoints.spdef, steps.spdef, stylish),
             speed,
         };
         return calculatedStats;

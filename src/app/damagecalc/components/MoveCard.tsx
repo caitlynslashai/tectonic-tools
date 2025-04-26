@@ -15,11 +15,12 @@ export interface MoveData {
     criticalHit: boolean;
 }
 
-function getMoveCategory(move: Move, userData: PartyPokemon) {
-    if (move.category !== "Adaptive") {
-        return move.category;
+function getMoveCategory(move: MoveData, userData: PartyPokemon) {
+    if (move.move.category !== "Adaptive") {
+        return move.move.category;
     }
-    const trueCategory = userData.stats.attack >= userData.stats.spatk ? "Physical" : "Special";
+    const trueCategory =
+        userData.getStats(move, "player").attack >= userData.getStats(move, "player").spatk ? "Physical" : "Special";
     return "Adaptive (" + trueCategory + ")";
 }
 
@@ -131,7 +132,7 @@ export default function MoveCard({
                             {data.move.getPower(userData, targetData, data.customVar)}
                         </div>
                         <div className="text-right text-gray-400">Category:</div>
-                        <div className="text-left text-gray-200">{getMoveCategory(data.move, userData)}</div>
+                        <div className="text-left text-gray-200">{getMoveCategory(data, userData)}</div>
                     </div>
                 </div>
             )}
