@@ -4,7 +4,9 @@ import { HitsFliersMove } from "./moves/HitsFliersMove";
 import { types } from "./types";
 import { Ability } from "./types/Ability";
 import { Move } from "./types/Move";
+import { PartyPokemon } from "./types/PartyPokemon";
 import { PokemonType } from "./types/PokemonType";
+import { isNull } from "./util";
 
 export const typeChart = loadedChart;
 
@@ -74,6 +76,7 @@ const doubleDealtMoves = [
     { move: "BLACKOUT", type1: "ELECTRIC" },
 ];
 
+// Calculates the best mult value given all attacker moves in that case
 export function calcTypeMatchup(atk: AttackerData, def: DefenderData) {
     const atkType = atk.type;
     const defType1 = def.type1;
@@ -134,7 +137,7 @@ export function calcTypeMatchup(atk: AttackerData, def: DefenderData) {
     }
 
     let atkAbilityCalc = 1.0;
-    let atkMoveCalc = 1.0;
+    let atkMoveCalc = 1;
     const atkAbility = atk.ability;
     if (atkAbility !== undefined) {
         if (atkAbility.flags.includes("MoldBreaking")) {
@@ -149,8 +152,9 @@ export function calcTypeMatchup(atk: AttackerData, def: DefenderData) {
             atkAbilityCalc = 1.3;
         }
     }
+
     const atkMove = atk.move;
-    if (atkMove !== undefined) {
+    if (atkMove && atkMove.isAttackingMove()) {
         const doubleDealtMatch = doubleDealtMoves.find((x) => x.move == atkMove.id);
         if (
             doubleDealtMatch !== undefined &&
@@ -158,14 +162,20 @@ export function calcTypeMatchup(atk: AttackerData, def: DefenderData) {
                 doubleDealtMatch.type1 == def.type2?.id ||
                 doubleDealtMatch.type1 == thirdType)
         ) {
-            atkMoveCalc = 0;
+            atkMoveCalc = 2;
         }
         if (atkMove instanceof ExtraTypeMove) {
             // should not recur by a depth of more than 1, since move is no longer defined
-            const extraTypeCalc = calcTypeMatchup({ type: atkMove.extraType }, def);
-            atkMoveCalc *= extraTypeCalc;
+            atkMoveCalc *= calcTypeMatchup({ type: atkMove.extraType, ability: atk.ability }, def);
         }
     }
 
     return defType1Calc * defType2Calc * defAbilityCalc * atkAbilityCalc * atkMoveCalc;
+}
+
+export function calcBestMoveMatchup(mon: PartyPokemon, def: DefenderData): number {
+    const calcs = mon.moves
+        .filter((m) => m != undefined && !isNull(m) && m.isAttackingMove())
+        .map((m) => calcTypeMatchup({ type: m.type, move: m, ability: mon.ability }, def));
+    return calcs.length > 0 ? Math.max(...calcs) : 1;
 }

@@ -11,10 +11,9 @@ import { EncounterMap } from "@/app/data/types/Encounter";
 import { Pokemon } from "@/app/data/types/Pokemon";
 import { negativeMod } from "@/app/data/util";
 import BasicButton from "@/components/BasicButton";
-import TypeBadgeHeader from "@/components/TypeBadgeSingle";
+import TypeBadge, { TypeBadgeElementEnum } from "@/components/TypeBadge";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import TypeBadge from "../../../components/TypeBadge";
 import EncounterDisplay from "./EncounterDisplay";
 import EStatRow from "./EStatRow";
 import MoveDisplay from "./MoveDisplay";
@@ -129,10 +128,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
             stabMatchupCalcs[a.id][t.id] = Math.max(
                 calcTypeMatchup({ type: currentPokemon.getType1(currentForm), ability: a }, { type1: t }),
                 calcTypeMatchup(
-                    {
-                        type: currentPokemon.getType2(currentForm) || currentPokemon.getType1(currentForm),
-                        ability: a,
-                    },
+                    { type: currentPokemon.getType2(currentForm) || currentPokemon.getType1(currentForm), ability: a },
                     { type1: t }
                 )
             );
@@ -174,8 +170,10 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
                                     "(" + currentPokemon.getFormName(currentForm) + ")"}
                             </h2>
                             <TypeBadge
-                                type1={currentPokemon.getType1(currentForm)}
-                                type2={currentPokemon.getType2(currentForm)}
+                                key={currentPokemon.getType1(currentForm).id}
+                                types={[currentPokemon.getType1(currentForm), currentPokemon.getType2(currentForm)]}
+                                useShort={false}
+                                element={TypeBadgeElementEnum.CAPSULE_ROW}
                             />
                         </div>
                         {currentPokemon.forms.length > 0 && (
@@ -331,7 +329,12 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
                                             <thead>
                                                 <tr>
                                                     {slice.map((t) => (
-                                                        <TypeBadgeHeader key={t.id} type={t} useShort={false} />
+                                                        <TypeBadge
+                                                            key={t.id}
+                                                            types={[t]}
+                                                            useShort={true}
+                                                            element={TypeBadgeElementEnum.TABLE_HEADER}
+                                                        />
                                                     ))}
                                                 </tr>
                                             </thead>
@@ -377,7 +380,12 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
                                             <thead>
                                                 <tr>
                                                     {slice.map((t) => (
-                                                        <TypeBadgeHeader key={t.id} type={t} useShort={false} />
+                                                        <TypeBadge
+                                                            key={t.id}
+                                                            types={[t]}
+                                                            useShort={true}
+                                                            element={TypeBadgeElementEnum.TABLE_HEADER}
+                                                        />
                                                     ))}
                                                 </tr>
                                             </thead>
