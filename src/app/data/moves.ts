@@ -9,6 +9,7 @@ import { DifferentDefenseStatMove } from "./moves/DifferentDefenseStatMove";
 import { ExtraTypeMove } from "./moves/ExtraTypeMove";
 import { FacadeMove } from "./moves/FacadeMove";
 import { HitsFliersMove } from "./moves/HitsFliersMove";
+import { HPScalingMove } from "./moves/HPScalingMove";
 import { IgnoreStatMove } from "./moves/IgnoreStatMove";
 import { MultiHitMove } from "./moves/MultiHitMove";
 import { SlownessScalingMove } from "./moves/SlownessScalingMove";
@@ -29,6 +30,7 @@ const moveSubclasses = [
     ExtraTypeMove,
     FacadeMove,
     HitsFliersMove,
+    HPScalingMove,
     IgnoreStatMove,
     MultiHitMove,
     SlownessScalingMove,
