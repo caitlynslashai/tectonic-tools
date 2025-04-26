@@ -12,9 +12,9 @@ export class ConditionalDoubleMove extends Move {
     customVarName: string;
     customVarType: string = "boolean";
     needsInput: boolean = true;
-    constructor(move: LoadedMove, condition: string) {
+    constructor(move: LoadedMove) {
         super(move);
-        this.customVarName = condition;
+        this.customVarName = conditionalDoubleMoveCodes[move.functionCode];
     }
 
     public getPower(_: PartyPokemon, __: PartyPokemon, condition: boolean): number {

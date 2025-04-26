@@ -8,9 +8,9 @@ export const differentAttackStatMoveCodes: Record<string, Stat> = {
 
 export class DifferentAttackingStatMove extends Move {
     attackStat: Stat;
-    constructor(move: LoadedMove, attackStat: Stat) {
+    constructor(move: LoadedMove) {
         super(move);
-        this.attackStat = attackStat;
+        this.attackStat = differentAttackStatMoveCodes[move.functionCode];
     }
 
     public getAttackingStat(): Stat {

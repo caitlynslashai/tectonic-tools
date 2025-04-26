@@ -18,31 +18,30 @@ import { Move } from "./types/Move";
 
 function loadMove(move: LoadedMove): Move {
     if (move.functionCode in multiHitMoveCodes) {
-        const hits = multiHitMoveCodes[move.functionCode];
-        return new MultiHitMove(move, hits);
+        return new MultiHitMove(move);
     }
     // Judgment, Multi-Attack, and Techno Blast are sufficiently hardcoded that
     // a functionCode-based approach would be more roundabout
     if (move.key in variableTypeMoves) {
-        return new VariableTypeMove(move, variableTypeMoves[move.key]);
+        return new VariableTypeMove(move);
     }
     if (move.functionCode in differentAttackStatMoveCodes) {
-        return new DifferentAttackingStatMove(move, differentAttackStatMoveCodes[move.functionCode]);
+        return new DifferentAttackingStatMove(move);
     }
     if (move.functionCode in differentDefenseStatMoveCodes) {
-        return new DifferentDefenseStatMove(move, differentDefenseStatMoveCodes[move.functionCode]);
+        return new DifferentDefenseStatMove(move);
     }
     if (move.functionCode in extraTypeMoveCodes) {
-        return new ExtraTypeMove(move, extraTypeMoveCodes[move.functionCode]);
+        return new ExtraTypeMove(move);
     }
     if (move.functionCode in conditionalDoubleMoveCodes) {
-        return new ConditionalDoubleMove(move, conditionalDoubleMoveCodes[move.functionCode]);
+        return new ConditionalDoubleMove(move);
     }
     if (move.functionCode in ignoreStatMoveCodes) {
-        return new IgnoreStatMove(move, ignoreStatMoveCodes[move.functionCode]);
+        return new IgnoreStatMove(move);
     }
     if (move.functionCode in punishStatusMoveCodes) {
-        return new PunishStatusMove(move, punishStatusMoveCodes[move.functionCode]);
+        return new PunishStatusMove(move);
     }
     if (stackingMoveCodes.includes(move.functionCode)) {
         return new StackingMove(move);

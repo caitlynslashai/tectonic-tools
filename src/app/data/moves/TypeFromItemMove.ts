@@ -115,9 +115,10 @@ export const variableTypeMoves: Record<keyof typeof moves, MoveTypeFunction> = {
 
 export class VariableTypeMove extends Move {
     typeFunction: MoveTypeFunction;
-    constructor(move: LoadedMove, typeFunction: MoveTypeFunction) {
+    constructor(move: LoadedMove) {
         super(move);
-        this.typeFunction = typeFunction;
+        // exception to indexing by function code due to weirdness with judgment and multiattack :pensive:
+        this.typeFunction = variableTypeMoves[move.name];
     }
     public getType(user: PartyPokemon): PokemonType {
         return this.typeFunction(user) || this.type;

@@ -24,8 +24,9 @@ export const multiHitMoveCodes: Record<string, MultiHits> = {
 export class MultiHitMove extends Move {
     minHits: number;
     maxHits: number;
-    constructor(move: LoadedMove, hits: MultiHits) {
+    constructor(move: LoadedMove) {
         super(move);
+        const hits = multiHitMoveCodes[move.functionCode];
         this.minHits = hits.minHits;
         this.maxHits = hits.maxHits;
     }

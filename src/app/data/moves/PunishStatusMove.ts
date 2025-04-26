@@ -7,9 +7,9 @@ export const punishStatusMoveCodes: Record<string, StatusEffect> = { SmellingSal
 
 export class PunishStatusMove extends Move {
     punishedStatus: StatusEffect;
-    constructor(move: LoadedMove, punishedStatus: StatusEffect) {
+    constructor(move: LoadedMove) {
         super(move);
-        this.punishedStatus = punishedStatus;
+        this.punishedStatus = punishStatusMoveCodes[move.functionCode];
     }
 
     public getPower(_: PartyPokemon, target: PartyPokemon): number {

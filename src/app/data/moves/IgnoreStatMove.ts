@@ -8,8 +8,8 @@ export const ignoreStatMoveCodes: Record<string, Stat[]> = {
 
 export class IgnoreStatMove extends Move {
     ignoreStats: Stat[];
-    constructor(move: LoadedMove, ignoreStats: Stat[]) {
+    constructor(move: LoadedMove) {
         super(move);
-        this.ignoreStats = ignoreStats;
+        this.ignoreStats = ignoreStatMoveCodes[move.functionCode];
     }
 }

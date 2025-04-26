@@ -7,8 +7,8 @@ export const extraTypeMoveCodes: Record<string, string> = { EffectivenessInclude
 
 export class ExtraTypeMove extends Move {
     extraType: PokemonType;
-    constructor(move: LoadedMove, extraType: string) {
+    constructor(move: LoadedMove) {
         super(move);
-        this.extraType = types[extraType];
+        this.extraType = types[extraTypeMoveCodes[move.functionCode]];
     }
 }
