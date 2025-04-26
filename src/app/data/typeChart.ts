@@ -1,5 +1,6 @@
 import loadedChart from "public/data/typechart.json";
 import { ExtraTypeMove } from "./moves/ExtraTypeMove";
+import { HitsFliersMove } from "./moves/HitsFliersMove";
 import { types } from "./types";
 import { Ability } from "./types/Ability";
 import { Move } from "./types/Move";
@@ -79,11 +80,22 @@ export function calcTypeMatchup(atk: AttackerData, def: DefenderData) {
     let thirdType = null;
 
     let defType1Calc = typeChart[atkType.index][defType1.index];
+
+    // certain moves pierce ground immunity
+    // TODO: Revisit this to make it more generic when e.g. gravity is implemented
+    if (atk.move instanceof HitsFliersMove && atk.type.id === "GROUND") {
+        defType1Calc = Math.max(defType1Calc, 1);
+    }
+
     let defType2Calc = 1.0;
     let defAbilityCalc = 1.0;
     if (def.type2 !== undefined) {
         const defType2 = def.type2;
         defType2Calc = typeChart[atkType.index][defType2.index];
+        // certain moves pierce ground immunity
+        if (atk.move instanceof HitsFliersMove && atk.type.id === "GROUND") {
+            defType2Calc = Math.max(defType2Calc, 1);
+        }
     }
     const defAbility = def.ability;
     if (defAbility !== undefined) {
@@ -104,7 +116,12 @@ export function calcTypeMatchup(atk: AttackerData, def: DefenderData) {
             immunityMatch !== undefined &&
             (immunityMatch.type1 == atk.type.id || immunityMatch.type2 == atk.type.id)
         ) {
-            defAbilityCalc = 0;
+            // certain moves pierce ground immunity
+            if (atk.move instanceof HitsFliersMove && atk.type.id === "GROUND") {
+                defAbilityCalc = 1;
+            } else {
+                defAbilityCalc = 0;
+            }
         } else if (halfMatch !== undefined && (halfMatch.type1 == atk.type.id || halfMatch.type2 == atk.type.id)) {
             defAbilityCalc = 0.5;
         } else if (doubleMatch !== undefined && doubleMatch.type1 == atk.type.id) {
