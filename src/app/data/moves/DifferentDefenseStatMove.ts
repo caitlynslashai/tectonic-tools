@@ -2,7 +2,7 @@ import { LoadedMove } from "../loading/moves";
 import { Move } from "../types/Move";
 import { Stat } from "../types/Pokemon";
 
-export const differentDefenseStatMoveCodes: Record<string, Stat> = {
+const differentDefenseStatMoveCodes: Record<string, Stat> = {
     DoesPhysicalDamage: "defense",
 };
 
@@ -16,4 +16,6 @@ export class DifferentDefenseStatMove extends Move {
     public getDefendingStat(): Stat {
         return this.defenseStat;
     }
+
+    static moveCodes = Object.keys(differentDefenseStatMoveCodes);
 }

@@ -6,7 +6,7 @@ interface MultiHits {
     maxHits: number;
 }
 
-export const multiHitMoveCodes: Record<string, MultiHits> = {
+const multiHitMoveCodes: Record<string, MultiHits> = {
     HitTwoToFiveTimes: {
         minHits: 2,
         maxHits: 5,
@@ -30,4 +30,6 @@ export class MultiHitMove extends Move {
         this.minHits = hits.minHits;
         this.maxHits = hits.maxHits;
     }
+
+    static moveCodes = Object.keys(multiHitMoveCodes);
 }

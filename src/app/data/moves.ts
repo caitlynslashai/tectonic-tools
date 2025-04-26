@@ -1,65 +1,48 @@
 import loadedMoves from "public/data/moves.json";
 import { LoadedMove } from "./loading/moves";
-import { BreakScreensMove, breakScreensMoveCodes } from "./moves/BreakScreensMove";
-import { ConditionalDoubleMove, conditionalDoubleMoveCodes } from "./moves/ConditionalDoubleMove";
-import { DesperationMove, desperationMoveCodes } from "./moves/DesperationMove";
-import { DifferentAttackingStatMove, differentAttackStatMoveCodes } from "./moves/DifferentAttackStatMove";
-import { DifferentDefenseStatMove, differentDefenseStatMoveCodes } from "./moves/DifferentDefenseStatMove";
-import { ExtraTypeMove, extraTypeMoveCodes } from "./moves/ExtraTypeMove";
-import { FacadeMove, facadeMoveCodes } from "./moves/FacadeMove";
-import { IgnoreStatMove, ignoreStatMoveCodes } from "./moves/IgnoreStatMove";
-import { MultiHitMove, multiHitMoveCodes } from "./moves/MultiHitMove";
-import { PunishStatusMove, punishStatusMoveCodes } from "./moves/PunishStatusMove";
-import { SpitUpMove, spitUpMoveCodes } from "./moves/SpitUpMove";
-import { StackingMove, stackingMoveCodes } from "./moves/StackingMove";
+import { BreakScreensMove } from "./moves/BreakScreensMove";
+import { ConditionalDoubleMove } from "./moves/ConditionalDoubleMove";
+import { DesperationMove } from "./moves/DesperationMove";
+import { DifferentAttackingStatMove } from "./moves/DifferentAttackStatMove";
+import { DifferentDefenseStatMove } from "./moves/DifferentDefenseStatMove";
+import { ExtraTypeMove } from "./moves/ExtraTypeMove";
+import { FacadeMove } from "./moves/FacadeMove";
+import { IgnoreStatMove } from "./moves/IgnoreStatMove";
+import { MultiHitMove } from "./moves/MultiHitMove";
+import { PunishStatusMove } from "./moves/PunishStatusMove";
+import { SpitUpMove } from "./moves/SpitUpMove";
+import { StackingMove } from "./moves/StackingMove";
 import { VariableTypeMove, variableTypeMoves } from "./moves/TypeFromItemMove";
-import { WeightScalingMove, weightScalingMoveCodes } from "./moves/WeightScalingMove";
+import { WeightScalingMove } from "./moves/WeightScalingMove";
 import { Move } from "./types/Move";
 
+const moveSubclasses = [
+    BreakScreensMove,
+    ConditionalDoubleMove,
+    DesperationMove,
+    DifferentAttackingStatMove,
+    DifferentDefenseStatMove,
+    ExtraTypeMove,
+    FacadeMove,
+    IgnoreStatMove,
+    MultiHitMove,
+    PunishStatusMove,
+    SpitUpMove,
+    StackingMove,
+    // VariableTypeMove is handled separately
+    WeightScalingMove,
+];
+
 function loadMove(move: LoadedMove): Move {
-    if (move.functionCode in multiHitMoveCodes) {
-        return new MultiHitMove(move);
-    }
     // Judgment, Multi-Attack, and Techno Blast are sufficiently hardcoded that
     // a functionCode-based approach would be more roundabout
     if (move.key in variableTypeMoves) {
         return new VariableTypeMove(move);
     }
-    if (move.functionCode in differentAttackStatMoveCodes) {
-        return new DifferentAttackingStatMove(move);
-    }
-    if (move.functionCode in differentDefenseStatMoveCodes) {
-        return new DifferentDefenseStatMove(move);
-    }
-    if (move.functionCode in extraTypeMoveCodes) {
-        return new ExtraTypeMove(move);
-    }
-    if (move.functionCode in conditionalDoubleMoveCodes) {
-        return new ConditionalDoubleMove(move);
-    }
-    if (move.functionCode in ignoreStatMoveCodes) {
-        return new IgnoreStatMove(move);
-    }
-    if (move.functionCode in punishStatusMoveCodes) {
-        return new PunishStatusMove(move);
-    }
-    if (stackingMoveCodes.includes(move.functionCode)) {
-        return new StackingMove(move);
-    }
-    if (facadeMoveCodes.includes(move.functionCode)) {
-        return new FacadeMove(move);
-    }
-    if (desperationMoveCodes.includes(move.functionCode)) {
-        return new DesperationMove(move);
-    }
-    if (breakScreensMoveCodes.includes(move.functionCode)) {
-        return new BreakScreensMove(move);
-    }
-    if (weightScalingMoveCodes.includes(move.functionCode)) {
-        return new WeightScalingMove(move);
-    }
-    if (spitUpMoveCodes.includes(move.functionCode)) {
-        return new SpitUpMove(move);
+    for (const subclass of moveSubclasses) {
+        if (subclass.moveCodes.includes(move.functionCode)) {
+            return new subclass(move);
+        }
     }
     return new Move(move);
 }

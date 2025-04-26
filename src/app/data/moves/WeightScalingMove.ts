@@ -1,8 +1,6 @@
 import { Move } from "../types/Move";
 import { PartyPokemon } from "../types/PartyPokemon";
 
-export const weightScalingMoveCodes = ["ScalesTargetsWeight"];
-
 export class WeightScalingMove extends Move {
     public getPower(_: PartyPokemon, target: PartyPokemon): number {
         let ret = 15;
@@ -12,4 +10,6 @@ export class WeightScalingMove extends Move {
         ret += Math.floor((4 * Math.sqrt(weight)) / 5) * 5;
         return ret;
     }
+
+    static moveCodes = ["ScalesTargetsWeight"];
 }

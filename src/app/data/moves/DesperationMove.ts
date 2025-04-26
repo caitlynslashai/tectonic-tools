@@ -1,8 +1,6 @@
 import { Move } from "../types/Move";
 import { PartyPokemon } from "../types/PartyPokemon";
 
-export const desperationMoveCodes = ["ScalesWithLostHP"];
-
 export class DesperationMove extends Move {
     customVarName: string = "HP";
     customVarType: string = "number";
@@ -13,4 +11,6 @@ export class DesperationMove extends Move {
         const hpRatio = hp / user.getStats().hp;
         return Math.min(Math.floor(20 / (hpRatio * 5) ** 0.75) * 5, 200);
     }
+
+    static moveCodes = ["ScalesWithLostHP"];
 }

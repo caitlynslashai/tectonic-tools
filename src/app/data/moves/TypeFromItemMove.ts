@@ -123,4 +123,6 @@ export class VariableTypeMove extends Move {
     public getType(user: PartyPokemon): PokemonType {
         return this.typeFunction(user) || this.type;
     }
+
+    // no move codes defined due to unique exception
 }

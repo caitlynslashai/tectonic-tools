@@ -2,7 +2,7 @@ import { LoadedMove } from "../loading/moves";
 import { Move } from "../types/Move";
 import { Stat } from "../types/Pokemon";
 
-export const ignoreStatMoveCodes: Record<string, Stat[]> = {
+const ignoreStatMoveCodes: Record<string, Stat[]> = {
     IgnoreTargetDefSpDefEvaStatStages: ["defense", "spdef"],
 };
 
@@ -12,4 +12,6 @@ export class IgnoreStatMove extends Move {
         super(move);
         this.ignoreStats = ignoreStatMoveCodes[move.functionCode];
     }
+
+    static moveCodes = Object.keys(ignoreStatMoveCodes);
 }

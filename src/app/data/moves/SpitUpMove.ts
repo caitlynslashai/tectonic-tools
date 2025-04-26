@@ -1,8 +1,6 @@
 import { Move } from "../types/Move";
 import { PartyPokemon } from "../types/PartyPokemon";
 
-export const spitUpMoveCodes = ["PowerDependsOnUserStockpile"];
-
 export class SpitUpMove extends Move {
     customVarName: string = "Stockpiles";
     customVarType: string = "number";
@@ -12,4 +10,6 @@ export class SpitUpMove extends Move {
         stockpiles = Math.min(stockpiles, 3);
         return stockpiles * 150;
     }
+
+    static moveCodes = ["PowerDependsOnUserStockpile"];
 }
