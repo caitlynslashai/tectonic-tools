@@ -1,4 +1,4 @@
-export const statusEffects = ["Burn", "Frostbite", "Numb", "Dizzy", "Leech", "Waterlog", "Sleep"] as const;
+export const statusEffects = ["Poison", "Burn", "Frostbite", "Numb", "Dizzy", "Leech", "Waterlog", "Sleep"] as const;
 
 export type StatusEffect = (typeof statusEffects)[number] | "None";
 

@@ -9,7 +9,7 @@ const conditionalDoubleMoveCodes: Record<string, string> = {
     DoubleDamageBerryConsumed: "Berry Consumed This Battle",
 };
 
-export class ConditionalDoubleMove extends Move {
+export class ConditionalInputDoubleMove extends Move {
     customVarName: string;
     customVarType: string = "boolean";
     needsInput: boolean = true;

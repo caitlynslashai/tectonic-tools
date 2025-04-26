@@ -1,8 +1,8 @@
 import loadedMoves from "public/data/moves.json";
 import { LoadedMove } from "./loading/moves";
-import { AcrobaticsMove } from "./moves/AcrobaticsMove";
 import { BreakScreensMove } from "./moves/BreakScreensMove";
-import { ConditionalDoubleMove } from "./moves/ConditionalDoubleMove";
+import { ConditionalAutoDoubleMove } from "./moves/ConditionalAutoDoubleMove";
+import { ConditionalInputDoubleMove } from "./moves/ConditionalInputDoubleMove";
 import { DesperationMove } from "./moves/DesperationMove";
 import { DifferentAttackingStatMove } from "./moves/DifferentAttackStatMove";
 import { DifferentDefenseStatMove } from "./moves/DifferentDefenseStatMove";
@@ -19,9 +19,9 @@ import { WeightScalingMove } from "./moves/WeightScalingMove";
 import { Move } from "./types/Move";
 
 const moveSubclasses = [
-    AcrobaticsMove,
+    ConditionalAutoDoubleMove,
     BreakScreensMove,
-    ConditionalDoubleMove,
+    ConditionalInputDoubleMove,
     DesperationMove,
     DifferentAttackingStatMove,
     DifferentDefenseStatMove,
