@@ -19,6 +19,10 @@ const multiHitMoveCodes: Record<string, MultiHits> = {
         minHits: 2,
         maxHits: 2,
     },
+    HitTwoTimesFlinchTarget: {
+        minHits: 2,
+        maxHits: 2,
+    },
 };
 
 export class MultiHitMove extends Move {
