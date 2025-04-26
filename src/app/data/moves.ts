@@ -11,6 +11,7 @@ import { FacadeMove } from "./moves/FacadeMove";
 import { HitsFliersMove } from "./moves/HitsFliersMove";
 import { IgnoreStatMove } from "./moves/IgnoreStatMove";
 import { MultiHitMove } from "./moves/MultiHitMove";
+import { SlownessScalingMove } from "./moves/SlownessScalingMove";
 import { SpitUpMove } from "./moves/SpitUpMove";
 import { StackingMove } from "./moves/StackingMove";
 import { SuperAdaptiveMove } from "./moves/SuperAdaptiveMove";
@@ -19,8 +20,8 @@ import { WeightScalingMove } from "./moves/WeightScalingMove";
 import { Move } from "./types/Move";
 
 const moveSubclasses = [
-    ConditionalAutoDoubleMove,
     BreakScreensMove,
+    ConditionalAutoDoubleMove,
     ConditionalInputDoubleMove,
     DesperationMove,
     DifferentAttackingStatMove,
@@ -30,6 +31,7 @@ const moveSubclasses = [
     HitsFliersMove,
     IgnoreStatMove,
     MultiHitMove,
+    SlownessScalingMove,
     SpitUpMove,
     StackingMove,
     SuperAdaptiveMove,
