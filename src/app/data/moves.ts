@@ -10,7 +10,6 @@ import { ExtraTypeMove } from "./moves/ExtraTypeMove";
 import { FacadeMove } from "./moves/FacadeMove";
 import { IgnoreStatMove } from "./moves/IgnoreStatMove";
 import { MultiHitMove } from "./moves/MultiHitMove";
-import { PunishStatusMove } from "./moves/PunishStatusMove";
 import { SpitUpMove } from "./moves/SpitUpMove";
 import { StackingMove } from "./moves/StackingMove";
 import { SuperAdaptiveMove } from "./moves/SuperAdaptiveMove";
@@ -29,7 +28,6 @@ const moveSubclasses = [
     FacadeMove,
     IgnoreStatMove,
     MultiHitMove,
-    PunishStatusMove,
     SpitUpMove,
     StackingMove,
     SuperAdaptiveMove,
