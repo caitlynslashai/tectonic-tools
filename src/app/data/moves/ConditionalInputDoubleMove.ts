@@ -7,6 +7,7 @@ const conditionalDoubleMoveCodes: Record<string, string> = {
     Round: "Other Round This Turn",
     DoubleDamageTargetHitUser: "Target Damaged User This Turn",
     DoubleDamageBerryConsumed: "Berry Consumed This Battle",
+    HitsDiggers: "Opponent Underground",
 };
 
 export class ConditionalInputDoubleMove extends Move {
