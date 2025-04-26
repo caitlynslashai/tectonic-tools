@@ -1,5 +1,6 @@
 import loadedMoves from "public/data/moves.json";
 import { LoadedMove } from "./loading/moves";
+import { AcrobaticsMove } from "./moves/AcrobaticsMove";
 import { BreakScreensMove } from "./moves/BreakScreensMove";
 import { ConditionalDoubleMove } from "./moves/ConditionalDoubleMove";
 import { DesperationMove } from "./moves/DesperationMove";
@@ -17,6 +18,7 @@ import { WeightScalingMove } from "./moves/WeightScalingMove";
 import { Move } from "./types/Move";
 
 const moveSubclasses = [
+    AcrobaticsMove,
     BreakScreensMove,
     ConditionalDoubleMove,
     DesperationMove,
