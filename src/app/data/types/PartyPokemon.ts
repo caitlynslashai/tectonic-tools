@@ -45,6 +45,17 @@ export class PartyPokemon {
 
     get stats(): Stats {
         const stylish = this.ability.id === "STYLISH";
+        let speed = calculateStat(
+            this.species.stats.speed,
+            this.level,
+            this.stylePoints.speed,
+            this.statSteps.speed,
+            stylish
+        );
+        // TODO: abilities probably can sometimes affect this
+        if (this.statusEffect === "Numb") {
+            speed = speed / 2;
+        }
         const calculatedStats: Stats = {
             hp: calculateHP(this.species.stats.hp, this.level, this.stylePoints.hp, stylish),
             attack: calculateStat(
@@ -75,13 +86,7 @@ export class PartyPokemon {
                 this.statSteps.spdef,
                 stylish
             ),
-            speed: calculateStat(
-                this.species.stats.speed,
-                this.level,
-                this.stylePoints.speed,
-                this.statSteps.speed,
-                stylish
-            ),
+            speed,
         };
         return calculatedStats;
     }
