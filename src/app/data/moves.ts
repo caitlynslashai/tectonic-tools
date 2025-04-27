@@ -10,6 +10,7 @@ import { DifferentDefenseStatMove } from "./moves/DifferentDefenseStatMove";
 import { ExtraEffectiveMove } from "./moves/ExtraEffectiveMove";
 import { ExtraTypeMove } from "./moves/ExtraTypeMove";
 import { FacadeMove } from "./moves/FacadeMove";
+import { FaintedAllyScalingMove } from "./moves/FaintedAllyScalingMove";
 import { HitsFliersMove } from "./moves/HitsFliersMove";
 import { HPScalingMove } from "./moves/HPScalingMove";
 import { IgnoreStatMove } from "./moves/IgnoreStatMove";
@@ -38,6 +39,7 @@ const moveSubclasses = [
     ExtraEffectiveMove,
     ExtraTypeMove,
     FacadeMove,
+    FaintedAllyScalingMove,
     HitsFliersMove,
     HPScalingMove,
     IgnoreStatMove,
