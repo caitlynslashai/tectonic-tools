@@ -128,9 +128,16 @@ function calcBasicDamage(
 function damageCalcStats(move: MoveData, userStats: PartyPokemon, targetStats: PartyPokemon): [number, number] {
     // Calculate category for adaptive moves
     const trueCategory = move.move.getDamageCategory(move, userStats, targetStats);
+
+    const stats: Record<Side, PartyPokemon> = {
+        player: userStats,
+        opponent: targetStats,
+    };
+
     // Calculate user's attack stat
     // TODO: implement moves like foul play or body press
-    const attacking_stat_holder = userStats;
+    const attackerSide = move.move.getAttackStatSide();
+    const attacking_stat_holder = stats[attackerSide];
     const attacking_stat: Stat = move.move.getAttackingStat(trueCategory);
 
     // TODO: implement abilities and weather
@@ -140,21 +147,14 @@ function damageCalcStats(move: MoveData, userStats: PartyPokemon, targetStats: P
 
     // in tectonic logic stat steps are handled here, but in the app it's handled in the UI
 
-    // TODO: Critical hits ignore negative attack steps
-    // attack_step = 0 if critical && attack_step < 0;
     // attack_step = 0 if target.hasActiveAbility("UNAWARE") && !battle.moldBreaker;
-    // TODO: update "side" if attacking stat holder is changed by moves like e.g. foul play
+    // TODO: figure out how crits interact with foul play
     const attack = attacking_stat_holder.getStats(move, "player")[attacking_stat];
 
     // Calculate target's defense stat
     const defending_stat_holder = targetStats;
     const defending_stat: Stat = move.move.getDefendingStat(trueCategory);
-    // TODO: implement stat steps
-    // let defense_step = defending_stat_holder.steps[defending_stat];
-    // if (defense_step > 0 &&
-    //     (ignoresDefensiveStepBoosts(user, target) || user.hasActiveAbility("INFILTRATOR") || critical)) {
-    //     defense_step = 0;
-    // }
+
     // defense_step = 0 if user.hasActiveAbility("UNAWARE");
     const defense = defending_stat_holder.getStats(move, "opponent")[defending_stat];
 

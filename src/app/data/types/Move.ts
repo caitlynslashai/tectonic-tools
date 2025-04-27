@@ -1,4 +1,5 @@
 import { MoveData } from "@/app/damagecalc/components/MoveCard";
+import { Side } from "@/app/damagecalc/damageCalc";
 import { LoadedMove } from "../loading/moves";
 import { StatusEffect } from "../statusEffects";
 import { types } from "../types";
@@ -113,6 +114,10 @@ export class Move {
             trueCategory = this.category;
         }
         return trueCategory;
+    }
+
+    public getAttackStatSide(): Side {
+        return "player";
     }
 
     static moveCodes: string[] = [];
