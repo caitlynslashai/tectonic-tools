@@ -10,8 +10,10 @@ function punishStatus(status: StatusEffect) {
     return (_: PartyPokemon, target: PartyPokemon) => target.statusEffect === status;
 }
 
-const conditionalAutoDoubleMoveCodes: Record<string, ConditionFunction> = {
+const moveConditions: Record<string, ConditionFunction> = {
     DoubleDamageNoItem: (user: PartyPokemon) => user.items.filter((i) => !isNull(i)).length === 0,
+    RemovesTargetItemDamageBoost50Percent: (_: PartyPokemon, target: PartyPokemon) =>
+        target.items.filter((i) => !isNull(i)).length > 0,
     DoubleDamageTargetStatused: (_: PartyPokemon, target: PartyPokemon) => target.statusEffect !== "None", // Does Hex interact with Volatile SEs?
     DoubleDamageAgainstPoisoned: punishStatus("Poison"),
     HealUserByHalfOfDamageDoneDoubleDamageIfTargetAsleep: punishStatus("Sleep"),
@@ -21,15 +23,21 @@ const conditionalAutoDoubleMoveCodes: Record<string, ConditionFunction> = {
     WakeUpSlap: punishStatus("Sleep"),
 };
 
-export class ConditionalAutoDoubleMove extends Move {
+const moveBoosts: Record<string, number> = {
+    RemovesTargetItemDamageBoost50Percent: 1.5,
+};
+
+export class ConditionalAutoBoostMove extends Move {
     condition: ConditionFunction;
+    boost: number;
     constructor(move: LoadedMove) {
         super(move);
-        this.condition = conditionalAutoDoubleMoveCodes[move.functionCode];
+        this.condition = moveConditions[move.functionCode];
+        this.boost = moveBoosts[move.functionCode] || 2;
     }
     public getPower(user: PartyPokemon, target: PartyPokemon): number {
-        return this.bp * (this.condition(user, target) ? 2 : 1);
+        return this.bp * (this.condition(user, target) ? this.boost : 1);
     }
 
-    static moveCodes = Object.keys(conditionalAutoDoubleMoveCodes);
+    static moveCodes = Object.keys(moveConditions);
 }
