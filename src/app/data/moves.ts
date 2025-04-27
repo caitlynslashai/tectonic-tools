@@ -6,6 +6,7 @@ import { ConditionalInputBoostMove } from "./moves/ConditionalInputBoostMove";
 import { DesperationMove } from "./moves/DesperationMove";
 import { DifferentAttackingStatMove } from "./moves/DifferentAttackStatMove";
 import { DifferentDefenseStatMove } from "./moves/DifferentDefenseStatMove";
+import { ExtraEffectiveMove } from "./moves/ExtraEffectiveMove";
 import { ExtraTypeMove } from "./moves/ExtraTypeMove";
 import { FacadeMove } from "./moves/FacadeMove";
 import { HitsFliersMove } from "./moves/HitsFliersMove";
@@ -32,6 +33,7 @@ const moveSubclasses = [
     DesperationMove,
     DifferentAttackingStatMove,
     DifferentDefenseStatMove,
+    ExtraEffectiveMove,
     ExtraTypeMove,
     FacadeMove,
     HitsFliersMove,

@@ -1,4 +1,5 @@
 import loadedChart from "public/data/typechart.json";
+import { ExtraEffectiveMove } from "./moves/ExtraEffectiveMove";
 import { ExtraTypeMove } from "./moves/ExtraTypeMove";
 import { HitsFliersMove } from "./moves/HitsFliersMove";
 import { types } from "./types";
@@ -67,13 +68,6 @@ const isAlsoTypeAbilities = [
     { ability: "INFECTED", type1: "GRASS" },
     { ability: "RUSTWRACK", type1: "STEEL" },
     { ability: "SLUGGISH", type1: "BUG" },
-];
-// TODO: Convert to move subclass checking function code
-const doubleDealtMoves = [
-    { move: "HONORLESSSTING", type1: "FIGHTING" },
-    { move: "SLAY", type1: "DRAGON" },
-    { move: "HOLLYCHARM", type1: "GHOST" },
-    { move: "BLACKOUT", type1: "ELECTRIC" },
 ];
 
 // Calculates the best mult value given all attacker moves in that case
@@ -155,15 +149,17 @@ export function calcTypeMatchup(atk: AttackerData, def: DefenderData) {
 
     const atkMove = atk.move;
     if (atkMove && atkMove.isAttackingMove()) {
-        const doubleDealtMatch = doubleDealtMoves.find((x) => x.move == atkMove.id);
-        if (
-            doubleDealtMatch !== undefined &&
-            (doubleDealtMatch.type1 == def.type1.id ||
-                doubleDealtMatch.type1 == def.type2?.id ||
-                doubleDealtMatch.type1 == thirdType)
-        ) {
-            atkMoveCalc = 2;
+        if (atkMove instanceof ExtraEffectiveMove) {
+            const effectiveType = atkMove.extraEffect;
+            if (
+                effectiveType.id === def.type1.id ||
+                effectiveType.id === def.type2?.id ||
+                effectiveType.id === thirdType
+            ) {
+                atkMoveCalc = 2;
+            }
         }
+
         if (atkMove instanceof ExtraTypeMove) {
             // should not recur by a depth of more than 1, since move is no longer defined
             atkMoveCalc *= calcTypeMatchup({ type: atkMove.extraType, ability: atk.ability }, def);
