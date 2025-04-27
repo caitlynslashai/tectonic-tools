@@ -16,6 +16,7 @@ const moveConditions: Record<string, ConditionFunction> = {
         target.items.filter((i) => !isNull(i)).length > 0,
     DoubleDamageTargetStatused: (_: PartyPokemon, target: PartyPokemon) => target.statusEffect !== "None", // Does Hex interact with Volatile SEs?
     DoubleDamageAgainstPoisoned: punishStatus("Poison"),
+    TripleDamageAgainstPoisoned: punishStatus("Poison"),
     HealUserByHalfOfDamageDoneDoubleDamageIfTargetAsleep: punishStatus("Sleep"),
     // Smelling Salts and Wake-Up Slap aren't identical to Venoshock etc,
     // but the status-curing part isn't relevant to a single turn of damage calculation
@@ -25,6 +26,7 @@ const moveConditions: Record<string, ConditionFunction> = {
 
 const moveBoosts: Record<string, number> = {
     RemovesTargetItemDamageBoost50Percent: 1.5,
+    TripleDamageAgainstPoisoned: 3,
 };
 
 export class ConditionalAutoBoostMove extends Move {
