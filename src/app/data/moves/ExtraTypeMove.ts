@@ -3,7 +3,10 @@ import { types } from "../types";
 import { Move } from "../types/Move";
 import { PokemonType } from "../types/PokemonType";
 
-const extraTypeMoveCodes: Record<string, string> = { EffectivenessIncludesFlyingType: "FLYING" };
+const extraTypeMoveCodes: Record<string, string> = {
+    EffectivenessIncludesFlyingType: "FLYING",
+    EffectivenessIncludesPsychicType: "PSYCHIC",
+};
 
 export class ExtraTypeMove extends Move {
     extraType: PokemonType;
