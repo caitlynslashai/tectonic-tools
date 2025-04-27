@@ -15,6 +15,7 @@ const moveConditions: Record<string, string> = {
     DoubleDamageTargetMoved: "Target Moved This Turn",
     DoubleDamageTargetLostHP: "Target Already Damaged This Turn",
     DoubleDamageUserStatsLowered: "Stats Lowered This Turn",
+    PursueSwitchingFoe: "Foe Switching",
 };
 
 const moveBoosts: Record<string, number> = {
