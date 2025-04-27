@@ -6,7 +6,7 @@ import { PartyPokemon } from "../types/PartyPokemon";
 import { PokemonType } from "../types/PokemonType";
 import { isNull } from "../util";
 
-type MoveTypeFunction = (user: PartyPokemon) => PokemonType | undefined;
+type MoveTypeFunction = (user: PartyPokemon, name: string) => PokemonType | undefined;
 
 // return the item type iff user is holding the relevant item
 function typeFromItemType(user: PartyPokemon, typeItem: string): PokemonType | undefined {
@@ -105,24 +105,33 @@ function typeFromUser(user: PartyPokemon): PokemonType {
     return user.species.getType1(user.form);
 }
 
-export const variableTypeMoves: Record<keyof typeof moves, MoveTypeFunction> = {
-    JUDGMENT: (user: PartyPokemon) => typeFromItemType(user, "PRISMATICPLATE"),
-    MULTIATTACK: (user: PartyPokemon) => typeFromItemType(user, "MEMORYSET"),
-    NATURALGIFT: (user: PartyPokemon) => typeFromItemMap(user, naturalGiftTypes),
-    TECHNOBLAST: (user: PartyPokemon) => typeFromItemMap(user, technoBlastTypes),
-    REVELATIONDANCE: typeFromUser,
+// workaround for special casing
+function handleTypeDependsOnUserSpecialItem(user: PartyPokemon, name: string) {
+    switch (name) {
+        case "JUDGMENT":
+            return typeFromItemType(user, "PRISMATICPLATE");
+        case "MULTIATTACK":
+            return typeFromItemType(user, "MEMORYSET");
+        case "TECHNOBLAST":
+            return typeFromItemMap(user, technoBlastTypes);
+    }
+}
+
+const variableTypeMoves: Record<keyof typeof moves, MoveTypeFunction> = {
+    TypeDependsOnUserSpecialItem: handleTypeDependsOnUserSpecialItem,
+    NaturalGift: (user: PartyPokemon) => typeFromItemMap(user, naturalGiftTypes),
+    TypeIsUserFirstType: typeFromUser,
 };
 
 export class VariableTypeMove extends Move {
     typeFunction: MoveTypeFunction;
     constructor(move: LoadedMove) {
         super(move);
-        // exception to indexing by function code due to weirdness with judgment and multiattack :pensive:
-        this.typeFunction = variableTypeMoves[move.name];
+        this.typeFunction = variableTypeMoves[move.functionCode];
     }
     public getType(user: PartyPokemon): PokemonType {
-        return this.typeFunction(user) || this.type;
+        return this.typeFunction(user, this.id) || this.type;
     }
 
-    // no move codes defined due to unique exception
+    static moveCodes = Object.keys(variableTypeMoves);
 }

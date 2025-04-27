@@ -18,7 +18,7 @@ import { SpitUpMove } from "./moves/SpitUpMove";
 import { StackingMove } from "./moves/StackingMove";
 import { SuperAdaptiveMove } from "./moves/SuperAdaptiveMove";
 import { TargetAttackMove } from "./moves/TargetAttackMove";
-import { VariableTypeMove, variableTypeMoves } from "./moves/TypeFromItemMove";
+import { VariableTypeMove } from "./moves/TypeFromItemMove";
 import { WeightTargetScalingMove } from "./moves/WeightTargetScalingMove";
 import { WeightUserScalingMove } from "./moves/WeightUserScalingMove";
 import { Move } from "./types/Move";
@@ -42,17 +42,12 @@ const moveSubclasses = [
     StackingMove,
     SuperAdaptiveMove,
     TargetAttackMove,
-    // VariableTypeMove is handled separately
+    VariableTypeMove,
     WeightTargetScalingMove,
     WeightUserScalingMove,
 ];
 
 function loadMove(move: LoadedMove): Move {
-    // Judgment, Multi-Attack, and Techno Blast are sufficiently hardcoded that
-    // a functionCode-based approach would be more roundabout
-    if (move.key in variableTypeMoves) {
-        return new VariableTypeMove(move);
-    }
     for (const subclass of moveSubclasses) {
         if (subclass.moveCodes.includes(move.functionCode)) {
             return new subclass(move);
