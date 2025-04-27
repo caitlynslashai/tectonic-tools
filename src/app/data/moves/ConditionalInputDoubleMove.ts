@@ -9,6 +9,7 @@ const conditionalDoubleMoveCodes: Record<string, string> = {
     DoubleDamageBerryConsumed: "Berry Consumed This Battle",
     HitsDiggers: "Opponent Underground",
     DoubleDamageLastMoveFailed: "Last Move Failed",
+    FusionBolt: "Fusion Flare Used This Turn",
     FusionFlare: "Fusion Bolt Used This Turn",
     DamageBoost50PercentTargetNotAttacked: "Target Hasn't Moved This Turn",
 };
