@@ -1,7 +1,7 @@
 import loadedMoves from "public/data/moves.json";
 import { LoadedMove } from "./loading/moves";
 import { BreakScreensMove } from "./moves/BreakScreensMove";
-import { ConditionalAutoBoostMove } from "./moves/ConditionalAutoDoubleMove";
+import { ConditionalAutoBoostMove } from "./moves/ConditionalAutoBoostMove";
 import { ConditionalInputBoostMove } from "./moves/ConditionalInputBoostMove";
 import { DesperationMove } from "./moves/DesperationMove";
 import { DifferentAttackingStatMove } from "./moves/DifferentAttackStatMove";
