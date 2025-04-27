@@ -18,7 +18,7 @@ import { SpitUpMove } from "./moves/SpitUpMove";
 import { StackingMove } from "./moves/StackingMove";
 import { SuperAdaptiveMove } from "./moves/SuperAdaptiveMove";
 import { TargetAttackMove } from "./moves/TargetAttackMove";
-import { VariableTypeMove } from "./moves/TypeFromItemMove";
+import { VariableTypeMove } from "./moves/VariableTypeMove";
 import { WeightTargetScalingMove } from "./moves/WeightTargetScalingMove";
 import { WeightUserScalingMove } from "./moves/WeightUserScalingMove";
 import { Move } from "./types/Move";
