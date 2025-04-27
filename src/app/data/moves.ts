@@ -2,7 +2,7 @@ import loadedMoves from "public/data/moves.json";
 import { LoadedMove } from "./loading/moves";
 import { BreakScreensMove } from "./moves/BreakScreensMove";
 import { ConditionalAutoDoubleMove } from "./moves/ConditionalAutoDoubleMove";
-import { ConditionalInputDoubleMove } from "./moves/ConditionalInputDoubleMove";
+import { ConditionalInputBoostMove } from "./moves/ConditionalInputDoubleMove";
 import { DesperationMove } from "./moves/DesperationMove";
 import { DifferentAttackingStatMove } from "./moves/DifferentAttackStatMove";
 import { DifferentDefenseStatMove } from "./moves/DifferentDefenseStatMove";
@@ -26,7 +26,7 @@ import { Move } from "./types/Move";
 const moveSubclasses = [
     BreakScreensMove,
     ConditionalAutoDoubleMove,
-    ConditionalInputDoubleMove,
+    ConditionalInputBoostMove,
     DesperationMove,
     DifferentAttackingStatMove,
     DifferentDefenseStatMove,

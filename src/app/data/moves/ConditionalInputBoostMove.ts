@@ -2,7 +2,7 @@ import { LoadedMove } from "../loading/moves";
 import { Move } from "../types/Move";
 import { PartyPokemon } from "../types/PartyPokemon";
 
-const conditionalDoubleMoveCodes: Record<string, string> = {
+const moveConditions: Record<string, string> = {
     DoubleDamageAvengingFaint: "Ally Fainted Last Turn",
     Round: "Other Round This Turn",
     DoubleDamageTargetHitUser: "Target Damaged User This Turn",
@@ -16,18 +16,24 @@ const conditionalDoubleMoveCodes: Record<string, string> = {
     DoubleDamageUserStatsLowered: "Stats Lowered This Turn",
 };
 
-export class ConditionalInputDoubleMove extends Move {
+const moveBoosts: Record<string, number> = {
+    DamageBoost50PercentTargetNotAttacked: 1.5,
+};
+
+export class ConditionalInputBoostMove extends Move {
     customVarName: string;
     customVarType: string = "boolean";
     needsInput: boolean = true;
+    boost: number;
     constructor(move: LoadedMove) {
         super(move);
-        this.customVarName = conditionalDoubleMoveCodes[move.functionCode];
+        this.customVarName = moveConditions[move.functionCode];
+        this.boost = moveBoosts[move.functionCode] || 2;
     }
 
     public getPower(_: PartyPokemon, __: PartyPokemon, condition: boolean): number {
-        return this.bp * (condition ? 2 : 1);
+        return this.bp * (condition ? this.boost : 1);
     }
 
-    static moveCodes = Object.keys(conditionalDoubleMoveCodes);
+    static moveCodes = Object.keys(moveConditions);
 }
