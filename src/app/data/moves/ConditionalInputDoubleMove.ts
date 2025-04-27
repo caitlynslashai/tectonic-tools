@@ -13,6 +13,7 @@ const conditionalDoubleMoveCodes: Record<string, string> = {
     FusionFlare: "Fusion Bolt Used This Turn",
     DamageBoost50PercentTargetNotAttacked: "Target Hasn't Moved This Turn",
     DoubleDamageTargetLostHP: "Target Already Damaged This Turn",
+    DoubleDamageUserStatsLowered: "Stats Lowered This Turn",
 };
 
 export class ConditionalInputDoubleMove extends Move {
