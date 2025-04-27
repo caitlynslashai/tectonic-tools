@@ -9,6 +9,7 @@ const conditionalDoubleMoveCodes: Record<string, string> = {
     DoubleDamageBerryConsumed: "Berry Consumed This Battle",
     HitsDiggers: "Opponent Underground",
     DoubleDamageLastMoveFailed: "Last Move Failed",
+    FusionFlare: "Fusion Bolt Used This Turn",
 };
 
 export class ConditionalInputDoubleMove extends Move {
