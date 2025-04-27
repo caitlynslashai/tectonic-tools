@@ -367,9 +367,9 @@ const TeamBuilder: NextPage = () => {
                             </tr>
                         </thead>
                         <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                            {validCards.map((c) => (
-                                <tr key={c.species.id}>
-                                    <MatchupMonCell key={c.species.id} c={c} useMoves={false} />
+                            {validCards.map((c, index) => (
+                                <tr key={index}>
+                                    <MatchupMonCell c={c} useMoves={false} />
                                     {realTypes.map((type) => (
                                         <TypeChartCell
                                             key={type.id}
@@ -413,9 +413,9 @@ const TeamBuilder: NextPage = () => {
                             </tr>
                         </thead>
                         <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                            {validCards.map((c) => (
-                                <tr key={c.species.id}>
-                                    <MatchupMonCell key={c.species.id} c={c} useMoves={true} />
+                            {validCards.map((c, index) => (
+                                <tr key={index}>
+                                    <MatchupMonCell c={c} useMoves={true} />
                                     {realTypes.map((type) => (
                                         <TypeChartCell key={type.id} mult={calcBestMoveMatchup(c, { type1: type })} />
                                     ))}
