@@ -16,6 +16,7 @@ import { SlownessScalingMove } from "./moves/SlownessScalingMove";
 import { SpeedScalingMove } from "./moves/SpeedScalingMove";
 import { SpitUpMove } from "./moves/SpitUpMove";
 import { StackingMove } from "./moves/StackingMove";
+import { StepScalingMove } from "./moves/StepScalingMove";
 import { SuperAdaptiveMove } from "./moves/SuperAdaptiveMove";
 import { TargetAttackMove } from "./moves/TargetAttackMove";
 import { UserBelowHalfDoubleMove } from "./moves/UserBelowHalfDoubleMove";
@@ -41,6 +42,7 @@ const moveSubclasses = [
     SlownessScalingMove,
     SpitUpMove,
     StackingMove,
+    StepScalingMove,
     SuperAdaptiveMove,
     TargetAttackMove,
     UserBelowHalfDoubleMove,
