@@ -12,5 +12,5 @@ export class DesperationMove extends Move {
         return Math.min(Math.floor(20 / (hpRatio * 5) ** 0.75) * 5, 200);
     }
 
-    static moveCodes = ["ScalesWithLostHP"];
+    static moveCodes = ["ScalesWithLostHP", "SwitchOutUserDamagingMoveScalesWithLostHP"];
 }
