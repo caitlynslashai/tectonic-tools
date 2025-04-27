@@ -16,7 +16,7 @@ function typeFromItemType(user: PartyPokemon, typeItem: string): PokemonType | u
     }
 }
 
-const naturalGiftTypes = {
+const berryTypes = {
     CHILANBERRY: "NORMAL",
     CHERIBERRY: "FIRE",
     BLUKBERRY: "FIRE",
@@ -93,6 +93,27 @@ const technoBlastTypes = {
     CHILLDRIVE: "ICE",
 };
 
+const gemTypes = {
+    FIREGEM: "FIRE",
+    WATERGEM: "WATER",
+    ELECTRICGEM: "ELECTRIC",
+    GRASSGEM: "GRASS",
+    ICEGEM: "ICE",
+    FIGHTINGGEM: "FIGHTING",
+    POISONGEM: "POISON",
+    GROUNDGEM: "GROUND",
+    FLYINGGEM: "FLYING",
+    PSYCHICGEM: "PSYCHIC",
+    BUGGEM: "BUG",
+    ROCKGEM: "ROCK",
+    GHOSTGEM: "GHOST",
+    DRAGONGEM: "DRAGON",
+    DARKGEM: "DARK",
+    STEELGEM: "STEEL",
+    NORMALGEM: "NORMAL",
+    FAIRYGEM: "FAIRY",
+};
+
 function typeFromItemMap(user: PartyPokemon, map: Record<string, string>): PokemonType | undefined {
     for (const item of user.items) {
         if (item.id in map) {
@@ -117,10 +138,21 @@ function handleTypeDependsOnUserSpecialItem(user: PartyPokemon, name: string) {
     }
 }
 
+function prismaticPower(user: PartyPokemon) {
+    // I'm not exactly sure what the priority here is if holding multiple items
+    // But Unown can't in practice so it shouldn't matter
+    return (
+        typeFromItemType(user, "PRISMATICPLATE") ||
+        typeFromItemType(user, "CRYSTALVEIL") ||
+        typeFromItemMap(user, gemTypes)
+    );
+}
+
 const variableTypeMoves: Record<keyof typeof moves, MoveTypeFunction> = {
     TypeDependsOnUserSpecialItem: handleTypeDependsOnUserSpecialItem,
-    NaturalGift: (user: PartyPokemon) => typeFromItemMap(user, naturalGiftTypes),
+    NaturalGift: (user: PartyPokemon) => typeFromItemMap(user, berryTypes),
     TypeIsUserFirstType: typeFromUser,
+    TypeDependsOnUserGemPlateVeil: prismaticPower,
 };
 
 export class VariableTypeMove extends Move {
