@@ -12,6 +12,7 @@ const moveConditions: Record<string, string> = {
     FusionBolt: "Fusion Flare Used This Turn",
     FusionFlare: "Fusion Bolt Used This Turn",
     DamageBoost50PercentTargetNotAttacked: "Target Hasn't Moved This Turn",
+    DoubleDamageTargetMoved: "Target Moved This Turn",
     DoubleDamageTargetLostHP: "Target Already Damaged This Turn",
     DoubleDamageUserStatsLowered: "Stats Lowered This Turn",
 };
