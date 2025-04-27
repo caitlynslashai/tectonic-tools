@@ -7,6 +7,7 @@ const moveConditions: Record<string, string> = {
     Round: "Other Round This Turn",
     DoubleDamageTargetHitUser: "Target Damaged User This Turn",
     DoubleDamageBerryConsumed: "Berry Consumed This Battle",
+    DoubleDamageGemConsumed: "Gem Consumed This Battle",
     HitsDiggers: "Opponent Underground",
     DoubleDamageLastMoveFailed: "Last Move Failed",
     FusionBolt: "Fusion Flare Used This Turn",
