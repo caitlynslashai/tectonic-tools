@@ -17,7 +17,8 @@ import { SpitUpMove } from "./moves/SpitUpMove";
 import { StackingMove } from "./moves/StackingMove";
 import { SuperAdaptiveMove } from "./moves/SuperAdaptiveMove";
 import { VariableTypeMove, variableTypeMoves } from "./moves/TypeFromItemMove";
-import { WeightScalingMove } from "./moves/WeightScalingMove";
+import { WeightTargetScalingMove } from "./moves/WeightTargetScalingMove";
+import { WeightUserScalingMove } from "./moves/WeightUserScalingMove";
 import { Move } from "./types/Move";
 
 const moveSubclasses = [
@@ -38,7 +39,8 @@ const moveSubclasses = [
     StackingMove,
     SuperAdaptiveMove,
     // VariableTypeMove is handled separately
-    WeightScalingMove,
+    WeightTargetScalingMove,
+    WeightUserScalingMove,
 ];
 
 function loadMove(move: LoadedMove): Move {
