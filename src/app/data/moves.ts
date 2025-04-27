@@ -1,5 +1,6 @@
 import loadedMoves from "public/data/moves.json";
 import { LoadedMove } from "./loading/moves";
+import { AllyDefScalingMove } from "./moves/AllyDefScalingMove";
 import { BreakScreensMove } from "./moves/BreakScreensMove";
 import { ConditionalAutoBoostMove } from "./moves/ConditionalAutoBoostMove";
 import { ConditionalInputBoostMove } from "./moves/ConditionalInputBoostMove";
@@ -27,6 +28,7 @@ import { WeightUserScalingMove } from "./moves/WeightUserScalingMove";
 import { Move } from "./types/Move";
 
 const moveSubclasses = [
+    AllyDefScalingMove,
     BreakScreensMove,
     ConditionalAutoBoostMove,
     ConditionalInputBoostMove,
