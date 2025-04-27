@@ -10,6 +10,7 @@ const conditionalDoubleMoveCodes: Record<string, string> = {
     HitsDiggers: "Opponent Underground",
     DoubleDamageLastMoveFailed: "Last Move Failed",
     FusionFlare: "Fusion Bolt Used This Turn",
+    DamageBoost50PercentTargetNotAttacked: "Target Hasn't Moved This Turn",
 };
 
 export class ConditionalInputDoubleMove extends Move {
