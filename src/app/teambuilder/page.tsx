@@ -382,14 +382,14 @@ const TeamBuilder: NextPage = () => {
                                 </tr>
                             ))}
                             <tr className="text-end text-xl text-gray-500 dark:text-gray-300 bg-gray-50 dark:bg-gray-700">
-                                <td className="pr-2">Weaknesses</td>
+                                <td className="pr-2 border border-gray-600">Weaknesses</td>
                                 {realTypes.map((type) => (
                                     <DefTotalCell key={type.id} cards={validCards} type={type} total={"weak"} />
                                 ))}
                             </tr>
 
                             <tr className="text-end text-xl text-gray-500 dark:text-gray-300 bg-gray-50 dark:bg-gray-700">
-                                <td className="pr-2">Resistances</td>
+                                <td className="pr-2 border border-gray-600">Resistances</td>
                                 {realTypes.map((type) => (
                                     <DefTotalCell key={type.id} cards={validCards} type={type} total={"strong"} />
                                 ))}
@@ -421,15 +421,15 @@ const TeamBuilder: NextPage = () => {
                                     ))}
                                 </tr>
                             ))}
-                            <tr className="text-end text-2xl text-gray-500 dark:text-gray-300 bg-gray-50 dark:bg-gray-700">
-                                <td className="pr-2">Weak</td>
+                            <tr className="text-end text-xl text-gray-500 dark:text-gray-300 bg-gray-50 dark:bg-gray-700">
+                                <td className="pr-2 border border-gray-600">Weak</td>
                                 {realTypes.map((type) => (
                                     <AtkTotalCell key={type.id} cards={validCards} type={type} total={"se"} />
                                 ))}
                             </tr>
 
-                            <tr className="text-end text-2xl text-gray-500 dark:text-gray-300 bg-gray-50 dark:bg-gray-700">
-                                <td className="pr-2">Resisted</td>
+                            <tr className="text-end text-xl text-gray-500 dark:text-gray-300 bg-gray-50 dark:bg-gray-700">
+                                <td className="pr-2 border border-gray-600">Resisted</td>
                                 {realTypes.map((type) => (
                                     <AtkTotalCell key={type.id} cards={validCards} type={type} total={"nve"} />
                                 ))}

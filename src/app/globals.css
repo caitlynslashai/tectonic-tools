@@ -86,3 +86,5 @@ body {
 }
 
 @source inline("{hover:bg,bg,to,from}-{fire,water,steel,rock,psychic,poison,normal,ice,ground,grass,ghost,flying,fighting,fairy,electric,dragon,dark,bug,mutant}{,-bg}");
+
+@source inline("grid-rows-{1,2}");
