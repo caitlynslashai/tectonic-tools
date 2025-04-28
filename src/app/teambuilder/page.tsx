@@ -381,14 +381,14 @@ const TeamBuilder: NextPage = () => {
                                     ))}
                                 </tr>
                             ))}
-                            <tr className="text-end text-2xl text-gray-500 dark:text-gray-300 bg-gray-50 dark:bg-gray-700">
+                            <tr className="text-end text-xl text-gray-500 dark:text-gray-300 bg-gray-50 dark:bg-gray-700">
                                 <td className="pr-2">Weaknesses</td>
                                 {realTypes.map((type) => (
                                     <DefTotalCell key={type.id} cards={validCards} type={type} total={"weak"} />
                                 ))}
                             </tr>
 
-                            <tr className="text-end text-2xl text-gray-500 dark:text-gray-300 bg-gray-50 dark:bg-gray-700">
+                            <tr className="text-end text-xl text-gray-500 dark:text-gray-300 bg-gray-50 dark:bg-gray-700">
                                 <td className="pr-2">Resistances</td>
                                 {realTypes.map((type) => (
                                     <DefTotalCell key={type.id} cards={validCards} type={type} total={"strong"} />

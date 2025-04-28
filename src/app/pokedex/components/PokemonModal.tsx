@@ -304,10 +304,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
                         </TabContent>
                         <TabContent tab="Def. Matchups" activeTab={activeTab}>
                             <div>
-                                <div>
-                                    <h3 className="inline font-semibold text-gray-800 dark:text-gray-100">
-                                        Defensive Matchups{defMatchupDifferentForAbilities ? " with:" : ""}
-                                    </h3>
+                                <div className="text-center">
                                     {!defMatchupDifferentForAbilities ? (
                                         <></>
                                     ) : (
@@ -325,7 +322,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
                                 </div>
                                 <div className="overflow-x-auto mt-4">
                                     {realTypesSlices.map((slice, index) => (
-                                        <table key={index} className="table-fixed w-[99%] mx-auto mb-5">
+                                        <table key={index} className="mx-auto mb-5">
                                             <thead>
                                                 <tr>
                                                     {slice.map((t) => (
@@ -356,10 +353,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
                             </div>
                         </TabContent>
                         <TabContent tab="Atk. Matchups" activeTab={activeTab}>
-                            <div>
-                                <h3 className="inline font-semibold text-gray-800 dark:text-gray-100">
-                                    STAB Offensive Matchups{stabMatchupDifferentForAbilities ? " with:" : ""}
-                                </h3>
+                            <div className="text-center">
                                 {!stabMatchupDifferentForAbilities ? (
                                     <></>
                                 ) : (
@@ -376,7 +370,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ allMons, pokemon: mon, hand
                                 )}
                                 <div className="overflow-x-auto mt-4">
                                     {realTypesSlices.map((slice, index) => (
-                                        <table key={index} className="table-fixed w-[99%] mx-auto mb-5">
+                                        <table key={index} className="mx-auto mb-5">
                                             <thead>
                                                 <tr>
                                                     {slice.map((t) => (

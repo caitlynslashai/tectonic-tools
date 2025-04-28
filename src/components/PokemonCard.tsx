@@ -245,7 +245,7 @@ export default function PokemonCard({
                                         <TypeBadge
                                             types={[data.moves[moveIndex].getType(data)]}
                                             useShort={false}
-                                            element={TypeBadgeElementEnum.CAPSULE_SINGLE}
+                                            element={TypeBadgeElementEnum.ICONS}
                                         />
                                     )}
                                 </div>
@@ -357,7 +357,7 @@ export default function PokemonCard({
                                         <TypeBadge
                                             types={[data.itemType]}
                                             useShort={false}
-                                            element={TypeBadgeElementEnum.CAPSULE_SINGLE}
+                                            element={TypeBadgeElementEnum.ICONS}
                                         />
                                     )}
                                 </div>
