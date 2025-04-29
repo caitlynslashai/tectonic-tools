@@ -8,7 +8,7 @@ import InternalLink from "@/components/InternalLink";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { ReactNode, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Checkbox from "../../components/Checkbox";
 import Column from "../../components/Column";
 import ColumnBody from "../../components/ColumnBody";
@@ -25,8 +25,9 @@ import { PartyPokemon } from "../data/types/PartyPokemon";
 import { Pokemon } from "../data/types/Pokemon";
 import { Trainer } from "../data/types/Trainer";
 import { isNull } from "../data/util";
+import DamageResultComponent from "./components/DamageResult";
 import MoveCard, { MoveData } from "./components/MoveCard";
-import { calculateDamage, DamageResult, Side } from "./damageCalc";
+import { calculateDamage, Side } from "./damageCalc";
 
 const nullMoveData = { move: nullMove, criticalHit: false, customVar: undefined };
 
@@ -197,81 +198,6 @@ const PokemonDamageCalculator: NextPage = () => {
         setOpponentPokemon(mon1);
     }
 
-    function printDamageNumbers(damageResult: DamageResult): ReactNode {
-        // multi-hit moves
-        if (damageResult.minTotal && damageResult.minPercentage) {
-            if (damageResult.maxTotal === damageResult.minTotal) {
-                return (
-                    <>
-                        <p className="text-3xl font-bold text-green-400">{damageResult.minTotal}</p>
-                        <p className="text-gray-300">({damageResult.damage} per hit)</p>
-                        <p className="text-gray-300">
-                            {(damageResult.minPercentage * 100).toFixed(2)}% of opponent&apos;s HP
-                        </p>
-                    </>
-                );
-            }
-            if (damageResult.maxTotal && damageResult.maxPercentage) {
-                return (
-                    <>
-                        <p className="text-3xl font-bold text-green-400">
-                            {damageResult.minTotal}-{damageResult.maxTotal}
-                        </p>
-                        <p className="text-gray-300">({damageResult.damage} per hit)</p>
-                        <p className="text-gray-300">
-                            {(damageResult.minPercentage * 100).toFixed(2)}%-
-                            {(damageResult.maxPercentage * 100).toFixed(2)}% of opponent&apos;s HP
-                        </p>
-                    </>
-                );
-            }
-        }
-        return (
-            <>
-                <p className="text-3xl font-bold text-green-400">{damageResult.damage}</p>
-                <p className="text-gray-300">{(damageResult.percentage * 100).toFixed(2)}% of opponent&apos;s HP</p>
-            </>
-        );
-    }
-
-    function printHPBar(damageResult: DamageResult): ReactNode {
-        const percentage = damageResult.minPercentage || damageResult.percentage;
-        if (damageResult.maxPercentage && damageResult.maxPercentage !== damageResult.minPercentage) {
-            return (
-                <div className="mt-4 relative">
-                    <div className="h-4 bg-gray-600 rounded-full overflow-hidden relative">
-                        <div className="absolute inset-0 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500"></div>
-                        <div
-                            className="absolute inset-0 bg-gray-800 rounded-left transition-all duration-300"
-                            style={{
-                                left: `${100 - Math.min(100, percentage * 100)}%`,
-                            }}
-                        ></div>
-                        <div
-                            className="absolute inset-0 bg-gray-800 rounded-left transition-all duration-300 opacity-80"
-                            style={{
-                                left: `${100 - Math.min(100, damageResult.maxPercentage * 100)}%`,
-                            }}
-                        ></div>
-                    </div>
-                </div>
-            );
-        }
-        return (
-            <div className="mt-4 relative">
-                <div className="h-4 bg-gray-600 rounded-full overflow-hidden relative">
-                    <div className="absolute inset-0 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500"></div>
-                    <div
-                        className="absolute inset-0 bg-gray-800 rounded-left transition-all duration-300"
-                        style={{
-                            left: `${100 - Math.min(100, percentage * 100)}%`,
-                        }}
-                    ></div>
-                </div>
-            </div>
-        );
-    }
-
     return (
         <>
             <Head>
@@ -387,38 +313,9 @@ const PokemonDamageCalculator: NextPage = () => {
 
                                 {/* Results Section */}
                                 <Column>
+                                    <ColumnHeader colour="text-purple-400">Damage Calcuation</ColumnHeader>
                                     {isReadyToCalculate() ? (
-                                        <div className="w-full max-w-xs">
-                                            <div className="bg-gray-700 p-6 rounded-lg border border-gray-600 text-center">
-                                                <h3 className="font-medium text-lg text-white mb-4">
-                                                    Damage Calculation
-                                                </h3>
-                                                <div className="space-y-4">
-                                                    {printDamageNumbers(damageResult)}
-                                                    <p className="text-gray-300">{damageResult.hits} hits to KO</p>
-                                                    {/* Effectiveness message */}
-                                                    {damageResult.typeEffectMult === 4 && (
-                                                        <p className="text-pink-400 font-bold">Hyper Effective!</p>
-                                                    )}
-                                                    {damageResult.typeEffectMult === 2 && (
-                                                        <p className="text-green-400 font-bold">Super Effective!</p>
-                                                    )}
-                                                    {damageResult.typeEffectMult === 0.5 && (
-                                                        <p className="text-red-400 font-bold">Not Very Effective!</p>
-                                                    )}
-                                                    {damageResult.typeEffectMult === 0.25 && (
-                                                        <p className="text-gray-400 font-bold">Barely Effective!</p>
-                                                    )}
-                                                    {damageResult.typeEffectMult === 0 && (
-                                                        <p className="text-gray-500 font-bold shadow-md">
-                                                            Not Effective!
-                                                        </p>
-                                                    )}
-                                                    {/* Fixed health bar */}
-                                                    {printHPBar(damageResult)}
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <DamageResultComponent damageResult={damageResult} />
                                     ) : (
                                         <div className="text-center text-gray-500 p-8">
                                             <p>Select Pokémon and moves to see damage calculation</p>
