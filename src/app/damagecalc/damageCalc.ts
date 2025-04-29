@@ -140,7 +140,7 @@ function damageCalcStats(move: MoveData, userStats: PartyPokemon, targetStats: P
     const attacking_stat_holder = stats[attackerSide];
     const attacking_stat: Stat = move.move.getAttackingStat(trueCategory);
 
-    // TODO: implement abilities and weather
+    // TODO: implement abilities
     // if (user.shouldAbilityApply("MALICIOUSGLOW", aiCheck) && battle.moonGlowing()) {
     //     attacking_stat_holder = target;
     // }
@@ -234,73 +234,103 @@ function damageCalcStats(move: MoveData, userStats: PartyPokemon, targetStats: P
 //     }
 // }
 
-// function pbCalcWeatherDamageMultipliers(
-//     user: any,
-//     target: any,
-//     type: any,
-//     multipliers: any,
-//     checkingForAI: boolean = false
-// ): void {
-//     const weather = battle.pbWeather();
-//     switch (weather) {
-//         case "Sunshine":
-//         case "HarshSun":
-//             if (type === "FIRE") {
-//                 let damageBonus = weather === "HarshSun" ? 0.5 : 0.3;
-//                 if (battle.curseActive("CURSE_BOOSTED_SUN")) {
-//                     damageBonus *= 2;
-//                 }
-//                 multipliers.final_damage_multiplier *= 1 + damageBonus;
-//             } else if (applySunDebuff(user, type, checkingForAI)) {
-//                 let damageReduction = 0.15;
-//                 if (battle.pbCheckGlobalAbility("BLINDINGLIGHT")) {
-//                     damageReduction *= 2;
-//                 }
-//                 if (battle.curseActive("CURSE_BOOSTED_SUN")) {
-//                     damageReduction *= 2;
-//                 }
-//                 multipliers.final_damage_multiplier *= 1 - damageReduction;
-//             }
-//             break;
-//         case "Rainstorm":
-//         case "HeavyRain":
-//             if (type === "WATER") {
-//                 let damageBonus = weather === "HeavyRain" ? 0.5 : 0.3;
-//                 if (battle.curseActive("CURSE_BOOSTED_RAIN")) {
-//                     damageBonus *= 2;
-//                 }
-//                 multipliers.final_damage_multiplier *= 1 + damageBonus;
-//             } else if (applyRainDebuff(user, type, checkingForAI)) {
-//                 let damageReduction = 0.15;
-//                 if (battle.pbCheckGlobalAbility("DREARYCLOUDS")) {
-//                     damageReduction *= 2;
-//                 }
-//                 if (battle.curseActive("CURSE_BOOSTED_RAIN")) {
-//                     damageReduction *= 2;
-//                 }
-//                 multipliers.final_damage_multiplier *= 1 - damageReduction;
-//             }
-//             break;
-//         case "Eclipse":
-//         case "RingEclipse":
-//             if (type === "PSYCHIC" || (type === "DRAGON" && weather === "RingEclipse")) {
-//                 const damageBonus = weather === "RingEclipse" ? 0.5 : 0.3;
-//                 multipliers.final_damage_multiplier *= 1 + damageBonus;
-//             }
+function applySunDebuff(move: MoveData, user: PartyPokemon) {
+    // i'm not 100% sure we're actually passing ability flags yet, i'll check when we get to implementing abilitites
+    if (user.ability.flags.includes("SunshineSynergy") || user.ability.flags.includes("AllWeatherSynergy")) {
+        return false;
+    }
+    if (["FIRE", "GRASS"].includes(move.move.getType(user).id)) {
+        return false;
+    }
+    return true;
+}
 
-//             if (battle.pbCheckOpposingAbility("DISTRESSING", user.index)) {
-//                 multipliers.final_damage_multiplier *= 0.8;
-//             }
-//             break;
-//         case "Moonglow":
-//         case "BloodMoon":
-//             if (type === "FAIRY" || (type === "DARK" && weather === "BloodMoon")) {
-//                 const damageBonus = weather === "BloodMoon" ? 0.5 : 0.3;
-//                 multipliers.final_damage_multiplier *= 1 + damageBonus;
-//             }
-//             break;
-//     }
-// }
+function applyRainDebuff(move: MoveData, user: PartyPokemon) {
+    if (user.ability.flags.includes("RainstormSynergy") || user.ability.flags.includes("AllWeatherSynergy")) {
+        return false;
+    }
+    if (["WATER", "ELECTRIC"].includes(move.move.getType(user).id)) {
+        return false;
+    }
+    return true;
+}
+
+function pbCalcWeatherDamageMultipliers(
+    move: MoveData,
+    user: PartyPokemon,
+    target: PartyPokemon,
+    battleState: BattleState,
+    multipliers: DamageMultipliers
+): DamageMultipliers {
+    const weather = battleState.weather;
+    const type = move.move.getType(user).id;
+    switch (weather) {
+        case "Sunshine":
+        case "Harsh Sunlight":
+            if (type === "FIRE") {
+                const damageBonus = weather === "Harsh Sunlight" ? 0.5 : 0.3;
+                // TODO: implement curses
+                // if (battle.curseActive("CURSE_BOOSTED_SUN")) {
+                //     damageBonus *= 2;
+                // }
+                multipliers.final_damage_multiplier *= 1 + damageBonus;
+            } else if (applySunDebuff(move, user)) {
+                const damageReduction = 0.15;
+                // TODO: Implement abilities
+                // if (battle.pbCheckGlobalAbility("BLINDINGLIGHT")) {
+                //     damageReduction *= 2;
+                // }
+                // TODO: Implement curses
+                // if (battle.curseActive("CURSE_BOOSTED_SUN")) {
+                //     damageReduction *= 2;
+                // }
+                multipliers.final_damage_multiplier *= 1 - damageReduction;
+            }
+            break;
+        case "Rainstorm":
+        case "Heavy Rain":
+            if (type === "WATER") {
+                const damageBonus = weather === "Heavy Rain" ? 0.5 : 0.3;
+                // TODO: Implement curses
+                // if (battle.curseActive("CURSE_BOOSTED_RAIN")) {
+                //     damageBonus *= 2;
+                // }
+                multipliers.final_damage_multiplier *= 1 + damageBonus;
+            } else if (applyRainDebuff(move, user)) {
+                const damageReduction = 0.15;
+                // TODO: Implement abilities
+                // if (battle.pbCheckGlobalAbility("DREARYCLOUDS")) {
+                //     damageReduction *= 2;
+                // }
+                // TODO: Implement curses
+                // if (battle.curseActive("CURSE_BOOSTED_RAIN")) {
+                //     damageReduction *= 2;
+                // }
+                multipliers.final_damage_multiplier *= 1 - damageReduction;
+            }
+            break;
+        case "Eclipse":
+        case "Ring Eclipse":
+            if (type === "PSYCHIC" || (type === "DRAGON" && weather === "Ring Eclipse")) {
+                const damageBonus = weather === "Ring Eclipse" ? 0.5 : 0.3;
+                multipliers.final_damage_multiplier *= 1 + damageBonus;
+            }
+
+            // TODO: Implement abilities
+            // if (battle.pbCheckOpposingAbility("DISTRESSING", user.index)) {
+            //     multipliers.final_damage_multiplier *= 0.8;
+            // }
+            break;
+        case "Moonglow":
+        case "Blood Moon":
+            if (type === "FAIRY" || (type === "DARK" && weather === "Blood Moon")) {
+                const damageBonus = weather === "Blood Moon" ? 0.5 : 0.3;
+                multipliers.final_damage_multiplier *= 1 + damageBonus;
+            }
+            break;
+    }
+    return multipliers;
+}
 
 function pbCalcStatusesDamageMultipliers(
     move: MoveData,
@@ -429,20 +459,20 @@ function pbCalcProtectionsDamageMultipliers(
     // Aurora Veil, Reflect, Light Screen
     // TODO: Abilities that ignore screens?
     if (!move.move.ignoresScreens() && !move.criticalHit /* && !user.ignoreScreens(checkingForAI)*/) {
-        if (battleState["Aurora Veil"]) {
-            if (battleState["Multi Battle"]) {
+        if (battleState.bools["Aurora Veil"]) {
+            if (battleState.bools["Multi Battle"]) {
                 multipliers.final_damage_multiplier *= 2 / 3.0;
             } else {
                 multipliers.final_damage_multiplier *= 0.5;
             }
-        } else if (battleState.Reflect && move.move.getDamageCategory(move, user, target) === "Physical") {
-            if (battleState["Multi Battle"]) {
+        } else if (battleState.bools.Reflect && move.move.getDamageCategory(move, user, target) === "Physical") {
+            if (battleState.bools["Multi Battle"]) {
                 multipliers.final_damage_multiplier *= 2 / 3.0;
             } else {
                 multipliers.final_damage_multiplier *= 0.5;
             }
-        } else if (battleState["Light Screen"] && move.move.getDamageCategory(move, user, target) === "Special") {
-            if (battleState["Multi Battle"]) {
+        } else if (battleState.bools["Light Screen"] && move.move.getDamageCategory(move, user, target) === "Special") {
+            if (battleState.bools["Multi Battle"]) {
                 multipliers.final_damage_multiplier *= 2 / 3.0;
             } else {
                 multipliers.final_damage_multiplier *= 0.5;
@@ -652,8 +682,7 @@ function calcDamageMultipliers(
     };
     // TODO: Handle abilities
     // multipliers = pbCalcAbilityDamageMultipliers(user, target, type, baseDmg, multipliers);
-    // TODO: Handle weather
-    // multipliers = pbCalcWeatherDamageMultipliers(user, target, type, multipliers);
+    multipliers = pbCalcWeatherDamageMultipliers(move, user, target, battleState, multipliers);
     multipliers = pbCalcStatusesDamageMultipliers(move, user, target, multipliers);
     // TODO: Handle Protect-esque moves
     multipliers = pbCalcProtectionsDamageMultipliers(move, user, target, battleState, multipliers);
@@ -708,7 +737,7 @@ function calcDamageMultipliers(
     // }
 
     // Multi-targeting attacks
-    if (move.move.isSpread() && battleState["Multi Battle"]) {
+    if (move.move.isSpread() && battleState.bools["Multi Battle"]) {
         // TODO: Handle abilities
         // if (user.shouldAbilityApply("RESONANT", aiCheck)) {
         //     multipliers.final_damage_multiplier *= 1.25;

@@ -1,4 +1,4 @@
-import { StatusEffect } from "../statusEffects";
+import { StatusEffect } from "../conditions";
 import { Move } from "../types/Move";
 import { PartyPokemon } from "../types/PartyPokemon";
 

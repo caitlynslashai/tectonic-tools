@@ -16,6 +16,7 @@ import ColumnHeader from "../../components/ColumnHeader";
 import Dropdown from "../../components/DropDown";
 import InputLabel from "../../components/InputLabel";
 import PokemonCard from "../../components/PokemonCard";
+import { WeatherCondition, weatherConditions } from "../data/conditions";
 import { nullMove } from "../data/moves";
 import { nullPokemon, pokemon } from "../data/pokemon";
 import { decodeTeam } from "../data/teamExport";
@@ -31,7 +32,11 @@ const nullMoveData = { move: nullMove, criticalHit: false, customVar: undefined 
 
 const battleBooleans = ["Multi Battle", "Aurora Veil", "Reflect", "Light Screen"] as const;
 type BattleBoolean = (typeof battleBooleans)[number];
-export type BattleState = Record<BattleBoolean, boolean>;
+type BattleBools = Record<BattleBoolean, boolean>;
+export interface BattleState {
+    bools: BattleBools;
+    weather: WeatherCondition;
+}
 
 const PokemonDamageCalculator: NextPage = () => {
     const [playerPokemon, setPlayerPokemon] = useState<PartyPokemon>(new PartyPokemon());
@@ -43,9 +48,10 @@ const PokemonDamageCalculator: NextPage = () => {
     const [playerTeam, setPlayerTeam] = useState<Trainer>(nullTrainer);
     const [opposingTrainer, setOpposingTrainer] = useState<Trainer>(nullTrainer);
 
-    const [battleState, setBattleState] = useState<BattleState>(
-        Object.fromEntries(battleBooleans.map((b) => [b, false])) as BattleState
+    const [battleBools, setBattleBools] = useState<BattleBools>(
+        Object.fromEntries(battleBooleans.map((b) => [b, false])) as BattleBools
     );
+    const [weather, setWeather] = useState<WeatherCondition>("None");
 
     const [teamCode, setTeamCode] = useState<string>("");
 
@@ -85,8 +91,8 @@ const PokemonDamageCalculator: NextPage = () => {
     }
 
     function handleBattleState(state: BattleBoolean, value: boolean) {
-        const newState = { ...battleState, [state]: value };
-        setBattleState(newState);
+        const newState = { ...battleBools, [state]: value };
+        setBattleBools(newState);
     }
 
     const getPokemon = {
@@ -174,7 +180,12 @@ const PokemonDamageCalculator: NextPage = () => {
         return !isNull(playerPokemon.species) && !isNull(opponentPokemon.species) && !isNull(playerMove.move);
     }
 
-    const damageResult = calculateDamage(playerMove, playerPokemon, opponentPokemon, battleState);
+    const fieldState = {
+        weather,
+        bools: battleBools,
+    };
+
+    const damageResult = calculateDamage(playerMove, playerPokemon, opponentPokemon, fieldState);
 
     function swapPokemon() {
         const mon1 = playerPokemon;
@@ -418,13 +429,24 @@ const PokemonDamageCalculator: NextPage = () => {
                                         {battleBooleans.map((b) => (
                                             <Checkbox
                                                 key={b}
-                                                checked={battleState[b]}
-                                                onChange={() => handleBattleState(b, !battleState[b])}
+                                                checked={battleBools[b]}
+                                                onChange={() => handleBattleState(b, !battleBools[b])}
                                             >
                                                 {b}
                                             </Checkbox>
                                         ))}
                                     </div>
+                                    <Dropdown
+                                        value={weather}
+                                        onChange={(e) => setWeather(e.target.value as WeatherCondition)}
+                                    >
+                                        <option value="None">Select Weather</option>
+                                        {weatherConditions.map((w) => (
+                                            <option key={w} value={w}>
+                                                {w}
+                                            </option>
+                                        ))}
+                                    </Dropdown>
                                     <BasicButton onClick={() => swapPokemon()}>Swap Pokémon</BasicButton>
                                 </Column>
 

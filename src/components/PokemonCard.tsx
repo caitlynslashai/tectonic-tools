@@ -2,12 +2,12 @@
 
 import { abilities, nullAbility } from "@/app/data/abilities";
 import { TwoItemAbility } from "@/app/data/abilities/TwoItemAbility";
+import { StatusEffect, statusEffects, VolatileStatusEffect, volatileStatusEffects } from "@/app/data/conditions";
 import { items, nullItem } from "@/app/data/items";
 import { TypeChangingItem } from "@/app/data/items/TypeChangingItem";
 import { moves, nullMove } from "@/app/data/moves";
 import { nullPokemon, pokemon } from "@/app/data/pokemon";
 import { getSignatureAbilities, getSignatureMoves } from "@/app/data/signatures";
-import { StatusEffect, statusEffects, VolatileStatusEffect, volatileStatusEffects } from "@/app/data/statusEffects";
 import {
     MAX_LEVEL,
     MAX_SP,

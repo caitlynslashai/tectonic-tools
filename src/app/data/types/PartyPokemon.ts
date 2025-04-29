@@ -1,6 +1,7 @@
 import { MoveData } from "@/app/damagecalc/components/MoveCard";
 import { Side } from "@/app/damagecalc/damageCalc";
 import { nullAbility } from "../abilities";
+import { StatusEffect, VolatileStatusEffect, volatileStatusEffects } from "../conditions";
 import { nullForm } from "../forms";
 import { nullItem } from "../items";
 import { TypeChangingItem } from "../items/TypeChangingItem";
@@ -8,7 +9,6 @@ import { nullMove } from "../moves";
 import { IgnoreStatMove } from "../moves/IgnoreStatMove";
 import { nullPokemon } from "../pokemon";
 import { calculateHP, calculateStat } from "../stats";
-import { StatusEffect, VolatileStatusEffect, volatileStatusEffects } from "../statusEffects";
 import { MAX_LEVEL } from "../teamExport";
 import { types } from "../types";
 import { isNull } from "../util";
