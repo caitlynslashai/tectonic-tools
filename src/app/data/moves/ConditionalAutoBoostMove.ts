@@ -1,5 +1,5 @@
+import { StatusEffect } from "../conditions";
 import { LoadedMove } from "../loading/moves";
-import { StatusEffect } from "../statusEffects";
 import { Move } from "../types/Move";
 import { PartyPokemon } from "../types/PartyPokemon";
 import { isNull } from "../util";

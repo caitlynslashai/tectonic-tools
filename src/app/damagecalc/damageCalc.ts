@@ -429,20 +429,20 @@ function pbCalcProtectionsDamageMultipliers(
     // Aurora Veil, Reflect, Light Screen
     // TODO: Abilities that ignore screens?
     if (!move.move.ignoresScreens() && !move.criticalHit /* && !user.ignoreScreens(checkingForAI)*/) {
-        if (battleState["Aurora Veil"]) {
-            if (battleState["Multi Battle"]) {
+        if (battleState.bools["Aurora Veil"]) {
+            if (battleState.bools["Multi Battle"]) {
                 multipliers.final_damage_multiplier *= 2 / 3.0;
             } else {
                 multipliers.final_damage_multiplier *= 0.5;
             }
-        } else if (battleState.Reflect && move.move.getDamageCategory(move, user, target) === "Physical") {
-            if (battleState["Multi Battle"]) {
+        } else if (battleState.bools.Reflect && move.move.getDamageCategory(move, user, target) === "Physical") {
+            if (battleState.bools["Multi Battle"]) {
                 multipliers.final_damage_multiplier *= 2 / 3.0;
             } else {
                 multipliers.final_damage_multiplier *= 0.5;
             }
-        } else if (battleState["Light Screen"] && move.move.getDamageCategory(move, user, target) === "Special") {
-            if (battleState["Multi Battle"]) {
+        } else if (battleState.bools["Light Screen"] && move.move.getDamageCategory(move, user, target) === "Special") {
+            if (battleState.bools["Multi Battle"]) {
                 multipliers.final_damage_multiplier *= 2 / 3.0;
             } else {
                 multipliers.final_damage_multiplier *= 0.5;
@@ -708,7 +708,7 @@ function calcDamageMultipliers(
     // }
 
     // Multi-targeting attacks
-    if (move.move.isSpread() && battleState["Multi Battle"]) {
+    if (move.move.isSpread() && battleState.bools["Multi Battle"]) {
         // TODO: Handle abilities
         // if (user.shouldAbilityApply("RESONANT", aiCheck)) {
         //     multipliers.final_damage_multiplier *= 1.25;

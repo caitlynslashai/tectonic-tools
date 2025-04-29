@@ -1,7 +1,7 @@
 import { MoveData } from "@/app/damagecalc/components/MoveCard";
 import { Side } from "@/app/damagecalc/damageCalc";
+import { StatusEffect } from "../conditions";
 import { LoadedMove } from "../loading/moves";
-import { StatusEffect } from "../statusEffects";
 import { types } from "../types";
 import { isNull } from "../util";
 import { PartyPokemon } from "./PartyPokemon";
