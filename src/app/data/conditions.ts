@@ -13,6 +13,9 @@ export const weatherConditions = [
     "Sandstorm",
     "Eclipse",
     "Moonglow",
+    "Harsh Sunlight",
+    "Heavy Rain",
+    "Delta Stream",
     "Ring Eclipse",
     "Blood Moon",
 ] as const;
