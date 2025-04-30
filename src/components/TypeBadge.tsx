@@ -46,7 +46,7 @@ export default function TypeBadge({ types, useShort, element }: TypeBadgeProps) 
     }
 
     function getText(type: PokemonType) {
-        return <span className="my-auto align-middle">{useShort ? type.getShortName() : type.name}</span>;
+        return <span className="my-auto">{useShort ? type.getShortName() : type.name}</span>;
     }
 
     function getIcon(type: PokemonType) {
