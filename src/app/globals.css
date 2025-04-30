@@ -40,41 +40,41 @@ body {
 }
 
 @theme {
-    --color-fire: #f0812c;
+    --color-fire: #e4613e;
     --color-fire-bg: #8a211c;
-    --color-water: #6891f0;
+    --color-water: #3099e1;
     --color-water-bg: #231d94;
-    --color-steel: #6891f0;
+    --color-steel: #74b0cb;
     --color-steel-bg: #94887d;
-    --color-rock: #b9a135;
+    --color-rock: #a9a481;
     --color-rock-bg: #60481d;
-    --color-psychic: #f85789;
+    --color-psychic: #e96c8c;
     --color-psychic-bg: #916060;
-    --color-poison: #a13ea1;
+    --color-poison: #9354cb;
     --color-poison-bg: #46354f;
-    --color-normal: #a9a979;
+    --color-normal: #828282;
     --color-normal-bg: #715746;
-    --color-ice: #99d9d9;
+    --color-ice: #47c8c8;
     --color-ice-bg: #9a9acd;
-    --color-ground: #e1c168;
-    --color-ground-bg: #89682c;
-    --color-grass: #79c94f;
+    --color-ground: #a4733c;
+    --color-ground-bg: #6f521e;
+    --color-grass: #439837;
     --color-grass-bg: #57813e;
-    --color-ghost: #715799;
-    --color-ghost-bg: #46354f;
-    --color-flying: #a991f0;
+    --color-ghost: #6f4570;
+    --color-ghost-bg: #473252;
+    --color-flying: #74aad0;
     --color-flying-bg: #563e79;
-    --color-fighting: #c12c23;
+    --color-fighting: #e49021;
     --color-fighting-bg: #63492b;
-    --color-fairy: #f0a9b1;
+    --color-fairy: #e18ce1;
     --color-fairy-bg: #845b68;
-    --color-electric: #f8d12c;
+    --color-electric: #dfbc28;
     --color-electric-bg: #988325;
-    --color-dragon: #7135f8;
+    --color-dragon: #576fbc;
     --color-dragon-bg: #463591;
-    --color-dark: #463591;
-    --color-dark-bg: #463e35;
-    --color-bug: #a9b91a;
+    --color-dark: #4f4747;
+    --color-dark-bg: #34312d;
+    --color-bug: #9f9f28;
     --color-bug-bg: #5a690c;
     --color-mutant: #a27292;
     --color-mutant-bg: #53374a;
@@ -86,3 +86,5 @@ body {
 }
 
 @source inline("{hover:bg,bg,to,from}-{fire,water,steel,rock,psychic,poison,normal,ice,ground,grass,ghost,flying,fighting,fairy,electric,dragon,dark,bug,mutant}{,-bg}");
+
+@source inline("grid-rows-{1,2}");

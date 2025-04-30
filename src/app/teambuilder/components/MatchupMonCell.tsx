@@ -1,42 +1,33 @@
 import { PartyPokemon } from "@/app/data/types/PartyPokemon";
-import { PokemonType } from "@/app/data/types/PokemonType";
+import { uniq } from "@/app/data/util";
 import TypeBadge, { TypeBadgeElementEnum } from "@/components/TypeBadge";
 import Image from "next/image";
 
 export default function MatchupMonCell({ c, useMoves }: { c: PartyPokemon; useMoves: boolean }) {
-    function getMoveTypeOrUndefined(index: number): PokemonType | undefined {
-        return c.moves.length > index && c.moves[index].isAttackingMove() ? c.moves[index].getType(c) : undefined;
-    }
-
     return (
         <td>
-            <div className="flex pr-2 space-x-1">
+            <div className="flex p-1">
                 <Image
                     src={c.species.getImage(c.form)}
                     alt={c.species.getFormName(c.form) ?? c.species.name}
                     title={c.species.getFormName(c.form) ?? c.species.name}
-                    height="80"
-                    width="80"
-                    className="m-1"
+                    className="w-20 h-20"
+                    height="192"
+                    width="192"
                 />
                 {useMoves ? (
                     <>
                         <TypeBadge
-                            types={[getMoveTypeOrUndefined(0), getMoveTypeOrUndefined(1)]}
+                            types={uniq(c.moves.filter((m) => m.isAttackingMove()).map((m) => m.getType(c)))}
                             useShort={false}
-                            element={TypeBadgeElementEnum.CAPSULE_STACK}
-                        />
-                        <TypeBadge
-                            types={[getMoveTypeOrUndefined(2), getMoveTypeOrUndefined(3)]}
-                            useShort={false}
-                            element={TypeBadgeElementEnum.CAPSULE_STACK}
+                            element={TypeBadgeElementEnum.ICONS}
                         />
                     </>
                 ) : (
                     <TypeBadge
                         types={[c.types.type1, c.types.type2]}
                         useShort={false}
-                        element={TypeBadgeElementEnum.CAPSULE_STACK}
+                        element={TypeBadgeElementEnum.ICONS}
                     />
                 )}
             </div>

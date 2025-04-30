@@ -185,7 +185,7 @@ const Home: NextPage = () => {
                                         className={`cursor-pointer ${getTypeColorClass(m.type, "bg", "bg")}`}
                                     >
                                         <TableCell>{m.name}</TableCell>
-                                        <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500 dark:text-gray-400">
+                                        <td className="text-center text-gray-500 dark:text-gray-400">
                                             <TypeBadge
                                                 key={m.type.id}
                                                 types={[m.type]}
@@ -286,10 +286,10 @@ const Home: NextPage = () => {
                     <table className="mx-auto border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">
                         <thead>
                             <tr>
-                                <th className="px-1 text-sm font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
-                                    Defense →
+                                <th className="text-xs text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                                    Def ⇒
                                     <br />
-                                    Attack ↴
+                                    Atk ↴
                                 </th>
                                 {realTypes.map((def) => (
                                     <TypeBadge
