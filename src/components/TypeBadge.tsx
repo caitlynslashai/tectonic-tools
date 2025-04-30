@@ -42,11 +42,11 @@ export default function TypeBadge({ types, useShort, element }: TypeBadgeProps) 
     }
 
     function getCapsuleClasses(type: PokemonType) {
-        return `${getClasses(type)} pr-2 w-fit text-center rounded-full`;
+        return `${getClasses(type)} flex pr-2 w-fit rounded-full`;
     }
 
     function getText(type: PokemonType) {
-        return useShort ? type.getShortName() : type.name;
+        return <span className="my-auto align-middle">{useShort ? type.getShortName() : type.name}</span>;
     }
 
     function getIcon(type: PokemonType) {
@@ -110,25 +110,25 @@ export default function TypeBadge({ types, useShort, element }: TypeBadgeProps) 
             );
         case TypeBadgeElementEnum.CAPSULE_SINGLE:
             return (
-                <span className={`${getCapsuleClasses(defTypes[0])} flex`} title={defTypes[0].name}>
+                <span className={`${getCapsuleClasses(defTypes[0])}`} title={defTypes[0].name}>
                     {getIcon(defTypes[0])}
-                    <span className="my-auto">{getText(defTypes[0])}</span>
+                    {getText(defTypes[0])}
                 </span>
             );
         case TypeBadgeElementEnum.CAPSULE_STACK:
             return (
-                <div className="my-auto">
+                <>
                     {defTypes.map((type, index) => (
-                        <div key={index} className={`${getCapsuleClasses(type)} my-1 mx-auto`} title={type.name}>
+                        <span key={index} className={`${getCapsuleClasses(type)} my-1 mx-auto`} title={type.name}>
                             {getIcon(type)}
                             {getText(type)}
-                        </div>
+                        </span>
                     ))}
-                </div>
+                </>
             );
         case TypeBadgeElementEnum.CAPSULE_ROW:
             return (
-                <div className="flex justify-center space-x-2">
+                <div className="flex space-x-2">
                     {defTypes.map((type) => (
                         <span key={type.id} className={`${getCapsuleClasses(type)}`} title={type.name}>
                             {getIcon(type)}
