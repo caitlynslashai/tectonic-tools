@@ -14,6 +14,7 @@ function punishStatus(status: StatusEffect) {
 const moveConditions: Record<string, ConditionFunction> = {
     DoubleDamageNoItem: (user: PartyPokemon) => user.items.filter((i) => !isNull(i)).length === 0,
     DoubleDamageFaster: (user: PartyPokemon, target: PartyPokemon) => user.getStats().speed > target.getStats().speed,
+    InertiaShock: (user: PartyPokemon, target: PartyPokemon) => user.getStats().speed > target.getStats().speed,
     RemovesTargetItemDamageBoost50Percent: (_: PartyPokemon, target: PartyPokemon) =>
         target.items.filter((i) => !isNull(i)).length > 0,
     DoubleDamageTargetStatused: (_: PartyPokemon, target: PartyPokemon) => target.statusEffect !== "None", // Does Hex interact with Volatile SEs?
@@ -32,6 +33,7 @@ const moveConditions: Record<string, ConditionFunction> = {
 const moveBoosts: Record<string, number> = {
     RemovesTargetItemDamageBoost50Percent: 1.5,
     TripleDamageAgainstPoisoned: 3,
+    InertiaShock: 1.5,
 };
 
 export class ConditionalAutoBoostMove extends Move {
