@@ -16,6 +16,7 @@ const moveConditions: Record<string, ConditionFunction> = {
     RemovesTargetItemDamageBoost50Percent: (_: PartyPokemon, target: PartyPokemon) =>
         target.items.filter((i) => !isNull(i)).length > 0,
     DoubleDamageTargetStatused: (_: PartyPokemon, target: PartyPokemon) => target.statusEffect !== "None", // Does Hex interact with Volatile SEs?
+    DoubleDamageAgainstBurned: punishStatus("Burn"),
     DoubleDamageAgainstPoisoned: punishStatus("Poison"),
     TripleDamageAgainstPoisoned: punishStatus("Poison"),
     HealUserByHalfOfDamageDoneDoubleDamageIfTargetAsleep: punishStatus("Sleep"),
