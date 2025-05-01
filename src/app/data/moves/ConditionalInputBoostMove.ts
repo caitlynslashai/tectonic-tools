@@ -7,6 +7,7 @@ const moveConditions: Record<string, string> = {
     DoubleDamageAvengingFaint: "Ally Fainted Last Turn",
     Round: "Other Round This Turn",
     DoubleDamageTargetHitUser: "Target Damaged User This Turn",
+    StareDown: "Target Damaged User This Turn",
     DamageBoost50PercentTargetHitUser: "Target Damaged User This Turn",
     DoubleDamageBerryConsumed: "Berry Consumed This Battle",
     DoubleDamageGemConsumed: "Gem Consumed This Battle",
