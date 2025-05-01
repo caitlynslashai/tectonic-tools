@@ -755,7 +755,7 @@ function calcDamageMultipliers(
     // Critical hits
     if (move.criticalHit) {
         // TODO: Implement moves with increased critical hit damage
-        multipliers.final_damage_multiplier *= 1.5;
+        multipliers.final_damage_multiplier *= move.move.getCriticalMultiplier();
     }
 
     // Random variance (What used to be for that)

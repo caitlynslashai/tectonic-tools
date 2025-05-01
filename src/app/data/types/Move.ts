@@ -121,5 +121,9 @@ export class Move {
         return "player";
     }
 
+    public getCriticalMultiplier(): number {
+        return 1.5;
+    }
+
     static moveCodes: string[] = [];
 }
