@@ -23,6 +23,10 @@ const multiHitMoveCodes: Record<string, MultiHits> = {
         minHits: 2,
         maxHits: 5,
     },
+    HitTwoToFiveTimesAddMoneyGainedFromBattleEachHit: {
+        minHits: 2,
+        maxHits: 5,
+    },
     HitTwoTimes: {
         minHits: 2,
         maxHits: 2,
