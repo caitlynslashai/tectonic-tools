@@ -1,6 +1,6 @@
 import { WeatherCondition } from "./conditions";
 
-export const battleBooleans = ["Multi Battle", "Aurora Veil", "Reflect", "Light Screen"] as const;
+export const battleBooleans = ["Multi Battle", "Aurora Veil", "Reflect", "Light Screen", "Gravity"] as const;
 export type BattleBoolean = (typeof battleBooleans)[number];
 export type BattleBools = Record<BattleBoolean, boolean>;
 export interface BattleState {

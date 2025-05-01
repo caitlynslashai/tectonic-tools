@@ -1,10 +1,11 @@
+import { BattleState } from "../battleState";
 import { StatusEffect } from "../conditions";
 import { LoadedMove } from "../loading/moves";
 import { Move } from "../types/Move";
 import { PartyPokemon } from "../types/PartyPokemon";
 import { isNull } from "../util";
 
-type ConditionFunction = (user: PartyPokemon, target: PartyPokemon) => boolean;
+type ConditionFunction = (user: PartyPokemon, target: PartyPokemon, battleState: BattleState) => boolean;
 
 function punishStatus(status: StatusEffect) {
     return (_: PartyPokemon, target: PartyPokemon) => target.statusEffect === status;
@@ -25,6 +26,7 @@ const moveConditions: Record<string, ConditionFunction> = {
     // but the status-curing part isn't relevant to a single turn of damage calculation
     SmellingSalts: punishStatus("Numb"),
     WakeUpSlap: punishStatus("Sleep"),
+    DoubleDamageGravity: (_: PartyPokemon, __: PartyPokemon, battleState: BattleState) => battleState.bools.Gravity,
 };
 
 const moveBoosts: Record<string, number> = {
@@ -40,8 +42,8 @@ export class ConditionalAutoBoostMove extends Move {
         this.condition = moveConditions[move.functionCode];
         this.boost = moveBoosts[move.functionCode] || 2;
     }
-    public getPower(user: PartyPokemon, target: PartyPokemon): number {
-        return this.bp * (this.condition(user, target) ? this.boost : 1);
+    public getPower(user: PartyPokemon, target: PartyPokemon, battleState: BattleState): number {
+        return this.bp * (this.condition(user, target, battleState) ? this.boost : 1);
     }
 
     static moveCodes = Object.keys(moveConditions);
