@@ -24,6 +24,7 @@ const moveConditions: Record<string, string> = {
     RoughAndTumble: "Curl Up Used Previously",
     DamageBoost50PercentNotTargetFirstTurn: "Not Target's First Turn",
     PowerDoublesTargetLastAlive: "Last Non-Fainted Team Member",
+    DoubleDamageFirstTurn: "User's First Turn",
 };
 
 const moveBoosts: Record<string, number> = {
