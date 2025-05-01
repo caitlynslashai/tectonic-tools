@@ -16,6 +16,7 @@ const moveConditions: Record<string, string> = {
     FusionFlare: "Fusion Bolt Used This Turn",
     DamageBoost50PercentTargetNotAttacked: "Target Hasn't Moved This Turn",
     DoubleDamageTargetMoved: "Target Moved This Turn",
+    PowerBoostTargetMoved25Percent: "Target Moved This Turn",
     DoubleDamageTargetLostHP: "Target Already Damaged This Turn",
     DoubleDamageUserStatsLowered: "Stats Lowered This Turn",
     PursueSwitchingFoe: "Foe Switching",
@@ -25,6 +26,7 @@ const moveConditions: Record<string, string> = {
 const moveBoosts: Record<string, number> = {
     DamageBoost50PercentTargetNotAttacked: 1.5,
     DamageBoost50PercentTargetHitUser: 1.5,
+    PowerBoostTargetMoved25Percent: 1.25,
 };
 
 export class ConditionalInputBoostMove extends Move {
