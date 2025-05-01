@@ -22,6 +22,7 @@ const moveConditions: Record<string, string> = {
     PursueSwitchingFoe: "Foe Switching",
     RoughAndTumble: "Curl Up Used Previously",
     DamageBoost50PercentNotTargetFirstTurn: "Not Target's First Turn",
+    PowerDoublesTargetLastAlive: "Last Non-Fainted Team Member",
 };
 
 const moveBoosts: Record<string, number> = {
