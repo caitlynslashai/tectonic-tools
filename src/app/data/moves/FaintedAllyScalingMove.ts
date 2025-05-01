@@ -2,7 +2,7 @@ import { Move } from "../types/Move";
 import { PartyPokemon } from "../types/PartyPokemon";
 
 export class FaintedAllyScalingMove extends Move {
-    customVarName: string = "Stockpiles";
+    customVarName: string = "Fainted Allies";
     customVarType: string = "number";
     needsInput: boolean = true;
     public getPower(_: PartyPokemon, __: PartyPokemon, faintedAllies: number): number {
