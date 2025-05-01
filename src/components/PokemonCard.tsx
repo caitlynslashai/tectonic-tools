@@ -396,7 +396,7 @@ export default function PokemonCard({
                                                     onChange={(e) => updateSP(styleName, parseInt(e.target.value))}
                                                 />
                                             </td>
-                                            {battle && (
+                                            {battle && statName !== "hp" && (
                                                 <td>
                                                     <input
                                                         type="number"
