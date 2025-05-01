@@ -21,12 +21,14 @@ const moveConditions: Record<string, string> = {
     DoubleDamageUserStatsLowered: "Stats Lowered This Turn",
     PursueSwitchingFoe: "Foe Switching",
     RoughAndTumble: "Curl Up Used Previously",
+    DamageBoost50PercentNotTargetFirstTurn: "Not Target's First Turn",
 };
 
 const moveBoosts: Record<string, number> = {
     DamageBoost50PercentTargetNotAttacked: 1.5,
     DamageBoost50PercentTargetHitUser: 1.5,
     PowerBoostTargetMoved25Percent: 1.25,
+    DamageBoost50PercentNotTargetFirstTurn: 1.5,
 };
 
 export class ConditionalInputBoostMove extends Move {
