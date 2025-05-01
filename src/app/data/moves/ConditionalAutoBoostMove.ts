@@ -30,12 +30,15 @@ const moveConditions: Record<string, ConditionFunction> = {
     SmellingSalts: punishStatus("Numb"),
     WakeUpSlap: punishStatus("Sleep"),
     DoubleDamageGravity: (_: PartyPokemon, __: PartyPokemon, battleState: BattleState) => battleState.bools.Gravity,
+    DamageBoostEclipse50Percent: (_: PartyPokemon, __: PartyPokemon, battleState: BattleState) =>
+        battleState.weather === "Eclipse" || battleState.weather === "Ring Eclipse",
 };
 
 const moveBoosts: Record<string, number> = {
     RemovesTargetItemDamageBoost50Percent: 1.5,
     TripleDamageAgainstPoisoned: 3,
     InertiaShock: 1.5,
+    DamageBoostEclipse50Percent: 1.5,
 };
 
 export class ConditionalAutoBoostMove extends Move {
