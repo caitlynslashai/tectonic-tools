@@ -6,6 +6,7 @@ const moveConditions: Record<string, string> = {
     DoubleDamageAvengingFaint: "Ally Fainted Last Turn",
     Round: "Other Round This Turn",
     DoubleDamageTargetHitUser: "Target Damaged User This Turn",
+    DamageBoost50PercentTargetHitUser: "Target Damaged User This Turn",
     DoubleDamageBerryConsumed: "Berry Consumed This Battle",
     DoubleDamageGemConsumed: "Gem Consumed This Battle",
     HitsDiggers: "Opponent Underground",
@@ -22,6 +23,7 @@ const moveConditions: Record<string, string> = {
 
 const moveBoosts: Record<string, number> = {
     DamageBoost50PercentTargetNotAttacked: 1.5,
+    DamageBoost50PercentTargetHitUser: 1.5,
 };
 
 export class ConditionalInputBoostMove extends Move {
