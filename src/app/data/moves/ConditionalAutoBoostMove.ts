@@ -23,6 +23,7 @@ const moveConditions: Record<string, ConditionFunction> = {
     DoubleDamageAgainstPoisoned: punishStatus("Poison"),
     TripleDamageAgainstPoisoned: punishStatus("Poison"),
     HealUserByHalfOfDamageDoneDoubleDamageIfTargetAsleep: punishStatus("Sleep"),
+    HealUserByHalfOfDamageDoneDoubleDamageIfTargetAsleepCanOverheal: punishStatus("Sleep"),
     // Smelling Salts and Wake-Up Slap aren't identical to Venoshock etc,
     // but the status-curing part isn't relevant to a single turn of damage calculation
     SmellingSalts: punishStatus("Numb"),
