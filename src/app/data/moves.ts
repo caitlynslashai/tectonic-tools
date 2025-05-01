@@ -18,6 +18,7 @@ import { HitsFliersMove } from "./moves/HitsFliersMove";
 import { HPScalingMove } from "./moves/HPScalingMove";
 import { IgnoreStatMove } from "./moves/IgnoreStatMove";
 import { MultiHitMove } from "./moves/MultiHitMove";
+import { RepeatScalingMove } from "./moves/RepeatScalingMove";
 import { SlownessScalingMove } from "./moves/SlownessScalingMove";
 import { SpeedScalingMove } from "./moves/SpeedScalingMove";
 import { SpikeScalingMove } from "./moves/SpikeScalingMove";
@@ -51,6 +52,7 @@ const moveSubclasses = [
     HPScalingMove,
     IgnoreStatMove,
     MultiHitMove,
+    RepeatScalingMove,
     SpeedScalingMove,
     SlownessScalingMove,
     SpikeScalingMove,

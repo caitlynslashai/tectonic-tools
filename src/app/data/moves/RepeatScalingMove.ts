@@ -3,7 +3,7 @@ import { LoadedMove } from "../loading/moves";
 import { Move } from "../types/Move";
 import { PartyPokemon } from "../types/PartyPokemon";
 
-export class StackingMove extends Move {
+export class RepeatScalingMove extends Move {
     customVarName: string = "Times Used Consecutively";
     customVarType: string = "number";
     needsInput: boolean = true;
@@ -12,8 +12,8 @@ export class StackingMove extends Move {
     }
 
     public getPower(_: PartyPokemon, __: PartyPokemon, ___: BattleState, turns: number): number {
-        return this.bp * Math.pow(2, turns);
+        return this.bp * turns * 20;
     }
 
-    static moveCodes = ["EchoedVoice", "RockRoll", "FuryCutter", "IceBall"];
+    static moveCodes = ["HeartRhythm"];
 }
