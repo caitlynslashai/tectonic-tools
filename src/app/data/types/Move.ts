@@ -1,5 +1,6 @@
 import { MoveData } from "@/app/damagecalc/components/MoveCard";
 import { Side } from "@/app/damagecalc/damageCalc";
+import { BattleState } from "@/app/data/battleState";
 import { StatusEffect } from "../conditions";
 import { LoadedMove } from "../loading/moves";
 import { types } from "../types";
@@ -69,14 +70,14 @@ export class Move {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public getPower(user: PartyPokemon, target: PartyPokemon, customVar: unknown): number {
+    public getPower(user: PartyPokemon, target: PartyPokemon, battleState: BattleState, customVar: unknown): number {
         // TODO: Implement BP variance for relevant moves
         return this.bp;
     }
 
     // to be extended by subclasses
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public getType(user: PartyPokemon): PokemonType {
+    public getType(user: PartyPokemon, battleState: BattleState): PokemonType {
         return this.type;
     }
 

@@ -1,3 +1,4 @@
+import { BattleState } from "@/app/data/battleState";
 import { LoadedMove } from "../loading/moves";
 import { Move } from "../types/Move";
 import { PartyPokemon } from "../types/PartyPokemon";
@@ -10,7 +11,7 @@ export class StackingMove extends Move {
         super(move);
     }
 
-    public getPower(_: PartyPokemon, __: PartyPokemon, turns: number): number {
+    public getPower(_: PartyPokemon, __: PartyPokemon, ___: BattleState, turns: number): number {
         return this.bp * Math.pow(2, turns);
     }
 

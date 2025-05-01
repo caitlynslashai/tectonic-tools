@@ -1,9 +1,9 @@
+import { BattleState } from "@/app/data/battleState";
 import { MultiHitMove } from "../data/moves/MultiHitMove";
 import { calcTypeMatchup } from "../data/typeChart";
 import { PartyPokemon } from "../data/types/PartyPokemon";
 import { Stat } from "../data/types/Pokemon";
 import { MoveData } from "./components/MoveCard";
-import { BattleState } from "./page";
 
 export type Side = "player" | "opponent";
 
@@ -33,7 +33,7 @@ export function calculateDamage(
     // }
 
     // Calculate base power of move
-    const baseDmg = move.move.getPower(user, target, move.customVar);
+    const baseDmg = move.move.getPower(user, target, battleState, move.customVar);
 
     // In vanilla Tectonic, critical hit determination happens here
     // However, for calculation, it's determined by the UI
@@ -234,22 +234,22 @@ function damageCalcStats(move: MoveData, userStats: PartyPokemon, targetStats: P
 //     }
 // }
 
-function applySunDebuff(move: MoveData, user: PartyPokemon) {
+function applySunDebuff(move: MoveData, user: PartyPokemon, battleState: BattleState) {
     // i'm not 100% sure we're actually passing ability flags yet, i'll check when we get to implementing abilitites
     if (user.ability.flags.includes("SunshineSynergy") || user.ability.flags.includes("AllWeatherSynergy")) {
         return false;
     }
-    if (["FIRE", "GRASS"].includes(move.move.getType(user).id)) {
+    if (["FIRE", "GRASS"].includes(move.move.getType(user, battleState).id)) {
         return false;
     }
     return true;
 }
 
-function applyRainDebuff(move: MoveData, user: PartyPokemon) {
+function applyRainDebuff(move: MoveData, user: PartyPokemon, battleState: BattleState) {
     if (user.ability.flags.includes("RainstormSynergy") || user.ability.flags.includes("AllWeatherSynergy")) {
         return false;
     }
-    if (["WATER", "ELECTRIC"].includes(move.move.getType(user).id)) {
+    if (["WATER", "ELECTRIC"].includes(move.move.getType(user, battleState).id)) {
         return false;
     }
     return true;
@@ -263,7 +263,7 @@ function pbCalcWeatherDamageMultipliers(
     multipliers: DamageMultipliers
 ): DamageMultipliers {
     const weather = battleState.weather;
-    const type = move.move.getType(user).id;
+    const type = move.move.getType(user, battleState).id;
     switch (weather) {
         case "Sunshine":
         case "Harsh Sunlight":
@@ -274,7 +274,7 @@ function pbCalcWeatherDamageMultipliers(
                 //     damageBonus *= 2;
                 // }
                 multipliers.final_damage_multiplier *= 1 + damageBonus;
-            } else if (applySunDebuff(move, user)) {
+            } else if (applySunDebuff(move, user, battleState)) {
                 const damageReduction = 0.15;
                 // TODO: Implement abilities
                 // if (battle.pbCheckGlobalAbility("BLINDINGLIGHT")) {
@@ -296,7 +296,7 @@ function pbCalcWeatherDamageMultipliers(
                 //     damageBonus *= 2;
                 // }
                 multipliers.final_damage_multiplier *= 1 + damageBonus;
-            } else if (applyRainDebuff(move, user)) {
+            } else if (applyRainDebuff(move, user, battleState)) {
                 const damageReduction = 0.15;
                 // TODO: Implement abilities
                 // if (battle.pbCheckGlobalAbility("DREARYCLOUDS")) {
@@ -515,6 +515,7 @@ function pbCalcTypeBasedDamageMultipliers(
     move: MoveData,
     user: PartyPokemon,
     target: PartyPokemon,
+    battleState: BattleState,
     multipliers: DamageMultipliers
 ): [DamageMultipliers, number] {
     let stabActive = false;
@@ -528,7 +529,7 @@ function pbCalcTypeBasedDamageMultipliers(
     //     });
     //     stabActive = anyPartyMemberHasType;
     // } else {
-    const type = move.move.getType(user);
+    const type = move.move.getType(user, battleState);
     stabActive = type && (user.species.getType1(user.form) === type || user.species.getType2(user.form) === type);
     //}
     // TODO: Handle curses
@@ -686,7 +687,7 @@ function calcDamageMultipliers(
     multipliers = pbCalcStatusesDamageMultipliers(move, user, target, multipliers);
     // TODO: Handle Protect-esque moves
     multipliers = pbCalcProtectionsDamageMultipliers(move, user, target, battleState, multipliers);
-    const typeResult = pbCalcTypeBasedDamageMultipliers(move, user, target, multipliers);
+    const typeResult = pbCalcTypeBasedDamageMultipliers(move, user, target, battleState, multipliers);
     multipliers = typeResult[0];
     const typeEffectMult = typeResult[1];
     // TODO: Handle tribes

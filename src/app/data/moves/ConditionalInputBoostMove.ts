@@ -1,3 +1,4 @@
+import { BattleState } from "@/app/data/battleState";
 import { LoadedMove } from "../loading/moves";
 import { Move } from "../types/Move";
 import { PartyPokemon } from "../types/PartyPokemon";
@@ -37,7 +38,7 @@ export class ConditionalInputBoostMove extends Move {
         this.boost = moveBoosts[move.functionCode] || 2;
     }
 
-    public getPower(_: PartyPokemon, __: PartyPokemon, condition: boolean): number {
+    public getPower(_: PartyPokemon, __: PartyPokemon, ___: BattleState, condition: boolean): number {
         return this.bp * (condition ? this.boost : 1);
     }
 
