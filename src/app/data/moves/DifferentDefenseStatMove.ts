@@ -6,6 +6,7 @@ const differentDefenseStatMoveCodes: Record<string, Stat> = {
     DoesPhysicalDamage: "defense",
     DoesSpecialDamage: "spdef",
     TargetsAttackDefends: "attack",
+    TargetsSpAtkDefends: "spatk",
 };
 
 export class DifferentDefenseStatMove extends Move {
