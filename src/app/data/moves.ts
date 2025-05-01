@@ -20,6 +20,7 @@ import { IgnoreStatMove } from "./moves/IgnoreStatMove";
 import { MultiHitMove } from "./moves/MultiHitMove";
 import { SlownessScalingMove } from "./moves/SlownessScalingMove";
 import { SpeedScalingMove } from "./moves/SpeedScalingMove";
+import { SpikeScalingMove } from "./moves/SpikeScalingMove";
 import { SpitUpMove } from "./moves/SpitUpMove";
 import { StackingMove } from "./moves/StackingMove";
 import { StepScalingMove } from "./moves/StepScalingMove";
@@ -52,6 +53,7 @@ const moveSubclasses = [
     MultiHitMove,
     SpeedScalingMove,
     SlownessScalingMove,
+    SpikeScalingMove,
     SpitUpMove,
     StackingMove,
     StepScalingMove,
