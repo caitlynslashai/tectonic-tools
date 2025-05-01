@@ -15,6 +15,10 @@ const multiHitMoveCodes: Record<string, MultiHits> = {
         minHits: 2,
         maxHits: 5,
     },
+    HitTwoToFiveTimesNumb: {
+        minHits: 2,
+        maxHits: 5,
+    },
     HitTwoTimes: {
         minHits: 2,
         maxHits: 2,
