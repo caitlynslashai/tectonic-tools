@@ -22,6 +22,7 @@ const moveConditions: Record<string, ConditionFunction> = {
     DoubleDamageAgainstBurned: punishStatus("Burn"),
     DoubleDamageAgainstPoisoned: punishStatus("Poison"),
     TripleDamageAgainstPoisoned: punishStatus("Poison"),
+    DoubleDamageAgainstFrostbitten: punishStatus("Frostbite"),
     HealUserByHalfOfDamageDoneDoubleDamageIfTargetAsleep: punishStatus("Sleep"),
     HealUserByHalfOfDamageDoneDoubleDamageIfTargetAsleepCanOverheal: punishStatus("Sleep"),
     // Smelling Salts and Wake-Up Slap aren't identical to Venoshock etc,
