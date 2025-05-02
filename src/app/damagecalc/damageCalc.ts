@@ -1,4 +1,5 @@
 import { BattleState } from "@/app/data/battleState";
+import { WeatherImmuneItem } from "../data/items/WeatherImmuneItem";
 import { MultiHitMove } from "../data/moves/MultiHitMove";
 import { calcTypeMatchup } from "../data/typeChart";
 import { PartyPokemon } from "../data/types/PartyPokemon";
@@ -235,6 +236,9 @@ function damageCalcStats(move: MoveData, userStats: PartyPokemon, targetStats: P
 // }
 
 function applySunDebuff(move: MoveData, user: PartyPokemon, battleState: BattleState) {
+    if (user.items.some((i) => i instanceof WeatherImmuneItem)) {
+        return false;
+    }
     // i'm not 100% sure we're actually passing ability flags yet, i'll check when we get to implementing abilitites
     if (user.ability.flags.includes("SunshineSynergy") || user.ability.flags.includes("AllWeatherSynergy")) {
         return false;
@@ -246,6 +250,9 @@ function applySunDebuff(move: MoveData, user: PartyPokemon, battleState: BattleS
 }
 
 function applyRainDebuff(move: MoveData, user: PartyPokemon, battleState: BattleState) {
+    if (user.items.some((i) => i instanceof WeatherImmuneItem)) {
+        return false;
+    }
     if (user.ability.flags.includes("RainstormSynergy") || user.ability.flags.includes("AllWeatherSynergy")) {
         return false;
     }

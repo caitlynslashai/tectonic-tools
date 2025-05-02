@@ -8,6 +8,7 @@ import { StatLockItem } from "./items/StatLockItem";
 import { SuperEffectiveBoostItem } from "./items/SuperEffectiveBoostItem";
 import { TypeBoostingItem } from "./items/TypeBoostingItem";
 import { TypeChangingItem } from "./items/TypeChangingItem";
+import { WeatherImmuneItem } from "./items/WeatherImmuneItem";
 import { LoadedItem } from "./loading/items";
 import { Item } from "./types/Item";
 
@@ -21,6 +22,7 @@ const itemSubclasses = [
     SuperEffectiveBoostItem,
     TypeBoostingItem,
     TypeChangingItem,
+    WeatherImmuneItem,
 ];
 
 function loadItem(item: LoadedItem): Item {
