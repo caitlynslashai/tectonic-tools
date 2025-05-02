@@ -3,6 +3,7 @@ import { DamageMultipliers } from "@/app/damagecalc/damageCalc";
 import { BattleState } from "../battleState";
 import { LoadedItem } from "../loading/items";
 import { PartyPokemon } from "./PartyPokemon";
+import { Stats } from "./Pokemon";
 
 export class Item {
     id: string;
@@ -38,6 +39,10 @@ export class Item {
 
     public defensiveMultiplier(multipliers: DamageMultipliers): DamageMultipliers {
         return multipliers;
+    }
+
+    public modifyStats(stats: Stats): Stats {
+        return stats;
     }
 
     static itemIds: string[] = [];

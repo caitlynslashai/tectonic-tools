@@ -71,7 +71,8 @@ export class PartyPokemon {
         if (this.statusEffect === "Numb") {
             speed = speed / 2;
         }
-        const calculatedStats: Stats = {
+
+        let calculatedStats: Stats = {
             hp: calculateHP(this.species.stats.hp, this.level, this.stylePoints.hp, stylish),
             attack: calculateStat(
                 this.species.stats.attack,
@@ -91,6 +92,11 @@ export class PartyPokemon {
             spdef: calculateStat(this.species.stats.spdef, this.level, this.stylePoints.spdef, steps.spdef, stylish),
             speed,
         };
+
+        for (const item of this.items) {
+            calculatedStats = item.modifyStats(calculatedStats);
+        }
+
         return calculatedStats;
     }
 
