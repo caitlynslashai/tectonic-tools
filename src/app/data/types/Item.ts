@@ -37,7 +37,9 @@ export class Item {
         return multipliers;
     }
 
-    public defensiveMultiplier(multipliers: DamageMultipliers): DamageMultipliers {
+    // note that because of the context in which this is called, "target" is the mon holding the item
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    public defensiveMultiplier(multipliers: DamageMultipliers, target: PartyPokemon): DamageMultipliers {
         return multipliers;
     }
 

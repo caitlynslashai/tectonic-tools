@@ -697,7 +697,7 @@ function calcDamageMultipliers(
         multipliers = item.offensiveMultiplier(multipliers, move, user, battleState);
     }
     for (const item of target.items) {
-        multipliers = item.defensiveMultiplier(multipliers);
+        multipliers = item.defensiveMultiplier(multipliers, target);
     }
 
     // TODO: Misc effects

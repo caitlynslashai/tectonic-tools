@@ -48,7 +48,6 @@ const itemTypes: Record<string, string> = {
 
 const itemBoosts: Record<string, number> = {};
 
-// type is stored in state of relevant pages
 export class TypeBoostingItem extends Item {
     boostedType: PokemonType;
     boostMult: number;
