@@ -1,6 +1,7 @@
 import loadedItems from "public/data/items.json";
 import { CategoryBoostingItem } from "./items/CategoryBoostingItem";
 import { EvioliteItem } from "./items/EvioliteItem";
+import { FlatDamageBoostItem } from "./items/FlatDamageBoostItem";
 import { LumberAxeItem } from "./items/LumberAxeItem";
 import { StatBoostItem } from "./items/StatBoostItem";
 import { StatLockItem } from "./items/StatLockItem";
@@ -12,6 +13,7 @@ import { Item } from "./types/Item";
 const itemSubclasses = [
     CategoryBoostingItem,
     EvioliteItem,
+    FlatDamageBoostItem,
     LumberAxeItem,
     StatBoostItem,
     StatLockItem,
