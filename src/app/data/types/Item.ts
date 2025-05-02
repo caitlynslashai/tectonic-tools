@@ -32,6 +32,8 @@ export class Item {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         user: PartyPokemon,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        target: PartyPokemon,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         battleState: BattleState
     ): DamageMultipliers {
         return multipliers;

@@ -67,6 +67,7 @@ export class TypeBoostingItem extends Item {
         multipliers: DamageMultipliers,
         move: MoveData,
         user: PartyPokemon,
+        target: PartyPokemon,
         battleState: BattleState
     ): DamageMultipliers {
         if (move.move.getType(user, battleState).id === this.boostedType.id) {
