@@ -662,7 +662,7 @@ function pbCalcTypeBasedDamageMultipliers(
 //     }
 // }
 
-interface DamageMultipliers {
+export interface DamageMultipliers {
     base_damage_multiplier: number;
     attack_multiplier: number;
     defense_multiplier: number;
@@ -694,12 +694,12 @@ function calcDamageMultipliers(
     // multipliers = pbCalcTribeBasedDamageMultipliers(user, target, type, multipliers);
 
     // TODO: Item effects that alter damage
-    // user.eachItemShouldApply(aiCheck, (item: any) => {
-    //     BattleHandlers.triggerDamageCalcUserItem(item, user, target, this, multipliers, baseDmg, type, aiCheck);
-    // });
-    // target.eachItemShouldApply(aiCheck, (item: any) => {
-    //     BattleHandlers.triggerDamageCalcTargetItem(item, user, target, this, multipliers, baseDmg, type, aiCheck);
-    // });
+    for (const item of user.items) {
+        multipliers = item.offensiveMultiplier(multipliers);
+    }
+    for (const item of target.items) {
+        multipliers = item.defensiveMultiplier(multipliers);
+    }
 
     // TODO: Misc effects
     // if (target.effectActive("DeathMark")) {
