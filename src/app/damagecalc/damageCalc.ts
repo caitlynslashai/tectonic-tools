@@ -694,10 +694,10 @@ function calcDamageMultipliers(
     // multipliers = pbCalcTribeBasedDamageMultipliers(user, target, type, multipliers);
 
     for (const item of user.items) {
-        multipliers = item.offensiveMultiplier(multipliers, move, user, target, battleState);
+        multipliers = item.offensiveMultiplier(multipliers, move, user, target, battleState, typeEffectMult);
     }
     for (const item of target.items) {
-        multipliers = item.defensiveMultiplier(multipliers, target);
+        multipliers = item.defensiveMultiplier(multipliers, target, typeEffectMult);
     }
 
     // TODO: Misc effects

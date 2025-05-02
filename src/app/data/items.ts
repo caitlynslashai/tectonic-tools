@@ -5,6 +5,7 @@ import { FlatDamageBoostItem } from "./items/FlatDamageBoostItem";
 import { LumberAxeItem } from "./items/LumberAxeItem";
 import { StatBoostItem } from "./items/StatBoostItem";
 import { StatLockItem } from "./items/StatLockItem";
+import { SuperEffectiveBoostItem } from "./items/SuperEffectiveBoostItem";
 import { TypeBoostingItem } from "./items/TypeBoostingItem";
 import { TypeChangingItem } from "./items/TypeChangingItem";
 import { LoadedItem } from "./loading/items";
@@ -17,6 +18,7 @@ const itemSubclasses = [
     LumberAxeItem,
     StatBoostItem,
     StatLockItem,
+    SuperEffectiveBoostItem,
     TypeBoostingItem,
     TypeChangingItem,
 ];

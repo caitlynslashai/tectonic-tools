@@ -34,14 +34,22 @@ export class Item {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         target: PartyPokemon,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        battleState: BattleState
+        battleState: BattleState,
+
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        typeEffectMult: number
     ): DamageMultipliers {
         return multipliers;
     }
 
     // note that because of the context in which this is called, "target" is the mon holding the item
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public defensiveMultiplier(multipliers: DamageMultipliers, target: PartyPokemon): DamageMultipliers {
+    public defensiveMultiplier(
+        multipliers: DamageMultipliers,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        target: PartyPokemon,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        typeEffectMult: number
+    ): DamageMultipliers {
         return multipliers;
     }
 
