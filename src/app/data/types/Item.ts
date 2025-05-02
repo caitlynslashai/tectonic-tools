@@ -1,5 +1,8 @@
+import { MoveData } from "@/app/damagecalc/components/MoveCard";
 import { DamageMultipliers } from "@/app/damagecalc/damageCalc";
+import { BattleState } from "../battleState";
 import { LoadedItem } from "../loading/items";
+import { PartyPokemon } from "./PartyPokemon";
 
 export class Item {
     id: string;
@@ -21,7 +24,15 @@ export class Item {
 
     // to be modified by subclasses
     // function signature will be updated as necessary to implement items
-    public offensiveMultiplier(multipliers: DamageMultipliers): DamageMultipliers {
+    public offensiveMultiplier(
+        multipliers: DamageMultipliers,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        move: MoveData,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        user: PartyPokemon,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        battleState: BattleState
+    ): DamageMultipliers {
         return multipliers;
     }
 

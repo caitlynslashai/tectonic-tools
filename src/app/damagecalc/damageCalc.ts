@@ -693,9 +693,8 @@ function calcDamageMultipliers(
     // TODO: Handle tribes
     // multipliers = pbCalcTribeBasedDamageMultipliers(user, target, type, multipliers);
 
-    // TODO: Item effects that alter damage
     for (const item of user.items) {
-        multipliers = item.offensiveMultiplier(multipliers);
+        multipliers = item.offensiveMultiplier(multipliers, move, user, battleState);
     }
     for (const item of target.items) {
         multipliers = item.defensiveMultiplier(multipliers);
