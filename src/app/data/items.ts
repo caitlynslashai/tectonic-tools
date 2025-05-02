@@ -1,12 +1,13 @@
 import loadedItems from "public/data/items.json";
 import { EvioliteItem } from "./items/EvioliteItem";
+import { StatBoostItem } from "./items/StatBoostItem";
 import { StatLockItem } from "./items/StatLockItem";
 import { TypeBoostingItem } from "./items/TypeBoostingItem";
 import { TypeChangingItem } from "./items/TypeChangingItem";
 import { LoadedItem } from "./loading/items";
 import { Item } from "./types/Item";
 
-const itemSubclasses = [EvioliteItem, StatLockItem, TypeBoostingItem, TypeChangingItem];
+const itemSubclasses = [EvioliteItem, StatBoostItem, StatLockItem, TypeBoostingItem, TypeChangingItem];
 
 function loadItem(item: LoadedItem): Item {
     for (const subclass of itemSubclasses) {
