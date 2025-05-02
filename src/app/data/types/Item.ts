@@ -43,6 +43,10 @@ export class Item {
         return multipliers;
     }
 
+    public baseStats(stats: Stats): Stats {
+        return stats;
+    }
+
     public modifyStats(stats: Stats): Stats {
         return stats;
     }

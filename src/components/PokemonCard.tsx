@@ -378,7 +378,7 @@ export default function PokemonCard({
                                 </tr>
                             </thead>
                             <tbody>
-                                {safeKeys(data.species.getStats(data.form)).map((statName) => {
+                                {safeKeys(data.getBaseStats()).map((statName) => {
                                     const styleName = styleFromStat(statName);
                                     return (
                                         <tr key={statName}>
