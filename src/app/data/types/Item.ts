@@ -35,7 +35,6 @@ export class Item {
         target: PartyPokemon,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         battleState: BattleState,
-
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         typeEffectMult: number
     ): DamageMultipliers {
@@ -46,7 +45,13 @@ export class Item {
     public defensiveMultiplier(
         multipliers: DamageMultipliers,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        move: MoveData,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        user: PartyPokemon,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         target: PartyPokemon,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        battleState: BattleState,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         typeEffectMult: number
     ): DamageMultipliers {

@@ -6,6 +6,7 @@ import { LumberAxeItem } from "./items/LumberAxeItem";
 import { StatBoostItem } from "./items/StatBoostItem";
 import { StatLockItem } from "./items/StatLockItem";
 import { SuperEffectiveBoostItem } from "./items/SuperEffectiveBoostItem";
+import { SuperEffectiveResistItem } from "./items/SuperEffectiveResistItem";
 import { TypeBoostingItem } from "./items/TypeBoostingItem";
 import { TypeChangingItem } from "./items/TypeChangingItem";
 import { WeatherImmuneItem } from "./items/WeatherImmuneItem";
@@ -20,6 +21,7 @@ const itemSubclasses = [
     StatBoostItem,
     StatLockItem,
     SuperEffectiveBoostItem,
+    SuperEffectiveResistItem,
     TypeBoostingItem,
     TypeChangingItem,
     WeatherImmuneItem,
