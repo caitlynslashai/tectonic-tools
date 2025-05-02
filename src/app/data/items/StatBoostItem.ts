@@ -8,6 +8,7 @@ const statBoostItems: Record<string, [Stat, number]> = {
     CHOICEBAND: ["attack", 1.4],
     CHOICESPECS: ["spatk", 1.4],
     CHOICESCARF: ["speed", 1.4],
+    SEVENLEAGUEBOOTS: ["speed", 1.1],
 };
 
 // type is stored in state of relevant pages

@@ -7,6 +7,8 @@ import { PartyPokemon } from "../types/PartyPokemon";
 const itemCategories: Record<string, ["Physical" | "Special", number]> = {
     STRENGTHHERB: ["Physical", 1.3],
     INTELLECTHERB: ["Special", 1.3],
+    MUSCLEBAND: ["Physical", 1.1],
+    WISEGLASSES: ["Special", 1.1],
 };
 
 export class CategoryBoostingItem extends Item {
