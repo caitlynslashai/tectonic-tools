@@ -28,4 +28,6 @@ export class Item {
     public defensiveMultiplier(multipliers: DamageMultipliers): DamageMultipliers {
         return multipliers;
     }
+
+    static itemIds: string[] = [];
 }

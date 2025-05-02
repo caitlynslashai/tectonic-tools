@@ -1,11 +1,15 @@
 import loadedItems from "public/data/items.json";
-import { TypeChangingItem, typeChangingItems } from "./items/TypeChangingItem";
+import { TypeChangingItem } from "./items/TypeChangingItem";
 import { LoadedItem } from "./loading/items";
 import { Item } from "./types/Item";
 
+const itemSubclasses = [TypeChangingItem];
+
 function loadItem(item: LoadedItem): Item {
-    if (item.key in typeChangingItems) {
-        return new TypeChangingItem(item, typeChangingItems[item.key]);
+    for (const subclass of itemSubclasses) {
+        if (subclass.itemIds.includes(item.key)) {
+            return new subclass(item);
+        }
     }
     return new Item(item);
 }
