@@ -5,6 +5,9 @@ import { Stat, Stats } from "../types/Pokemon";
 const statBoostItems: Record<string, [Stat, number]> = {
     ASSAULTVEST: ["spdef", 1.5],
     STRIKEVEST: ["defense", 1.5],
+    CHOICEBAND: ["attack", 1.4],
+    CHOICESPECS: ["spatk", 1.4],
+    CHOICESCARF: ["speed", 1.4],
 };
 
 // type is stored in state of relevant pages
