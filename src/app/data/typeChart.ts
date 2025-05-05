@@ -21,10 +21,6 @@ interface DefenderData {
     ability?: Ability;
 }
 
-const doubleTakenAbilities = [
-    { ability: "FLUFFY", type1: "FIRE" },
-    { ability: "PARANOID", type1: "PSYCHIC" },
-];
 const isAlsoTypeAbilities = [
     { ability: "HAUNTED", type1: "GHOST" },
     { ability: "INFECTED", type1: "GRASS" },
@@ -65,7 +61,6 @@ export function calcTypeMatchup(atk: AttackerData, def: DefenderData) {
                 defAbilityCalc = 1;
             }
         }
-        const doubleMatch = doubleTakenAbilities.find((x) => x.ability == defAbility.id);
         const isAlsoTypeMatch = isAlsoTypeAbilities.find((x) => x.ability == defAbility.id);
 
         if (defAbility.id == "WONDERGUARD" && defType1Calc * defType2Calc < 1) {
@@ -76,8 +71,6 @@ export function calcTypeMatchup(atk: AttackerData, def: DefenderData) {
             defAbilityCalc = 0.5;
         } else if (defAbility.id == "FILTER" && defType1Calc * defType2Calc > 1) {
             defAbilityCalc = 0.75;
-        } else if (doubleMatch !== undefined && doubleMatch.type1 == atk.type.id) {
-            defAbilityCalc = 2.0;
         } else if (isAlsoTypeMatch !== undefined) {
             const defType3 = TectonicData.types[isAlsoTypeMatch.type1];
             defAbilityCalc = TectonicData.typeChart[atkType.index][defType3.index];
