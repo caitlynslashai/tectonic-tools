@@ -1,5 +1,6 @@
 import { LoadedData, LoadedDataJson } from "@/preload/loadedDataClasses";
 import loadedData from "public/data/loadedData.json";
+import { ExtraTypeAbility } from "../abilities/ExtraTypeAbility";
 import { TwoItemAbility } from "../abilities/TwoItemAbility";
 import { TypeImmunityAbility } from "../abilities/TypeImmunityAbility";
 import { TypeResistAbility } from "../abilities/TypeResistAbility";
@@ -104,7 +105,13 @@ const itemSubclasses = [
     WeatherImmuneItem,
 ];
 
-const abilitySubclasses = [TwoItemAbility, TypeImmunityAbility, TypeResistAbility, TypeWeaknessAbility];
+const abilitySubclasses = [
+    ExtraTypeAbility,
+    TwoItemAbility,
+    TypeImmunityAbility,
+    TypeResistAbility,
+    TypeWeaknessAbility,
+];
 
 function fromLoaded<L extends LoadedData<L>, T>(load: Record<string, L>, ctor: new (l: L) => T): Record<string, T> {
     return Object.fromEntries(Object.entries(load).map(([k, v]) => [k, new ctor(v)]));

@@ -1,5 +1,6 @@
 "use client";
 
+import { ExtraTypeAbility } from "@/app/data/abilities/ExtraTypeAbility";
 import { TwoItemAbility } from "@/app/data/abilities/TwoItemAbility";
 import { BattleState, nullState } from "@/app/data/battleState";
 import { StatusEffect, statusEffects, VolatileStatusEffect, volatileStatusEffects } from "@/app/data/conditions";
@@ -148,6 +149,10 @@ export default function PokemonCard({
     }
 
     const realTypes = Object.values(TectonicData.types).filter((t) => t.isRealType);
+    const badgeTypes = [data.types.type1, data.types.type2];
+    if (data.ability instanceof ExtraTypeAbility) {
+        badgeTypes.push(data.ability.extraType);
+    }
 
     return (
         <>
@@ -196,11 +201,7 @@ export default function PokemonCard({
                             {data.species.name +
                                 (data.species.getFormName(data.form) ? " " + data.species.getFormName(data.form) : "")}
                         </p>
-                        <TypeBadge
-                            types={[data.types.type1, data.types.type2]}
-                            useShort={false}
-                            element={TypeBadgeElementEnum.CAPSULE_ROW}
-                        />
+                        <TypeBadge types={badgeTypes} useShort={false} element={TypeBadgeElementEnum.CAPSULE_ROW} />
                     </div>
                     <div className="text-center">
                         <h3 className="font-semibold text-gray-800 dark:text-gray-100">Level</h3>

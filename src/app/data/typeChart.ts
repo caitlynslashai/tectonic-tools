@@ -1,3 +1,4 @@
+import { ExtraTypeAbility } from "./abilities/ExtraTypeAbility";
 import { MatchupModifyAbility } from "./abilities/MatchupModifyAbility";
 import { ExtraEffectiveMove } from "./moves/ExtraEffectiveMove";
 import { ExtraTypeMove } from "./moves/ExtraTypeMove";
@@ -20,13 +21,6 @@ interface DefenderData {
     type2?: PokemonType;
     ability?: Ability;
 }
-
-const isAlsoTypeAbilities = [
-    { ability: "HAUNTED", type1: "GHOST" },
-    { ability: "INFECTED", type1: "GRASS" },
-    { ability: "RUSTWRACK", type1: "STEEL" },
-    { ability: "SLUGGISH", type1: "BUG" },
-];
 
 // Calculates the best mult value given all attacker moves in that case
 export function calcTypeMatchup(atk: AttackerData, def: DefenderData) {
@@ -61,7 +55,12 @@ export function calcTypeMatchup(atk: AttackerData, def: DefenderData) {
                 defAbilityCalc = 1;
             }
         }
-        const isAlsoTypeMatch = isAlsoTypeAbilities.find((x) => x.ability == defAbility.id);
+
+        if (defAbility instanceof ExtraTypeAbility) {
+            const defType3 = defAbility.extraType;
+            defAbilityCalc = TectonicData.typeChart[atkType.index][defType3.index];
+            thirdType = defType3;
+        }
 
         if (defAbility.id == "WONDERGUARD" && defType1Calc * defType2Calc < 1) {
             defAbilityCalc = 0;
@@ -71,10 +70,6 @@ export function calcTypeMatchup(atk: AttackerData, def: DefenderData) {
             defAbilityCalc = 0.5;
         } else if (defAbility.id == "FILTER" && defType1Calc * defType2Calc > 1) {
             defAbilityCalc = 0.75;
-        } else if (isAlsoTypeMatch !== undefined) {
-            const defType3 = TectonicData.types[isAlsoTypeMatch.type1];
-            defAbilityCalc = TectonicData.typeChart[atkType.index][defType3.index];
-            thirdType = isAlsoTypeMatch.type1;
         }
     }
 
@@ -102,7 +97,7 @@ export function calcTypeMatchup(atk: AttackerData, def: DefenderData) {
             if (
                 effectiveType.id === def.type1.id ||
                 effectiveType.id === def.type2?.id ||
-                effectiveType.id === thirdType
+                effectiveType.id === thirdType?.id
             ) {
                 atkMoveCalc = 2;
             }
