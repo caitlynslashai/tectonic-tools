@@ -1,5 +1,6 @@
 import { BattleState } from "@/app/data/battleState";
 import { ExtraTypeAbility } from "../data/abilities/ExtraTypeAbility";
+import { STABBoostAbility } from "../data/abilities/STABBoostAbility";
 import { WeatherImmuneItem } from "../data/items/WeatherImmuneItem";
 import { MultiHitMove } from "../data/moves/MultiHitMove";
 import { Stat } from "../data/tectonic/Pokemon";
@@ -551,13 +552,10 @@ function pbCalcTypeBasedDamageMultipliers(
 
     // STAB
     if (stabActive) {
-        const stab = 1.5;
-        // TODO: Handle abilities
-        // if (user.shouldAbilityApply("ADAPTED", checkingForAI)) {
-        //     stab *= 4.0 / 3.0;
-        // } else if (user.shouldAbilityApply("ULTRAADAPTED", checkingForAI)) {
-        //     stab *= 3.0 / 2.0;
-        // }
+        let stab = 1.5;
+        if (user.ability instanceof STABBoostAbility) {
+            stab *= user.ability.boost;
+        }
         multipliers.final_damage_multiplier *= stab;
     }
 
