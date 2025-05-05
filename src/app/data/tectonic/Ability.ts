@@ -18,4 +18,6 @@ export class Ability {
         this.flags = loaded.flags;
         this.isSignature = loaded.isSignature;
     }
+
+    static abilityIds: string[] = [];
 }

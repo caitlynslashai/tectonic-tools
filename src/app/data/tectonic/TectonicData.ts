@@ -1,6 +1,6 @@
 import { LoadedData, LoadedDataJson } from "@/preload/loadedDataClasses";
 import loadedData from "public/data/loadedData.json";
-import { twoItemAbilities, TwoItemAbility } from "../abilities/TwoItemAbility";
+import { TwoItemAbility } from "../abilities/TwoItemAbility";
 import { CategoryBoostingItem } from "../items/CategoryBoostingItem";
 import { EvioliteItem } from "../items/EvioliteItem";
 import { FlatDamageBoostItem } from "../items/FlatDamageBoostItem";
@@ -101,6 +101,8 @@ const itemSubclasses = [
     WeatherImmuneItem,
 ];
 
+const abilitySubclasses = [TwoItemAbility];
+
 function fromLoaded<L extends LoadedData<L>, T>(load: Record<string, L>, ctor: new (l: L) => T): Record<string, T> {
     return Object.fromEntries(Object.entries(load).map(([k, v]) => [k, new ctor(v)]));
 }
@@ -136,9 +138,10 @@ export const TectonicData: TectonicDataType = {
     version: data.version,
     types: fromLoaded(data.types, PokemonType),
     tribes: fromLoaded(data.tribes, Tribe),
-    abilities: fromLoadedMapped(data.abilities, (x) =>
-        x.key in twoItemAbilities ? new TwoItemAbility(x) : new Ability(x)
-    ),
+    abilities: fromLoadedMapped(data.abilities, (x) => {
+        const subclass = abilitySubclasses.find((sc) => sc.abilityIds.includes(x.key));
+        return subclass ? new subclass(x) : new Ability(x);
+    }),
     trainerTypes: fromLoaded(data.trainerTypes, TrainerType),
     encounters: Object.fromEntries(
         Object.entries(data.encounters).map(([k, v]) => [k, { ...v, id: v.key.toString() } as EncounterMap])
