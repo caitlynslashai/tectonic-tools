@@ -1,4 +1,4 @@
-import { TypeImmunityAbility } from "./abilities/TypeImmunityAbility";
+import { MatchupModifyAbility } from "./abilities/MatchupModifyAbility";
 import { ExtraEffectiveMove } from "./moves/ExtraEffectiveMove";
 import { ExtraTypeMove } from "./moves/ExtraTypeMove";
 import { HitsFliersMove } from "./moves/HitsFliersMove";
@@ -21,15 +21,6 @@ interface DefenderData {
     ability?: Ability;
 }
 
-const halfDmgAbilities = [
-    { ability: "EXORCIST", type1: "PSYCHIC", type2: "GHOST" },
-    { ability: "FEATHERCOAT", type1: "ICE", type2: "FLYING" },
-    { ability: "REALIST", type1: "DRAGON", type2: "FAIRY" },
-    { ability: "TOUGH", type1: "FIGHTING", type2: "ROCK" },
-    { ability: "UNAFRAID", type1: "DARK", type2: "BUG" },
-    { ability: "THICKFAT", type1: "FIRE", type2: "ICE" },
-    { ability: "WATERBUBBLE", type1: "FIRE" },
-];
 const doubleTakenAbilities = [
     { ability: "FLUFFY", type1: "FIRE" },
     { ability: "PARANOID", type1: "PSYCHIC" },
@@ -67,15 +58,13 @@ export function calcTypeMatchup(atk: AttackerData, def: DefenderData) {
     }
     const defAbility = def.ability;
     if (defAbility !== undefined) {
-        if (defAbility instanceof TypeImmunityAbility && defAbility.isImmune(atk.type)) {
+        if (defAbility instanceof MatchupModifyAbility) {
+            defAbilityCalc *= defAbility.modifiedMatchup(atk.type);
             // certain moves pierce ground immunity
-            if (atk.move instanceof HitsFliersMove && atk.type.id === "GROUND") {
+            if (defAbilityCalc === 0 && atk.move instanceof HitsFliersMove && atk.type.id === "GROUND") {
                 defAbilityCalc = 1;
-            } else {
-                defAbilityCalc = 0;
             }
         }
-        const halfMatch = halfDmgAbilities.find((x) => x.ability == defAbility.id);
         const doubleMatch = doubleTakenAbilities.find((x) => x.ability == defAbility.id);
         const isAlsoTypeMatch = isAlsoTypeAbilities.find((x) => x.ability == defAbility.id);
 
@@ -87,8 +76,6 @@ export function calcTypeMatchup(atk: AttackerData, def: DefenderData) {
             defAbilityCalc = 0.5;
         } else if (defAbility.id == "FILTER" && defType1Calc * defType2Calc > 1) {
             defAbilityCalc = 0.75;
-        } else if (halfMatch !== undefined && (halfMatch.type1 == atk.type.id || halfMatch.type2 == atk.type.id)) {
-            defAbilityCalc = 0.5;
         } else if (doubleMatch !== undefined && doubleMatch.type1 == atk.type.id) {
             defAbilityCalc = 2.0;
         } else if (isAlsoTypeMatch !== undefined) {

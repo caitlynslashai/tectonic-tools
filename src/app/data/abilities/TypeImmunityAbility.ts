@@ -1,7 +1,6 @@
 import { LoadedAbility } from "@/preload/loadedDataClasses";
-import { Ability } from "../tectonic/Ability";
-import { PokemonType } from "../tectonic/PokemonType";
 import { TectonicData } from "../tectonic/TectonicData";
+import { MatchupModifyAbility } from "./MatchupModifyAbility";
 
 const immunityAbilities: Record<string, string[]> = {
     AERODYNAMIC: ["FLYING"],
@@ -31,15 +30,11 @@ const immunityAbilities: Record<string, string[]> = {
     WONDERGUARD: ["QMARKS"],
 };
 
-export class TypeImmunityAbility extends Ability {
-    private immuneTypes: PokemonType[];
+export class TypeImmunityAbility extends MatchupModifyAbility {
+    matchup = 0;
     constructor(ability: LoadedAbility) {
         super(ability);
-        this.immuneTypes = immunityAbilities[ability.key].map((t) => TectonicData.types[t]);
-    }
-
-    public isImmune(type: PokemonType) {
-        return this.immuneTypes.map((t) => t.id).includes(type.id);
+        this.affectedTypes = immunityAbilities[ability.key].map((t) => TectonicData.types[t]);
     }
 
     static abilityIds = Object.keys(immunityAbilities);
