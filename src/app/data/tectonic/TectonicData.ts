@@ -1,6 +1,7 @@
 import { LoadedData, LoadedDataJson } from "@/preload/loadedDataClasses";
 import loadedData from "public/data/loadedData.json";
 import { TwoItemAbility } from "../abilities/TwoItemAbility";
+import { TypeImmunityAbility } from "../abilities/TypeImmunityAbility";
 import { CategoryBoostingItem } from "../items/CategoryBoostingItem";
 import { EvioliteItem } from "../items/EvioliteItem";
 import { FlatDamageBoostItem } from "../items/FlatDamageBoostItem";
@@ -101,7 +102,7 @@ const itemSubclasses = [
     WeatherImmuneItem,
 ];
 
-const abilitySubclasses = [TwoItemAbility];
+const abilitySubclasses = [TwoItemAbility, TypeImmunityAbility];
 
 function fromLoaded<L extends LoadedData<L>, T>(load: Record<string, L>, ctor: new (l: L) => T): Record<string, T> {
     return Object.fromEntries(Object.entries(load).map(([k, v]) => [k, new ctor(v)]));
@@ -138,15 +139,12 @@ export const TectonicData: TectonicDataType = {
     version: data.version,
     types: fromLoaded(data.types, PokemonType),
     tribes: fromLoaded(data.tribes, Tribe),
-    abilities: fromLoadedMapped(data.abilities, (x) => {
-        const subclass = abilitySubclasses.find((sc) => sc.abilityIds.includes(x.key));
-        return subclass ? new subclass(x) : new Ability(x);
-    }),
     trainerTypes: fromLoaded(data.trainerTypes, TrainerType),
     encounters: Object.fromEntries(
         Object.entries(data.encounters).map(([k, v]) => [k, { ...v, id: v.key.toString() } as EncounterMap])
     ) as Record<string, EncounterMap>,
     typeChart: data.typeChart,
+    abilities: {},
     moves: {},
     items: {},
     heldItems: [],
@@ -156,6 +154,12 @@ export const TectonicData: TectonicDataType = {
 };
 
 // Start of janky loading, not seen otherwise to users of this data
+TectonicData.abilities = fromLoadedMapped(data.abilities, (x) => {
+    const subclass = abilitySubclasses.find((sc) => sc.abilityIds.includes(x.key));
+    return subclass ? new subclass(x) : new Ability(x);
+});
+Ability.NULL = new Ability();
+
 TectonicData.moves = fromLoadedMapped(data.moves, (x) => {
     const subclass = moveSubclasses.find((sc) => sc.moveCodes.includes(x.functionCode));
     return subclass ? new subclass(x) : new Move(x);

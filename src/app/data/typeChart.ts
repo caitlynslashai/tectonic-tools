@@ -1,3 +1,4 @@
+import { TypeImmunityAbility } from "./abilities/TypeImmunityAbility";
 import { ExtraEffectiveMove } from "./moves/ExtraEffectiveMove";
 import { ExtraTypeMove } from "./moves/ExtraTypeMove";
 import { HitsFliersMove } from "./moves/HitsFliersMove";
@@ -20,33 +21,6 @@ interface DefenderData {
     ability?: Ability;
 }
 
-const immunityAbilities = [
-    { ability: "AERODYNAMIC", type1: "FLYING" },
-    { ability: "CHALLENGER", type1: "FIGHTING" },
-    { ability: "COLDRECEPTION", type1: "ICE" },
-    { ability: "DESERTSPIRIT", type1: "GROUND" },
-    { ability: "DRAGONSLAYER", type1: "DRAGON" },
-    { ability: "FILTHY", type1: "POISON" },
-    { ability: "FIREFIGHTER", type1: "FIRE" },
-    { ability: "FLYTRAP", type1: "BUG" },
-    { ability: "FOOLHARDY", type1: "PSYCHIC" },
-    { ability: "FULLBLUBBER", type1: "WATER", type2: "ICE" },
-    { ability: "GLASSFIRING", type1: "FIRE" },
-    { ability: "HEARTLESS", type1: "FAIRY" },
-    { ability: "HEARTOFJUSTICE", type1: "DARK" },
-    { ability: "INDUSTRIALIZE", type1: "STEEL" },
-    { ability: "PECKINGORDER", type1: "FLYING" },
-    { ability: "POISONABSORB", type1: "POISON" },
-    { ability: "ROCKCLIMBER", type1: "ROCK" },
-    { ability: "STEELABSORB", type1: "STEEL" },
-    { ability: "VENOMDETTA", type1: "POISON" },
-    { ability: "LEVITATE", type1: "GROUND" },
-    { ability: "MOTORDRIVE", type1: "ELECTRIC" },
-    { ability: "SAPSIPPER", type1: "GRASS" },
-    { ability: "VOLTABSORB", type1: "ELECTRIC" },
-    { ability: "WATERABSORB", type1: "WATER" },
-    { ability: "WONDERGUARD", type1: "QMARKS" },
-];
 const halfDmgAbilities = [
     { ability: "EXORCIST", type1: "PSYCHIC", type2: "GHOST" },
     { ability: "FEATHERCOAT", type1: "ICE", type2: "FLYING" },
@@ -93,7 +67,14 @@ export function calcTypeMatchup(atk: AttackerData, def: DefenderData) {
     }
     const defAbility = def.ability;
     if (defAbility !== undefined) {
-        const immunityMatch = immunityAbilities.find((x) => x.ability == defAbility.id);
+        if (defAbility instanceof TypeImmunityAbility && defAbility.isImmune(atk.type)) {
+            // certain moves pierce ground immunity
+            if (atk.move instanceof HitsFliersMove && atk.type.id === "GROUND") {
+                defAbilityCalc = 1;
+            } else {
+                defAbilityCalc = 0;
+            }
+        }
         const halfMatch = halfDmgAbilities.find((x) => x.ability == defAbility.id);
         const doubleMatch = doubleTakenAbilities.find((x) => x.ability == defAbility.id);
         const isAlsoTypeMatch = isAlsoTypeAbilities.find((x) => x.ability == defAbility.id);
@@ -106,16 +87,6 @@ export function calcTypeMatchup(atk: AttackerData, def: DefenderData) {
             defAbilityCalc = 0.5;
         } else if (defAbility.id == "FILTER" && defType1Calc * defType2Calc > 1) {
             defAbilityCalc = 0.75;
-        } else if (
-            immunityMatch !== undefined &&
-            (immunityMatch.type1 == atk.type.id || immunityMatch.type2 == atk.type.id)
-        ) {
-            // certain moves pierce ground immunity
-            if (atk.move instanceof HitsFliersMove && atk.type.id === "GROUND") {
-                defAbilityCalc = 1;
-            } else {
-                defAbilityCalc = 0;
-            }
         } else if (halfMatch !== undefined && (halfMatch.type1 == atk.type.id || halfMatch.type2 == atk.type.id)) {
             defAbilityCalc = 0.5;
         } else if (doubleMatch !== undefined && doubleMatch.type1 == atk.type.id) {

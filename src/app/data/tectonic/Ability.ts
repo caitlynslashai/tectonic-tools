@@ -7,7 +7,7 @@ export class Ability {
     flags: string[] = [];
     isSignature: boolean = false;
 
-    static NULL: Ability = new Ability();
+    static NULL: Ability = null!;
 
     constructor(loaded?: LoadedAbility) {
         if (!loaded) return;
