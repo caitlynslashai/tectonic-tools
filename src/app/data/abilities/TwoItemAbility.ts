@@ -1,6 +1,6 @@
-import { LoadedAbility } from "../loading/abilities";
-import { Ability } from "../types/Ability";
-import { Item } from "../types/Item";
+import { LoadedAbility } from "@/preload/loadedDataClasses";
+import { Ability } from "../tectonic/Ability";
+import { Item } from "../tectonic/Item";
 import { isNull } from "../util";
 
 type validateItemFunction = (items: Item[]) => boolean;
@@ -27,9 +27,9 @@ export const twoItemAbilities: Record<string, validateItemFunction> = {
 
 export class TwoItemAbility extends Ability {
     private validate: validateItemFunction;
-    constructor(ability: LoadedAbility, validate: validateItemFunction) {
+    constructor(ability: LoadedAbility) {
         super(ability);
-        this.validate = validate;
+        this.validate = twoItemAbilities[this.id];
     }
 
     public validateItems(items: Item[]): boolean {

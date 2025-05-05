@@ -1,22 +1,17 @@
 import { MoveData } from "@/app/damagecalc/components/MoveCard";
 import { Side } from "@/app/damagecalc/damageCalc";
-import { nullAbility } from "../abilities";
 import { StatusEffect, VolatileStatusEffect, volatileStatusEffects } from "../conditions";
-import { nullForm } from "../forms";
-import { nullItem } from "../items";
 import { TypeChangingItem } from "../items/TypeChangingItem";
-import { nullMove } from "../moves";
 import { IgnoreStatMove } from "../moves/IgnoreStatMove";
-import { nullPokemon } from "../pokemon";
 import { calculateHP, calculateStat } from "../stats";
 import { MAX_LEVEL } from "../teamExport";
-import { types } from "../types";
+import { Ability } from "../tectonic/Ability";
+import { Item } from "../tectonic/Item";
+import { Move } from "../tectonic/Move";
+import { Pokemon, Stats, StylePoints, blankStats, defaultStylePoints } from "../tectonic/Pokemon";
+import { PokemonType } from "../tectonic/PokemonType";
+import { TectonicData } from "../tectonic/TectonicData";
 import { isNull } from "../util";
-import { Ability } from "./Ability";
-import { Item } from "./Item";
-import { Move } from "./Move";
-import { blankStats, defaultStylePoints, Pokemon, Stats, StylePoints } from "./Pokemon";
-import { PokemonType } from "./PokemonType";
 
 export class PartyPokemon {
     species: Pokemon;
@@ -31,12 +26,12 @@ export class PartyPokemon {
     statusEffect?: StatusEffect;
     volatileStatusEffects: Record<VolatileStatusEffect, boolean>;
     constructor(data?: Partial<PartyPokemon>) {
-        this.species = data?.species || nullPokemon;
-        this.moves = data?.moves || Array(4).fill(nullMove);
-        this.ability = data?.ability || nullAbility;
-        this.items = data?.items || Array(2).fill(nullItem);
-        this.itemType = data?.itemType || types["NORMAL"];
-        this.form = data?.form || nullForm.formId;
+        this.species = data?.species || Pokemon.NULL;
+        this.moves = data?.moves || Array(4).fill(Move.NULL);
+        this.ability = data?.ability || Ability.NULL;
+        this.items = data?.items || Array(2).fill(Item.NULL);
+        this.itemType = data?.itemType || TectonicData.types["NORMAL"];
+        this.form = data?.form || Pokemon.NULL.formId;
         this.level = data?.level || MAX_LEVEL;
         this.stylePoints = data?.stylePoints || defaultStylePoints;
         this.statSteps = data?.statSteps || blankStats;
@@ -100,8 +95,12 @@ export class PartyPokemon {
         return calculatedStats;
     }
 
+    hasTypeChangingItemAndCanChangeType(): boolean {
+        return this.items.some((i) => i instanceof TypeChangingItem && i.canChangeType(this)) && !isNull(this.itemType);
+    }
+
     get types(): { type1: PokemonType; type2?: PokemonType } {
-        if (this.items.some((i) => i instanceof TypeChangingItem && i.canChangeType(this)) && !isNull(this.itemType)) {
+        if (this.hasTypeChangingItemAndCanChangeType()) {
             return { type1: this.itemType };
         }
         return { type1: this.species.getType1(this.form), type2: this.species.getType2(this.form) };
