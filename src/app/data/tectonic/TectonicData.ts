@@ -3,6 +3,7 @@ import loadedData from "public/data/loadedData.json";
 import { ExtraTypeAbility } from "../abilities/ExtraTypeAbility";
 import { STABBoostAbility } from "../abilities/STABBoostAbility";
 import { TwoItemAbility } from "../abilities/TwoItemAbility";
+import { TypeilateAbility } from "../abilities/TypeilateAbility";
 import { TypeImmunityAbility } from "../abilities/TypeImmunityAbility";
 import { TypeResistAbility } from "../abilities/TypeResistAbility";
 import { TypeWeaknessAbility } from "../abilities/TypeWeaknessAbility";
@@ -110,6 +111,7 @@ const abilitySubclasses = [
     ExtraTypeAbility,
     STABBoostAbility,
     TwoItemAbility,
+    TypeilateAbility,
     TypeImmunityAbility,
     TypeResistAbility,
     TypeWeaknessAbility,

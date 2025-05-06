@@ -164,78 +164,76 @@ function damageCalcStats(move: MoveData, userStats: PartyPokemon, targetStats: P
     return [attack, defense];
 }
 
-// function pbCalcAbilityDamageMultipliers(
-//     user: CalcPokemon,
-//     target: CalcPokemon,
-//     type: PokemonType,
-//     baseDmg: number,
-//     multipliers: DamageMultipliers,
-//     aiCheck: boolean = false
-// ): void {
-//     // Global abilities
-//     if (
-//         (battle.pbCheckGlobalAbility("DARKAURA") && type === "DARK") ||
-//         (battle.pbCheckGlobalAbility("FAIRYAURA") && type === "FAIRY")
-//     ) {
-//         if (battle.pbCheckGlobalAbility("AURABREAK")) {
-//             multipliers.base_damage_multiplier *= 2 / 3.0;
-//         } else {
-//             multipliers.base_damage_multiplier *= 4 / 3.0;
-//         }
-//     }
-//     if (battle.pbCheckGlobalAbility("RUINOUS")) {
-//         multipliers.base_damage_multiplier *= 1.4;
-//     }
+function pbCalcAbilityDamageMultipliers(
+    move: MoveData,
+    user: PartyPokemon,
+    target: PartyPokemon,
+    battleState: BattleState,
+    multipliers: DamageMultipliers
+): DamageMultipliers {
+    // Global abilities
+    // if (
+    //     (battle.pbCheckGlobalAbility("DARKAURA") && type === "DARK") ||
+    //     (battle.pbCheckGlobalAbility("FAIRYAURA") && type === "FAIRY")
+    // ) {
+    //     if (battle.pbCheckGlobalAbility("AURABREAK")) {
+    //         multipliers.base_damage_multiplier *= 2 / 3.0;
+    //     } else {
+    //         multipliers.base_damage_multiplier *= 4 / 3.0;
+    //     }
+    // }
+    // if (battle.pbCheckGlobalAbility("RUINOUS")) {
+    //     multipliers.base_damage_multiplier *= 1.4;
+    // }
 
-//     // User or user ally ability effects that alter damage
-//     user.eachAbilityShouldApply(aiCheck, (ability: any) => {
-//         BattleHandlers.triggerDamageCalcUserAbility(ability, user, target, this, multipliers, baseDmg, type, aiCheck);
-//     });
-//     user.eachAlly((b: any) => {
-//         b.eachAbilityShouldApply(aiCheck, (ability: any) => {
-//             BattleHandlers.triggerDamageCalcUserAllyAbility(
-//                 ability,
-//                 user,
-//                 target,
-//                 this,
-//                 multipliers,
-//                 baseDmg,
-//                 type,
-//                 aiCheck
-//             );
-//         });
-//     });
+    // User or user ally ability effects that alter damage
+    multipliers.base_damage_multiplier *= user.ability.movePowerMultiplier();
+    // user.eachAlly((b: any) => {
+    //     b.eachAbilityShouldApply(aiCheck, (ability: any) => {
+    //         BattleHandlers.triggerDamageCalcUserAllyAbility(
+    //             ability,
+    //             user,
+    //             target,
+    //             this,
+    //             multipliers,
+    //             baseDmg,
+    //             type,
+    //             aiCheck
+    //         );
+    //     });
+    // });
 
-//     // Target or target ally ability effects that alter damage
-//     if (!battle.moldBreaker) {
-//         target.eachAbilityShouldApply(aiCheck, (ability: any) => {
-//             BattleHandlers.triggerDamageCalcTargetAbility(
-//                 ability,
-//                 user,
-//                 target,
-//                 this,
-//                 multipliers,
-//                 baseDmg,
-//                 type,
-//                 aiCheck
-//             );
-//         });
-//         target.eachAlly((b: any) => {
-//             b.eachAbilityShouldApply(aiCheck, (ability: any) => {
-//                 BattleHandlers.triggerDamageCalcTargetAllyAbility(
-//                     ability,
-//                     user,
-//                     target,
-//                     this,
-//                     multipliers,
-//                     baseDmg,
-//                     type,
-//                     aiCheck
-//                 );
-//             });
-//         });
-//     }
-// }
+    // // Target or target ally ability effects that alter damage
+    // if (!battle.moldBreaker) {
+    //     target.eachAbilityShouldApply(aiCheck, (ability: any) => {
+    //         BattleHandlers.triggerDamageCalcTargetAbility(
+    //             ability,
+    //             user,
+    //             target,
+    //             this,
+    //             multipliers,
+    //             baseDmg,
+    //             type,
+    //             aiCheck
+    //         );
+    //     });
+    //     target.eachAlly((b: any) => {
+    //         b.eachAbilityShouldApply(aiCheck, (ability: any) => {
+    //             BattleHandlers.triggerDamageCalcTargetAllyAbility(
+    //                 ability,
+    //                 user,
+    //                 target,
+    //                 this,
+    //                 multipliers,
+    //                 baseDmg,
+    //                 type,
+    //                 aiCheck
+    //             );
+    //         });
+    //     });
+    // }
+    return multipliers;
+}
 
 function applySunDebuff(move: MoveData, user: PartyPokemon, battleState: BattleState) {
     if (user.items.some((i) => i instanceof WeatherImmuneItem)) {
@@ -692,7 +690,7 @@ function calcDamageMultipliers(
         final_damage_multiplier: 1,
     };
     // TODO: Handle abilities
-    // multipliers = pbCalcAbilityDamageMultipliers(user, target, type, baseDmg, multipliers);
+    multipliers = pbCalcAbilityDamageMultipliers(move, user, target, battleState, multipliers);
     multipliers = pbCalcWeatherDamageMultipliers(move, user, target, battleState, multipliers);
     multipliers = pbCalcStatusesDamageMultipliers(move, user, target, multipliers);
     // TODO: Handle Protect-esque moves

@@ -1,3 +1,4 @@
+import { BattleState } from "../battleState";
 import { Move } from "../tectonic/Move";
 import { PokemonType } from "../tectonic/PokemonType";
 import { TectonicData } from "../tectonic/TectonicData";
@@ -9,11 +10,11 @@ export class GutCheckMove extends Move {
         return this.bp * (user.species.getFormName(user.form) === "Hangry" ? 2 : 1);
     }
 
-    public getType(user: PartyPokemon): PokemonType {
+    public getType(user: PartyPokemon, battleState: BattleState): PokemonType {
         if (user.species.getFormName(user.form) === "Hangry") {
             return TectonicData.types["DARK"];
         }
-        return this.type;
+        return super.getType(user, battleState);
     }
 
     static moveCodes = ["GutCheck"];

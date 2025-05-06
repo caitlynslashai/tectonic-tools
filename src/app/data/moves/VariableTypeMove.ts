@@ -185,7 +185,7 @@ export class VariableTypeMove extends Move {
         this.typeFunction = variableTypeMoves[move.functionCode];
     }
     public getType(user: PartyPokemon, battleState: BattleState): PokemonType {
-        return this.typeFunction(user, battleState, this.id) || this.type;
+        return this.typeFunction(user, battleState, this.id) || super.getType(user, battleState);
     }
 
     static moveCodes = Object.keys(variableTypeMoves);

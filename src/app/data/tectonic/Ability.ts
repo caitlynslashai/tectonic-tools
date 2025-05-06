@@ -19,5 +19,9 @@ export class Ability {
         this.isSignature = loaded.isSignature;
     }
 
+    public movePowerMultiplier(): number {
+        return 1;
+    }
+
     static abilityIds: string[] = [];
 }

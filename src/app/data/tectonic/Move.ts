@@ -2,6 +2,7 @@ import { MoveData } from "@/app/damagecalc/components/MoveCard";
 import { Side } from "@/app/damagecalc/damageCalc";
 import { BattleState } from "@/app/data/battleState";
 import { LoadedMove } from "@/preload/loadedDataClasses";
+import { MoveTypeChangeAbility } from "../abilities/MoveTypeChangeAbility";
 import { StatusEffect } from "../conditions";
 import { TectonicData } from "../tectonic/TectonicData";
 import { PartyPokemon } from "../types/PartyPokemon";
@@ -85,6 +86,9 @@ export class Move {
     // to be extended by subclasses
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public getType(user: PartyPokemon, battleState: BattleState): PokemonType {
+        if (user.ability instanceof MoveTypeChangeAbility && user.ability.shouldChangeType(this)) {
+            return user.ability.moveType;
+        }
         return this.type;
     }
 
