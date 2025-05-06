@@ -1,5 +1,6 @@
 import { LoadedData, LoadedDataJson } from "@/preload/loadedDataClasses";
 import loadedData from "public/data/loadedData.json";
+import { CancelWeatherAbility } from "../abilities/CancelWeatherAbility";
 import { ExtraTypeAbility } from "../abilities/ExtraTypeAbility";
 import { STABBoostAbility } from "../abilities/STABBoostAbility";
 import { TwoItemAbility } from "../abilities/TwoItemAbility";
@@ -108,6 +109,7 @@ const itemSubclasses = [
 ];
 
 const abilitySubclasses = [
+    CancelWeatherAbility,
     ExtraTypeAbility,
     STABBoostAbility,
     TwoItemAbility,

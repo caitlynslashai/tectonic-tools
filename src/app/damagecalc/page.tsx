@@ -17,6 +17,7 @@ import ColumnHeader from "../../components/ColumnHeader";
 import Dropdown from "../../components/DropDown";
 import InputLabel from "../../components/InputLabel";
 import PokemonCard from "../../components/PokemonCard";
+import { CancelWeatherAbility } from "../data/abilities/CancelWeatherAbility";
 import { BattleBoolean, battleBooleans, BattleBools } from "../data/battleState";
 import { WeatherCondition, weatherConditions } from "../data/conditions";
 import { decodeTeam } from "../data/teamExport";
@@ -175,8 +176,12 @@ const PokemonDamageCalculator: NextPage = () => {
         return !isNull(playerPokemon.species) && !isNull(opponentPokemon.species) && !isNull(playerMove.move);
     }
 
+    const cancelWeather =
+        playerPokemon.ability instanceof CancelWeatherAbility ||
+        opponentPokemon.ability instanceof CancelWeatherAbility;
+
     const fieldState = {
-        weather,
+        weather: cancelWeather ? "None" : weather,
         bools: battleBools,
     };
 
