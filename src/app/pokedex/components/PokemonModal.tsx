@@ -1,16 +1,18 @@
 import { Ability } from "@/app/data/tectonic/Ability";
-import { EncounterMap } from "@/app/data/tectonic/Encounter";
 import { Pokemon } from "@/app/data/tectonic/Pokemon";
 import { TectonicData } from "@/app/data/tectonic/TectonicData";
 import { calcTypeMatchup } from "@/app/data/typeChart";
 import { negativeMod } from "@/app/data/util";
+import AbilityCapsule from "@/components/AbilityCapsule";
 import BasicButton from "@/components/BasicButton";
+import CloseXButton from "@/components/CloseXButton";
+import LeftRightCycleButtons from "@/components/LeftRightCycleButtons";
+import TribeCapsule from "@/components/TribeCapsule";
 import TypeBadge, { TypeBadgeElementEnum } from "@/components/TypeBadge";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import EncounterDisplay from "./EncounterDisplay";
-import EStatRow from "./EStatRow";
-import MoveDisplay from "./MoveDisplay";
+import MoveTable from "./MoveTable";
 import PokemonEvolution from "./PokemonEvolution";
 import StatRow from "./StatRow";
 import TabContent from "./TabContent";
@@ -21,17 +23,7 @@ interface PokemonModalProps {
     handlePokemonClick: (pokemon: Pokemon | null) => void;
 }
 
-const tabs = [
-    "Info",
-    "Abilities",
-    "Stats",
-    "Def. Matchups",
-    "Atk. Matchups",
-    "Level Moves",
-    "Tutor Moves",
-    "Evolutions",
-    "Encounters",
-] as const;
+const tabs = ["Info", "Evolutions & Locations", "Level Moves", "Tutor Moves"] as const;
 export type PokemonTabName = (typeof tabs)[number];
 
 const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, handlePokemonClick }) => {
@@ -79,25 +71,8 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, handlePokemon
 
     if (!isRendered || !currentPokemon) return null;
 
-    const currentEncounters = Object.values(TectonicData.encounters).filter((e) =>
-        Object.values(e.tables).some((t) => t.encounters.some((enc) => enc.pokemon === currentPokemon.id))
-    );
-
-    const prevoEncounters: Record<string, EncounterMap[]> = {};
-    currentPokemon.getEvoNode().callParents((node) => {
-        const currentSpecies = TectonicData.pokemon[node.getData().pokemon];
-        const newEncounters = Object.values(TectonicData.encounters).filter((e) =>
-            Object.values(e.tables).some((t) => t.encounters.some((enc) => enc.pokemon === currentSpecies.id))
-        );
-        if (newEncounters.length > 0) {
-            prevoEncounters[node.getData().pokemon] = newEncounters;
-        }
-    });
-
     const stats = currentPokemon.getStats(currentForm);
     const realTypes = Object.values(TectonicData.types).filter((t) => t.isRealType);
-    const realTypesSlices = [realTypes.slice(0, realTypes.length / 2), realTypes.slice(realTypes.length / 2)];
-
     const defMatchupCalcs: Record<string, Record<string, number>> = {};
     const stabMatchupCalcs: Record<string, Record<string, number>> = {};
     let defMatchupDifferentForAbilities = false;
@@ -107,7 +82,6 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, handlePokemon
         const firstStabAbilityChart = Object.values(stabMatchupCalcs).find(() => true);
         defMatchupCalcs[a.id] = {};
         stabMatchupCalcs[a.id] = {};
-
         realTypes.forEach((t) => {
             defMatchupCalcs[a.id][t.id] = calcTypeMatchup(
                 { type: t },
@@ -143,162 +117,141 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, handlePokemon
             <div
                 ref={modalRef}
                 onClick={(e) => e.stopPropagation()}
-                className={`bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] min-h-[70vh] overflow-y-auto transform transition-transform duration-300 ${
+                className={`bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full max-h-[75vh] min-h-[75vh] overflow-y-auto transform transition-transform duration-300 ${
                     isVisible ? "scale-100" : "scale-95"
                 }`}
             >
-                <div className="p-6">
-                    <div className="flex justify-between items-start">
-                        <div>
-                            <Image
-                                src={currentPokemon.getImage(currentForm)}
-                                alt={currentPokemon.name}
-                                height="160"
-                                width="160"
-                                className="w-24 h-24"
-                            />
-                            <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
-                                {currentPokemon.dex}: {currentPokemon.name}{" "}
-                                {currentPokemon.getFormName(currentForm) &&
-                                    "(" + currentPokemon.getFormName(currentForm) + ")"}
-                            </h2>
-                            <TypeBadge
-                                key={currentPokemon.getType1(currentForm).id}
-                                types={[currentPokemon.getType1(currentForm), currentPokemon.getType2(currentForm)]}
-                                useShort={false}
-                                element={TypeBadgeElementEnum.CAPSULE_ROW}
-                            />
-                        </div>
-                        {currentPokemon.forms.length > 0 && (
-                            <div className="flex items-center space-x-2">
-                                {/* not basic buttons */}
-                                <button
-                                    onClick={() =>
-                                        setCurrentForm(negativeMod(currentForm - 1, currentPokemon.forms.length))
-                                    }
-                                    className="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
-                                >
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M15 19l-7-7 7-7"
-                                        />
-                                    </svg>
-                                </button>
-                                <button
-                                    onClick={() => setCurrentForm((currentForm + 1) % currentPokemon.forms.length)}
-                                    className="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
-                                >
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M9 5l7 7-7 7"
-                                        />
-                                    </svg>
-                                </button>
-                            </div>
-                        )}
-                        <button
-                            onClick={handleClose}
-                            className="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
-                        >
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M6 18L18 6M6 6l12 12"
-                                />
-                            </svg>
-                        </button>
+                <div className="px-4 py-2.5">
+                    <div className="flex justify-between">
+                        <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
+                            {currentPokemon.dex}: {currentPokemon.name}{" "}
+                            {currentPokemon.getFormName(currentForm) &&
+                                "(" + currentPokemon.getFormName(currentForm) + ") "}
+                            - {currentPokemon.kind} Pokémon
+                        </h3>
+                        <CloseXButton onClick={handleClose} />
                     </div>
 
                     {/* Tabs */}
-                    <div className="mt-4 border-b border-gray-200 dark:border-gray-700">
-                        <nav
-                            className="-mb-px flex space-x-4 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700"
-                            onWheel={(e) => {
-                                const target = e.currentTarget;
-                                target.scrollLeft += e.deltaY;
-                            }}
-                        >
-                            {tabs.map((tab) => (
-                                <button
-                                    key={tab}
-                                    onClick={() => handleTabChange(tab)}
-                                    className={`px-4 py-2 text-sm font-medium ${
-                                        activeTab === tab
-                                            ? "text-blue-600 border-b-2 border-blue-600 dark:text-blue-400 dark:border-blue-400"
-                                            : "text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
-                                    }`}
-                                >
-                                    {tab}
-                                </button>
-                            ))}
-                        </nav>
+                    <div className="flex justify-center space-x-4 border-b border-gray-200 dark:border-gray-700">
+                        {tabs.map((tab) => (
+                            <button
+                                key={tab}
+                                onClick={() => handleTabChange(tab)}
+                                className={`px-4 py-2 text-sm font-medium ${
+                                    activeTab === tab
+                                        ? "text-blue-600 border-b-2 border-blue-600 dark:text-blue-400 dark:border-blue-400"
+                                        : "text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
+                                }`}
+                            >
+                                {tab}
+                            </button>
+                        ))}
                     </div>
 
                     {/* Tab Content */}
-                    <div className="mt-6">
+                    <div className="table-fixed mt-2">
                         <TabContent tab="Info" activeTab={activeTab}>
                             <div>
-                                <h3 className="font-semibold text-gray-800 dark:text-gray-100">
-                                    {currentPokemon.kind} Pokémon
-                                </h3>
-                                <h3 className="font-semibold text-gray-800 dark:text-gray-100 mt-4">Tribes</h3>
-                                <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
-                                    {currentPokemon.tribes.map((tribe, index) => (
-                                        <li key={index}>{tribe.name}</li>
-                                    ))}
-                                </ul>
-                                <br />
-                                <p className="text-gray-600 dark:text-gray-300">
-                                    {currentPokemon.getPokedex(currentForm)}
-                                </p>
-                            </div>
-                        </TabContent>
-                        <TabContent tab="Abilities" activeTab={activeTab}>
-                            {currentPokemon.getAbilities(currentForm).map((a) => (
-                                <div key={a.id}>
-                                    <h3
-                                        className={`font-semibold ${
-                                            a.isSignature ? "text-yellow-500" : "text-gray-800 dark:text-gray-100"
-                                        }`}
-                                    >
-                                        {a.name}
-                                    </h3>
-                                    <p className="text-gray-600 dark:text-gray-300">{a.description}</p>
+                                <div className="flex space-x-3">
+                                    <div className="flex flex-col items-center space-y-2 min-w-50">
+                                        <LeftRightCycleButtons
+                                            isVisible={currentPokemon.forms.length > 0}
+                                            text="Change Form"
+                                            onPrevClick={() =>
+                                                setCurrentForm(
+                                                    negativeMod(currentForm - 1, currentPokemon.forms.length)
+                                                )
+                                            }
+                                            onNextClick={() =>
+                                                setCurrentForm((currentForm + 1) % currentPokemon.forms.length)
+                                            }
+                                        />
+                                        <Image
+                                            src={currentPokemon.getImage(currentForm)}
+                                            alt={currentPokemon.name}
+                                            height="160"
+                                            width="160"
+                                            className="min-w-40 max-w-40 h-40"
+                                        />
+                                        <TypeBadge
+                                            key={currentPokemon.getType1(currentForm).id}
+                                            types={[
+                                                currentPokemon.getType1(currentForm),
+                                                currentPokemon.getType2(currentForm),
+                                            ]}
+                                            useShort={false}
+                                            element={TypeBadgeElementEnum.CAPSULE_ROW}
+                                        />
+                                    </div>
+                                    <table className="mt-1">
+                                        <tbody>
+                                            <StatRow name="HP" value={stats.hp} />
+                                            <StatRow name="Attack" value={stats.attack} />
+                                            <StatRow name="Defense" value={stats.defense} />
+                                            <StatRow name="Sp. Atk" value={stats.spatk} />
+                                            <StatRow name="Sp. Def" value={stats.spdef} />
+                                            <StatRow name="Speed" value={stats.speed} />
+                                            <tr className="h-5">
+                                                <td>
+                                                    <hr />
+                                                </td>
+                                                <td>
+                                                    <hr />
+                                                </td>
+                                                <td>
+                                                    <hr />
+                                                </td>
+                                            </tr>
+                                            <StatRow name="Total" value={currentPokemon.BST(currentForm)} scale={3.5} />
+                                            <StatRow name="PEHP" value={currentPokemon.getPEHP(currentForm)} />
+                                            <StatRow name="SEHP" value={currentPokemon.getSEHP(currentForm)} />
+                                        </tbody>
+                                    </table>
                                 </div>
-                            ))}
-                        </TabContent>
-                        <TabContent tab="Stats" activeTab={activeTab}>
-                            <div>
-                                <h3 className="font-semibold text-gray-800 dark:text-gray-100">Stats</h3>
-                                <table className="table-auto w-full mt-4 inline-block text-center align-middle border-collapse">
+                                <p className="text-gray-600 dark:text-gray-300">
+                                    {`${currentPokemon.getPokedex(currentForm)} ${currentPokemon.name} weighs ${
+                                        currentPokemon.weight
+                                    }kg and is ${currentPokemon.height}m tall.`}
+                                </p>
+                                <hr className="my-3" />
+                                <h1 className="font-semibold text-2xl text-center text-gray-800 dark:text-gray-100">
+                                    Abilties
+                                </h1>
+                                <table className="border-spacing-y-2 border-separate w-full">
                                     <tbody>
-                                        <StatRow name="HP" value={stats.hp} scale={1} />
-                                        <StatRow name="Attack" value={stats.attack} scale={1} />
-                                        <StatRow name="Defense" value={stats.defense} scale={1} />
-                                        <EStatRow name="PEHP" pokemon={currentPokemon} form={currentForm} />
-                                        <StatRow name="Sp. Atk" value={stats.spatk} scale={1} />
-                                        <StatRow name="Sp. Def" value={stats.spdef} scale={1} />
-                                        <EStatRow name="SEHP" pokemon={currentPokemon} form={currentForm} />
-                                        <StatRow name="Speed" value={stats.speed} scale={1} />
-                                        <StatRow name="Total" value={currentPokemon.BST(currentForm)} scale={6} />
+                                        {currentPokemon.getAbilities(currentForm).map((a) => (
+                                            <tr key={a.id} className="bg-emerald-300/10">
+                                                <td className="whitespace-nowrap pl-1.5 pr-3 py-3 text-right">
+                                                    <AbilityCapsule ability={a} />
+                                                </td>
+                                                <td>
+                                                    <p className="text-gray-600 dark:text-gray-300">{a.description}</p>
+                                                </td>
+                                            </tr>
+                                        ))}
                                     </tbody>
                                 </table>
-                            </div>
-                        </TabContent>
-                        <TabContent tab="Def. Matchups" activeTab={activeTab}>
-                            <div>
-                                <div className="text-center">
-                                    {!defMatchupDifferentForAbilities ? (
-                                        <></>
-                                    ) : (
+                                <h1 className="font-semibold text-2xl text-center mt-2 text-gray-800 dark:text-gray-100">
+                                    Tribes
+                                </h1>
+                                <table className="border-spacing-y-2 border-separate w-full">
+                                    <tbody>
+                                        {currentPokemon.tribes.map((t) => (
+                                            <tr key={t.id} className="bg-red-300/10">
+                                                <td className="whitespace-nowrap pl-1.5 pr-3 py-3 text-right">
+                                                    <TribeCapsule tribe={t} />
+                                                </td>
+                                                <td>
+                                                    <p className="text-gray-600 dark:text-gray-300">{t.description}</p>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                                <hr className="my-3" />
+                                <div className="flex justify-center space-x-3 mt-2">
+                                    {defMatchupDifferentForAbilities && (
                                         <BasicButton
                                             onClick={() =>
                                                 setSelectedDefAbility(
@@ -310,131 +263,124 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, handlePokemon
                                             {selectedDefAbility.name}
                                         </BasicButton>
                                     )}
+                                    <h1 className="font-semibold text-2xl my-auto text-gray-800 dark:text-gray-100">
+                                        Defensive Matchups
+                                    </h1>
                                 </div>
-                                <div className="overflow-x-auto mt-4">
-                                    {realTypesSlices.map((slice, index) => (
-                                        <table key={index} className="mx-auto mb-5">
-                                            <thead>
-                                                <tr>
-                                                    {slice.map((t) => (
-                                                        <TypeBadge
-                                                            key={t.id}
-                                                            types={[t]}
-                                                            useShort={true}
-                                                            element={TypeBadgeElementEnum.TABLE_HEADER}
-                                                        />
-                                                    ))}
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    {slice.map((t) => {
-                                                        return (
-                                                            <TypeChartCell
-                                                                key={t.id}
-                                                                mult={defMatchupCalcs[selectedDefAbility.id][t.id]}
-                                                            />
-                                                        );
-                                                    })}
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    ))}
+                                <table className="my-2">
+                                    <thead>
+                                        <tr>
+                                            {realTypes.map((t) => (
+                                                <TypeBadge
+                                                    key={t.id}
+                                                    types={[t]}
+                                                    useShort={true}
+                                                    element={TypeBadgeElementEnum.TABLE_HEADER}
+                                                />
+                                            ))}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            {realTypes.map((t) => (
+                                                <TypeChartCell
+                                                    key={t.id}
+                                                    mult={defMatchupCalcs[selectedDefAbility.id][t.id]}
+                                                />
+                                            ))}
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div className="flex justify-center space-x-3">
+                                    {stabMatchupDifferentForAbilities && (
+                                        <BasicButton
+                                            onClick={() =>
+                                                setSelectedStabAbility(
+                                                    currentPokemon.abilities.find((a) => a != selectedStabAbility) ??
+                                                        selectedStabAbility
+                                                )
+                                            }
+                                        >
+                                            {selectedStabAbility.name}
+                                        </BasicButton>
+                                    )}
+                                    <h1 className="font-semibold text-2xl my-auto text-gray-800 dark:text-gray-100">
+                                        STAB Matchups
+                                    </h1>
                                 </div>
+                                <table className="my-2">
+                                    <thead>
+                                        <tr>
+                                            {realTypes.map((t) => (
+                                                <TypeBadge
+                                                    key={t.id}
+                                                    types={[t]}
+                                                    useShort={true}
+                                                    element={TypeBadgeElementEnum.TABLE_HEADER}
+                                                />
+                                            ))}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            {realTypes.map((t) => {
+                                                return (
+                                                    <TypeChartCell
+                                                        key={t.id}
+                                                        mult={stabMatchupCalcs[selectedStabAbility.id][t.id]}
+                                                    />
+                                                );
+                                            })}
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </TabContent>
-                        <TabContent tab="Atk. Matchups" activeTab={activeTab}>
-                            <div className="text-center">
-                                {!stabMatchupDifferentForAbilities ? (
-                                    <></>
+                        <TabContent tab="Evolutions & Locations" activeTab={activeTab}>
+                            <h1 className="font-semibold text-2xl text-center mb-2 text-gray-800 dark:text-gray-100">
+                                Evolutions
+                            </h1>
+                            <div className="mt-2 text-center">
+                                {currentPokemon.evolutionTree.isLeaf() ? (
+                                    <p className="text-gray-600 dark:text-gray-300">Does not evolve</p>
                                 ) : (
-                                    <BasicButton
-                                        onClick={() =>
-                                            setSelectedStabAbility(
-                                                currentPokemon.abilities.find((a) => a != selectedStabAbility) ??
-                                                    selectedStabAbility
-                                            )
-                                        }
-                                    >
-                                        {selectedStabAbility.name}
-                                    </BasicButton>
+                                    <div className="w-fit mx-auto">
+                                        {currentPokemon.evolutionTree.asBranches().map((branch, index) => (
+                                            <div
+                                                key={index}
+                                                className="flex"
+                                                style={{ justifyContent: "space-around", alignItems: "center" }}
+                                            >
+                                                {branch.map((node, index) => (
+                                                    <PokemonEvolution
+                                                        key={index}
+                                                        node={node}
+                                                        index={index}
+                                                        onClick={(evo) => {
+                                                            setActiveTab("Info");
+                                                            handlePokemonClick(evo);
+                                                        }}
+                                                    />
+                                                ))}
+                                            </div>
+                                        ))}
+                                    </div>
                                 )}
-                                <div className="overflow-x-auto mt-4">
-                                    {realTypesSlices.map((slice, index) => (
-                                        <table key={index} className="mx-auto mb-5">
-                                            <thead>
-                                                <tr>
-                                                    {slice.map((t) => (
-                                                        <TypeBadge
-                                                            key={t.id}
-                                                            types={[t]}
-                                                            useShort={true}
-                                                            element={TypeBadgeElementEnum.TABLE_HEADER}
-                                                        />
-                                                    ))}
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    {slice.map((t) => {
-                                                        return (
-                                                            <TypeChartCell
-                                                                key={t.id}
-                                                                mult={stabMatchupCalcs[selectedStabAbility.id][t.id]}
-                                                            />
-                                                        );
-                                                    })}
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    ))}
-                                </div>
                             </div>
+                            <hr className="my-3" />
+                            <h1 className="font-semibold text-2xl text-center mb-2 text-gray-800 dark:text-gray-100">
+                                Encounters
+                            </h1>
+                            <EncounterDisplay pokemon={currentPokemon} />
                         </TabContent>
                         <TabContent tab="Level Moves" activeTab={activeTab}>
-                            <MoveDisplay pokemon={currentPokemon} form={currentForm} moveKey="level" />
+                            <MoveTable moves={currentPokemon.getLevelMoves(currentForm)} showLevel={true} />
                         </TabContent>
                         <TabContent tab="Tutor Moves" activeTab={activeTab}>
-                            <MoveDisplay pokemon={currentPokemon} form={currentForm} moveKey="tutor" />
-                        </TabContent>
-                        <TabContent tab="Evolutions" activeTab={activeTab}>
-                            <div>
-                                <div className="mt-4">
-                                    {currentPokemon.evolutionTree.isLeaf() ? (
-                                        <p className="text-gray-600 dark:text-gray-300">Does not evolve.</p>
-                                    ) : (
-                                        <div className="w-fit mx-auto">
-                                            {currentPokemon.evolutionTree.asBranches().map((branch, index) => (
-                                                <div
-                                                    key={index}
-                                                    className="flex"
-                                                    style={{ justifyContent: "space-around", alignItems: "center" }}
-                                                >
-                                                    {branch.map((node, index) => (
-                                                        <PokemonEvolution
-                                                            key={index}
-                                                            node={node}
-                                                            index={index}
-                                                            onClick={handlePokemonClick}
-                                                        />
-                                                    ))}
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        </TabContent>
-                        <TabContent tab={"Encounters"} activeTab={activeTab}>
-                            <EncounterDisplay encounters={currentEncounters} pokemon={currentPokemon} />
-                            {Object.entries(prevoEncounters).map(([prevo, encs]) => (
-                                <div key={prevo}>
-                                    <h4 className="font-semibold text-gray-800 dark:text-gray-100">
-                                        Previous Evolution - {TectonicData.pokemon[prevo].name}
-                                    </h4>
-                                    <EncounterDisplay encounters={encs} pokemon={TectonicData.pokemon[prevo]} />
-                                </div>
-                            ))}
+                            <MoveTable
+                                moves={currentPokemon.lineMoves.concat(currentPokemon.tutorMoves).map((x) => [0, x])}
+                                showLevel={false}
+                            />
                         </TabContent>
                     </div>
                 </div>
