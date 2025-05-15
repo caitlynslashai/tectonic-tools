@@ -1,6 +1,5 @@
 import { Pokemon } from "@/app/data/tectonic/Pokemon";
 import { TectonicData } from "@/app/data/tectonic/TectonicData";
-import { types } from "util";
 
 export type FilterOperator = "==" | "!=" | ">" | "<" | "includes";
 
@@ -112,7 +111,9 @@ export const AVAILABLE_FILTERS: PokemonFilterType[] = [
             );
         },
         inputMethod: "select",
-        inputValues: Object.values(types).map((t) => t.name),
+        inputValues: Object.values(TectonicData.types)
+            .filter((t) => t.isRealType)
+            .map((t) => t.name),
     },
     abilityNameFilter,
     {
