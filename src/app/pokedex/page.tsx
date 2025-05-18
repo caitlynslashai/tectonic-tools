@@ -10,12 +10,12 @@ import {
     PokemonFilterType,
     tribesFilter,
 } from "@/components/filters";
+import ImageFallback from "@/components/ImageFallback";
 import InlineLink from "@/components/InlineLink";
 import InternalLink from "@/components/InternalLink";
 import TypeBadge, { TypeBadgeElementEnum } from "@/components/TypeBadge";
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { FilterInput } from "../../components/FilterInput";
 import { Ability } from "../data/tectonic/Ability";
@@ -65,9 +65,6 @@ const Home: NextPage = () => {
     const [activeTab, setActiveTab] = useState<string>("Pokemon");
     const [currentFilter, setCurrentFilter] = useState<PokemonFilterType>(AVAILABLE_FILTERS[0]);
     const [itemFilter, setItemFilter] = useState<string | undefined>();
-    const [imageErrors, setImageErrors] = useState<Record<string, boolean>>(
-        Object.fromEntries(itemDisplayData.map((i) => [i.item.id, false]))
-    );
 
     const handleAddFilter = (filter: PokemonFilterType, value: string) => {
         setFilters((prev) => [...prev, { ...filter, value }]);
@@ -286,13 +283,9 @@ const Home: NextPage = () => {
                                             }`}
                                         >
                                             <TableCell>
-                                                <Image
+                                                <ImageFallback
                                                     alt={i.item.name}
-                                                    src={imageErrors[i.item.id] ? Item.IMG_NOT_FOUND : i.item.image}
-                                                    onError={() => {
-                                                        const newImageErrors = { ...imageErrors, [i.item.id]: true };
-                                                        setImageErrors(newImageErrors);
-                                                    }}
+                                                    src={i.item.image}
                                                     width={50}
                                                     height={50}
                                                 />
