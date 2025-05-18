@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "next dev --turbopack",
-        "build": "tsx src/preload/loadTectonicRepoData.ts && next build",
+        "build": "next build",
         "build-dev": "tsx src/preload/loadTectonicRepoData.ts dev && next build",
         "start": "next start",
         "lint": "next lint",
