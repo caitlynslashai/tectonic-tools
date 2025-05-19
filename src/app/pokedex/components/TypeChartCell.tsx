@@ -85,7 +85,7 @@ export default function TypeChartCell({ atk = undefined, def = undefined, mult =
 
     return (
         <td
-            className={`border border-gray-600 text-lg text-center cursor-default font-bold ${colourClass} ${textClass}`}
+            className={`border border-gray-600 text-lg text-center cursor-default font-bold h-[1.6em] ${colourClass} ${textClass}`}
             title={tooltip}
         >
             {content}
