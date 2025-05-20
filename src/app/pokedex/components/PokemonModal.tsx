@@ -385,8 +385,8 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, handlePokemon
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {currentPokemon.items.map(([i, chance]) => (
-                                        <tr key={i.id}>
+                                    {currentPokemon.items.map(([i, chance], index) => (
+                                        <tr key={index}>
                                             <td className={"border p-2 bg-white dark:bg-violet-400/40 font-semibold"}>
                                                 <div>
                                                     <span className="flex justify-center">
