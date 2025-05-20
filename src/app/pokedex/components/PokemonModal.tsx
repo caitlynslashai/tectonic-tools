@@ -379,7 +379,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, handlePokemon
                             <table className="table-fixed w-full text-center">
                                 <thead>
                                     <tr>
-                                        <th className={"border w-25 py-2 bg-white dark:bg-gray-700"}></th>
+                                        <th className={"border w-25 py-2 bg-white dark:bg-gray-700"}>Item</th>
                                         <th className={"border w-20 py-2 bg-white dark:bg-gray-700"}>Chance</th>
                                         <th className={"border py-2 bg-white dark:bg-gray-700"}>Description</th>
                                     </tr>
