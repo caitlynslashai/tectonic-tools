@@ -48,6 +48,7 @@ export class Move {
     customVarType?: string;
     needsInput: boolean = false;
     isSignature: boolean = false;
+    flags: string[] = [];
 
     static NULL: Move = null!;
 
@@ -65,6 +66,7 @@ export class Move {
         this.category = loaded.category as MoveCategory;
         this.target = loaded.target as MoveTarget;
         this.isSignature = loaded.isSignature;
+        this.flags = loaded.flags;
     }
 
     public isAttackingMove() {
@@ -73,6 +75,56 @@ export class Move {
 
     public isSpread(): boolean {
         return spreadTargets.indexOf(this.target) > -1;
+    }
+
+    public getTargetPositions(): number[][] {
+        // Format is [[Foe, Foe], [User, Ally]]
+        switch (this.target) {
+            case "FoeSide":
+            case "NearFoe":
+            case "AllNearFoes":
+            case "ClosestNearFoe":
+                return [
+                    [1, 1],
+                    [0, 0],
+                ];
+            case "UserSide":
+            case "UserAndAllies":
+                return [
+                    [0, 0],
+                    [1, 1],
+                ];
+            case "UserOrNearOther":
+            case "AllNearOthers":
+            case "AllBattlers":
+            case "BothSides":
+                return [
+                    [1, 1],
+                    [1, 1],
+                ];
+            case "Ally":
+            case "NearAlly":
+                return [
+                    [0, 0],
+                    [0, 1],
+                ];
+            case "NearOther":
+                return [
+                    [1, 1],
+                    [0, 1],
+                ];
+            case "User":
+                return [
+                    [0, 0],
+                    [1, 0],
+                ];
+            case "None":
+            default:
+                return [
+                    [0, 0],
+                    [0, 0],
+                ];
+        }
     }
 
     public isSTAB(mon: Pokemon): boolean {
