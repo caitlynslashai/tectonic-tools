@@ -21,12 +21,12 @@ function TableCell({ span, children }: { span?: number; children: ReactNode }) {
     );
 }
 
-function MoveTargetCell({ move, position, children }: { move: Move; position: number[][]; children: ReactNode }) {
-    let useBg = 0;
-    move.getTargetPositions().forEach((a, i) => a.forEach((v, j) => (useBg += v * position[i][j])));
+function MoveTargetCell({ move, position, children }: { move: Move; position: boolean[][]; children: ReactNode }) {
+    let useBg = false;
+    move.getTargetPositions().forEach((a, i) => a.forEach((v, j) => (useBg ||= v && position[i][j])));
 
     return (
-        <td className={`border px-2 py-0.5 text-xs dark:text-black ${useBg > 0 ? "bg-blue-300" : "bg-white/50"}`}>
+        <td className={`border px-2 py-0.5 text-xs dark:text-black ${useBg ? "bg-blue-300" : "bg-white/50"}`}>
             {children}
         </td>
     );
@@ -148,8 +148,8 @@ export default function MoveTable({ moves, showLevel }: { moves: [number, Move][
                                                     <MoveTargetCell
                                                         move={m}
                                                         position={[
-                                                            [1, 0],
-                                                            [0, 0],
+                                                            [true, false],
+                                                            [false, false],
                                                         ]}
                                                     >
                                                         Foe
@@ -158,8 +158,8 @@ export default function MoveTable({ moves, showLevel }: { moves: [number, Move][
                                                         <MoveTargetCell
                                                             move={m}
                                                             position={[
-                                                                [0, 1],
-                                                                [0, 0],
+                                                                [false, true],
+                                                                [false, false],
                                                             ]}
                                                         >
                                                             Foe
@@ -170,8 +170,8 @@ export default function MoveTable({ moves, showLevel }: { moves: [number, Move][
                                                     <MoveTargetCell
                                                         move={m}
                                                         position={[
-                                                            [0, 0],
-                                                            [1, 0],
+                                                            [false, false],
+                                                            [true, false],
                                                         ]}
                                                     >
                                                         User
@@ -180,8 +180,8 @@ export default function MoveTable({ moves, showLevel }: { moves: [number, Move][
                                                         <MoveTargetCell
                                                             move={m}
                                                             position={[
-                                                                [0, 0],
-                                                                [0, 1],
+                                                                [false, false],
+                                                                [false, true],
                                                             ]}
                                                         >
                                                             Ally

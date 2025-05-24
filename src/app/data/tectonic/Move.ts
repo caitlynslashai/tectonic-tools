@@ -77,7 +77,7 @@ export class Move {
         return spreadTargets.indexOf(this.target) > -1;
     }
 
-    public getTargetPositions(): number[][] {
+    public getTargetPositions(): boolean[][] {
         // Format is [[Foe, Foe], [User, Ally]]
         switch (this.target) {
             case "FoeSide":
@@ -85,44 +85,44 @@ export class Move {
             case "AllNearFoes":
             case "ClosestNearFoe":
                 return [
-                    [1, 1],
-                    [0, 0],
+                    [true, true],
+                    [false, false],
                 ];
             case "UserSide":
             case "UserAndAllies":
                 return [
-                    [0, 0],
-                    [1, 1],
+                    [false, false],
+                    [true, true],
                 ];
             case "UserOrNearOther":
             case "AllNearOthers":
             case "AllBattlers":
             case "BothSides":
                 return [
-                    [1, 1],
-                    [1, 1],
+                    [true, true],
+                    [true, true],
                 ];
             case "Ally":
             case "NearAlly":
                 return [
-                    [0, 0],
-                    [0, 1],
+                    [false, false],
+                    [false, true],
                 ];
             case "NearOther":
                 return [
-                    [1, 1],
-                    [0, 1],
+                    [true, true],
+                    [false, true],
                 ];
             case "User":
                 return [
-                    [0, 0],
-                    [1, 0],
+                    [false, false],
+                    [true, false],
                 ];
             case "None":
             default:
                 return [
-                    [0, 0],
-                    [0, 0],
+                    [false, false],
+                    [false, false],
                 ];
         }
     }
