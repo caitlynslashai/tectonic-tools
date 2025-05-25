@@ -359,7 +359,6 @@ const TeamBuilder: NextPage = () => {
                                     <TypeBadge
                                         key={type.id}
                                         types={[type]}
-                                        useShort={true}
                                         element={TypeBadgeElementEnum.TABLE_HEADER}
                                     />
                                 ))}
@@ -405,7 +404,6 @@ const TeamBuilder: NextPage = () => {
                                     <TypeBadge
                                         key={type.id}
                                         types={[type]}
-                                        useShort={true}
                                         element={TypeBadgeElementEnum.TABLE_HEADER}
                                     />
                                 ))}

@@ -22,6 +22,7 @@ import { Ability } from "../data/tectonic/Ability";
 import { Item } from "../data/tectonic/Item";
 import { Move } from "../data/tectonic/Move";
 import { Pokemon } from "../data/tectonic/Pokemon";
+import { PokemonType } from "../data/tectonic/PokemonType";
 import { TectonicData } from "../data/tectonic/TectonicData";
 import { Tribe } from "../data/tectonic/Tribe";
 import { uniq } from "../data/util";
@@ -65,6 +66,7 @@ const Home: NextPage = () => {
     const [activeTab, setActiveTab] = useState<string>("Pokemon");
     const [currentFilter, setCurrentFilter] = useState<PokemonFilterType>(AVAILABLE_FILTERS[0]);
     const [itemFilter, setItemFilter] = useState<string | undefined>();
+    const [typeChartAtkDualType, setTypeChartAtkDualType] = useState<PokemonType | undefined>();
 
     const handleAddFilter = (filter: PokemonFilterType, value: string) => {
         setFilters((prev) => [...prev, { ...filter, value }]);
@@ -196,7 +198,6 @@ const Home: NextPage = () => {
                                             <TypeBadge
                                                 key={m.type.id}
                                                 types={[m.type]}
-                                                useShort={false}
                                                 element={TypeBadgeElementEnum.CAPSULE_SINGLE}
                                             />
                                         </td>
@@ -333,32 +334,42 @@ const Home: NextPage = () => {
                 <TabContent tab="Type Chart" activeTab={activeTab}>
                     <table className="mx-auto border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">
                         <thead>
-                            <tr>
-                                <th className="text-xs text-gray-700 dark:text-gray-300 whitespace-nowrap">
-                                    Def ⇒
-                                    <br />
-                                    Atk ↴
-                                </th>
-                                {realTypes.map((def) => (
+                            <tr onClick={() => setTypeChartAtkDualType(undefined)}>
+                                {typeChartAtkDualType ? (
                                     <TypeBadge
-                                        key={def.id}
+                                        types={[typeChartAtkDualType]}
                                         element={TypeBadgeElementEnum.TABLE_HEADER}
-                                        types={[def]}
-                                        useShort={true}
                                     />
+                                ) : (
+                                    <th className="text-xs text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                                        Def ⇒
+                                        <br />
+                                        Atk ↴
+                                    </th>
+                                )}
+
+                                {realTypes.map((def) => (
+                                    <TypeBadge key={def.id} element={TypeBadgeElementEnum.TABLE_HEADER} types={[def]} />
                                 ))}
                             </tr>
                         </thead>
                         <tbody>
                             {realTypes.map((atk) => (
-                                <tr key={atk.id} className={`${getTypeColorClass(atk, "hover:bg")}`}>
-                                    <TypeBadge
-                                        element={TypeBadgeElementEnum.TABLE_ROW}
-                                        types={[atk]}
-                                        useShort={false}
-                                    />
+                                <tr
+                                    key={atk.id}
+                                    className={`${getTypeColorClass(atk, "hover:bg")} cursor-pointer`}
+                                    onClick={() =>
+                                        setTypeChartAtkDualType(typeChartAtkDualType == atk ? undefined : atk)
+                                    }
+                                >
+                                    <TypeBadge element={TypeBadgeElementEnum.TABLE_ROW} types={[atk]} />
                                     {realTypes.map((def) => (
-                                        <TypeChartCell key={def.index} atk={atk} def={def} />
+                                        <TypeChartCell
+                                            key={def.index}
+                                            atk={typeChartAtkDualType ?? atk}
+                                            def={def}
+                                            def2={typeChartAtkDualType ? atk : undefined}
+                                        />
                                     ))}
                                 </tr>
                             ))}

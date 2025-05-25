@@ -49,7 +49,7 @@ export default function MoveTable({ moves, showLevel }: { moves: [number, Move][
                         isSelected={selectedType === t}
                         padding="p-2"
                     >
-                        <TypeBadge types={[t]} useShort={false} element={TypeBadgeElementEnum.ICONS} />
+                        <TypeBadge types={[t]} element={TypeBadgeElementEnum.ICONS} />
                     </FilterOptionButton>
                 ))}
             </div>
@@ -81,12 +81,7 @@ export default function MoveTable({ moves, showLevel }: { moves: [number, Move][
                                     <span className={m.isSignature ? "text-yellow-500" : ""}>{m.name}</span>
                                 </TableCell>
                                 <TableCell>
-                                    <TypeBadge
-                                        key={m.type.id}
-                                        types={[m.type]}
-                                        useShort={false}
-                                        element={TypeBadgeElementEnum.ICONS}
-                                    />
+                                    <TypeBadge key={m.type.id} types={[m.type]} element={TypeBadgeElementEnum.ICONS} />
                                 </TableCell>
                                 <TableCell>
                                     <Image
