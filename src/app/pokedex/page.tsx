@@ -18,6 +18,9 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useMemo, useState } from "react";
 import { FilterInput } from "../../components/FilterInput";
+import { ExtraTypeAbility } from "../data/abilities/ExtraTypeAbility";
+import { TypeImmunityAbility } from "../data/abilities/TypeImmunityAbility";
+import { TypeResistAbility } from "../data/abilities/TypeResistAbility";
 import { Ability } from "../data/tectonic/Ability";
 import { Item } from "../data/tectonic/Item";
 import { Move } from "../data/tectonic/Move";
@@ -38,6 +41,27 @@ export interface PokemonTableProps {
 }
 
 const tabNames = ["Pokemon", "Moves", "Abilities", "Items", "Tribes", "Type Chart"];
+
+interface FilterableAbility {
+    label: string;
+    filter: (a: Ability) => boolean;
+}
+const filterableAbilities: FilterableAbility[][] = [
+    [
+        { label: "All Weather", filter: (a: Ability) => a.hasAllWeatherSynergy() },
+        { label: "Sun", filter: (a: Ability) => a.hasSunSynergy() },
+        { label: "Rain", filter: (a: Ability) => a.hasRainSynergy() },
+        { label: "Hail", filter: (a: Ability) => a.hasHailSynergy() },
+        { label: "Sand", filter: (a: Ability) => a.hasSandSynergy() },
+        { label: "Eclipse", filter: (a: Ability) => a.hasEclipseSynergy() },
+        { label: "Moonglow", filter: (a: Ability) => a.hasMoonglowSynergy() },
+    ],
+    [
+        { label: "Extra Type", filter: (a: Ability) => a instanceof ExtraTypeAbility },
+        { label: "Immunity", filter: (a: Ability) => a instanceof TypeImmunityAbility },
+        { label: "Resists", filter: (a: Ability) => a instanceof TypeResistAbility },
+    ],
+];
 
 const itemMons: Record<string, Array<Pokemon>> = {};
 Object.values(TectonicData.pokemon).forEach((x) =>
@@ -65,6 +89,7 @@ const Home: NextPage = () => {
     const [activeTab, setActiveTab] = useState<string>("Pokemon");
     const [currentFilter, setCurrentFilter] = useState<PokemonFilterType>(AVAILABLE_FILTERS[0]);
     const [itemFilter, setItemFilter] = useState<string | undefined>();
+    const [abilityTableFilter, setAbilityTableFilter] = useState<FilterableAbility>();
 
     const handleAddFilter = (filter: PokemonFilterType, value: string) => {
         setFilters((prev) => [...prev, { ...filter, value }]);
@@ -213,6 +238,23 @@ const Home: NextPage = () => {
                 </TabContent>
                 <TabContent tab="Abilities" activeTab={activeTab}>
                     <div className="overflow-x-auto">
+                        <div>
+                            {filterableAbilities.map((group, index) => (
+                                <div key={index} className="flex justify-center space-x-2 my-2">
+                                    {group.map((a) => (
+                                        <FilterOptionButton
+                                            key={a.label}
+                                            onClick={() =>
+                                                setAbilityTableFilter(abilityTableFilter === a ? undefined : a)
+                                            }
+                                            isSelected={abilityTableFilter === a}
+                                        >
+                                            {a.label}
+                                        </FilterOptionButton>
+                                    ))}
+                                </div>
+                            ))}
+                        </div>
                         <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                             <thead className="bg-gray-50 dark:bg-gray-800">
                                 <tr>
@@ -221,16 +263,18 @@ const Home: NextPage = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {Object.values(TectonicData.abilities).map((a) => (
-                                    <tr
-                                        key={a.id}
-                                        onClick={() => handleAbilityClick(a)}
-                                        className={`hover:bg-blue-50 dark:hover:bg-blue-900 cursor-pointer`}
-                                    >
-                                        <TableCell>{a.name}</TableCell>
-                                        <TableCell>{a.description}</TableCell>
-                                    </tr>
-                                ))}
+                                {Object.values(TectonicData.abilities)
+                                    .filter((a) => (abilityTableFilter ? abilityTableFilter.filter(a) : true))
+                                    .map((a) => (
+                                        <tr
+                                            key={a.id}
+                                            onClick={() => handleAbilityClick(a)}
+                                            className={`hover:bg-blue-50 dark:hover:bg-blue-900 cursor-pointer`}
+                                        >
+                                            <TableCell>{a.name}</TableCell>
+                                            <TableCell>{a.description}</TableCell>
+                                        </tr>
+                                    ))}
                             </tbody>
                         </table>
                     </div>
