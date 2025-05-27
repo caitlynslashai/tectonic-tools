@@ -84,6 +84,7 @@ export class Move {
             case "NearFoe":
             case "AllNearFoes":
             case "ClosestNearFoe":
+            case "NearOther":
                 return [
                     [true, true],
                     [false, false],
@@ -106,11 +107,6 @@ export class Move {
             case "NearAlly":
                 return [
                     [false, false],
-                    [false, true],
-                ];
-            case "NearOther":
-                return [
-                    [true, true],
                     [false, true],
                 ];
             case "User":
