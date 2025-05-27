@@ -181,7 +181,6 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, handlePokemon
                                                 currentPokemon.getType1(currentForm),
                                                 currentPokemon.getType2(currentForm),
                                             ]}
-                                            useShort={false}
                                             element={TypeBadgeElementEnum.CAPSULE_ROW}
                                         />
                                     </div>
@@ -275,7 +274,6 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, handlePokemon
                                                 <TypeBadge
                                                     key={t.id}
                                                     types={[t]}
-                                                    useShort={true}
                                                     element={TypeBadgeElementEnum.TABLE_HEADER}
                                                 />
                                             ))}
@@ -316,7 +314,6 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon: mon, handlePokemon
                                                 <TypeBadge
                                                     key={t.id}
                                                     types={[t]}
-                                                    useShort={true}
                                                     element={TypeBadgeElementEnum.TABLE_HEADER}
                                                 />
                                             ))}
