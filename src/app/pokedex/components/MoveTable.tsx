@@ -10,10 +10,10 @@ function TableHeader({ children }: { children: ReactNode }) {
     return <th className="px-1 py-3 text-center text-sm font-bold text-gray-500 dark:text-gray-300">{children}</th>;
 }
 
-function TableCell({ span, children }: { span?: number; children: ReactNode }) {
+function TableCell({ span, padding = "px-1", children }: { span?: number; padding?: string; children: ReactNode }) {
     return (
         <td
-            className="px-1 text-center text-sm text-gray-900 dark:text-gray-200 whitespace-break-spaces"
+            className={`${padding} text-center text-sm text-gray-900 dark:text-gray-200 whitespace-break-spaces`}
             colSpan={span}
         >
             {children}
@@ -140,8 +140,8 @@ export default function MoveTable({ moves, showLevel }: { moves: [number, Move][
                                             ? "-"
                                             : m.flags.filter((f) => displayableMoveFlags.has(f)).join("\n")}
                                     </TableCell>
-                                    <TableCell>
-                                        <table className="mx-auto mt-3 mb-1">
+                                    <TableCell padding="px-1 pt-2 pb-1">
+                                        <table className="mx-auto">
                                             <tbody>
                                                 <tr>
                                                     <MoveTargetCell
@@ -192,7 +192,9 @@ export default function MoveTable({ moves, showLevel }: { moves: [number, Move][
                                     </TableCell>
                                 </tr>
                                 <tr className={index % 2 == 0 ? "" : "bg-gray-50 dark:bg-gray-700"}>
-                                    <TableCell span={showLevel ? 10 : 9}>{m.description}</TableCell>
+                                    <TableCell span={showLevel ? 10 : 9} padding="px-1 pb-2">
+                                        {m.description}
+                                    </TableCell>
                                 </tr>
                             </Fragment>
                         ))}
