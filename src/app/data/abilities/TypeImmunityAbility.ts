@@ -27,7 +27,11 @@ const immunityAbilities: Record<string, string[]> = {
     SAPSIPPER: ["GRASS"],
     VOLTABSORB: ["ELECTRIC"],
     WATERABSORB: ["WATER"],
+    DRYSKIN: ["WATER"],
+    FINESUGAR: ["FIRE"],
     WONDERGUARD: ["QMARKS"],
+    CYNIC: ["DRAGON", "FAIRY", "GHOST"],
+    RUGGED: ["FIGHTING", "ROCK"],
 };
 
 export class TypeImmunityAbility extends MatchupModifyAbility {
