@@ -29,7 +29,6 @@ export class CategoryBoostingItem extends Item {
         target: PartyPokemon
     ): DamageMultipliers {
         if (move.move.getDamageCategory(move, user, target) === this.boostedCategory) {
-            // 33% is [sic], the code and description disagree currently in Tectonic
             multipliers.final_damage_multiplier *= this.boostMult;
         }
         return multipliers;
