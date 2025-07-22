@@ -1,13 +1,14 @@
 import { BattleState } from "@/app/data/battleState";
 import { Move } from "@/app/data/tectonic/Move";
-import { TectonicData } from "@/app/data/tectonic/TectonicData";
 import { PartyPokemon } from "@/app/data/types/PartyPokemon";
-import { isNull } from "@/app/data/util";
 import Checkbox from "@/components/Checkbox";
-import Dropdown from "@/components/DropDown";
+import { getTypeColorClass } from "@/components/colours";
+import ImageFallback from "@/components/ImageFallback";
 import InputLabel from "@/components/InputLabel";
 import TypeBadge, { TypeBadgeElementEnum } from "@/components/TypeBadge";
-import { ReactNode } from "react";
+import { getColourClassForMult, getTextColourForMult } from "@/components/TypeChartCell";
+import { Fragment, ReactNode, useEffect, useState } from "react";
+import { calculateDamage } from "../damageCalc";
 
 export interface MoveData {
     move: Move;
@@ -15,135 +16,151 @@ export interface MoveData {
     criticalHit: boolean;
 }
 
-function getMoveCategory(move: MoveData, userData: PartyPokemon) {
-    if (move.move.category !== "Adaptive") {
-        return move.move.category;
-    }
-    const trueCategory =
-        userData.getStats(move, "player").attack >= userData.getStats(move, "player").spatk ? "Physical" : "Special";
-    return "Adaptive (" + trueCategory + ")";
+export interface MoveCardProps {
+    moveData: MoveData;
+    user: PartyPokemon;
+    target: PartyPokemon;
+    battleState: BattleState;
 }
 
-export default function MoveCard({
-    data,
-    updateMoveData,
-    userData,
-    targetData,
-    battleState,
-}: {
-    data: MoveData;
-    updateMoveData: (move: MoveData) => void;
-    userData: PartyPokemon;
-    targetData: PartyPokemon;
-    battleState: BattleState;
-}): ReactNode {
-    function updateMove(move: Move) {
-        const newData = { ...data, move };
-        updateMoveData(newData);
+export default function MoveCard(props: MoveCardProps): ReactNode {
+    const [crit, setCrit] = useState<boolean>(props.target.volatileStatusEffects.Jinx || props.moveData.criticalHit);
+    const [customInput, setCustomInput] = useState<unknown>(props.moveData.customVar);
+
+    const result = calculateDamage(props.moveData, props.user, props.target, props.battleState);
+    useEffect(() => {
+        setCrit(props.target.volatileStatusEffects.Jinx || props.moveData.criticalHit);
+    }, [props]);
+
+    function getDmgNode() {
+        if (result.minTotal && result.minPercentage && result.maxTotal && result.maxPercentage) {
+            return (
+                <Fragment>
+                    <span className="text-2xl">
+                        {result.minTotal}-{result.maxTotal}
+                    </span>
+                    <span>{result.damage} per hit</span>
+                    <span>
+                        {(result.minPercentage * 100).toFixed(2)}%-{(result.maxPercentage * 100).toFixed(2)}%
+                    </span>
+                </Fragment>
+            );
+        } else {
+            return (
+                <Fragment>
+                    <span className="text-2xl">{result.damage}</span>
+                    <span>{(result.percentage * 100).toFixed(2)}%</span>
+                </Fragment>
+            );
+        }
     }
 
-    function updateCustomVar(customVar: unknown) {
-        const newData = { ...data, customVar };
-        updateMoveData(newData);
-    }
-
-    function updateCriticalHit(criticalHit: boolean) {
-        const newData = { ...data, criticalHit };
-        updateMoveData(newData);
-    }
-
-    function getCustomVarInput(data: MoveData, updateCustomVar: (customVar: unknown) => void): ReactNode {
-        if (data.move.customVarType === "number") {
-            if (data.customVar === undefined) {
-                data.customVar = 0;
+    function getCustomVarInput(): ReactNode {
+        if (props.moveData.move.customVarType === "number") {
+            if (customInput === undefined) {
+                setCustomInput(0);
+                props.moveData.customVar = 0;
             }
             return (
-                <div className="flex items-center space-x-2">
-                    <InputLabel>{data.move.customVarName}</InputLabel>
+                <div className="flex mx-auto gap-2">
+                    <InputLabel>{props.moveData.move.customVarName}</InputLabel>
                     <input
                         type="number"
-                        className="w-full px-4 py-2 rounded-md bg-gray-700 border border-gray-600 text-gray-200 focus:ring-blue-500 focus:border-blue-500 text-center"
-                        value={data.customVar as number}
-                        onChange={(e) => updateCustomVar(parseInt(e.target.value))}
+                        className="w-18 focus:ring-blue-500 focus:border-blue-500 text-center"
+                        value={customInput as number}
+                        onChange={(e) => {
+                            const value = parseInt(e.target.value);
+
+                            setCustomInput(value);
+                            props.moveData.customVar = value;
+                        }}
                     />
                 </div>
             );
         }
-        if (data.move.customVarType === "boolean") {
-            if (data.customVar === undefined) {
-                data.customVar = false;
+        if (props.moveData.move.customVarType === "boolean") {
+            if (customInput === undefined) {
+                setCustomInput(false);
+                props.moveData.customVar = false;
             }
             return (
-                <Checkbox checked={data.customVar as boolean} onChange={() => updateCustomVar(!data.customVar)}>
-                    {data.move.customVarName}
+                <Checkbox
+                    checked={customInput as boolean}
+                    onChange={() => {
+                        const value = !(customInput as boolean);
+
+                        setCustomInput(value);
+                        props.moveData.customVar = value;
+                    }}
+                >
+                    {props.moveData.move.customVarName}
                 </Checkbox>
             );
         }
-        return <span>Input for type {data.move.customVarType === "number"} not yet implemented.</span>;
+        return <span>Input for type {customInput === "number"} not yet implemented.</span>;
     }
 
-    // the bp > 0 filter probably isn't strictly accurate i bet there's some weird fixed damage moves it excludes
-    let legalMoves = userData.moves.filter((m) => !isNull(m) && m.bp > 0);
-    if (legalMoves.length === 0) {
-        legalMoves = userData.species.allMoves(userData.form).filter((m) => m.bp > 0);
-    }
-
+    // TODO: Make this thing not so ugly, all the data needed to be shown should be here though
     return (
-        <div>
-            {!isNull(userData.species) && (
-                <div className="text-center">
-                    <InputLabel>Move</InputLabel>
-                    <Dropdown
-                        value={data.move.id}
-                        onChange={(e) => updateMove(TectonicData.moves[e.target.value] || Move.NULL)}
+        <div className="flex flex-col">
+            <div className="flex items-center gap-2 pr-1 py-1 my-1  bg-gray-700 rounded-2xl">
+                <div className="flex flex-col gap-2">
+                    <div
+                        className={`flex w-75 h-full items-center gap-2 p-1 rounded-2xl border-1 border-white/50 ${getTypeColorClass(
+                            props.moveData.move.getType(props.user, props.battleState),
+                            "bg",
+                            "bg"
+                        )} ${props.moveData.move.isSTAB(props.user.species) ? "font-bold" : ""} ${
+                            props.moveData.move.isSignature ? "text-yellow-300" : ""
+                        }`}
+                        title={props.moveData.move.description}
                     >
-                        <option value="" className="bg-gray-800">
-                            Select Move
-                        </option>
-                        {legalMoves.map((m) => (
-                            <option
-                                key={m.id}
-                                value={m.id}
-                                className={`bg-gray-800 ${
-                                    m.isSignature
-                                        ? "font-semibold text-yellow-500"
-                                        : m.isSTAB(userData.species)
-                                        ? "font-semibold text-blue-400"
-                                        : ""
-                                }`}
-                            >
-                                {m.name}
-                            </option>
-                        ))}
-                    </Dropdown>
-                </div>
-            )}
-            {!isNull(data.move) && (
-                <div className="bg-gray-700 p-4 rounded-lg border border-gray-600">
-                    {data.move.needsInput && getCustomVarInput(data, updateCustomVar)}
-                    <Checkbox
-                        checked={targetData.volatileStatusEffects.Jinx || data.criticalHit}
-                        disabled={targetData.volatileStatusEffects.Jinx}
-                        onChange={() => updateCriticalHit(!data.criticalHit)}
-                    >
-                        Critical Hit
-                    </Checkbox>
-                    <h3 className="text-sm font-medium text-gray-300 mb-3 text-center">Move Details</h3>
-                    <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-                        <div className="text-right text-gray-400">Type:</div>
                         <TypeBadge
-                            types={[data.move.getType(userData, battleState)]}
-                            element={TypeBadgeElementEnum.CAPSULE_SINGLE}
+                            types={[props.moveData.move.getType(props.user, props.battleState)]}
+                            element={TypeBadgeElementEnum.ICONS}
                         />
-                        <div className="text-right text-gray-400">Power:</div>
-                        <div className="text-left text-gray-200">
-                            {data.move.getPower(userData, targetData, battleState, data.customVar)}
-                        </div>
-                        <div className="text-right text-gray-400">Category:</div>
-                        <div className="text-left text-gray-200">{getMoveCategory(data, userData)}</div>
+                        <ImageFallback
+                            src={Move.getMoveCategoryImgSrc(
+                                props.moveData.move.getDamageCategory(props.moveData, props.user, props.target)
+                            )}
+                            alt={props.moveData.move.category}
+                            title={props.moveData.move.category}
+                            height={60}
+                            width={51}
+                            className="w-8 h-8"
+                        />
+                        <span>
+                            {`${props.moveData.move.name} ${props.moveData.move.getPower(
+                                props.user,
+                                props.target,
+                                props.battleState,
+                                props.moveData.customVar
+                            )} ${props.moveData.move.accuracy}% ${props.moveData.move.priority ?? ""}`}
+                        </span>
                     </div>
+                    {props.moveData.move.needsInput && getCustomVarInput()}
                 </div>
-            )}
+                <Checkbox
+                    checked={crit}
+                    disabled={props.target.volatileStatusEffects.Jinx}
+                    onChange={() => {
+                        setCrit(!crit);
+                        props.moveData.criticalHit = !crit;
+                    }}
+                >
+                    Crit
+                </Checkbox>
+                <div
+                    className={`flex w-fit gap-2 p-1 text-center rounded-2xl border-1 border-white/50 ${getColourClassForMult(
+                        result.typeEffectMult,
+                        "bg-gray-500"
+                    )} ${getTextColourForMult(result.typeEffectMult)}`}
+                >
+                    <div className="flex flex-col">{getDmgNode()}</div>
+                    <div className="wrap-break-word w-10 my-auto font-bold">KO in {result.hits}</div>
+                </div>
+            </div>
+            <div></div>
         </div>
     );
 }

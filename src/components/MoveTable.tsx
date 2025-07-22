@@ -88,7 +88,7 @@ export default function MoveTable({
                     >
                         <span>
                             <ImageFallback
-                                src={`/move_categories/${c}.png`}
+                                src={Move.getMoveCategoryImgSrc(c)}
                                 alt={c}
                                 title={c}
                                 height={60}
@@ -185,7 +185,7 @@ export default function MoveTable({
                                     </TableCell>
                                     <TableCell>
                                         <ImageFallback
-                                            src={`/move_categories/${m.category}.png`}
+                                            src={m.getCategoryImgSrc()}
                                             alt={m.category}
                                             title={m.category}
                                             height={60}

@@ -466,25 +466,14 @@ function pbCalcProtectionsDamageMultipliers(
 ): DamageMultipliers {
     // Aurora Veil, Reflect, Light Screen
     // TODO: Abilities that ignore screens?
-    if (!move.move.ignoresScreens() && !move.criticalHit /* && !user.ignoreScreens(checkingForAI)*/) {
-        if (battleState.bools["Aurora Veil"]) {
-            if (battleState.bools["Multi Battle"]) {
-                multipliers.final_damage_multiplier *= 2 / 3.0;
-            } else {
-                multipliers.final_damage_multiplier *= 0.5;
-            }
-        } else if (battleState.bools.Reflect && move.move.getDamageCategory(move, user, target) === "Physical") {
-            if (battleState.bools["Multi Battle"]) {
-                multipliers.final_damage_multiplier *= 2 / 3.0;
-            } else {
-                multipliers.final_damage_multiplier *= 0.5;
-            }
-        } else if (battleState.bools["Light Screen"] && move.move.getDamageCategory(move, user, target) === "Special") {
-            if (battleState.bools["Multi Battle"]) {
-                multipliers.final_damage_multiplier *= 2 / 3.0;
-            } else {
-                multipliers.final_damage_multiplier *= 0.5;
-            }
+    if (!move.move.ignoresScreens() && !doesMoveCrit(move, target) /* && !user.ignoreScreens(checkingForAI)*/) {
+        if (
+            battleState.sideState.auroraVeil ||
+            (battleState.sideState.reflect && move.move.getDamageCategory(move, user, target) === "Physical") ||
+            (battleState.sideState.lightScreen && move.move.getDamageCategory(move, user, target) === "Special")
+        ) {
+            multipliers.final_damage_multiplier *= battleState.multiBattle ? 2 / 3.0 : 0.5;
+
             // } else if (target.pbOwnSide.effectActive("DiamondField")) {
             //     if (battle.pbSideBattlerCount(target) > 1) {
             //         multipliers.final_damage_multiplier *= 3 / 4.0;
@@ -746,7 +735,7 @@ function calcDamageMultipliers(
     // }
 
     // Multi-targeting attacks
-    if (move.move.isSpread() && battleState.bools["Multi Battle"]) {
+    if (move.move.isSpread() && battleState.multiBattle) {
         // TODO: Handle abilities
         // if (user.shouldAbilityApply("RESONANT", aiCheck)) {
         //     multipliers.final_damage_multiplier *= 1.25;
@@ -761,7 +750,7 @@ function calcDamageMultipliers(
     // multipliers.base_damage_multiplier *= Math.max(0, 1.0 - target.dmgResist);
 
     // Critical hits
-    if (move.criticalHit) {
+    if (doesMoveCrit(move, target)) {
         // TODO: Implement moves with increased critical hit damage
         multipliers.final_damage_multiplier *= move.move.getCriticalMultiplier();
     }
@@ -799,4 +788,8 @@ function flatDamageReductions(finalCalculatedDamage: number): number {
     // }
 
     return finalCalculatedDamage;
+}
+
+function doesMoveCrit(moveData: MoveData, target: PartyPokemon) {
+    return moveData.criticalHit || target.volatileStatusEffects.Jinx;
 }

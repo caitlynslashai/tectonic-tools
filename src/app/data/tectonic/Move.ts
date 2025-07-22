@@ -193,5 +193,13 @@ export class Move {
         return 1.5;
     }
 
+    public getCategoryImgSrc(): string {
+        return Move.getMoveCategoryImgSrc(this.category);
+    }
+
+    public static getMoveCategoryImgSrc(cat: MoveCategory): string {
+        return `/move_categories/${cat}.png`;
+    }
+
     static moveCodes: string[] = [];
 }
