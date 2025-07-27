@@ -102,7 +102,7 @@ const PokemonDamageCalculator: NextPage = () => {
     }, [playerMon, opponentMon]); // eslint-disable-line react-hooks/exhaustive-deps -- We specifically don't want MoveData as a dep as that is an infinite loop.
 
     return (
-        <div className="min-h-screen bg-gray-900 pb-10">
+        <div className="min-h-screen bg-gray-900 pb-5">
             <Head>
                 <title>Pokémon Tectonic Damage Calculator</title>
                 <meta
@@ -112,7 +112,7 @@ const PokemonDamageCalculator: NextPage = () => {
             </Head>
             <PageHeader currentPage={PageType.Calc} />
 
-            <main className="container mx-auto mt-2">
+            <main className="mx-auto mt-2 ">
                 <Column>
                     <ColumnHeader colour="text-purple-400">Battle State</ColumnHeader>
                     <div className="flex items-center gap-2">
@@ -165,23 +165,28 @@ const PokemonDamageCalculator: NextPage = () => {
                                     showBattleConfig={true}
                                 />
                                 {speedOrder != SpeedOrderEnum.NoDisplay && (
-                                    <div className="text-2xl text-white text-shadow-sm/50 font-bold px-2 rounded-xl bg-blue-500">
+                                    <div className="my-2 text-2xl text-white text-shadow-sm/50 font-bold px-2 rounded-xl bg-blue-500">
                                         {speedOrder == SpeedOrderEnum.Tie
                                             ? "Speed Tie"
                                             : `Moves ${speedOrder == SpeedOrderEnum.Player ? "First" : "Last"}`}
                                     </div>
                                 )}
-                                {opponentMon &&
-                                    playerMoveData
-                                        .map((x) => {
-                                            return {
-                                                moveData: x,
-                                                user: playerMon,
-                                                target: opponentMon,
-                                                battleState: getBattleState(opponentSideState),
-                                            };
-                                        })
-                                        .map((x, i) => <MoveCard key={i} {...x} />)}
+                                {opponentMon && (
+                                    <div className="grid grid-rows-auto grid-cols-2 gap-2 mt-1">
+                                        {playerMoveData
+                                            .map((x) => {
+                                                return {
+                                                    moveData: x,
+                                                    user: playerMon,
+                                                    target: opponentMon,
+                                                    battleState: getBattleState(opponentSideState),
+                                                };
+                                            })
+                                            .map((x, i) => (
+                                                <MoveCard key={i} {...x} />
+                                            ))}
+                                    </div>
+                                )}
                             </Fragment>
                         )}
                         {playerMon != null &&
@@ -267,23 +272,28 @@ const PokemonDamageCalculator: NextPage = () => {
                                     showBattleConfig={true}
                                 />
                                 {speedOrder != SpeedOrderEnum.NoDisplay && (
-                                    <div className="text-2xl text-white text-shadow-sm/50 font-bold px-2 rounded-xl bg-blue-500">
+                                    <div className="my-2 text-2xl text-white text-shadow-sm/50 font-bold px-2 rounded-xl bg-blue-500">
                                         {speedOrder == SpeedOrderEnum.Tie
                                             ? "Speed Tie"
                                             : `Moves ${speedOrder == SpeedOrderEnum.Opponent ? "First" : "Last"}`}
                                     </div>
                                 )}
-                                {playerMon &&
-                                    opponentMoveData
-                                        .map((x) => {
-                                            return {
-                                                moveData: x,
-                                                user: opponentMon,
-                                                target: playerMon,
-                                                battleState: getBattleState(playerSideState),
-                                            };
-                                        })
-                                        .map((x, i) => <MoveCard key={i} {...x} />)}
+                                {playerMon && (
+                                    <div className="grid grid-rows-auto grid-cols-2 gap-2 mt-1">
+                                        {opponentMoveData
+                                            .map((x) => {
+                                                return {
+                                                    moveData: x,
+                                                    user: opponentMon,
+                                                    target: playerMon,
+                                                    battleState: getBattleState(playerSideState),
+                                                };
+                                            })
+                                            .map((x, i) => (
+                                                <MoveCard key={i} {...x} />
+                                            ))}
+                                    </div>
+                                )}
                             </Fragment>
                         )}
                         <div className="w-fit h-fit overflow-auto mx-auto">
