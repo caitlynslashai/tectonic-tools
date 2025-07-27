@@ -8,18 +8,6 @@ import ImageFallback from "./ImageFallback";
 
 type SortDelegate = (a: [number, Move], b: [number, Move]) => number;
 
-const displayableMoveFlags = new Set<string>();
-displayableMoveFlags.add("Sound");
-displayableMoveFlags.add("Punch");
-displayableMoveFlags.add("Dance");
-displayableMoveFlags.add("Blade");
-displayableMoveFlags.add("Biting");
-displayableMoveFlags.add("Bite");
-displayableMoveFlags.add("Kicking");
-displayableMoveFlags.add("Pulse");
-displayableMoveFlags.add("Wind");
-displayableMoveFlags.add("Foretold");
-
 export default function MoveTable({
     moves,
     showLevel,
@@ -134,14 +122,7 @@ export default function MoveTable({
                         <TableHeader sortFunc={(a, b) => a[1].accuracy - b[1].accuracy}>Acc</TableHeader>
                         <TableHeader sortFunc={(a, b) => a[1].pp - b[1].pp}>PP</TableHeader>
                         <TableHeader sortFunc={(a, b) => (a[1].priority ?? 0) - (b[1].priority ?? 0)}>Prio</TableHeader>
-                        <TableHeader
-                            sortFunc={(a, b) =>
-                                a[1].flags
-                                    .filter((x) => displayableMoveFlags.has(x))
-                                    .join(",")
-                                    .localeCompare(b[1].flags.filter((x) => displayableMoveFlags.has(x)).join(","))
-                            }
-                        >
+                        <TableHeader sortFunc={(a, b) => a[1].getDisplayFlags().localeCompare(b[1].getDisplayFlags())}>
                             Flags
                         </TableHeader>
                         <TableHeader sortFunc={(a, b) => a[1].target.localeCompare(b[1].target)}>Target</TableHeader>
@@ -198,9 +179,7 @@ export default function MoveTable({
                                     <TableCell>{m.pp}</TableCell>
                                     <TableCell>{m.priority ?? "-"}</TableCell>
                                     <TableCell>
-                                        {m.flags.filter((f) => displayableMoveFlags.has(f)).length == 0
-                                            ? "-"
-                                            : m.flags.filter((f) => displayableMoveFlags.has(f)).join("\n")}
+                                        {m.getDisplayFlags().length == 0 ? "-" : m.getDisplayFlags("\n")}
                                     </TableCell>
                                     <TableCell padding="px-1 pt-2 pb-1">
                                         <table className="mx-auto">
