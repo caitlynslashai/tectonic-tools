@@ -299,7 +299,7 @@ const PokemonDamageCalculator: NextPage = () => {
                         <div className="w-fit h-fit overflow-auto mx-auto">
                             <div className="flex flex-wrap items-center mx-auto">
                                 {trainer != Trainer.NULL && (
-                                    <div className="flex items-center w-64">
+                                    <div className="flex items-center">
                                         <ImageFallback
                                             src={trainer.getImageSrc()}
                                             alt={trainer.displayName()}
@@ -309,7 +309,9 @@ const PokemonDamageCalculator: NextPage = () => {
                                             className="w-16 h-16 hover:bg-yellow-highlight cursor-pointer"
                                             onClick={() => setTrainer(Trainer.NULL)}
                                         />
-                                        <span className="text-sm mt-4 text-center">{trainer.displayName()}</span>
+                                        <span className="text-sm max-w-56 mt-4 text-center">
+                                            {trainer.displayName()}
+                                        </span>
                                     </div>
                                 )}
                                 {trainer.pokemon.map((x) => (
