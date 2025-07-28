@@ -152,7 +152,7 @@ export default function MoveCard(props: MoveCardProps): ReactNode {
                     | KO: {result.hits}
                 </div>
             </div>
-            <div className="flex w-full justify-between px-2">
+            <div className="flex w-full justify-between px-2 m-1">
                 <div className="flex flex-col">
                     <span>{`Power: ${props.moveData.move.getPower(
                         props.user,
@@ -166,7 +166,14 @@ export default function MoveCard(props: MoveCardProps): ReactNode {
                     <span>{`Priority: ${props.moveData.move.priority ?? "None"}`}</span>
                     <span>{`Flags: ${props.moveData.move.getDisplayFlags(", ")}`}</span>
                 </div>
-                <div className="flex flex-col items-end">{getDmgNode()}</div>
+                <div
+                    className={`flex flex-col items-end px-2 rounded-xl border-1 border-white/50 ${getColourClassForMult(
+                        result.typeEffectMult,
+                        "bg-gray-500"
+                    )} ${getTextColourForMult(result.typeEffectMult)}`}
+                >
+                    {getDmgNode()}
+                </div>
             </div>
             <hr className="w-full text-blue-500/75" />
             <div className="mx-2">{props.moveData.move.description}</div>
