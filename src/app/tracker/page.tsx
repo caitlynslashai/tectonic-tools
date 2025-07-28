@@ -106,7 +106,7 @@ class EncounterDisplayData {
         const isOnlyNumeric = input.length > 0 && Number.isInteger(Number(input));
 
         if (isOnlyNumeric) {
-            return this.levelCap == Number(input);
+            return this.levelCap <= Number(input);
         }
 
         return (
