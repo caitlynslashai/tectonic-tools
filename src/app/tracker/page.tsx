@@ -36,16 +36,26 @@ const tableDisplayNameMap: Record<string, string> = {
 class EncounterMap {
     name: string;
     displayData: EncounterDisplayData[];
-    minLevelCap: number = 9999;
-    minEncounterLevel: number = 9999;
+    minLevelCap: number = Number.MAX_SAFE_INTEGER;
+    minEncounterLevel: number = Number.MAX_SAFE_INTEGER;
 
     constructor(map: LoadedEncounterMap) {
         this.name = map.name;
         this.displayData = map.tables.map((t) => new EncounterDisplayData(map, t));
         this.displayData.forEach((x) => {
             this.minLevelCap = Math.min(this.minLevelCap, x.levelCap);
-            this.minEncounterLevel = Math.min(this.minEncounterLevel, x.minLevel);
         });
+        this.displayData
+            .filter((x) => !x.isSpecialEncounter())
+            .forEach((x) => {
+                this.minEncounterLevel = Math.min(this.minEncounterLevel, x.minLevel);
+            });
+
+        if (this.minEncounterLevel == Number.MAX_SAFE_INTEGER) {
+            this.displayData.forEach((x) => {
+                this.minEncounterLevel = Math.min(this.minEncounterLevel, x.minLevel);
+            });
+        }
     }
 
     filter(input: string, showIncompleteOnly: boolean, playthrough: Playthrough): boolean {
