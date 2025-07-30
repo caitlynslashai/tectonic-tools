@@ -65,6 +65,26 @@ function getTooltipForMult(
     return prefix + "Normal Effectiveness";
 }
 
+export function getEffectiveMessageForMult(mult: number): string {
+    if (mult >= 4) {
+        return "Hyper Effective";
+    }
+    if (mult >= 2) {
+        return "Super Effective";
+    }
+    if (mult == 0) {
+        return "No Effect";
+    }
+    if (mult < 0.5) {
+        return "Barely Effective";
+    }
+    if (mult < 1) {
+        return "Not Very Effective";
+    }
+
+    return "Normal Effectiveness";
+}
+
 function getTextForMult(mult: number): string {
     if (mult === 0.125) {
         return "⅛";

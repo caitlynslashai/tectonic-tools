@@ -5,7 +5,7 @@ import Checkbox from "@/components/Checkbox";
 import { getTypeColorClass } from "@/components/colours";
 import ImageFallback from "@/components/ImageFallback";
 import TypeBadge, { TypeBadgeElementEnum } from "@/components/TypeBadge";
-import { getColourClassForMult, getTextColourForMult } from "@/components/TypeChartCell";
+import { getColourClassForMult, getEffectiveMessageForMult, getTextColourForMult } from "@/components/TypeChartCell";
 import { Fragment, ReactNode, useEffect, useState } from "react";
 import { calculateDamage } from "../damageCalc";
 
@@ -128,28 +128,33 @@ export default function MoveCard(props: MoveCardProps): ReactNode {
                     {props.moveData.move.name}
                 </div>
                 <div
-                    className={`flex items-center gap-2 text-xl p-1 font-bold whitespace-nowrap rounded-xl border-1 border-white/50 ${getColourClassForMult(
+                    className={`p-1 whitespace-nowrap rounded-xl border-1 border-white/50 ${getColourClassForMult(
                         result.typeEffectMult,
                         "bg-gray-500"
                     )} ${getTextColourForMult(result.typeEffectMult)}`}
                 >
-                    <div className="flex items-center w-full gap-1 font-normal text-sm">
-                        {props.moveData.move.needsInput && getCustomVarInput()}
-                        <div>
-                            <span>Crit</span>
-                            <input
-                                type="checkbox"
-                                checked={crit}
-                                className="form-checkbox ml-1"
-                                disabled={props.target.volatileStatusEffects.Jinx}
-                                onChange={() => {
-                                    setCrit(!crit);
-                                    props.moveData.criticalHit = !crit;
-                                }}
-                            />
+                    <div className="flex gap-2 items-center">
+                        <div className="flex items-center w-full gap-1 text-sm">
+                            {props.moveData.move.needsInput && getCustomVarInput()}
+                            <div>
+                                <span>Crit</span>
+                                <input
+                                    type="checkbox"
+                                    checked={crit}
+                                    className="form-checkbox ml-1"
+                                    disabled={props.target.volatileStatusEffects.Jinx}
+                                    onChange={() => {
+                                        setCrit(!crit);
+                                        props.moveData.criticalHit = !crit;
+                                    }}
+                                />
+                            </div>
                         </div>
+                        <span className="text-xl font-bold">| KO: {result.hits}</span>
                     </div>
-                    | KO: {result.hits}
+                    <div className="text-sm text-center font-normal">
+                        {getEffectiveMessageForMult(result.typeEffectMult)}
+                    </div>
                 </div>
             </div>
             <div className="flex w-full justify-between px-2 m-1">
