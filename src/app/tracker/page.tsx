@@ -36,12 +36,26 @@ const tableDisplayNameMap: Record<string, string> = {
 class EncounterMap {
     name: string;
     displayData: EncounterDisplayData[];
-    maxLevel: number = 0;
+    minLevelCap: number = Number.MAX_SAFE_INTEGER;
+    minEncounterLevel: number = Number.MAX_SAFE_INTEGER;
 
     constructor(map: LoadedEncounterMap) {
         this.name = map.name;
         this.displayData = map.tables.map((t) => new EncounterDisplayData(map, t));
-        this.displayData.forEach((x) => (this.maxLevel = Math.max(this.maxLevel, x.maxLevel)));
+        this.displayData.forEach((x) => {
+            this.minLevelCap = Math.min(this.minLevelCap, x.levelCap);
+        });
+        this.displayData
+            .filter((x) => !x.isSpecialEncounter())
+            .forEach((x) => {
+                this.minEncounterLevel = Math.min(this.minEncounterLevel, x.minLevel);
+            });
+
+        if (this.minEncounterLevel == Number.MAX_SAFE_INTEGER) {
+            this.displayData.forEach((x) => {
+                this.minEncounterLevel = Math.min(this.minEncounterLevel, x.minLevel);
+            });
+        }
     }
 
     filter(input: string, showIncompleteOnly: boolean, playthrough: Playthrough): boolean {
@@ -56,6 +70,7 @@ class EncounterDisplayData {
     tableDisplayName: string;
     maxLevel: number;
     minLevel: number;
+    levelCap: number;
     items: Item[];
     displayMonData: [encounterMonId: string, mon: Pokemon, display: string][];
 
@@ -65,6 +80,7 @@ class EncounterDisplayData {
         this.tableDisplayName = tableDisplayNameMap[table.type];
         this.minLevel = 10000;
         this.maxLevel = -1;
+        this.levelCap = table.levelCap;
         this.displayMonData = [];
 
         const itemsMap: Record<string, Item> = {};
@@ -86,6 +102,10 @@ class EncounterDisplayData {
         this.items = Object.values(itemsMap);
     }
 
+    getLevelDisplay(): string {
+        return this.maxLevel == this.minLevel ? this.maxLevel.toString() : `${this.minLevel}-${this.maxLevel}`;
+    }
+
     isSpecialEncounter(): boolean {
         return this.tableDisplayName == "Special";
     }
@@ -93,6 +113,11 @@ class EncounterDisplayData {
     filter(input: string, showIncompleteOnly: boolean, playthrough: Playthrough): boolean {
         const hasAnyPick = playthrough.hasAnyPick(this.key);
         const wasPickMissed = playthrough.wasPickMissed(this.key);
+        const isOnlyNumeric = input.length > 0 && Number.isInteger(Number(input));
+
+        if (isOnlyNumeric) {
+            return this.levelCap <= Number(input);
+        }
 
         return (
             (input.length > 0 || !showIncompleteOnly || (showIncompleteOnly && !hasAnyPick && !wasPickMissed)) &&
@@ -106,7 +131,15 @@ class EncounterDisplayData {
 
 const encounterMaps: EncounterMap[] = Object.values(TectonicData.encounters)
     .map((m) => new EncounterMap(m))
-    .sort((a, b) => a.maxLevel - b.maxLevel);
+    .sort((a, b) => {
+        // Special handling for the lab so that it's first
+        if (a.name == "Impromptu Lab") return -1;
+        else if (b.name == "Impromptu Lab") return 1;
+
+        return a.minLevelCap == b.minLevelCap
+            ? a.minEncounterLevel - b.minEncounterLevel
+            : a.minLevelCap - b.minLevelCap;
+    });
 
 const EncounterTracker: NextPage = () => {
     const [showIncompleteOnly, setShowIncompleteOnly] = useState<boolean>(false);
@@ -125,9 +158,12 @@ const EncounterTracker: NextPage = () => {
                 <div>
                     <div className="flex justify-between items-center mt-2 pl-2 text-xl bg-white/10">
                         {data.tableDisplayName}
-                        <div className="flex flex-col md:flex-row gap-2 ">
+                        <div className="flex whitespace-nowrap gap-2 ">
+                            <span className="text-sm rounded-full my-auto px-2 py-1 bg-emerald-700">
+                                Lvl. Cap {data.levelCap}
+                            </span>
                             <span className="text-sm rounded-full my-auto px-2 py-1 bg-blue-700">
-                                Lvl. {data.maxLevel}
+                                Lvl. {data.getLevelDisplay()}
                             </span>
                             <FilterOptionButton
                                 isSelected={flagMissing}
@@ -269,7 +305,7 @@ const EncounterTracker: NextPage = () => {
                                 className="w-full border rounded px-2 py-1 bg-gray-700 text-white border-gray-600"
                                 value={locationFilter}
                                 onChange={(e) => setLocationFilter(e.target.value)}
-                                placeholder="Location, Pokemon, or item"
+                                placeholder="Location, Pokemon, Item, or Level Cap"
                             />
                             {encounterMaps
                                 .filter((m) =>

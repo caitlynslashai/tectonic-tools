@@ -429,14 +429,19 @@ export class LoadedEncounter {
 export class LoadedEncounterTable {
     type: string;
     encounterRate?: number;
+    levelCap: number = 0;
     encounters: LoadedEncounter[];
 
     constructor(raw: RawEncounterTable) {
         const tableTerms = raw.tableLine.split(",");
 
         this.type = tableTerms[0];
-        if (tableTerms.length > 1) {
+        if (tableTerms.length > 2) {
             this.encounterRate = parseInt(tableTerms[1]);
+            this.levelCap = parseInt(tableTerms[2]);
+        } else if (tableTerms.length > 1) {
+            // Special encounters only have the level cap
+            this.levelCap = parseInt(tableTerms[1]);
         }
         this.encounters = raw.encounterSplits.map((x) => new LoadedEncounter(x));
     }
