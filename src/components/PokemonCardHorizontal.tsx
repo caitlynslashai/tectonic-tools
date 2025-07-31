@@ -407,7 +407,7 @@ export default function PokemonCardHorizontal({
                                     <td key={k}>
                                         <input
                                             type="number"
-                                            className="text-center"
+                                            className="w-13 text-center"
                                             min={MIN_STEP}
                                             max={MAX_STEP}
                                             value={partyMon.statSteps[k]}

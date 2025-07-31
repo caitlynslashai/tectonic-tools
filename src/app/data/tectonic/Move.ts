@@ -33,6 +33,18 @@ export type MoveTarget =
 
 const spreadTargets: MoveTarget[] = ["AllBattlers", "AllNearFoes", "AllNearOthers", "BothSides", "FoeSide"];
 
+const displayableMoveFlags = new Set<string>();
+displayableMoveFlags.add("Sound");
+displayableMoveFlags.add("Punch");
+displayableMoveFlags.add("Dance");
+displayableMoveFlags.add("Blade");
+displayableMoveFlags.add("Biting");
+displayableMoveFlags.add("Bite");
+displayableMoveFlags.add("Kicking");
+displayableMoveFlags.add("Pulse");
+displayableMoveFlags.add("Wind");
+displayableMoveFlags.add("Foretold");
+
 export class Move {
     id: string = "";
     name: string = "";
@@ -195,6 +207,10 @@ export class Move {
 
     public getCategoryImgSrc(): string {
         return Move.getMoveCategoryImgSrc(this.category);
+    }
+
+    public getDisplayFlags(sep: string = ","): string {
+        return this.flags.filter((x) => displayableMoveFlags.has(x)).join(sep);
     }
 
     public static getMoveCategoryImgSrc(cat: MoveCategory): string {
