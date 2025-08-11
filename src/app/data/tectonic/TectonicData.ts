@@ -63,6 +63,7 @@ import { PokemonType } from "./PokemonType";
 import { Trainer } from "./Trainer";
 import { TrainerType } from "./TrainerType";
 import { Tribe } from "./Tribe";
+import { StatModifyAbility } from "../abilities/StatModifyAbility";
 
 const data = loadedData as LoadedDataJson;
 const moveSubclasses = [
@@ -120,6 +121,7 @@ const abilitySubclasses = [
     FasterBoostDamageAbility,
     ParanoidAbility,
     STABBoostAbility,
+    StatModifyAbility,
     TwoItemAbility,
     TypeilateAbility,
     TypeImmunityAbility,
