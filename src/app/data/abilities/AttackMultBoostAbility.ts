@@ -9,10 +9,12 @@ type damageBoostConditionFunction = (move: MoveData, user: PartyPokemon, battleS
 const attackMultBoostCondition: Record<string, damageBoostConditionFunction> = {
     PALEOLITHIC: (move: MoveData, user: PartyPokemon, battleState: BattleState) =>
         move.move.getType(user, battleState).id === "ROCK",
+    HUSTLE: () => true,
 };
 
 const attackMultBoostValues: Record<string, number> = {
     PALEOLITHIC: 1.5,
+    HUSTLE: 1.5,
 };
 
 export class AttackMultBoostAbility extends Ability {
