@@ -1,5 +1,4 @@
 import { ExtraTypeAbility } from "./abilities/ExtraTypeAbility";
-import { MatchupModifyAbility } from "./abilities/MatchupModifyAbility";
 import { ExtraEffectiveMove } from "./moves/ExtraEffectiveMove";
 import { ExtraTypeMove } from "./moves/ExtraTypeMove";
 import { HitsFliersMove } from "./moves/HitsFliersMove";
@@ -48,12 +47,11 @@ export function calcTypeMatchup(atk: AttackerData, def: DefenderData) {
     }
     const defAbility = def.ability;
     if (defAbility !== undefined) {
-        if (defAbility instanceof MatchupModifyAbility) {
-            defAbilityCalc *= defAbility.modifiedMatchup(atk.type);
-            // certain moves pierce ground immunity
-            if (defAbilityCalc === 0 && atk.move instanceof HitsFliersMove && atk.type.id === "GROUND") {
-                defAbilityCalc = 1;
-            }
+        // if check removed - abilities that don't modify matchups will just return 1
+        defAbilityCalc *= defAbility.modifiedMatchup(atk.type);
+        // certain moves pierce ground immunity
+        if (defAbilityCalc === 0 && atk.move instanceof HitsFliersMove && atk.type.id === "GROUND") {
+            defAbilityCalc = 1;
         }
 
         if (defAbility instanceof ExtraTypeAbility) {

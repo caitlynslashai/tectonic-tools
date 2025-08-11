@@ -4,7 +4,6 @@ import { MatchupModifyAbility } from "./MatchupModifyAbility";
 
 const weaknessAbilities: Record<string, [number, string]> = {
     FLUFFY: [2, "FIRE"],
-    PARANOID: [2, "PSYCHIC"],
 };
 
 export class TypeWeaknessAbility extends MatchupModifyAbility {

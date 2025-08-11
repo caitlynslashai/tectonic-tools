@@ -6,7 +6,7 @@ import { PartyPokemon } from "../types/PartyPokemon";
 
 type damageBoostConditionFunction = (move: MoveData, user: PartyPokemon, battleState: BattleState) => boolean;
 
-function isTypeCheck(typeId: string) {
+function isTypeCheck(typeId: string): damageBoostConditionFunction {
     return (move: MoveData, user: PartyPokemon, battleState: BattleState) =>
         move.move.getType(user, battleState).id === typeId;
 }

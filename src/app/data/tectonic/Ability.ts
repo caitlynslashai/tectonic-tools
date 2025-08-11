@@ -2,6 +2,8 @@ import { MoveData } from "@/app/damagecalc/components/MoveCard";
 import { LoadedAbility } from "@/preload/loadedDataClasses";
 import { BattleState } from "../battleState";
 import { PartyPokemon } from "../types/PartyPokemon";
+import { Stats } from "./Pokemon";
+import { PokemonType } from "./PokemonType";
 
 export class Ability {
     id: string = "";
@@ -20,6 +22,15 @@ export class Ability {
         this.description = loaded.description;
         this.flags = loaded.flags;
         this.isSignature = loaded.isSignature;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    public modifiedMatchup(type: PokemonType) {
+        return 1;
+    }
+
+    public modifyStats(stats: Stats) {
+        return stats;
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

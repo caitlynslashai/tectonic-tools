@@ -96,6 +96,8 @@ export class PartyPokemon {
             calculatedStats = item.modifyStats(calculatedStats);
         }
 
+        calculatedStats = this.ability.modifyStats(calculatedStats);
+
         return calculatedStats;
     }
 
