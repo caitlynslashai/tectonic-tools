@@ -6,10 +6,15 @@ import { PartyPokemon } from "../types/PartyPokemon";
 
 type damageBoostConditionFunction = (move: MoveData, user: PartyPokemon, battleState: BattleState) => boolean;
 
+function isTypeCheck(typeId: string) {
+    return (move: MoveData, user: PartyPokemon, battleState: BattleState) =>
+        move.move.getType(user, battleState).id === typeId;
+}
+
 const attackMultBoostCondition: Record<string, damageBoostConditionFunction> = {
-    PALEOLITHIC: (move: MoveData, user: PartyPokemon, battleState: BattleState) =>
-        move.move.getType(user, battleState).id === "ROCK",
+    PALEOLITHIC: isTypeCheck("ROCK"),
     HUSTLE: () => true,
+    TUNNELMAKER: isTypeCheck("GROUND"),
 };
 
 const attackMultBoostValues: Record<string, number> = {
