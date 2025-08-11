@@ -5,6 +5,8 @@ import { Stat, Stats } from "../tectonic/Pokemon";
 // RADIATE works differently on live and dev - currently implementing live version
 const statModifyAbilities: Record<string, [Stat, number]> = {
     RADIATE: ["spatk", 1.3],
+    PUREFORCE: ["attack", 1.5],
+    PUREENERGY: ["spatk", 1.5],
 };
 
 export class StatModifyAbility extends Ability {
