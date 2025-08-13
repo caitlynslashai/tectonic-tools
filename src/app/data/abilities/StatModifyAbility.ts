@@ -8,6 +8,9 @@ const statModifyAbilities: Record<string, [Stat, number]> = {
     PUREFORCE: ["attack", 1.5],
     PUREENERGY: ["spatk", 1.5],
     DEEPSTING: ["attack", 1.5],
+    COLDCALCULATION: ["spatk", 1.75],
+    FEELTHEBURN: ["attack", 1.75],
+    FLUSTERFLOCK: ["attack", 2],
 };
 
 export class StatModifyAbility extends Ability {
