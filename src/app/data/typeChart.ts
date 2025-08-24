@@ -60,7 +60,7 @@ export function calcTypeMatchup(atk: AttackerData, def: DefenderData) {
             thirdType = defType3;
         }
 
-        if (defAbility.id == "WONDERGUARD" && defType1Calc * defType2Calc < 1) {
+        if (defAbility.id == "WONDERGUARD" && defType1Calc * defType2Calc <= 1) {
             defAbilityCalc = 0;
         } else if (defAbility.id == "UNFAZED" && defType1Calc * defType2Calc == 1) {
             defAbilityCalc = 0.8;
