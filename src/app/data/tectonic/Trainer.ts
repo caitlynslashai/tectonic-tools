@@ -107,6 +107,33 @@ export class Trainer {
             : undefined;
     }
 
+    static tournamentTrainerKeys = [
+        "LEADER_Samorn_2,Samorn,2",
+        "LEADER_Samorn_2,Samorn,3",
+        "LEADER_Lambert_2,Lambert,2",
+        "LEADER_Lambert_2,Lambert,3",
+        "LEADER_Eko_2,Eko,2",
+        "LEADER_Eko_2,Eko,3",
+        "COOLTRAINER_M7,X",
+        "COOLTRAINER_M7,X,1",
+        "FORMERCHAMP_Elise,Elise,1",
+        "FORMERCHAMP_Elise,Elise,2",
+        "TRAINER_Alessa,Alessa,3",
+        "TRAINER_Alessa,Alessa,4",
+        "TRAINER_Eifion,Eifion,1",
+        "TRAINER_Eifion,Eifion,2",
+        "LEADER_Helena_2,Helena,2",
+        "LEADER_Helena_2,Helena,3",
+        "LEADER_Bence_2,Bence,2",
+        "LEADER_Bence_2,Bence,3",
+        "TRAINER_Zain,Zain,2",
+        "TRAINER_Zain,Zain,3",
+    ];
+
+    private isTournamentTrainer(): boolean {
+        return Trainer.tournamentTrainerKeys.includes(this.key());
+    }
+
     public displayName(): string {
         let name =
             // the last fallback shouldn't be necessary once trainers.txt and trainertypes.txt are in sync
@@ -121,13 +148,17 @@ export class Trainer {
             name = "Mysterious Trainer (" + name + ")";
         }
         if (this.version > 0) {
-            const allVersions = Object.values(TectonicData.trainers).filter(
-                (t) => t.class === this.class && t.name === this.name && t.extends === undefined
-            );
-            const baseVersion = this.extends !== undefined ? this.extends : this.version;
-            if (baseVersion > 0) {
-                const publicVersionNumber = allVersions.findIndex((t) => t.version === baseVersion) + 1;
-                name += " (" + publicVersionNumber + ")";
+            if (this.isTournamentTrainer()) {
+                name += "(Tournament)";
+            } else {
+                const allVersions = Object.values(TectonicData.trainers).filter(
+                    (t) => t.class === this.class && t.name === this.name && t.extends === undefined
+                );
+                const baseVersion = this.extends !== undefined ? this.extends : this.version;
+                if (baseVersion > 0) {
+                    const publicVersionNumber = allVersions.findIndex((t) => t.version === baseVersion) + 1;
+                    name += " (" + publicVersionNumber + ")";
+                }
             }
         }
         if (this.extends !== undefined) {
