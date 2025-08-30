@@ -114,7 +114,7 @@ export class Trainer {
         "LEADER_Lambert_2,Lambert,3",
         "LEADER_Eko_2,Eko,2",
         "LEADER_Eko_2,Eko,3",
-        "COOLTRAINER_M7,X",
+        "COOLTRAINER_M7,X,0",
         "COOLTRAINER_M7,X,1",
         "FORMERCHAMP_Elise,Elise,1",
         "FORMERCHAMP_Elise,Elise,2",
