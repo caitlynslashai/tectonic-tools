@@ -149,7 +149,7 @@ export class Trainer {
         }
         if (this.version > 0) {
             if (this.isTournamentTrainer()) {
-                name += "(Tournament)";
+                name += " (Tournament)";
             } else {
                 const allVersions = Object.values(TectonicData.trainers).filter(
                     (t) => t.class === this.class && t.name === this.name && t.extends === undefined
