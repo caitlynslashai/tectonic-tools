@@ -40,7 +40,10 @@ displayableMoveFlags.add("Dance");
 displayableMoveFlags.add("Blade");
 displayableMoveFlags.add("Biting");
 displayableMoveFlags.add("Bite");
+// kicking/kick has different tag names on live and dev
+// this will expose inconsistencies on live but better than missing tags
 displayableMoveFlags.add("Kicking");
+displayableMoveFlags.add("Kick");
 displayableMoveFlags.add("Pulse");
 displayableMoveFlags.add("Wind");
 displayableMoveFlags.add("Foretold");
