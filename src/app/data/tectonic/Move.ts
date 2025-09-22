@@ -47,6 +47,7 @@ displayableMoveFlags.add("Kick");
 displayableMoveFlags.add("Pulse");
 displayableMoveFlags.add("Wind");
 displayableMoveFlags.add("Foretold");
+displayableMoveFlags.add("Light");
 
 export class Move {
     id: string = "";
