@@ -31,6 +31,7 @@ const tableDisplayNameMap: Record<string, string> = {
     Cloud: "Dark Clouds",
     ActiveWater: "Deep Water",
     FishingContest: "Surfing",
+    WaterGrass: "Water Grass",
 };
 
 class EncounterMap {
