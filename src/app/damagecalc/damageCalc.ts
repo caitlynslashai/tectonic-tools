@@ -529,8 +529,8 @@ function pbCalcTypeBasedDamageMultipliers(
     const type = move.move.getType(user, battleState);
     stabActive =
         type &&
-        (user.species.getType1(user.form) === type ||
-            user.species.getType2(user.form) === type ||
+        (user.types.type1 === type ||
+            user.types.type2 === type ||
             (user.ability instanceof ExtraTypeAbility && user.ability.extraType.id === type.id));
     //}
     // TODO: Handle curses
