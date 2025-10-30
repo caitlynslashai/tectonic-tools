@@ -7,6 +7,7 @@ import { ExtraTypeAbility } from "../abilities/ExtraTypeAbility";
 import { FasterBoostDamageAbility } from "../abilities/FasterBoostDamageAbility";
 import { ParanoidAbility } from "../abilities/ParanoidAbility";
 import { STABBoostAbility } from "../abilities/STABBoostAbility";
+import { StatModifyAbility } from "../abilities/StatModifyAbility";
 import { TwoItemAbility } from "../abilities/TwoItemAbility";
 import { TypeilateAbility } from "../abilities/TypeilateAbility";
 import { TypeImmunityAbility } from "../abilities/TypeImmunityAbility";
@@ -16,6 +17,7 @@ import { TypeWeaknessAbility } from "../abilities/TypeWeaknessAbility";
 import { CategoryBoostingItem } from "../items/CategoryBoostingItem";
 import { EvioliteItem } from "../items/EvioliteItem";
 import { FlatDamageBoostItem } from "../items/FlatDamageBoostItem";
+import { FragileLocketItem } from "../items/FragileLocketItem";
 import { LumberAxeItem } from "../items/LumberAxeItem";
 import { StatBoostItem } from "../items/StatBoostItem";
 import { StatLockItem } from "../items/StatLockItem";
@@ -63,7 +65,6 @@ import { PokemonType } from "./PokemonType";
 import { Trainer } from "./Trainer";
 import { TrainerType } from "./TrainerType";
 import { Tribe } from "./Tribe";
-import { StatModifyAbility } from "../abilities/StatModifyAbility";
 
 const data = loadedData as LoadedDataJson;
 const moveSubclasses = [
@@ -111,6 +112,7 @@ const itemSubclasses = [
     TypeBoostingItem,
     TypeChangingItem,
     WeatherImmuneItem,
+    FragileLocketItem,
 ];
 
 const abilitySubclasses = [
