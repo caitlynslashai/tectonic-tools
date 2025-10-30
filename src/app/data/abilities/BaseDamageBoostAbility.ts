@@ -13,7 +13,6 @@ const baseDamageBoostConditions: Record<string, damageBoostConditionFunction> = 
     IRONFIST: (move: MoveData) => move.move.flags.includes("Punch"),
     SWORDPLAY: (move: MoveData) => move.move.flags.includes("Blade"),
     RAZORSEDGE: (move: MoveData) => move.move.flags.includes("Blade"),
-    BLADEBRAINED: (move: MoveData) => move.move.flags.includes("Blade"),
     MEGALAUNCHER: (move: MoveData) => move.move.flags.includes("Pulse"),
     BADOMEN: (move: MoveData) => move.move.flags.includes("Foretold"),
 
@@ -29,7 +28,6 @@ const baseDamageBoostValues: Record<string, number> = {
     IRONFIST: 1.3,
     SWORDPLAY: 1.3,
     RAZORSEDGE: 1.3,
-    BLADEBRAINED: 1.5,  
     MEGALAUNCHER: 1.5,
     BADOMEN: 1.3,
 
