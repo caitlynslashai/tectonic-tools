@@ -244,6 +244,9 @@ function applySunDebuff(move: MoveData, user: PartyPokemon, battleState: BattleS
     if (user.ability.flags.includes("SunshineSynergy") || user.ability.flags.includes("AllWeatherSynergy")) {
         return false;
     }
+    if (user.types.type1.id === "FIRE" || user.types.type2?.id === "FIRE" || user.types.type1.id === "GRASS" || user.types.type2?.id === "GRASS") {
+        return false;
+    }
     if (["FIRE", "GRASS"].includes(move.move.getType(user, battleState).id)) {
         return false;
     }
@@ -257,6 +260,10 @@ function applyRainDebuff(move: MoveData, user: PartyPokemon, battleState: Battle
     if (user.ability.flags.includes("RainstormSynergy") || user.ability.flags.includes("AllWeatherSynergy")) {
         return false;
     }
+    if (user.types.type1.id === "WATER" || user.types.type2?.id === "WATER" || user.types.type1.id === "ELECTRIC" || user.types.type2?.id === "ELECTRIC") {
+        return false;
+    }
+
     if (["WATER", "ELECTRIC"].includes(move.move.getType(user, battleState).id)) {
         return false;
     }
