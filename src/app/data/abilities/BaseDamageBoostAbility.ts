@@ -6,6 +6,7 @@ type damageBoostConditionFunction = (move: MoveData) => boolean;
 
 const baseDamageBoostConditions: Record<string, damageBoostConditionFunction> = {
     RECKLESS: (move: MoveData) => move.move.isRecoil(),
+    TECHNICIAN: (move: MoveData) => move.move.bp <= 60,
     EARSPLITTING: (move: MoveData) => move.move.flags.includes("Sound"),
     HOOLIGAN: (move: MoveData) => move.move.flags.includes("Sound") || move.move.isRecoil(),
     LOUD: (move: MoveData) => move.move.flags.includes("Sound"),
@@ -25,6 +26,7 @@ const baseDamageBoostConditions: Record<string, damageBoostConditionFunction> = 
 
 const baseDamageBoostValues: Record<string, number> = {
     RECKLESS: 1.3,
+    TECHNICIAN: 1.5,
     EARSPLITTING: 1.5,
     HOOLIGAN: 1.3,
     LOUD: 1.3,
