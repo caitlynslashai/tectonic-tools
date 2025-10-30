@@ -77,7 +77,9 @@ function propgatePokemonData(version: string, loadData: Record<string, LoadedPok
 
         const nodeWithTribes = evoNode.findBySelfAndParents((x) => loadData[x.getData().pokemon].tribes.length > 0);
         if (nodeWithTribes) {
-            loadMon.tribes = loadData[nodeWithTribes.getData().pokemon].tribes;
+            const tribes: string[] = [];
+            nodeWithTribes.callSelfAndParents((x) => tribes.push(...loadData[x.getData().pokemon].tribes));
+            loadMon.tribes = [...new Set(tribes)];
         }
 
         if (version.startsWith("3.2")) {
@@ -116,7 +118,9 @@ function propagateTrainerData(trainers: Record<string, LoadedTrainer>): void {
                     updatedPokemon.push(pokemon);
                 } else {
                     const newPokemon = { ...extendedTrainer.pokemon[extendedPokemonIndex] };
-                    newPokemon.abilityIndex = pokemon.abilityIndex;
+                    if(pokemon.abilityIndex) {
+                        newPokemon.abilityIndex = pokemon.abilityIndex;
+                    }
                     if (pokemon.itemType) {
                         newPokemon.itemType = pokemon.itemType;
                     }

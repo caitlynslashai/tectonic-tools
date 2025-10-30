@@ -15,6 +15,7 @@ const statModifyAbilities: Record<string, [Stat, number]> = {
     OVERTHINKING: ["spatk", 1.3],
     EXOTHERMENGINE: ["speed", 1.5],
     GORILLATACTICS: ["attack", 1.5],
+    TOUGHCLAWS: ["attack", 1.3],
 };
 
 export class StatModifyAbility extends Ability {
