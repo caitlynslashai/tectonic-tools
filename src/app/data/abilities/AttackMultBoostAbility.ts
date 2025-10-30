@@ -15,11 +15,34 @@ const attackMultBoostCondition: Record<string, damageBoostConditionFunction> = {
     PALEOLITHIC: isTypeCheck("ROCK"),
     HUSTLE: () => true,
     TUNNELMAKER: isTypeCheck("GROUND"),
+    STRATAGEM: isTypeCheck("ROCK"),
+    TOXICATTITUDE: isTypeCheck("POISON"),
+    STEELWORKER: isTypeCheck("STEEL"),
+    STEELYSPIRIT: isTypeCheck("STEEL"),
+    SURFSUP: isTypeCheck("WATER"),
+    ERUDITE: isTypeCheck("PSYCHIC"),
+    SCALDINGSMOKE: isTypeCheck("POISON"),
+    VERDANT: isTypeCheck("GRASS"),
+    SUPERALLOY: isTypeCheck("STEEL"),
+    TRANSISTOR: isTypeCheck("ELECTRIC"),
+    DRAGONSMAW: isTypeCheck("DRAGON"),
 };
 
 const attackMultBoostValues: Record<string, number> = {
     PALEOLITHIC: 1.5,
     HUSTLE: 1.5,
+    TUNNELMAKER: 1.5,
+    STRATAGEM: 1.5,
+    TOXICATTITUDE: 1.5,
+    STEELWORKER: 1.5,
+    STEELYSPIRIT: 1.5,
+    SURFSUP: 1.5,
+    ERUDITE: 1.5,
+    SCALDINGSMOKE: 1.5,
+    VERDANT: 1.5,
+    SUPERALLOY: 1.5,
+    TRANSISTOR: 1.5,
+    DRAGONSMAW: 1.5,
 };
 
 export class AttackMultBoostAbility extends Ability {
