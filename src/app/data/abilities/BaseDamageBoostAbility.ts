@@ -6,10 +6,12 @@ type damageBoostConditionFunction = (move: MoveData) => boolean;
 
 const baseDamageBoostConditions: Record<string, damageBoostConditionFunction> = {
     RECKLESS: (move: MoveData) => move.move.isRecoil(),
+    TECHNICIAN: (move: MoveData) => move.move.bp <= 60,
 };
 
 const baseDamageBoostValues: Record<string, number> = {
     RECKLESS: 1.3,
+    TECHNICIAN: 1.5,
 };
 
 export class BaseDamageBoostAbility extends Ability {
