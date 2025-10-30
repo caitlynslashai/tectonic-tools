@@ -8,7 +8,7 @@ export class RepeatScalingMove extends Move {
     needsInput: boolean = true;
 
     public getPower(_: PartyPokemon, __: PartyPokemon, ___: BattleState, turns: number): number {
-        return this.bp * turns * 20;
+        return this.bp + turns * 20;
     }
 
     static moveCodes = ["HeartRhythm"];
