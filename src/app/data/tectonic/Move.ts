@@ -2,12 +2,13 @@ import { MoveData } from "@/app/damagecalc/components/MoveCard";
 import { Side } from "@/app/damagecalc/damageCalc";
 import { BattleState } from "@/app/data/battleState";
 import { LoadedMove } from "@/preload/loadedDataClasses";
+import { ExtraTypeAbility } from "../abilities/ExtraTypeAbility";
 import { MoveTypeChangeAbility } from "../abilities/MoveTypeChangeAbility";
 import { StatusEffect } from "../conditions";
 import { TectonicData } from "../tectonic/TectonicData";
 import { PartyPokemon } from "../types/PartyPokemon";
 import { isNull } from "../util";
-import { Pokemon, Stat } from "./Pokemon";
+import { Stat } from "./Pokemon";
 import { PokemonType } from "./PokemonType";
 
 export const moveCategories = ["Physical", "Special", "Status", "Adaptive"] as const;
@@ -145,9 +146,12 @@ export class Move {
                 ];
         }
     }
-
-    public isSTAB(mon: Pokemon): boolean {
-        return mon.type1.name === this.type.name || mon.type2?.name === this.type.name;
+    
+    public isSTAB(mon: PartyPokemon): boolean {
+        return this.type &&
+            (mon.types.type1 === this.type ||
+                mon.types.type2 === this.type ||
+                (mon.ability instanceof ExtraTypeAbility && mon.ability.extraType.id === this.type.id));
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

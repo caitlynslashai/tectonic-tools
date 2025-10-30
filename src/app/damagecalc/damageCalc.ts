@@ -1,5 +1,4 @@
 import { BattleState } from "@/app/data/battleState";
-import { ExtraTypeAbility } from "../data/abilities/ExtraTypeAbility";
 import { STABBoostAbility } from "../data/abilities/STABBoostAbility";
 import { WeatherImmuneItem } from "../data/items/WeatherImmuneItem";
 import { MultiHitMove } from "../data/moves/MultiHitMove";
@@ -527,11 +526,8 @@ function pbCalcTypeBasedDamageMultipliers(
     //     stabActive = anyPartyMemberHasType;
     // } else {
     const type = move.move.getType(user, battleState);
-    stabActive =
-        type &&
-        (user.types.type1 === type ||
-            user.types.type2 === type ||
-            (user.ability instanceof ExtraTypeAbility && user.ability.extraType.id === type.id));
+    stabActive = move.move.isSTAB(user);
+
     //}
     // TODO: Handle curses
     // stabActive = stabActive && !(user.pbOwnedByPlayer() && battle.curses.includes("DULLED"));
