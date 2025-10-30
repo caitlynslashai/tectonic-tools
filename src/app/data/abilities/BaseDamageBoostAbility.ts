@@ -15,8 +15,12 @@ const baseDamageBoostConditions: Record<string, damageBoostConditionFunction> = 
     RAZORSEDGE: (move: MoveData) => move.move.flags.includes("Blade"),
     MEGALAUNCHER: (move: MoveData) => move.move.flags.includes("Pulse"),
     BADOMEN: (move: MoveData) => move.move.flags.includes("Foretold"),
-
-
+    BRISK: (move: MoveData) => move.move.flags.includes("Wind"),
+    GALEFORCE: (move: MoveData) => move.move.flags.includes("Wind"),
+    HEAVYDUTYHOOVES: (move: MoveData) => move.move.flags.includes("Kick") || move.move.flags.includes("Kicking"),
+    IRONHEEL: (move: MoveData) => move.move.flags.includes("Kick") || move.move.flags.includes("Kicking"),
+    STRONGJAW: (move: MoveData) => move.move.flags.includes("Biting") || move.move.flags.includes("Bite"),
+    STONEMANE: (move: MoveData) => move.move.isRecoil(),
 };
 
 const baseDamageBoostValues: Record<string, number> = {
@@ -30,7 +34,12 @@ const baseDamageBoostValues: Record<string, number> = {
     RAZORSEDGE: 1.3,
     MEGALAUNCHER: 1.5,
     BADOMEN: 1.3,
-
+    BRISK: 1.3,
+    GALEFORCE: 1.5,
+    HEAVYDUTYHOOVES: 1.3,
+    IRONHEEL: 1.3,
+    STRONGJAW: 1.5,
+    STONEMANE: 1.2,
 };
 
 export class BaseDamageBoostAbility extends Ability {
