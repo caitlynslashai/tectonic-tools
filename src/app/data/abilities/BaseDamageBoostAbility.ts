@@ -6,11 +6,13 @@ type damageBoostConditionFunction = (move: MoveData) => boolean;
 
 const baseDamageBoostConditions: Record<string, damageBoostConditionFunction> = {
     RECKLESS: (move: MoveData) => move.move.isRecoil(),
+    STRONGJAW: (move: MoveData) => move.move.flags.includes("Biting") || move.move.flags.includes("Bite"),
     STONEMANE: (move: MoveData) => move.move.isRecoil(),
 };
 
 const baseDamageBoostValues: Record<string, number> = {
     RECKLESS: 1.3,
+    STRONGJAW: 1.5,
     STONEMANE: 1.2,
 };
 
