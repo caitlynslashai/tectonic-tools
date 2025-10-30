@@ -12,6 +12,7 @@ export enum PageType {
     Builder,
     Calc,
     Tracker,
+    Docs,
 }
 
 export default function PageHeader({ currentPage }: { currentPage: PageType }): ReactNode {
@@ -49,6 +50,7 @@ export default function PageHeader({ currentPage }: { currentPage: PageType }): 
                 <HeaderButton type={PageType.Pokedex} url="/pokedex" icon={PokeballIcon} text={"Pokédex"} />
                 <HeaderButton type={PageType.Builder} url="/teambuilder" icon={BuilderIcon} text={"Builder"} />
                 <HeaderButton type={PageType.Tracker} url="/tracker" icon={TrackerIcon} text={"Tracker"} />
+                <HeaderButton type={PageType.Docs} url="/trainerdocs" icon={TrackerIcon} text={"Trainers"} />
             </nav>
         </>
     );
