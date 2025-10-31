@@ -4,7 +4,7 @@ import { STABBoostAbility } from "../data/abilities/STABBoostAbility";
 import { WeatherImmuneItem } from "../data/items/WeatherImmuneItem";
 import { MultiHitMove } from "../data/moves/MultiHitMove";
 import { Stat } from "../data/tectonic/Pokemon";
-import { calcTypeMatchup } from "../data/typeChart";
+import { calcDynamicTypeMatchup } from "../data/typeChart";
 import { PartyPokemon } from "../data/types/PartyPokemon";
 import { MoveData } from "./components/MoveCard";
 
@@ -556,9 +556,9 @@ function pbCalcTypeBasedDamageMultipliers(
 
     // Type effectiveness
     // variable type moves are handled here in Tectonic, but on the data level here
-    const effectiveness = calcTypeMatchup(
+    const effectiveness = calcDynamicTypeMatchup(
         { type: type, move: move.move, ability: user.ability },
-        { type1: target.types.type1, type2: target.types.type2, ability: target.ability }
+        { type1: target.types.type1, type2: target.types.type2, ability: target.ability }, battleState
     );
     multipliers.final_damage_multiplier *= effectiveness;
 
