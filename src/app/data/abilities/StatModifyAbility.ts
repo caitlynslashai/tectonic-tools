@@ -16,6 +16,9 @@ const statModifyAbilities: Record<string, [Stat, number]> = {
     EXOTHERMENGINE: ["speed", 1.5],
     GORILLATACTICS: ["attack", 1.5],
     TOUGHCLAWS: ["attack", 1.3],
+    ASSAULTSPINES: ["spdef", 2],
+    ICESCALES: ["spdef", 2],
+    FURCOAT: ["defense", 2],
 };
 
 export class StatModifyAbility extends Ability {
