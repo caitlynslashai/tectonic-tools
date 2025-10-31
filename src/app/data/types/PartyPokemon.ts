@@ -56,6 +56,7 @@ export class PartyPokemon {
 
     public getStats(move?: MoveData, side?: Side): Stats {
         const stylish = this.ability.id === "STYLISH";
+        const accumulation = this.ability.id === "ACCUMULATION";
         const steps = { ...this.statSteps };
         if (move?.criticalHit) {
             // crits ignore player attack drops
@@ -77,18 +78,18 @@ export class PartyPokemon {
 
         const stats = this.getBaseStats();
 
-        let speed = calculateStat(stats.speed, this.level, this.stylePoints.speed, steps.speed, stylish);
+        let speed = calculateStat(stats.speed, this.level, this.stylePoints.speed, steps.speed, stylish, accumulation);
         // TODO: abilities probably can sometimes affect this
         if (this.statusEffect === "Numb") {
             speed = speed / 2;
         }
 
         let calculatedStats: Stats = {
-            hp: calculateHP(stats.hp, this.level, this.stylePoints.hp, stylish),
-            attack: calculateStat(stats.attack, this.level, this.stylePoints.attacks, steps.attack, stylish),
-            defense: calculateStat(stats.defense, this.level, this.stylePoints.defense, steps.defense, stylish),
-            spatk: calculateStat(stats.spatk, this.level, this.stylePoints.attacks, steps.spatk, stylish),
-            spdef: calculateStat(stats.spdef, this.level, this.stylePoints.spdef, steps.spdef, stylish),
+            hp: calculateHP(stats.hp, this.level, this.stylePoints.hp, stylish, accumulation),
+            attack: calculateStat(stats.attack, this.level, this.stylePoints.attacks, steps.attack, stylish, accumulation),
+            defense: calculateStat(stats.defense, this.level, this.stylePoints.defense, steps.defense, stylish, accumulation),
+            spatk: calculateStat(stats.spatk, this.level, this.stylePoints.attacks, steps.spatk, stylish, accumulation),
+            spdef: calculateStat(stats.spdef, this.level, this.stylePoints.spdef, steps.spdef, stylish, accumulation),
             speed,
         };
 
