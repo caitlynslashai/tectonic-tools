@@ -101,6 +101,11 @@ export class Move {
         return this.functionCode.includes("Recoil");
     }
 
+    public isBind(): boolean {
+        //  i think this is always BindTarget3
+        return this.functionCode.includes("BindTarget");
+    }
+
     public getTargetPositions(): boolean[][] {
         // Format is [[Foe, Foe], [User, Ally]]
         switch (this.target) {
