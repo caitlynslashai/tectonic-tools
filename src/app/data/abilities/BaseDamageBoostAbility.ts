@@ -22,6 +22,7 @@ const baseDamageBoostConditions: Record<string, damageBoostConditionFunction> = 
     IRONHEEL: (move: MoveData) => move.move.flags.includes("Kick") || move.move.flags.includes("Kicking"),
     STRONGJAW: (move: MoveData) => move.move.flags.includes("Biting") || move.move.flags.includes("Bite"),
     STONEMANE: (move: MoveData) => move.move.isRecoil(),
+    GRIPSTRENGTH: (move: MoveData) => move.move.isBind(),
 };
 
 const baseDamageBoostValues: Record<string, number> = {
@@ -42,6 +43,7 @@ const baseDamageBoostValues: Record<string, number> = {
     IRONHEEL: 1.3,
     STRONGJAW: 1.5,
     STONEMANE: 1.2,
+    GRIPSTRENGTH: 1.5,
 };
 
 export class BaseDamageBoostAbility extends Ability {
