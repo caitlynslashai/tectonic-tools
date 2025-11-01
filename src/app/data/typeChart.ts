@@ -54,10 +54,17 @@ export function calcTypeMatchup(atk: AttackerData, def: DefenderData) {
             defAbilityCalc = 1;
         }
 
-        if (defAbility instanceof ExtraTypeAbility) {
+        if (
+            defAbility instanceof ExtraTypeAbility
+        ) {
             const defType3 = defAbility.extraType;
-            defAbilityCalc = TectonicData.typeChart[atkType.index][defType3.index];
-            thirdType = defType3;
+            if (
+                defType3.id !== defType1.id &&
+                defType3.id !== def.type2?.id
+            ) {
+                defAbilityCalc = TectonicData.typeChart[atkType.index][defType3.index];
+                thirdType = defType3;
+            }
         }
 
         if (defAbility.id == "WONDERGUARD" && defType1Calc * defType2Calc <= 1) {

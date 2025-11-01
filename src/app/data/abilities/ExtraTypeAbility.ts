@@ -8,6 +8,7 @@ const isAlsoTypeAbilities: Record<string, string> = {
     INFECTED: "GRASS",
     RUSTWRACK: "STEEL",
     SLUGGISH: "BUG",
+    UNIDENTIFIED: "MUTANT",
 };
 
 export class ExtraTypeAbility extends Ability {
